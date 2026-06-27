@@ -181,7 +181,7 @@
     ====================== */
     .published-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
     }
 
@@ -488,9 +488,7 @@
     ====================== -->
     <section class="hero" aria-labelledby="page-title">
       <div class="container">
-        <p class="hero-badge">
-          無料・登録不要ですぐ使える
-        </p>
+        <p class="hero-badge">無料・登録不要ですぐ使える</p>
 
         <h1 id="page-title">
           毎日の「ちょっと便利」を、ひとつに。
@@ -531,10 +529,7 @@
               <h3 class="tool-title">
                 🎂 年齢・日付計算
               </h3>
-
-              <span class="status-live">
-                公開中
-              </span>
+              <span class="status-live">公開中</span>
             </div>
 
             <p class="tool-description">
@@ -551,10 +546,7 @@
               <h3 class="tool-title">
                 📅 営業日計算
               </h3>
-
-              <span class="status-live">
-                公開中
-              </span>
+              <span class="status-live">公開中</span>
             </div>
 
             <p class="tool-description">
@@ -565,16 +557,30 @@
               使ってみる
             </a>
           </article>
+
+          <article class="card featured-tool">
+            <div class="tool-title-row">
+              <h3 class="tool-title">
+                💰 消費税計算
+              </h3>
+              <span class="status-live">公開中</span>
+            </div>
+
+            <p class="tool-description">
+              税込・税抜・消費税額をかんたんに計算できます。
+            </p>
+
+            <a class="tool-button" href="./tax/">
+              使ってみる
+            </a>
+          </article>
         </div>
       </section>
 
       <!-- ======================
            制作予定のツール
       ====================== -->
-      <section
-        class="section"
-        aria-labelledby="planned-title"
-      >
+      <section class="section" aria-labelledby="planned-title">
         <h2 class="section-heading" id="planned-title">
           制作予定のツール
         </h2>
@@ -585,34 +591,26 @@
 
         <div class="planned-grid">
           <article class="card planned-card">
-            <span class="planned-icon" aria-hidden="true">
-              💰
-            </span>
-            <span class="planned-name">消費税計算</span>
-            <span class="planned-status">制作予定</span>
-          </article>
-
-          <article class="card planned-card">
-            <span class="planned-icon" aria-hidden="true">
-              👥
-            </span>
+            <span class="planned-icon" aria-hidden="true">👥</span>
             <span class="planned-name">割り勘計算</span>
             <span class="planned-status">制作予定</span>
           </article>
 
           <article class="card planned-card">
-            <span class="planned-icon" aria-hidden="true">
-              📱
-            </span>
+            <span class="planned-icon" aria-hidden="true">📱</span>
             <span class="planned-name">QRコード生成</span>
             <span class="planned-status">制作予定</span>
           </article>
 
           <article class="card planned-card">
-            <span class="planned-icon" aria-hidden="true">
-              🎲
-            </span>
+            <span class="planned-icon" aria-hidden="true">🎲</span>
             <span class="planned-name">ナンバーズ分析</span>
+            <span class="planned-status">制作予定</span>
+          </article>
+
+          <article class="card planned-card">
+            <span class="planned-icon" aria-hidden="true">📅</span>
+            <span class="planned-name">和暦・西暦変換</span>
             <span class="planned-status">制作予定</span>
           </article>
         </div>
@@ -621,10 +619,7 @@
       <!-- ======================
            ゴマツールの約束
       ====================== -->
-      <section
-        class="section"
-        aria-labelledby="promise-title"
-      >
+      <section class="section" aria-labelledby="promise-title">
         <div class="card promise-card">
           <h2 class="section-heading" id="promise-title">
             🍵 ゴマツールの約束
@@ -635,22 +630,18 @@
               <span aria-hidden="true">✅</span>
               完全無料
             </li>
-
             <li>
               <span aria-hidden="true">✅</span>
               登録不要
             </li>
-
             <li>
               <span aria-hidden="true">✅</span>
               スマホ対応
             </li>
-
             <li>
               <span aria-hidden="true">✅</span>
               データはブラウザ内だけで処理
             </li>
-
             <li>
               <span aria-hidden="true">✅</span>
               サーバーへ送信・保存しません
@@ -662,10 +653,7 @@
       <!-- ======================
            ロードマップ
       ====================== -->
-      <section
-        class="section"
-        aria-labelledby="roadmap-title"
-      >
+      <section class="section" aria-labelledby="roadmap-title">
         <h2 class="section-heading" id="roadmap-title">
           これから増やしていく予定
         </h2>
@@ -677,33 +665,18 @@
         <div class="card roadmap-card">
           <div class="roadmap-stats">
             <div class="roadmap-item">
-              <span class="roadmap-label">
-                現在公開中
-              </span>
-
-              <strong class="roadmap-value">
-                2ツール
-              </strong>
+              <span class="roadmap-label">現在公開中</span>
+              <strong class="roadmap-value">3ツール</strong>
             </div>
 
             <div class="roadmap-item">
-              <span class="roadmap-label">
-                次に公開予定
-              </span>
-
-              <strong class="roadmap-value">
-                消費税計算
-              </strong>
+              <span class="roadmap-label">次に公開予定</span>
+              <strong class="roadmap-value">割り勘計算</strong>
             </div>
 
             <div class="roadmap-item">
-              <span class="roadmap-label">
-                目標
-              </span>
-
-              <strong class="roadmap-value">
-                10ツール公開
-              </strong>
+              <span class="roadmap-label">目標</span>
+              <strong class="roadmap-value">10ツール公開</strong>
             </div>
           </div>
 
@@ -720,18 +693,14 @@
   ====================== -->
   <footer>
     <div class="container">
-      <p class="footer-logo">
-        🍵 ゴマツール
-      </p>
+      <p class="footer-logo">🍵 ゴマツール</p>
 
       <p>
         30秒で使えて、<br>
         他より少し便利。
       </p>
 
-      <p class="project-name">
-        Project Goma
-      </p>
+      <p class="project-name">Project Goma</p>
 
       <p class="footer-motto">
         小さく作って、<br>
@@ -740,27 +709,14 @@
       </p>
 
       <div class="footer-assurance">
-        <p>
-          入力したデータはブラウザ内だけで処理されます。
-        </p>
-
-        <p>
-          サーバーへ送信・保存は行いません。
-        </p>
-
-        <p>
-          ゴマツールは、毎日安心して使える便利なツールづくりを目指しています。
-        </p>
+        <p>入力したデータはブラウザ内だけで処理されます。</p>
+        <p>サーバーへ送信・保存は行いません。</p>
+        <p>ゴマツールは、毎日安心して使える便利なツールづくりを目指しています。</p>
       </div>
 
       <p class="updated">
-        <span class="updated-label">
-          最終更新
-        </span>
-
-        <span class="updated-date">
-          2026年6月27日
-        </span>
+        <span class="updated-label">最終更新</span>
+        <span class="updated-date">2026年6月27日</span>
       </p>
     </div>
   </footer>
