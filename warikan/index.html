@@ -110,15 +110,12 @@
       text-decoration: none;
     }
 
-    .home-link:hover {
-      background: var(--green-light);
-    }
+    .home-link:hover { background: var(--green-light); }
 
     /* ======================
        ヒーロー
     ====================== */
     main { padding: 78px 0 96px; }
-
     .hero { text-align: center; }
 
     .eyebrow {
@@ -161,9 +158,7 @@
       gap: 20px;
     }
 
-    .field-full {
-      grid-column: 1 / -1;
-    }
+    .field-full { grid-column: 1 / -1; }
 
     label {
       display: block;
@@ -234,9 +229,7 @@
       border-top: 1px solid var(--line);
     }
 
-    .result-panel[hidden] {
-      display: none;
-    }
+    .result-panel[hidden] { display: none; }
 
     .result-main {
       padding: 28px 20px;
@@ -349,9 +342,7 @@
       font-weight: 850;
     }
 
-    footer p {
-      margin: 5px 0;
-    }
+    footer p { margin: 5px 0; }
 
     .project-name {
       margin-top: 20px;
@@ -374,9 +365,7 @@
       line-height: 1.8;
     }
 
-    .footer-assurance p {
-      margin: 3px 0;
-    }
+    .footer-assurance p { margin: 3px 0; }
 
     .updated {
       margin-top: 18px;
@@ -393,39 +382,24 @@
        レスポンシブ
     ====================== */
     @media (max-width: 620px) {
-      .container {
-        width: min(100% - 24px, 880px);
-      }
-
-      .site-header {
-        padding: 18px 0;
-      }
-
-      .header-inner {
-        align-items: flex-start;
-      }
+      .container { width: min(100% - 24px, 880px); }
+      .site-header { padding: 18px 0; }
+      .header-inner { align-items: flex-start; }
 
       .brand-wrap {
         flex-direction: column;
         gap: 0;
       }
 
-      main {
-        padding: 58px 0 76px;
-      }
-
-      .section {
-        margin-top: 54px;
-      }
+      main { padding: 58px 0 76px; }
+      .section { margin-top: 54px; }
 
       .form-grid,
       .related-grid {
         grid-template-columns: 1fr;
       }
 
-      .field-full {
-        grid-column: auto;
-      }
+      .field-full { grid-column: auto; }
 
       .card {
         padding: 22px 18px;
@@ -434,9 +408,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
+      html { scroll-behavior: auto; }
 
       *,
       *::before,
@@ -458,9 +430,7 @@
         <p class="header-copy">無料で使える便利ツール集</p>
       </div>
 
-      <a class="home-link" href="../">
-        ← ホームへ戻る
-      </a>
+      <a class="home-link" href="../">← ホームへ戻る</a>
     </div>
   </header>
 
@@ -470,13 +440,8 @@
            ヒーロー
       ====================== -->
       <section class="hero" aria-labelledby="page-title">
-        <p class="eyebrow">
-          30秒でかんたん計算
-        </p>
-
-        <h1 id="page-title">
-          👥 割り勘計算
-        </h1>
+        <p class="eyebrow">30秒でかんたん計算</p>
+        <h1 id="page-title">👥 割り勘計算</h1>
 
         <p class="hero-catch">
           合計金額を、人数でかんたん割り勘。
@@ -490,14 +455,8 @@
       <!-- ======================
            割り勘計算フォーム
       ====================== -->
-      <section
-        class="section"
-        aria-labelledby="calculator-title"
-      >
-        <h2
-          class="section-title"
-          id="calculator-title"
-        >
+      <section class="section" aria-labelledby="calculator-title">
+        <h2 class="section-title" id="calculator-title">
           割り勘を計算する
         </h2>
 
@@ -505,10 +464,7 @@
           <form id="warikanForm" novalidate>
             <div class="form-grid">
               <div>
-                <label for="totalAmount">
-                  合計金額（円）
-                </label>
-
+                <label for="totalAmount">合計金額（円）</label>
                 <input
                   type="number"
                   id="totalAmount"
@@ -520,17 +476,11 @@
                   placeholder="例：10000"
                   required
                 >
-
-                <p class="hint">
-                  カンマなしの整数
-                </p>
+                <p class="hint">カンマなしの整数</p>
               </div>
 
               <div>
-                <label for="peopleCount">
-                  人数
-                </label>
-
+                <label for="peopleCount">人数</label>
                 <input
                   type="number"
                   id="peopleCount"
@@ -542,27 +492,17 @@
                   placeholder="例：3"
                   required
                 >
-
-                <p class="hint">
-                  1〜10,000人
-                </p>
+                <p class="hint">1〜10,000人</p>
               </div>
 
               <div class="field-full">
-                <button
-                  class="primary-button"
-                  type="submit"
-                >
+                <button class="primary-button" type="submit">
                   👥 割り勘を計算する
                 </button>
               </div>
             </div>
 
-            <p
-              class="error"
-              id="formError"
-              role="alert"
-            ></p>
+            <p class="error" id="formError" role="alert"></p>
           </form>
 
           <!-- ======================
@@ -575,37 +515,16 @@
             hidden
           >
             <div class="result-main">
-              <span class="result-label">
-                1人あたり
-              </span>
-
-              <strong
-                class="result-value"
-                id="perPersonAmount"
-              >
-                —
-              </strong>
+              <span class="result-label">1人あたり</span>
+              <strong class="result-value" id="perPersonAmount">—</strong>
             </div>
 
             <div class="remainder-card">
-              <span class="result-label">
-                割り切れない余り
-              </span>
-
-              <strong
-                class="remainder-value"
-                id="remainderAmount"
-              >
-                —
-              </strong>
+              <span class="result-label">割り切れない余り</span>
+              <strong class="remainder-value" id="remainderAmount">—</strong>
             </div>
 
-            <p
-              class="result-summary"
-              id="resultSummary"
-            >
-              —
-            </p>
+            <p class="result-summary" id="resultSummary">—</p>
           </div>
         </div>
       </section>
@@ -617,17 +536,11 @@
         class="section card info-card"
         aria-labelledby="info-title"
       >
-        <h2
-          class="section-title"
-          id="info-title"
-        >
-          計算について
-        </h2>
+        <h2 class="section-title" id="info-title">計算について</h2>
 
         <p>
           1人あたりの金額は、合計金額を人数で割って1円未満を切り捨てます。
         </p>
-
         <p>
           割り切れない金額は「余り」として表示します。
         </p>
@@ -636,75 +549,44 @@
       <!-- ======================
            関連ツール
       ====================== -->
-      <section
-        class="section"
-        aria-labelledby="related-title"
-      >
-        <h2
-          class="section-title"
-          id="related-title"
-        >
+      <section class="section" aria-labelledby="related-title">
+        <h2 class="section-title" id="related-title">
           おすすめの便利ツール
         </h2>
 
         <div class="card related-grid">
-          <a
-            class="related-item related-link"
-            href="../age/"
-          >
-            <span class="related-name">
-              🎂 年齢・日付計算
-            </span>
+          <a class="related-item related-link" href="../age/">
+            <span class="related-name">🎂 年齢・日付計算</span>
             <span class="related-status">公開中</span>
           </a>
 
-          <a
-            class="related-item related-link"
-            href="../business-days/"
-          >
-            <span class="related-name">
-              📅 営業日計算
-            </span>
+          <a class="related-item related-link" href="../business-days/">
+            <span class="related-name">📅 営業日計算</span>
             <span class="related-status">公開中</span>
           </a>
 
-          <a
-            class="related-item related-link"
-            href="../tax/"
-          >
-            <span class="related-name">
-              💰 消費税計算
-            </span>
+          <a class="related-item related-link" href="../tax/">
+            <span class="related-name">💰 消費税計算</span>
             <span class="related-status">公開中</span>
           </a>
 
-          <a
-            class="related-item related-link"
-            href="../qrcode/"
-          >
-            <span class="related-name">
-              📱 QRコード生成
-            </span>
+          <a class="related-item related-link" href="../qrcode/">
+            <span class="related-name">📱 QRコード生成</span>
             <span class="related-status">公開中</span>
           </a>
 
-          <a
-            class="related-item related-link"
-            href="../school-year/"
-          >
-            <span class="related-name">
-              🎓 学年・年齢・卒業年度計算
-            </span>
+          <a class="related-item related-link" href="../school-year/">
+            <span class="related-name">🎓 学年・年齢・卒業年度計算</span>
             <span class="related-status">公開中</span>
           </a>
 
-          <a
-            class="related-item related-link"
-            href="../wareki/"
-          >
-            <span class="related-name">
-              📅 和暦・西暦変換
-            </span>
+          <a class="related-item related-link" href="../wareki/">
+            <span class="related-name">📅 和暦・西暦変換</span>
+            <span class="related-status">公開中</span>
+          </a>
+
+          <a class="related-item related-link" href="../text-counter/">
+            <span class="related-name">✍️ 文字数カウント</span>
             <span class="related-status">公開中</span>
           </a>
         </div>
@@ -717,18 +599,14 @@
   ====================== -->
   <footer>
     <div class="container">
-      <p class="footer-logo">
-        🍵 ゴマツール
-      </p>
+      <p class="footer-logo">🍵 ゴマツール</p>
 
       <p>
         30秒で使えて、<br>
         他より少し便利。
       </p>
 
-      <p class="project-name">
-        Project Goma
-      </p>
+      <p class="project-name">Project Goma</p>
 
       <p class="footer-motto">
         小さく作って、<br>
@@ -737,23 +615,13 @@
       </p>
 
       <div class="footer-assurance">
-        <p>
-          入力したデータはブラウザ内だけで処理されます。
-        </p>
-
-        <p>
-          サーバーへ送信・保存は行いません。
-        </p>
+        <p>入力したデータはブラウザ内だけで処理されます。</p>
+        <p>サーバーへ送信・保存は行いません。</p>
       </div>
 
       <p class="updated">
-        <span class="updated-label">
-          最終更新
-        </span>
-
-        <span class="updated-date">
-          2026年6月28日
-        </span>
+        <span class="updated-label">最終更新</span>
+        <span class="updated-date">2026年6月28日</span>
       </p>
     </div>
   </footer>
@@ -772,44 +640,29 @@
       event.preventDefault();
 
       const rawTotal =
-        document.getElementById(
-          'totalAmount'
-        ).value.trim();
+        document.getElementById('totalAmount').value.trim();
 
       const rawPeople =
-        document.getElementById(
-          'peopleCount'
-        ).value.trim();
+        document.getElementById('peopleCount').value.trim();
 
-      const total =
-        Number(rawTotal);
-
-      const people =
-        Number(rawPeople);
+      const total = Number(rawTotal);
+      const people = Number(rawPeople);
 
       const error =
-        document.getElementById(
-          'formError'
-        );
+        document.getElementById('formError');
 
       const panel =
-        document.getElementById(
-          'resultPanel'
-        );
+        document.getElementById('resultPanel');
 
       error.textContent = '';
       panel.hidden = true;
 
       if (rawTotal === '') {
-        error.textContent =
-          '合計金額を入力してください。';
+        error.textContent = '合計金額を入力してください。';
         return;
       }
 
-      if (
-        !Number.isInteger(total) ||
-        total < 0
-      ) {
+      if (!Number.isInteger(total) || total < 0) {
         error.textContent =
           '合計金額は0以上の整数で入力してください。';
         return;
@@ -822,8 +675,7 @@
       }
 
       if (rawPeople === '') {
-        error.textContent =
-          '人数を入力してください。';
+        error.textContent = '人数を入力してください。';
         return;
       }
 
@@ -837,27 +689,18 @@
         return;
       }
 
-      const perPerson =
-        Math.floor(total / people);
+      const perPerson = Math.floor(total / people);
+      const remainder = total % people;
 
-      const remainder =
-        total % people;
-
-      document.getElementById(
-        'perPersonAmount'
-      ).textContent =
+      document.getElementById('perPersonAmount').textContent =
         formatYen(perPerson);
 
-      document.getElementById(
-        'remainderAmount'
-      ).textContent =
+      document.getElementById('remainderAmount').textContent =
         remainder === 0
           ? '0 円（ぴったり）'
           : formatYen(remainder);
 
-      document.getElementById(
-        'resultSummary'
-      ).textContent =
+      document.getElementById('resultSummary').textContent =
         `${formatYen(total)}を` +
         `${people.toLocaleString('ja-JP')}人で割った結果です。`;
 
@@ -873,12 +716,9 @@
     // 初期表示
     // ======================
     function initializePage() {
-      document.getElementById(
-        'warikanForm'
-      ).addEventListener(
-        'submit',
-        calculateWarikan
-      );
+      document
+        .getElementById('warikanForm')
+        .addEventListener('submit', calculateWarikan);
     }
 
     initializePage();
