@@ -24,8 +24,13 @@
       --radius: 22px;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       margin: 0;
@@ -37,20 +42,29 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    button, input, select { font: inherit; }
-    button { cursor: pointer; }
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
 
     .container {
       width: min(100% - 32px, 880px);
       margin-inline: auto;
     }
 
-    .section { margin-top: 72px; }
+    .section {
+      margin-top: 72px;
+    }
 
     .section-title {
       margin: 0 0 20px;
       font-size: clamp(1.35rem, 3vw, 1.7rem);
-      letter-spacing: .02em;
+      letter-spacing: 0.02em;
     }
 
     .card {
@@ -66,8 +80,8 @@
     ====================== */
     .site-header {
       padding: 25px 0;
-      border-bottom: 1px solid rgba(86, 123, 60, .12);
-      background: rgba(255, 255, 255, .82);
+      border-bottom: 1px solid rgba(86, 123, 60, 0.12);
+      background: rgba(255, 255, 255, 0.82);
     }
 
     .header-inner {
@@ -82,41 +96,46 @@
       color: var(--green-dark);
       font-size: 1.2rem;
       font-weight: 800;
-      letter-spacing: .03em;
+      letter-spacing: 0.03em;
     }
 
     .tagline {
       margin: 0;
       color: var(--muted);
-      font-size: .86rem;
+      font-size: 0.86rem;
     }
 
     /* ======================
        メイン・今日時点カード
     ====================== */
-    main { padding: 80px 0 96px; }
-    .hero { text-align: center; }
+    main {
+      padding: 80px 0 96px;
+    }
+
+    .hero {
+      text-align: center;
+    }
 
     .eyebrow {
       margin: 0 0 8px;
       color: var(--green);
-      font-size: .88rem;
+      font-size: 0.88rem;
       font-weight: 700;
-      letter-spacing: .12em;
+      letter-spacing: 0.12em;
     }
 
     h1 {
       margin: 0;
       font-size: clamp(2rem, 7vw, 3.5rem);
       line-height: 1.25;
-      letter-spacing: -.02em;
+      letter-spacing: -0.02em;
     }
 
     .hero-description {
       max-width: 600px;
       margin: 22px auto 0;
       color: var(--muted);
-      font-size: clamp(.98rem, 2.5vw, 1.08rem);
+      font-size: clamp(0.98rem, 2.5vw, 1.08rem);
     }
 
     .today-card {
@@ -133,7 +152,9 @@
       text-align: left;
     }
 
-    .today-label { font-weight: 700; }
+    .today-label {
+      font-weight: 700;
+    }
 
     .today-date {
       margin: 0;
@@ -151,7 +172,9 @@
       gap: 20px;
     }
 
-    .field-full { grid-column: 1 / -1; }
+    .field-full {
+      grid-column: 1 / -1;
+    }
 
     label {
       display: block;
@@ -162,10 +185,11 @@
     .hint {
       margin: 6px 0 0;
       color: var(--muted);
-      font-size: .82rem;
+      font-size: 0.82rem;
     }
 
-    input, select {
+    input,
+    select {
       width: 100%;
       min-height: 52px;
       padding: 12px 14px;
@@ -175,25 +199,27 @@
       background: #fff;
     }
 
-    input:focus, select:focus {
-      outline: 3px solid rgba(86, 123, 60, .17);
+    input:focus,
+    select:focus {
+      outline: 3px solid rgba(86, 123, 60, 0.17);
       border-color: var(--green);
     }
 
-    .primary-button, .copy-button {
+    .primary-button,
+    .copy-button {
       width: 100%;
       min-height: 56px;
       padding: 14px 22px;
       border-radius: 14px;
       font-weight: 800;
-      transition: transform .15s ease, background .15s ease;
+      transition: transform 0.15s ease, background 0.15s ease;
     }
 
     .primary-button {
       border: 0;
       color: #fff;
       background: var(--green);
-      box-shadow: 0 8px 20px rgba(86, 123, 60, .2);
+      box-shadow: 0 8px 20px rgba(86, 123, 60, 0.2);
     }
 
     .primary-button:hover {
@@ -207,11 +233,13 @@
       background: #fff;
     }
 
-    .copy-button:hover { background: var(--green-light); }
+    .copy-button:hover {
+      background: var(--green-light);
+    }
 
     .primary-button:focus-visible,
     .copy-button:focus-visible {
-      outline: 3px solid rgba(86, 123, 60, .3);
+      outline: 3px solid rgba(86, 123, 60, 0.3);
       outline-offset: 3px;
     }
 
@@ -232,7 +260,9 @@
       border-top: 1px solid var(--line);
     }
 
-    .result-panel[hidden] { display: none; }
+    .result-panel[hidden] {
+      display: none;
+    }
 
     .result-heading {
       margin: 0 0 18px;
@@ -262,7 +292,7 @@
       display: block;
       margin-bottom: 6px;
       color: var(--muted);
-      font-size: .88rem;
+      font-size: 0.88rem;
       font-weight: 700;
     }
 
@@ -279,13 +309,15 @@
       font-size: clamp(2.8rem, 10vw, 4.5rem);
     }
 
-    .copy-wrap { margin-top: 18px; }
+    .copy-wrap {
+      margin-top: 18px;
+    }
 
     .copy-status {
       min-height: 1.5em;
       margin: 8px 0 0;
       color: var(--green);
-      font-size: .88rem;
+      font-size: 0.88rem;
       font-weight: 700;
       text-align: center;
     }
@@ -297,7 +329,9 @@
       background: var(--green-light);
     }
 
-    .date-result .result-value { margin-top: 6px; }
+    .date-result .result-value {
+      margin-top: 6px;
+    }
 
     /* ======================
        ゴマツールの約束
@@ -308,7 +342,9 @@
       background: var(--green-dark);
     }
 
-    .promise-card .section-title { margin-bottom: 18px; }
+    .promise-card .section-title {
+      margin-bottom: 18px;
+    }
 
     .promise-list {
       display: grid;
@@ -319,7 +355,9 @@
       list-style: none;
     }
 
-    .promise-list li { padding-left: 2px; }
+    .promise-list li {
+      padding-left: 2px;
+    }
 
     /* ======================
        FAQ
@@ -342,7 +380,9 @@
       list-style: none;
     }
 
-    summary::-webkit-details-marker { display: none; }
+    summary::-webkit-details-marker {
+      display: none;
+    }
 
     summary::after {
       content: "+";
@@ -351,7 +391,9 @@
       font-size: 1.25rem;
     }
 
-    details[open] summary::after { content: "−"; }
+    details[open] summary::after {
+      content: "−";
+    }
 
     details p {
       margin: 0;
@@ -380,7 +422,7 @@
     .tool-link {
       display: block;
       text-decoration: none;
-      transition: border-color .15s ease, transform .15s ease;
+      transition: border-color 0.15s ease, transform 0.15s ease;
     }
 
     .tool-link:hover {
@@ -389,14 +431,14 @@
     }
 
     .tool-link:focus-visible {
-      outline: 3px solid rgba(86, 123, 60, .3);
+      outline: 3px solid rgba(86, 123, 60, 0.3);
       outline-offset: 3px;
     }
 
     .tool-status {
       display: block;
       margin-top: 3px;
-      font-size: .78rem;
+      font-size: 0.78rem;
       font-weight: 500;
     }
 
@@ -418,18 +460,22 @@
       font-weight: 800;
     }
 
-    footer p { margin: 4px 0; }
+    footer p {
+      margin: 4px 0;
+    }
 
     .updated {
       margin-top: 16px;
-      font-size: .8rem;
+      font-size: 0.8rem;
     }
 
     /* ======================
        レスポンシブ
     ====================== */
     @media (max-width: 620px) {
-      .container { width: min(100% - 24px, 880px); }
+      .container {
+        width: min(100% - 24px, 880px);
+      }
 
       .header-inner,
       .today-card {
@@ -438,8 +484,13 @@
         gap: 4px;
       }
 
-      main { padding: 58px 0 76px; }
-      .section { margin-top: 52px; }
+      main {
+        padding: 58px 0 76px;
+      }
+
+      .section {
+        margin-top: 52px;
+      }
 
       .card {
         padding: 22px 18px;
@@ -453,8 +504,13 @@
         grid-template-columns: 1fr;
       }
 
-      .result-item.primary { grid-column: auto; }
-      .result-item { min-height: 105px; }
+      .result-item.primary {
+        grid-column: auto;
+      }
+
+      .result-item {
+        min-height: 105px;
+      }
 
       .today-card {
         margin-top: 30px;
@@ -463,9 +519,13 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
+      html {
+        scroll-behavior: auto;
+      }
 
-      *, *::before, *::after {
+      *,
+      *::before,
+      *::after {
         transition: none !important;
       }
     }
@@ -496,6 +556,7 @@
           生年月日から年齢、生まれてからの日数、次の誕生日までの日数などを計算できます。
         </p>
 
+        <!-- 今日時点カード -->
         <div class="today-card" aria-label="今日の日付">
           <span class="today-label">📅 今日時点</span>
           <p class="today-date" id="todayDate">読み込み中…</p>
@@ -506,16 +567,13 @@
            年齢計算
       ====================== -->
       <section class="section" aria-labelledby="age-title">
-        <h2 class="section-title" id="age-title">
-          🎂 年齢を計算
-        </h2>
+        <h2 class="section-title" id="age-title">🎂 年齢を計算</h2>
 
         <div class="card">
           <form id="ageForm" novalidate>
             <div class="form-grid">
               <div class="field-full">
                 <label for="birthDate">生年月日</label>
-
                 <input
                   type="date"
                   id="birthDate"
@@ -523,7 +581,6 @@
                   required
                   autocomplete="bday"
                 >
-
                 <p class="hint">例：1990年4月15日</p>
               </div>
 
@@ -578,19 +635,10 @@
             </div>
 
             <div class="copy-wrap">
-              <button
-                class="copy-button"
-                type="button"
-                id="copyButton"
-              >
+              <button class="copy-button" type="button" id="copyButton">
                 📋 結果をコピー
               </button>
-
-              <p
-                class="copy-status"
-                id="copyStatus"
-                role="status"
-              ></p>
+              <p class="copy-status" id="copyStatus" role="status"></p>
             </div>
           </div>
         </div>
@@ -600,9 +648,7 @@
            日付計算
       ====================== -->
       <section class="section" aria-labelledby="date-title">
-        <h2 class="section-title" id="date-title">
-          📅 日付計算
-        </h2>
+        <h2 class="section-title" id="date-title">📅 日付計算</h2>
 
         <div class="card">
           <form id="dateForm" novalidate>
@@ -657,19 +703,10 @@
             hidden
           >
             <div class="date-result">
-              <span
-                class="result-label"
-                id="dateResultLabel"
-              >
+              <span class="result-label" id="dateResultLabel">
                 計算結果
               </span>
-
-              <strong
-                class="result-value"
-                id="calculatedDate"
-              >
-                —
-              </strong>
+              <strong class="result-value" id="calculatedDate">—</strong>
             </div>
           </div>
         </div>
@@ -701,42 +738,33 @@
            FAQ
       ====================== -->
       <section class="section" aria-labelledby="faq-title">
-        <h2 class="section-title" id="faq-title">
-          よくある質問
-        </h2>
+        <h2 class="section-title" id="faq-title">よくある質問</h2>
 
         <div class="faq-list">
           <details>
-            <summary>
-              Q. 入力したデータは保存されますか？
-            </summary>
+            <summary>Q. 入力したデータは保存されますか？</summary>
             <p>
-              A. 保存されません。入力内容はブラウザ内だけで計算し、サーバーには送信しません。
+              A. 保存されません。入力内容はブラウザ内だけで計算し、
+              サーバーには送信しません。
             </p>
           </details>
 
           <details>
-            <summary>
-              Q. スマホでも使えますか？
-            </summary>
+            <summary>Q. スマホでも使えますか？</summary>
             <p>
               A. はい。スマホ、タブレット、PCのどれでも使えます。
             </p>
           </details>
 
           <details>
-            <summary>
-              Q. 料金はかかりますか？
-            </summary>
+            <summary>Q. 料金はかかりますか？</summary>
             <p>
               A. いいえ。すべての計算機能を完全無料で使えます。
             </p>
           </details>
 
           <details>
-            <summary>
-              Q. うるう年の2月29日生まれはどうなりますか？
-            </summary>
+            <summary>Q. うるう年の2月29日生まれはどうなりますか？</summary>
             <p>
               A. 2月29日がない年は、2月28日を次の誕生日として計算します。
             </p>
@@ -780,6 +808,11 @@
 
           <a class="tool-item tool-link" href="../wareki/">
             📅 和暦・西暦変換
+            <span class="tool-status">公開中</span>
+          </a>
+
+          <a class="tool-item tool-link" href="../text-counter/">
+            ✍️ 文字数カウント
             <span class="tool-status">公開中</span>
           </a>
         </div>
@@ -868,13 +901,8 @@
 
     function toInputValue(date) {
       const year = date.getUTCFullYear();
-      const month = String(
-        date.getUTCMonth() + 1
-      ).padStart(2, '0');
-
-      const day = String(
-        date.getUTCDate()
-      ).padStart(2, '0');
+      const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+      const day = String(date.getUTCDate()).padStart(2, '0');
 
       return `${year}-${month}-${day}`;
     }
@@ -891,19 +919,14 @@
     }
 
     function daysInMonth(year, month) {
-      return new Date(
-        Date.UTC(year, month, 0)
-      ).getUTCDate();
+      return new Date(Date.UTC(year, month, 0)).getUTCDate();
     }
 
     function createClampedDate(year, month, day) {
       return toUtcDate(
         year,
         month,
-        Math.min(
-          day,
-          daysInMonth(year, month)
-        )
+        Math.min(day, daysInMonth(year, month))
       );
     }
 
@@ -936,9 +959,7 @@
 
       while (months < 11) {
         const totalMonths =
-          anchor.getUTCMonth() +
-          1 +
-          months;
+          anchor.getUTCMonth() + 1 + months;
 
         const candidateYear =
           anchor.getUTCFullYear() +
@@ -1005,8 +1026,7 @@
       result.hidden = true;
 
       if (!birth) {
-        error.textContent =
-          '生年月日を入力してください。';
+        error.textContent = '生年月日を入力してください。';
         return;
       }
 
@@ -1016,22 +1036,19 @@
         return;
       }
 
-      const detail =
-        getDetailedAge(birth, today);
+      const detail = getDetailedAge(birth, today);
 
       const livedDays = Math.floor(
         (today - birth) / DAY_MS
       );
 
-      const next =
-        getNextBirthday(birth, today);
+      const next = getNextBirthday(birth, today);
 
       const untilNext = Math.floor(
         (next - today) / DAY_MS
       );
 
-      const weekday =
-        WEEKDAYS[birth.getUTCDay()];
+      const weekday = WEEKDAYS[birth.getUTCDay()];
 
       document.getElementById('ageYears').textContent =
         `${detail.years}歳`;
@@ -1068,7 +1085,6 @@
       ].join('\n');
 
       document.getElementById('copyStatus').textContent = '';
-
       result.hidden = false;
 
       result.scrollIntoView({
@@ -1095,18 +1111,14 @@
       const direction =
         document.getElementById('dateDirection').value;
 
-      const error =
-        document.getElementById('dateError');
-
-      const result =
-        document.getElementById('dateResult');
+      const error = document.getElementById('dateError');
+      const result = document.getElementById('dateResult');
 
       error.textContent = '';
       result.hidden = true;
 
       if (!base) {
-        error.textContent =
-          '基準日を入力してください。';
+        error.textContent = '基準日を入力してください。';
         return;
       }
 
@@ -1127,8 +1139,7 @@
           : days;
 
       const calculated = new Date(
-        base.getTime() +
-        signedDays * DAY_MS
+        base.getTime() + signedDays * DAY_MS
       );
 
       const directionText =
@@ -1155,15 +1166,13 @@
     // 結果コピー
     // ======================
     async function copyResult() {
-      const status =
-        document.getElementById('copyStatus');
+      const status = document.getElementById('copyStatus');
 
       try {
         await navigator.clipboard.writeText(copyText);
         status.textContent = 'コピーしました！';
       } catch (error) {
-        const textArea =
-          document.createElement('textarea');
+        const textArea = document.createElement('textarea');
 
         textArea.value = copyText;
         textArea.style.position = 'fixed';
@@ -1172,8 +1181,7 @@
         document.body.appendChild(textArea);
         textArea.select();
 
-        const copied =
-          document.execCommand('copy');
+        const copied = document.execCommand('copy');
 
         textArea.remove();
 
