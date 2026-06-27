@@ -32,8 +32,7 @@
       margin: 0;
       color: var(--text);
       background: linear-gradient(180deg, #f9fcf7 0, #fff 25%);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-        "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
       line-height: 1.75;
       -webkit-font-smoothing: antialiased;
     }
@@ -470,7 +469,10 @@
       line-height: 1.6;
     }
 
-    .updated-label, .updated-date { display: block; }
+    .updated-label,
+    .updated-date {
+      display: block;
+    }
 
     /* ======================
        レスポンシブ
@@ -517,12 +519,15 @@
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
 
-      *, *::before, *::after {
+      *,
+      *::before,
+      *::after {
         transition: none !important;
       }
     }
   </style>
 </head>
+
 <body>
   <!-- ======================
        ヘッダー
@@ -533,6 +538,7 @@
         <p class="logo">🍵 ゴマツール</p>
         <p class="header-copy">無料で使える便利ツール集</p>
       </div>
+
       <a class="home-link" href="../">← ホームへ戻る</a>
     </div>
   </header>
@@ -545,7 +551,11 @@
       <section class="hero" aria-labelledby="page-title">
         <p class="eyebrow">30秒でかんたん計算</p>
         <h1 id="page-title">💰 消費税計算</h1>
-        <p class="hero-catch">税込・税抜・消費税額をかんたん計算。</p>
+
+        <p class="hero-catch">
+          税込・税抜・消費税額をかんたん計算。
+        </p>
+
         <p class="hero-description">
           金額と税率を入力すると、税込金額・税抜金額・消費税額を計算できます。<br>
           10%・8%に加えて、将来の税率変更にも対応しやすい自由入力にも対応しています。
@@ -556,7 +566,9 @@
            消費税計算フォーム
       ====================== -->
       <section class="section" aria-labelledby="calculator-title">
-        <h2 class="section-title" id="calculator-title">消費税を計算する</h2>
+        <h2 class="section-title" id="calculator-title">
+          消費税を計算する
+        </h2>
 
         <div class="card">
           <form id="taxForm" novalidate>
@@ -574,14 +586,20 @@
                   placeholder="例：1000"
                   required
                 >
-                <p class="hint">カンマなしの整数で入力してください</p>
+                <p class="hint">
+                  カンマなしの整数で入力してください
+                </p>
               </div>
 
               <div>
                 <label for="calculationType">計算方法</label>
                 <select id="calculationType" name="calculationType">
-                  <option value="exclusive">税抜から税込を計算</option>
-                  <option value="inclusive">税込から税抜を計算</option>
+                  <option value="exclusive">
+                    税抜から税込を計算
+                  </option>
+                  <option value="inclusive">
+                    税込から税抜を計算
+                  </option>
                 </select>
               </div>
 
@@ -594,8 +612,14 @@
                 </select>
               </div>
 
-              <div class="custom-rate" id="customRateField" hidden>
-                <label for="customRate">自由入力の税率（%）</label>
+              <div
+                class="custom-rate"
+                id="customRateField"
+                hidden
+              >
+                <label for="customRate">
+                  自由入力の税率（%）
+                </label>
                 <input
                   type="number"
                   id="customRate"
@@ -638,27 +662,48 @@
             hidden
           >
             <div class="result-grid">
-              <div class="result-item primary" id="totalResultCard">
+              <div
+                class="result-item primary"
+                id="totalResultCard"
+              >
                 <span class="result-label">税込金額</span>
-                <strong class="result-value" id="totalAmount">—</strong>
+                <strong class="result-value" id="totalAmount">
+                  —
+                </strong>
               </div>
 
-              <div class="result-item" id="baseResultCard">
+              <div
+                class="result-item"
+                id="baseResultCard"
+              >
                 <span class="result-label">税抜金額</span>
-                <strong class="result-value" id="baseAmount">—</strong>
+                <strong class="result-value" id="baseAmount">
+                  —
+                </strong>
               </div>
 
               <div class="result-item">
                 <span class="result-label">消費税額</span>
-                <strong class="result-value" id="taxAmount">—</strong>
+                <strong class="result-value" id="taxAmount">
+                  —
+                </strong>
               </div>
             </div>
 
             <div class="copy-wrap">
-              <button class="copy-button" type="button" id="copyButton">
+              <button
+                class="copy-button"
+                type="button"
+                id="copyButton"
+              >
                 📋 結果をコピー
               </button>
-              <p class="copy-status" id="copyStatus" role="status"></p>
+
+              <p
+                class="copy-status"
+                id="copyStatus"
+                role="status"
+              ></p>
             </div>
 
             <div class="result-meta">
@@ -676,10 +721,21 @@
         class="section card notice-card"
         aria-labelledby="notice-title"
       >
-        <h2 class="section-title" id="notice-title">⚠️ ご注意ください</h2>
-        <p>このツールは一般的な消費税計算を行うためのものです。</p>
-        <p>実際の請求・会計・税務処理では、端数処理や計算方法が異なる場合があります。</p>
-        <p>必要に応じて、事業者・会計ソフト・税理士などの基準も確認してください。</p>
+        <h2 class="section-title" id="notice-title">
+          ⚠️ ご注意ください
+        </h2>
+
+        <p>
+          このツールは一般的な消費税計算を行うためのものです。
+        </p>
+
+        <p>
+          実際の請求・会計・税務処理では、端数処理や計算方法が異なる場合があります。
+        </p>
+
+        <p>
+          必要に応じて、事業者・会計ソフト・税理士などの基準も確認してください。
+        </p>
       </section>
 
       <!-- ======================
@@ -689,7 +745,10 @@
         class="section card promise-card"
         aria-labelledby="promise-title"
       >
-        <h2 class="section-title" id="promise-title">🍵 ゴマツールの約束</h2>
+        <h2 class="section-title" id="promise-title">
+          🍵 ゴマツールの約束
+        </h2>
+
         <ul class="promise-list">
           <li>✅ 完全無料</li>
           <li>✅ 登録不要</li>
@@ -704,7 +763,9 @@
            FAQ
       ====================== -->
       <section class="section" aria-labelledby="faq-title">
-        <h2 class="section-title" id="faq-title">よくある質問</h2>
+        <h2 class="section-title" id="faq-title">
+          よくある質問
+        </h2>
 
         <div class="faq-list">
           <details>
@@ -713,18 +774,26 @@
           </details>
 
           <details>
-            <summary>Q. 将来消費税率が変わった場合も使えますか？</summary>
-            <p>A. はい。自由入力で任意の税率を入力できます。</p>
+            <summary>
+              Q. 将来消費税率が変わった場合も使えますか？
+            </summary>
+            <p>
+              A. はい。自由入力で任意の税率を入力できます。
+            </p>
           </details>
 
           <details>
             <summary>Q. 端数処理は選べますか？</summary>
-            <p>A. はい。切り捨て・四捨五入・切り上げを選べます。</p>
+            <p>
+              A. はい。切り捨て・四捨五入・切り上げを選べます。
+            </p>
           </details>
 
           <details>
             <summary>Q. 入力した金額は保存されますか？</summary>
-            <p>A. 保存されません。ブラウザ内だけで計算します。</p>
+            <p>
+              A. 保存されません。ブラウザ内だけで計算します。
+            </p>
           </details>
         </div>
       </section>
@@ -733,7 +802,9 @@
            関連ツール
       ====================== -->
       <section class="section" aria-labelledby="related-title">
-        <h2 class="section-title" id="related-title">おすすめの便利ツール</h2>
+        <h2 class="section-title" id="related-title">
+          おすすめの便利ツール
+        </h2>
 
         <div class="card related-grid">
           <a class="related-item related-link" href="../age/">
@@ -741,20 +812,23 @@
             <span class="related-status">公開中</span>
           </a>
 
-          <a class="related-item related-link" href="../business-days/">
+          <a
+            class="related-item related-link"
+            href="../business-days/"
+          >
             <span class="related-name">📅 営業日計算</span>
             <span class="related-status">公開中</span>
           </a>
 
-          <div class="related-item">
+          <a class="related-item related-link" href="../warikan/">
             <span class="related-name">👥 割り勘計算</span>
-            <span class="related-status">制作予定</span>
-          </div>
+            <span class="related-status">公開中</span>
+          </a>
 
-          <div class="related-item">
+          <a class="related-item related-link" href="../qrcode/">
             <span class="related-name">📱 QRコード生成</span>
-            <span class="related-status">制作予定</span>
-          </div>
+            <span class="related-status">公開中</span>
+          </a>
         </div>
       </section>
     </div>
@@ -766,8 +840,14 @@
   <footer>
     <div class="container">
       <p class="footer-logo">🍵 ゴマツール</p>
-      <p>30秒で使えて、<br>他より少し便利。</p>
+
+      <p>
+        30秒で使えて、<br>
+        他より少し便利。
+      </p>
+
       <p class="project-name">Project Goma</p>
+
       <p class="footer-motto">
         小さく作って、<br>
         早く公開して、<br>
@@ -775,9 +855,15 @@
       </p>
 
       <div class="footer-assurance">
-        <p>入力したデータはブラウザ内だけで処理されます。</p>
-        <p>サーバーへ送信・保存は行いません。</p>
-        <p>ゴマツールは、毎日安心して使える便利なツールづくりを目指しています。</p>
+        <p>
+          入力したデータはブラウザ内だけで処理されます。
+        </p>
+        <p>
+          サーバーへ送信・保存は行いません。
+        </p>
+        <p>
+          ゴマツールは、毎日安心して使える便利なツールづくりを目指しています。
+        </p>
       </div>
 
       <p class="updated">
@@ -802,7 +888,7 @@
     let copyText = '';
 
     function roundValue(value, method) {
-      // 浮動小数点の整数境界誤差だけを補正します。
+      // 浮動小数点による小さな計算誤差を補正します。
       const tolerance =
         Number.EPSILON *
         Math.max(1, Math.abs(value)) *
@@ -945,8 +1031,7 @@
           rounding
         );
 
-        totalAmount =
-          baseAmount + taxAmount;
+        totalAmount = baseAmount + taxAmount;
       } else {
         totalAmount = amount;
 
@@ -955,8 +1040,7 @@
           rounding
         );
 
-        taxAmount =
-          totalAmount - baseAmount;
+        taxAmount = totalAmount - baseAmount;
       }
 
       const rateText = formatRate(rate);
@@ -979,25 +1063,20 @@
         calculationType === 'inclusive'
       );
 
-      document.getElementById(
-        'totalAmount'
-      ).textContent = formatYen(totalAmount);
+      document.getElementById('totalAmount').textContent =
+        formatYen(totalAmount);
 
-      document.getElementById(
-        'baseAmount'
-      ).textContent = formatYen(baseAmount);
+      document.getElementById('baseAmount').textContent =
+        formatYen(baseAmount);
 
-      document.getElementById(
-        'taxAmount'
-      ).textContent = formatYen(taxAmount);
+      document.getElementById('taxAmount').textContent =
+        formatYen(taxAmount);
 
-      document.getElementById(
-        'appliedRate'
-      ).textContent = `適用税率：${rateText}`;
+      document.getElementById('appliedRate').textContent =
+        `適用税率：${rateText}`;
 
-      document.getElementById(
-        'appliedRounding'
-      ).textContent = `端数処理：${roundingText}`;
+      document.getElementById('appliedRounding').textContent =
+        `端数処理：${roundingText}`;
 
       copyText = [
         '【ゴマツール 消費税計算結果】',
@@ -1008,9 +1087,7 @@
         `端数処理：${roundingText}`
       ].join('\n');
 
-      document.getElementById(
-        'copyStatus'
-      ).textContent = '';
+      document.getElementById('copyStatus').textContent = '';
 
       panel.hidden = false;
 
@@ -1056,26 +1133,17 @@
     // 初期表示
     // ======================
     function initializePage() {
-      document.getElementById(
-        'taxRate'
-      ).addEventListener(
-        'change',
-        toggleCustomRate
-      );
+      document
+        .getElementById('taxRate')
+        .addEventListener('change', toggleCustomRate);
 
-      document.getElementById(
-        'taxForm'
-      ).addEventListener(
-        'submit',
-        calculateTax
-      );
+      document
+        .getElementById('taxForm')
+        .addEventListener('submit', calculateTax);
 
-      document.getElementById(
-        'copyButton'
-      ).addEventListener(
-        'click',
-        copyResult
-      );
+      document
+        .getElementById('copyButton')
+        .addEventListener('click', copyResult);
 
       toggleCustomRate();
     }
