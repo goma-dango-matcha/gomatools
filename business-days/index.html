@@ -26,52 +26,30 @@
       --radius: 22px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
       color: var(--text);
       background: linear-gradient(180deg, #f9fcf7 0, #fff 25%);
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        "Hiragino Kaku Gothic ProN",
-        "Yu Gothic",
-        Meiryo,
-        sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
       line-height: 1.75;
       -webkit-font-smoothing: antialiased;
     }
 
-    button,
-    input,
-    select {
-      font: inherit;
-    }
-
-    button {
-      cursor: pointer;
-    }
-
-    a {
-      color: inherit;
-    }
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+    a { color: inherit; }
 
     .container {
       width: min(100% - 32px, 880px);
       margin-inline: auto;
     }
 
-    .section {
-      margin-top: 72px;
-    }
+    .section { margin-top: 72px; }
 
     .section-title {
       margin: 0 0 20px;
@@ -143,13 +121,9 @@
     /* ======================
        ヒーロー
     ====================== */
-    main {
-      padding: 78px 0 96px;
-    }
+    main { padding: 78px 0 96px; }
 
-    .hero {
-      text-align: center;
-    }
+    .hero { text-align: center; }
 
     .eyebrow {
       display: inline-block;
@@ -201,8 +175,7 @@
       font-weight: 750;
     }
 
-    input,
-    select {
+    input, select {
       width: 100%;
       min-height: 52px;
       padding: 12px 14px;
@@ -212,8 +185,7 @@
       background: #fff;
     }
 
-    input:focus,
-    select:focus {
+    input:focus, select:focus {
       outline: 3px solid rgba(88, 124, 64, .18);
       border-color: var(--green);
     }
@@ -628,10 +600,7 @@
                   計算方向
                 </label>
 
-                <select
-                  id="direction"
-                  name="direction"
-                >
+                <select id="direction" name="direction">
                   <option value="after">
                     ○営業日後
                   </option>
@@ -647,10 +616,7 @@
                   開始日を含めるか
                 </label>
 
-                <select
-                  id="includeStart"
-                  name="includeStart"
-                >
+                <select id="includeStart" name="includeStart">
                   <option value="exclude" selected>
                     含めない
                   </option>
@@ -850,9 +816,7 @@
             <span class="related-name">
               🎂 年齢・日付計算
             </span>
-            <span class="related-status">
-              公開中
-            </span>
+            <span class="related-status">公開中</span>
           </a>
 
           <a
@@ -862,9 +826,7 @@
             <span class="related-name">
               💰 消費税計算
             </span>
-            <span class="related-status">
-              公開中
-            </span>
+            <span class="related-status">公開中</span>
           </a>
 
           <a
@@ -874,9 +836,7 @@
             <span class="related-name">
               👥 割り勘計算
             </span>
-            <span class="related-status">
-              公開中
-            </span>
+            <span class="related-status">公開中</span>
           </a>
 
           <a
@@ -886,9 +846,7 @@
             <span class="related-name">
               📱 QRコード生成
             </span>
-            <span class="related-status">
-              公開中
-            </span>
+            <span class="related-status">公開中</span>
           </a>
 
           <a
@@ -898,9 +856,17 @@
             <span class="related-name">
               🎓 学年・年齢・卒業年度計算
             </span>
-            <span class="related-status">
-              公開中
+            <span class="related-status">公開中</span>
+          </a>
+
+          <a
+            class="related-item related-link"
+            href="../wareki/"
+          >
+            <span class="related-name">
+              📅 和暦・西暦変換
             </span>
+            <span class="related-status">公開中</span>
           </a>
         </div>
       </section>
@@ -926,7 +892,7 @@
       </p>
 
       <p class="updated">
-        最終更新日：2026年6月27日
+        最終更新日：2026年6月28日
       </p>
     </div>
   </footer>
@@ -937,8 +903,7 @@
     // ======================
     // 日付ユーティリティ
     // ======================
-    const DAY_MS =
-      24 * 60 * 60 * 1000;
+    const DAY_MS = 24 * 60 * 60 * 1000;
 
     const WEEKDAYS = [
       '日曜日',
@@ -974,9 +939,7 @@
       const year = Number(match[1]);
       const month = Number(match[2]);
       const day = Number(match[3]);
-
-      const date =
-        toUtcDate(year, month, day);
+      const date = toUtcDate(year, month, day);
 
       if (
         date.getUTCFullYear() !== year ||
@@ -1024,8 +987,7 @@
     // 営業日計算
     // ======================
     function isBusinessDay(date) {
-      const day =
-        date.getUTCDay();
+      const day = date.getUTCDay();
 
       return day !== 0 && day !== 6;
     }
@@ -1084,8 +1046,7 @@
           'businessDays'
         ).value.trim();
 
-      const days =
-        Number(rawDays);
+      const days = Number(rawDays);
 
       const direction =
         document.getElementById(
@@ -1140,18 +1101,16 @@
         return;
       }
 
-      const result =
-        addBusinessDays(
-          baseDate,
-          days,
-          direction,
-          includeStart
-        );
+      const result = addBusinessDays(
+        baseDate,
+        days,
+        direction,
+        includeStart
+      );
 
       const elapsed = Math.abs(
         Math.round(
-          (result - baseDate) /
-          DAY_MS
+          (result - baseDate) / DAY_MS
         )
       );
 
