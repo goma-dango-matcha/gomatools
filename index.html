@@ -36,8 +36,14 @@
       margin: 0;
       color: var(--text);
       background: linear-gradient(180deg, #f9fcf7 0, #fff 25%);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-        "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Hiragino Kaku Gothic ProN",
+        "Yu Gothic",
+        Meiryo,
+        sans-serif;
       line-height: 1.75;
       -webkit-font-smoothing: antialiased;
     }
@@ -187,9 +193,9 @@
 
     .featured-tool {
       display: flex;
+      min-height: 295px;
       flex-direction: column;
       align-items: stretch;
-      min-height: 295px;
       padding: clamp(24px, 5vw, 34px);
       transition:
         transform .18s ease,
@@ -198,9 +204,9 @@
     }
 
     .featured-tool:hover {
-      transform: translateY(-4px);
       border-color: #c7d7be;
       box-shadow: 0 20px 48px rgba(48, 70, 36, .13);
+      transform: translateY(-4px);
     }
 
     .tool-title-row {
@@ -255,8 +261,8 @@
     }
 
     .planned-card:hover {
-      transform: translateY(-3px);
       border-color: #c7d7be;
+      transform: translateY(-3px);
     }
 
     .planned-icon {
@@ -284,7 +290,11 @@
       padding: clamp(26px, 6vw, 46px);
       color: #fff;
       border: 0;
-      background: linear-gradient(135deg, var(--green-dark), #4e7139);
+      background: linear-gradient(
+        135deg,
+        var(--green-dark),
+        #4e7139
+      );
     }
 
     .promise-card .section-heading {
@@ -302,8 +312,8 @@
 
     .promise-list li {
       display: flex;
-      gap: 9px;
       align-items: baseline;
+      gap: 9px;
     }
 
     /* ======================
@@ -524,14 +534,18 @@
           登録不要で、今すぐ無料で使えます。
         </p>
 
-        <!-- 公開ツールを増やす場合は、このarticle要素を複製します -->
+        <!-- 公開ツールを増やす場合はarticle要素を複製します -->
         <div class="published-grid">
+          <!-- 年齢・日付計算 -->
           <article class="card featured-tool">
             <div class="tool-title-row">
               <h3 class="tool-title">
                 🎂 年齢・日付計算
               </h3>
-              <span class="status-live">公開中</span>
+
+              <span class="status-live">
+                公開中
+              </span>
             </div>
 
             <p class="tool-description">
@@ -543,12 +557,16 @@
             </a>
           </article>
 
+          <!-- 営業日計算 -->
           <article class="card featured-tool">
             <div class="tool-title-row">
               <h3 class="tool-title">
                 📅 営業日計算
               </h3>
-              <span class="status-live">公開中</span>
+
+              <span class="status-live">
+                公開中
+              </span>
             </div>
 
             <p class="tool-description">
@@ -560,12 +578,16 @@
             </a>
           </article>
 
+          <!-- 消費税計算 -->
           <article class="card featured-tool">
             <div class="tool-title-row">
               <h3 class="tool-title">
                 💰 消費税計算
               </h3>
-              <span class="status-live">公開中</span>
+
+              <span class="status-live">
+                公開中
+              </span>
             </div>
 
             <p class="tool-description">
@@ -577,12 +599,16 @@
             </a>
           </article>
 
+          <!-- 割り勘計算 -->
           <article class="card featured-tool">
             <div class="tool-title-row">
               <h3 class="tool-title">
                 👥 割り勘計算
               </h3>
-              <span class="status-live">公開中</span>
+
+              <span class="status-live">
+                公開中
+              </span>
             </div>
 
             <p class="tool-description">
@@ -590,6 +616,27 @@
             </p>
 
             <a class="tool-button" href="./warikan/">
+              使ってみる
+            </a>
+          </article>
+
+          <!-- QRコード生成 -->
+          <article class="card featured-tool">
+            <div class="tool-title-row">
+              <h3 class="tool-title">
+                📱 QRコード生成
+              </h3>
+
+              <span class="status-live">
+                公開中
+              </span>
+            </div>
+
+            <p class="tool-description">
+              URLやテキストからQRコードを簡単に作成できます。
+            </p>
+
+            <a class="tool-button" href="./qrcode/">
               使ってみる
             </a>
           </article>
@@ -613,21 +660,31 @@
 
         <div class="planned-grid">
           <article class="card planned-card">
-            <span class="planned-icon" aria-hidden="true">📱</span>
-            <span class="planned-name">QRコード生成</span>
-            <span class="planned-status">制作予定</span>
+            <span class="planned-icon" aria-hidden="true">
+              🎲
+            </span>
+
+            <span class="planned-name">
+              ナンバーズ分析
+            </span>
+
+            <span class="planned-status">
+              制作予定
+            </span>
           </article>
 
           <article class="card planned-card">
-            <span class="planned-icon" aria-hidden="true">🎲</span>
-            <span class="planned-name">ナンバーズ分析</span>
-            <span class="planned-status">制作予定</span>
-          </article>
+            <span class="planned-icon" aria-hidden="true">
+              📅
+            </span>
 
-          <article class="card planned-card">
-            <span class="planned-icon" aria-hidden="true">📅</span>
-            <span class="planned-name">和暦・西暦変換</span>
-            <span class="planned-status">制作予定</span>
+            <span class="planned-name">
+              和暦・西暦変換
+            </span>
+
+            <span class="planned-status">
+              制作予定
+            </span>
           </article>
         </div>
       </section>
@@ -694,8 +751,9 @@
               <span class="roadmap-label">
                 現在公開中
               </span>
+
               <strong class="roadmap-value">
-                4ツール
+                5ツール
               </strong>
             </div>
 
@@ -703,8 +761,9 @@
               <span class="roadmap-label">
                 次に公開予定
               </span>
+
               <strong class="roadmap-value">
-                QRコード生成
+                ナンバーズ分析
               </strong>
             </div>
 
@@ -712,6 +771,7 @@
               <span class="roadmap-label">
                 目標
               </span>
+
               <strong class="roadmap-value">
                 10ツール公開
               </strong>
@@ -754,9 +814,11 @@
         <p>
           入力したデータはブラウザ内だけで処理されます。
         </p>
+
         <p>
           サーバーへ送信・保存は行いません。
         </p>
+
         <p>
           ゴマツールは、毎日安心して使える便利なツールづくりを目指しています。
         </p>
@@ -766,6 +828,7 @@
         <span class="updated-label">
           最終更新
         </span>
+
         <span class="updated-date">
           2026年6月27日
         </span>
@@ -777,7 +840,7 @@
     'use strict';
 
     // ======================
-    // ページ内リンクのスムーズスクロール
+    // ページ内リンク
     // ======================
     function initializePageNavigation() {
       const toolLink = document.querySelector(
