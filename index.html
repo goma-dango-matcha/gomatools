@@ -179,12 +179,28 @@
     /* ======================
        公開中のツール
     ====================== */
-    .featured-tool {
+    .published-grid {
       display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      gap: 28px;
-      padding: clamp(24px, 5vw, 40px);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .featured-tool {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      min-height: 295px;
+      padding: clamp(24px, 5vw, 34px);
+      transition:
+        transform .18s ease,
+        border-color .18s ease,
+        box-shadow .18s ease;
+    }
+
+    .featured-tool:hover {
+      transform: translateY(-4px);
+      border-color: #c7d7be;
+      box-shadow: 0 20px 48px rgba(48, 70, 36, .13);
     }
 
     .tool-title-row {
@@ -209,13 +225,13 @@
     }
 
     .tool-description {
-      max-width: 620px;
-      margin: 14px 0 0;
+      margin: 14px 0 26px;
       color: var(--muted);
     }
 
     .tool-button {
-      min-width: 140px;
+      width: 100%;
+      margin-top: auto;
       color: #fff;
       background: var(--green);
     }
@@ -225,7 +241,7 @@
     ====================== */
     .planned-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 16px;
     }
 
@@ -233,6 +249,14 @@
       min-height: 142px;
       padding: 22px;
       box-shadow: none;
+      transition:
+        transform .18s ease,
+        border-color .18s ease;
+    }
+
+    .planned-card:hover {
+      transform: translateY(-3px);
+      border-color: #c7d7be;
     }
 
     .planned-icon {
@@ -350,8 +374,33 @@
       letter-spacing: .08em;
     }
 
-    .updated {
+    .footer-motto {
+      margin-top: 18px;
+      font-size: .86rem;
+    }
+
+    .footer-assurance {
+      max-width: 620px;
+      margin: 30px auto 0;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
       font-size: .78rem;
+      line-height: 1.8;
+    }
+
+    .footer-assurance p {
+      margin: 3px 0;
+    }
+
+    .updated {
+      margin-top: 18px;
+      font-size: .72rem;
+      line-height: 1.6;
+    }
+
+    .updated-label,
+    .updated-date {
+      display: block;
     }
 
     /* ======================
@@ -366,12 +415,12 @@
         padding: 74px 0 42px;
       }
 
-      .featured-tool {
+      .published-grid {
         grid-template-columns: 1fr;
       }
 
-      .tool-button {
-        width: 100%;
+      .featured-tool {
+        min-height: auto;
       }
 
       .planned-grid {
@@ -448,8 +497,8 @@
         </h1>
 
         <p class="hero-description">
-          ゴマツールは、日常で使える無料便利ツールを少しずつ増やしていくサイトです。<br>
-          登録不要で、スマホやPCからすぐに使えます。
+          ゴマツールは、日常で使える便利ツールを少しずつ増やしていく無料サービスです。<br>
+          登録不要・完全無料・スマホ対応。
         </p>
 
         <a class="cta-button" href="#available-tools">
@@ -472,11 +521,12 @@
         </h2>
 
         <p class="section-lead">
-          今すぐ無料で使えます。
+          登録不要で、今すぐ無料で使えます。
         </p>
 
-        <article class="card featured-tool">
-          <div>
+        <!-- 公開ツールを増やす場合は、このarticle要素を複製します -->
+        <div class="published-grid">
+          <article class="card featured-tool">
             <div class="tool-title-row">
               <h3 class="tool-title">
                 🎂 年齢・日付計算
@@ -488,14 +538,34 @@
             </div>
 
             <p class="tool-description">
-              生年月日から年齢、生まれてからの日数、次の誕生日までの日数などを計算できます。
+              生年月日から年齢・生まれてからの日数・次の誕生日などを計算できます。
             </p>
-          </div>
 
-          <a class="tool-button" href="./age/">
-            使ってみる
-          </a>
-        </article>
+            <a class="tool-button" href="./age/">
+              使ってみる
+            </a>
+          </article>
+
+          <article class="card featured-tool">
+            <div class="tool-title-row">
+              <h3 class="tool-title">
+                📅 営業日計算
+              </h3>
+
+              <span class="status-live">
+                公開中
+              </span>
+            </div>
+
+            <p class="tool-description">
+              土日を除いた営業日を簡単に計算できます。
+            </p>
+
+            <a class="tool-button" href="./business-days/">
+              使ってみる
+            </a>
+          </article>
+        </div>
       </section>
 
       <!-- ======================
@@ -515,31 +585,33 @@
 
         <div class="planned-grid">
           <article class="card planned-card">
-            <span class="planned-icon" aria-hidden="true">📅</span>
-            <span class="planned-name">営業日計算</span>
-            <span class="planned-status">制作予定</span>
-          </article>
-
-          <article class="card planned-card">
-            <span class="planned-icon" aria-hidden="true">💰</span>
+            <span class="planned-icon" aria-hidden="true">
+              💰
+            </span>
             <span class="planned-name">消費税計算</span>
             <span class="planned-status">制作予定</span>
           </article>
 
           <article class="card planned-card">
-            <span class="planned-icon" aria-hidden="true">👥</span>
+            <span class="planned-icon" aria-hidden="true">
+              👥
+            </span>
             <span class="planned-name">割り勘計算</span>
             <span class="planned-status">制作予定</span>
           </article>
 
           <article class="card planned-card">
-            <span class="planned-icon" aria-hidden="true">📱</span>
+            <span class="planned-icon" aria-hidden="true">
+              📱
+            </span>
             <span class="planned-name">QRコード生成</span>
             <span class="planned-status">制作予定</span>
           </article>
 
           <article class="card planned-card">
-            <span class="planned-icon" aria-hidden="true">🎲</span>
+            <span class="planned-icon" aria-hidden="true">
+              🎲
+            </span>
             <span class="planned-name">ナンバーズ分析</span>
             <span class="planned-status">制作予定</span>
           </article>
@@ -571,17 +643,12 @@
 
             <li>
               <span aria-hidden="true">✅</span>
-              スマホ・PC対応
+              スマホ対応
             </li>
 
             <li>
               <span aria-hidden="true">✅</span>
-              30秒で使える分かりやすさ
-            </li>
-
-            <li>
-              <span aria-hidden="true">✅</span>
-              入力データはブラウザ内だけで処理
+              データはブラウザ内だけで処理
             </li>
 
             <li>
@@ -615,23 +682,23 @@
               </span>
 
               <strong class="roadmap-value">
-                1ツール
+                2ツール
               </strong>
             </div>
 
             <div class="roadmap-item">
               <span class="roadmap-label">
-                次に作る予定
+                次に公開予定
               </span>
 
               <strong class="roadmap-value">
-                営業日計算
+                消費税計算
               </strong>
             </div>
 
             <div class="roadmap-item">
               <span class="roadmap-label">
-                最初の目標
+                目標
               </span>
 
               <strong class="roadmap-value">
@@ -641,7 +708,7 @@
           </div>
 
           <p class="roadmap-note">
-            まずは需要が高く、見やすく、分かりやすいツールから増やしていきます。
+            役立つツールを一つずつ丁寧に作り、公開・改善を繰り返しながら育てていきます。
           </p>
         </div>
       </section>
@@ -666,8 +733,34 @@
         Project Goma
       </p>
 
+      <p class="footer-motto">
+        小さく作って、<br>
+        早く公開して、<br>
+        一歩ずつ育てる。
+      </p>
+
+      <div class="footer-assurance">
+        <p>
+          入力したデータはブラウザ内だけで処理されます。
+        </p>
+
+        <p>
+          サーバーへ送信・保存は行いません。
+        </p>
+
+        <p>
+          ゴマツールは、毎日安心して使える便利なツールづくりを目指しています。
+        </p>
+      </div>
+
       <p class="updated">
-        最終更新日：2026年6月27日
+        <span class="updated-label">
+          最終更新
+        </span>
+
+        <span class="updated-date">
+          2026年6月27日
+        </span>
       </p>
     </div>
   </footer>
