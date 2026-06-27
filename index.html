@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="年齢・日付計算、営業日計算、消費税計算、割り勘計算、QRコード生成、学年・年齢・卒業年度計算など、登録不要・無料で使える便利ツール集です。">
+  <meta name="description" content="年齢・日付計算、営業日計算、消費税計算、割り勘計算、QRコード生成、学年・年齢・卒業年度計算、和暦・西暦変換など、登録不要・無料で使える便利ツール集です。">
   <title>ゴマツール｜毎日の「ちょっと便利」を、ひとつに。</title>
 
   <style>
@@ -241,7 +241,7 @@
     ====================== */
     .planned-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
       gap: 16px;
     }
 
@@ -538,9 +538,7 @@
         <div class="published-grid">
           <article class="card featured-tool">
             <div class="tool-title-row">
-              <h3 class="tool-title">
-                🎂 年齢・日付計算
-              </h3>
+              <h3 class="tool-title">🎂 年齢・日付計算</h3>
               <span class="status-live">公開中</span>
             </div>
 
@@ -555,9 +553,7 @@
 
           <article class="card featured-tool">
             <div class="tool-title-row">
-              <h3 class="tool-title">
-                📅 営業日計算
-              </h3>
+              <h3 class="tool-title">📅 営業日計算</h3>
               <span class="status-live">公開中</span>
             </div>
 
@@ -572,9 +568,7 @@
 
           <article class="card featured-tool">
             <div class="tool-title-row">
-              <h3 class="tool-title">
-                💰 消費税計算
-              </h3>
+              <h3 class="tool-title">💰 消費税計算</h3>
               <span class="status-live">公開中</span>
             </div>
 
@@ -589,9 +583,7 @@
 
           <article class="card featured-tool">
             <div class="tool-title-row">
-              <h3 class="tool-title">
-                👥 割り勘計算
-              </h3>
+              <h3 class="tool-title">👥 割り勘計算</h3>
               <span class="status-live">公開中</span>
             </div>
 
@@ -606,9 +598,7 @@
 
           <article class="card featured-tool">
             <div class="tool-title-row">
-              <h3 class="tool-title">
-                📱 QRコード生成
-              </h3>
+              <h3 class="tool-title">📱 QRコード生成</h3>
               <span class="status-live">公開中</span>
             </div>
 
@@ -634,6 +624,21 @@
             </p>
 
             <a class="tool-button" href="./school-year/">
+              使ってみる
+            </a>
+          </article>
+
+          <article class="card featured-tool">
+            <div class="tool-title-row">
+              <h3 class="tool-title">📅 和暦・西暦変換</h3>
+              <span class="status-live">公開中</span>
+            </div>
+
+            <p class="tool-description">
+              西暦と和暦をかんたんに相互変換できます。
+            </p>
+
+            <a class="tool-button" href="./wareki/">
               使ってみる
             </a>
           </article>
@@ -669,23 +674,6 @@
 
             <span class="planned-name">
               ナンバーズ分析
-            </span>
-
-            <span class="planned-status">
-              制作予定
-            </span>
-          </article>
-
-          <article class="card planned-card">
-            <span
-              class="planned-icon"
-              aria-hidden="true"
-            >
-              📅
-            </span>
-
-            <span class="planned-name">
-              和暦・西暦変換
             </span>
 
             <span class="planned-status">
@@ -765,7 +753,7 @@
               </span>
 
               <strong class="roadmap-value">
-                6ツール
+                7ツール
               </strong>
             </div>
 
@@ -775,7 +763,7 @@
               </span>
 
               <strong class="roadmap-value">
-                和暦・西暦変換
+                ナンバーズ分析
               </strong>
             </div>
 
