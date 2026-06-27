@@ -503,7 +503,9 @@
         <p class="header-copy">無料で使える便利ツール集</p>
       </div>
 
-      <a class="home-link" href="../">← ホームへ戻る</a>
+      <a class="home-link" href="../">
+        ← ホームへ戻る
+      </a>
     </div>
   </header>
 
@@ -513,9 +515,13 @@
            ヒーロー
       ====================== -->
       <section class="hero" aria-labelledby="page-title">
-        <p class="eyebrow">無料・登録不要</p>
+        <p class="eyebrow">
+          無料・登録不要
+        </p>
 
-        <h1 id="page-title">📱 QRコード生成</h1>
+        <h1 id="page-title">
+          📱 QRコード生成
+        </h1>
 
         <p class="hero-catch">
           URLやテキストから、かんたん作成。
@@ -530,7 +536,10 @@
       <!-- ======================
            QRコード生成フォーム
       ====================== -->
-      <section class="section" aria-labelledby="generator-title">
+      <section
+        class="section"
+        aria-labelledby="generator-title"
+      >
         <h2 class="section-title" id="generator-title">
           QRコードを作る
         </h2>
@@ -560,11 +569,18 @@
               </span>
             </div>
 
-            <button class="primary-button" type="submit">
+            <button
+              class="primary-button"
+              type="submit"
+            >
               📱 QRコードを生成する
             </button>
 
-            <p class="error" id="formError" role="alert"></p>
+            <p
+              class="error"
+              id="formError"
+              role="alert"
+            ></p>
           </form>
 
           <!-- ======================
@@ -576,7 +592,10 @@
             aria-live="polite"
           >
             <div class="qr-frame">
-              <p class="placeholder" id="placeholder">
+              <p
+                class="placeholder"
+                id="placeholder"
+              >
                 ここにQRコードが表示されます
               </p>
 
@@ -589,7 +608,10 @@
               ></canvas>
             </div>
 
-            <div id="qrSource" aria-hidden="true"></div>
+            <div
+              id="qrSource"
+              aria-hidden="true"
+            ></div>
 
             <button
               class="save-button"
@@ -600,7 +622,10 @@
               PNGで保存
             </button>
 
-            <p class="result-status" id="resultStatus"></p>
+            <p
+              class="result-status"
+              id="resultStatus"
+            ></p>
           </div>
         </div>
       </section>
@@ -612,7 +637,10 @@
         class="section card info-card"
         aria-labelledby="privacy-title"
       >
-        <h2 class="section-title" id="privacy-title">
+        <h2
+          class="section-title"
+          id="privacy-title"
+        >
           安心してお使いください
         </h2>
 
@@ -628,30 +656,68 @@
       <!-- ======================
            関連ツール
       ====================== -->
-      <section class="section" aria-labelledby="related-title">
-        <h2 class="section-title" id="related-title">
+      <section
+        class="section"
+        aria-labelledby="related-title"
+      >
+        <h2
+          class="section-title"
+          id="related-title"
+        >
           おすすめの便利ツール
         </h2>
 
         <div class="card related-grid">
-          <a class="related-item related-link" href="../age/">
-            <span class="related-name">🎂 年齢・日付計算</span>
-            <span class="related-status">公開中</span>
+          <a
+            class="related-item related-link"
+            href="../age/"
+          >
+            <span class="related-name">
+              🎂 年齢・日付計算
+            </span>
+
+            <span class="related-status">
+              公開中
+            </span>
           </a>
 
-          <a class="related-item related-link" href="../business-days/">
-            <span class="related-name">📅 営業日計算</span>
-            <span class="related-status">公開中</span>
+          <a
+            class="related-item related-link"
+            href="../business-days/"
+          >
+            <span class="related-name">
+              📅 営業日計算
+            </span>
+
+            <span class="related-status">
+              公開中
+            </span>
           </a>
 
-          <a class="related-item related-link" href="../tax/">
-            <span class="related-name">💰 消費税計算</span>
-            <span class="related-status">公開中</span>
+          <a
+            class="related-item related-link"
+            href="../tax/"
+          >
+            <span class="related-name">
+              💰 消費税計算
+            </span>
+
+            <span class="related-status">
+              公開中
+            </span>
           </a>
 
-          <a class="related-item related-link" href="../warikan/">
-            <span class="related-name">👥 割り勘計算</span>
-            <span class="related-status">公開中</span>
+          <a
+            class="related-item related-link"
+            href="../warikan/"
+          >
+            <span class="related-name">
+              👥 割り勘計算
+            </span>
+
+            <span class="related-status">
+              公開中
+            </span>
           </a>
         </div>
       </section>
@@ -663,7 +729,9 @@
   ====================== -->
   <footer>
     <div class="container">
-      <p class="footer-logo">🍵 ゴマツール</p>
+      <p class="footer-logo">
+        🍵 ゴマツール
+      </p>
 
       <p>
         30秒で使えて、<br>
@@ -691,8 +759,13 @@
       </div>
 
       <p class="updated">
-        <span class="updated-label">最終更新</span>
-        <span class="updated-date">2026年6月27日</span>
+        <span class="updated-label">
+          最終更新
+        </span>
+
+        <span class="updated-date">
+          2026年6月27日
+        </span>
       </p>
     </div>
   </footer>
@@ -712,19 +785,29 @@
     // エラー表示
     // ======================
     function showError(message) {
-      document.getElementById('formError').textContent = message;
-      document.getElementById('resultStatus').textContent = '';
+      document
+        .getElementById('formError')
+        .textContent = message;
+
+      document
+        .getElementById('resultStatus')
+        .textContent = '';
     }
 
     // ======================
     // QRコードへ余白を追加
     // ======================
     function drawQrWithMargin(sourceCanvas) {
-      const outputCanvas = document.getElementById('qrCanvas');
-      const context = outputCanvas.getContext('2d');
+      const outputCanvas =
+        document.getElementById('qrCanvas');
+
+      const context =
+        outputCanvas.getContext('2d');
+
       const margin = 16;
 
       context.fillStyle = '#ffffff';
+
       context.fillRect(
         0,
         0,
@@ -749,19 +832,29 @@
     function generateQrCode(event) {
       event.preventDefault();
 
-      const input = document.getElementById('qrText');
-      const text = input.value.trim();
-      const source = document.getElementById('qrSource');
-      const canvas = document.getElementById('qrCanvas');
-      const placeholder = document.getElementById('placeholder');
-      const saveButton = document.getElementById('saveButton');
+      const input =
+        document.getElementById('qrText');
+
+      const text =
+        input.value.trim();
+
+      const source =
+        document.getElementById('qrSource');
+
+      const canvas =
+        document.getElementById('qrCanvas');
+
+      const placeholder =
+        document.getElementById('placeholder');
+
+      const saveButton =
+        document.getElementById('saveButton');
 
       showError('');
 
       canvas.hidden = true;
       saveButton.hidden = true;
 
-      // 空欄チェック
       if (!text) {
         placeholder.hidden = false;
 
@@ -773,7 +866,6 @@
         return;
       }
 
-      // ライブラリの読み込みチェック
       if (typeof QRCode === 'undefined') {
         placeholder.hidden = false;
 
@@ -785,10 +877,8 @@
       }
 
       try {
-        // 前回生成したQRコードを削除
         source.replaceChildren();
 
-        // QRコードを生成
         new QRCode(source, {
           text: text,
           width: 256,
@@ -798,26 +888,32 @@
           correctLevel: QRCode.CorrectLevel.L
         });
 
-        const sourceCanvas = source.querySelector('canvas');
+        const sourceCanvas =
+          source.querySelector('canvas');
 
         if (!sourceCanvas) {
-          throw new Error('QR canvas was not created.');
+          throw new Error(
+            'QR canvas was not created.'
+          );
         }
 
-        // 保存用キャンバスへ余白付きで描画
         drawQrWithMargin(sourceCanvas);
 
         placeholder.hidden = true;
         canvas.hidden = false;
         saveButton.hidden = false;
 
-        document.getElementById('resultStatus').textContent =
-          'QRコードを生成しました。';
+        document
+          .getElementById('resultStatus')
+          .textContent =
+            'QRコードを生成しました。';
 
-        document.getElementById('resultArea').scrollIntoView({
-          behavior: 'smooth',
-          block: 'nearest'
-        });
+        document
+          .getElementById('resultArea')
+          .scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest'
+          });
       } catch (error) {
         source.replaceChildren();
         placeholder.hidden = false;
@@ -832,16 +928,25 @@
     // PNG保存
     // ======================
     function saveQrCode() {
-      const canvas = document.getElementById('qrCanvas');
-      const link = document.createElement('a');
+      const canvas =
+        document.getElementById('qrCanvas');
+
+      const link =
+        document.createElement('a');
 
       try {
-        link.download = 'gomatools-qrcode.png';
-        link.href = canvas.toDataURL('image/png');
+        link.download =
+          'gomatools-qrcode.png';
+
+        link.href =
+          canvas.toDataURL('image/png');
+
         link.click();
 
-        document.getElementById('resultStatus').textContent =
-          'PNG画像を保存しました。';
+        document
+          .getElementById('resultStatus')
+          .textContent =
+            'PNG画像を保存しました。';
       } catch (error) {
         showError(
           'PNG画像の保存に失敗しました。もう一度お試しください。'
@@ -853,19 +958,36 @@
     // 初期表示
     // ======================
     function initializePage() {
-      const input = document.getElementById('qrText');
-      const form = document.getElementById('qrForm');
-      const saveButton = document.getElementById('saveButton');
+      const input =
+        document.getElementById('qrText');
 
-      form.addEventListener('submit', generateQrCode);
-      saveButton.addEventListener('click', saveQrCode);
+      document
+        .getElementById('qrForm')
+        .addEventListener(
+          'submit',
+          generateQrCode
+        );
 
-      input.addEventListener('input', function () {
-        document.getElementById('characterCount').textContent =
-          `${input.value.length.toLocaleString('ja-JP')} / 1,200文字`;
+      document
+        .getElementById('saveButton')
+        .addEventListener(
+          'click',
+          saveQrCode
+        );
 
-        document.getElementById('formError').textContent = '';
-      });
+      input.addEventListener(
+        'input',
+        function () {
+          document
+            .getElementById('characterCount')
+            .textContent =
+              `${input.value.length.toLocaleString('ja-JP')} / 1,200文字`;
+
+          document
+            .getElementById('formError')
+            .textContent = '';
+        }
+      );
     }
 
     initializePage();
