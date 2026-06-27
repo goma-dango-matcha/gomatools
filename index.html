@@ -1,341 +1,1281 @@
+```html
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="生年月日から年齢や生まれてからの日数、次の誕生日までの日数を無料で計算できるゴマツールです。">
   <title>年齢・日付計算｜ゴマツール</title>
+
   <style>
+    /* ======================
+       基本設定
+    ====================== */
     :root {
-      --main: #4f8f5b;
-      --main-dark: #3f794b;
-      --bg: #f7faf7;
-      --card: #ffffff;
-      --text: #222;
-      --muted: #666;
-      --line: #e5e5e5;
+      --green: #567b3c;
+      --green-dark: #385426;
+      --green-light: #eef5e9;
+      --green-soft: #f7faf4;
+      --text: #20251d;
+      --muted: #697064;
+      --line: #dfe7da;
+      --white: #ffffff;
+      --danger: #b44335;
+      --shadow: 0 12px 35px rgba(46, 67, 35, 0.08);
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg);
       color: var(--text);
+      background: linear-gradient(180deg, #fbfdf9 0%, #fff 22%);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
     }
 
-    header {
-      background: var(--card);
-      border-bottom: 1px solid var(--line);
-      padding: 18px 16px;
-      text-align: center;
+    button,
+    input,
+    select {
+      font: inherit;
     }
 
-    .brand {
-      color: var(--main);
-      font-weight: 800;
-      font-size: 15px;
+    button {
+      cursor: pointer;
     }
 
-    main {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 24px 16px 40px;
+    .container {
+      width: min(100% - 32px, 880px);
+      margin-inline: auto;
+    }
+
+    .section {
+      margin-top: 72px;
+    }
+
+    .section-title {
+      margin: 0 0 20px;
+      font-size: clamp(1.35rem, 3vw, 1.7rem);
+      letter-spacing: 0.02em;
     }
 
     .card {
-      background: var(--card);
-      border-radius: 18px;
-      padding: 22px;
-      margin-bottom: 18px;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+      padding: clamp(22px, 5vw, 38px);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: var(--shadow);
     }
 
-    h1, h2 {
-      margin-top: 0;
+    /* ======================
+       ヘッダー
+    ====================== */
+    .site-header {
+      padding: 25px 0;
+      border-bottom: 1px solid rgba(86, 123, 60, 0.12);
+      background: rgba(255, 255, 255, 0.82);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      margin: 0;
+      color: var(--green-dark);
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+    }
+
+    .tagline {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    /* ======================
+       メイン・今日時点
+    ====================== */
+    main {
+      padding: 80px 0 96px;
+    }
+
+    .hero {
       text-align: center;
     }
 
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--green);
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+    }
+
     h1 {
-      font-size: 26px;
-      margin-bottom: 10px;
+      margin: 0;
+      font-size: clamp(2rem, 7vw, 3.5rem);
+      line-height: 1.25;
+      letter-spacing: -0.02em;
     }
 
-    h2 {
-      font-size: 20px;
-      margin-bottom: 14px;
-    }
-
-    p {
+    .hero-description {
+      max-width: 600px;
+      margin: 22px auto 0;
       color: var(--muted);
-      line-height: 1.7;
+      font-size: clamp(0.98rem, 2.5vw, 1.08rem);
+    }
+
+    .today-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-top: 40px;
+      padding: 22px 28px;
+      border-radius: 18px;
+      background: var(--green-light);
+    }
+
+    .today-label {
+      font-weight: 700;
+    }
+
+    .today-date {
+      margin: 0;
+      color: var(--green-dark);
+      font-size: clamp(1.1rem, 4vw, 1.35rem);
+      font-weight: 800;
+    }
+
+    /* ======================
+       フォーム共通
+    ====================== */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .field-full {
+      grid-column: 1 / -1;
     }
 
     label {
       display: block;
+      margin-bottom: 8px;
       font-weight: 700;
-      margin: 14px 0 8px;
     }
 
-    input, select {
-      width: 100%;
-      box-sizing: border-box;
-      font-size: 17px;
-      padding: 13px;
-      border: 1px solid #ccc;
-      border-radius: 12px;
-      background: white;
+    .hint {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 0.82rem;
     }
 
-    button {
+    input,
+    select {
       width: 100%;
-      padding: 14px;
-      margin-top: 16px;
-      border: none;
+      min-height: 52px;
+      padding: 12px 14px;
+      color: var(--text);
+      border: 1.5px solid #cdd8c7;
       border-radius: 12px;
-      background: var(--main);
-      color: white;
-      font-size: 17px;
+      background: #fff;
+    }
+
+    input:focus,
+    select:focus {
+      outline: 3px solid rgba(86, 123, 60, 0.17);
+      border-color: var(--green);
+    }
+
+    .primary-button,
+    .copy-button {
+      width: 100%;
+      min-height: 56px;
+      padding: 14px 22px;
+      border-radius: 14px;
       font-weight: 800;
-      cursor: pointer;
+      transition: transform 0.15s ease, background 0.15s ease;
     }
 
-    button:hover {
-      background: var(--main-dark);
+    .primary-button {
+      border: 0;
+      color: #fff;
+      background: var(--green);
+      box-shadow: 0 8px 20px rgba(86, 123, 60, 0.2);
     }
 
-    .result {
+    .primary-button:hover {
+      background: var(--green-dark);
+      transform: translateY(-1px);
+    }
+
+    .copy-button {
+      border: 1.5px solid var(--green);
+      color: var(--green-dark);
+      background: #fff;
+    }
+
+    .copy-button:hover {
+      background: var(--green-light);
+    }
+
+    .primary-button:focus-visible,
+    .copy-button:focus-visible {
+      outline: 3px solid rgba(86, 123, 60, 0.3);
+      outline-offset: 3px;
+    }
+
+    .error {
+      min-height: 1.6em;
+      margin: 12px 0 0;
+      color: var(--danger);
+      font-weight: 700;
+      text-align: center;
+    }
+
+    /* ======================
+       年齢計算・結果
+    ====================== */
+    .result-panel {
+      margin-top: 28px;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+    }
+
+    .result-panel[hidden] {
       display: none;
-      margin-top: 18px;
+    }
+
+    .result-heading {
+      margin: 0 0 18px;
+      font-size: 1.15rem;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
     }
 
     .result-item {
-      background: #f2f7f2;
-      border-radius: 14px;
-      padding: 15px;
-      margin-top: 12px;
+      min-height: 128px;
+      padding: 20px;
+      border-radius: 16px;
+      background: var(--green-soft);
     }
 
-    .result-title {
-      color: var(--main);
-      font-weight: 800;
-      font-size: 14px;
+    .result-item.primary {
+      grid-column: 1 / -1;
+      text-align: center;
+      background: var(--green-light);
+    }
+
+    .result-label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 700;
     }
 
     .result-value {
-      font-size: 22px;
-      font-weight: 900;
-      margin-top: 5px;
-      line-height: 1.4;
+      display: block;
+      color: var(--green-dark);
+      font-size: clamp(1.35rem, 5vw, 2rem);
+      font-weight: 850;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
     }
 
-    .small {
-      font-size: 13px;
-      color: var(--muted);
-      margin-top: 8px;
+    .primary .result-value {
+      font-size: clamp(2.8rem, 10vw, 4.5rem);
     }
 
-    footer {
+    .copy-wrap {
+      margin-top: 18px;
+    }
+
+    .copy-status {
+      min-height: 1.5em;
+      margin: 8px 0 0;
+      color: var(--green);
+      font-size: 0.88rem;
+      font-weight: 700;
       text-align: center;
-      color: #777;
-      font-size: 13px;
-      padding: 28px 12px;
+    }
+
+    .date-result {
+      padding: 26px;
+      border-radius: 16px;
+      text-align: center;
+      background: var(--green-light);
+    }
+
+    .date-result .result-value {
+      margin-top: 6px;
+    }
+
+    /* ======================
+       約束・関連ツール
+    ====================== */
+    .promise-card {
+      color: #fff;
+      border: 0;
+      background: var(--green-dark);
+    }
+
+    .promise-card .section-title {
+      margin-bottom: 18px;
+    }
+
+    .promise-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 28px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .promise-list li {
+      padding-left: 2px;
+    }
+
+    .tool-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .tool-item {
+      padding: 18px;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fbfcfa;
+      font-weight: 700;
+    }
+
+    .tool-status {
+      display: block;
+      margin-top: 3px;
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+
+    /* ======================
+       FAQ
+    ====================== */
+    .faq-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    details {
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: #fff;
+    }
+
+    summary {
+      padding: 18px 20px;
+      font-weight: 750;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::after {
+      content: "+";
+      float: right;
+      color: var(--green);
+      font-size: 1.25rem;
+    }
+
+    details[open] summary::after {
+      content: "−";
+    }
+
+    details p {
+      margin: 0;
+      padding: 0 20px 20px;
+      color: var(--muted);
+    }
+
+    /* ======================
+       フッター
+    ====================== */
+    footer {
+      padding: 48px 0;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      text-align: center;
+      background: var(--green-soft);
+    }
+
+    .footer-logo {
+      margin: 0 0 8px;
+      color: var(--green-dark);
+      font-size: 1.12rem;
+      font-weight: 800;
+    }
+
+    footer p {
+      margin: 4px 0;
+    }
+
+    .updated {
+      margin-top: 16px;
+      font-size: 0.8rem;
+    }
+
+    /* ======================
+       レスポンシブ
+    ====================== */
+    @media (max-width: 620px) {
+      .container {
+        width: min(100% - 24px, 880px);
+      }
+
+      .header-inner,
+      .today-card {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      main {
+        padding: 58px 0 76px;
+      }
+
+      .section {
+        margin-top: 52px;
+      }
+
+      .card {
+        padding: 22px 18px;
+        border-radius: 18px;
+      }
+
+      .form-grid,
+      .result-grid,
+      .promise-list,
+      .tool-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .result-item.primary {
+        grid-column: auto;
+      }
+
+      .result-item {
+        min-height: 105px;
+      }
+
+      .today-card {
+        margin-top: 30px;
+        padding: 18px 20px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+      }
     }
   </style>
 </head>
+
 <body>
-
-<header>
-  <div class="brand">🍵 ゴマツール</div>
-</header>
-
-<main>
-  <section class="card">
-    <h1>🎂 年齢・日付計算</h1>
-    <p>
-      生年月日から、年齢・生まれてからの日数・次の誕生日までの日数・生まれた曜日を計算できます。
-    </p>
-    <p class="small" id="todayText"></p>
-
-    <label for="birthday">生年月日</label>
-    <input type="date" id="birthday">
-
-    <button onclick="calculateAge()">年齢を計算する</button>
-
-    <div class="result" id="ageResultBox">
-      <div class="result-item">
-        <div class="result-title">現在の年齢</div>
-        <div class="result-value" id="ageResult"></div>
-      </div>
-
-      <div class="result-item">
-        <div class="result-title">詳しい年齢</div>
-        <div class="result-value" id="detailAgeResult"></div>
-      </div>
-
-      <div class="result-item">
-        <div class="result-title">生まれてからの日数</div>
-        <div class="result-value" id="daysAliveResult"></div>
-      </div>
-
-      <div class="result-item">
-        <div class="result-title">次の誕生日まで</div>
-        <div class="result-value" id="nextBirthdayResult"></div>
-      </div>
-
-      <div class="result-item">
-        <div class="result-title">生まれた曜日</div>
-        <div class="result-value" id="weekdayResult"></div>
-      </div>
-
-      <button onclick="copyAgeResult()">結果をコピーする</button>
+  <!-- ======================
+       ヘッダー
+  ====================== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <p class="logo">🍵 ゴマツール</p>
+      <p class="tagline">無料で使える便利ツール集</p>
     </div>
-  </section>
+  </header>
 
-  <section class="card">
-    <h2>📅 日付計算</h2>
-    <p>
-      指定した日付から、何日後・何日前の日付を計算できます。
-    </p>
+  <main>
+    <div class="container">
+      <!-- ======================
+           メイン・今日時点
+      ====================== -->
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow">30秒でかんたん計算</p>
+        <h1 id="page-title">🎂 年齢・日付計算</h1>
 
-    <label for="baseDate">基準日</label>
-    <input type="date" id="baseDate">
+        <p class="hero-description">
+          生年月日から年齢、生まれてからの日数、次の誕生日までの日数などを計算できます。
+        </p>
 
-    <label for="daysNumber">日数</label>
-    <input type="number" id="daysNumber" placeholder="例：100">
+        <div class="today-card" aria-label="今日の日付">
+          <span class="today-label">📅 今日時点</span>
+          <p class="today-date" id="todayDate">読み込み中…</p>
+        </div>
+      </section>
 
-    <label for="direction">計算方向</label>
-    <select id="direction">
-      <option value="after">日後</option>
-      <option value="before">日前</option>
-    </select>
+      <!-- ======================
+           年齢計算
+      ====================== -->
+      <section class="section" aria-labelledby="age-title">
+        <h2 class="section-title" id="age-title">🎂 年齢を計算</h2>
 
-    <button onclick="calculateDate()">日付を計算する</button>
+        <div class="card">
+          <form id="ageForm" novalidate>
+            <div class="form-grid">
+              <div class="field-full">
+                <label for="birthDate">生年月日</label>
+                <input
+                  type="date"
+                  id="birthDate"
+                  name="birthDate"
+                  required
+                  autocomplete="bday"
+                >
+                <p class="hint">例：1990年4月15日</p>
+              </div>
 
-    <div class="result" id="dateResultBox">
-      <div class="result-item">
-        <div class="result-title">計算結果</div>
-        <div class="result-value" id="dateResult"></div>
-      </div>
+              <div class="field-full">
+                <button class="primary-button" type="submit">
+                  🎂 年齢を計算する
+                </button>
+              </div>
+            </div>
+
+            <p class="error" id="ageError" role="alert"></p>
+          </form>
+
+          <div
+            class="result-panel"
+            id="ageResult"
+            aria-live="polite"
+            hidden
+          >
+            <h3 class="result-heading">計算結果</h3>
+
+            <div class="result-grid">
+              <div class="result-item primary">
+                <span class="result-label">現在の年齢</span>
+                <strong class="result-value" id="ageYears">—</strong>
+              </div>
+
+              <div class="result-item">
+                <span class="result-label">詳細年齢</span>
+                <strong class="result-value" id="detailedAge">—</strong>
+              </div>
+
+              <div class="result-item">
+                <span class="result-label">生まれてからの日数</span>
+                <strong class="result-value" id="daysLived">—</strong>
+              </div>
+
+              <div class="result-item">
+                <span class="result-label">次の誕生日まで</span>
+                <strong class="result-value" id="daysUntilBirthday">—</strong>
+              </div>
+
+              <div class="result-item">
+                <span class="result-label">次の誕生日</span>
+                <strong class="result-value" id="nextBirthday">—</strong>
+              </div>
+
+              <div class="result-item">
+                <span class="result-label">生まれた曜日</span>
+                <strong class="result-value" id="birthWeekday">—</strong>
+              </div>
+            </div>
+
+            <div class="copy-wrap">
+              <button
+                class="copy-button"
+                type="button"
+                id="copyButton"
+              >
+                📋 結果をコピー
+              </button>
+
+              <p
+                class="copy-status"
+                id="copyStatus"
+                role="status"
+              ></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================
+           日付計算
+      ====================== -->
+      <section class="section" aria-labelledby="date-title">
+        <h2 class="section-title" id="date-title">📅 日付計算</h2>
+
+        <div class="card">
+          <form id="dateForm" novalidate>
+            <div class="form-grid">
+              <div>
+                <label for="baseDate">基準日</label>
+                <input
+                  type="date"
+                  id="baseDate"
+                  name="baseDate"
+                  required
+                >
+              </div>
+
+              <div>
+                <label for="dateDays">日数</label>
+                <input
+                  type="number"
+                  id="dateDays"
+                  name="dateDays"
+                  min="0"
+                  max="100000"
+                  step="1"
+                  inputmode="numeric"
+                  placeholder="例：30"
+                  required
+                >
+              </div>
+
+              <div>
+                <label for="dateDirection">計算方法</label>
+                <select id="dateDirection" name="dateDirection">
+                  <option value="after">○日後</option>
+                  <option value="before">○日前</option>
+                </select>
+              </div>
+
+              <div style="align-self: end;">
+                <button class="primary-button" type="submit">
+                  📅 日付を計算する
+                </button>
+              </div>
+            </div>
+
+            <p class="error" id="dateError" role="alert"></p>
+          </form>
+
+          <div
+            class="result-panel"
+            id="dateResult"
+            aria-live="polite"
+            hidden
+          >
+            <div class="date-result">
+              <span class="result-label" id="dateResultLabel">
+                計算結果
+              </span>
+
+              <strong class="result-value" id="calculatedDate">
+                —
+              </strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================
+           ゴマツールの約束
+      ====================== -->
+      <section
+        class="section card promise-card"
+        aria-labelledby="promise-title"
+      >
+        <h2 class="section-title" id="promise-title">
+          🍵 ゴマツールの約束
+        </h2>
+
+        <ul class="promise-list">
+          <li>✅ 完全無料</li>
+          <li>✅ 登録不要</li>
+          <li>✅ スマホ・PC対応</li>
+          <li>✅ ブラウザ内だけで処理</li>
+          <li class="field-full">
+            ✅ 入力データをサーバーへ送信・保存しません
+          </li>
+        </ul>
+      </section>
+
+      <!-- ======================
+           FAQ
+      ====================== -->
+      <section class="section" aria-labelledby="faq-title">
+        <h2 class="section-title" id="faq-title">
+          よくある質問
+        </h2>
+
+        <div class="faq-list">
+          <details>
+            <summary>
+              Q. 入力したデータは保存されますか？
+            </summary>
+            <p>
+              A. 保存されません。このページのブラウザ内だけで計算し、サーバーには送信しません。
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              Q. スマホでも使えますか？
+            </summary>
+            <p>
+              A. はい。スマホ、タブレット、PCのどれでも無料で使えます。
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              Q. 料金はかかりますか？
+            </summary>
+            <p>
+              A. いいえ。すべての計算機能を完全無料で使えます。
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              Q. うるう年の2月29日生まれはどうなりますか？
+            </summary>
+            <p>
+              A. 2月29日がない年は、2月28日を次の誕生日として計算します。
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <!-- ======================
+           関連ツール
+      ====================== -->
+      <section class="section" aria-labelledby="tools-title">
+        <h2 class="section-title" id="tools-title">
+          おすすめの便利ツール
+        </h2>
+
+        <div class="card tool-grid">
+          <div class="tool-item">
+            📅 営業日計算
+            <span class="tool-status">制作中</span>
+          </div>
+
+          <div class="tool-item">
+            💰 消費税計算
+            <span class="tool-status">制作中</span>
+          </div>
+
+          <div class="tool-item">
+            📱 QRコード生成
+            <span class="tool-status">制作中</span>
+          </div>
+
+          <div class="tool-item">
+            🎲 ランダム抽選
+            <span class="tool-status">制作中</span>
+          </div>
+        </div>
+      </section>
     </div>
-  </section>
-</main>
+  </main>
 
-<footer>
-  Project Goma｜小さく作って、早く公開して、一歩ずつ育てる。
-</footer>
+  <!-- ======================
+       フッター
+  ====================== -->
+  <footer>
+    <div class="container">
+      <p class="footer-logo">🍵 ゴマツール</p>
 
-<script>
-  const weekdays = ["日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"];
+      <p>
+        30秒で使えて、<br>
+        他より少し便利。
+      </p>
 
-  function formatDate(date) {
-    return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日（${weekdays[date.getDay()]}）`;
-  }
+      <p class="updated">
+        最終更新日：<span id="lastUpdated"></span>
+      </p>
+    </div>
+  </footer>
 
-  function setTodayText() {
-    const today = new Date();
-    document.getElementById("todayText").textContent = `※ ${formatDate(today)} 時点で計算します。`;
-    document.getElementById("baseDate").valueAsDate = today;
-  }
+  <script>
+    'use strict';
 
-  function calculateAge() {
-    const input = document.getElementById("birthday").value;
+    // ======================
+    // 日付ユーティリティ
+    // ======================
+    const DAY_MS = 24 * 60 * 60 * 1000;
 
-    if (!input) {
-      alert("生年月日を入力してください。");
-      return;
+    const WEEKDAYS = [
+      '日曜日',
+      '月曜日',
+      '火曜日',
+      '水曜日',
+      '木曜日',
+      '金曜日',
+      '土曜日'
+    ];
+
+    let copyText = '';
+
+    function toUtcDate(year, month, day) {
+      // Date.UTCは西暦0〜99年を1900年代として扱うため、
+      // setUTCFullYearで補正します。
+      const date = new Date(0);
+
+      date.setUTCHours(0, 0, 0, 0);
+      date.setUTCFullYear(year, month - 1, day);
+
+      return date;
     }
 
-    const birthDate = new Date(input);
-    const today = new Date();
+    function parseDate(value) {
+      const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
 
-    if (birthDate > today) {
-      alert("未来の日付は入力できません。");
-      return;
+      if (!match) {
+        return null;
+      }
+
+      const year = Number(match[1]);
+      const month = Number(match[2]);
+      const day = Number(match[3]);
+      const date = toUtcDate(year, month, day);
+
+      if (
+        date.getUTCFullYear() !== year ||
+        date.getUTCMonth() + 1 !== month ||
+        date.getUTCDate() !== day
+      ) {
+        return null;
+      }
+
+      return date;
     }
 
-    let years = today.getFullYear() - birthDate.getFullYear();
-    let months = today.getMonth() - birthDate.getMonth();
-    let days = today.getDate() - birthDate.getDate();
+    function getTodayUtc() {
+      const now = new Date();
 
-    if (days < 0) {
-      months--;
-      const previousMonth = new Date(today.getFullYear(), today.getMonth(), 0);
-      days += previousMonth.getDate();
+      return toUtcDate(
+        now.getFullYear(),
+        now.getMonth() + 1,
+        now.getDate()
+      );
     }
 
-    if (months < 0) {
-      years--;
-      months += 12;
+    function toInputValue(date) {
+      const year = date.getUTCFullYear();
+
+      const month = String(
+        date.getUTCMonth() + 1
+      ).padStart(2, '0');
+
+      const day = String(
+        date.getUTCDate()
+      ).padStart(2, '0');
+
+      return `${year}-${month}-${day}`;
     }
 
-    const oneDay = 1000 * 60 * 60 * 24;
-    const daysAlive = Math.floor((today - birthDate) / oneDay);
+    function formatDate(date, includeWeekday = false) {
+      const dateText =
+        `${date.getUTCFullYear()}年` +
+        `${date.getUTCMonth() + 1}月` +
+        `${date.getUTCDate()}日`;
 
-    let nextBirthday = new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate());
-    if (nextBirthday < today) {
-      nextBirthday.setFullYear(today.getFullYear() + 1);
+      if (includeWeekday) {
+        return `${dateText}（${WEEKDAYS[date.getUTCDay()]}）`;
+      }
+
+      return dateText;
     }
 
-    const daysUntilBirthday = Math.ceil((nextBirthday - today) / oneDay);
-    const weekday = weekdays[birthDate.getDay()];
-
-    document.getElementById("ageResult").textContent = `${years}歳`;
-    document.getElementById("detailAgeResult").textContent = `${years}歳 ${months}か月 ${days}日`;
-    document.getElementById("daysAliveResult").textContent = `${daysAlive.toLocaleString()}日`;
-    document.getElementById("nextBirthdayResult").textContent = `あと${daysUntilBirthday}日｜${formatDate(nextBirthday)}`;
-    document.getElementById("weekdayResult").textContent = weekday;
-
-    document.getElementById("ageResultBox").style.display = "block";
-  }
-
-  function calculateDate() {
-    const baseDateInput = document.getElementById("baseDate").value;
-    const daysNumber = Number(document.getElementById("daysNumber").value);
-    const direction = document.getElementById("direction").value;
-
-    if (!baseDateInput) {
-      alert("基準日を入力してください。");
-      return;
+    function daysInMonth(year, month) {
+      return new Date(
+        Date.UTC(year, month, 0)
+      ).getUTCDate();
     }
 
-    if (!daysNumber && daysNumber !== 0) {
-      alert("日数を入力してください。");
-      return;
+    function createClampedDate(year, month, day) {
+      return toUtcDate(
+        year,
+        month,
+        Math.min(day, daysInMonth(year, month))
+      );
     }
 
-    const resultDate = new Date(baseDateInput);
+    // ======================
+    // 年齢計算
+    // ======================
+    function getDetailedAge(birth, today) {
+      let years =
+        today.getUTCFullYear() -
+        birth.getUTCFullYear();
 
-    if (direction === "after") {
-      resultDate.setDate(resultDate.getDate() + daysNumber);
-    } else {
-      resultDate.setDate(resultDate.getDate() - daysNumber);
+      let anchor = createClampedDate(
+        birth.getUTCFullYear() + years,
+        birth.getUTCMonth() + 1,
+        birth.getUTCDate()
+      );
+
+      if (anchor > today) {
+        years--;
+
+        anchor = createClampedDate(
+          birth.getUTCFullYear() + years,
+          birth.getUTCMonth() + 1,
+          birth.getUTCDate()
+        );
+      }
+
+      let months = 0;
+      let monthAnchor = anchor;
+
+      while (months < 11) {
+        const totalMonths =
+          anchor.getUTCMonth() + 1 + months;
+
+        const candidateYear =
+          anchor.getUTCFullYear() +
+          Math.floor(totalMonths / 12);
+
+        const candidateMonth =
+          (totalMonths % 12) + 1;
+
+        const candidate = createClampedDate(
+          candidateYear,
+          candidateMonth,
+          birth.getUTCDate()
+        );
+
+        if (candidate > today) {
+          break;
+        }
+
+        months++;
+        monthAnchor = candidate;
+      }
+
+      const days = Math.floor(
+        (today - monthAnchor) / DAY_MS
+      );
+
+      return {
+        years,
+        months,
+        days
+      };
     }
 
-    document.getElementById("dateResult").textContent = formatDate(resultDate);
-    document.getElementById("dateResultBox").style.display = "block";
-  }
+    function getNextBirthday(birth, today) {
+      let birthday = createClampedDate(
+        today.getUTCFullYear(),
+        birth.getUTCMonth() + 1,
+        birth.getUTCDate()
+      );
 
-  function copyAgeResult() {
-    const age = document.getElementById("ageResult").textContent;
-    const detailAge = document.getElementById("detailAgeResult").textContent;
-    const daysAlive = document.getElementById("daysAliveResult").textContent;
-    const nextBirthday = document.getElementById("nextBirthdayResult").textContent;
-    const weekday = document.getElementById("weekdayResult").textContent;
+      if (birthday < today) {
+        birthday = createClampedDate(
+          today.getUTCFullYear() + 1,
+          birth.getUTCMonth() + 1,
+          birth.getUTCDate()
+        );
+      }
 
-    const text =
-`【ゴマツール 年齢計算結果】
-現在の年齢：${age}
-詳しい年齢：${detailAge}
-生まれてからの日数：${daysAlive}
-次の誕生日まで：${nextBirthday}
-生まれた曜日：${weekday}`;
+      return birthday;
+    }
 
-    navigator.clipboard.writeText(text)
-      .then(() => alert("結果をコピーしました。"))
-      .catch(() => alert("コピーに失敗しました。"));
-  }
+    function calculateAge(event) {
+      event.preventDefault();
 
-  setTodayText();
-</script>
+      const birth = parseDate(
+        document.getElementById('birthDate').value
+      );
 
+      const today = getTodayUtc();
+
+      const error =
+        document.getElementById('ageError');
+
+      const result =
+        document.getElementById('ageResult');
+
+      error.textContent = '';
+      result.hidden = true;
+
+      if (!birth) {
+        error.textContent =
+          '生年月日を入力してください。';
+        return;
+      }
+
+      if (birth > today) {
+        error.textContent =
+          '未来の日付は生年月日に指定できません。';
+        return;
+      }
+
+      const detail = getDetailedAge(birth, today);
+
+      const livedDays = Math.floor(
+        (today - birth) / DAY_MS
+      );
+
+      const next = getNextBirthday(birth, today);
+
+      const untilNext = Math.floor(
+        (next - today) / DAY_MS
+      );
+
+      const weekday =
+        WEEKDAYS[birth.getUTCDay()];
+
+      document.getElementById(
+        'ageYears'
+      ).textContent = `${detail.years}歳`;
+
+      document.getElementById(
+        'detailedAge'
+      ).textContent =
+        `${detail.years}歳 ` +
+        `${detail.months}か月 ` +
+        `${detail.days}日`;
+
+      document.getElementById(
+        'daysLived'
+      ).textContent =
+        `${livedDays.toLocaleString('ja-JP')}日`;
+
+      document.getElementById(
+        'daysUntilBirthday'
+      ).textContent =
+        untilNext === 0
+          ? '今日です！'
+          : `あと${untilNext.toLocaleString('ja-JP')}日`;
+
+      document.getElementById(
+        'nextBirthday'
+      ).textContent = formatDate(next, true);
+
+      document.getElementById(
+        'birthWeekday'
+      ).textContent = weekday;
+
+      copyText = [
+        '【年齢・日付計算結果】',
+        `年齢：${detail.years}歳`,
+        `詳細年齢：${detail.years}歳 ${detail.months}か月 ${detail.days}日`,
+        `生まれてからの日数：${livedDays.toLocaleString('ja-JP')}日`,
+        `次の誕生日まで：${
+          untilNext === 0
+            ? '今日'
+            : `あと${untilNext.toLocaleString('ja-JP')}日`
+        }`,
+        `次の誕生日：${formatDate(next, true)}`,
+        `生まれた曜日：${weekday}`
+      ].join('\n');
+
+      document.getElementById(
+        'copyStatus'
+      ).textContent = '';
+
+      result.hidden = false;
+
+      result.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest'
+      });
+    }
+
+    // ======================
+    // 日付計算
+    // ======================
+    function calculateDate(event) {
+      event.preventDefault();
+
+      const base = parseDate(
+        document.getElementById('baseDate').value
+      );
+
+      const rawDays =
+        document.getElementById('dateDays')
+          .value
+          .trim();
+
+      const days = Number(rawDays);
+
+      const direction =
+        document.getElementById(
+          'dateDirection'
+        ).value;
+
+      const error =
+        document.getElementById('dateError');
+
+      const result =
+        document.getElementById('dateResult');
+
+      error.textContent = '';
+      result.hidden = true;
+
+      if (!base) {
+        error.textContent =
+          '基準日を入力してください。';
+        return;
+      }
+
+      if (
+        rawDays === '' ||
+        !Number.isInteger(days) ||
+        days < 0 ||
+        days > 100000
+      ) {
+        error.textContent =
+          '日数は0〜100,000の整数で入力してください。';
+        return;
+      }
+
+      const signedDays =
+        direction === 'before'
+          ? -days
+          : days;
+
+      const calculated = new Date(
+        base.getTime() + signedDays * DAY_MS
+      );
+
+      const directionText =
+        direction === 'before'
+          ? '日前'
+          : '日後';
+
+      document.getElementById(
+        'dateResultLabel'
+      ).textContent =
+        `${formatDate(base)}の` +
+        `${days.toLocaleString('ja-JP')}` +
+        directionText;
+
+      document.getElementById(
+        'calculatedDate'
+      ).textContent =
+        formatDate(calculated, true);
+
+      result.hidden = false;
+
+      result.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest'
+      });
+    }
+
+    // ======================
+    // 結果コピー
+    // ======================
+    async function copyResult() {
+      const status =
+        document.getElementById('copyStatus');
+
+      try {
+        await navigator.clipboard.writeText(
+          copyText
+        );
+
+        status.textContent =
+          'コピーしました！';
+      } catch (error) {
+        const textArea =
+          document.createElement('textarea');
+
+        textArea.value = copyText;
+        textArea.style.position = 'fixed';
+        textArea.style.opacity = '0';
+
+        document.body.appendChild(textArea);
+
+        textArea.select();
+
+        const copied =
+          document.execCommand('copy');
+
+        textArea.remove();
+
+        status.textContent = copied
+          ? 'コピーしました！'
+          : 'コピーできませんでした。';
+      }
+    }
+
+    // ======================
+    // 初期表示
+    // ======================
+    function initializePage() {
+      const today = getTodayUtc();
+      const todayValue = toInputValue(today);
+
+      document.getElementById(
+        'todayDate'
+      ).textContent = formatDate(today, true);
+
+      document.getElementById(
+        'baseDate'
+      ).value = todayValue;
+
+      document.getElementById(
+        'birthDate'
+      ).max = todayValue;
+
+      document.getElementById(
+        'lastUpdated'
+      ).textContent = '2026年6月27日';
+
+      document.getElementById(
+        'ageForm'
+      ).addEventListener(
+        'submit',
+        calculateAge
+      );
+
+      document.getElementById(
+        'dateForm'
+      ).addEventListener(
+        'submit',
+        calculateDate
+      );
+
+      document.getElementById(
+        'copyButton'
+      ).addEventListener(
+        'click',
+        copyResult
+      );
+    }
+
+    initializePage();
+  </script>
 </body>
 </html>
+```
