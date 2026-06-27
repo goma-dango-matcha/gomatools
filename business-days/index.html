@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="基準日から土日を除いた営業日後・営業日前の日付を無料で計算できるゴマツールです。">
   <title>営業日計算｜ゴマツール</title>
+
   <style>
     /* ======================
        基本設定
@@ -25,28 +26,52 @@
       --radius: 22px;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       margin: 0;
       color: var(--text);
       background: linear-gradient(180deg, #f9fcf7 0, #fff 25%);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Hiragino Kaku Gothic ProN",
+        "Yu Gothic",
+        Meiryo,
+        sans-serif;
       line-height: 1.75;
       -webkit-font-smoothing: antialiased;
     }
 
-    button, input, select { font: inherit; }
-    button { cursor: pointer; }
-    a { color: inherit; }
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    a {
+      color: inherit;
+    }
 
     .container {
       width: min(100% - 32px, 880px);
       margin-inline: auto;
     }
 
-    .section { margin-top: 72px; }
+    .section {
+      margin-top: 72px;
+    }
 
     .section-title {
       margin: 0 0 20px;
@@ -105,10 +130,10 @@
       color: var(--green-dark);
       border: 1px solid var(--line);
       border-radius: 12px;
+      background: var(--white);
       font-size: .86rem;
       font-weight: 750;
       text-decoration: none;
-      background: var(--white);
     }
 
     .home-link:hover {
@@ -118,8 +143,13 @@
     /* ======================
        ヒーロー
     ====================== */
-    main { padding: 78px 0 96px; }
-    .hero { text-align: center; }
+    main {
+      padding: 78px 0 96px;
+    }
+
+    .hero {
+      text-align: center;
+    }
 
     .eyebrow {
       display: inline-block;
@@ -161,7 +191,9 @@
       gap: 20px;
     }
 
-    .field-full { grid-column: 1 / -1; }
+    .field-full {
+      grid-column: 1 / -1;
+    }
 
     label {
       display: block;
@@ -169,7 +201,8 @@
       font-weight: 750;
     }
 
-    input, select {
+    input,
+    select {
       width: 100%;
       min-height: 52px;
       padding: 12px 14px;
@@ -179,7 +212,8 @@
       background: #fff;
     }
 
-    input:focus, select:focus {
+    input:focus,
+    select:focus {
       outline: 3px solid rgba(88, 124, 64, .18);
       border-color: var(--green);
     }
@@ -232,7 +266,9 @@
       border-top: 1px solid var(--line);
     }
 
-    .result-panel[hidden] { display: none; }
+    .result-panel[hidden] {
+      display: none;
+    }
 
     .result-card {
       padding: clamp(22px, 5vw, 32px);
@@ -290,7 +326,9 @@
       color: #625a45;
     }
 
-    .notice-strong { font-weight: 800; }
+    .notice-strong {
+      font-weight: 800;
+    }
 
     /* ======================
        ゴマツールの約束
@@ -298,7 +336,11 @@
     .promise-card {
       color: #fff;
       border: 0;
-      background: linear-gradient(135deg, var(--green-dark), #4e7139);
+      background: linear-gradient(
+        135deg,
+        var(--green-dark),
+        #4e7139
+      );
     }
 
     .promise-list {
@@ -331,7 +373,9 @@
       list-style: none;
     }
 
-    summary::-webkit-details-marker { display: none; }
+    summary::-webkit-details-marker {
+      display: none;
+    }
 
     summary::after {
       content: "+";
@@ -340,7 +384,9 @@
       font-size: 1.2rem;
     }
 
-    details[open] summary::after { content: "−"; }
+    details[open] summary::after {
+      content: "−";
+    }
 
     details p {
       margin: 0;
@@ -405,7 +451,9 @@
       font-weight: 850;
     }
 
-    footer p { margin: 4px 0; }
+    footer p {
+      margin: 4px 0;
+    }
 
     .project-name {
       margin-top: 18px;
@@ -414,7 +462,9 @@
       letter-spacing: .08em;
     }
 
-    .updated { font-size: .78rem; }
+    .updated {
+      font-size: .78rem;
+    }
 
     /* ======================
        レスポンシブ
@@ -424,16 +474,26 @@
         width: min(100% - 24px, 880px);
       }
 
-      .site-header { padding: 18px 0; }
-      .header-inner { align-items: flex-start; }
+      .site-header {
+        padding: 18px 0;
+      }
+
+      .header-inner {
+        align-items: flex-start;
+      }
 
       .brand-wrap {
         flex-direction: column;
         gap: 0;
       }
 
-      main { padding: 58px 0 76px; }
-      .section { margin-top: 54px; }
+      main {
+        padding: 58px 0 76px;
+      }
+
+      .section {
+        margin-top: 54px;
+      }
 
       .form-grid,
       .promise-list,
@@ -446,7 +506,9 @@
         border-radius: 18px;
       }
 
-      .field-full { grid-column: auto; }
+      .field-full {
+        grid-column: auto;
+      }
 
       .result-details {
         flex-direction: column;
@@ -455,7 +517,9 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
+      html {
+        scroll-behavior: auto;
+      }
 
       *,
       *::before,
@@ -477,7 +541,9 @@
         <p class="header-copy">無料で使える便利ツール集</p>
       </div>
 
-      <a class="home-link" href="../">← ホームへ戻る</a>
+      <a class="home-link" href="../">
+        ← ホームへ戻る
+      </a>
     </div>
   </header>
 
@@ -487,8 +553,13 @@
            ヒーロー
       ====================== -->
       <section class="hero" aria-labelledby="page-title">
-        <p class="eyebrow">30秒でかんたん計算</p>
-        <h1 id="page-title">📅 営業日計算</h1>
+        <p class="eyebrow">
+          30秒でかんたん計算
+        </p>
+
+        <h1 id="page-title">
+          📅 営業日計算
+        </h1>
 
         <p class="hero-catch">
           土日を除いて、○営業日後・○営業日前をかんたん計算。
@@ -503,8 +574,14 @@
       <!-- ======================
            営業日計算フォーム
       ====================== -->
-      <section class="section" aria-labelledby="calculator-title">
-        <h2 class="section-title" id="calculator-title">
+      <section
+        class="section"
+        aria-labelledby="calculator-title"
+      >
+        <h2
+          class="section-title"
+          id="calculator-title"
+        >
           営業日を計算する
         </h2>
 
@@ -512,7 +589,10 @@
           <form id="businessDayForm" novalidate>
             <div class="form-grid">
               <div>
-                <label for="baseDate">基準日</label>
+                <label for="baseDate">
+                  基準日
+                </label>
+
                 <input
                   type="date"
                   id="baseDate"
@@ -522,7 +602,10 @@
               </div>
 
               <div>
-                <label for="businessDays">営業日数</label>
+                <label for="businessDays">
+                  営業日数
+                </label>
+
                 <input
                   type="number"
                   id="businessDays"
@@ -534,33 +617,65 @@
                   placeholder="例：10"
                   required
                 >
-                <p class="hint">0〜10,000の整数</p>
+
+                <p class="hint">
+                  0〜10,000の整数
+                </p>
               </div>
 
               <div>
-                <label for="direction">計算方向</label>
-                <select id="direction" name="direction">
-                  <option value="after">○営業日後</option>
-                  <option value="before">○営業日前</option>
+                <label for="direction">
+                  計算方向
+                </label>
+
+                <select
+                  id="direction"
+                  name="direction"
+                >
+                  <option value="after">
+                    ○営業日後
+                  </option>
+
+                  <option value="before">
+                    ○営業日前
+                  </option>
                 </select>
               </div>
 
               <div>
-                <label for="includeStart">開始日を含めるか</label>
-                <select id="includeStart" name="includeStart">
-                  <option value="exclude" selected>含めない</option>
-                  <option value="include">含める</option>
+                <label for="includeStart">
+                  開始日を含めるか
+                </label>
+
+                <select
+                  id="includeStart"
+                  name="includeStart"
+                >
+                  <option value="exclude" selected>
+                    含めない
+                  </option>
+
+                  <option value="include">
+                    含める
+                  </option>
                 </select>
               </div>
 
               <div class="field-full">
-                <button class="primary-button" type="submit">
+                <button
+                  class="primary-button"
+                  type="submit"
+                >
                   📅 営業日を計算する
                 </button>
               </div>
             </div>
 
-            <p class="error" id="formError" role="alert"></p>
+            <p
+              class="error"
+              id="formError"
+              role="alert"
+            ></p>
           </form>
 
           <!-- ======================
@@ -573,13 +688,32 @@
             hidden
           >
             <div class="result-card">
-              <span class="result-label">計算結果</span>
-              <strong class="result-date" id="resultDate">—</strong>
-              <p class="result-summary" id="resultSummary">—</p>
+              <span class="result-label">
+                計算結果
+              </span>
+
+              <strong
+                class="result-date"
+                id="resultDate"
+              >
+                —
+              </strong>
+
+              <p
+                class="result-summary"
+                id="resultSummary"
+              >
+                —
+              </p>
 
               <div class="result-details">
-                <span id="elapsedDays">実際の日数：—</span>
-                <span id="includeSetting">開始日：—</span>
+                <span id="elapsedDays">
+                  実際の日数：—
+                </span>
+
+                <span id="includeSetting">
+                  開始日：—
+                </span>
               </div>
             </div>
           </div>
@@ -593,7 +727,10 @@
         class="section card notice-card"
         aria-labelledby="notice-title"
       >
-        <h2 class="section-title" id="notice-title">
+        <h2
+          class="section-title"
+          id="notice-title"
+        >
           ⚠️ ご注意ください
         </h2>
 
@@ -617,7 +754,10 @@
         class="section card promise-card"
         aria-labelledby="promise-title"
       >
-        <h2 class="section-title" id="promise-title">
+        <h2
+          class="section-title"
+          id="promise-title"
+        >
           🍵 ゴマツールの約束
         </h2>
 
@@ -634,21 +774,33 @@
       <!-- ======================
            FAQ
       ====================== -->
-      <section class="section" aria-labelledby="faq-title">
-        <h2 class="section-title" id="faq-title">
+      <section
+        class="section"
+        aria-labelledby="faq-title"
+      >
+        <h2
+          class="section-title"
+          id="faq-title"
+        >
           よくある質問
         </h2>
 
         <div class="faq-list">
           <details>
-            <summary>Q. 祝日は除外されますか？</summary>
+            <summary>
+              Q. 祝日は除外されますか？
+            </summary>
+
             <p>
               A. Ver.1.0では祝日は除外していません。土日のみを除外して計算します。
             </p>
           </details>
 
           <details>
-            <summary>Q. 開始日を含めるとは何ですか？</summary>
+            <summary>
+              Q. 開始日を含めるとは何ですか？
+            </summary>
+
             <p>
               A. 基準日が営業日の場合、その日を1営業日目として数える設定です。
             </p>
@@ -658,13 +810,17 @@
             <summary>
               Q. 土曜日や日曜日を基準日にした場合はどうなりますか？
             </summary>
+
             <p>
               A. 開始日を含めない場合は、次の営業日から数えます。開始日を含める場合でも、土日は営業日として数えません。
             </p>
           </details>
 
           <details>
-            <summary>Q. 入力した日付は保存されますか？</summary>
+            <summary>
+              Q. 入力した日付は保存されますか？
+            </summary>
+
             <p>
               A. 保存されません。ブラウザ内だけで計算します。
             </p>
@@ -675,30 +831,76 @@
       <!-- ======================
            関連ツール
       ====================== -->
-      <section class="section" aria-labelledby="related-title">
-        <h2 class="section-title" id="related-title">
+      <section
+        class="section"
+        aria-labelledby="related-title"
+      >
+        <h2
+          class="section-title"
+          id="related-title"
+        >
           おすすめの便利ツール
         </h2>
 
         <div class="card related-grid">
-          <a class="related-item related-link" href="../age/">
-            <span class="related-name">🎂 年齢・日付計算</span>
-            <span class="related-status">公開中</span>
+          <a
+            class="related-item related-link"
+            href="../age/"
+          >
+            <span class="related-name">
+              🎂 年齢・日付計算
+            </span>
+            <span class="related-status">
+              公開中
+            </span>
           </a>
 
-          <a class="related-item related-link" href="../tax/">
-            <span class="related-name">💰 消費税計算</span>
-            <span class="related-status">公開中</span>
+          <a
+            class="related-item related-link"
+            href="../tax/"
+          >
+            <span class="related-name">
+              💰 消費税計算
+            </span>
+            <span class="related-status">
+              公開中
+            </span>
           </a>
 
-          <a class="related-item related-link" href="../warikan/">
-            <span class="related-name">👥 割り勘計算</span>
-            <span class="related-status">公開中</span>
+          <a
+            class="related-item related-link"
+            href="../warikan/"
+          >
+            <span class="related-name">
+              👥 割り勘計算
+            </span>
+            <span class="related-status">
+              公開中
+            </span>
           </a>
 
-          <a class="related-item related-link" href="../qrcode/">
-            <span class="related-name">📱 QRコード生成</span>
-            <span class="related-status">公開中</span>
+          <a
+            class="related-item related-link"
+            href="../qrcode/"
+          >
+            <span class="related-name">
+              📱 QRコード生成
+            </span>
+            <span class="related-status">
+              公開中
+            </span>
+          </a>
+
+          <a
+            class="related-item related-link"
+            href="../school-year/"
+          >
+            <span class="related-name">
+              🎓 学年・年齢・卒業年度計算
+            </span>
+            <span class="related-status">
+              公開中
+            </span>
           </a>
         </div>
       </section>
@@ -710,15 +912,22 @@
   ====================== -->
   <footer>
     <div class="container">
-      <p class="footer-logo">🍵 ゴマツール</p>
+      <p class="footer-logo">
+        🍵 ゴマツール
+      </p>
 
       <p>
         30秒で使えて、<br>
         他より少し便利。
       </p>
 
-      <p class="project-name">Project Goma</p>
-      <p class="updated">最終更新日：2026年6月27日</p>
+      <p class="project-name">
+        Project Goma
+      </p>
+
+      <p class="updated">
+        最終更新日：2026年6月27日
+      </p>
     </div>
   </footer>
 
@@ -728,7 +937,8 @@
     // ======================
     // 日付ユーティリティ
     // ======================
-    const DAY_MS = 24 * 60 * 60 * 1000;
+    const DAY_MS =
+      24 * 60 * 60 * 1000;
 
     const WEEKDAYS = [
       '日曜日',
@@ -744,13 +954,18 @@
       const date = new Date(0);
 
       date.setUTCHours(0, 0, 0, 0);
-      date.setUTCFullYear(year, month - 1, day);
+      date.setUTCFullYear(
+        year,
+        month - 1,
+        day
+      );
 
       return date;
     }
 
     function parseDate(value) {
-      const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
+      const match =
+        /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
 
       if (!match) {
         return null;
@@ -759,7 +974,9 @@
       const year = Number(match[1]);
       const month = Number(match[2]);
       const day = Number(match[3]);
-      const date = toUtcDate(year, month, day);
+
+      const date =
+        toUtcDate(year, month, day);
 
       if (
         date.getUTCFullYear() !== year ||
@@ -773,14 +990,26 @@
     }
 
     function formatInputDate(date) {
-      const year = date.getUTCFullYear();
-      const month = String(date.getUTCMonth() + 1).padStart(2, '0');
-      const day = String(date.getUTCDate()).padStart(2, '0');
+      const year =
+        date.getUTCFullYear();
+
+      const month =
+        String(
+          date.getUTCMonth() + 1
+        ).padStart(2, '0');
+
+      const day =
+        String(
+          date.getUTCDate()
+        ).padStart(2, '0');
 
       return `${year}-${month}-${day}`;
     }
 
-    function formatDate(date, includeWeekday = true) {
+    function formatDate(
+      date,
+      includeWeekday = true
+    ) {
       const text =
         `${date.getUTCFullYear()}年` +
         `${date.getUTCMonth() + 1}月` +
@@ -795,7 +1024,8 @@
     // 営業日計算
     // ======================
     function isBusinessDay(date) {
-      const day = date.getUTCDay();
+      const day =
+        date.getUTCDay();
 
       return day !== 0 && day !== 6;
     }
@@ -806,21 +1036,31 @@
       direction,
       includeStart
     ) {
-      const result = new Date(baseDate.getTime());
+      const result =
+        new Date(baseDate.getTime());
 
       if (days === 0) {
         return result;
       }
 
-      const step = direction === 'before' ? -1 : 1;
+      const step =
+        direction === 'before'
+          ? -1
+          : 1;
+
       let remaining = days;
 
-      if (includeStart && isBusinessDay(result)) {
+      if (
+        includeStart &&
+        isBusinessDay(result)
+      ) {
         remaining--;
       }
 
       while (remaining > 0) {
-        result.setUTCDate(result.getUTCDate() + step);
+        result.setUTCDate(
+          result.getUTCDate() + step
+        );
 
         if (isBusinessDay(result)) {
           remaining--;
@@ -834,27 +1074,38 @@
       event.preventDefault();
 
       const baseDate = parseDate(
-        document.getElementById('baseDate').value
+        document.getElementById(
+          'baseDate'
+        ).value
       );
 
-      const rawDays = document
-        .getElementById('businessDays')
-        .value
-        .trim();
+      const rawDays =
+        document.getElementById(
+          'businessDays'
+        ).value.trim();
 
-      const days = Number(rawDays);
+      const days =
+        Number(rawDays);
+
       const direction =
-        document.getElementById('direction').value;
+        document.getElementById(
+          'direction'
+        ).value;
 
       const includeStart =
-        document.getElementById('includeStart').value ===
-        'include';
+        document.getElementById(
+          'includeStart'
+        ).value === 'include';
 
       const error =
-        document.getElementById('formError');
+        document.getElementById(
+          'formError'
+        );
 
       const panel =
-        document.getElementById('resultPanel');
+        document.getElementById(
+          'resultPanel'
+        );
 
       error.textContent = '';
       panel.hidden = true;
@@ -889,15 +1140,19 @@
         return;
       }
 
-      const result = addBusinessDays(
-        baseDate,
-        days,
-        direction,
-        includeStart
-      );
+      const result =
+        addBusinessDays(
+          baseDate,
+          days,
+          direction,
+          includeStart
+        );
 
       const elapsed = Math.abs(
-        Math.round((result - baseDate) / DAY_MS)
+        Math.round(
+          (result - baseDate) /
+          DAY_MS
+        )
       );
 
       const directionText =
@@ -910,18 +1165,26 @@
           ? '含める'
           : '含めない';
 
-      document.getElementById('resultDate').textContent =
+      document.getElementById(
+        'resultDate'
+      ).textContent =
         formatDate(result);
 
-      document.getElementById('resultSummary').textContent =
+      document.getElementById(
+        'resultSummary'
+      ).textContent =
         `${formatDate(baseDate, false)}から` +
         `${days.toLocaleString('ja-JP')}` +
         `${directionText}`;
 
-      document.getElementById('elapsedDays').textContent =
+      document.getElementById(
+        'elapsedDays'
+      ).textContent =
         `実際の日数：${elapsed.toLocaleString('ja-JP')}日`;
 
-      document.getElementById('includeSetting').textContent =
+      document.getElementById(
+        'includeSetting'
+      ).textContent =
         `開始日：${includeText}`;
 
       panel.hidden = false;
@@ -944,15 +1207,17 @@
         now.getDate()
       );
 
-      document.getElementById('baseDate').value =
+      document.getElementById(
+        'baseDate'
+      ).value =
         formatInputDate(today);
 
-      document
-        .getElementById('businessDayForm')
-        .addEventListener(
-          'submit',
-          calculateBusinessDays
-        );
+      document.getElementById(
+        'businessDayForm'
+      ).addEventListener(
+        'submit',
+        calculateBusinessDays
+      );
     }
 
     initializePage();
