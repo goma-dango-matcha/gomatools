@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="生年月日や生まれ年から、年齢・小学校・中学校・高校の入学年と卒業年を計算できる無料ツールです。">
+  <title>学年・年齢・卒業年度計算｜ゴマツール</title>
+
+  <style>
+    /* ======================
+       基本設定
+    ====================== */
+    :root {
+      --green: #587c40;
+      --green-dark: #355126;
+      --green-light: #eef5e9;
+      --green-soft: #f8fbf6;
+      --text: #20251d;
+      --muted: #687064;
+      --line: #dde6d8;
+      --white: #fff;
+      --danger: #b44335;
+      --warning: #fff8e8;
+      --warning-line: #ead7a0;
+      --shadow: 0 16px 44px rgba(48, 70, 36, .09);
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background: linear-gradient(180deg, #f9fcf7 0, #fff 25%);
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Hiragino Kaku Gothic ProN",
+        "Yu Gothic",
+        Meiryo,
+        sans-serif;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(100% - 32px, 880px);
+      margin-inline: auto;
+    }
+
+    .section {
+      margin-top: 72px;
+    }
+
+    .section-title {
+      margin: 0 0 20px;
+      font-size: clamp(1.4rem, 4vw, 1.8rem);
+    }
+
+    .card {
+      padding: clamp(22px, 5vw, 38px);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    /* ======================
+       ヘッダー
+    ====================== */
+    .site-header {
+      padding: 23px 0;
+      border-bottom: 1px solid rgba(88, 124, 64, .12);
+      background: rgba(255, 255, 255, .86);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+    }
+
+    .logo {
+      margin: 0;
+      color: var(--green-dark);
+      font-size: 1.2rem;
+      font-weight: 850;
+    }
+
+    .header-copy {
+      margin: 0;
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    .home-link {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      padding: 8px 14px;
+      color: var(--green-dark);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--white);
+      font-size: .86rem;
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .home-link:hover {
+      background: var(--green-light);
+    }
+
+    /* ======================
+       ヒーロー
+    ====================== */
+    main {
+      padding: 78px 0 96px;
+    }
+
+    .hero {
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin: 0 0 15px;
+      padding: 6px 13px;
+      color: var(--green-dark);
+      border-radius: 999px;
+      background: var(--green-light);
+      font-size: .82rem;
+      font-weight: 750;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 8vw, 3.55rem);
+      line-height: 1.25;
+      letter-spacing: -.035em;
+    }
+
+    .hero-catch {
+      margin: 18px 0 0;
+      color: var(--green-dark);
+      font-size: clamp(1.05rem, 3vw, 1.25rem);
+      font-weight: 800;
+    }
+
+    .hero-description {
+      max-width: 670px;
+      margin: 15px auto 0;
+      color: var(--muted);
+    }
+
+    /* ======================
+       計算フォーム
+    ====================== */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .field-full {
+      grid-column: 1 / -1;
+    }
+
+    .input-field[hidden] {
+      display: none;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 750;
+    }
+
+    input,
+    select {
+      width: 100%;
+      min-height: 52px;
+      padding: 12px 14px;
+      color: var(--text);
+      border: 1.5px solid #cdd8c7;
+      border-radius: 12px;
+      background: #fff;
+    }
+
+    input:focus,
+    select:focus {
+      outline: 3px solid rgba(88, 124, 64, .18);
+      border-color: var(--green);
+    }
+
+    .hint {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: .8rem;
+    }
+
+    .primary-button {
+      width: 100%;
+      min-height: 56px;
+      padding: 14px 22px;
+      color: #fff;
+      border: 0;
+      border-radius: 14px;
+      background: var(--green);
+      box-shadow: 0 9px 22px rgba(88, 124, 64, .23);
+      font-weight: 850;
+      transition: transform .15s ease, background .15s ease;
+    }
+
+    .primary-button:hover {
+      background: var(--green-dark);
+      transform: translateY(-1px);
+    }
+
+    .primary-button:focus-visible,
+    .home-link:focus-visible,
+    .related-link:focus-visible {
+      outline: 3px solid rgba(88, 124, 64, .35);
+      outline-offset: 3px;
+    }
+
+    .error {
+      min-height: 1.6em;
+      margin: 13px 0 0;
+      color: var(--danger);
+      font-weight: 750;
+      text-align: center;
+    }
+
+    /* ======================
+       計算結果
+    ====================== */
+    .result-panel {
+      margin-top: 28px;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+    }
+
+    .result-panel[hidden],
+    .schedule-wrap[hidden] {
+      display: none;
+    }
+
+    .result-summary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .summary-item {
+      padding: 22px 18px;
+      border-radius: 17px;
+      background: var(--green-light);
+      text-align: center;
+    }
+
+    .result-label {
+      display: block;
+      color: var(--muted);
+      font-size: .84rem;
+      font-weight: 750;
+    }
+
+    .result-value {
+      display: block;
+      margin-top: 6px;
+      color: var(--green-dark);
+      font-size: clamp(1.45rem, 5vw, 2.25rem);
+      line-height: 1.35;
+      font-weight: 900;
+      overflow-wrap: anywhere;
+    }
+
+    .result-note {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: .86rem;
+      text-align: center;
+    }
+
+    .schedule-wrap {
+      margin-top: 22px;
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+    }
+
+    .schedule-table {
+      width: 100%;
+      min-width: 460px;
+      border-collapse: collapse;
+    }
+
+    .schedule-table th,
+    .schedule-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+
+    .schedule-table th {
+      width: 42%;
+      color: var(--green-dark);
+      background: var(--green-soft);
+    }
+
+    .schedule-table tr:last-child th,
+    .schedule-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    /* ======================
+       注意書き・関連ツール
+    ====================== */
+    .notice-card {
+      border-color: var(--warning-line);
+      background: var(--warning);
+      box-shadow: none;
+    }
+
+    .notice-card p {
+      margin: 5px 0;
+      color: #625a45;
+    }
+
+    .privacy-card {
+      box-shadow: none;
+      background: var(--green-soft);
+    }
+
+    .privacy-card p {
+      margin: 5px 0;
+      color: var(--muted);
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .related-item {
+      padding: 19px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: var(--green-soft);
+    }
+
+    .related-name {
+      display: block;
+      font-weight: 800;
+    }
+
+    .related-status {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    .related-link {
+      display: block;
+      text-decoration: none;
+      transition: border-color .15s ease, transform .15s ease;
+    }
+
+    .related-link:hover {
+      border-color: var(--green);
+      transform: translateY(-1px);
+    }
+
+    /* ======================
+       フッター
+    ====================== */
+    footer {
+      padding: 52px 0;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      text-align: center;
+      background: var(--green-soft);
+    }
+
+    .footer-logo {
+      margin: 0 0 8px;
+      color: var(--green-dark);
+      font-size: 1.15rem;
+      font-weight: 850;
+    }
+
+    footer p {
+      margin: 5px 0;
+    }
+
+    .project-name {
+      margin-top: 20px;
+      font-size: .82rem;
+      font-weight: 750;
+      letter-spacing: .08em;
+    }
+
+    .footer-assurance {
+      max-width: 620px;
+      margin: 28px auto 0;
+      padding-top: 26px;
+      border-top: 1px solid var(--line);
+      font-size: .78rem;
+      line-height: 1.8;
+    }
+
+    .updated {
+      margin-top: 18px;
+      font-size: .72rem;
+    }
+
+    /* ======================
+       レスポンシブ
+    ====================== */
+    @media (max-width: 620px) {
+      .container {
+        width: min(100% - 24px, 880px);
+      }
+
+      .site-header {
+        padding: 18px 0;
+      }
+
+      .header-inner {
+        align-items: flex-start;
+      }
+
+      .brand-wrap {
+        flex-direction: column;
+        gap: 0;
+      }
+
+      main {
+        padding: 58px 0 76px;
+      }
+
+      .section {
+        margin-top: 54px;
+      }
+
+      .form-grid,
+      .result-summary,
+      .related-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .field-full {
+        grid-column: auto;
+      }
+
+      .card {
+        padding: 22px 18px;
+        border-radius: 18px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ======================
+       ヘッダー
+  ====================== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand-wrap">
+        <p class="logo">🍵 ゴマツール</p>
+        <p class="header-copy">無料で使える便利ツール集</p>
+      </div>
+
+      <a class="home-link" href="../">← ホームへ戻る</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <!-- ======================
+           ヒーロー
+      ====================== -->
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow">入学年・卒業年をかんたん確認</p>
+
+        <h1 id="page-title">🎓 学年・年齢・卒業年度計算</h1>
+
+        <p class="hero-catch">
+          生年月日や卒業年から、進学時期の目安を計算。
+        </p>
+
+        <p class="hero-description">
+          生年月日や生まれ年から、現在の年齢や小学校・中学校・高校の入学年・卒業年を計算できます。
+        </p>
+      </section>
+
+      <!-- ======================
+           計算フォーム
+      ====================== -->
+      <section class="section" aria-labelledby="calculator-title">
+        <h2 class="section-title" id="calculator-title">
+          計算条件を入力
+        </h2>
+
+        <div class="card">
+          <form id="schoolForm" novalidate>
+            <div class="form-grid">
+              <div class="field-full">
+                <label for="calculationMode">計算方法</label>
+
+                <select id="calculationMode" name="calculationMode">
+                  <option value="birthday">生年月日から計算</option>
+                  <option value="birthYear">生まれ年から計算</option>
+                  <option value="graduationYear">高校卒業年から逆算</option>
+                </select>
+              </div>
+
+              <div class="field-full input-field" id="birthdayField">
+                <label for="birthday">生年月日</label>
+
+                <input
+                  type="date"
+                  id="birthday"
+                  name="birthday"
+                  autocomplete="bday"
+                >
+              </div>
+
+              <div
+                class="field-full input-field"
+                id="birthYearField"
+                hidden
+              >
+                <label for="birthYear">生まれ年（西暦）</label>
+
+                <input
+                  type="number"
+                  id="birthYear"
+                  name="birthYear"
+                  min="1900"
+                  max="2100"
+                  step="1"
+                  inputmode="numeric"
+                  placeholder="例：2000"
+                >
+
+                <p class="hint">
+                  月日が不明なため、早生まれとそれ以外の2通りを表示します。
+                </p>
+              </div>
+
+              <div
+                class="field-full input-field"
+                id="graduationYearField"
+                hidden
+              >
+                <label for="graduationYear">
+                  高校卒業年（西暦）
+                </label>
+
+                <input
+                  type="number"
+                  id="graduationYear"
+                  name="graduationYear"
+                  min="1918"
+                  max="2100"
+                  step="1"
+                  inputmode="numeric"
+                  placeholder="例：2026"
+                >
+              </div>
+
+              <div class="field-full">
+                <button class="primary-button" type="submit">
+                  🎓 計算する
+                </button>
+              </div>
+            </div>
+
+            <p
+              class="error"
+              id="formError"
+              role="alert"
+            ></p>
+          </form>
+
+          <!-- ======================
+               計算結果
+          ====================== -->
+          <div
+            class="result-panel"
+            id="resultPanel"
+            aria-live="polite"
+            hidden
+          >
+            <div class="result-summary">
+              <div class="summary-item">
+                <span
+                  class="result-label"
+                  id="summaryLabel1"
+                >
+                  現在の年齢
+                </span>
+
+                <strong
+                  class="result-value"
+                  id="summaryValue1"
+                >
+                  —
+                </strong>
+              </div>
+
+              <div class="summary-item">
+                <span
+                  class="result-label"
+                  id="summaryLabel2"
+                >
+                  小学校入学年
+                </span>
+
+                <strong
+                  class="result-value"
+                  id="summaryValue2"
+                >
+                  —
+                </strong>
+              </div>
+            </div>
+
+            <p class="result-note" id="resultNote">
+              一般的な日本の制度をもとにした目安です。
+            </p>
+
+            <div class="schedule-wrap" id="scheduleWrap">
+              <table class="schedule-table">
+                <tbody id="scheduleBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================
+           注意書き
+      ====================== -->
+      <section
+        class="section card notice-card"
+        aria-labelledby="notice-title"
+      >
+        <h2 class="section-title" id="notice-title">
+          ⚠️ ご注意ください
+        </h2>
+
+        <p>
+          進学時期は一般的な日本の制度をもとにした目安です。実際の入学・卒業時期とは異なる場合があります。
+        </p>
+
+        <p>
+          留学・留年・飛び級・学校制度の違いなどは計算に含みません。
+        </p>
+      </section>
+
+      <!-- ======================
+           プライバシー
+      ====================== -->
+      <section
+        class="section card privacy-card"
+        aria-labelledby="privacy-title"
+      >
+        <h2 class="section-title" id="privacy-title">
+          🍵 安心してお使いください
+        </h2>
+
+        <p>
+          入力内容と計算処理はブラウザ内だけで行われます。
+        </p>
+
+        <p>
+          サーバーへ送信・保存することはありません。
+        </p>
+      </section>
+
+      <!-- ======================
+           関連ツール
+      ====================== -->
+      <section
+        class="section"
+        aria-labelledby="related-title"
+      >
+        <h2 class="section-title" id="related-title">
+          おすすめの便利ツール
+        </h2>
+
+        <div class="card related-grid">
+          <a class="related-item related-link" href="../age/">
+            <span class="related-name">
+              🎂 年齢・日付計算
+            </span>
+            <span class="related-status">公開中</span>
+          </a>
+
+          <a
+            class="related-item related-link"
+            href="../business-days/"
+          >
+            <span class="related-name">
+              📅 営業日計算
+            </span>
+            <span class="related-status">公開中</span>
+          </a>
+
+          <a class="related-item related-link" href="../tax/">
+            <span class="related-name">
+              💰 消費税計算
+            </span>
+            <span class="related-status">公開中</span>
+          </a>
+
+          <a class="related-item related-link" href="../warikan/">
+            <span class="related-name">
+              👥 割り勘計算
+            </span>
+            <span class="related-status">公開中</span>
+          </a>
+
+          <a class="related-item related-link" href="../qrcode/">
+            <span class="related-name">
+              📱 QRコード生成
+            </span>
+            <span class="related-status">公開中</span>
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ======================
+       フッター
+  ====================== -->
+  <footer>
+    <div class="container">
+      <p class="footer-logo">🍵 ゴマツール</p>
+
+      <p>
+        30秒で使えて、<br>
+        他より少し便利。
+      </p>
+
+      <p class="project-name">Project Goma</p>
+
+      <div class="footer-assurance">
+        <p>
+          入力したデータはブラウザ内だけで処理されます。
+        </p>
+
+        <p>
+          サーバーへ送信・保存は行いません。
+        </p>
+      </div>
+
+      <p class="updated">
+        最終更新：2026年6月28日
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    'use strict';
+
+    // ======================
+    // 日付・学年ユーティリティ
+    // ======================
+    const MIN_BIRTH_YEAR = 1900;
+    const MAX_FUTURE_YEAR = new Date().getFullYear() + 20;
+
+    function toUtcDate(year, month, day) {
+      const date = new Date(0);
+
+      date.setUTCHours(0, 0, 0, 0);
+      date.setUTCFullYear(year, month - 1, day);
+
+      return date;
+    }
+
+    function parseDate(value) {
+      const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
+
+      if (!match) {
+        return null;
+      }
+
+      const year = Number(match[1]);
+      const month = Number(match[2]);
+      const day = Number(match[3]);
+      const date = toUtcDate(year, month, day);
+
+      const isValid =
+        date.getUTCFullYear() === year &&
+        date.getUTCMonth() + 1 === month &&
+        date.getUTCDate() === day;
+
+      return isValid ? date : null;
+    }
+
+    function getTodayUtc() {
+      const now = new Date();
+
+      return toUtcDate(
+        now.getFullYear(),
+        now.getMonth() + 1,
+        now.getDate()
+      );
+    }
+
+    function calculateCurrentAge(birthday, today) {
+      let age =
+        today.getUTCFullYear() -
+        birthday.getUTCFullYear();
+
+      const lastDayOfBirthMonth = new Date(
+        Date.UTC(
+          today.getUTCFullYear(),
+          birthday.getUTCMonth() + 1,
+          0
+        )
+      ).getUTCDate();
+
+      const birthdayThisYear = toUtcDate(
+        today.getUTCFullYear(),
+        birthday.getUTCMonth() + 1,
+        Math.min(
+          birthday.getUTCDate(),
+          lastDayOfBirthMonth
+        )
+      );
+
+      if (birthdayThisYear > today) {
+        age--;
+      }
+
+      return age;
+    }
+
+    function getElementaryEntryYear(birthday) {
+      const month = birthday.getUTCMonth() + 1;
+      const day = birthday.getUTCDate();
+
+      const isEarlyBorn =
+        month < 4 ||
+        (month === 4 && day === 1);
+
+      return birthday.getUTCFullYear() +
+        (isEarlyBorn ? 6 : 7);
+    }
+
+    function createSchedule(elementaryEntry) {
+      return [
+        ['小学校 入学', elementaryEntry],
+        ['小学校 卒業', elementaryEntry + 6],
+        ['中学校 入学', elementaryEntry + 6],
+        ['中学校 卒業', elementaryEntry + 9],
+        ['高校 入学', elementaryEntry + 9],
+        ['高校 卒業', elementaryEntry + 12]
+      ];
+    }
+
+    function formatYear(year) {
+      return `${year}年`;
+    }
+
+    function renderSchedule(
+      primary,
+      secondary = null
+    ) {
+      const body =
+        document.getElementById('scheduleBody');
+
+      body.replaceChildren();
+
+      primary.forEach(function (row, index) {
+        const tr =
+          document.createElement('tr');
+
+        const th =
+          document.createElement('th');
+
+        const td =
+          document.createElement('td');
+
+        th.scope = 'row';
+        th.textContent = row[0];
+
+        td.textContent = secondary
+          ? `1月1日〜4月1日生まれ：${formatYear(row[1])} ／ 4月2日〜12月31日生まれ：${formatYear(secondary[index][1])}`
+          : formatYear(row[1]);
+
+        tr.append(th, td);
+        body.appendChild(tr);
+      });
+    }
+
+    function showResults(
+      label1,
+      value1,
+      label2,
+      value2,
+      note,
+      showSchedule = true
+    ) {
+      document.getElementById(
+        'summaryLabel1'
+      ).textContent = label1;
+
+      document.getElementById(
+        'summaryValue1'
+      ).textContent = value1;
+
+      document.getElementById(
+        'summaryLabel2'
+      ).textContent = label2;
+
+      document.getElementById(
+        'summaryValue2'
+      ).textContent = value2;
+
+      document.getElementById(
+        'resultNote'
+      ).textContent = note;
+
+      document.getElementById(
+        'scheduleWrap'
+      ).hidden = !showSchedule;
+
+      const panel =
+        document.getElementById('resultPanel');
+
+      panel.hidden = false;
+
+      panel.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest'
+      });
+    }
+
+    // ======================
+    // 入力切り替え
+    // ======================
+    function changeCalculationMode() {
+      const mode =
+        document.getElementById(
+          'calculationMode'
+        ).value;
+
+      document.getElementById(
+        'birthdayField'
+      ).hidden = mode !== 'birthday';
+
+      document.getElementById(
+        'birthYearField'
+      ).hidden = mode !== 'birthYear';
+
+      document.getElementById(
+        'graduationYearField'
+      ).hidden = mode !== 'graduationYear';
+
+      document.getElementById(
+        'formError'
+      ).textContent = '';
+
+      document.getElementById(
+        'resultPanel'
+      ).hidden = true;
+    }
+
+    // ======================
+    // 生年月日から計算
+    // ======================
+    function calculateFromBirthday() {
+      const raw =
+        document.getElementById(
+          'birthday'
+        ).value;
+
+      const birthday = parseDate(raw);
+      const today = getTodayUtc();
+
+      if (!raw) {
+        return '生年月日を入力してください。';
+      }
+
+      if (!birthday) {
+        return '正しい生年月日を入力してください。';
+      }
+
+      if (birthday > today) {
+        return '未来の日付は生年月日に指定できません。';
+      }
+
+      if (
+        birthday.getUTCFullYear() <
+        MIN_BIRTH_YEAR
+      ) {
+        return `${MIN_BIRTH_YEAR}年以降の生年月日を入力してください。`;
+      }
+
+      const age =
+        calculateCurrentAge(
+          birthday,
+          today
+        );
+
+      const elementaryEntryYear =
+        getElementaryEntryYear(birthday);
+
+      const schedule =
+        createSchedule(elementaryEntryYear);
+
+      renderSchedule(schedule);
+
+      showResults(
+        '現在の年齢',
+        `${age}歳`,
+        '高校卒業年の目安',
+        formatYear(schedule[5][1]),
+        '生年月日をもとに計算した目安です。'
+      );
+
+      return '';
+    }
+
+    // ======================
+    // 生まれ年から計算
+    // ======================
+    function calculateFromBirthYear() {
+      const raw =
+        document.getElementById(
+          'birthYear'
+        ).value.trim();
+
+      const year = Number(raw);
+      const currentYear =
+        new Date().getFullYear();
+
+      if (!raw) {
+        return '生まれ年を入力してください。';
+      }
+
+      if (!Number.isInteger(year)) {
+        return '生まれ年は西暦の整数で入力してください。';
+      }
+
+      if (year < MIN_BIRTH_YEAR) {
+        return `${MIN_BIRTH_YEAR}年以降の生まれ年を入力してください。`;
+      }
+
+      if (year > currentYear) {
+        return '未来の年は生まれ年に指定できません。';
+      }
+
+      const earlySchedule =
+        createSchedule(year + 6);
+
+      const regularSchedule =
+        createSchedule(year + 7);
+
+      const minAge =
+        currentYear - year - 1;
+
+      const maxAge =
+        currentYear - year;
+
+      renderSchedule(
+        earlySchedule,
+        regularSchedule
+      );
+
+      showResults(
+        '現在の年齢目安',
+        `${minAge}〜${maxAge}歳`,
+        '高校卒業年の目安',
+        `${formatYear(earlySchedule[5][1])}／${formatYear(regularSchedule[5][1])}`,
+        '月日が不明なため、早生まれとそれ以外の2通りを表示しています。'
+      );
+
+      return '';
+    }
+
+    // ======================
+    // 高校卒業年から逆算
+    // ======================
+    function calculateFromGraduationYear() {
+      const raw =
+        document.getElementById(
+          'graduationYear'
+        ).value.trim();
+
+      const year = Number(raw);
+      const currentYear =
+        new Date().getFullYear();
+
+      if (!raw) {
+        return '高校卒業年を入力してください。';
+      }
+
+      if (!Number.isInteger(year)) {
+        return '高校卒業年は西暦の整数で入力してください。';
+      }
+
+      if (
+        year <
+        MIN_BIRTH_YEAR + 18
+      ) {
+        return `${MIN_BIRTH_YEAR + 18}年以降の卒業年を入力してください。`;
+      }
+
+      if (year > MAX_FUTURE_YEAR) {
+        return `${MAX_FUTURE_YEAR}年以前の卒業年を入力してください。`;
+      }
+
+      const regularBirthYear =
+        year - 19;
+
+      const earlyBirthYear =
+        year - 18;
+
+      const minAge =
+        currentYear - earlyBirthYear;
+
+      const maxAge =
+        currentYear - regularBirthYear;
+
+      showResults(
+        '生まれ年の目安',
+        `${formatYear(regularBirthYear)}〜${formatYear(earlyBirthYear)}`,
+        '現在の年齢目安',
+        `${minAge}〜${maxAge}歳`,
+        '一般的に高校を卒業する年齢から逆算した目安です。',
+        false
+      );
+
+      return '';
+    }
+
+    // ======================
+    // 計算実行
+    // ======================
+    function calculateSchoolYear(event) {
+      event.preventDefault();
+
+      const mode =
+        document.getElementById(
+          'calculationMode'
+        ).value;
+
+      const error =
+        document.getElementById(
+          'formError'
+        );
+
+      document.getElementById(
+        'resultPanel'
+      ).hidden = true;
+
+      const message =
+        mode === 'birthday'
+          ? calculateFromBirthday()
+          : mode === 'birthYear'
+            ? calculateFromBirthYear()
+            : calculateFromGraduationYear();
+
+      error.textContent = message;
+    }
+
+    // ======================
+    // 初期表示
+    // ======================
+    function initializePage() {
+      const today = getTodayUtc();
+
+      const todayText =
+        `${today.getUTCFullYear()}-` +
+        `${String(
+          today.getUTCMonth() + 1
+        ).padStart(2, '0')}-` +
+        `${String(
+          today.getUTCDate()
+        ).padStart(2, '0')}`;
+
+      document.getElementById(
+        'birthday'
+      ).max = todayText;
+
+      document.getElementById(
+        'birthYear'
+      ).max = today.getUTCFullYear();
+
+      document.getElementById(
+        'graduationYear'
+      ).max = MAX_FUTURE_YEAR;
+
+      document.getElementById(
+        'calculationMode'
+      ).addEventListener(
+        'change',
+        changeCalculationMode
+      );
+
+      document.getElementById(
+        'schoolForm'
+      ).addEventListener(
+        'submit',
+        calculateSchoolYear
+      );
+
+      changeCalculationMode();
+    }
+
+    initializePage();
+  </script>
+</body>
+</html>
