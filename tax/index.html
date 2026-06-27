@@ -113,15 +113,12 @@
       text-decoration: none;
     }
 
-    .home-link:hover {
-      background: var(--green-light);
-    }
+    .home-link:hover { background: var(--green-light); }
 
     /* ======================
        ヒーロー
     ====================== */
     main { padding: 78px 0 96px; }
-
     .hero { text-align: center; }
 
     .eyebrow {
@@ -193,12 +190,9 @@
       font-size: .8rem;
     }
 
-    .custom-rate[hidden] {
-      display: none;
-    }
+    .custom-rate[hidden] { display: none; }
 
-    .primary-button,
-    .copy-button {
+    .primary-button, .copy-button {
       width: 100%;
       min-height: 56px;
       padding: 14px 22px;
@@ -225,9 +219,7 @@
       background: #fff;
     }
 
-    .copy-button:hover {
-      background: var(--green-light);
-    }
+    .copy-button:hover { background: var(--green-light); }
 
     .primary-button:focus-visible,
     .copy-button:focus-visible,
@@ -254,9 +246,7 @@
       border-top: 1px solid var(--line);
     }
 
-    .result-panel[hidden] {
-      display: none;
-    }
+    .result-panel[hidden] { display: none; }
 
     .result-grid {
       display: grid;
@@ -310,9 +300,7 @@
       font-size: .9rem;
     }
 
-    .copy-wrap {
-      margin-top: 20px;
-    }
+    .copy-wrap { margin-top: 20px; }
 
     .copy-status {
       min-height: 1.5em;
@@ -332,9 +320,7 @@
       box-shadow: none;
     }
 
-    .notice-card .section-title {
-      margin-bottom: 12px;
-    }
+    .notice-card .section-title { margin-bottom: 12px; }
 
     .notice-card p {
       margin: 5px 0;
@@ -347,11 +333,7 @@
     .promise-card {
       color: #fff;
       border: 0;
-      background: linear-gradient(
-        135deg,
-        var(--green-dark),
-        #4e7139
-      );
+      background: linear-gradient(135deg, var(--green-dark), #4e7139);
     }
 
     .promise-list {
@@ -384,9 +366,7 @@
       list-style: none;
     }
 
-    summary::-webkit-details-marker {
-      display: none;
-    }
+    summary::-webkit-details-marker { display: none; }
 
     summary::after {
       content: "+";
@@ -395,9 +375,7 @@
       font-size: 1.2rem;
     }
 
-    details[open] summary::after {
-      content: "−";
-    }
+    details[open] summary::after { content: "−"; }
 
     details p {
       margin: 0;
@@ -462,9 +440,7 @@
       font-weight: 850;
     }
 
-    footer p {
-      margin: 5px 0;
-    }
+    footer p { margin: 5px 0; }
 
     .project-name {
       margin-top: 20px;
@@ -487,9 +463,7 @@
       line-height: 1.8;
     }
 
-    .footer-assurance p {
-      margin: 3px 0;
-    }
+    .footer-assurance p { margin: 3px 0; }
 
     .updated {
       margin-top: 18px;
@@ -497,45 +471,22 @@
       line-height: 1.6;
     }
 
-    .updated-label,
-    .updated-date {
-      display: block;
-    }
+    .updated-label, .updated-date { display: block; }
 
     /* ======================
        レスポンシブ
     ====================== */
     @media (max-width: 700px) {
-      .result-grid {
-        grid-template-columns: 1fr;
-      }
+      .result-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 620px) {
-      .container {
-        width: min(100% - 24px, 880px);
-      }
-
-      .site-header {
-        padding: 18px 0;
-      }
-
-      .header-inner {
-        align-items: flex-start;
-      }
-
-      .brand-wrap {
-        flex-direction: column;
-        gap: 0;
-      }
-
-      main {
-        padding: 58px 0 76px;
-      }
-
-      .section {
-        margin-top: 54px;
-      }
+      .container { width: min(100% - 24px, 880px); }
+      .site-header { padding: 18px 0; }
+      .header-inner { align-items: flex-start; }
+      .brand-wrap { flex-direction: column; gap: 0; }
+      main { padding: 58px 0 76px; }
+      .section { margin-top: 54px; }
 
       .form-grid,
       .promise-list,
@@ -548,9 +499,7 @@
         border-radius: 18px;
       }
 
-      .field-full {
-        grid-column: auto;
-      }
+      .field-full { grid-column: auto; }
 
       .result-meta {
         flex-direction: column;
@@ -559,13 +508,9 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
+      html { scroll-behavior: auto; }
 
-      *,
-      *::before,
-      *::after {
+      *, *::before, *::after {
         transition: none !important;
       }
     }
@@ -583,9 +528,7 @@
         <p class="header-copy">無料で使える便利ツール集</p>
       </div>
 
-      <a class="home-link" href="../">
-        ← ホームへ戻る
-      </a>
+      <a class="home-link" href="../">← ホームへ戻る</a>
     </div>
   </header>
 
@@ -595,17 +538,9 @@
            ヒーロー
       ====================== -->
       <section class="hero" aria-labelledby="page-title">
-        <p class="eyebrow">
-          30秒でかんたん計算
-        </p>
-
-        <h1 id="page-title">
-          💰 消費税計算
-        </h1>
-
-        <p class="hero-catch">
-          税込・税抜・消費税額をかんたん計算。
-        </p>
+        <p class="eyebrow">30秒でかんたん計算</p>
+        <h1 id="page-title">💰 消費税計算</h1>
+        <p class="hero-catch">税込・税抜・消費税額をかんたん計算。</p>
 
         <p class="hero-description">
           金額と税率を入力すると、税込金額・税抜金額・消費税額を計算できます。<br>
@@ -616,14 +551,8 @@
       <!-- ======================
            消費税計算フォーム
       ====================== -->
-      <section
-        class="section"
-        aria-labelledby="calculator-title"
-      >
-        <h2
-          class="section-title"
-          id="calculator-title"
-        >
+      <section class="section" aria-labelledby="calculator-title">
+        <h2 class="section-title" id="calculator-title">
           消費税を計算する
         </h2>
 
@@ -631,10 +560,7 @@
           <form id="taxForm" novalidate>
             <div class="form-grid">
               <div class="field-full">
-                <label for="amount">
-                  金額（円）
-                </label>
-
+                <label for="amount">金額（円）</label>
                 <input
                   type="number"
                   id="amount"
@@ -646,36 +572,21 @@
                   placeholder="例：1000"
                   required
                 >
-
                 <p class="hint">
                   カンマなしの整数で入力してください
                 </p>
               </div>
 
               <div>
-                <label for="calculationType">
-                  計算方法
-                </label>
-
-                <select
-                  id="calculationType"
-                  name="calculationType"
-                >
-                  <option value="exclusive">
-                    税抜から税込を計算
-                  </option>
-
-                  <option value="inclusive">
-                    税込から税抜を計算
-                  </option>
+                <label for="calculationType">計算方法</label>
+                <select id="calculationType" name="calculationType">
+                  <option value="exclusive">税抜から税込を計算</option>
+                  <option value="inclusive">税込から税抜を計算</option>
                 </select>
               </div>
 
               <div>
-                <label for="taxRate">
-                  税率
-                </label>
-
+                <label for="taxRate">税率</label>
                 <select id="taxRate" name="taxRate">
                   <option value="10">10%</option>
                   <option value="8">8%</option>
@@ -683,15 +594,8 @@
                 </select>
               </div>
 
-              <div
-                class="custom-rate"
-                id="customRateField"
-                hidden
-              >
-                <label for="customRate">
-                  自由入力の税率（%）
-                </label>
-
+              <div class="custom-rate" id="customRateField" hidden>
+                <label for="customRate">自由入力の税率（%）</label>
                 <input
                   type="number"
                   id="customRate"
@@ -706,40 +610,22 @@
               </div>
 
               <div>
-                <label for="rounding">
-                  端数処理
-                </label>
-
+                <label for="rounding">端数処理</label>
                 <select id="rounding" name="rounding">
-                  <option value="floor" selected>
-                    切り捨て
-                  </option>
-
-                  <option value="round">
-                    四捨五入
-                  </option>
-
-                  <option value="ceil">
-                    切り上げ
-                  </option>
+                  <option value="floor" selected>切り捨て</option>
+                  <option value="round">四捨五入</option>
+                  <option value="ceil">切り上げ</option>
                 </select>
               </div>
 
               <div class="field-full">
-                <button
-                  class="primary-button"
-                  type="submit"
-                >
+                <button class="primary-button" type="submit">
                   💰 消費税を計算する
                 </button>
               </div>
             </div>
 
-            <p
-              class="error"
-              id="formError"
-              role="alert"
-            ></p>
+            <p class="error" id="formError" role="alert"></p>
           </form>
 
           <!-- ======================
@@ -752,76 +638,32 @@
             hidden
           >
             <div class="result-grid">
-              <div
-                class="result-item primary"
-                id="totalResultCard"
-              >
-                <span class="result-label">
-                  税込金額
-                </span>
-
-                <strong
-                  class="result-value"
-                  id="totalAmount"
-                >
-                  —
-                </strong>
+              <div class="result-item primary" id="totalResultCard">
+                <span class="result-label">税込金額</span>
+                <strong class="result-value" id="totalAmount">—</strong>
               </div>
 
-              <div
-                class="result-item"
-                id="baseResultCard"
-              >
-                <span class="result-label">
-                  税抜金額
-                </span>
-
-                <strong
-                  class="result-value"
-                  id="baseAmount"
-                >
-                  —
-                </strong>
+              <div class="result-item" id="baseResultCard">
+                <span class="result-label">税抜金額</span>
+                <strong class="result-value" id="baseAmount">—</strong>
               </div>
 
               <div class="result-item">
-                <span class="result-label">
-                  消費税額
-                </span>
-
-                <strong
-                  class="result-value"
-                  id="taxAmount"
-                >
-                  —
-                </strong>
+                <span class="result-label">消費税額</span>
+                <strong class="result-value" id="taxAmount">—</strong>
               </div>
             </div>
 
             <div class="copy-wrap">
-              <button
-                class="copy-button"
-                type="button"
-                id="copyButton"
-              >
+              <button class="copy-button" type="button" id="copyButton">
                 📋 結果をコピー
               </button>
-
-              <p
-                class="copy-status"
-                id="copyStatus"
-                role="status"
-              ></p>
+              <p class="copy-status" id="copyStatus" role="status"></p>
             </div>
 
             <div class="result-meta">
-              <span id="appliedRate">
-                適用税率：—
-              </span>
-
-              <span id="appliedRounding">
-                端数処理：—
-              </span>
+              <span id="appliedRate">適用税率：—</span>
+              <span id="appliedRounding">端数処理：—</span>
             </div>
           </div>
         </div>
@@ -834,21 +676,16 @@
         class="section card notice-card"
         aria-labelledby="notice-title"
       >
-        <h2
-          class="section-title"
-          id="notice-title"
-        >
+        <h2 class="section-title" id="notice-title">
           ⚠️ ご注意ください
         </h2>
 
         <p>
           このツールは一般的な消費税計算を行うためのものです。
         </p>
-
         <p>
           実際の請求・会計・税務処理では、端数処理や計算方法が異なる場合があります。
         </p>
-
         <p>
           必要に応じて、事業者・会計ソフト・税理士などの基準も確認してください。
         </p>
@@ -861,10 +698,7 @@
         class="section card promise-card"
         aria-labelledby="promise-title"
       >
-        <h2
-          class="section-title"
-          id="promise-title"
-        >
+        <h2 class="section-title" id="promise-title">
           🍵 ゴマツールの約束
         </h2>
 
@@ -881,49 +715,29 @@
       <!-- ======================
            FAQ
       ====================== -->
-      <section
-        class="section"
-        aria-labelledby="faq-title"
-      >
-        <h2
-          class="section-title"
-          id="faq-title"
-        >
-          よくある質問
-        </h2>
+      <section class="section" aria-labelledby="faq-title">
+        <h2 class="section-title" id="faq-title">よくある質問</h2>
 
         <div class="faq-list">
           <details>
-            <summary>
-              Q. 10%と8%に対応していますか？
-            </summary>
-            <p>
-              A. はい。10%と8%に対応しています。
-            </p>
+            <summary>Q. 10%と8%に対応していますか？</summary>
+            <p>A. はい。10%と8%に対応しています。</p>
           </details>
 
           <details>
-            <summary>
-              Q. 将来消費税率が変わった場合も使えますか？
-            </summary>
-            <p>
-              A. はい。自由入力で任意の税率を入力できます。
-            </p>
+            <summary>Q. 将来消費税率が変わった場合も使えますか？</summary>
+            <p>A. はい。自由入力で任意の税率を入力できます。</p>
           </details>
 
           <details>
-            <summary>
-              Q. 端数処理は選べますか？
-            </summary>
+            <summary>Q. 端数処理は選べますか？</summary>
             <p>
               A. はい。切り捨て・四捨五入・切り上げを選べます。
             </p>
           </details>
 
           <details>
-            <summary>
-              Q. 入力した金額は保存されますか？
-            </summary>
+            <summary>Q. 入力した金額は保存されますか？</summary>
             <p>
               A. 保存されません。ブラウザ内だけで計算します。
             </p>
@@ -934,75 +748,44 @@
       <!-- ======================
            関連ツール
       ====================== -->
-      <section
-        class="section"
-        aria-labelledby="related-title"
-      >
-        <h2
-          class="section-title"
-          id="related-title"
-        >
+      <section class="section" aria-labelledby="related-title">
+        <h2 class="section-title" id="related-title">
           おすすめの便利ツール
         </h2>
 
         <div class="card related-grid">
-          <a
-            class="related-item related-link"
-            href="../age/"
-          >
-            <span class="related-name">
-              🎂 年齢・日付計算
-            </span>
+          <a class="related-item related-link" href="../age/">
+            <span class="related-name">🎂 年齢・日付計算</span>
             <span class="related-status">公開中</span>
           </a>
 
-          <a
-            class="related-item related-link"
-            href="../business-days/"
-          >
-            <span class="related-name">
-              📅 営業日計算
-            </span>
+          <a class="related-item related-link" href="../business-days/">
+            <span class="related-name">📅 営業日計算</span>
             <span class="related-status">公開中</span>
           </a>
 
-          <a
-            class="related-item related-link"
-            href="../warikan/"
-          >
-            <span class="related-name">
-              👥 割り勘計算
-            </span>
+          <a class="related-item related-link" href="../warikan/">
+            <span class="related-name">👥 割り勘計算</span>
             <span class="related-status">公開中</span>
           </a>
 
-          <a
-            class="related-item related-link"
-            href="../qrcode/"
-          >
-            <span class="related-name">
-              📱 QRコード生成
-            </span>
+          <a class="related-item related-link" href="../qrcode/">
+            <span class="related-name">📱 QRコード生成</span>
             <span class="related-status">公開中</span>
           </a>
 
-          <a
-            class="related-item related-link"
-            href="../school-year/"
-          >
-            <span class="related-name">
-              🎓 学年・年齢・卒業年度計算
-            </span>
+          <a class="related-item related-link" href="../school-year/">
+            <span class="related-name">🎓 学年・年齢・卒業年度計算</span>
             <span class="related-status">公開中</span>
           </a>
 
-          <a
-            class="related-item related-link"
-            href="../wareki/"
-          >
-            <span class="related-name">
-              📅 和暦・西暦変換
-            </span>
+          <a class="related-item related-link" href="../wareki/">
+            <span class="related-name">📅 和暦・西暦変換</span>
+            <span class="related-status">公開中</span>
+          </a>
+
+          <a class="related-item related-link" href="../text-counter/">
+            <span class="related-name">✍️ 文字数カウント</span>
             <span class="related-status">公開中</span>
           </a>
         </div>
@@ -1015,18 +798,14 @@
   ====================== -->
   <footer>
     <div class="container">
-      <p class="footer-logo">
-        🍵 ゴマツール
-      </p>
+      <p class="footer-logo">🍵 ゴマツール</p>
 
       <p>
         30秒で使えて、<br>
         他より少し便利。
       </p>
 
-      <p class="project-name">
-        Project Goma
-      </p>
+      <p class="project-name">Project Goma</p>
 
       <p class="footer-motto">
         小さく作って、<br>
@@ -1035,27 +814,16 @@
       </p>
 
       <div class="footer-assurance">
-        <p>
-          入力したデータはブラウザ内だけで処理されます。
-        </p>
-
-        <p>
-          サーバーへ送信・保存は行いません。
-        </p>
-
+        <p>入力したデータはブラウザ内だけで処理されます。</p>
+        <p>サーバーへ送信・保存は行いません。</p>
         <p>
           ゴマツールは、毎日安心して使える便利なツールづくりを目指しています。
         </p>
       </div>
 
       <p class="updated">
-        <span class="updated-label">
-          最終更新
-        </span>
-
-        <span class="updated-date">
-          2026年6月28日
-        </span>
+        <span class="updated-label">最終更新</span>
+        <span class="updated-date">2026年6月28日</span>
       </p>
     </div>
   </footer>
@@ -1075,10 +843,7 @@
     let copyText = '';
 
     function roundValue(value, method) {
-      /*
-       * 1,100 ÷ 1.1が999.999…になるような
-       * 浮動小数点誤差だけを補正します。
-       */
+      // 1,100 ÷ 1.1 が999.999…になるような浮動小数点誤差だけを補正します。
       const tolerance =
         Number.EPSILON *
         Math.max(1, Math.abs(value)) *
@@ -1105,16 +870,10 @@
 
     function getSelectedRate() {
       const rateType =
-        document.getElementById(
-          'taxRate'
-        ).value;
+        document.getElementById('taxRate').value;
 
       return rateType === 'custom'
-        ? Number(
-          document.getElementById(
-            'customRate'
-          ).value
-        )
+        ? Number(document.getElementById('customRate').value)
         : Number(rateType);
     }
 
@@ -1123,19 +882,13 @@
     // ======================
     function toggleCustomRate() {
       const isCustom =
-        document.getElementById(
-          'taxRate'
-        ).value === 'custom';
+        document.getElementById('taxRate').value === 'custom';
 
       const field =
-        document.getElementById(
-          'customRateField'
-        );
+        document.getElementById('customRateField');
 
       const input =
-        document.getElementById(
-          'customRate'
-        );
+        document.getElementById('customRate');
 
       field.hidden = !isCustom;
       input.disabled = !isCustom;
@@ -1152,64 +905,45 @@
       event.preventDefault();
 
       const rawAmount =
-        document.getElementById(
-          'amount'
-        ).value.trim();
+        document.getElementById('amount').value.trim();
 
-      const amount =
-        Number(rawAmount);
+      const amount = Number(rawAmount);
 
       const calculationType =
-        document.getElementById(
-          'calculationType'
-        ).value;
+        document.getElementById('calculationType').value;
 
       const rateType =
-        document.getElementById(
-          'taxRate'
-        ).value;
+        document.getElementById('taxRate').value;
 
       const rawCustomRate =
-        document.getElementById(
-          'customRate'
-        ).value.trim();
+        document.getElementById('customRate').value.trim();
 
-      const rate =
-        getSelectedRate();
+      const rate = getSelectedRate();
 
       const rounding =
-        document.getElementById(
-          'rounding'
-        ).value;
+        document.getElementById('rounding').value;
 
       const error =
-        document.getElementById(
-          'formError'
-        );
+        document.getElementById('formError');
 
       const panel =
-        document.getElementById(
-          'resultPanel'
-        );
+        document.getElementById('resultPanel');
 
       error.textContent = '';
       panel.hidden = true;
 
       if (rawAmount === '') {
-        error.textContent =
-          '金額を入力してください。';
+        error.textContent = '金額を入力してください。';
         return;
       }
 
       if (!Number.isInteger(amount)) {
-        error.textContent =
-          '金額は整数で入力してください。';
+        error.textContent = '金額は整数で入力してください。';
         return;
       }
 
       if (amount < 0) {
-        error.textContent =
-          '金額は0以上で入力してください。';
+        error.textContent = '金額は0以上で入力してください。';
         return;
       }
 
@@ -1219,19 +953,13 @@
         return;
       }
 
-      if (
-        rateType === 'custom' &&
-        rawCustomRate === ''
-      ) {
+      if (rateType === 'custom' && rawCustomRate === '') {
         error.textContent =
           '自由入力の税率を入力してください。';
         return;
       }
 
-      if (
-        !Number.isFinite(rate) ||
-        rate < 0
-      ) {
+      if (!Number.isFinite(rate) || rate < 0) {
         error.textContent =
           '税率は0以上で入力してください。';
         return;
@@ -1255,8 +983,7 @@
           rounding
         );
 
-        totalAmount =
-          baseAmount + taxAmount;
+        totalAmount = baseAmount + taxAmount;
       } else {
         totalAmount = amount;
 
@@ -1265,27 +992,19 @@
           rounding
         );
 
-        taxAmount =
-          totalAmount - baseAmount;
+        taxAmount = totalAmount - baseAmount;
       }
 
-      const rateText =
-        formatRate(rate);
-
-      const roundingText =
-        ROUNDING_LABELS[rounding];
+      const rateText = formatRate(rate);
+      const roundingText = ROUNDING_LABELS[rounding];
 
       const totalCard =
-        document.getElementById(
-          'totalResultCard'
-        );
+        document.getElementById('totalResultCard');
 
       const baseCard =
-        document.getElementById(
-          'baseResultCard'
-        );
+        document.getElementById('baseResultCard');
 
-      // 計算方法に応じて重要な結果を強調します。
+      // 計算方法に応じて、利用者が最も知りたい結果を強調します。
       totalCard.classList.toggle(
         'primary',
         calculationType === 'exclusive'
@@ -1296,29 +1015,19 @@
         calculationType === 'inclusive'
       );
 
-      document.getElementById(
-        'totalAmount'
-      ).textContent =
+      document.getElementById('totalAmount').textContent =
         formatYen(totalAmount);
 
-      document.getElementById(
-        'baseAmount'
-      ).textContent =
+      document.getElementById('baseAmount').textContent =
         formatYen(baseAmount);
 
-      document.getElementById(
-        'taxAmount'
-      ).textContent =
+      document.getElementById('taxAmount').textContent =
         formatYen(taxAmount);
 
-      document.getElementById(
-        'appliedRate'
-      ).textContent =
+      document.getElementById('appliedRate').textContent =
         `適用税率：${rateText}`;
 
-      document.getElementById(
-        'appliedRounding'
-      ).textContent =
+      document.getElementById('appliedRounding').textContent =
         `端数処理：${roundingText}`;
 
       copyText = [
@@ -1330,10 +1039,7 @@
         `端数処理：${roundingText}`
       ].join('\n');
 
-      document.getElementById(
-        'copyStatus'
-      ).textContent = '';
-
+      document.getElementById('copyStatus').textContent = '';
       panel.hidden = false;
 
       panel.scrollIntoView({
@@ -1347,31 +1053,20 @@
     // ======================
     async function copyResult() {
       const status =
-        document.getElementById(
-          'copyStatus'
-        );
+        document.getElementById('copyStatus');
 
       try {
-        await navigator.clipboard.writeText(
-          copyText
-        );
-
-        status.textContent =
-          'コピーしました！';
+        await navigator.clipboard.writeText(copyText);
+        status.textContent = 'コピーしました！';
       } catch (error) {
         const textArea =
-          document.createElement(
-            'textarea'
-          );
+          document.createElement('textarea');
 
         textArea.value = copyText;
         textArea.style.position = 'fixed';
         textArea.style.opacity = '0';
 
-        document.body.appendChild(
-          textArea
-        );
-
+        document.body.appendChild(textArea);
         textArea.select();
 
         const copied =
@@ -1389,26 +1084,17 @@
     // 初期表示
     // ======================
     function initializePage() {
-      document.getElementById(
-        'taxRate'
-      ).addEventListener(
-        'change',
-        toggleCustomRate
-      );
+      document
+        .getElementById('taxRate')
+        .addEventListener('change', toggleCustomRate);
 
-      document.getElementById(
-        'taxForm'
-      ).addEventListener(
-        'submit',
-        calculateTax
-      );
+      document
+        .getElementById('taxForm')
+        .addEventListener('submit', calculateTax);
 
-      document.getElementById(
-        'copyButton'
-      ).addEventListener(
-        'click',
-        copyResult
-      );
+      document
+        .getElementById('copyButton')
+        .addEventListener('click', copyResult);
 
       toggleCustomRate();
     }
