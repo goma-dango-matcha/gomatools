@@ -3,7 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="ゴマツールは、年齢計算・営業日計算・QRコード生成など、日常で使える無料便利ツールをまとめたサイトです。">
+
+  <meta
+    name="description"
+    content="ゴマツールは、年齢計算・営業日計算・QRコード生成など、日常で使える無料便利ツールをまとめたサイトです。"
+  >
+
   <title>ゴマツール｜毎日の「ちょっと便利」を、ひとつに。</title>
 
   <style>
@@ -35,7 +40,11 @@
     body {
       margin: 0;
       color: var(--text);
-      background: linear-gradient(180deg, #f9fcf7 0, #fff 25%);
+      background: linear-gradient(
+        180deg,
+        #f9fcf7 0,
+        #fff 25%
+      );
       font-family:
         -apple-system,
         BlinkMacSystemFont,
@@ -193,9 +202,9 @@
 
     .featured-tool {
       display: flex;
-      min-height: 295px;
       flex-direction: column;
       align-items: stretch;
+      min-height: 295px;
       padding: clamp(24px, 5vw, 34px);
       transition:
         transform .18s ease,
@@ -204,9 +213,9 @@
     }
 
     .featured-tool:hover {
+      transform: translateY(-4px);
       border-color: #c7d7be;
       box-shadow: 0 20px 48px rgba(48, 70, 36, .13);
-      transform: translateY(-4px);
     }
 
     .tool-title-row {
@@ -261,8 +270,8 @@
     }
 
     .planned-card:hover {
-      border-color: #c7d7be;
       transform: translateY(-3px);
+      border-color: #c7d7be;
     }
 
     .planned-icon {
@@ -312,8 +321,8 @@
 
     .promise-list li {
       display: flex;
-      align-items: baseline;
       gap: 9px;
+      align-items: baseline;
     }
 
     /* ======================
@@ -511,7 +520,10 @@
           登録不要・完全無料・スマホ対応。
         </p>
 
-        <a class="cta-button" href="#available-tools">
+        <a
+          class="cta-button"
+          href="#available-tools"
+        >
           公開中のツールを見る&nbsp; ↓
         </a>
       </div>
@@ -526,7 +538,10 @@
         id="available-tools"
         aria-labelledby="available-title"
       >
-        <h2 class="section-heading" id="available-title">
+        <h2
+          class="section-heading"
+          id="available-title"
+        >
           公開中のツール
         </h2>
 
@@ -534,9 +549,11 @@
           登録不要で、今すぐ無料で使えます。
         </p>
 
-        <!-- 公開ツールを増やす場合はarticle要素を複製します -->
+        <!--
+          公開ツールを増やす場合は
+          このarticle要素を複製します
+        -->
         <div class="published-grid">
-          <!-- 年齢・日付計算 -->
           <article class="card featured-tool">
             <div class="tool-title-row">
               <h3 class="tool-title">
@@ -557,7 +574,6 @@
             </a>
           </article>
 
-          <!-- 営業日計算 -->
           <article class="card featured-tool">
             <div class="tool-title-row">
               <h3 class="tool-title">
@@ -573,12 +589,14 @@
               土日を除いた営業日を簡単に計算できます。
             </p>
 
-            <a class="tool-button" href="./business-days/">
+            <a
+              class="tool-button"
+              href="./business-days/"
+            >
               使ってみる
             </a>
           </article>
 
-          <!-- 消費税計算 -->
           <article class="card featured-tool">
             <div class="tool-title-row">
               <h3 class="tool-title">
@@ -599,7 +617,6 @@
             </a>
           </article>
 
-          <!-- 割り勘計算 -->
           <article class="card featured-tool">
             <div class="tool-title-row">
               <h3 class="tool-title">
@@ -620,7 +637,6 @@
             </a>
           </article>
 
-          <!-- QRコード生成 -->
           <article class="card featured-tool">
             <div class="tool-title-row">
               <h3 class="tool-title">
@@ -640,6 +656,29 @@
               使ってみる
             </a>
           </article>
+
+          <article class="card featured-tool">
+            <div class="tool-title-row">
+              <h3 class="tool-title">
+                🎓 学年・年齢・卒業年度計算
+              </h3>
+
+              <span class="status-live">
+                公開中
+              </span>
+            </div>
+
+            <p class="tool-description">
+              生年月日や生まれ年から、年齢と学校の入学年・卒業年を計算できます。
+            </p>
+
+            <a
+              class="tool-button"
+              href="./school-year/"
+            >
+              使ってみる
+            </a>
+          </article>
         </div>
       </section>
 
@@ -650,7 +689,10 @@
         class="section"
         aria-labelledby="planned-title"
       >
-        <h2 class="section-heading" id="planned-title">
+        <h2
+          class="section-heading"
+          id="planned-title"
+        >
           制作予定のツール
         </h2>
 
@@ -660,7 +702,10 @@
 
         <div class="planned-grid">
           <article class="card planned-card">
-            <span class="planned-icon" aria-hidden="true">
+            <span
+              class="planned-icon"
+              aria-hidden="true"
+            >
               🎲
             </span>
 
@@ -674,7 +719,10 @@
           </article>
 
           <article class="card planned-card">
-            <span class="planned-icon" aria-hidden="true">
+            <span
+              class="planned-icon"
+              aria-hidden="true"
+            >
               📅
             </span>
 
@@ -697,7 +745,10 @@
         aria-labelledby="promise-title"
       >
         <div class="card promise-card">
-          <h2 class="section-heading" id="promise-title">
+          <h2
+            class="section-heading"
+            id="promise-title"
+          >
             🍵 ゴマツールの約束
           </h2>
 
@@ -737,7 +788,10 @@
         class="section"
         aria-labelledby="roadmap-title"
       >
-        <h2 class="section-heading" id="roadmap-title">
+        <h2
+          class="section-heading"
+          id="roadmap-title"
+        >
           これから増やしていく予定
         </h2>
 
@@ -753,7 +807,7 @@
               </span>
 
               <strong class="roadmap-value">
-                5ツール
+                6ツール
               </strong>
             </div>
 
@@ -763,7 +817,7 @@
               </span>
 
               <strong class="roadmap-value">
-                ナンバーズ分析
+                和暦・西暦変換
               </strong>
             </div>
 
@@ -843,28 +897,33 @@
     // ページ内リンク
     // ======================
     function initializePageNavigation() {
-      const toolLink = document.querySelector(
-        'a[href="#available-tools"]'
-      );
-
-      const target = document.getElementById(
-        'available-tools'
-      );
-
-      toolLink.addEventListener('click', function (event) {
-        event.preventDefault();
-
-        target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-
-        history.replaceState(
-          null,
-          '',
-          '#available-tools'
+      const toolLink =
+        document.querySelector(
+          'a[href="#available-tools"]'
         );
-      });
+
+      const target =
+        document.getElementById(
+          'available-tools'
+        );
+
+      toolLink.addEventListener(
+        'click',
+        function (event) {
+          event.preventDefault();
+
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+
+          history.replaceState(
+            null,
+            '',
+            '#available-tools'
+          );
+        }
+      );
     }
 
     initializePageNavigation();
