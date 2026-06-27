@@ -1,25 +1,185 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ゴマツール</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>年齢・日付計算｜ゴマツール</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: #f7faf7;
+      color: #222;
+    }
+    header {
+      background: #ffffff;
+      padding: 18px 20px;
+      border-bottom: 1px solid #e5e5e5;
+      text-align: center;
+    }
+    header .brand {
+      color: #4f8f5b;
+      font-weight: 700;
+      font-size: 15px;
+    }
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 28px 16px;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 22px;
+      margin-bottom: 18px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+    h1 {
+      font-size: 26px;
+      margin: 8px 0 10px;
+      text-align: center;
+    }
+    p {
+      line-height: 1.7;
+      color: #555;
+    }
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      font-size: 18px;
+      padding: 13px;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      margin-bottom: 14px;
+    }
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      background: #4f8f5b;
+      color: white;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #3f794b;
+    }
+    .result-item {
+      background: #f2f7f2;
+      border-radius: 14px;
+      padding: 15px;
+      margin-top: 12px;
+    }
+    .result-title {
+      font-size: 14px;
+      color: #4f8f5b;
+      font-weight: 700;
+    }
+    .result-value {
+      font-size: 24px;
+      font-weight: 800;
+      margin-top: 4px;
+    }
+    footer {
+      text-align: center;
+      color: #777;
+      font-size: 13px;
+      padding: 30px 10px;
+    }
+  </style>
 </head>
-<body style="font-family:sans-serif;text-align:center;padding:60px;background:#f5f5f5;">
+<body>
 
-<h1>🎉 ゴマツールへようこそ！</h1>
+<header>
+  <div class="brand">🍵 ゴマツール</div>
+</header>
 
-<p>AIと一緒に作る便利ツール集です。</p>
+<main>
+  <section class="card">
+    <h1>🎂 年齢・日付計算</h1>
+    <p>
+      生年月日を入力すると、現在の年齢・生まれてからの日数・次の誕生日までの日数・生まれた曜日を計算します。
+    </p>
 
-<h2>制作予定</h2>
+    <label for="birthday">生年月日</label>
+    <input type="date" id="birthday">
 
-<p>📅 年齢・日付計算ツール</p>
-<p>💰 お金・計算ツール</p>
-<p>🎲 ナンバーズ分析ツール</p>
+    <button onclick="calculateAge()">計算する</button>
+  </section>
 
-<p style="margin-top:50px;color:gray;">
-Project Goma 2026
-</p>
+  <section class="card" id="result" style="display:none;">
+    <div class="result-item">
+      <div class="result-title">現在の年齢</div>
+      <div class="result-value" id="ageResult"></div>
+    </div>
+
+    <div class="result-item">
+      <div class="result-title">生まれてからの日数</div>
+      <div class="result-value" id="daysResult"></div>
+    </div>
+
+    <div class="result-item">
+      <div class="result-title">次の誕生日まで</div>
+      <div class="result-value" id="birthdayResult"></div>
+    </div>
+
+    <div class="result-item">
+      <div class="result-title">生まれた曜日</div>
+      <div class="result-value" id="weekdayResult"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  Project Goma｜小さく作って、早く公開して、一歩ずつ育てる。
+</footer>
+
+<script>
+function calculateAge() {
+  const input = document.getElementById("birthday").value;
+  if (!input) {
+    alert("生年月日を入力してください。");
+    return;
+  }
+
+  const birthDate = new Date(input);
+  const today = new Date();
+
+  let age = today.getFullYear() - birthDate.getFullYear();
+  const thisYearBirthday = new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+
+  if (today < thisYearBirthday) {
+    age--;
+  }
+
+  const oneDay = 1000 * 60 * 60 * 24;
+  const daysAlive = Math.floor((today - birthDate) / oneDay);
+
+  let nextBirthday = new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+  if (nextBirthday < today) {
+    nextBirthday.setFullYear(today.getFullYear() + 1);
+  }
+
+  const daysUntilBirthday = Math.ceil((nextBirthday - today) / oneDay);
+
+  const weekdays = ["日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"];
+  const weekday = weekdays[birthDate.getDay()];
+
+  document.getElementById("ageResult").textContent = age + "歳";
+  document.getElementById("daysResult").textContent = daysAlive.toLocaleString() + "日";
+  document.getElementById("birthdayResult").textContent = daysUntilBirthday + "日";
+  document.getElementById("weekdayResult").textContent = weekday;
+
+  document.getElementById("result").style.display = "block";
+}
+</script>
 
 </body>
 </html>
