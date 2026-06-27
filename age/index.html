@@ -24,28 +24,48 @@
       --radius: 22px;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       margin: 0;
       color: var(--text);
       background: linear-gradient(180deg, #fbfdf9 0%, #fff 22%);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-        "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Hiragino Kaku Gothic ProN",
+        "Yu Gothic",
+        Meiryo,
+        sans-serif;
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
     }
 
-    button, input, select { font: inherit; }
-    button { cursor: pointer; }
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
 
     .container {
       width: min(100% - 32px, 880px);
       margin-inline: auto;
     }
 
-    .section { margin-top: 72px; }
+    .section {
+      margin-top: 72px;
+    }
 
     .section-title {
       margin: 0 0 20px;
@@ -94,8 +114,13 @@
     /* ======================
        メイン・今日時点カード
     ====================== */
-    main { padding: 80px 0 96px; }
-    .hero { text-align: center; }
+    main {
+      padding: 80px 0 96px;
+    }
+
+    .hero {
+      text-align: center;
+    }
 
     .eyebrow {
       margin: 0 0 8px;
@@ -133,7 +158,9 @@
       text-align: left;
     }
 
-    .today-label { font-weight: 700; }
+    .today-label {
+      font-weight: 700;
+    }
 
     .today-date {
       margin: 0;
@@ -151,7 +178,9 @@
       gap: 20px;
     }
 
-    .field-full { grid-column: 1 / -1; }
+    .field-full {
+      grid-column: 1 / -1;
+    }
 
     label {
       display: block;
@@ -165,7 +194,8 @@
       font-size: .82rem;
     }
 
-    input, select {
+    input,
+    select {
       width: 100%;
       min-height: 52px;
       padding: 12px 14px;
@@ -175,12 +205,14 @@
       background: #fff;
     }
 
-    input:focus, select:focus {
+    input:focus,
+    select:focus {
       outline: 3px solid rgba(86, 123, 60, .17);
       border-color: var(--green);
     }
 
-    .primary-button, .copy-button {
+    .primary-button,
+    .copy-button {
       width: 100%;
       min-height: 56px;
       padding: 14px 22px;
@@ -207,7 +239,9 @@
       background: #fff;
     }
 
-    .copy-button:hover { background: var(--green-light); }
+    .copy-button:hover {
+      background: var(--green-light);
+    }
 
     .primary-button:focus-visible,
     .copy-button:focus-visible {
@@ -232,7 +266,9 @@
       border-top: 1px solid var(--line);
     }
 
-    .result-panel[hidden] { display: none; }
+    .result-panel[hidden] {
+      display: none;
+    }
 
     .result-heading {
       margin: 0 0 18px;
@@ -279,7 +315,9 @@
       font-size: clamp(2.8rem, 10vw, 4.5rem);
     }
 
-    .copy-wrap { margin-top: 18px; }
+    .copy-wrap {
+      margin-top: 18px;
+    }
 
     .copy-status {
       min-height: 1.5em;
@@ -297,7 +335,9 @@
       background: var(--green-light);
     }
 
-    .date-result .result-value { margin-top: 6px; }
+    .date-result .result-value {
+      margin-top: 6px;
+    }
 
     /* ======================
        ゴマツールの約束
@@ -308,7 +348,9 @@
       background: var(--green-dark);
     }
 
-    .promise-card .section-title { margin-bottom: 18px; }
+    .promise-card .section-title {
+      margin-bottom: 18px;
+    }
 
     .promise-list {
       display: grid;
@@ -319,7 +361,9 @@
       list-style: none;
     }
 
-    .promise-list li { padding-left: 2px; }
+    .promise-list li {
+      padding-left: 2px;
+    }
 
     /* ======================
        FAQ
@@ -342,7 +386,9 @@
       list-style: none;
     }
 
-    summary::-webkit-details-marker { display: none; }
+    summary::-webkit-details-marker {
+      display: none;
+    }
 
     summary::after {
       content: "+";
@@ -351,7 +397,9 @@
       font-size: 1.25rem;
     }
 
-    details[open] summary::after { content: "−"; }
+    details[open] summary::after {
+      content: "−";
+    }
 
     details p {
       margin: 0;
@@ -418,7 +466,9 @@
       font-weight: 800;
     }
 
-    footer p { margin: 4px 0; }
+    footer p {
+      margin: 4px 0;
+    }
 
     .updated {
       margin-top: 16px;
@@ -429,16 +479,24 @@
        レスポンシブ
     ====================== */
     @media (max-width: 620px) {
-      .container { width: min(100% - 24px, 880px); }
+      .container {
+        width: min(100% - 24px, 880px);
+      }
 
-      .header-inner, .today-card {
+      .header-inner,
+      .today-card {
         align-items: flex-start;
         flex-direction: column;
         gap: 4px;
       }
 
-      main { padding: 58px 0 76px; }
-      .section { margin-top: 52px; }
+      main {
+        padding: 58px 0 76px;
+      }
+
+      .section {
+        margin-top: 52px;
+      }
 
       .card {
         padding: 22px 18px;
@@ -452,8 +510,13 @@
         grid-template-columns: 1fr;
       }
 
-      .result-item.primary { grid-column: auto; }
-      .result-item { min-height: 105px; }
+      .result-item.primary {
+        grid-column: auto;
+      }
+
+      .result-item {
+        min-height: 105px;
+      }
 
       .today-card {
         margin-top: 30px;
@@ -462,9 +525,13 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
+      html {
+        scroll-behavior: auto;
+      }
 
-      *, *::before, *::after {
+      *,
+      *::before,
+      *::after {
         transition: none !important;
       }
     }
@@ -489,7 +556,10 @@
       ====================== -->
       <section class="hero" aria-labelledby="page-title">
         <p class="eyebrow">30秒でかんたん計算</p>
-        <h1 id="page-title">🎂 年齢・日付計算</h1>
+
+        <h1 id="page-title">
+          🎂 年齢・日付計算
+        </h1>
 
         <p class="hero-description">
           生年月日から年齢、生まれてからの日数、次の誕生日までの日数などを計算できます。
@@ -497,15 +567,23 @@
 
         <!-- 今日時点カード -->
         <div class="today-card" aria-label="今日の日付">
-          <span class="today-label">📅 今日時点</span>
-          <p class="today-date" id="todayDate">読み込み中…</p>
+          <span class="today-label">
+            📅 今日時点
+          </span>
+
+          <p class="today-date" id="todayDate">
+            読み込み中…
+          </p>
         </div>
       </section>
 
       <!-- ======================
            年齢計算
       ====================== -->
-      <section class="section" aria-labelledby="age-title">
+      <section
+        class="section"
+        aria-labelledby="age-title"
+      >
         <h2 class="section-title" id="age-title">
           🎂 年齢を計算
         </h2>
@@ -514,7 +592,9 @@
           <form id="ageForm" novalidate>
             <div class="form-grid">
               <div class="field-full">
-                <label for="birthDate">生年月日</label>
+                <label for="birthDate">
+                  生年月日
+                </label>
 
                 <input
                   type="date"
@@ -658,7 +738,10 @@
       <!-- ======================
            日付計算
       ====================== -->
-      <section class="section" aria-labelledby="date-title">
+      <section
+        class="section"
+        aria-labelledby="date-title"
+      >
         <h2 class="section-title" id="date-title">
           📅 日付計算
         </h2>
@@ -667,7 +750,10 @@
           <form id="dateForm" novalidate>
             <div class="form-grid">
               <div>
-                <label for="baseDate">基準日</label>
+                <label for="baseDate">
+                  基準日
+                </label>
+
                 <input
                   type="date"
                   id="baseDate"
@@ -677,7 +763,10 @@
               </div>
 
               <div>
-                <label for="dateDays">日数</label>
+                <label for="dateDays">
+                  日数
+                </label>
+
                 <input
                   type="number"
                   id="dateDays"
@@ -700,8 +789,13 @@
                   id="dateDirection"
                   name="dateDirection"
                 >
-                  <option value="after">○日後</option>
-                  <option value="before">○日前</option>
+                  <option value="after">
+                    ○日後
+                  </option>
+
+                  <option value="before">
+                    ○日前
+                  </option>
                 </select>
               </div>
 
@@ -777,8 +871,14 @@
       <!-- ======================
            FAQ
       ====================== -->
-      <section class="section" aria-labelledby="faq-title">
-        <h2 class="section-title" id="faq-title">
+      <section
+        class="section"
+        aria-labelledby="faq-title"
+      >
+        <h2
+          class="section-title"
+          id="faq-title"
+        >
           よくある質問
         </h2>
 
@@ -789,8 +889,7 @@
             </summary>
 
             <p>
-              A. 保存されません。入力内容はブラウザ内だけで計算し、
-              サーバーには送信しません。
+              A. 保存されません。入力内容はブラウザ内だけで計算し、サーバーには送信しません。
             </p>
           </details>
 
@@ -829,8 +928,14 @@
       <!-- ======================
            関連ツール
       ====================== -->
-      <section class="section" aria-labelledby="tools-title">
-        <h2 class="section-title" id="tools-title">
+      <section
+        class="section"
+        aria-labelledby="tools-title"
+      >
+        <h2
+          class="section-title"
+          id="tools-title"
+        >
           おすすめの便利ツール
         </h2>
 
@@ -864,6 +969,14 @@
             href="../qrcode/"
           >
             📱 QRコード生成
+            <span class="tool-status">公開中</span>
+          </a>
+
+          <a
+            class="tool-item tool-link"
+            href="../school-year/"
+          >
+            🎓 学年・年齢・卒業年度計算
             <span class="tool-status">公開中</span>
           </a>
         </div>
@@ -912,7 +1025,8 @@
     let copyText = '';
 
     function toUtcDate(year, month, day) {
-      // Date.UTCは西暦0〜99年を1900年代として扱うため補正します。
+      // Date.UTCは西暦0〜99年を1900年代として
+      // 扱うため補正します。
       const date = new Date(0);
 
       date.setUTCHours(0, 0, 0, 0);
@@ -962,12 +1076,14 @@
         date.getUTCFullYear();
 
       const month =
-        String(date.getUTCMonth() + 1)
-          .padStart(2, '0');
+        String(
+          date.getUTCMonth() + 1
+        ).padStart(2, '0');
 
       const day =
-        String(date.getUTCDate())
-          .padStart(2, '0');
+        String(
+          date.getUTCDate()
+        ).padStart(2, '0');
 
       return `${year}-${month}-${day}`;
     }
@@ -1036,7 +1152,9 @@
 
       while (months < 11) {
         const totalMonths =
-          anchor.getUTCMonth() + 1 + months;
+          anchor.getUTCMonth() +
+          1 +
+          months;
 
         const candidateYear =
           anchor.getUTCFullYear() +
@@ -1061,7 +1179,8 @@
       }
 
       const days = Math.floor(
-        (today - monthAnchor) / DAY_MS
+        (today - monthAnchor) /
+        DAY_MS
       );
 
       return {
@@ -1072,20 +1191,18 @@
     }
 
     function getNextBirthday(birth, today) {
-      let birthday =
-        createClampedDate(
-          today.getUTCFullYear(),
+      let birthday = createClampedDate(
+        today.getUTCFullYear(),
+        birth.getUTCMonth() + 1,
+        birth.getUTCDate()
+      );
+
+      if (birthday < today) {
+        birthday = createClampedDate(
+          today.getUTCFullYear() + 1,
           birth.getUTCMonth() + 1,
           birth.getUTCDate()
         );
-
-      if (birthday < today) {
-        birthday =
-          createClampedDate(
-            today.getUTCFullYear() + 1,
-            birth.getUTCMonth() + 1,
-            birth.getUTCDate()
-          );
       }
 
       return birthday;
@@ -1095,19 +1212,22 @@
       event.preventDefault();
 
       const birth = parseDate(
-        document
-          .getElementById('birthDate')
-          .value
+        document.getElementById(
+          'birthDate'
+        ).value
       );
 
-      const today =
-        getTodayUtc();
+      const today = getTodayUtc();
 
       const error =
-        document.getElementById('ageError');
+        document.getElementById(
+          'ageError'
+        );
 
       const result =
-        document.getElementById('ageResult');
+        document.getElementById(
+          'ageResult'
+        );
 
       error.textContent = '';
       result.hidden = true;
@@ -1141,39 +1261,39 @@
       const weekday =
         WEEKDAYS[birth.getUTCDay()];
 
-      document
-        .getElementById('ageYears')
-        .textContent =
-          `${detail.years}歳`;
+      document.getElementById(
+        'ageYears'
+      ).textContent =
+        `${detail.years}歳`;
 
-      document
-        .getElementById('detailedAge')
-        .textContent =
-          `${detail.years}歳 ` +
-          `${detail.months}か月 ` +
-          `${detail.days}日`;
+      document.getElementById(
+        'detailedAge'
+      ).textContent =
+        `${detail.years}歳 ` +
+        `${detail.months}か月 ` +
+        `${detail.days}日`;
 
-      document
-        .getElementById('daysLived')
-        .textContent =
-          `${livedDays.toLocaleString('ja-JP')}日`;
+      document.getElementById(
+        'daysLived'
+      ).textContent =
+        `${livedDays.toLocaleString('ja-JP')}日`;
 
-      document
-        .getElementById('daysUntilBirthday')
-        .textContent =
-          untilNext === 0
-            ? '今日です！'
-            : `あと${untilNext.toLocaleString('ja-JP')}日`;
+      document.getElementById(
+        'daysUntilBirthday'
+      ).textContent =
+        untilNext === 0
+          ? '今日です！'
+          : `あと${untilNext.toLocaleString('ja-JP')}日`;
 
-      document
-        .getElementById('nextBirthday')
-        .textContent =
-          formatDate(next, true);
+      document.getElementById(
+        'nextBirthday'
+      ).textContent =
+        formatDate(next, true);
 
-      document
-        .getElementById('birthWeekday')
-        .textContent =
-          weekday;
+      document.getElementById(
+        'birthWeekday'
+      ).textContent =
+        weekday;
 
       copyText = [
         '【年齢・日付計算結果】',
@@ -1189,9 +1309,9 @@
         `生まれた曜日：${weekday}`
       ].join('\n');
 
-      document
-        .getElementById('copyStatus')
-        .textContent = '';
+      document.getElementById(
+        'copyStatus'
+      ).textContent = '';
 
       result.hidden = false;
 
@@ -1208,30 +1328,32 @@
       event.preventDefault();
 
       const base = parseDate(
-        document
-          .getElementById('baseDate')
-          .value
+        document.getElementById(
+          'baseDate'
+        ).value
       );
 
       const rawDays =
-        document
-          .getElementById('dateDays')
-          .value
-          .trim();
+        document.getElementById(
+          'dateDays'
+        ).value.trim();
 
-      const days =
-        Number(rawDays);
+      const days = Number(rawDays);
 
       const direction =
-        document
-          .getElementById('dateDirection')
-          .value;
+        document.getElementById(
+          'dateDirection'
+        ).value;
 
       const error =
-        document.getElementById('dateError');
+        document.getElementById(
+          'dateError'
+        );
 
       const result =
-        document.getElementById('dateResult');
+        document.getElementById(
+          'dateResult'
+        );
 
       error.textContent = '';
       result.hidden = true;
@@ -1258,28 +1380,26 @@
           ? -days
           : days;
 
-      const calculated =
-        new Date(
-          base.getTime() +
-          signedDays * DAY_MS
-        );
+      const calculated = new Date(
+        base.getTime() +
+        signedDays * DAY_MS
+      );
 
       const directionText =
         direction === 'before'
           ? '日前'
           : '日後';
 
-      document
-        .getElementById('dateResultLabel')
-        .textContent =
-          `${formatDate(base)}の` +
-          `${days.toLocaleString('ja-JP')}` +
-          `${directionText}`;
+      document.getElementById(
+        'dateResultLabel'
+      ).textContent =
+        `${formatDate(base)}の` +
+        `${days.toLocaleString('ja-JP')}${directionText}`;
 
-      document
-        .getElementById('calculatedDate')
-        .textContent =
-          formatDate(calculated, true);
+      document.getElementById(
+        'calculatedDate'
+      ).textContent =
+        formatDate(calculated, true);
 
       result.hidden = false;
 
@@ -1294,7 +1414,9 @@
     // ======================
     async function copyResult() {
       const status =
-        document.getElementById('copyStatus');
+        document.getElementById(
+          'copyStatus'
+        );
 
       try {
         await navigator.clipboard.writeText(
@@ -1305,16 +1427,13 @@
           'コピーしました！';
       } catch (error) {
         const textArea =
-          document.createElement('textarea');
+          document.createElement(
+            'textarea'
+          );
 
-        textArea.value =
-          copyText;
-
-        textArea.style.position =
-          'fixed';
-
-        textArea.style.opacity =
-          '0';
+        textArea.value = copyText;
+        textArea.style.position = 'fixed';
+        textArea.style.opacity = '0';
 
         document.body.appendChild(
           textArea
@@ -1337,52 +1456,49 @@
     // 初期表示・最終更新日
     // ======================
     function initializePage() {
-      const today =
-        getTodayUtc();
+      const today = getTodayUtc();
+      const todayValue = toInputValue(today);
 
-      const todayValue =
-        toInputValue(today);
+      document.getElementById(
+        'todayDate'
+      ).textContent =
+        formatDate(today, true);
 
-      document
-        .getElementById('todayDate')
-        .textContent =
-          formatDate(today, true);
+      document.getElementById(
+        'baseDate'
+      ).value =
+        todayValue;
 
-      document
-        .getElementById('baseDate')
-        .value =
-          todayValue;
+      document.getElementById(
+        'birthDate'
+      ).max =
+        todayValue;
 
-      document
-        .getElementById('birthDate')
-        .max =
-          todayValue;
+      document.getElementById(
+        'lastUpdated'
+      ).textContent =
+        '2026年6月27日';
 
-      document
-        .getElementById('lastUpdated')
-        .textContent =
-          '2026年6月27日';
+      document.getElementById(
+        'ageForm'
+      ).addEventListener(
+        'submit',
+        calculateAge
+      );
 
-      document
-        .getElementById('ageForm')
-        .addEventListener(
-          'submit',
-          calculateAge
-        );
+      document.getElementById(
+        'dateForm'
+      ).addEventListener(
+        'submit',
+        calculateDate
+      );
 
-      document
-        .getElementById('dateForm')
-        .addEventListener(
-          'submit',
-          calculateDate
-        );
-
-      document
-        .getElementById('copyButton')
-        .addEventListener(
-          'click',
-          copyResult
-        );
+      document.getElementById(
+        'copyButton'
+      ).addEventListener(
+        'click',
+        copyResult
+      );
     }
 
     initializePage();
