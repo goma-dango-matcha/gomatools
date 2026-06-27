@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="生年月日から年齢や生まれてからの日数、次の誕生日までの日数を無料で計算できるゴマツールです。">
   <title>年齢・日付計算｜ゴマツール</title>
+
   <style>
     /* ======================
        基本設定
@@ -376,6 +377,22 @@
       font-weight: 700;
     }
 
+    .tool-link {
+      display: block;
+      text-decoration: none;
+      transition: border-color .15s ease, transform .15s ease;
+    }
+
+    .tool-link:hover {
+      border-color: var(--green);
+      transform: translateY(-1px);
+    }
+
+    .tool-link:focus-visible {
+      outline: 3px solid rgba(86, 123, 60, .3);
+      outline-offset: 3px;
+    }
+
     .tool-status {
       display: block;
       margin-top: 3px;
@@ -473,6 +490,7 @@
       <section class="hero" aria-labelledby="page-title">
         <p class="eyebrow">30秒でかんたん計算</p>
         <h1 id="page-title">🎂 年齢・日付計算</h1>
+
         <p class="hero-description">
           生年月日から年齢、生まれてからの日数、次の誕生日までの日数などを計算できます。
         </p>
@@ -488,13 +506,16 @@
            年齢計算
       ====================== -->
       <section class="section" aria-labelledby="age-title">
-        <h2 class="section-title" id="age-title">🎂 年齢を計算</h2>
+        <h2 class="section-title" id="age-title">
+          🎂 年齢を計算
+        </h2>
 
         <div class="card">
           <form id="ageForm" novalidate>
             <div class="form-grid">
               <div class="field-full">
                 <label for="birthDate">生年月日</label>
+
                 <input
                   type="date"
                   id="birthDate"
@@ -502,59 +523,133 @@
                   required
                   autocomplete="bday"
                 >
-                <p class="hint">例：1990年4月15日</p>
+
+                <p class="hint">
+                  例：1990年4月15日
+                </p>
               </div>
 
               <div class="field-full">
-                <button class="primary-button" type="submit">
+                <button
+                  class="primary-button"
+                  type="submit"
+                >
                   🎂 年齢を計算する
                 </button>
               </div>
             </div>
 
-            <p class="error" id="ageError" role="alert"></p>
+            <p
+              class="error"
+              id="ageError"
+              role="alert"
+            ></p>
           </form>
 
-          <div class="result-panel" id="ageResult" aria-live="polite" hidden>
-            <h3 class="result-heading">計算結果</h3>
+          <div
+            class="result-panel"
+            id="ageResult"
+            aria-live="polite"
+            hidden
+          >
+            <h3 class="result-heading">
+              計算結果
+            </h3>
 
             <div class="result-grid">
               <div class="result-item primary">
-                <span class="result-label">現在の年齢</span>
-                <strong class="result-value" id="ageYears">—</strong>
+                <span class="result-label">
+                  現在の年齢
+                </span>
+
+                <strong
+                  class="result-value"
+                  id="ageYears"
+                >
+                  —
+                </strong>
               </div>
 
               <div class="result-item">
-                <span class="result-label">詳細年齢</span>
-                <strong class="result-value" id="detailedAge">—</strong>
+                <span class="result-label">
+                  詳細年齢
+                </span>
+
+                <strong
+                  class="result-value"
+                  id="detailedAge"
+                >
+                  —
+                </strong>
               </div>
 
               <div class="result-item">
-                <span class="result-label">生まれてからの日数</span>
-                <strong class="result-value" id="daysLived">—</strong>
+                <span class="result-label">
+                  生まれてからの日数
+                </span>
+
+                <strong
+                  class="result-value"
+                  id="daysLived"
+                >
+                  —
+                </strong>
               </div>
 
               <div class="result-item">
-                <span class="result-label">次の誕生日まで</span>
-                <strong class="result-value" id="daysUntilBirthday">—</strong>
+                <span class="result-label">
+                  次の誕生日まで
+                </span>
+
+                <strong
+                  class="result-value"
+                  id="daysUntilBirthday"
+                >
+                  —
+                </strong>
               </div>
 
               <div class="result-item">
-                <span class="result-label">次の誕生日</span>
-                <strong class="result-value" id="nextBirthday">—</strong>
+                <span class="result-label">
+                  次の誕生日
+                </span>
+
+                <strong
+                  class="result-value"
+                  id="nextBirthday"
+                >
+                  —
+                </strong>
               </div>
 
               <div class="result-item">
-                <span class="result-label">生まれた曜日</span>
-                <strong class="result-value" id="birthWeekday">—</strong>
+                <span class="result-label">
+                  生まれた曜日
+                </span>
+
+                <strong
+                  class="result-value"
+                  id="birthWeekday"
+                >
+                  —
+                </strong>
               </div>
             </div>
 
             <div class="copy-wrap">
-              <button class="copy-button" type="button" id="copyButton">
+              <button
+                class="copy-button"
+                type="button"
+                id="copyButton"
+              >
                 📋 結果をコピー
               </button>
-              <p class="copy-status" id="copyStatus" role="status"></p>
+
+              <p
+                class="copy-status"
+                id="copyStatus"
+                role="status"
+              ></p>
             </div>
           </div>
         </div>
@@ -564,14 +659,21 @@
            日付計算
       ====================== -->
       <section class="section" aria-labelledby="date-title">
-        <h2 class="section-title" id="date-title">📅 日付計算</h2>
+        <h2 class="section-title" id="date-title">
+          📅 日付計算
+        </h2>
 
         <div class="card">
           <form id="dateForm" novalidate>
             <div class="form-grid">
               <div>
                 <label for="baseDate">基準日</label>
-                <input type="date" id="baseDate" name="baseDate" required>
+                <input
+                  type="date"
+                  id="baseDate"
+                  name="baseDate"
+                  required
+                >
               </div>
 
               <div>
@@ -590,27 +692,56 @@
               </div>
 
               <div>
-                <label for="dateDirection">計算方法</label>
-                <select id="dateDirection" name="dateDirection">
+                <label for="dateDirection">
+                  計算方法
+                </label>
+
+                <select
+                  id="dateDirection"
+                  name="dateDirection"
+                >
                   <option value="after">○日後</option>
                   <option value="before">○日前</option>
                 </select>
               </div>
 
               <div style="align-self: end;">
-                <button class="primary-button" type="submit">
+                <button
+                  class="primary-button"
+                  type="submit"
+                >
                   📅 日付を計算する
                 </button>
               </div>
             </div>
 
-            <p class="error" id="dateError" role="alert"></p>
+            <p
+              class="error"
+              id="dateError"
+              role="alert"
+            ></p>
           </form>
 
-          <div class="result-panel" id="dateResult" aria-live="polite" hidden>
+          <div
+            class="result-panel"
+            id="dateResult"
+            aria-live="polite"
+            hidden
+          >
             <div class="date-result">
-              <span class="result-label" id="dateResultLabel">計算結果</span>
-              <strong class="result-value" id="calculatedDate">—</strong>
+              <span
+                class="result-label"
+                id="dateResultLabel"
+              >
+                計算結果
+              </span>
+
+              <strong
+                class="result-value"
+                id="calculatedDate"
+              >
+                —
+              </strong>
             </div>
           </div>
         </div>
@@ -623,7 +754,10 @@
         class="section card promise-card"
         aria-labelledby="promise-title"
       >
-        <h2 class="section-title" id="promise-title">
+        <h2
+          class="section-title"
+          id="promise-title"
+        >
           🍵 ゴマツールの約束
         </h2>
 
@@ -631,7 +765,9 @@
           <li>✅ 完全無料</li>
           <li>✅ 登録不要</li>
           <li>✅ スマホ・PC対応</li>
-          <li>✅ 入力したデータはブラウザ内だけで処理します</li>
+          <li>
+            ✅ 入力したデータはブラウザ内だけで処理します
+          </li>
           <li class="field-full">
             ✅ サーバーへ送信・保存しません
           </li>
@@ -642,11 +778,16 @@
            FAQ
       ====================== -->
       <section class="section" aria-labelledby="faq-title">
-        <h2 class="section-title" id="faq-title">よくある質問</h2>
+        <h2 class="section-title" id="faq-title">
+          よくある質問
+        </h2>
 
         <div class="faq-list">
           <details>
-            <summary>Q. 入力したデータは保存されますか？</summary>
+            <summary>
+              Q. 入力したデータは保存されますか？
+            </summary>
+
             <p>
               A. 保存されません。入力内容はブラウザ内だけで計算し、
               サーバーには送信しません。
@@ -654,21 +795,30 @@
           </details>
 
           <details>
-            <summary>Q. スマホでも使えますか？</summary>
+            <summary>
+              Q. スマホでも使えますか？
+            </summary>
+
             <p>
               A. はい。スマホ、タブレット、PCのどれでも使えます。
             </p>
           </details>
 
           <details>
-            <summary>Q. 料金はかかりますか？</summary>
+            <summary>
+              Q. 料金はかかりますか？
+            </summary>
+
             <p>
               A. いいえ。すべての計算機能を完全無料で使えます。
             </p>
           </details>
 
           <details>
-            <summary>Q. うるう年の2月29日生まれはどうなりますか？</summary>
+            <summary>
+              Q. うるう年の2月29日生まれはどうなりますか？
+            </summary>
+
             <p>
               A. 2月29日がない年は、2月28日を次の誕生日として計算します。
             </p>
@@ -685,25 +835,37 @@
         </h2>
 
         <div class="card tool-grid">
-          <div class="tool-item">
+          <a
+            class="tool-item tool-link"
+            href="../business-days/"
+          >
             📅 営業日計算
-            <span class="tool-status">制作中</span>
-          </div>
+            <span class="tool-status">公開中</span>
+          </a>
 
-          <div class="tool-item">
+          <a
+            class="tool-item tool-link"
+            href="../tax/"
+          >
             💰 消費税計算
-            <span class="tool-status">制作中</span>
-          </div>
+            <span class="tool-status">公開中</span>
+          </a>
 
-          <div class="tool-item">
+          <a
+            class="tool-item tool-link"
+            href="../warikan/"
+          >
+            👥 割り勘計算
+            <span class="tool-status">公開中</span>
+          </a>
+
+          <a
+            class="tool-item tool-link"
+            href="../qrcode/"
+          >
             📱 QRコード生成
-            <span class="tool-status">制作中</span>
-          </div>
-
-          <div class="tool-item">
-            🎲 ランダム抽選
-            <span class="tool-status">制作中</span>
-          </div>
+            <span class="tool-status">公開中</span>
+          </a>
         </div>
       </section>
     </div>
@@ -714,11 +876,15 @@
   ====================== -->
   <footer>
     <div class="container">
-      <p class="footer-logo">🍵 ゴマツール</p>
+      <p class="footer-logo">
+        🍵 ゴマツール
+      </p>
+
       <p>
         30秒で使えて、<br>
         他より少し便利。
       </p>
+
       <p class="updated">
         最終更新日：<span id="lastUpdated"></span>
       </p>
@@ -748,20 +914,27 @@
     function toUtcDate(year, month, day) {
       // Date.UTCは西暦0〜99年を1900年代として扱うため補正します。
       const date = new Date(0);
+
       date.setUTCHours(0, 0, 0, 0);
       date.setUTCFullYear(year, month - 1, day);
+
       return date;
     }
 
     function parseDate(value) {
-      const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
+      const match =
+        /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
 
-      if (!match) return null;
+      if (!match) {
+        return null;
+      }
 
       const year = Number(match[1]);
       const month = Number(match[2]);
       const day = Number(match[3]);
-      const date = toUtcDate(year, month, day);
+
+      const date =
+        toUtcDate(year, month, day);
 
       if (
         date.getUTCFullYear() !== year ||
@@ -785,14 +958,24 @@
     }
 
     function toInputValue(date) {
-      const year = date.getUTCFullYear();
-      const month = String(date.getUTCMonth() + 1).padStart(2, '0');
-      const day = String(date.getUTCDate()).padStart(2, '0');
+      const year =
+        date.getUTCFullYear();
+
+      const month =
+        String(date.getUTCMonth() + 1)
+          .padStart(2, '0');
+
+      const day =
+        String(date.getUTCDate())
+          .padStart(2, '0');
 
       return `${year}-${month}-${day}`;
     }
 
-    function formatDate(date, includeWeekday = false) {
+    function formatDate(
+      date,
+      includeWeekday = false
+    ) {
       const dateText =
         `${date.getUTCFullYear()}年` +
         `${date.getUTCMonth() + 1}月` +
@@ -804,14 +987,23 @@
     }
 
     function daysInMonth(year, month) {
-      return new Date(Date.UTC(year, month, 0)).getUTCDate();
+      return new Date(
+        Date.UTC(year, month, 0)
+      ).getUTCDate();
     }
 
-    function createClampedDate(year, month, day) {
+    function createClampedDate(
+      year,
+      month,
+      day
+    ) {
       return toUtcDate(
         year,
         month,
-        Math.min(day, daysInMonth(year, month))
+        Math.min(
+          day,
+          daysInMonth(year, month)
+        )
       );
     }
 
@@ -853,13 +1045,16 @@
         const candidateMonth =
           (totalMonths % 12) + 1;
 
-        const candidate = createClampedDate(
-          candidateYear,
-          candidateMonth,
-          birth.getUTCDate()
-        );
+        const candidate =
+          createClampedDate(
+            candidateYear,
+            candidateMonth,
+            birth.getUTCDate()
+          );
 
-        if (candidate > today) break;
+        if (candidate > today) {
+          break;
+        }
 
         months++;
         monthAnchor = candidate;
@@ -869,22 +1064,28 @@
         (today - monthAnchor) / DAY_MS
       );
 
-      return { years, months, days };
+      return {
+        years,
+        months,
+        days
+      };
     }
 
     function getNextBirthday(birth, today) {
-      let birthday = createClampedDate(
-        today.getUTCFullYear(),
-        birth.getUTCMonth() + 1,
-        birth.getUTCDate()
-      );
-
-      if (birthday < today) {
-        birthday = createClampedDate(
-          today.getUTCFullYear() + 1,
+      let birthday =
+        createClampedDate(
+          today.getUTCFullYear(),
           birth.getUTCMonth() + 1,
           birth.getUTCDate()
         );
+
+      if (birthday < today) {
+        birthday =
+          createClampedDate(
+            today.getUTCFullYear() + 1,
+            birth.getUTCMonth() + 1,
+            birth.getUTCDate()
+          );
       }
 
       return birthday;
@@ -894,18 +1095,26 @@
       event.preventDefault();
 
       const birth = parseDate(
-        document.getElementById('birthDate').value
+        document
+          .getElementById('birthDate')
+          .value
       );
 
-      const today = getTodayUtc();
-      const error = document.getElementById('ageError');
-      const result = document.getElementById('ageResult');
+      const today =
+        getTodayUtc();
+
+      const error =
+        document.getElementById('ageError');
+
+      const result =
+        document.getElementById('ageResult');
 
       error.textContent = '';
       result.hidden = true;
 
       if (!birth) {
-        error.textContent = '生年月日を入力してください。';
+        error.textContent =
+          '生年月日を入力してください。';
         return;
       }
 
@@ -915,39 +1124,56 @@
         return;
       }
 
-      const detail = getDetailedAge(birth, today);
+      const detail =
+        getDetailedAge(birth, today);
 
       const livedDays = Math.floor(
         (today - birth) / DAY_MS
       );
 
-      const next = getNextBirthday(birth, today);
+      const next =
+        getNextBirthday(birth, today);
 
       const untilNext = Math.floor(
         (next - today) / DAY_MS
       );
 
-      const weekday = WEEKDAYS[birth.getUTCDay()];
+      const weekday =
+        WEEKDAYS[birth.getUTCDay()];
 
-      document.getElementById('ageYears').textContent =
-        `${detail.years}歳`;
+      document
+        .getElementById('ageYears')
+        .textContent =
+          `${detail.years}歳`;
 
-      document.getElementById('detailedAge').textContent =
-        `${detail.years}歳 ${detail.months}か月 ${detail.days}日`;
+      document
+        .getElementById('detailedAge')
+        .textContent =
+          `${detail.years}歳 ` +
+          `${detail.months}か月 ` +
+          `${detail.days}日`;
 
-      document.getElementById('daysLived').textContent =
-        `${livedDays.toLocaleString('ja-JP')}日`;
+      document
+        .getElementById('daysLived')
+        .textContent =
+          `${livedDays.toLocaleString('ja-JP')}日`;
 
-      document.getElementById('daysUntilBirthday').textContent =
-        untilNext === 0
-          ? '今日です！'
-          : `あと${untilNext.toLocaleString('ja-JP')}日`;
+      document
+        .getElementById('daysUntilBirthday')
+        .textContent =
+          untilNext === 0
+            ? '今日です！'
+            : `あと${untilNext.toLocaleString('ja-JP')}日`;
 
-      document.getElementById('nextBirthday').textContent =
-        formatDate(next, true);
+      document
+        .getElementById('nextBirthday')
+        .textContent =
+          formatDate(next, true);
 
-      document.getElementById('birthWeekday').textContent =
-        weekday;
+      document
+        .getElementById('birthWeekday')
+        .textContent =
+          weekday;
 
       copyText = [
         '【年齢・日付計算結果】',
@@ -963,7 +1189,10 @@
         `生まれた曜日：${weekday}`
       ].join('\n');
 
-      document.getElementById('copyStatus').textContent = '';
+      document
+        .getElementById('copyStatus')
+        .textContent = '';
+
       result.hidden = false;
 
       result.scrollIntoView({
@@ -979,25 +1208,37 @@
       event.preventDefault();
 
       const base = parseDate(
-        document.getElementById('baseDate').value
+        document
+          .getElementById('baseDate')
+          .value
       );
 
       const rawDays =
-        document.getElementById('dateDays').value.trim();
+        document
+          .getElementById('dateDays')
+          .value
+          .trim();
 
-      const days = Number(rawDays);
+      const days =
+        Number(rawDays);
 
       const direction =
-        document.getElementById('dateDirection').value;
+        document
+          .getElementById('dateDirection')
+          .value;
 
-      const error = document.getElementById('dateError');
-      const result = document.getElementById('dateResult');
+      const error =
+        document.getElementById('dateError');
+
+      const result =
+        document.getElementById('dateResult');
 
       error.textContent = '';
       result.hidden = true;
 
       if (!base) {
-        error.textContent = '基準日を入力してください。';
+        error.textContent =
+          '基準日を入力してください。';
         return;
       }
 
@@ -1017,21 +1258,28 @@
           ? -days
           : days;
 
-      const calculated = new Date(
-        base.getTime() + signedDays * DAY_MS
-      );
+      const calculated =
+        new Date(
+          base.getTime() +
+          signedDays * DAY_MS
+        );
 
       const directionText =
         direction === 'before'
           ? '日前'
           : '日後';
 
-      document.getElementById('dateResultLabel').textContent =
-        `${formatDate(base)}の` +
-        `${days.toLocaleString('ja-JP')}${directionText}`;
+      document
+        .getElementById('dateResultLabel')
+        .textContent =
+          `${formatDate(base)}の` +
+          `${days.toLocaleString('ja-JP')}` +
+          `${directionText}`;
 
-      document.getElementById('calculatedDate').textContent =
-        formatDate(calculated, true);
+      document
+        .getElementById('calculatedDate')
+        .textContent =
+          formatDate(calculated, true);
 
       result.hidden = false;
 
@@ -1049,17 +1297,29 @@
         document.getElementById('copyStatus');
 
       try {
-        await navigator.clipboard.writeText(copyText);
-        status.textContent = 'コピーしました！';
+        await navigator.clipboard.writeText(
+          copyText
+        );
+
+        status.textContent =
+          'コピーしました！';
       } catch (error) {
         const textArea =
           document.createElement('textarea');
 
-        textArea.value = copyText;
-        textArea.style.position = 'fixed';
-        textArea.style.opacity = '0';
+        textArea.value =
+          copyText;
 
-        document.body.appendChild(textArea);
+        textArea.style.position =
+          'fixed';
+
+        textArea.style.opacity =
+          '0';
+
+        document.body.appendChild(
+          textArea
+        );
+
         textArea.select();
 
         const copied =
@@ -1077,35 +1337,52 @@
     // 初期表示・最終更新日
     // ======================
     function initializePage() {
-      const today = getTodayUtc();
-      const todayValue = toInputValue(today);
+      const today =
+        getTodayUtc();
 
-      document.getElementById('todayDate').textContent =
-        formatDate(today, true);
+      const todayValue =
+        toInputValue(today);
 
-      document.getElementById('baseDate').value =
-        todayValue;
+      document
+        .getElementById('todayDate')
+        .textContent =
+          formatDate(today, true);
 
-      document.getElementById('birthDate').max =
-        todayValue;
+      document
+        .getElementById('baseDate')
+        .value =
+          todayValue;
 
-      document.getElementById('lastUpdated').textContent =
-        '2026年6月27日';
+      document
+        .getElementById('birthDate')
+        .max =
+          todayValue;
 
-      document.getElementById('ageForm').addEventListener(
-        'submit',
-        calculateAge
-      );
+      document
+        .getElementById('lastUpdated')
+        .textContent =
+          '2026年6月27日';
 
-      document.getElementById('dateForm').addEventListener(
-        'submit',
-        calculateDate
-      );
+      document
+        .getElementById('ageForm')
+        .addEventListener(
+          'submit',
+          calculateAge
+        );
 
-      document.getElementById('copyButton').addEventListener(
-        'click',
-        copyResult
-      );
+      document
+        .getElementById('dateForm')
+        .addEventListener(
+          'submit',
+          calculateDate
+        );
+
+      document
+        .getElementById('copyButton')
+        .addEventListener(
+          'click',
+          copyResult
+        );
     }
 
     initializePage();
