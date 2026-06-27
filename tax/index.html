@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="税込金額・税抜金額・消費税額を無料で簡単に計算できるゴマツールです。">
+  <title>消費税計算｜ゴマツール</title>
+
+  <style>
+    /* ======================
+       基本設定
+    ====================== */
+    :root {
+      --green: #587c40;
+      --green-dark: #355126;
+      --green-light: #eef5e9;
+      --green-soft: #f8fbf6;
+      --text: #20251d;
+      --muted: #687064;
+      --line: #dde6d8;
+      --white: #fff;
+      --danger: #b44335;
+      --warning: #fff8e8;
+      --warning-line: #ead7a0;
+      --shadow: 0 16px 44px rgba(48, 70, 36, .09);
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background: linear-gradient(180deg, #f9fcf7 0, #fff 25%);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(100% - 32px, 880px);
+      margin-inline: auto;
+    }
+
+    .section {
+      margin-top: 72px;
+    }
+
+    .section-title {
+      margin: 0 0 20px;
+      font-size: clamp(1.4rem, 4vw, 1.8rem);
+      letter-spacing: -.01em;
+    }
+
+    .card {
+      padding: clamp(22px, 5vw, 38px);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    /* ======================
+       ヘッダー
+    ====================== */
+    .site-header {
+      padding: 23px 0;
+      border-bottom: 1px solid rgba(88, 124, 64, .12);
+      background: rgba(255, 255, 255, .86);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+    }
+
+    .logo {
+      margin: 0;
+      color: var(--green-dark);
+      font-size: 1.2rem;
+      font-weight: 850;
+    }
+
+    .header-copy {
+      margin: 0;
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    .home-link {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      padding: 8px 14px;
+      color: var(--green-dark);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--white);
+      font-size: .86rem;
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .home-link:hover {
+      background: var(--green-light);
+    }
+
+    /* ======================
+       ヒーロー
+    ====================== */
+    main {
+      padding: 78px 0 96px;
+    }
+
+    .hero {
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin: 0 0 15px;
+      padding: 6px 13px;
+      color: var(--green-dark);
+      border-radius: 999px;
+      background: var(--green-light);
+      font-size: .82rem;
+      font-weight: 750;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.1rem, 8vw, 3.7rem);
+      line-height: 1.25;
+      letter-spacing: -.035em;
+    }
+
+    .hero-catch {
+      margin: 18px 0 0;
+      color: var(--green-dark);
+      font-size: clamp(1.05rem, 3vw, 1.25rem);
+      font-weight: 800;
+    }
+
+    .hero-description {
+      max-width: 650px;
+      margin: 15px auto 0;
+      color: var(--muted);
+    }
+
+    /* ======================
+       計算フォーム
+    ====================== */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .field-full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 750;
+    }
+
+    input,
+    select {
+      width: 100%;
+      min-height: 52px;
+      padding: 12px 14px;
+      color: var(--text);
+      border: 1.5px solid #cdd8c7;
+      border-radius: 12px;
+      background: #fff;
+    }
+
+    input:focus,
+    select:focus {
+      outline: 3px solid rgba(88, 124, 64, .18);
+      border-color: var(--green);
+    }
+
+    .hint {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: .8rem;
+    }
+
+    .custom-rate[hidden] {
+      display: none;
+    }
+
+    .primary-button,
+    .copy-button {
+      width: 100%;
+      min-height: 56px;
+      padding: 14px 22px;
+      border-radius: 14px;
+      font-weight: 850;
+      transition: transform .15s ease, background .15s ease;
+    }
+
+    .primary-button {
+      color: #fff;
+      border: 0;
+      background: var(--green);
+      box-shadow: 0 9px 22px rgba(88, 124, 64, .23);
+    }
+
+    .primary-button:hover {
+      background: var(--green-dark);
+      transform: translateY(-1px);
+    }
+
+    .copy-button {
+      color: var(--green-dark);
+      border: 1.5px solid var(--green);
+      background: #fff;
+    }
+
+    .copy-button:hover {
+      background: var(--green-light);
+    }
+
+    .primary-button:focus-visible,
+    .copy-button:focus-visible,
+    .home-link:focus-visible,
+    .related-link:focus-visible {
+      outline: 3px solid rgba(88, 124, 64, .35);
+      outline-offset: 3px;
+    }
+
+    .error {
+      min-height: 1.6em;
+      margin: 13px 0 0;
+      color: var(--danger);
+      font-weight: 750;
+      text-align: center;
+    }
+
+    /* ======================
+       計算結果
+    ====================== */
+    .result-panel {
+      margin-top: 28px;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+    }
+
+    .result-panel[hidden] {
+      display: none;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .result-item {
+      padding: 22px 16px;
+      border-radius: 17px;
+      background: var(--green-soft);
+      text-align: center;
+    }
+
+    .result-item.primary {
+      background: var(--green-light);
+    }
+
+    .result-label {
+      display: block;
+      color: var(--muted);
+      font-size: .84rem;
+      font-weight: 750;
+    }
+
+    .result-value {
+      display: block;
+      margin-top: 7px;
+      color: var(--green-dark);
+      font-size: clamp(1.35rem, 4vw, 2rem);
+      line-height: 1.3;
+      font-weight: 900;
+      overflow-wrap: anywhere;
+    }
+
+    .result-meta {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px 22px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .copy-wrap {
+      margin-top: 20px;
+    }
+
+    .copy-status {
+      min-height: 1.5em;
+      margin: 8px 0 0;
+      color: var(--green);
+      font-size: .86rem;
+      font-weight: 750;
+      text-align: center;
+    }
+
+    /* ======================
+       注意書き
+    ====================== */
+    .notice-card {
+      border-color: var(--warning-line);
+      background: var(--warning);
+      box-shadow: none;
+    }
+
+    .notice-card .section-title {
+      margin-bottom: 12px;
+    }
+
+    .notice-card p {
+      margin: 5px 0;
+      color: #625a45;
+    }
+
+    /* ======================
+       ゴマツールの約束
+    ====================== */
+    .promise-card {
+      color: #fff;
+      border: 0;
+      background: linear-gradient(135deg, var(--green-dark), #4e7139);
+    }
+
+    .promise-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 13px 26px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    /* ======================
+       FAQ
+    ====================== */
+    .faq-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    details {
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: #fff;
+    }
+
+    summary {
+      padding: 18px 20px;
+      font-weight: 780;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::after {
+      content: "+";
+      float: right;
+      color: var(--green);
+      font-size: 1.2rem;
+    }
+
+    details[open] summary::after {
+      content: "−";
+    }
+
+    details p {
+      margin: 0;
+      padding: 0 20px 20px;
+      color: var(--muted);
+    }
+
+    /* ======================
+       関連ツール
+    ====================== */
+    .related-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .related-item {
+      padding: 19px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: var(--green-soft);
+    }
+
+    .related-name {
+      display: block;
+      font-weight: 800;
+    }
+
+    .related-status {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    .related-link {
+      display: block;
+      text-decoration: none;
+      transition: border-color .15s ease, transform .15s ease;
+    }
+
+    .related-link:hover {
+      border-color: var(--green);
+      transform: translateY(-1px);
+    }
+
+    /* ======================
+       フッター
+    ====================== */
+    footer {
+      padding: 52px 0;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      text-align: center;
+      background: var(--green-soft);
+    }
+
+    .footer-logo {
+      margin: 0 0 8px;
+      color: var(--green-dark);
+      font-size: 1.15rem;
+      font-weight: 850;
+    }
+
+    footer p {
+      margin: 5px 0;
+    }
+
+    .project-name {
+      margin-top: 20px;
+      font-size: .82rem;
+      font-weight: 750;
+      letter-spacing: .08em;
+    }
+
+    .footer-motto {
+      margin-top: 18px;
+      font-size: .86rem;
+    }
+
+    .footer-assurance {
+      max-width: 620px;
+      margin: 30px auto 0;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+      font-size: .78rem;
+      line-height: 1.8;
+    }
+
+    .footer-assurance p {
+      margin: 3px 0;
+    }
+
+    .updated {
+      margin-top: 18px;
+      font-size: .72rem;
+      line-height: 1.6;
+    }
+
+    .updated-label,
+    .updated-date {
+      display: block;
+    }
+
+    /* ======================
+       レスポンシブ
+    ====================== */
+    @media (max-width: 700px) {
+      .result-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .container {
+        width: min(100% - 24px, 880px);
+      }
+
+      .site-header {
+        padding: 18px 0;
+      }
+
+      .header-inner {
+        align-items: flex-start;
+      }
+
+      .brand-wrap {
+        flex-direction: column;
+        gap: 0;
+      }
+
+      main {
+        padding: 58px 0 76px;
+      }
+
+      .section {
+        margin-top: 54px;
+      }
+
+      .form-grid,
+      .promise-list,
+      .related-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 22px 18px;
+        border-radius: 18px;
+      }
+
+      .field-full {
+        grid-column: auto;
+      }
+
+      .result-meta {
+        flex-direction: column;
+        gap: 2px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ======================
+       ヘッダー
+  ====================== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand-wrap">
+        <p class="logo">🍵 ゴマツール</p>
+        <p class="header-copy">無料で使える便利ツール集</p>
+      </div>
+
+      <a class="home-link" href="../">
+        ← ホームへ戻る
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <!-- ======================
+           ヒーロー
+      ====================== -->
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow">30秒でかんたん計算</p>
+
+        <h1 id="page-title">💰 消費税計算</h1>
+
+        <p class="hero-catch">
+          税込・税抜・消費税額をかんたん計算。
+        </p>
+
+        <p class="hero-description">
+          金額と税率を入力すると、税込金額・税抜金額・消費税額を計算できます。<br>
+          10%・8%に加えて、将来の税率変更にも対応しやすい自由入力にも対応しています。
+        </p>
+      </section>
+
+      <!-- ======================
+           消費税計算フォーム
+      ====================== -->
+      <section
+        class="section"
+        aria-labelledby="calculator-title"
+      >
+        <h2 class="section-title" id="calculator-title">
+          消費税を計算する
+        </h2>
+
+        <div class="card">
+          <form id="taxForm" novalidate>
+            <div class="form-grid">
+              <div class="field-full">
+                <label for="amount">金額（円）</label>
+                <input
+                  type="number"
+                  id="amount"
+                  name="amount"
+                  min="0"
+                  max="999999999999999"
+                  step="1"
+                  inputmode="numeric"
+                  placeholder="例：1000"
+                  required
+                >
+                <p class="hint">
+                  カンマなしの整数で入力してください
+                </p>
+              </div>
+
+              <div>
+                <label for="calculationType">
+                  計算方法
+                </label>
+
+                <select
+                  id="calculationType"
+                  name="calculationType"
+                >
+                  <option value="exclusive">
+                    税抜から税込を計算
+                  </option>
+                  <option value="inclusive">
+                    税込から税抜を計算
+                  </option>
+                </select>
+              </div>
+
+              <div>
+                <label for="taxRate">税率</label>
+
+                <select id="taxRate" name="taxRate">
+                  <option value="10">10%</option>
+                  <option value="8">8%</option>
+                  <option value="custom">自由入力</option>
+                </select>
+              </div>
+
+              <div
+                class="custom-rate"
+                id="customRateField"
+                hidden
+              >
+                <label for="customRate">
+                  自由入力の税率（%）
+                </label>
+
+                <input
+                  type="number"
+                  id="customRate"
+                  name="customRate"
+                  min="0"
+                  max="100"
+                  step="any"
+                  inputmode="decimal"
+                  placeholder="例：12.5"
+                  disabled
+                >
+              </div>
+
+              <div>
+                <label for="rounding">
+                  端数処理
+                </label>
+
+                <select id="rounding" name="rounding">
+                  <option value="floor" selected>
+                    切り捨て
+                  </option>
+                  <option value="round">
+                    四捨五入
+                  </option>
+                  <option value="ceil">
+                    切り上げ
+                  </option>
+                </select>
+              </div>
+
+              <div class="field-full">
+                <button
+                  class="primary-button"
+                  type="submit"
+                >
+                  💰 消費税を計算する
+                </button>
+              </div>
+            </div>
+
+            <p
+              class="error"
+              id="formError"
+              role="alert"
+            ></p>
+          </form>
+
+          <!-- ======================
+               計算結果
+          ====================== -->
+          <div
+            class="result-panel"
+            id="resultPanel"
+            aria-live="polite"
+            hidden
+          >
+            <div class="result-grid">
+              <div class="result-item primary">
+                <span class="result-label">
+                  税込金額
+                </span>
+                <strong
+                  class="result-value"
+                  id="totalAmount"
+                >
+                  —
+                </strong>
+              </div>
+
+              <div class="result-item">
+                <span class="result-label">
+                  税抜金額
+                </span>
+                <strong
+                  class="result-value"
+                  id="baseAmount"
+                >
+                  —
+                </strong>
+              </div>
+
+              <div class="result-item">
+                <span class="result-label">
+                  消費税額
+                </span>
+                <strong
+                  class="result-value"
+                  id="taxAmount"
+                >
+                  —
+                </strong>
+              </div>
+            </div>
+
+            <div class="result-meta">
+              <span id="appliedRate">
+                適用税率：—
+              </span>
+
+              <span id="appliedRounding">
+                端数処理：—
+              </span>
+            </div>
+
+            <div class="copy-wrap">
+              <button
+                class="copy-button"
+                type="button"
+                id="copyButton"
+              >
+                📋 結果をコピー
+              </button>
+
+              <p
+                class="copy-status"
+                id="copyStatus"
+                role="status"
+              ></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================
+           注意書き
+      ====================== -->
+      <section
+        class="section card notice-card"
+        aria-labelledby="notice-title"
+      >
+        <h2 class="section-title" id="notice-title">
+          ⚠️ ご注意ください
+        </h2>
+
+        <p>
+          このツールは一般的な消費税計算を行うためのものです。
+        </p>
+
+        <p>
+          実際の請求・会計・税務処理では、端数処理や計算方法が異なる場合があります。
+        </p>
+
+        <p>
+          必要に応じて、事業者・会計ソフト・税理士などの基準も確認してください。
+        </p>
+      </section>
+
+      <!-- ======================
+           ゴマツールの約束
+      ====================== -->
+      <section
+        class="section card promise-card"
+        aria-labelledby="promise-title"
+      >
+        <h2 class="section-title" id="promise-title">
+          🍵 ゴマツールの約束
+        </h2>
+
+        <ul class="promise-list">
+          <li>✅ 完全無料</li>
+          <li>✅ 登録不要</li>
+          <li>✅ スマホ・PC対応</li>
+          <li>✅ 30秒で使える分かりやすさ</li>
+          <li>✅ 入力データはブラウザ内だけで処理</li>
+          <li>✅ サーバーへ送信・保存しません</li>
+        </ul>
+      </section>
+
+      <!-- ======================
+           FAQ
+      ====================== -->
+      <section
+        class="section"
+        aria-labelledby="faq-title"
+      >
+        <h2 class="section-title" id="faq-title">
+          よくある質問
+        </h2>
+
+        <div class="faq-list">
+          <details>
+            <summary>
+              Q. 10%と8%に対応していますか？
+            </summary>
+            <p>
+              A. はい。10%と8%に対応しています。
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              Q. 将来消費税率が変わった場合も使えますか？
+            </summary>
+            <p>
+              A. はい。自由入力で任意の税率を入力できます。
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              Q. 端数処理は選べますか？
+            </summary>
+            <p>
+              A. はい。切り捨て・四捨五入・切り上げを選べます。
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              Q. 入力した金額は保存されますか？
+            </summary>
+            <p>
+              A. 保存されません。ブラウザ内だけで計算します。
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <!-- ======================
+           関連ツール
+      ====================== -->
+      <section
+        class="section"
+        aria-labelledby="related-title"
+      >
+        <h2 class="section-title" id="related-title">
+          おすすめの便利ツール
+        </h2>
+
+        <div class="card related-grid">
+          <a
+            class="related-item related-link"
+            href="../age/"
+          >
+            <span class="related-name">
+              🎂 年齢・日付計算
+            </span>
+            <span class="related-status">
+              公開中
+            </span>
+          </a>
+
+          <a
+            class="related-item related-link"
+            href="../business-days/"
+          >
+            <span class="related-name">
+              📅 営業日計算
+            </span>
+            <span class="related-status">
+              公開中
+            </span>
+          </a>
+
+          <div class="related-item">
+            <span class="related-name">
+              👥 割り勘計算
+            </span>
+            <span class="related-status">
+              制作予定
+            </span>
+          </div>
+
+          <div class="related-item">
+            <span class="related-name">
+              📱 QRコード生成
+            </span>
+            <span class="related-status">
+              制作予定
+            </span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ======================
+       フッター
+  ====================== -->
+  <footer>
+    <div class="container">
+      <p class="footer-logo">
+        🍵 ゴマツール
+      </p>
+
+      <p>
+        30秒で使えて、<br>
+        他より少し便利。
+      </p>
+
+      <p class="project-name">
+        Project Goma
+      </p>
+
+      <p class="footer-motto">
+        小さく作って、<br>
+        早く公開して、<br>
+        一歩ずつ育てる。
+      </p>
+
+      <div class="footer-assurance">
+        <p>
+          入力したデータはブラウザ内だけで処理されます。
+        </p>
+        <p>
+          サーバーへ送信・保存は行いません。
+        </p>
+        <p>
+          ゴマツールは、毎日安心して使える便利なツールづくりを目指しています。
+        </p>
+      </div>
+
+      <p class="updated">
+        <span class="updated-label">
+          最終更新
+        </span>
+        <span class="updated-date">
+          2026年6月27日
+        </span>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    'use strict';
+
+    // ======================
+    // 消費税計算ユーティリティ
+    // ======================
+    const ROUNDING_LABELS = {
+      floor: '切り捨て',
+      round: '四捨五入',
+      ceil: '切り上げ'
+    };
+
+    let copyText = '';
+
+    function roundValue(value, method) {
+      // 整数境界で発生する浮動小数点誤差だけを補正します。
+      const tolerance =
+        Number.EPSILON *
+        Math.max(1, Math.abs(value)) *
+        8;
+
+      if (method === 'round') {
+        return Math.round(value);
+      }
+
+      if (method === 'ceil') {
+        return Math.ceil(value - tolerance);
+      }
+
+      return Math.floor(value + tolerance);
+    }
+
+    function formatYen(value) {
+      return `${value.toLocaleString('ja-JP')}円`;
+    }
+
+    function formatRate(rate) {
+      return `${Number(rate.toFixed(6))}%`;
+    }
+
+    function getSelectedRate() {
+      const rateType =
+        document.getElementById('taxRate').value;
+
+      return rateType === 'custom'
+        ? Number(
+            document.getElementById('customRate').value
+          )
+        : Number(rateType);
+    }
+
+    // ======================
+    // 自由税率の表示切り替え
+    // ======================
+    function toggleCustomRate() {
+      const isCustom =
+        document.getElementById('taxRate').value ===
+        'custom';
+
+      const field =
+        document.getElementById('customRateField');
+
+      const input =
+        document.getElementById('customRate');
+
+      field.hidden = !isCustom;
+      input.disabled = !isCustom;
+
+      if (!isCustom) {
+        input.value = '';
+      }
+    }
+
+    // ======================
+    // 消費税計算
+    // ======================
+    function calculateTax(event) {
+      event.preventDefault();
+
+      const rawAmount =
+        document.getElementById('amount')
+          .value
+          .trim();
+
+      const amount = Number(rawAmount);
+
+      const calculationType =
+        document.getElementById(
+          'calculationType'
+        ).value;
+
+      const rateType =
+        document.getElementById('taxRate').value;
+
+      const rawCustomRate =
+        document.getElementById('customRate')
+          .value
+          .trim();
+
+      const rate = getSelectedRate();
+
+      const rounding =
+        document.getElementById('rounding').value;
+
+      const error =
+        document.getElementById('formError');
+
+      const panel =
+        document.getElementById('resultPanel');
+
+      error.textContent = '';
+      panel.hidden = true;
+
+      if (rawAmount === '') {
+        error.textContent =
+          '金額を入力してください。';
+        return;
+      }
+
+      if (!Number.isInteger(amount)) {
+        error.textContent =
+          '金額は整数で入力してください。';
+        return;
+      }
+
+      if (amount < 0) {
+        error.textContent =
+          '金額は0以上で入力してください。';
+        return;
+      }
+
+      if (!Number.isSafeInteger(amount)) {
+        error.textContent =
+          '金額が大きすぎます。15桁以内で入力してください。';
+        return;
+      }
+
+      if (
+        rateType === 'custom' &&
+        rawCustomRate === ''
+      ) {
+        error.textContent =
+          '自由入力の税率を入力してください。';
+        return;
+      }
+
+      if (
+        !Number.isFinite(rate) ||
+        rate < 0
+      ) {
+        error.textContent =
+          '税率は0以上で入力してください。';
+        return;
+      }
+
+      if (rate > 100) {
+        error.textContent =
+          '税率は100以下で入力してください。';
+        return;
+      }
+
+      let baseAmount;
+      let totalAmount;
+      let taxAmount;
+
+      if (calculationType === 'exclusive') {
+        baseAmount = amount;
+
+        taxAmount = roundValue(
+          baseAmount * rate / 100,
+          rounding
+        );
+
+        totalAmount =
+          baseAmount + taxAmount;
+      } else {
+        totalAmount = amount;
+
+        baseAmount = roundValue(
+          totalAmount / (1 + rate / 100),
+          rounding
+        );
+
+        taxAmount =
+          totalAmount - baseAmount;
+      }
+
+      const rateText = formatRate(rate);
+
+      const roundingText =
+        ROUNDING_LABELS[rounding];
+
+      document.getElementById(
+        'totalAmount'
+      ).textContent = formatYen(totalAmount);
+
+      document.getElementById(
+        'baseAmount'
+      ).textContent = formatYen(baseAmount);
+
+      document.getElementById(
+        'taxAmount'
+      ).textContent = formatYen(taxAmount);
+
+      document.getElementById(
+        'appliedRate'
+      ).textContent =
+        `適用税率：${rateText}`;
+
+      document.getElementById(
+        'appliedRounding'
+      ).textContent =
+        `端数処理：${roundingText}`;
+
+      copyText = [
+        '【ゴマツール 消費税計算結果】',
+        `税込金額：${formatYen(totalAmount)}`,
+        `税抜金額：${formatYen(baseAmount)}`,
+        `消費税額：${formatYen(taxAmount)}`,
+        `税率：${rateText}`,
+        `端数処理：${roundingText}`
+      ].join('\n');
+
+      document.getElementById(
+        'copyStatus'
+      ).textContent = '';
+
+      panel.hidden = false;
+
+      panel.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest'
+      });
+    }
+
+    // ======================
+    // 結果コピー
+    // ======================
+    async function copyResult() {
+      const status =
+        document.getElementById('copyStatus');
+
+      try {
+        await navigator.clipboard.writeText(
+          copyText
+        );
+
+        status.textContent =
+          'コピーしました！';
+      } catch (error) {
+        const textArea =
+          document.createElement('textarea');
+
+        textArea.value = copyText;
+        textArea.style.position = 'fixed';
+        textArea.style.opacity = '0';
+
+        document.body.appendChild(textArea);
+        textArea.select();
+
+        const copied =
+          document.execCommand('copy');
+
+        textArea.remove();
+
+        status.textContent = copied
+          ? 'コピーしました！'
+          : 'コピーできませんでした。';
+      }
+    }
+
+    // ======================
+    // 初期表示
+    // ======================
+    function initializePage() {
+      document.getElementById(
+        'taxRate'
+      ).addEventListener(
+        'change',
+        toggleCustomRate
+      );
+
+      document.getElementById(
+        'taxForm'
+      ).addEventListener(
+        'submit',
+        calculateTax
+      );
+
+      document.getElementById(
+        'copyButton'
+      ).addEventListener(
+        'click',
+        copyResult
+      );
+
+      toggleCustomRate();
+    }
+
+    initializePage();
+  </script>
+</body>
+</html>
