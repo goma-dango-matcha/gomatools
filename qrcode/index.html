@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="URLやテキストからQRコードを簡単に作成できる無料ツールです。作成したQRコードはPNG画像として保存できます。">
+  <title>QRコード生成｜ゴマツール</title>
+
+  <style>
+    /* ======================
+       基本設定
+    ====================== */
+    :root {
+      --green: #587c40;
+      --green-dark: #355126;
+      --green-light: #eef5e9;
+      --green-soft: #f8fbf6;
+      --text: #20251d;
+      --muted: #687064;
+      --line: #dde6d8;
+      --white: #fff;
+      --danger: #b44335;
+      --shadow: 0 16px 44px rgba(48, 70, 36, .09);
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background: linear-gradient(180deg, #f9fcf7 0, #fff 25%);
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Hiragino Kaku Gothic ProN",
+        "Yu Gothic",
+        Meiryo,
+        sans-serif;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(100% - 32px, 880px);
+      margin-inline: auto;
+    }
+
+    .section {
+      margin-top: 72px;
+    }
+
+    .section-title {
+      margin: 0 0 20px;
+      font-size: clamp(1.4rem, 4vw, 1.8rem);
+    }
+
+    .card {
+      padding: clamp(22px, 5vw, 38px);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    /* ======================
+       ヘッダー
+    ====================== */
+    .site-header {
+      padding: 23px 0;
+      border-bottom: 1px solid rgba(88, 124, 64, .12);
+      background: rgba(255, 255, 255, .86);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+    }
+
+    .logo {
+      margin: 0;
+      color: var(--green-dark);
+      font-size: 1.2rem;
+      font-weight: 850;
+    }
+
+    .header-copy {
+      margin: 0;
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    .home-link {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      padding: 8px 14px;
+      color: var(--green-dark);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--white);
+      font-size: .86rem;
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .home-link:hover {
+      background: var(--green-light);
+    }
+
+    /* ======================
+       ヒーロー
+    ====================== */
+    main {
+      padding: 78px 0 96px;
+    }
+
+    .hero {
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin: 0 0 15px;
+      padding: 6px 13px;
+      color: var(--green-dark);
+      border-radius: 999px;
+      background: var(--green-light);
+      font-size: .82rem;
+      font-weight: 750;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.1rem, 8vw, 3.7rem);
+      line-height: 1.25;
+      letter-spacing: -.035em;
+    }
+
+    .hero-catch {
+      margin: 18px 0 0;
+      color: var(--green-dark);
+      font-size: clamp(1.05rem, 3vw, 1.25rem);
+      font-weight: 800;
+    }
+
+    .hero-description {
+      max-width: 640px;
+      margin: 15px auto 0;
+      color: var(--muted);
+    }
+
+    /* ======================
+       QRコード生成フォーム
+    ====================== */
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 750;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 150px;
+      padding: 14px 16px;
+      color: var(--text);
+      border: 1.5px solid #cdd8c7;
+      border-radius: 13px;
+      background: #fff;
+      resize: vertical;
+    }
+
+    textarea:focus {
+      outline: 3px solid rgba(88, 124, 64, .18);
+      border-color: var(--green);
+    }
+
+    .field-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    .primary-button,
+    .save-button {
+      width: 100%;
+      min-height: 56px;
+      padding: 14px 22px;
+      border-radius: 14px;
+      font-weight: 850;
+      transition:
+        transform .15s ease,
+        background .15s ease;
+    }
+
+    .primary-button {
+      margin-top: 22px;
+      color: #fff;
+      border: 0;
+      background: var(--green);
+      box-shadow: 0 9px 22px rgba(88, 124, 64, .23);
+    }
+
+    .primary-button:hover {
+      background: var(--green-dark);
+      transform: translateY(-1px);
+    }
+
+    .error {
+      min-height: 1.6em;
+      margin: 13px 0 0;
+      color: var(--danger);
+      font-weight: 750;
+      text-align: center;
+    }
+
+    /* ======================
+       QRコード表示
+    ====================== */
+    .result-area {
+      margin-top: 28px;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+      text-align: center;
+    }
+
+    .qr-frame {
+      display: grid;
+      width: min(100%, 340px);
+      min-height: 340px;
+      place-items: center;
+      margin-inline: auto;
+      padding: 24px;
+      border: 1px dashed #bfd0b5;
+      border-radius: 20px;
+      background: var(--green-soft);
+    }
+
+    .placeholder {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    #qrCanvas {
+      display: block;
+      width: min(100%, 288px);
+      height: auto;
+      border-radius: 6px;
+      background: #fff;
+    }
+
+    #qrCanvas[hidden],
+    .save-button[hidden] {
+      display: none;
+    }
+
+    #qrSource {
+      position: absolute;
+      overflow: hidden;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .save-button {
+      margin-top: 18px;
+      color: var(--green-dark);
+      border: 1.5px solid var(--green);
+      background: #fff;
+    }
+
+    .save-button:hover {
+      color: #fff;
+      background: var(--green-dark);
+      transform: translateY(-1px);
+    }
+
+    .primary-button:focus-visible,
+    .save-button:focus-visible,
+    .home-link:focus-visible,
+    .related-link:focus-visible {
+      outline: 3px solid rgba(88, 124, 64, .35);
+      outline-offset: 3px;
+    }
+
+    .result-status {
+      min-height: 1.6em;
+      margin: 9px 0 0;
+      color: var(--green-dark);
+      font-size: .85rem;
+      font-weight: 750;
+    }
+
+    /* ======================
+       補足・関連ツール
+    ====================== */
+    .info-card {
+      box-shadow: none;
+      background: var(--green-soft);
+    }
+
+    .info-card p {
+      margin: 5px 0;
+      color: var(--muted);
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .related-item {
+      padding: 19px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: var(--green-soft);
+    }
+
+    .related-name {
+      display: block;
+      font-weight: 800;
+    }
+
+    .related-status {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    .related-link {
+      display: block;
+      text-decoration: none;
+      transition:
+        border-color .15s ease,
+        transform .15s ease;
+    }
+
+    .related-link:hover {
+      border-color: var(--green);
+      transform: translateY(-1px);
+    }
+
+    /* ======================
+       フッター
+    ====================== */
+    footer {
+      padding: 52px 0;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      text-align: center;
+      background: var(--green-soft);
+    }
+
+    .footer-logo {
+      margin: 0 0 8px;
+      color: var(--green-dark);
+      font-size: 1.15rem;
+      font-weight: 850;
+    }
+
+    footer p {
+      margin: 5px 0;
+    }
+
+    .project-name {
+      margin-top: 20px;
+      font-size: .82rem;
+      font-weight: 750;
+      letter-spacing: .08em;
+    }
+
+    .footer-motto {
+      margin-top: 18px;
+      font-size: .86rem;
+    }
+
+    .footer-assurance {
+      max-width: 620px;
+      margin: 30px auto 0;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+      font-size: .78rem;
+      line-height: 1.8;
+    }
+
+    .updated {
+      margin-top: 18px;
+      font-size: .72rem;
+      line-height: 1.6;
+    }
+
+    .updated-label,
+    .updated-date {
+      display: block;
+    }
+
+    /* ======================
+       レスポンシブ
+    ====================== */
+    @media (max-width: 620px) {
+      .container {
+        width: min(100% - 24px, 880px);
+      }
+
+      .site-header {
+        padding: 18px 0;
+      }
+
+      .header-inner {
+        align-items: flex-start;
+      }
+
+      .brand-wrap {
+        flex-direction: column;
+        gap: 0;
+      }
+
+      main {
+        padding: 58px 0 76px;
+      }
+
+      .section {
+        margin-top: 54px;
+      }
+
+      .card {
+        padding: 22px 18px;
+        border-radius: 18px;
+      }
+
+      .related-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .qr-frame {
+        min-height: 290px;
+        padding: 14px;
+      }
+
+      .field-meta {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 2px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ======================
+       ヘッダー
+  ====================== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand-wrap">
+        <p class="logo">🍵 ゴマツール</p>
+        <p class="header-copy">無料で使える便利ツール集</p>
+      </div>
+
+      <a class="home-link" href="../">← ホームへ戻る</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <!-- ======================
+           ヒーロー
+      ====================== -->
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow">無料・登録不要</p>
+
+        <h1 id="page-title">📱 QRコード生成</h1>
+
+        <p class="hero-catch">
+          URLやテキストから、かんたん作成。
+        </p>
+
+        <p class="hero-description">
+          URLやテキストを入力するだけで、簡単にQRコードを作成できます。<br>
+          作成したQRコードはPNG画像として保存できます。
+        </p>
+      </section>
+
+      <!-- ======================
+           QRコード生成フォーム
+      ====================== -->
+      <section class="section" aria-labelledby="generator-title">
+        <h2 class="section-title" id="generator-title">
+          QRコードを作る
+        </h2>
+
+        <div class="card">
+          <form id="qrForm" novalidate>
+            <label for="qrText">
+              QRコードにする内容
+            </label>
+
+            <textarea
+              id="qrText"
+              name="qrText"
+              maxlength="1200"
+              placeholder="例：https://example.com&#10;例：こんにちは"
+              aria-describedby="inputHint characterCount"
+              required
+            ></textarea>
+
+            <div class="field-meta">
+              <span id="inputHint">
+                URL・テキスト・メールアドレス・電話番号など
+              </span>
+
+              <span id="characterCount">
+                0 / 1,200文字
+              </span>
+            </div>
+
+            <button class="primary-button" type="submit">
+              📱 QRコードを生成する
+            </button>
+
+            <p class="error" id="formError" role="alert"></p>
+          </form>
+
+          <!-- ======================
+               QRコード表示
+          ====================== -->
+          <div
+            class="result-area"
+            id="resultArea"
+            aria-live="polite"
+          >
+            <div class="qr-frame">
+              <p class="placeholder" id="placeholder">
+                ここにQRコードが表示されます
+              </p>
+
+              <canvas
+                id="qrCanvas"
+                width="288"
+                height="288"
+                aria-label="生成したQRコード"
+                hidden
+              ></canvas>
+            </div>
+
+            <div id="qrSource" aria-hidden="true"></div>
+
+            <button
+              class="save-button"
+              id="saveButton"
+              type="button"
+              hidden
+            >
+              PNGで保存
+            </button>
+
+            <p class="result-status" id="resultStatus"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================
+           注意書き
+      ====================== -->
+      <section
+        class="section card info-card"
+        aria-labelledby="privacy-title"
+      >
+        <h2 class="section-title" id="privacy-title">
+          安心してお使いください
+        </h2>
+
+        <p>
+          入力内容とQRコードの生成処理は、このブラウザ上だけで行われます。
+        </p>
+
+        <p>
+          入力内容をサーバーへ送信・保存することはありません。
+        </p>
+      </section>
+
+      <!-- ======================
+           関連ツール
+      ====================== -->
+      <section class="section" aria-labelledby="related-title">
+        <h2 class="section-title" id="related-title">
+          おすすめの便利ツール
+        </h2>
+
+        <div class="card related-grid">
+          <a class="related-item related-link" href="../age/">
+            <span class="related-name">🎂 年齢・日付計算</span>
+            <span class="related-status">公開中</span>
+          </a>
+
+          <a class="related-item related-link" href="../business-days/">
+            <span class="related-name">📅 営業日計算</span>
+            <span class="related-status">公開中</span>
+          </a>
+
+          <a class="related-item related-link" href="../tax/">
+            <span class="related-name">💰 消費税計算</span>
+            <span class="related-status">公開中</span>
+          </a>
+
+          <a class="related-item related-link" href="../warikan/">
+            <span class="related-name">👥 割り勘計算</span>
+            <span class="related-status">公開中</span>
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ======================
+       フッター
+  ====================== -->
+  <footer>
+    <div class="container">
+      <p class="footer-logo">🍵 ゴマツール</p>
+
+      <p>
+        30秒で使えて、<br>
+        他より少し便利。
+      </p>
+
+      <p class="project-name">
+        Project Goma
+      </p>
+
+      <p class="footer-motto">
+        小さく作って、<br>
+        早く公開して、<br>
+        一歩ずつ育てる。
+      </p>
+
+      <div class="footer-assurance">
+        <p>
+          入力したデータはブラウザ内だけで処理されます。
+        </p>
+
+        <p>
+          サーバーへ送信・保存は行いません。
+        </p>
+      </div>
+
+      <p class="updated">
+        <span class="updated-label">最終更新</span>
+        <span class="updated-date">2026年6月27日</span>
+      </p>
+    </div>
+  </footer>
+
+  <!-- QRCode.js 1.0.0（MIT License） -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+    integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+
+  <script>
+    'use strict';
+
+    // ======================
+    // エラー表示
+    // ======================
+    function showError(message) {
+      document.getElementById('formError').textContent = message;
+      document.getElementById('resultStatus').textContent = '';
+    }
+
+    // ======================
+    // QRコードへ余白を追加
+    // ======================
+    function drawQrWithMargin(sourceCanvas) {
+      const outputCanvas = document.getElementById('qrCanvas');
+      const context = outputCanvas.getContext('2d');
+      const margin = 16;
+
+      context.fillStyle = '#ffffff';
+      context.fillRect(
+        0,
+        0,
+        outputCanvas.width,
+        outputCanvas.height
+      );
+
+      context.imageSmoothingEnabled = false;
+
+      context.drawImage(
+        sourceCanvas,
+        margin,
+        margin,
+        outputCanvas.width - margin * 2,
+        outputCanvas.height - margin * 2
+      );
+    }
+
+    // ======================
+    // QRコード生成
+    // ======================
+    function generateQrCode(event) {
+      event.preventDefault();
+
+      const input = document.getElementById('qrText');
+      const text = input.value.trim();
+      const source = document.getElementById('qrSource');
+      const canvas = document.getElementById('qrCanvas');
+      const placeholder = document.getElementById('placeholder');
+      const saveButton = document.getElementById('saveButton');
+
+      showError('');
+
+      canvas.hidden = true;
+      saveButton.hidden = true;
+
+      // 空欄チェック
+      if (!text) {
+        placeholder.hidden = false;
+
+        showError(
+          'QRコードにしたい文字やURLを入力してください。'
+        );
+
+        input.focus();
+        return;
+      }
+
+      // ライブラリの読み込みチェック
+      if (typeof QRCode === 'undefined') {
+        placeholder.hidden = false;
+
+        showError(
+          'QRコード生成機能を読み込めませんでした。通信環境を確認して、もう一度お試しください。'
+        );
+
+        return;
+      }
+
+      try {
+        // 前回生成したQRコードを削除
+        source.replaceChildren();
+
+        // QRコードを生成
+        new QRCode(source, {
+          text: text,
+          width: 256,
+          height: 256,
+          colorDark: '#000000',
+          colorLight: '#ffffff',
+          correctLevel: QRCode.CorrectLevel.L
+        });
+
+        const sourceCanvas = source.querySelector('canvas');
+
+        if (!sourceCanvas) {
+          throw new Error('QR canvas was not created.');
+        }
+
+        // 保存用キャンバスへ余白付きで描画
+        drawQrWithMargin(sourceCanvas);
+
+        placeholder.hidden = true;
+        canvas.hidden = false;
+        saveButton.hidden = false;
+
+        document.getElementById('resultStatus').textContent =
+          'QRコードを生成しました。';
+
+        document.getElementById('resultArea').scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest'
+        });
+      } catch (error) {
+        source.replaceChildren();
+        placeholder.hidden = false;
+
+        showError(
+          '入力内容が長すぎる可能性があります。短くしてもう一度お試しください。'
+        );
+      }
+    }
+
+    // ======================
+    // PNG保存
+    // ======================
+    function saveQrCode() {
+      const canvas = document.getElementById('qrCanvas');
+      const link = document.createElement('a');
+
+      try {
+        link.download = 'gomatools-qrcode.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+
+        document.getElementById('resultStatus').textContent =
+          'PNG画像を保存しました。';
+      } catch (error) {
+        showError(
+          'PNG画像の保存に失敗しました。もう一度お試しください。'
+        );
+      }
+    }
+
+    // ======================
+    // 初期表示
+    // ======================
+    function initializePage() {
+      const input = document.getElementById('qrText');
+      const form = document.getElementById('qrForm');
+      const saveButton = document.getElementById('saveButton');
+
+      form.addEventListener('submit', generateQrCode);
+      saveButton.addEventListener('click', saveQrCode);
+
+      input.addEventListener('input', function () {
+        document.getElementById('characterCount').textContent =
+          `${input.value.length.toLocaleString('ja-JP')} / 1,200文字`;
+
+        document.getElementById('formError').textContent = '';
+      });
+    }
+
+    initializePage();
+  </script>
+</body>
+</html>
