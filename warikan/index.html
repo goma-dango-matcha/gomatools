@@ -228,9 +228,7 @@
       background: var(--green);
       box-shadow: 0 9px 22px rgba(88, 124, 64, .23);
       font-weight: 850;
-      transition:
-        transform .15s ease,
-        background .15s ease;
+      transition: transform .15s ease, background .15s ease;
     }
 
     .primary-button:hover {
@@ -351,9 +349,7 @@
     .related-link {
       display: block;
       text-decoration: none;
-      transition:
-        border-color .15s ease,
-        transform .15s ease;
+      transition: border-color .15s ease, transform .15s ease;
     }
 
     .related-link:hover {
@@ -500,9 +496,13 @@
            ヒーロー
       ====================== -->
       <section class="hero" aria-labelledby="page-title">
-        <p class="eyebrow">30秒でかんたん計算</p>
+        <p class="eyebrow">
+          30秒でかんたん計算
+        </p>
 
-        <h1 id="page-title">👥 割り勘計算</h1>
+        <h1 id="page-title">
+          👥 割り勘計算
+        </h1>
 
         <p class="hero-catch">
           合計金額を、人数でかんたん割り勘。
@@ -520,7 +520,10 @@
         class="section"
         aria-labelledby="calculator-title"
       >
-        <h2 class="section-title" id="calculator-title">
+        <h2
+          class="section-title"
+          id="calculator-title"
+        >
           割り勘を計算する
         </h2>
 
@@ -640,7 +643,10 @@
         class="section card info-card"
         aria-labelledby="info-title"
       >
-        <h2 class="section-title" id="info-title">
+        <h2
+          class="section-title"
+          id="info-title"
+        >
           計算について
         </h2>
 
@@ -660,7 +666,10 @@
         class="section"
         aria-labelledby="related-title"
       >
-        <h2 class="section-title" id="related-title">
+        <h2
+          class="section-title"
+          id="related-title"
+        >
           おすすめの便利ツール
         </h2>
 
@@ -710,6 +719,19 @@
           >
             <span class="related-name">
               📱 QRコード生成
+            </span>
+
+            <span class="related-status">
+              公開中
+            </span>
+          </a>
+
+          <a
+            class="related-item related-link"
+            href="../school-year/"
+          >
+            <span class="related-name">
+              🎓 学年・年齢・卒業年度計算
             </span>
 
             <span class="related-status">
@@ -780,24 +802,31 @@
     function calculateWarikan(event) {
       event.preventDefault();
 
-      const rawTotal = document
-        .getElementById('totalAmount')
-        .value
-        .trim();
+      const rawTotal =
+        document.getElementById(
+          'totalAmount'
+        ).value.trim();
 
-      const rawPeople = document
-        .getElementById('peopleCount')
-        .value
-        .trim();
+      const rawPeople =
+        document.getElementById(
+          'peopleCount'
+        ).value.trim();
 
-      const total = Number(rawTotal);
-      const people = Number(rawPeople);
+      const total =
+        Number(rawTotal);
+
+      const people =
+        Number(rawPeople);
 
       const error =
-        document.getElementById('formError');
+        document.getElementById(
+          'formError'
+        );
 
       const panel =
-        document.getElementById('resultPanel');
+        document.getElementById(
+          'resultPanel'
+        );
 
       error.textContent = '';
       panel.hidden = true;
@@ -808,7 +837,10 @@
         return;
       }
 
-      if (!Number.isInteger(total) || total < 0) {
+      if (
+        !Number.isInteger(total) ||
+        total < 0
+      ) {
         error.textContent =
           '合計金額は0以上の整数で入力してください。';
         return;
@@ -842,21 +874,23 @@
       const remainder =
         total % people;
 
-      document
-        .getElementById('perPersonAmount')
-        .textContent = formatYen(perPerson);
+      document.getElementById(
+        'perPersonAmount'
+      ).textContent =
+        formatYen(perPerson);
 
-      document
-        .getElementById('remainderAmount')
-        .textContent = remainder === 0
+      document.getElementById(
+        'remainderAmount'
+      ).textContent =
+        remainder === 0
           ? '0 円（ぴったり）'
           : formatYen(remainder);
 
-      document
-        .getElementById('resultSummary')
-        .textContent =
-          `${formatYen(total)}を` +
-          `${people.toLocaleString('ja-JP')}人で割った結果です。`;
+      document.getElementById(
+        'resultSummary'
+      ).textContent =
+        `${formatYen(total)}を` +
+        `${people.toLocaleString('ja-JP')}人で割った結果です。`;
 
       panel.hidden = false;
 
@@ -870,12 +904,12 @@
     // 初期表示
     // ======================
     function initializePage() {
-      document
-        .getElementById('warikanForm')
-        .addEventListener(
-          'submit',
-          calculateWarikan
-        );
+      document.getElementById(
+        'warikanForm'
+      ).addEventListener(
+        'submit',
+        calculateWarikan
+      );
     }
 
     initializePage();
