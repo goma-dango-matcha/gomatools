@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="合計金額と人数から1人あたりの金額と余りを無料で計算できるゴマツールです。">
+  <title>割り勘計算｜ゴマツール</title>
+
+  <style>
+    /* ======================
+       基本設定
+    ====================== */
+    :root {
+      --green: #587c40;
+      --green-dark: #355126;
+      --green-light: #eef5e9;
+      --green-soft: #f8fbf6;
+      --text: #20251d;
+      --muted: #687064;
+      --line: #dde6d8;
+      --white: #fff;
+      --danger: #b44335;
+      --shadow: 0 16px 44px rgba(48, 70, 36, .09);
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background: linear-gradient(180deg, #f9fcf7 0, #fff 25%);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(100% - 32px, 880px);
+      margin-inline: auto;
+    }
+
+    .section {
+      margin-top: 72px;
+    }
+
+    .section-title {
+      margin: 0 0 20px;
+      font-size: clamp(1.4rem, 4vw, 1.8rem);
+    }
+
+    .card {
+      padding: clamp(22px, 5vw, 38px);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    /* ======================
+       ヘッダー
+    ====================== */
+    .site-header {
+      padding: 23px 0;
+      border-bottom: 1px solid rgba(88, 124, 64, .12);
+      background: rgba(255, 255, 255, .86);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+    }
+
+    .logo {
+      margin: 0;
+      color: var(--green-dark);
+      font-size: 1.2rem;
+      font-weight: 850;
+    }
+
+    .header-copy {
+      margin: 0;
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    .home-link {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      padding: 8px 14px;
+      color: var(--green-dark);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--white);
+      font-size: .86rem;
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .home-link:hover {
+      background: var(--green-light);
+    }
+
+    /* ======================
+       ヒーロー
+    ====================== */
+    main {
+      padding: 78px 0 96px;
+    }
+
+    .hero {
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin: 0 0 15px;
+      padding: 6px 13px;
+      color: var(--green-dark);
+      border-radius: 999px;
+      background: var(--green-light);
+      font-size: .82rem;
+      font-weight: 750;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.1rem, 8vw, 3.7rem);
+      line-height: 1.25;
+      letter-spacing: -.035em;
+    }
+
+    .hero-catch {
+      margin: 18px 0 0;
+      color: var(--green-dark);
+      font-size: clamp(1.05rem, 3vw, 1.25rem);
+      font-weight: 800;
+    }
+
+    .hero-description {
+      max-width: 610px;
+      margin: 15px auto 0;
+      color: var(--muted);
+    }
+
+    /* ======================
+       計算フォーム
+    ====================== */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .field-full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 750;
+    }
+
+    input {
+      width: 100%;
+      min-height: 52px;
+      padding: 12px 14px;
+      color: var(--text);
+      border: 1.5px solid #cdd8c7;
+      border-radius: 12px;
+      background: #fff;
+    }
+
+    input:focus {
+      outline: 3px solid rgba(88, 124, 64, .18);
+      border-color: var(--green);
+    }
+
+    .hint {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: .8rem;
+    }
+
+    .primary-button {
+      width: 100%;
+      min-height: 56px;
+      padding: 14px 22px;
+      color: #fff;
+      border: 0;
+      border-radius: 14px;
+      background: var(--green);
+      box-shadow: 0 9px 22px rgba(88, 124, 64, .23);
+      font-weight: 850;
+      transition: transform .15s ease, background .15s ease;
+    }
+
+    .primary-button:hover {
+      background: var(--green-dark);
+      transform: translateY(-1px);
+    }
+
+    .primary-button:focus-visible,
+    .home-link:focus-visible,
+    .related-link:focus-visible {
+      outline: 3px solid rgba(88, 124, 64, .35);
+      outline-offset: 3px;
+    }
+
+    .error {
+      min-height: 1.6em;
+      margin: 13px 0 0;
+      color: var(--danger);
+      font-weight: 750;
+      text-align: center;
+    }
+
+    /* ======================
+       計算結果
+    ====================== */
+    .result-panel {
+      margin-top: 28px;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+    }
+
+    .result-panel[hidden] {
+      display: none;
+    }
+
+    .result-main {
+      padding: 28px 20px;
+      border-radius: 18px;
+      background: var(--green-light);
+      text-align: center;
+    }
+
+    .result-label {
+      display: block;
+      color: var(--muted);
+      font-size: .86rem;
+      font-weight: 750;
+    }
+
+    .result-value {
+      display: block;
+      margin-top: 6px;
+      color: var(--green-dark);
+      font-size: clamp(2.1rem, 8vw, 3.5rem);
+      line-height: 1.25;
+      font-weight: 900;
+      overflow-wrap: anywhere;
+    }
+
+    .remainder-card {
+      margin-top: 14px;
+      padding: 19px;
+      border-radius: 15px;
+      background: var(--green-soft);
+      text-align: center;
+    }
+
+    .remainder-value {
+      color: var(--green-dark);
+      font-weight: 850;
+    }
+
+    .result-summary {
+      margin: 15px 0 0;
+      color: var(--muted);
+      text-align: center;
+      font-size: .9rem;
+    }
+
+    /* ======================
+       補足・関連ツール
+    ====================== */
+    .info-card {
+      box-shadow: none;
+      background: var(--green-soft);
+    }
+
+    .info-card p {
+      margin: 5px 0;
+      color: var(--muted);
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .related-item {
+      padding: 19px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: var(--green-soft);
+    }
+
+    .related-name {
+      display: block;
+      font-weight: 800;
+    }
+
+    .related-status {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    .related-link {
+      display: block;
+      text-decoration: none;
+      transition: border-color .15s ease, transform .15s ease;
+    }
+
+    .related-link:hover {
+      border-color: var(--green);
+      transform: translateY(-1px);
+    }
+
+    /* ======================
+       フッター
+    ====================== */
+    footer {
+      padding: 52px 0;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      text-align: center;
+      background: var(--green-soft);
+    }
+
+    .footer-logo {
+      margin: 0 0 8px;
+      color: var(--green-dark);
+      font-size: 1.15rem;
+      font-weight: 850;
+    }
+
+    footer p {
+      margin: 5px 0;
+    }
+
+    .project-name {
+      margin-top: 20px;
+      font-size: .82rem;
+      font-weight: 750;
+      letter-spacing: .08em;
+    }
+
+    .footer-motto {
+      margin-top: 18px;
+      font-size: .86rem;
+    }
+
+    .footer-assurance {
+      max-width: 620px;
+      margin: 30px auto 0;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+      font-size: .78rem;
+      line-height: 1.8;
+    }
+
+    .footer-assurance p {
+      margin: 3px 0;
+    }
+
+    .updated {
+      margin-top: 18px;
+      font-size: .72rem;
+      line-height: 1.6;
+    }
+
+    .updated-label,
+    .updated-date {
+      display: block;
+    }
+
+    /* ======================
+       レスポンシブ
+    ====================== */
+    @media (max-width: 620px) {
+      .container {
+        width: min(100% - 24px, 880px);
+      }
+
+      .site-header {
+        padding: 18px 0;
+      }
+
+      .header-inner {
+        align-items: flex-start;
+      }
+
+      .brand-wrap {
+        flex-direction: column;
+        gap: 0;
+      }
+
+      main {
+        padding: 58px 0 76px;
+      }
+
+      .section {
+        margin-top: 54px;
+      }
+
+      .form-grid,
+      .related-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .field-full {
+        grid-column: auto;
+      }
+
+      .card {
+        padding: 22px 18px;
+        border-radius: 18px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ======================
+       ヘッダー
+  ====================== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand-wrap">
+        <p class="logo">🍵 ゴマツール</p>
+        <p class="header-copy">無料で使える便利ツール集</p>
+      </div>
+
+      <a class="home-link" href="../">
+        ← ホームへ戻る
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <!-- ======================
+           ヒーロー
+      ====================== -->
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow">30秒でかんたん計算</p>
+
+        <h1 id="page-title">👥 割り勘計算</h1>
+
+        <p class="hero-catch">
+          合計金額を、人数でかんたん割り勘。
+        </p>
+
+        <p class="hero-description">
+          合計金額と人数を入力すると、1人あたりの金額と余りをすぐに計算できます。
+        </p>
+      </section>
+
+      <!-- ======================
+           割り勘計算フォーム
+      ====================== -->
+      <section
+        class="section"
+        aria-labelledby="calculator-title"
+      >
+        <h2 class="section-title" id="calculator-title">
+          割り勘を計算する
+        </h2>
+
+        <div class="card">
+          <form id="warikanForm" novalidate>
+            <div class="form-grid">
+              <div>
+                <label for="totalAmount">
+                  合計金額（円）
+                </label>
+
+                <input
+                  type="number"
+                  id="totalAmount"
+                  name="totalAmount"
+                  min="0"
+                  max="999999999999999"
+                  step="1"
+                  inputmode="numeric"
+                  placeholder="例：10000"
+                  required
+                >
+
+                <p class="hint">
+                  カンマなしの整数
+                </p>
+              </div>
+
+              <div>
+                <label for="peopleCount">
+                  人数
+                </label>
+
+                <input
+                  type="number"
+                  id="peopleCount"
+                  name="peopleCount"
+                  min="1"
+                  max="10000"
+                  step="1"
+                  inputmode="numeric"
+                  placeholder="例：3"
+                  required
+                >
+
+                <p class="hint">
+                  1〜10,000人
+                </p>
+              </div>
+
+              <div class="field-full">
+                <button
+                  class="primary-button"
+                  type="submit"
+                >
+                  👥 割り勘を計算する
+                </button>
+              </div>
+            </div>
+
+            <p
+              class="error"
+              id="formError"
+              role="alert"
+            ></p>
+          </form>
+
+          <!-- ======================
+               計算結果
+          ====================== -->
+          <div
+            class="result-panel"
+            id="resultPanel"
+            aria-live="polite"
+            hidden
+          >
+            <div class="result-main">
+              <span class="result-label">
+                1人あたり
+              </span>
+
+              <strong
+                class="result-value"
+                id="perPersonAmount"
+              >
+                —
+              </strong>
+            </div>
+
+            <div class="remainder-card">
+              <span class="result-label">
+                割り切れない余り
+              </span>
+
+              <strong
+                class="remainder-value"
+                id="remainderAmount"
+              >
+                —
+              </strong>
+            </div>
+
+            <p
+              class="result-summary"
+              id="resultSummary"
+            >
+              —
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================
+           計算方法
+      ====================== -->
+      <section
+        class="section card info-card"
+        aria-labelledby="info-title"
+      >
+        <h2 class="section-title" id="info-title">
+          計算について
+        </h2>
+
+        <p>
+          1人あたりの金額は、合計金額を人数で割って1円未満を切り捨てます。
+        </p>
+
+        <p>
+          割り切れない金額は「余り」として表示します。
+        </p>
+      </section>
+
+      <!-- ======================
+           関連ツール
+      ====================== -->
+      <section
+        class="section"
+        aria-labelledby="related-title"
+      >
+        <h2 class="section-title" id="related-title">
+          おすすめの便利ツール
+        </h2>
+
+        <div class="card related-grid">
+          <a
+            class="related-item related-link"
+            href="../age/"
+          >
+            <span class="related-name">
+              🎂 年齢・日付計算
+            </span>
+            <span class="related-status">公開中</span>
+          </a>
+
+          <a
+            class="related-item related-link"
+            href="../business-days/"
+          >
+            <span class="related-name">
+              📅 営業日計算
+            </span>
+            <span class="related-status">公開中</span>
+          </a>
+
+          <a
+            class="related-item related-link"
+            href="../tax/"
+          >
+            <span class="related-name">
+              💰 消費税計算
+            </span>
+            <span class="related-status">公開中</span>
+          </a>
+
+          <div class="related-item">
+            <span class="related-name">
+              📱 QRコード生成
+            </span>
+            <span class="related-status">制作予定</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ======================
+       フッター
+  ====================== -->
+  <footer>
+    <div class="container">
+      <p class="footer-logo">
+        🍵 ゴマツール
+      </p>
+
+      <p>
+        30秒で使えて、<br>
+        他より少し便利。
+      </p>
+
+      <p class="project-name">
+        Project Goma
+      </p>
+
+      <p class="footer-motto">
+        小さく作って、<br>
+        早く公開して、<br>
+        一歩ずつ育てる。
+      </p>
+
+      <div class="footer-assurance">
+        <p>
+          入力したデータはブラウザ内だけで処理されます。
+        </p>
+        <p>
+          サーバーへ送信・保存は行いません。
+        </p>
+      </div>
+
+      <p class="updated">
+        <span class="updated-label">
+          最終更新
+        </span>
+        <span class="updated-date">
+          2026年6月27日
+        </span>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    'use strict';
+
+    // ======================
+    // 割り勘計算
+    // ======================
+    function formatYen(value) {
+      return `${value.toLocaleString('ja-JP')} 円`;
+    }
+
+    function calculateWarikan(event) {
+      event.preventDefault();
+
+      const rawTotal =
+        document.getElementById(
+          'totalAmount'
+        ).value.trim();
+
+      const rawPeople =
+        document.getElementById(
+          'peopleCount'
+        ).value.trim();
+
+      const total = Number(rawTotal);
+      const people = Number(rawPeople);
+
+      const error =
+        document.getElementById('formError');
+
+      const panel =
+        document.getElementById('resultPanel');
+
+      error.textContent = '';
+      panel.hidden = true;
+
+      if (rawTotal === '') {
+        error.textContent =
+          '合計金額を入力してください。';
+        return;
+      }
+
+      if (
+        !Number.isInteger(total) ||
+        total < 0
+      ) {
+        error.textContent =
+          '合計金額は0以上の整数で入力してください。';
+        return;
+      }
+
+      if (!Number.isSafeInteger(total)) {
+        error.textContent =
+          '合計金額が大きすぎます。15桁以内で入力してください。';
+        return;
+      }
+
+      if (rawPeople === '') {
+        error.textContent =
+          '人数を入力してください。';
+        return;
+      }
+
+      if (
+        !Number.isInteger(people) ||
+        people < 1 ||
+        people > 10000
+      ) {
+        error.textContent =
+          '人数は1〜10,000の整数で入力してください。';
+        return;
+      }
+
+      const perPerson =
+        Math.floor(total / people);
+
+      const remainder =
+        total % people;
+
+      document.getElementById(
+        'perPersonAmount'
+      ).textContent =
+        formatYen(perPerson);
+
+      document.getElementById(
+        'remainderAmount'
+      ).textContent =
+        remainder === 0
+          ? '0 円（ぴったり）'
+          : formatYen(remainder);
+
+      document.getElementById(
+        'resultSummary'
+      ).textContent =
+        `${formatYen(total)}を` +
+        `${people.toLocaleString('ja-JP')}人で割った結果です。`;
+
+      panel.hidden = false;
+
+      panel.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest'
+      });
+    }
+
+    // ======================
+    // 初期表示
+    // ======================
+    function initializePage() {
+      document.getElementById(
+        'warikanForm'
+      ).addEventListener(
+        'submit',
+        calculateWarikan
+      );
+    }
+
+    initializePage();
+  </script>
+</body>
+</html>
