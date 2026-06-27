@@ -219,9 +219,7 @@
       padding: 14px 22px;
       border-radius: 14px;
       font-weight: 850;
-      transition:
-        transform .15s ease,
-        background .15s ease;
+      transition: transform .15s ease, background .15s ease;
     }
 
     .primary-button {
@@ -364,9 +362,7 @@
     .related-link {
       display: block;
       text-decoration: none;
-      transition:
-        border-color .15s ease,
-        transform .15s ease;
+      transition: border-color .15s ease, transform .15s ease;
     }
 
     .related-link:hover {
@@ -540,7 +536,10 @@
         class="section"
         aria-labelledby="generator-title"
       >
-        <h2 class="section-title" id="generator-title">
+        <h2
+          class="section-title"
+          id="generator-title"
+        >
           QRコードを作る
         </h2>
 
@@ -675,7 +674,6 @@
             <span class="related-name">
               🎂 年齢・日付計算
             </span>
-
             <span class="related-status">
               公開中
             </span>
@@ -688,7 +686,6 @@
             <span class="related-name">
               📅 営業日計算
             </span>
-
             <span class="related-status">
               公開中
             </span>
@@ -701,7 +698,6 @@
             <span class="related-name">
               💰 消費税計算
             </span>
-
             <span class="related-status">
               公開中
             </span>
@@ -714,7 +710,18 @@
             <span class="related-name">
               👥 割り勘計算
             </span>
+            <span class="related-status">
+              公開中
+            </span>
+          </a>
 
+          <a
+            class="related-item related-link"
+            href="../school-year/"
+          >
+            <span class="related-name">
+              🎓 学年・年齢・卒業年度計算
+            </span>
             <span class="related-status">
               公開中
             </span>
@@ -770,7 +777,10 @@
     </div>
   </footer>
 
-  <!-- QRCode.js 1.0.0（MIT License） -->
+  <!--
+    QRCode.js 1.0.0（MIT License）
+    QRコード生成処理はブラウザ内で実行されます。
+  -->
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
     integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA=="
@@ -785,13 +795,13 @@
     // エラー表示
     // ======================
     function showError(message) {
-      document
-        .getElementById('formError')
-        .textContent = message;
+      document.getElementById(
+        'formError'
+      ).textContent = message;
 
-      document
-        .getElementById('resultStatus')
-        .textContent = '';
+      document.getElementById(
+        'resultStatus'
+      ).textContent = '';
     }
 
     // ======================
@@ -799,7 +809,9 @@
     // ======================
     function drawQrWithMargin(sourceCanvas) {
       const outputCanvas =
-        document.getElementById('qrCanvas');
+        document.getElementById(
+          'qrCanvas'
+        );
 
       const context =
         outputCanvas.getContext('2d');
@@ -833,22 +845,32 @@
       event.preventDefault();
 
       const input =
-        document.getElementById('qrText');
+        document.getElementById(
+          'qrText'
+        );
 
       const text =
         input.value.trim();
 
       const source =
-        document.getElementById('qrSource');
+        document.getElementById(
+          'qrSource'
+        );
 
       const canvas =
-        document.getElementById('qrCanvas');
+        document.getElementById(
+          'qrCanvas'
+        );
 
       const placeholder =
-        document.getElementById('placeholder');
+        document.getElementById(
+          'placeholder'
+        );
 
       const saveButton =
-        document.getElementById('saveButton');
+        document.getElementById(
+          'saveButton'
+        );
 
       showError('');
 
@@ -903,17 +925,17 @@
         canvas.hidden = false;
         saveButton.hidden = false;
 
-        document
-          .getElementById('resultStatus')
-          .textContent =
-            'QRコードを生成しました。';
+        document.getElementById(
+          'resultStatus'
+        ).textContent =
+          'QRコードを生成しました。';
 
-        document
-          .getElementById('resultArea')
-          .scrollIntoView({
-            behavior: 'smooth',
-            block: 'nearest'
-          });
+        document.getElementById(
+          'resultArea'
+        ).scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest'
+        });
       } catch (error) {
         source.replaceChildren();
         placeholder.hidden = false;
@@ -929,7 +951,9 @@
     // ======================
     function saveQrCode() {
       const canvas =
-        document.getElementById('qrCanvas');
+        document.getElementById(
+          'qrCanvas'
+        );
 
       const link =
         document.createElement('a');
@@ -943,10 +967,10 @@
 
         link.click();
 
-        document
-          .getElementById('resultStatus')
-          .textContent =
-            'PNG画像を保存しました。';
+        document.getElementById(
+          'resultStatus'
+        ).textContent =
+          'PNG画像を保存しました。';
       } catch (error) {
         showError(
           'PNG画像の保存に失敗しました。もう一度お試しください。'
@@ -959,33 +983,35 @@
     // ======================
     function initializePage() {
       const input =
-        document.getElementById('qrText');
-
-      document
-        .getElementById('qrForm')
-        .addEventListener(
-          'submit',
-          generateQrCode
+        document.getElementById(
+          'qrText'
         );
 
-      document
-        .getElementById('saveButton')
-        .addEventListener(
-          'click',
-          saveQrCode
-        );
+      document.getElementById(
+        'qrForm'
+      ).addEventListener(
+        'submit',
+        generateQrCode
+      );
+
+      document.getElementById(
+        'saveButton'
+      ).addEventListener(
+        'click',
+        saveQrCode
+      );
 
       input.addEventListener(
         'input',
         function () {
-          document
-            .getElementById('characterCount')
-            .textContent =
-              `${input.value.length.toLocaleString('ja-JP')} / 1,200文字`;
+          document.getElementById(
+            'characterCount'
+          ).textContent =
+            `${input.value.length.toLocaleString('ja-JP')} / 1,200文字`;
 
-          document
-            .getElementById('formError')
-            .textContent = '';
+          document.getElementById(
+            'formError'
+          ).textContent = '';
         }
       );
     }
