@@ -36,8 +36,14 @@
       margin: 0;
       color: var(--text);
       background: linear-gradient(180deg, #f9fcf7 0, #fff 25%);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-        "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Hiragino Kaku Gothic ProN",
+        "Yu Gothic",
+        Meiryo,
+        sans-serif;
       line-height: 1.75;
       -webkit-font-smoothing: antialiased;
     }
@@ -222,7 +228,9 @@
       background: var(--green);
       box-shadow: 0 9px 22px rgba(88, 124, 64, .23);
       font-weight: 850;
-      transition: transform .15s ease, background .15s ease;
+      transition:
+        transform .15s ease,
+        background .15s ease;
     }
 
     .primary-button:hover {
@@ -343,7 +351,9 @@
     .related-link {
       display: block;
       text-decoration: none;
-      transition: border-color .15s ease, transform .15s ease;
+      transition:
+        border-color .15s ease,
+        transform .15s ease;
     }
 
     .related-link:hover {
@@ -662,7 +672,10 @@
             <span class="related-name">
               🎂 年齢・日付計算
             </span>
-            <span class="related-status">公開中</span>
+
+            <span class="related-status">
+              公開中
+            </span>
           </a>
 
           <a
@@ -672,7 +685,10 @@
             <span class="related-name">
               📅 営業日計算
             </span>
-            <span class="related-status">公開中</span>
+
+            <span class="related-status">
+              公開中
+            </span>
           </a>
 
           <a
@@ -682,15 +698,24 @@
             <span class="related-name">
               💰 消費税計算
             </span>
-            <span class="related-status">公開中</span>
+
+            <span class="related-status">
+              公開中
+            </span>
           </a>
 
-          <div class="related-item">
+          <a
+            class="related-item related-link"
+            href="../qrcode/"
+          >
             <span class="related-name">
               📱 QRコード生成
             </span>
-            <span class="related-status">制作予定</span>
-          </div>
+
+            <span class="related-status">
+              公開中
+            </span>
+          </a>
         </div>
       </section>
     </div>
@@ -724,6 +749,7 @@
         <p>
           入力したデータはブラウザ内だけで処理されます。
         </p>
+
         <p>
           サーバーへ送信・保存は行いません。
         </p>
@@ -733,6 +759,7 @@
         <span class="updated-label">
           最終更新
         </span>
+
         <span class="updated-date">
           2026年6月27日
         </span>
@@ -753,15 +780,15 @@
     function calculateWarikan(event) {
       event.preventDefault();
 
-      const rawTotal =
-        document.getElementById(
-          'totalAmount'
-        ).value.trim();
+      const rawTotal = document
+        .getElementById('totalAmount')
+        .value
+        .trim();
 
-      const rawPeople =
-        document.getElementById(
-          'peopleCount'
-        ).value.trim();
+      const rawPeople = document
+        .getElementById('peopleCount')
+        .value
+        .trim();
 
       const total = Number(rawTotal);
       const people = Number(rawPeople);
@@ -781,10 +808,7 @@
         return;
       }
 
-      if (
-        !Number.isInteger(total) ||
-        total < 0
-      ) {
+      if (!Number.isInteger(total) || total < 0) {
         error.textContent =
           '合計金額は0以上の整数で入力してください。';
         return;
@@ -818,23 +842,21 @@
       const remainder =
         total % people;
 
-      document.getElementById(
-        'perPersonAmount'
-      ).textContent =
-        formatYen(perPerson);
+      document
+        .getElementById('perPersonAmount')
+        .textContent = formatYen(perPerson);
 
-      document.getElementById(
-        'remainderAmount'
-      ).textContent =
-        remainder === 0
+      document
+        .getElementById('remainderAmount')
+        .textContent = remainder === 0
           ? '0 円（ぴったり）'
           : formatYen(remainder);
 
-      document.getElementById(
-        'resultSummary'
-      ).textContent =
-        `${formatYen(total)}を` +
-        `${people.toLocaleString('ja-JP')}人で割った結果です。`;
+      document
+        .getElementById('resultSummary')
+        .textContent =
+          `${formatYen(total)}を` +
+          `${people.toLocaleString('ja-JP')}人で割った結果です。`;
 
       panel.hidden = false;
 
@@ -848,12 +870,12 @@
     // 初期表示
     // ======================
     function initializePage() {
-      document.getElementById(
-        'warikanForm'
-      ).addEventListener(
-        'submit',
-        calculateWarikan
-      );
+      document
+        .getElementById('warikanForm')
+        .addEventListener(
+          'submit',
+          calculateWarikan
+        );
     }
 
     initializePage();
