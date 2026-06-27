@@ -26,52 +26,29 @@
       --radius: 22px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
       color: var(--text);
       background: linear-gradient(180deg, #f9fcf7 0, #fff 25%);
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        "Hiragino Kaku Gothic ProN",
-        "Yu Gothic",
-        Meiryo,
-        sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
       line-height: 1.75;
       -webkit-font-smoothing: antialiased;
     }
 
-    button,
-    input,
-    select {
-      font: inherit;
-    }
-
-    button {
-      cursor: pointer;
-    }
-
-    a {
-      color: inherit;
-    }
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+    a { color: inherit; }
 
     .container {
       width: min(100% - 32px, 880px);
       margin-inline: auto;
     }
 
-    .section {
-      margin-top: 72px;
-    }
+    .section { margin-top: 72px; }
 
     .section-title {
       margin: 0 0 20px;
@@ -142,13 +119,9 @@
     /* ======================
        ヒーロー
     ====================== */
-    main {
-      padding: 78px 0 96px;
-    }
+    main { padding: 78px 0 96px; }
 
-    .hero {
-      text-align: center;
-    }
+    .hero { text-align: center; }
 
     .eyebrow {
       display: inline-block;
@@ -204,8 +177,7 @@
       font-weight: 750;
     }
 
-    input,
-    select {
+    input, select {
       width: 100%;
       min-height: 52px;
       padding: 12px 14px;
@@ -215,8 +187,7 @@
       background: #fff;
     }
 
-    input:focus,
-    select:focus {
+    input:focus, select:focus {
       outline: 3px solid rgba(88, 124, 64, .18);
       border-color: var(--green);
     }
@@ -420,9 +391,7 @@
       font-weight: 850;
     }
 
-    footer p {
-      margin: 5px 0;
-    }
+    footer p { margin: 5px 0; }
 
     .project-name {
       margin-top: 20px;
@@ -515,7 +484,9 @@
         <p class="header-copy">無料で使える便利ツール集</p>
       </div>
 
-      <a class="home-link" href="../">← ホームへ戻る</a>
+      <a class="home-link" href="../">
+        ← ホームへ戻る
+      </a>
     </div>
   </header>
 
@@ -525,9 +496,13 @@
            ヒーロー
       ====================== -->
       <section class="hero" aria-labelledby="page-title">
-        <p class="eyebrow">入学年・卒業年をかんたん確認</p>
+        <p class="eyebrow">
+          入学年・卒業年をかんたん確認
+        </p>
 
-        <h1 id="page-title">🎓 学年・年齢・卒業年度計算</h1>
+        <h1 id="page-title">
+          🎓 学年・年齢・卒業年度計算
+        </h1>
 
         <p class="hero-catch">
           生年月日や卒業年から、進学時期の目安を計算。
@@ -541,8 +516,14 @@
       <!-- ======================
            計算フォーム
       ====================== -->
-      <section class="section" aria-labelledby="calculator-title">
-        <h2 class="section-title" id="calculator-title">
+      <section
+        class="section"
+        aria-labelledby="calculator-title"
+      >
+        <h2
+          class="section-title"
+          id="calculator-title"
+        >
           計算条件を入力
         </h2>
 
@@ -550,17 +531,35 @@
           <form id="schoolForm" novalidate>
             <div class="form-grid">
               <div class="field-full">
-                <label for="calculationMode">計算方法</label>
+                <label for="calculationMode">
+                  計算方法
+                </label>
 
-                <select id="calculationMode" name="calculationMode">
-                  <option value="birthday">生年月日から計算</option>
-                  <option value="birthYear">生まれ年から計算</option>
-                  <option value="graduationYear">高校卒業年から逆算</option>
+                <select
+                  id="calculationMode"
+                  name="calculationMode"
+                >
+                  <option value="birthday">
+                    生年月日から計算
+                  </option>
+
+                  <option value="birthYear">
+                    生まれ年から計算
+                  </option>
+
+                  <option value="graduationYear">
+                    高校卒業年から逆算
+                  </option>
                 </select>
               </div>
 
-              <div class="field-full input-field" id="birthdayField">
-                <label for="birthday">生年月日</label>
+              <div
+                class="field-full input-field"
+                id="birthdayField"
+              >
+                <label for="birthday">
+                  生年月日
+                </label>
 
                 <input
                   type="date"
@@ -575,7 +574,9 @@
                 id="birthYearField"
                 hidden
               >
-                <label for="birthYear">生まれ年（西暦）</label>
+                <label for="birthYear">
+                  生まれ年（西暦）
+                </label>
 
                 <input
                   type="number"
@@ -615,7 +616,10 @@
               </div>
 
               <div class="field-full">
-                <button class="primary-button" type="submit">
+                <button
+                  class="primary-button"
+                  type="submit"
+                >
                   🎓 計算する
                 </button>
               </div>
@@ -671,11 +675,17 @@
               </div>
             </div>
 
-            <p class="result-note" id="resultNote">
+            <p
+              class="result-note"
+              id="resultNote"
+            >
               一般的な日本の制度をもとにした目安です。
             </p>
 
-            <div class="schedule-wrap" id="scheduleWrap">
+            <div
+              class="schedule-wrap"
+              id="scheduleWrap"
+            >
               <table class="schedule-table">
                 <tbody id="scheduleBody"></tbody>
               </table>
@@ -691,7 +701,10 @@
         class="section card notice-card"
         aria-labelledby="notice-title"
       >
-        <h2 class="section-title" id="notice-title">
+        <h2
+          class="section-title"
+          id="notice-title"
+        >
           ⚠️ ご注意ください
         </h2>
 
@@ -711,7 +724,10 @@
         class="section card privacy-card"
         aria-labelledby="privacy-title"
       >
-        <h2 class="section-title" id="privacy-title">
+        <h2
+          class="section-title"
+          id="privacy-title"
+        >
           🍵 安心してお使いください
         </h2>
 
@@ -731,12 +747,18 @@
         class="section"
         aria-labelledby="related-title"
       >
-        <h2 class="section-title" id="related-title">
+        <h2
+          class="section-title"
+          id="related-title"
+        >
           おすすめの便利ツール
         </h2>
 
         <div class="card related-grid">
-          <a class="related-item related-link" href="../age/">
+          <a
+            class="related-item related-link"
+            href="../age/"
+          >
             <span class="related-name">
               🎂 年齢・日付計算
             </span>
@@ -753,23 +775,42 @@
             <span class="related-status">公開中</span>
           </a>
 
-          <a class="related-item related-link" href="../tax/">
+          <a
+            class="related-item related-link"
+            href="../tax/"
+          >
             <span class="related-name">
               💰 消費税計算
             </span>
             <span class="related-status">公開中</span>
           </a>
 
-          <a class="related-item related-link" href="../warikan/">
+          <a
+            class="related-item related-link"
+            href="../warikan/"
+          >
             <span class="related-name">
               👥 割り勘計算
             </span>
             <span class="related-status">公開中</span>
           </a>
 
-          <a class="related-item related-link" href="../qrcode/">
+          <a
+            class="related-item related-link"
+            href="../qrcode/"
+          >
             <span class="related-name">
               📱 QRコード生成
+            </span>
+            <span class="related-status">公開中</span>
+          </a>
+
+          <a
+            class="related-item related-link"
+            href="../wareki/"
+          >
+            <span class="related-name">
+              📅 和暦・西暦変換
             </span>
             <span class="related-status">公開中</span>
           </a>
@@ -783,14 +824,18 @@
   ====================== -->
   <footer>
     <div class="container">
-      <p class="footer-logo">🍵 ゴマツール</p>
+      <p class="footer-logo">
+        🍵 ゴマツール
+      </p>
 
       <p>
         30秒で使えて、<br>
         他より少し便利。
       </p>
 
-      <p class="project-name">Project Goma</p>
+      <p class="project-name">
+        Project Goma
+      </p>
 
       <div class="footer-assurance">
         <p>
@@ -815,19 +860,25 @@
     // 日付・学年ユーティリティ
     // ======================
     const MIN_BIRTH_YEAR = 1900;
-    const MAX_FUTURE_YEAR = new Date().getFullYear() + 20;
+    const MAX_FUTURE_YEAR =
+      new Date().getFullYear() + 20;
 
     function toUtcDate(year, month, day) {
       const date = new Date(0);
 
       date.setUTCHours(0, 0, 0, 0);
-      date.setUTCFullYear(year, month - 1, day);
+      date.setUTCFullYear(
+        year,
+        month - 1,
+        day
+      );
 
       return date;
     }
 
     function parseDate(value) {
-      const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
+      const match =
+        /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
 
       if (!match) {
         return null;
@@ -836,7 +887,9 @@
       const year = Number(match[1]);
       const month = Number(match[2]);
       const day = Number(match[3]);
-      const date = toUtcDate(year, month, day);
+
+      const date =
+        toUtcDate(year, month, day);
 
       const isValid =
         date.getUTCFullYear() === year &&
@@ -856,27 +909,32 @@
       );
     }
 
-    function calculateCurrentAge(birthday, today) {
+    function calculateCurrentAge(
+      birthday,
+      today
+    ) {
       let age =
         today.getUTCFullYear() -
         birthday.getUTCFullYear();
 
-      const lastDayOfBirthMonth = new Date(
-        Date.UTC(
+      const lastDayOfBirthMonth =
+        new Date(
+          Date.UTC(
+            today.getUTCFullYear(),
+            birthday.getUTCMonth() + 1,
+            0
+          )
+        ).getUTCDate();
+
+      const birthdayThisYear =
+        toUtcDate(
           today.getUTCFullYear(),
           birthday.getUTCMonth() + 1,
-          0
-        )
-      ).getUTCDate();
-
-      const birthdayThisYear = toUtcDate(
-        today.getUTCFullYear(),
-        birthday.getUTCMonth() + 1,
-        Math.min(
-          birthday.getUTCDate(),
-          lastDayOfBirthMonth
-        )
-      );
+          Math.min(
+            birthday.getUTCDate(),
+            lastDayOfBirthMonth
+          )
+        );
 
       if (birthdayThisYear > today) {
         age--;
@@ -885,9 +943,14 @@
       return age;
     }
 
-    function getElementaryEntryYear(birthday) {
-      const month = birthday.getUTCMonth() + 1;
-      const day = birthday.getUTCDate();
+    function getElementaryEntryYear(
+      birthday
+    ) {
+      const month =
+        birthday.getUTCMonth() + 1;
+
+      const day =
+        birthday.getUTCDate();
 
       const isEarlyBorn =
         month < 4 ||
@@ -897,7 +960,9 @@
         (isEarlyBorn ? 6 : 7);
     }
 
-    function createSchedule(elementaryEntry) {
+    function createSchedule(
+      elementaryEntry
+    ) {
       return [
         ['小学校 入学', elementaryEntry],
         ['小学校 卒業', elementaryEntry + 6],
@@ -917,30 +982,34 @@
       secondary = null
     ) {
       const body =
-        document.getElementById('scheduleBody');
+        document.getElementById(
+          'scheduleBody'
+        );
 
       body.replaceChildren();
 
-      primary.forEach(function (row, index) {
-        const tr =
-          document.createElement('tr');
+      primary.forEach(
+        function (row, index) {
+          const tr =
+            document.createElement('tr');
 
-        const th =
-          document.createElement('th');
+          const th =
+            document.createElement('th');
 
-        const td =
-          document.createElement('td');
+          const td =
+            document.createElement('td');
 
-        th.scope = 'row';
-        th.textContent = row[0];
+          th.scope = 'row';
+          th.textContent = row[0];
 
-        td.textContent = secondary
-          ? `1月1日〜4月1日生まれ：${formatYear(row[1])} ／ 4月2日〜12月31日生まれ：${formatYear(secondary[index][1])}`
-          : formatYear(row[1]);
+          td.textContent = secondary
+            ? `1月1日〜4月1日生まれ：${formatYear(row[1])} ／ 4月2日〜12月31日生まれ：${formatYear(secondary[index][1])}`
+            : formatYear(row[1]);
 
-        tr.append(th, td);
-        body.appendChild(tr);
-      });
+          tr.append(th, td);
+          body.appendChild(tr);
+        }
+      );
     }
 
     function showResults(
@@ -976,7 +1045,9 @@
       ).hidden = !showSchedule;
 
       const panel =
-        document.getElementById('resultPanel');
+        document.getElementById(
+          'resultPanel'
+        );
 
       panel.hidden = false;
 
@@ -997,15 +1068,18 @@
 
       document.getElementById(
         'birthdayField'
-      ).hidden = mode !== 'birthday';
+      ).hidden =
+        mode !== 'birthday';
 
       document.getElementById(
         'birthYearField'
-      ).hidden = mode !== 'birthYear';
+      ).hidden =
+        mode !== 'birthYear';
 
       document.getElementById(
         'graduationYearField'
-      ).hidden = mode !== 'graduationYear';
+      ).hidden =
+        mode !== 'graduationYear';
 
       document.getElementById(
         'formError'
@@ -1025,8 +1099,11 @@
           'birthday'
         ).value;
 
-      const birthday = parseDate(raw);
-      const today = getTodayUtc();
+      const birthday =
+        parseDate(raw);
+
+      const today =
+        getTodayUtc();
 
       if (!raw) {
         return '生年月日を入力してください。';
@@ -1053,11 +1130,12 @@
           today
         );
 
-      const elementaryEntryYear =
-        getElementaryEntryYear(birthday);
-
       const schedule =
-        createSchedule(elementaryEntryYear);
+        createSchedule(
+          getElementaryEntryYear(
+            birthday
+          )
+        );
 
       renderSchedule(schedule);
 
@@ -1081,7 +1159,9 @@
           'birthYear'
         ).value.trim();
 
-      const year = Number(raw);
+      const year =
+        Number(raw);
+
       const currentYear =
         new Date().getFullYear();
 
@@ -1138,7 +1218,9 @@
           'graduationYear'
         ).value.trim();
 
-      const year = Number(raw);
+      const year =
+        Number(raw);
+
       const currentYear =
         new Date().getFullYear();
 
@@ -1168,10 +1250,12 @@
         year - 18;
 
       const minAge =
-        currentYear - earlyBirthYear;
+        currentYear -
+        earlyBirthYear;
 
       const maxAge =
-        currentYear - regularBirthYear;
+        currentYear -
+        regularBirthYear;
 
       showResults(
         '生まれ年の目安',
@@ -1219,7 +1303,8 @@
     // 初期表示
     // ======================
     function initializePage() {
-      const today = getTodayUtc();
+      const today =
+        getTodayUtc();
 
       const todayText =
         `${today.getUTCFullYear()}-` +
@@ -1232,15 +1317,18 @@
 
       document.getElementById(
         'birthday'
-      ).max = todayText;
+      ).max =
+        todayText;
 
       document.getElementById(
         'birthYear'
-      ).max = today.getUTCFullYear();
+      ).max =
+        today.getUTCFullYear();
 
       document.getElementById(
         'graduationYear'
-      ).max = MAX_FUTURE_YEAR;
+      ).max =
+        MAX_FUTURE_YEAR;
 
       document.getElementById(
         'calculationMode'
