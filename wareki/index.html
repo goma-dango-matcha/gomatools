@@ -26,13 +26,8 @@
       --radius: 22px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
@@ -44,28 +39,16 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    button,
-    input,
-    select {
-      font: inherit;
-    }
-
-    button {
-      cursor: pointer;
-    }
-
-    a {
-      color: inherit;
-    }
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+    a { color: inherit; }
 
     .container {
       width: min(100% - 32px, 880px);
       margin-inline: auto;
     }
 
-    .section {
-      margin-top: 72px;
-    }
+    .section { margin-top: 72px; }
 
     .section-title {
       margin: 0 0 20px;
@@ -129,17 +112,10 @@
       text-decoration: none;
     }
 
-    .home-link:hover {
-      background: var(--green-light);
-    }
+    .home-link:hover { background: var(--green-light); }
 
-    main {
-      padding: 78px 0 96px;
-    }
-
-    .hero {
-      text-align: center;
-    }
+    main { padding: 78px 0 96px; }
+    .hero { text-align: center; }
 
     .eyebrow {
       display: inline-block;
@@ -209,8 +185,7 @@
       font-weight: 750;
     }
 
-    input,
-    select {
+    input, select {
       width: 100%;
       min-height: 52px;
       padding: 12px 14px;
@@ -220,8 +195,7 @@
       background: #fff;
     }
 
-    input:focus,
-    select:focus {
+    input:focus, select:focus {
       outline: 3px solid rgba(88, 124, 64, .18);
       border-color: var(--green);
     }
@@ -274,9 +248,7 @@
       text-align: center;
     }
 
-    .result-panel[hidden] {
-      display: none;
-    }
+    .result-panel[hidden] { display: none; }
 
     .result-label {
       display: block;
@@ -362,7 +334,7 @@
     }
 
     /* ======================
-       フッター
+       フッター・レスポンシブ
     ====================== */
     footer {
       padding: 52px 0;
@@ -379,9 +351,7 @@
       font-weight: 850;
     }
 
-    footer p {
-      margin: 5px 0;
-    }
+    footer p { margin: 5px 0; }
 
     .project-name {
       margin-top: 20px;
@@ -404,40 +374,22 @@
       font-size: .72rem;
     }
 
-    /* ======================
-       レスポンシブ
-    ====================== */
     @media (max-width: 720px) {
-      .converter-grid {
-        grid-template-columns: 1fr;
-      }
+      .converter-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 620px) {
-      .container {
-        width: min(100% - 24px, 880px);
-      }
-
-      .site-header {
-        padding: 18px 0;
-      }
-
-      .header-inner {
-        align-items: flex-start;
-      }
+      .container { width: min(100% - 24px, 880px); }
+      .site-header { padding: 18px 0; }
+      .header-inner { align-items: flex-start; }
 
       .brand-wrap {
         flex-direction: column;
         gap: 0;
       }
 
-      main {
-        padding: 58px 0 76px;
-      }
-
-      .section {
-        margin-top: 54px;
-      }
+      main { padding: 58px 0 76px; }
+      .section { margin-top: 54px; }
 
       .card {
         padding: 22px 18px;
@@ -451,9 +403,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
+      html { scroll-behavior: auto; }
 
       *,
       *::before,
@@ -475,9 +425,7 @@
         <p class="header-copy">無料で使える便利ツール集</p>
       </div>
 
-      <a class="home-link" href="../">
-        ← ホームへ戻る
-      </a>
+      <a class="home-link" href="../">← ホームへ戻る</a>
     </div>
   </header>
 
@@ -491,9 +439,7 @@
           明治・大正・昭和・平成・令和に対応
         </p>
 
-        <h1 id="page-title">
-          📅 和暦・西暦変換
-        </h1>
+        <h1 id="page-title">📅 和暦・西暦変換</h1>
 
         <p class="hero-catch">
           元号と西暦を、かんたん相互変換。
@@ -508,30 +454,19 @@
       <!-- ======================
            変換フォーム
       ====================== -->
-      <section
-        class="section"
-        aria-labelledby="converter-title"
-      >
-        <h2
-          class="section-title"
-          id="converter-title"
-        >
+      <section class="section" aria-labelledby="converter-title">
+        <h2 class="section-title" id="converter-title">
           変換したい年を入力
         </h2>
 
         <div class="converter-grid">
-          <!-- 西暦から和暦 -->
           <article class="card converter-card">
-            <h3 class="converter-title">
-              西暦 → 和暦
-            </h3>
+            <h3 class="converter-title">西暦 → 和暦</h3>
 
             <form id="westernForm" novalidate>
               <div class="form-grid">
                 <div>
-                  <label for="westernYear">
-                    西暦年
-                  </label>
+                  <label for="westernYear">西暦年</label>
 
                   <input
                     type="number"
@@ -550,19 +485,12 @@
                   </p>
                 </div>
 
-                <button
-                  class="primary-button"
-                  type="submit"
-                >
+                <button class="primary-button" type="submit">
                   和暦に変換する
                 </button>
               </div>
 
-              <p
-                class="error"
-                id="westernError"
-                role="alert"
-              ></p>
+              <p class="error" id="westernError" role="alert"></p>
             </form>
 
             <div
@@ -571,42 +499,24 @@
               aria-live="polite"
               hidden
             >
-              <span class="result-label">
-                変換結果
-              </span>
-
-              <strong
-                class="result-value"
-                id="westernResultValue"
-              >
+              <span class="result-label">変換結果</span>
+              <strong class="result-value" id="westernResultValue">
                 —
               </strong>
-
-              <p
-                class="result-sentence"
-                id="westernResultSentence"
-              ></p>
+              <p class="result-sentence" id="westernResultSentence"></p>
             </div>
           </article>
 
-          <!-- 和暦から西暦 -->
           <article class="card converter-card">
-            <h3 class="converter-title">
-              和暦 → 西暦
-            </h3>
+            <h3 class="converter-title">和暦 → 西暦</h3>
 
             <form id="japaneseForm" novalidate>
               <div class="form-grid">
                 <div class="era-inputs">
                   <div>
-                    <label for="eraName">
-                      元号
-                    </label>
+                    <label for="eraName">元号</label>
 
-                    <select
-                      id="eraName"
-                      name="eraName"
-                    >
+                    <select id="eraName" name="eraName">
                       <option value="reiwa">令和</option>
                       <option value="heisei">平成</option>
                       <option value="showa">昭和</option>
@@ -616,9 +526,7 @@
                   </div>
 
                   <div>
-                    <label for="eraYear">
-                      年数
-                    </label>
+                    <label for="eraYear">年数</label>
 
                     <input
                       type="text"
@@ -635,19 +543,12 @@
                   1年は「元年」と入力しても変換できます
                 </p>
 
-                <button
-                  class="primary-button"
-                  type="submit"
-                >
+                <button class="primary-button" type="submit">
                   西暦に変換する
                 </button>
               </div>
 
-              <p
-                class="error"
-                id="japaneseError"
-                role="alert"
-              ></p>
+              <p class="error" id="japaneseError" role="alert"></p>
             </form>
 
             <div
@@ -656,67 +557,46 @@
               aria-live="polite"
               hidden
             >
-              <span class="result-label">
-                変換結果
-              </span>
-
-              <strong
-                class="result-value"
-                id="japaneseResultValue"
-              >
+              <span class="result-label">変換結果</span>
+              <strong class="result-value" id="japaneseResultValue">
                 —
               </strong>
-
-              <p
-                class="result-sentence"
-                id="japaneseResultSentence"
-              ></p>
+              <p class="result-sentence" id="japaneseResultSentence"></p>
             </div>
           </article>
         </div>
       </section>
 
       <!-- ======================
-           注意書き
+           注意書き・プライバシー
       ====================== -->
       <section
         class="section card notice-card"
         aria-labelledby="notice-title"
       >
-        <h2
-          class="section-title"
-          id="notice-title"
-        >
+        <h2 class="section-title" id="notice-title">
           ⚠️ ご注意ください
         </h2>
 
         <p>
           年単位での目安変換です。改元年は同じ年に複数の元号が含まれる場合があります。
         </p>
-
         <p>
           日付まで指定した厳密な改元日の判定には対応していません。
         </p>
       </section>
 
-      <!-- ======================
-           プライバシー
-      ====================== -->
       <section
         class="section card privacy-card"
         aria-labelledby="privacy-title"
       >
-        <h2
-          class="section-title"
-          id="privacy-title"
-        >
+        <h2 class="section-title" id="privacy-title">
           🍵 安心してお使いください
         </h2>
 
         <p>
           入力内容と変換処理はブラウザ内だけで行われます。
         </p>
-
         <p>
           サーバーへ送信・保存することはありません。
         </p>
@@ -725,75 +605,44 @@
       <!-- ======================
            関連ツール
       ====================== -->
-      <section
-        class="section"
-        aria-labelledby="related-title"
-      >
-        <h2
-          class="section-title"
-          id="related-title"
-        >
+      <section class="section" aria-labelledby="related-title">
+        <h2 class="section-title" id="related-title">
           おすすめの便利ツール
         </h2>
 
         <div class="card related-grid">
-          <a
-            class="related-item related-link"
-            href="../age/"
-          >
-            <span class="related-name">
-              🎂 年齢・日付計算
-            </span>
+          <a class="related-item related-link" href="../age/">
+            <span class="related-name">🎂 年齢・日付計算</span>
             <span class="related-status">公開中</span>
           </a>
 
-          <a
-            class="related-item related-link"
-            href="../business-days/"
-          >
-            <span class="related-name">
-              📅 営業日計算
-            </span>
+          <a class="related-item related-link" href="../business-days/">
+            <span class="related-name">📅 営業日計算</span>
             <span class="related-status">公開中</span>
           </a>
 
-          <a
-            class="related-item related-link"
-            href="../tax/"
-          >
-            <span class="related-name">
-              💰 消費税計算
-            </span>
+          <a class="related-item related-link" href="../tax/">
+            <span class="related-name">💰 消費税計算</span>
             <span class="related-status">公開中</span>
           </a>
 
-          <a
-            class="related-item related-link"
-            href="../warikan/"
-          >
-            <span class="related-name">
-              👥 割り勘計算
-            </span>
+          <a class="related-item related-link" href="../warikan/">
+            <span class="related-name">👥 割り勘計算</span>
             <span class="related-status">公開中</span>
           </a>
 
-          <a
-            class="related-item related-link"
-            href="../qrcode/"
-          >
-            <span class="related-name">
-              📱 QRコード生成
-            </span>
+          <a class="related-item related-link" href="../qrcode/">
+            <span class="related-name">📱 QRコード生成</span>
             <span class="related-status">公開中</span>
           </a>
 
-          <a
-            class="related-item related-link"
-            href="../school-year/"
-          >
-            <span class="related-name">
-              🎓 学年・年齢・卒業年度計算
-            </span>
+          <a class="related-item related-link" href="../school-year/">
+            <span class="related-name">🎓 学年・年齢・卒業年度計算</span>
+            <span class="related-status">公開中</span>
+          </a>
+
+          <a class="related-item related-link" href="../text-counter/">
+            <span class="related-name">✍️ 文字数カウント</span>
             <span class="related-status">公開中</span>
           </a>
         </div>
@@ -806,27 +655,18 @@
   ====================== -->
   <footer>
     <div class="container">
-      <p class="footer-logo">
-        🍵 ゴマツール
-      </p>
+      <p class="footer-logo">🍵 ゴマツール</p>
 
       <p>
         30秒で使えて、<br>
         他より少し便利。
       </p>
 
-      <p class="project-name">
-        Project Goma
-      </p>
+      <p class="project-name">Project Goma</p>
 
       <div class="footer-assurance">
-        <p>
-          入力したデータはブラウザ内だけで処理されます。
-        </p>
-
-        <p>
-          サーバーへ送信・保存は行いません。
-        </p>
+        <p>入力したデータはブラウザ内だけで処理されます。</p>
+        <p>サーバーへ送信・保存は行いません。</p>
       </div>
 
       <p class="updated">
@@ -899,28 +739,21 @@
       event.preventDefault();
 
       const raw =
-        document.getElementById(
-          'westernYear'
-        ).value.trim();
+        document.getElementById('westernYear').value.trim();
 
       const year = Number(raw);
 
       const error =
-        document.getElementById(
-          'westernError'
-        );
+        document.getElementById('westernError');
 
       const panel =
-        document.getElementById(
-          'westernResult'
-        );
+        document.getElementById('westernResult');
 
       error.textContent = '';
       panel.hidden = true;
 
       if (raw === '') {
-        error.textContent =
-          '西暦年を入力してください。';
+        error.textContent = '西暦年を入力してください。';
         return;
       }
 
@@ -944,10 +777,7 @@
 
       const matches = ERAS
         .filter(function (era) {
-          return (
-            year >= era.start &&
-            year <= era.end
-          );
+          return year >= era.start && year <= era.end;
         })
         .map(function (era) {
           return formatEraYear(
@@ -956,17 +786,12 @@
           );
         });
 
-      const resultText =
-        matches.join('・');
+      const resultText = matches.join('・');
 
-      document.getElementById(
-        'westernResultValue'
-      ).textContent =
+      document.getElementById('westernResultValue').textContent =
         resultText;
 
-      document.getElementById(
-        'westernResultSentence'
-      ).textContent =
+      document.getElementById('westernResultSentence').textContent =
         matches.length > 1
           ? `${year}年は、${resultText}にあたります。`
           : `${year}年は、${resultText}です。`;
@@ -986,33 +811,24 @@
       event.preventDefault();
 
       const era = getEraById(
-        document.getElementById(
-          'eraName'
-        ).value
+        document.getElementById('eraName').value
       );
 
       const raw =
-        document.getElementById(
-          'eraYear'
-        ).value.trim();
+        document.getElementById('eraYear').value.trim();
 
       const normalized =
         raw === '元' || raw === '元年'
           ? '1'
           : raw.replace(/年$/, '');
 
-      const eraYear =
-        Number(normalized);
+      const eraYear = Number(normalized);
 
       const error =
-        document.getElementById(
-          'japaneseError'
-        );
+        document.getElementById('japaneseError');
 
       const panel =
-        document.getElementById(
-          'japaneseResult'
-        );
+        document.getElementById('japaneseResult');
 
       error.textContent = '';
       panel.hidden = true;
@@ -1048,19 +864,12 @@
       }
 
       const eraText =
-        formatEraYear(
-          era,
-          eraYear
-        );
+        formatEraYear(era, eraYear);
 
-      document.getElementById(
-        'japaneseResultValue'
-      ).textContent =
+      document.getElementById('japaneseResultValue').textContent =
         `${westernYear}年`;
 
-      document.getElementById(
-        'japaneseResultSentence'
-      ).textContent =
+      document.getElementById('japaneseResultSentence').textContent =
         `${eraText}は、${westernYear}年です。`;
 
       panel.hidden = false;
@@ -1075,19 +884,19 @@
     // 初期表示
     // ======================
     function initializePage() {
-      document.getElementById(
-        'westernForm'
-      ).addEventListener(
-        'submit',
-        convertWesternToJapanese
-      );
+      document
+        .getElementById('westernForm')
+        .addEventListener(
+          'submit',
+          convertWesternToJapanese
+        );
 
-      document.getElementById(
-        'japaneseForm'
-      ).addEventListener(
-        'submit',
-        convertJapaneseToWestern
-      );
+      document
+        .getElementById('japaneseForm')
+        .addEventListener(
+          'submit',
+          convertJapaneseToWestern
+        );
     }
 
     initializePage();
