@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>利息計算ツール｜元金・年利から利息を簡単計算</title>
+  <meta name="description" content="元金・年利・期間を入力するだけで単利の利息と元利合計を無料で計算できます。">
+  <style>
+    /* ====================== 基本設定 ====================== */
+    :root { --green:#587c40; --green-dark:#35552b; --green-light:#eaf3e5; --green-soft:#f6f9f4; --text:#263126; --muted:#687167; --line:#dce6d7; --white:#fff; --danger:#b33a3a; --radius:22px; --shadow:0 14px 40px rgba(45,67,34,.09); }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--text); background:var(--green-soft); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif; line-height:1.7; }
+    input, select, button { font:inherit; }
+    .container { width:min(100% - 32px,960px); margin-inline:auto; }
+    .card { border:1px solid var(--line); border-radius:var(--radius); background:var(--white); box-shadow:var(--shadow); }
+    .section { margin-top:54px; }
+    .section-title { margin:0 0 18px; font-size:clamp(1.35rem,4vw,1.8rem); }
+
+    /* ====================== ヘッダー・ヒーロー ====================== */
+    header { padding:22px 0; border-bottom:1px solid var(--line); background:rgba(255,255,255,.9); }
+    .header-inner { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+    .brand { margin:0; color:var(--green-dark); font-weight:850; }
+    .home-link { color:var(--green-dark); font-size:.9rem; font-weight:750; }
+    main { padding:64px 0 88px; }
+    .hero { margin-bottom:34px; text-align:center; }
+    .hero-badge { display:inline-block; margin:0 0 12px; padding:6px 13px; color:var(--green-dark); border-radius:999px; background:var(--green-light); font-size:.82rem; font-weight:800; }
+    h1 { margin:0; font-size:clamp(2rem,7vw,3.4rem); letter-spacing:-.035em; }
+    .hero-description { max-width:620px; margin:14px auto 0; color:var(--muted); }
+
+    /* ====================== 入力フォーム ====================== */
+    .calculator-card { padding:clamp(22px,5vw,38px); }
+    .form-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
+    .field label { display:block; margin-bottom:7px; font-weight:800; }
+    input, select { width:100%; min-height:54px; padding:12px 14px; color:var(--text); border:1px solid #cbd8c5; border-radius:13px; background:#fff; }
+    input:focus, select:focus { outline:3px solid rgba(88,124,64,.2); border-color:var(--green); }
+    .period-row { display:grid; grid-template-columns:minmax(0,1fr) 112px; gap:10px; }
+    .preview { min-height:24px; margin:5px 0 0; color:var(--green-dark); font-size:.86rem; font-weight:750; }
+    .error { min-height:26px; margin:16px 0 0; color:var(--danger); font-weight:750; }
+
+    /* ====================== 計算結果 ====================== */
+    .result-card { margin-top:24px; padding:clamp(22px,5vw,34px); border-color:#bfd2b5; background:linear-gradient(145deg,#fff,#f2f8ee); }
+    .result-heading { margin:0 0 18px; font-size:1.2rem; }
+    .result-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+    .result-item { padding:19px; border:1px solid var(--line); border-radius:16px; background:#fff; }
+    .result-item.primary { border:2px solid var(--green); background:var(--green-light); }
+    .result-label { display:block; color:var(--muted); font-size:.84rem; font-weight:750; }
+    .result-value { display:block; margin-top:4px; color:var(--green-dark); font-size:clamp(1.45rem,5vw,2rem); font-weight:900; overflow-wrap:anywhere; }
+    .result-note { margin:18px 0 0; color:var(--muted); font-size:.82rem; }
+    .comparison-card { display:flex; align-items:center; justify-content:space-between; gap:22px; margin-top:24px; padding:22px 24px; border:2px solid var(--green); background:var(--green-light); }
+    .comparison-card p { margin:0; }
+    .comparison-title { color:var(--green-dark); font-weight:850; }
+    .comparison-text { margin-top:3px !important; color:var(--muted); font-size:.86rem; }
+    .comparison-button { display:inline-flex; align-items:center; justify-content:center; flex:0 0 auto; min-height:50px; padding:11px 20px; color:#fff; border-radius:13px; background:var(--green); font-weight:850; text-decoration:none; }
+    .comparison-button:hover { background:var(--green-dark); }
+    .comparison-button:focus-visible { outline:3px solid rgba(88,124,64,.35); outline-offset:3px; }
+
+    /* ====================== 注意・関連ツール ====================== */
+    .info-card { padding:26px; box-shadow:none; }
+    .info-card p { margin:6px 0; color:var(--muted); }
+    .related-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+    .related-link { display:block; padding:18px; color:var(--green-dark); border:1px solid var(--line); border-radius:16px; background:#fff; font-weight:800; text-decoration:none; transition:transform .15s ease,border-color .15s ease; }
+    .related-link:hover { transform:translateY(-2px); border-color:#b9cdb0; }
+    .related-link:focus-visible { outline:3px solid rgba(88,124,64,.35); outline-offset:3px; }
+    footer { padding:44px 16px; color:var(--muted); border-top:1px solid var(--line); text-align:center; background:#fff; }
+    footer p { margin:4px 0; }
+    .footer-logo { color:var(--green-dark); font-weight:850; }
+
+    /* ====================== レスポンシブ ====================== */
+    @media (max-width:650px) { .form-grid, .result-grid { grid-template-columns:1fr; } .comparison-card { align-items:stretch; flex-direction:column; } .comparison-button { width:100%; } }
+    @media (max-width:500px) { .container { width:min(100% - 22px,960px); } main { padding-top:46px; } .header-inner { align-items:flex-start; flex-direction:column; gap:3px; } .related-grid { grid-template-columns:1fr; } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } * { transition:none !important; } }
+  </style>
+</head>
+<body>
+  <!-- ====================== ヘッダー ====================== -->
+  <header><div class="container header-inner"><p class="brand">🍵 ゴマツール</p><a class="home-link" href="../">← ホームへ戻る</a></div></header>
+
+  <main class="container">
+    <!-- ====================== ヒーロー ====================== -->
+    <section class="hero" aria-labelledby="page-title">
+      <p class="hero-badge">無料・登録不要</p>
+      <h1 id="page-title">💴 利息計算ツール</h1>
+      <p class="hero-description">元金・年利・期間から単利の利息を簡単に計算できます。預金や貸付の目安確認に使えます。</p>
+    </section>
+
+    <!-- ====================== 利息計算 ====================== -->
+    <section class="card calculator-card" aria-labelledby="calculator-title">
+      <h2 class="section-title" id="calculator-title">単利を計算する</h2>
+      <div class="form-grid">
+        <div class="field">
+          <label for="principal">元金（円）</label>
+          <input id="principal" type="number" min="1" step="1" inputmode="numeric" placeholder="例：100000">
+          <p class="preview" id="principalPreview"></p>
+        </div>
+        <div class="field">
+          <label for="annualRate">年利（％）</label>
+          <input id="annualRate" type="number" min="0" step="any" inputmode="decimal" placeholder="例：3">
+          <p class="preview" id="ratePreview"></p>
+        </div>
+        <div class="field">
+          <label for="period">期間</label>
+          <div class="period-row">
+            <input id="period" type="number" min="1" step="any" inputmode="decimal" placeholder="例：3">
+            <select id="periodUnit" aria-label="期間の単位"><option value="year">年</option><option value="month">か月</option></select>
+          </div>
+          <p class="preview" id="periodPreview"></p>
+        </div>
+      </div>
+      <p class="error" id="error" role="alert"></p>
+
+      <div class="card result-card" id="resultCard" aria-live="polite" hidden>
+        <h2 class="result-heading">計算結果</h2>
+        <div class="result-grid">
+          <div class="result-item primary"><span class="result-label">💴 利息</span><strong class="result-value" id="interestResult">0円</strong></div>
+          <div class="result-item primary"><span class="result-label">💰 元利合計</span><strong class="result-value" id="totalResult">0円</strong></div>
+          <div class="result-item"><span class="result-label">📅 月利</span><strong class="result-value" id="monthlyRateResult">約0％</strong></div>
+          <div class="result-item"><span class="result-label">☀️ 1日あたりの利息</span><strong class="result-value" id="dailyInterestResult">約0円／日</strong></div>
+        </div>
+        <p class="result-note">※単利・365日換算による概算です。実際の利息や端数処理とは異なる場合があります。</p>
+      </div>
+    </section>
+
+    <!-- ====================== 複利計算への案内 ====================== -->
+    <aside class="card comparison-card" aria-label="複利計算の案内">
+      <div><p class="comparison-title">📈 利息が利息を生む場合は複利計算</p><p class="comparison-text">積立や長期運用の将来金額を調べたい方におすすめです。</p></div>
+      <a class="comparison-button" href="../compound-interest/">複利計算はこちら</a>
+    </aside>
+
+    <!-- ====================== 注意書き ====================== -->
+    <section class="section card info-card" aria-labelledby="notice-title"><h2 class="section-title" id="notice-title">ご注意ください</h2><p>この結果は一般的な単利計算による目安です。</p><p>金融機関や契約によって、日割り方法・税金・端数処理などが異なる場合があります。</p><p>入力内容はブラウザ内だけで処理し、サーバーへ送信・保存しません。</p></section>
+
+    <!-- ====================== 関連ツール ====================== -->
+    <section class="section" aria-labelledby="related-title"><h2 class="section-title" id="related-title">おすすめの便利ツール</h2><div class="related-grid">
+      <a class="related-link" href="../compound-interest/">📈 複利計算</a>
+      <a class="related-link" href="../discount-calculator/">💹 割引率計算</a>
+      <a class="related-link" href="../tax/">💰 消費税計算</a>
+      <a class="related-link" href="../warikan/">👥 割り勘計算</a>
+    </div></section>
+  </main>
+
+  <!-- ====================== フッター ====================== -->
+  <footer><p class="footer-logo">🍵 ゴマツール</p><p>30秒で使えて、他より少し便利。</p><p>最終更新：2026年6月28日</p></footer>
+
+  <script>
+    /* ====================== 要素・表示用関数 ====================== */
+    const principalInput = document.getElementById('principal');
+    const annualRateInput = document.getElementById('annualRate');
+    const periodInput = document.getElementById('period');
+    const periodUnitInput = document.getElementById('periodUnit');
+    const resultCard = document.getElementById('resultCard');
+    const errorElement = document.getElementById('error');
+
+    function formatYen(value) { return `${Math.round(value).toLocaleString('ja-JP')}円`; }
+    function formatDecimal(value, digits = 4) { return Number(value.toFixed(digits)).toLocaleString('ja-JP', { maximumFractionDigits:digits }); }
+
+    function updatePreviews() {
+      const principal = Number(principalInput.value);
+      document.getElementById('principalPreview').textContent = principalInput.value && Number.isFinite(principal) ? formatYen(principal) : '';
+      const rate = Number(annualRateInput.value);
+      document.getElementById('ratePreview').textContent = annualRateInput.value && Number.isFinite(rate) ? `年利 ${formatDecimal(rate)}％` : '';
+      const period = Number(periodInput.value);
+      const unitLabel = periodUnitInput.value === 'year' ? '年' : 'か月';
+      document.getElementById('periodPreview').textContent = periodInput.value && Number.isFinite(period) ? `${formatDecimal(period)}${unitLabel}` : '';
+    }
+
+    /* ====================== 単利計算 ====================== */
+    function calculateInterest() {
+      updatePreviews();
+      errorElement.textContent = '';
+      resultCard.hidden = true;
+
+      if (!principalInput.value || !annualRateInput.value || !periodInput.value) return;
+
+      const principal = Number(principalInput.value);
+      const annualRate = Number(annualRateInput.value);
+      const period = Number(periodInput.value);
+      if (![principal, annualRate, period].every(Number.isFinite)) { errorElement.textContent = '数値を入力してください。'; return; }
+      if (principal < 1) { errorElement.textContent = '元金は1円以上入力してください。'; return; }
+      if (annualRate < 0) { errorElement.textContent = '年利は0以上を入力してください。'; return; }
+      if (period < 1) { errorElement.textContent = '期間は1以上を入力してください。'; return; }
+
+      const years = periodUnitInput.value === 'year' ? period : period / 12;
+      const interest = principal * (annualRate / 100) * years;
+      const total = principal + interest;
+      const monthlyRate = annualRate / 12;
+      const days = years * 365;
+      const dailyInterest = days > 0 ? interest / days : 0;
+
+      document.getElementById('interestResult').textContent = formatYen(interest);
+      document.getElementById('totalResult').textContent = formatYen(total);
+      document.getElementById('monthlyRateResult').textContent = `約${formatDecimal(monthlyRate)}％`;
+      document.getElementById('dailyInterestResult').textContent = `約${formatDecimal(dailyInterest, 2)}円／日`;
+      resultCard.hidden = false;
+    }
+
+    [principalInput, annualRateInput, periodInput].forEach(input => input.addEventListener('input', calculateInterest));
+    periodUnitInput.addEventListener('change', calculateInterest);
+    updatePreviews();
+  </script>
+</body>
+</html>
