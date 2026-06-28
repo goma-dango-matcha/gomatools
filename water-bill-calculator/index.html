@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>水道料金計算ツール｜使用水量から料金の目安を簡単計算</title>
+  <meta name="description" content="使用水量・料金単価から水道料金の目安を無料で簡単計算。基本料金・下水道料金にも対応。">
+  <style>
+    /* ====================== 基本設定 ====================== */
+    :root { --green:#587c40; --green-dark:#35552b; --green-light:#eaf3e5; --green-soft:#f6f9f4; --blue:#3974a8; --blue-light:#edf6fd; --text:#263126; --muted:#687167; --line:#dce6d7; --danger:#b33a3a; --warning:#fff8e7; --radius:22px; --shadow:0 14px 40px rgba(45,67,34,.09); }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--text); background:var(--green-soft); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif; line-height:1.7; }
+    input, button { font:inherit; }
+    button { cursor:pointer; }
+    .container { width:min(100% - 32px,960px); margin-inline:auto; }
+    .card { border:1px solid var(--line); border-radius:var(--radius); background:#fff; box-shadow:var(--shadow); }
+    .section { margin-top:54px; }
+    .section-title { margin:0 0 18px; font-size:clamp(1.35rem,4vw,1.8rem); }
+
+    /* ====================== ヘッダー・ヒーロー ====================== */
+    header { padding:22px 0; border-bottom:1px solid var(--line); background:rgba(255,255,255,.9); }
+    .header-inner { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+    .brand { margin:0; color:var(--green-dark); font-weight:850; }
+    .home-link { color:var(--green-dark); font-size:.9rem; font-weight:750; }
+    main { padding:64px 0 88px; }
+    .hero { margin-bottom:34px; text-align:center; }
+    .hero-badge { display:inline-block; margin:0 0 12px; padding:6px 13px; color:var(--blue); border-radius:999px; background:var(--blue-light); font-size:.82rem; font-weight:800; }
+    h1 { margin:0; font-size:clamp(1.95rem,7vw,3.35rem); letter-spacing:-.035em; }
+    .hero-description { max-width:630px; margin:14px auto 0; color:var(--muted); }
+
+    /* ====================== 入力フォーム ====================== */
+    .calculator-card { padding:clamp(22px,5vw,38px); }
+    .form-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+    label { display:block; margin-bottom:7px; font-weight:800; }
+    input[type="number"] { width:100%; min-height:54px; padding:12px 14px; color:var(--text); border:1px solid #cbd8c5; border-radius:13px; background:#fff; }
+    input:focus, button:focus-visible { outline:3px solid rgba(57,116,168,.23); outline-offset:2px; }
+    .preview { min-height:24px; margin:5px 0 0; color:var(--blue); font-size:.86rem; font-weight:750; }
+    .preset-label { margin:16px 0 7px; color:var(--muted); font-size:.85rem; font-weight:750; }
+    .preset-row { display:flex; flex-wrap:wrap; gap:9px; }
+    .preset { min-height:42px; padding:8px 16px; color:var(--blue); border:1px solid #cbddea; border-radius:999px; background:#fff; font-weight:800; }
+    .preset:hover, .preset.active { color:#fff; border-color:var(--blue); background:var(--blue); }
+    .sewer-option { margin-top:24px; padding-top:22px; border-top:1px solid var(--line); }
+    .check-card { display:flex; align-items:center; gap:11px; min-height:58px; padding:12px 15px; border:1px solid var(--line); border-radius:14px; background:var(--blue-light); font-weight:800; cursor:pointer; }
+    .check-card input { width:21px; height:21px; accent-color:var(--blue); }
+    .sewer-field { max-width:320px; margin-top:16px; }
+    .sewer-field[hidden] { display:none; }
+    .error { min-height:26px; margin:15px 0 0; color:var(--danger); font-weight:750; }
+
+    /* ====================== 計算結果 ====================== */
+    .result-card { margin-top:22px; padding:clamp(22px,5vw,32px); border-color:#bdd3e4; background:linear-gradient(145deg,#fff,#f1f8fd); }
+    .result-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+    .result-item { padding:18px 12px; border:1px solid #d6e4ee; border-radius:16px; background:#fff; text-align:center; }
+    .result-item.primary { border:2px solid var(--blue); background:var(--blue-light); }
+    .result-item[hidden] { display:none; }
+    .result-label { display:block; color:var(--muted); font-size:.8rem; font-weight:750; }
+    .result-value { display:block; margin-top:5px; color:#285d88; font-size:clamp(1.2rem,4vw,1.75rem); font-weight:900; overflow-wrap:anywhere; }
+    .result-note { margin:16px 0 0; color:var(--muted); font-size:.84rem; text-align:center; }
+
+    /* ====================== 注意・関連ツール ====================== */
+    .notice-card { padding:25px; border-color:#eadcaf; background:var(--warning); box-shadow:none; }
+    .notice-card p { margin:5px 0; color:#675b3f; }
+    .privacy-card { padding:25px; box-shadow:none; }
+    .privacy-card p { margin:5px 0; color:var(--muted); }
+    .related-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:13px; }
+    .related-link { display:block; padding:18px; color:var(--green-dark); border:1px solid var(--line); border-radius:15px; background:#fff; font-weight:800; text-decoration:none; transition:transform .15s ease,border-color .15s ease; }
+    .related-link:hover { transform:translateY(-2px); border-color:#b9cdb0; }
+    footer { padding:44px 16px; color:var(--muted); border-top:1px solid var(--line); text-align:center; background:#fff; }
+    footer p { margin:4px 0; }
+    .footer-logo { color:var(--green-dark); font-weight:850; }
+
+    /* ====================== レスポンシブ ====================== */
+    @media (max-width:800px) { .result-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media (max-width:680px) { .form-grid { grid-template-columns:1fr; } }
+    @media (max-width:520px) { .container { width:min(100% - 22px,960px); } main { padding-top:46px; } .header-inner { align-items:flex-start; flex-direction:column; gap:3px; } .result-grid, .related-grid { grid-template-columns:1fr; } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } * { transition:none !important; } }
+  </style>
+</head>
+<body>
+  <!-- ====================== ヘッダー ====================== -->
+  <header><div class="container header-inner"><p class="brand">🍵 ゴマツール</p><a class="home-link" href="../">← ホームへ戻る</a></div></header>
+
+  <main class="container">
+    <!-- ====================== ヒーロー ====================== -->
+    <section class="hero" aria-labelledby="page-title"><p class="hero-badge">無料・登録不要</p><h1 id="page-title">🚰 水道料金計算ツール</h1><p class="hero-description">使用水量・料金単価から水道料金の目安を簡単に計算できます。基本料金・下水道料金にも対応しています。</p></section>
+
+    <!-- ====================== 水道料金計算 ====================== -->
+    <section class="card calculator-card" aria-labelledby="calculator-title">
+      <h2 class="section-title" id="calculator-title">条件を入力する</h2>
+      <div class="form-grid">
+        <div><label for="usage">使用水量（㎥）</label><input id="usage" type="number" min="0" step="any" inputmode="decimal" placeholder="例：20"><p class="preview" id="usagePreview"></p></div>
+        <div><label for="waterRate">水道単価（円/㎥）</label><input id="waterRate" type="number" min="0" step="any" inputmode="decimal" placeholder="例：150"><p class="preview" id="waterRatePreview"></p></div>
+        <div><label for="baseCharge">基本料金（円）</label><input id="baseCharge" type="number" min="0" step="any" inputmode="decimal" value="0"><p class="preview" id="basePreview"></p></div>
+      </div>
+
+      <p class="preset-label">よくある使用量</p>
+      <div class="preset-row" aria-label="使用水量プリセット"><button class="preset" type="button" data-usage="10">10㎥</button><button class="preset" type="button" data-usage="20">20㎥</button><button class="preset" type="button" data-usage="30">30㎥</button><button class="preset" type="button" data-usage="40">40㎥</button></div>
+
+      <p class="preset-label">👨‍👩‍👧 世帯人数ごとの平均使用量</p>
+      <div class="preset-row" aria-label="世帯人数ごとの使用量目安"><button class="preset" type="button" data-usage="10">👤 一人暮らし 約10㎥</button><button class="preset" type="button" data-usage="20">👥 二人暮らし 約20㎥</button><button class="preset" type="button" data-usage="30">👨‍👩‍👧‍👦 四人家族 約30㎥</button></div>
+      <p class="preview">※世帯人数別の使用量はあくまで目安です。季節や生活スタイルによって異なります。</p>
+
+      <div class="sewer-option">
+        <label class="check-card" for="includeSewer"><input id="includeSewer" type="checkbox">下水道料金も計算する</label>
+        <div class="sewer-field" id="sewerField" hidden><label for="sewerRate">下水道単価（円/㎥）</label><input id="sewerRate" type="number" min="0" step="any" inputmode="decimal" placeholder="例：100"><p class="preview" id="sewerRatePreview"></p></div>
+      </div>
+      <p class="error" id="error" role="alert"></p>
+
+      <div class="card result-card" id="resultCard" aria-live="polite" hidden>
+        <div class="result-grid">
+          <div class="result-item"><span class="result-label">🚰 使用水量</span><strong class="result-value" id="usageResult">—</strong></div>
+          <div class="result-item"><span class="result-label">💧 水道料金</span><strong class="result-value" id="waterChargeResult">—</strong></div>
+          <div class="result-item" id="sewerResultItem" hidden><span class="result-label">🏙️ 下水道料金</span><strong class="result-value" id="sewerChargeResult">—</strong></div>
+          <div class="result-item primary"><span class="result-label">💴 合計料金</span><strong class="result-value" id="totalResult">—</strong></div>
+        </div>
+        <p class="result-note" id="resultNote"></p>
+      </div>
+    </section>
+
+    <!-- ====================== 注意書き ====================== -->
+    <section class="section card notice-card" aria-labelledby="notice-title"><h2 class="section-title" id="notice-title">ご注意ください</h2><p>実際の水道料金は自治体ごとの料金体系・基本料金・従量料金・消費税などにより異なります。本ツールは目安としてご利用ください。</p></section>
+    <section class="section card privacy-card" aria-labelledby="privacy-title"><h2 class="section-title" id="privacy-title">🍵 安心してお使いください</h2><p>入力内容と計算はブラウザ内だけで処理します。</p><p>サーバーへ送信・保存することはありません。</p></section>
+
+    <!-- ====================== 関連ツール ====================== -->
+    <section class="section" aria-labelledby="related-title"><h2 class="section-title" id="related-title">おすすめの便利ツール</h2><div class="related-grid"><a class="related-link" href="../gasoline-calculator/">⛽ ガソリン代計算</a><a class="related-link" href="../calculator/">🧮 電卓</a><a class="related-link" href="../discount-calculator/">💹 割引率計算</a><a class="related-link" href="../tax/">💰 消費税計算</a></div></section>
+  </main>
+
+  <!-- ====================== フッター ====================== -->
+  <footer><p class="footer-logo">🍵 ゴマツール</p><p>30秒で使えて、他より少し便利。</p><p>最終更新：2026年6月28日</p></footer>
+
+  <script>
+    /* ====================== 要素・表示関数 ====================== */
+    const usageInput = document.getElementById('usage');
+    const waterRateInput = document.getElementById('waterRate');
+    const baseChargeInput = document.getElementById('baseCharge');
+    const includeSewerInput = document.getElementById('includeSewer');
+    const sewerRateInput = document.getElementById('sewerRate');
+    const sewerField = document.getElementById('sewerField');
+    const errorElement = document.getElementById('error');
+    const resultCard = document.getElementById('resultCard');
+    const formatNumber = (value, digits = 2) => Number(value.toFixed(digits)).toLocaleString('ja-JP', { maximumFractionDigits:digits });
+    const formatYen = value => `${Math.round(value).toLocaleString('ja-JP')}円`;
+
+    function updatePreviews() {
+      const usage = Number(usageInput.value), rate = Number(waterRateInput.value), base = Number(baseChargeInput.value), sewer = Number(sewerRateInput.value);
+      document.getElementById('usagePreview').textContent = usageInput.value !== '' && Number.isFinite(usage) ? `${formatNumber(usage)}㎥` : '';
+      document.getElementById('waterRatePreview').textContent = waterRateInput.value !== '' && Number.isFinite(rate) ? `${formatNumber(rate)}円/㎥` : '';
+      document.getElementById('basePreview').textContent = baseChargeInput.value !== '' && Number.isFinite(base) ? formatYen(base) : '';
+      document.getElementById('sewerRatePreview').textContent = sewerRateInput.value !== '' && Number.isFinite(sewer) ? `${formatNumber(sewer)}円/㎥` : '';
+      document.querySelectorAll('.preset').forEach(button => button.classList.toggle('active', Number(button.dataset.usage) === usage));
+    }
+
+    /* ====================== 水道料金計算 ====================== */
+    function calculateWaterBill() {
+      updatePreviews();
+      errorElement.textContent = '';
+      resultCard.hidden = true;
+      if (usageInput.value === '' || waterRateInput.value === '' || baseChargeInput.value === '') return;
+      if (includeSewerInput.checked && sewerRateInput.value === '') return;
+
+      const usage = Number(usageInput.value), rate = Number(waterRateInput.value), base = Number(baseChargeInput.value), sewerRate = includeSewerInput.checked ? Number(sewerRateInput.value) : 0;
+      if (![usage, rate, base, sewerRate].every(Number.isFinite)) { errorElement.textContent = '数値を入力してください。'; return; }
+      if (usage < 0) { errorElement.textContent = '使用水量は0以上を入力してください。'; return; }
+      if (rate < 0) { errorElement.textContent = '水道単価は0以上を入力してください。'; return; }
+      if (base < 0) { errorElement.textContent = '基本料金は0以上を入力してください。'; return; }
+      if (sewerRate < 0) { errorElement.textContent = '下水道単価は0以上を入力してください。'; return; }
+
+      const waterCharge = usage * rate + base;
+      const sewerCharge = usage * sewerRate;
+      const total = waterCharge + sewerCharge;
+      document.getElementById('usageResult').textContent = `${formatNumber(usage)}㎥`;
+      document.getElementById('waterChargeResult').textContent = formatYen(waterCharge);
+      document.getElementById('sewerChargeResult').textContent = formatYen(sewerCharge);
+      document.getElementById('sewerResultItem').hidden = !includeSewerInput.checked;
+      document.getElementById('totalResult').textContent = formatYen(total);
+      document.getElementById('resultNote').textContent = `水道単価 ${formatNumber(rate)}円/㎥・基本料金 ${formatYen(base)}${includeSewerInput.checked ? `・下水道単価 ${formatNumber(sewerRate)}円/㎥` : ''}で計算しています。`;
+      resultCard.hidden = false;
+    }
+
+    [usageInput, waterRateInput, baseChargeInput, sewerRateInput].forEach(input => input.addEventListener('input', calculateWaterBill));
+    includeSewerInput.addEventListener('change', () => { sewerField.hidden = !includeSewerInput.checked; calculateWaterBill(); });
+    document.querySelectorAll('.preset').forEach(button => button.addEventListener('click', () => { usageInput.value = button.dataset.usage; calculateWaterBill(); }));
+    updatePreviews();
+  </script>
+</body>
+</html>
