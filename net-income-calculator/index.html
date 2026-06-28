@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>手取り・税込逆算ツール｜税込・税抜・手取り目安を簡単計算</title>
+  <meta name="description" content="税込・税抜の逆算や、額面から手取りの目安を無料で簡単計算できます。消費税額や控除額もすぐに確認できます。">
+  <style>
+    /* ====================== 基本設定 ====================== */
+    :root { --green:#587c40; --green-dark:#35552b; --green-light:#eaf3e5; --green-soft:#f6f9f4; --text:#263126; --muted:#687167; --line:#dce6d7; --white:#fff; --danger:#b33a3a; --warning:#fff8e7; --radius:22px; --shadow:0 14px 40px rgba(45,67,34,.09); }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--text); background:var(--green-soft); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif; line-height:1.7; }
+    input, select, button { font:inherit; }
+    button { cursor:pointer; }
+    .container { width:min(100% - 32px,960px); margin-inline:auto; }
+    .card { border:1px solid var(--line); border-radius:var(--radius); background:#fff; box-shadow:var(--shadow); }
+    .section { margin-top:54px; }
+    .section-title { margin:0 0 18px; font-size:clamp(1.35rem,4vw,1.8rem); }
+
+    /* ====================== ヘッダー・ヒーロー ====================== */
+    header { padding:22px 0; border-bottom:1px solid var(--line); background:rgba(255,255,255,.9); }
+    .header-inner { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+    .brand { margin:0; color:var(--green-dark); font-weight:850; }
+    .home-link { color:var(--green-dark); font-size:.9rem; font-weight:750; }
+    main { padding:64px 0 88px; }
+    .hero { margin-bottom:34px; text-align:center; }
+    .hero-badge { display:inline-block; margin:0 0 12px; padding:6px 13px; color:var(--green-dark); border-radius:999px; background:var(--green-light); font-size:.82rem; font-weight:800; }
+    h1 { margin:0; font-size:clamp(1.9rem,7vw,3.3rem); letter-spacing:-.035em; }
+    .hero-description { max-width:640px; margin:14px auto 0; color:var(--muted); }
+
+    /* ====================== タブ ====================== */
+    .tool-card { padding:clamp(20px,5vw,36px); }
+    .tabs { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:28px; padding:6px; border-radius:15px; background:var(--green-soft); }
+    .tab { min-height:50px; padding:10px; color:var(--green-dark); border:0; border-radius:11px; background:transparent; font-weight:850; }
+    .tab[aria-selected="true"] { color:#fff; background:var(--green); box-shadow:0 5px 14px rgba(88,124,64,.2); }
+    .tab:focus-visible, .preset:focus-visible, .related-link:focus-visible { outline:3px solid rgba(88,124,64,.35); outline-offset:3px; }
+    [role="tabpanel"][hidden] { display:none; }
+
+    /* ====================== 入力 ====================== */
+    .panel-title { margin:0 0 18px; font-size:1.25rem; }
+    .form-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+    .field-full { grid-column:1 / -1; }
+    label { display:block; margin-bottom:7px; font-weight:800; }
+    input, select { width:100%; min-height:54px; padding:12px 14px; color:var(--text); border:1px solid #cbd8c5; border-radius:13px; background:#fff; }
+    input:focus, select:focus { outline:3px solid rgba(88,124,64,.2); border-color:var(--green); }
+    .preview { min-height:24px; margin:5px 0 0; color:var(--green-dark); font-size:.86rem; font-weight:750; }
+    .preset-row { display:flex; flex-wrap:wrap; gap:9px; margin-top:10px; }
+    .preset { min-height:42px; padding:8px 15px; color:var(--green-dark); border:1px solid var(--line); border-radius:999px; background:#fff; font-weight:800; }
+    .preset:hover, .preset.active { color:#fff; border-color:var(--green); background:var(--green); }
+    .custom-rate[hidden] { display:none; }
+    .error { min-height:26px; margin:14px 0 0; color:var(--danger); font-weight:750; }
+
+    /* ====================== 結果 ====================== */
+    .result-card { margin-top:22px; padding:clamp(20px,5vw,30px); border-color:#bfd2b5; background:linear-gradient(145deg,#fff,#f2f8ee); }
+    .result-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:13px; }
+    .result-grid.two { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .result-item { padding:18px 14px; border:1px solid var(--line); border-radius:16px; background:#fff; text-align:center; }
+    .result-item.primary { border:2px solid var(--green); background:var(--green-light); }
+    .result-label { display:block; color:var(--muted); font-size:.82rem; font-weight:750; }
+    .result-value { display:block; margin-top:5px; color:var(--green-dark); font-size:clamp(1.25rem,4vw,1.8rem); font-weight:900; overflow-wrap:anywhere; }
+    .result-note { margin:14px 0 0; color:var(--muted); font-size:.8rem; }
+    .warning { margin-top:18px; padding:15px 17px; color:#675b3f; border:1px solid #eadcaf; border-radius:14px; background:var(--warning); font-size:.84rem; }
+
+    /* ====================== 関連ツール ====================== */
+    .privacy-card { padding:25px; box-shadow:none; }
+    .privacy-card p { margin:5px 0; color:var(--muted); }
+    .related-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:13px; }
+    .related-link { display:block; padding:18px; color:var(--green-dark); border:1px solid var(--line); border-radius:15px; background:#fff; font-weight:800; text-decoration:none; transition:transform .15s ease,border-color .15s ease; }
+    .related-link:hover { transform:translateY(-2px); border-color:#b9cdb0; }
+    footer { padding:44px 16px; color:var(--muted); border-top:1px solid var(--line); text-align:center; background:#fff; }
+    footer p { margin:4px 0; }
+    .footer-logo { color:var(--green-dark); font-weight:850; }
+
+    /* ====================== レスポンシブ ====================== */
+    @media (max-width:680px) { .form-grid, .result-grid, .result-grid.two { grid-template-columns:1fr; } .field-full { grid-column:auto; } }
+    @media (max-width:500px) { .container { width:min(100% - 22px,960px); } main { padding-top:46px; } .header-inner { align-items:flex-start; flex-direction:column; gap:3px; } .tabs { grid-template-columns:1fr; } .related-grid { grid-template-columns:1fr; } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } * { transition:none !important; } }
+  </style>
+</head>
+<body>
+  <!-- ====================== ヘッダー ====================== -->
+  <header><div class="container header-inner"><p class="brand">🍵 ゴマツール</p><a class="home-link" href="../">← ホームへ戻る</a></div></header>
+
+  <main class="container">
+    <!-- ====================== ヒーロー ====================== -->
+    <section class="hero" aria-labelledby="page-title"><p class="hero-badge">無料・登録不要</p><h1 id="page-title">💵 手取り・税込逆算ツール</h1><p class="hero-description">税込・税抜の逆算や、額面から手取りの目安を簡単に計算できます。</p></section>
+
+    <!-- ====================== 計算ツール ====================== -->
+    <section class="card tool-card" aria-label="手取り・税込逆算計算">
+      <div class="tabs" role="tablist" aria-label="計算方法">
+        <button class="tab" id="taxTab" type="button" role="tab" aria-selected="true" aria-controls="taxPanel">税込・税抜計算</button>
+        <button class="tab" id="netTab" type="button" role="tab" aria-selected="false" aria-controls="netPanel">手取り目安計算</button>
+      </div>
+
+      <!-- ====================== 税込・税抜計算 ====================== -->
+      <div id="taxPanel" role="tabpanel" aria-labelledby="taxTab">
+        <h2 class="panel-title">税込・税抜を計算する</h2>
+        <div class="form-grid">
+          <div><label for="taxAmount">金額（円）</label><input id="taxAmount" type="number" min="1" step="1" inputmode="numeric" placeholder="例：1000"><p class="preview" id="taxAmountPreview"></p></div>
+          <div><label for="taxMode">計算モード</label><select id="taxMode"><option value="exclusive">税抜 → 税込</option><option value="inclusive">税込 → 税抜</option></select></div>
+          <div><label for="taxRate">税率</label><select id="taxRate"><option value="10">10％</option><option value="8">8％</option><option value="custom">任意入力</option></select><div class="custom-rate" id="customRateWrap" hidden><label for="customTaxRate">任意の税率（％）</label><input id="customTaxRate" type="number" min="0" step="any" inputmode="decimal" placeholder="例：12.5"></div><div class="preset-row" aria-label="よく使う税率"><button class="preset tax-preset active" type="button" data-tax-rate="10">10％</button><button class="preset tax-preset" type="button" data-tax-rate="8">8％</button></div></div>
+        </div>
+        <p class="error" id="taxError" role="alert"></p>
+        <div class="card result-card" id="taxResult" aria-live="polite" hidden><div class="result-grid"><div class="result-item"><span class="result-label">税抜価格</span><strong class="result-value" id="exclusiveResult">—</strong></div><div class="result-item"><span class="result-label">消費税額</span><strong class="result-value" id="taxValueResult">—</strong></div><div class="result-item primary"><span class="result-label">税込価格</span><strong class="result-value" id="inclusiveResult">—</strong></div></div><p class="result-note">※1円未満は切り捨てて計算します。</p></div>
+      </div>
+
+      <!-- ====================== 手取り目安計算 ====================== -->
+      <div id="netPanel" role="tabpanel" aria-labelledby="netTab" hidden>
+        <h2 class="panel-title">手取りの目安を計算する</h2>
+        <div class="form-grid">
+          <div><label for="grossAmount">額面金額（円）</label><input id="grossAmount" type="number" min="1" step="1" inputmode="numeric" placeholder="例：300000"><p class="preview" id="grossPreview"></p></div>
+          <div><label for="deductionRate">控除率（％）</label><input id="deductionRate" type="number" min="0" max="99.99" step="any" inputmode="decimal" value="20"><div class="preset-row" aria-label="控除率プリセット"><button class="preset deduction-preset" type="button" data-deduction="10">10％</button><button class="preset deduction-preset" type="button" data-deduction="15">15％</button><button class="preset deduction-preset active" type="button" data-deduction="20">20％</button><button class="preset deduction-preset" type="button" data-deduction="25">25％</button><button class="preset deduction-preset" type="button" data-deduction="30">30％</button></div></div>
+        </div>
+        <p class="error" id="netError" role="alert"></p>
+        <div class="card result-card" id="netResult" aria-live="polite" hidden><div class="result-grid two"><div class="result-item"><span class="result-label">控除額</span><strong class="result-value" id="deductionResult">—</strong></div><div class="result-item primary"><span class="result-label">手取り目安</span><strong class="result-value" id="netAmountResult">—</strong></div></div><p class="warning">この手取り額は概算です。実際の税金・社会保険料・扶養状況・勤務先の条件などにより異なります。</p></div>
+      </div>
+    </section>
+
+    <!-- ====================== 安心表示 ====================== -->
+    <section class="section card privacy-card" aria-labelledby="privacy-title"><h2 class="section-title" id="privacy-title">🍵 安心してお使いください</h2><p>計算はブラウザ内だけで行われます。</p><p>入力内容をサーバーへ送信・保存することはありません。</p></section>
+
+    <!-- ====================== 関連ツール ====================== -->
+    <section class="section" aria-labelledby="related-title"><h2 class="section-title" id="related-title">おすすめの便利ツール</h2><div class="related-grid"><a class="related-link" href="../tax/">💰 消費税計算</a><a class="related-link" href="../discount-calculator/">💹 割引率計算</a><a class="related-link" href="../interest-calculator/">💴 利息計算</a><a class="related-link" href="../compound-interest/">📈 複利計算</a><a class="related-link" href="../calculator/">🧮 電卓</a></div></section>
+  </main>
+
+  <!-- ====================== フッター ====================== -->
+  <footer><p class="footer-logo">🍵 ゴマツール</p><p>30秒で使えて、他より少し便利。</p><p>最終更新：2026年6月28日</p></footer>
+
+  <script>
+    /* ====================== 共通関数 ====================== */
+    const yen = value => `${Math.floor(value).toLocaleString('ja-JP')}円`;
+    const setActivePreset = (selector, value, attribute) => document.querySelectorAll(selector).forEach(button => button.classList.toggle('active', button.dataset[attribute] === String(value)));
+
+    /* ====================== タブ切り替え ====================== */
+    const tabs = document.querySelectorAll('[role="tab"]');
+    tabs.forEach(tab => tab.addEventListener('click', () => {
+      tabs.forEach(item => { const selected = item === tab; item.setAttribute('aria-selected', String(selected)); document.getElementById(item.getAttribute('aria-controls')).hidden = !selected; });
+    }));
+
+    /* ====================== 税込・税抜計算 ====================== */
+    const taxAmount = document.getElementById('taxAmount');
+    const taxMode = document.getElementById('taxMode');
+    const taxRate = document.getElementById('taxRate');
+    const customTaxRate = document.getElementById('customTaxRate');
+    const customRateWrap = document.getElementById('customRateWrap');
+
+    function getTaxRate() { return taxRate.value === 'custom' ? Number(customTaxRate.value) : Number(taxRate.value); }
+    function calculateTax() {
+      const amount = Number(taxAmount.value);
+      const rate = getTaxRate();
+      document.getElementById('taxAmountPreview').textContent = taxAmount.value && Number.isFinite(amount) ? yen(amount) : '';
+      document.getElementById('taxError').textContent = '';
+      document.getElementById('taxResult').hidden = true;
+      if (!taxAmount.value) return;
+      if (!Number.isFinite(amount)) { document.getElementById('taxError').textContent = '金額を入力してください。'; return; }
+      if (amount < 1) { document.getElementById('taxError').textContent = '1円以上の金額を入力してください。'; return; }
+      if (taxRate.value === 'custom' && customTaxRate.value === '') { document.getElementById('taxError').textContent = '税率を入力してください。'; return; }
+      if (!Number.isFinite(rate) || rate < 0) { document.getElementById('taxError').textContent = '0以上の税率を入力してください。'; return; }
+      let exclusive, taxValue, inclusive;
+      if (taxMode.value === 'exclusive') { exclusive = Math.floor(amount); taxValue = Math.floor(exclusive * rate / 100 + 1e-9); inclusive = exclusive + taxValue; }
+      else { inclusive = Math.floor(amount); exclusive = Math.floor(inclusive / (1 + rate / 100) + 1e-9); taxValue = inclusive - exclusive; }
+      document.getElementById('exclusiveResult').textContent = yen(exclusive);
+      document.getElementById('taxValueResult').textContent = yen(taxValue);
+      document.getElementById('inclusiveResult').textContent = yen(inclusive);
+      document.getElementById('taxResult').hidden = false;
+    }
+
+    taxRate.addEventListener('change', () => { customRateWrap.hidden = taxRate.value !== 'custom'; setActivePreset('.tax-preset', taxRate.value, 'taxRate'); calculateTax(); });
+    [taxAmount, taxMode, customTaxRate].forEach(element => element.addEventListener(element.tagName === 'SELECT' ? 'change' : 'input', calculateTax));
+    document.querySelectorAll('.tax-preset').forEach(button => button.addEventListener('click', () => { taxRate.value = button.dataset.taxRate; customRateWrap.hidden = true; setActivePreset('.tax-preset', button.dataset.taxRate, 'taxRate'); calculateTax(); }));
+
+    /* ====================== 手取り目安計算 ====================== */
+    const grossAmount = document.getElementById('grossAmount');
+    const deductionRate = document.getElementById('deductionRate');
+    function calculateNetIncome() {
+      const gross = Number(grossAmount.value);
+      const rate = Number(deductionRate.value);
+      document.getElementById('grossPreview').textContent = grossAmount.value && Number.isFinite(gross) ? yen(gross) : '';
+      document.getElementById('netError').textContent = '';
+      document.getElementById('netResult').hidden = true;
+      if (!grossAmount.value) return;
+      if (!Number.isFinite(gross)) { document.getElementById('netError').textContent = '金額を入力してください。'; return; }
+      if (gross < 1) { document.getElementById('netError').textContent = '1円以上の金額を入力してください。'; return; }
+      if (!Number.isFinite(rate) || rate < 0 || rate >= 100) { document.getElementById('netError').textContent = '0％以上100％未満で入力してください。'; return; }
+      const deduction = Math.floor(gross * rate / 100);
+      document.getElementById('deductionResult').textContent = yen(deduction);
+      document.getElementById('netAmountResult').textContent = yen(gross - deduction);
+      document.getElementById('netResult').hidden = false;
+      setActivePreset('.deduction-preset', rate, 'deduction');
+    }
+    [grossAmount, deductionRate].forEach(element => element.addEventListener('input', calculateNetIncome));
+    document.querySelectorAll('.deduction-preset').forEach(button => button.addEventListener('click', () => { deductionRate.value = button.dataset.deduction; setActivePreset('.deduction-preset', button.dataset.deduction, 'deduction'); calculateNetIncome(); }));
+  </script>
+</body>
+</html>
