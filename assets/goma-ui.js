@@ -7,9 +7,12 @@
   function getPaths() {
     const path = window.location.pathname.replace(/index\.html$/, '');
     const isHome = /\/gomatools\/$/.test(path) || path === '/';
+    const isRootTerms = /\/gomatools\/terms\.html$/.test(path) || path === '/terms.html';
+    const isRootPage = isHome || isRootTerms;
     return {
-      home: isHome ? './' : '../',
-      privacy: isHome ? './privacy/' : '../privacy/'
+      home: isRootPage ? './' : '../',
+      privacy: isRootPage ? './privacy/' : '../privacy/',
+      terms: isRootPage ? './terms.html' : '../terms.html'
     };
   }
 
@@ -40,6 +43,7 @@
         <nav class="goma-footer-nav" aria-label="フッターナビゲーション">
           <a href="${paths.home}">🏠 ホーム</a>
           <a href="${paths.privacy}">📄 プライバシーポリシー</a>
+          <a href="${paths.terms}">📜 利用規約</a>
         </nav>
         <p class="goma-copyright">© 2026 Project Goma</p>
       </div>`;
