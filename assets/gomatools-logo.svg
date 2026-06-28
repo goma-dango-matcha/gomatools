@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="logoTitle logoDesc" focusable="false" shape-rendering="geometricPrecision">
+  <title id="logoTitle">ゴマツール ブランドロゴ</title>
+  <desc id="logoDesc">器のようなGから右上へ新芽が伸び、内側に2粒のごまがあるロゴ</desc>
+
+  <!--
+    ゴマツール 正式ブランドロゴ v1.0.1
+    Final master: 2026-06-29
+
+    この形状をブランドロゴの基準（100%）とする。
+    今後は形状・比率・要素数を大きく変更せず、用途に応じた色展開、
+    余白調整、表示サイズの最適化のみを行う。
+
+    ・全要素を均一な線幅で構成
+    ・グラデーション、影、細かな模様は不使用
+    ・単色かつ小さい表示でも判別しやすい形状
+  -->
+  <g
+    fill="none"
+    stroke="#63843f"
+    stroke-width="8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <!-- 筆の運びをほのかに感じる、器のようなG -->
+    <path d="M116 68C104 54 87 49 70 52C44 57 28 80 32 105C36 130 58 145 82 143C105 141 123 122 124 99H92"/>
+    <path d="M124 99C124 109 120 118 114 124"/>
+
+    <!-- 自然な非対称を保ち、全体をわずかに右上へ向けた新芽 -->
+    <g transform="rotate(-4 100 45)">
+      <path d="M80 52C88 49 96 46 104 43"/>
+      <path d="M94 47C82 46 71 38 66 26C78 27 89 34 96 44"/>
+      <path d="M101 44C109 33 121 27 133 29C126 39 116 46 103 47"/>
+    </g>
+
+    <!-- 小さな積み重ねを表す、少し楕円のごま2粒 -->
+    <ellipse cx="71" cy="101" rx="4.5" ry="8.5" transform="rotate(-20 71 101)"/>
+    <ellipse cx="96" cy="91" rx="4.5" ry="8.5" transform="rotate(22 96 91)"/>
+  </g>
+</svg>
