@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8BNDHPNEHY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8BNDHPNEHY');
+  </script>
+
+  <!-- ======================
+       SEO
+  ====================== -->
+  <title>BMI計算ツール｜ゴマツール</title>
+  <meta name="description" content="身長と体重からBMI・適正体重・BMI判定を無料で簡単に計算できます。登録不要・スマホ対応。">
+  <link rel="canonical" href="https://goma-dango-matcha.github.io/gomatools/bmi/">
+
+  <!-- ======================
+       OGP / Twitter Card
+  ====================== -->
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ゴマツール">
+  <meta property="og:title" content="BMI計算ツール｜ゴマツール">
+  <meta property="og:description" content="BMI・適正体重・BMI判定をすぐに計算できる無料ツールです。">
+  <meta property="og:url" content="https://goma-dango-matcha.github.io/gomatools/bmi/">
+  <meta property="og:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta property="og:image:secure_url" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ゴマツール — 一歩便利を、毎日の暮らしに。">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BMI計算ツール｜ゴマツール">
+  <meta name="twitter:description" content="BMI・適正体重・BMI判定をすぐに計算できる無料ツールです。">
+  <meta name="twitter:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta name="twitter:image:alt" content="ゴマツール — 一歩便利を、毎日の暮らしに。">
+
+  <!-- ======================
+       ブランドアイコン
+  ====================== -->
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <meta name="theme-color" content="#63843F">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../assets/goma-ui.css">
+  <script defer src="../assets/goma-ui.js"></script>
+</head>
+<body>
+  <!-- ======================
+       共通ヘッダー
+  ====================== -->
+  <header>
+    <div class="goma-header-inner">
+      <div class="goma-brand-wrap">
+        <a class="goma-brand" href="../">ゴマツール</a>
+        <p class="goma-brand-copy">無料で使える便利ツール集</p>
+      </div>
+      <a class="goma-home-button" href="../">🏠 ホームへ戻る</a>
+    </div>
+  </header>
+
+  <main class="bmi-main">
+    <div class="bmi-container">
+      <!-- ======================
+           ヒーロー
+      ====================== -->
+      <section class="bmi-hero" aria-labelledby="bmi-title">
+        <p class="bmi-eyebrow">❤️ 健康・美容</p>
+        <h1 id="bmi-title">BMI計算ツール</h1>
+        <p>身長と体重を入力するだけでBMI・判定・適正体重を簡単に計算できます。</p>
+      </section>
+
+      <!-- ======================
+           入力フォーム
+      ====================== -->
+      <section class="bmi-card bmi-form-card" aria-labelledby="input-title">
+        <h2 id="input-title">身長と体重を入力</h2>
+        <form id="bmiForm" novalidate>
+          <div class="bmi-form-grid">
+            <div class="bmi-field">
+              <label for="height">身長（cm）</label>
+              <input id="height" name="height" type="number" min="50" max="250" step="0.1" inputmode="decimal" placeholder="例：170" autocomplete="off">
+            </div>
+            <div class="bmi-field">
+              <label for="weight">体重（kg）</label>
+              <input id="weight" name="weight" type="number" min="10" max="400" step="0.1" inputmode="decimal" placeholder="例：65" autocomplete="off">
+            </div>
+          </div>
+          <p class="bmi-error" id="errorMessage" role="alert"></p>
+          <button class="bmi-submit" type="submit">計算する</button>
+        </form>
+      </section>
+
+      <!-- ======================
+           計算結果
+      ====================== -->
+      <section class="bmi-card bmi-result-card" id="resultCard" aria-labelledby="result-title" aria-live="polite" hidden>
+        <h2 id="result-title">計算結果</h2>
+        <div class="bmi-result-grid">
+          <div class="bmi-result-item bmi-result-main">
+            <span>BMI</span>
+            <strong id="bmiValue">—</strong>
+          </div>
+          <div class="bmi-result-item">
+            <span>BMI判定</span>
+            <strong id="bmiCategory">—</strong>
+          </div>
+          <div class="bmi-result-item">
+            <span>適正体重（BMI22）</span>
+            <strong id="idealWeight">—</strong>
+          </div>
+        </div>
+        <p class="bmi-comment" id="bmiComment"></p>
+      </section>
+
+      <!-- ======================
+           注意書き
+      ====================== -->
+      <section class="bmi-notice" aria-labelledby="notice-title">
+        <h2 id="notice-title">ご利用上の注意</h2>
+        <p>BMIは健康状態の目安であり、医療上の診断を行うものではありません。</p>
+        <p>体格や健康状態には個人差があります。気になる症状がある場合は、医療機関などへご相談ください。</p>
+      </section>
+
+      <div class="back-to-top">
+        <a class="top-button" href="../">🏠 トップへ戻る</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- ======================
+       共通フッター
+  ====================== -->
+  <footer>
+    <div class="goma-footer-inner">
+      <p class="goma-footer-logo">ゴマツール</p>
+      <p class="goma-footer-copy">30秒で使えて、他より少し便利。</p>
+      <nav class="goma-footer-nav" aria-label="フッターナビゲーション">
+        <a href="../">🏠 ホーム</a>
+        <a href="../privacy/">📄 プライバシーポリシー</a>
+        <a href="../terms.html">📜 利用規約</a>
+        <a href="../faq.html">❓ FAQ</a>
+        <a href="../knowledge.html">🌱 ゴマ知識</a>
+      </nav>
+      <p class="goma-copyright">© 2026 Project Goma</p>
+    </div>
+  </footer>
+
+  <script>
+    'use strict';
+
+    function getBmiCategory(bmi) {
+      if (bmi < 18.5) return { label: '低体重', comment: '適正体重より軽い状態です。' };
+      if (bmi < 25) return { label: '普通体重', comment: '標準的なBMIです。' };
+      if (bmi < 30) return { label: '肥満（1度）', comment: '健康維持のため生活習慣を見直す目安になります。' };
+      if (bmi < 35) return { label: '肥満（2度）', comment: '健康維持のため生活習慣を見直す目安になります。' };
+      if (bmi < 40) return { label: '肥満（3度）', comment: '健康維持のため生活習慣を見直す目安になります。' };
+      return { label: '肥満（4度）', comment: '健康維持のため生活習慣を見直す目安になります。' };
+    }
+
+    function validateBmiInputs(heightText, weightText) {
+      if (heightText.trim() === '' || weightText.trim() === '') {
+        return '身長と体重を入力してください。';
+      }
+
+      const height = Number(heightText);
+      const weight = Number(weightText);
+
+      if (!Number.isFinite(height) || !Number.isFinite(weight)) {
+        return '身長と体重は数値で入力してください。';
+      }
+      if (height <= 0 || weight <= 0) {
+        return '0より大きい数値を入力してください。';
+      }
+      if (height < 50 || height > 250) {
+        return '身長は50cm以上250cm以下で入力してください。';
+      }
+      if (weight < 10 || weight > 400) {
+        return '体重は10kg以上400kg以下で入力してください。';
+      }
+      return '';
+    }
+
+    function calculateBmi(event) {
+      event.preventDefault();
+
+      const heightInput = document.getElementById('height');
+      const weightInput = document.getElementById('weight');
+      const errorMessage = document.getElementById('errorMessage');
+      const resultCard = document.getElementById('resultCard');
+      const error = validateBmiInputs(heightInput.value, weightInput.value);
+
+      errorMessage.textContent = error;
+      if (error) {
+        resultCard.hidden = true;
+        return;
+      }
+
+      const heightMeters = Number(heightInput.value) / 100;
+      const weight = Number(weightInput.value);
+      const bmi = weight / (heightMeters * heightMeters);
+      const idealWeight = 22 * heightMeters * heightMeters;
+      const category = getBmiCategory(bmi);
+
+      document.getElementById('bmiValue').textContent = bmi.toFixed(2);
+      document.getElementById('bmiCategory').textContent = category.label;
+      document.getElementById('idealWeight').textContent = idealWeight.toFixed(1) + ' kg';
+      document.getElementById('bmiComment').textContent = category.comment;
+      resultCard.hidden = false;
+      resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    document.getElementById('bmiForm').addEventListener('submit', calculateBmi);
+  </script>
+</body>
+</html>
