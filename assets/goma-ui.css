@@ -34,7 +34,9 @@ body { color: var(--goma-text); font-family: -apple-system, BlinkMacSystemFont, 
 }
 .goma-brand-wrap { min-width: 0; }
 .goma-brand {
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
   margin: 0;
   color: var(--goma-green-dark) !important;
   font-size: 1.18rem;
@@ -42,6 +44,7 @@ body { color: var(--goma-text); font-family: -apple-system, BlinkMacSystemFont, 
   line-height: 1.35;
   text-decoration: none;
 }
+.goma-brand-logo { display: block; flex: 0 0 auto; width: 34px; height: 34px; }
 .goma-brand-copy { margin: 2px 0 0; color: var(--goma-muted); font-size: .78rem; line-height: 1.45; }
 .goma-home-button {
   display: inline-flex;
@@ -110,7 +113,17 @@ label { font-weight: 800; }
   text-align: center;
 }
 .goma-footer-inner { width: min(100%, 720px); margin-inline: auto; }
-.goma-footer-logo { margin: 0 0 6px; color: var(--goma-green-dark); font-size: 1.1rem; font-weight: 850; }
+.goma-footer-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 0 6px;
+  color: var(--goma-green-dark);
+  font-size: 1.1rem;
+  font-weight: 850;
+}
+.goma-footer-mark { display: block; width: 28px; height: 28px; }
 .goma-footer-copy { margin: 0; font-size: .88rem; }
 .goma-footer-nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px 22px; margin-top: 20px; }
 .goma-footer-nav a { color: var(--goma-green-dark); font-size: .86rem; font-weight: 750; text-decoration: underline; text-underline-offset: 3px; }
@@ -120,6 +133,7 @@ label { font-weight: 800; }
 @media (max-width: 560px) {
   .goma-header-inner { width: min(100% - 22px, 960px); min-height: 74px; gap: 10px; }
   .goma-brand { font-size: 1.02rem; }
+  .goma-brand-logo { width: 30px; height: 30px; }
   .goma-brand-copy { display: none; }
   .goma-home-button { min-height: 44px; padding: 8px 12px; font-size: .82rem; }
   .goma-footer { padding-block: 40px !important; }

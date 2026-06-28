@@ -14,7 +14,8 @@
       privacy: isRootPage ? './privacy/' : '../privacy/',
       terms: isRootPage ? './terms.html' : '../terms.html',
       faq: isRootPage ? './faq.html' : '../faq.html',
-      knowledge: isRootPage ? './knowledge.html' : '../knowledge.html'
+      knowledge: isRootPage ? './knowledge.html' : '../knowledge.html',
+      logo: isRootPage ? './assets/logo.svg' : '../assets/logo.svg'
     };
   }
 
@@ -26,7 +27,10 @@
     oldHeader.innerHTML = `
       <div class="goma-header-inner">
         <div class="goma-brand-wrap">
-          <a class="goma-brand" href="${paths.home}">🍵 ゴマツール</a>
+          <a class="goma-brand" href="${paths.home}">
+            <img class="goma-brand-logo" src="${paths.logo}" width="34" height="34" alt="ゴマツール ロゴ">
+            <span>ゴマツール</span>
+          </a>
           <p class="goma-brand-copy">無料で使える便利ツール集</p>
         </div>
         <a class="goma-home-button" href="${paths.home}">🏠 ホームへ戻る</a>
@@ -40,7 +44,10 @@
     oldFooter.className = 'goma-footer';
     oldFooter.innerHTML = `
       <div class="goma-footer-inner">
-        <p class="goma-footer-logo">🍵 ゴマツール</p>
+        <p class="goma-footer-logo">
+          <img class="goma-footer-mark" src="${paths.logo}" width="28" height="28" alt="">
+          <span>ゴマツール</span>
+        </p>
         <p class="goma-footer-copy">30秒で使えて、他より少し便利。</p>
         <nav class="goma-footer-nav" aria-label="フッターナビゲーション">
           <a href="${paths.home}">🏠 ホーム</a>
