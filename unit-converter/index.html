@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="長さ・重さ・温度・料理で使う容量単位を無料で簡単変換。スマホ・PC対応。">
+  <title>単位変換ツール｜長さ・重さ・温度・料理の単位を簡単変換</title>
+  <style>
+    /* ====================== 基本設定 ====================== */
+    :root { --green:#587c40; --green-dark:#355126; --green-light:#eef5e9; --green-soft:#f8fbf6; --text:#20251d; --muted:#687064; --line:#dde6d8; --white:#fff; --danger:#b44335; --shadow:0 16px 44px rgba(48,70,36,.09); --radius:22px; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--text); background:linear-gradient(180deg,#f9fcf7 0,#fff 25%); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif; line-height:1.75; -webkit-font-smoothing:antialiased; }
+    button,input,select { font:inherit; }
+    button { cursor:pointer; }
+    a { color:inherit; }
+    .container { width:min(100% - 32px,880px); margin-inline:auto; }
+    .section { margin-top:72px; }
+    .section-title { margin:0 0 20px; font-size:clamp(1.4rem,4vw,1.8rem); }
+    .card { padding:clamp(22px,5vw,38px); border:1px solid var(--line); border-radius:var(--radius); background:var(--white); box-shadow:var(--shadow); }
+
+    /* ====================== ヘッダー・ヒーロー ====================== */
+    .site-header { padding:23px 0; border-bottom:1px solid rgba(88,124,64,.12); background:rgba(255,255,255,.86); }
+    .header-inner { display:flex; align-items:center; justify-content:space-between; gap:24px; }
+    .brand-wrap { display:flex; align-items:baseline; gap:14px; }
+    .logo { margin:0; color:var(--green-dark); font-size:1.2rem; font-weight:850; }
+    .header-copy { margin:0; color:var(--muted); font-size:.82rem; }
+    .home-link { display:inline-flex; min-height:44px; align-items:center; padding:8px 14px; color:var(--green-dark); border:1px solid var(--line); border-radius:12px; background:#fff; font-size:.86rem; font-weight:750; text-decoration:none; }
+    .home-link:hover { background:var(--green-light); }
+    main { padding:78px 0 96px; }
+    .hero { text-align:center; }
+    .eyebrow { display:inline-block; margin:0 0 15px; padding:6px 13px; color:var(--green-dark); border-radius:999px; background:var(--green-light); font-size:.82rem; font-weight:750; }
+    h1 { margin:0; font-size:clamp(2.1rem,8vw,3.7rem); line-height:1.25; letter-spacing:-.035em; }
+    .hero-description { max-width:650px; margin:18px auto 0; color:var(--muted); }
+
+    /* ====================== カテゴリ・変換フォーム ====================== */
+    .category-tabs { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:24px; }
+    .category-button { min-height:52px; padding:10px 8px; color:var(--green-dark); border:1px solid var(--line); border-radius:13px; background:var(--green-soft); font-weight:800; }
+    .category-button[aria-pressed="true"] { color:#fff; border-color:var(--green); background:var(--green); }
+    .converter-grid { display:grid; grid-template-columns:1.2fr 1fr 1fr; gap:18px; align-items:end; }
+    label { display:block; margin-bottom:8px; font-weight:750; }
+    input,select { width:100%; min-height:52px; padding:12px 14px; color:var(--text); border:1.5px solid #cdd8c7; border-radius:12px; background:#fff; }
+    input:focus,select:focus { outline:3px solid rgba(88,124,64,.18); border-color:var(--green); }
+    .action-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:20px; }
+    .swap-button,.reset-button { min-height:52px; padding:12px 16px; border-radius:13px; font-weight:800; }
+    .swap-button { color:#fff; border:0; background:var(--green); }
+    .swap-button:hover { background:var(--green-dark); }
+    .reset-button { color:var(--green-dark); border:1.5px solid var(--green); background:#fff; }
+    .reset-button:hover { background:var(--green-light); }
+    .category-button:focus-visible,.swap-button:focus-visible,.reset-button:focus-visible,.home-link:focus-visible,.related-link:focus-visible { outline:3px solid rgba(88,124,64,.35); outline-offset:3px; }
+    .error { min-height:1.6em; margin:12px 0 0; color:var(--danger); font-weight:750; text-align:center; }
+
+    /* ====================== 変換結果・使用例 ====================== */
+    .result-panel { margin-top:24px; padding:26px 18px; border-radius:18px; background:var(--green-light); text-align:center; }
+    .result-label { display:block; color:var(--muted); font-size:.84rem; font-weight:750; }
+    .result-value { display:block; margin-top:7px; color:var(--green-dark); font-size:clamp(1.55rem,6vw,2.55rem); line-height:1.4; font-weight:900; overflow-wrap:anywhere; }
+    .examples { margin-top:20px; padding:18px; border:1px solid var(--line); border-radius:15px; background:var(--green-soft); }
+    .examples-title { margin:0 0 8px; color:var(--green-dark); font-size:1rem; }
+    .examples-list { margin:0; padding-left:1.3em; color:var(--muted); }
+    .volume-note { margin:10px 0 0; color:var(--muted); font-size:.82rem; }
+
+    /* ====================== 安心表示・関連ツール ====================== */
+    .privacy-card { box-shadow:none; background:var(--green-soft); }
+    .privacy-card p { margin:5px 0; color:var(--muted); }
+    .related-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .related-item { padding:19px; border:1px solid var(--line); border-radius:15px; background:var(--green-soft); }
+    .related-name { display:block; font-weight:800; }
+    .related-status { display:block; margin-top:4px; color:var(--muted); font-size:.78rem; }
+    .related-link { display:block; text-decoration:none; transition:border-color .15s ease,transform .15s ease; }
+    .related-link:hover { border-color:var(--green); transform:translateY(-1px); }
+
+    /* ====================== フッター・レスポンシブ ====================== */
+    footer { padding:52px 0; color:var(--muted); border-top:1px solid var(--line); text-align:center; background:var(--green-soft); }
+    .footer-logo { margin:0 0 8px; color:var(--green-dark); font-size:1.15rem; font-weight:850; }
+    footer p { margin:5px 0; }
+    .project-name { margin-top:20px; font-size:.82rem; font-weight:750; letter-spacing:.08em; }
+    .footer-assurance { max-width:620px; margin:28px auto 0; padding-top:26px; border-top:1px solid var(--line); font-size:.78rem; line-height:1.8; }
+    .updated { margin-top:18px; font-size:.72rem; }
+    @media (max-width:700px) { .category-tabs{grid-template-columns:1fr 1fr} .converter-grid{grid-template-columns:1fr} }
+    @media (max-width:620px) { .container{width:min(100% - 24px,880px)} .site-header{padding:18px 0} .header-inner{align-items:flex-start} .brand-wrap{flex-direction:column;gap:0} main{padding:58px 0 76px} .section{margin-top:54px} .card{padding:22px 18px;border-radius:18px} .action-row,.related-grid{grid-template-columns:1fr} }
+    @media (prefers-reduced-motion:reduce) { html{scroll-behavior:auto} *,*::before,*::after{transition:none!important} }
+  </style>
+</head>
+<body>
+  <!-- ====================== ヘッダー ====================== -->
+  <header class="site-header"><div class="container header-inner"><div class="brand-wrap"><p class="logo">🍵 ゴマツール</p><p class="header-copy">無料で使える便利ツール集</p></div><a class="home-link" href="../">← ホームへ戻る</a></div></header>
+
+  <main><div class="container">
+    <!-- ====================== ヒーロー ====================== -->
+    <section class="hero" aria-labelledby="page-title"><p class="eyebrow">入力と同時にすぐ変換</p><h1 id="page-title">📏 単位変換ツール</h1><p class="hero-description">長さ・重さ・温度・料理で使う容量の単位を簡単に変換できます。</p></section>
+
+    <!-- ====================== 単位変換 ====================== -->
+    <section class="section" aria-labelledby="converter-title"><h2 class="section-title" id="converter-title">変換するカテゴリを選ぶ</h2><div class="card">
+      <div class="category-tabs" role="group" aria-label="カテゴリ選択">
+        <button class="category-button" type="button" data-category="length" aria-pressed="true">📏 長さ</button>
+        <button class="category-button" type="button" data-category="weight" aria-pressed="false">⚖️ 重さ</button>
+        <button class="category-button" type="button" data-category="temperature" aria-pressed="false">🌡️ 温度</button>
+        <button class="category-button" type="button" data-category="cooking" aria-pressed="false">🍳 料理</button>
+      </div>
+
+      <div class="converter-grid">
+        <div><label for="inputValue">変換する数値</label><input type="number" id="inputValue" name="inputValue" step="any" inputmode="decimal" placeholder="例：100"></div>
+        <div><label for="fromUnit">変換元単位</label><select id="fromUnit" name="fromUnit"></select></div>
+        <div><label for="toUnit">変換先単位</label><select id="toUnit" name="toUnit"></select></div>
+      </div>
+
+      <div class="action-row"><button class="swap-button" id="swapButton" type="button">⇄ 単位を入れ替える</button><button class="reset-button" id="resetButton" type="button">リセット</button></div>
+      <p class="error" id="formError" role="alert"></p>
+      <div class="result-panel" aria-live="polite"><span class="result-label">変換結果</span><strong class="result-value" id="resultValue">数値を入力してください</strong></div>
+      <div class="examples"><h3 class="examples-title">よく使う例</h3><ul class="examples-list" id="examplesList"></ul><p class="volume-note" id="volumeNote" hidden>※料理カテゴリは容量のみ対応しています。材料ごとの重量換算には対応していません。</p></div>
+    </div></section>
+
+    <!-- ====================== 安心表示 ====================== -->
+    <section class="section card privacy-card" aria-labelledby="privacy-title"><h2 class="section-title" id="privacy-title">🍵 安心してお使いください</h2><p>入力内容と変換処理はブラウザ内だけで行われます。</p><p>サーバーへ送信・保存することはありません。</p></section>
+
+    <!-- ====================== 関連ツール ====================== -->
+    <section class="section" aria-labelledby="related-title"><h2 class="section-title" id="related-title">おすすめの便利ツール</h2><div class="card related-grid">
+      <a class="related-item related-link" href="../age/"><span class="related-name">🎂 年齢・日付計算</span><span class="related-status">公開中</span></a>
+      <a class="related-item related-link" href="../business-days/"><span class="related-name">📅 営業日計算</span><span class="related-status">公開中</span></a>
+      <a class="related-item related-link" href="../tax/"><span class="related-name">💰 消費税計算</span><span class="related-status">公開中</span></a>
+      <a class="related-item related-link" href="../warikan/"><span class="related-name">👥 割り勘計算</span><span class="related-status">公開中</span></a>
+      <a class="related-item related-link" href="../qrcode/"><span class="related-name">📱 QRコード生成</span><span class="related-status">公開中</span></a>
+      <a class="related-item related-link" href="../school-year/"><span class="related-name">🎓 学年・年齢・卒業年度計算</span><span class="related-status">公開中</span></a>
+      <a class="related-item related-link" href="../wareki/"><span class="related-name">📅 和暦・西暦変換</span><span class="related-status">公開中</span></a>
+      <a class="related-item related-link" href="../text-counter/"><span class="related-name">✍️ 文字数カウント</span><span class="related-status">公開中</span></a>
+      <a class="related-item related-link" href="../password/"><span class="related-name">🔐 パスワード生成</span><span class="related-status">公開中</span></a>
+      <a class="related-item related-link" href="../compound-interest/"><span class="related-name">📈 複利計算</span><span class="related-status">公開中</span></a>
+    </div></section>
+  </div></main>
+
+  <!-- ====================== フッター ====================== -->
+  <footer><div class="container"><p class="footer-logo">🍵 ゴマツール</p><p>30秒で使えて、<br>他より少し便利。</p><p class="project-name">Project Goma</p><div class="footer-assurance"><p>入力したデータはブラウザ内だけで処理されます。</p><p>サーバーへ送信・保存は行いません。</p></div><p class="updated">最終更新：2026年6月28日</p></div></footer>
+
+  <script>
+    'use strict';
+
+    // ====================== 単位データ ======================
+    const CATEGORIES = {
+      length: {
+        units: [
+          { id:'mm', label:'mm', factor:0.001 }, { id:'cm', label:'cm', factor:0.01 },
+          { id:'m', label:'m', factor:1 }, { id:'km', label:'km', factor:1000 },
+          { id:'inch', label:'inch（インチ）', factor:0.0254 }, { id:'ft', label:'ft（フィート）', factor:0.3048 }
+        ], defaults:['cm','m'], examples:['100cm → 1m','1000m → 1km']
+      },
+      weight: {
+        units: [
+          { id:'mg', label:'mg', factor:0.000001 }, { id:'g', label:'g', factor:0.001 },
+          { id:'kg', label:'kg', factor:1 }, { id:'oz', label:'oz（オンス）', factor:0.028349523125 },
+          { id:'lb', label:'lb（ポンド）', factor:0.45359237 }
+        ], defaults:['g','kg'], examples:['1000g → 1kg','1lb → 約453.592g']
+      },
+      temperature: {
+        units:[{ id:'c', label:'℃' },{ id:'f', label:'℉' }], defaults:['c','f'], examples:['0℃ → 32℉','100℃ → 212℉']
+      },
+      cooking: {
+        units: [
+          { id:'ml', label:'ml', factor:1 }, { id:'l', label:'L', factor:1000 },
+          { id:'tsp', label:'小さじ', factor:5 }, { id:'tbsp', label:'大さじ', factor:15 },
+          { id:'cup', label:'カップ（200ml）', factor:200 }
+        ], defaults:['ml','cup'], examples:['小さじ3 → 大さじ1','200ml → 1カップ']
+      }
+    };
+    let currentCategory = 'length';
+
+    // ====================== 表示ユーティリティ ======================
+    function formatNumber(value) {
+      if (Object.is(value, -0)) value = 0;
+      const rounded = Math.abs(value) >= 1e12 ? value : Number(value.toPrecision(12));
+      return rounded.toLocaleString('ja-JP', { maximumFractionDigits:10 });
+    }
+
+    function getUnit(category, id) {
+      return CATEGORIES[category].units.find(function (unit) { return unit.id === id; });
+    }
+
+    function populateUnits(category) {
+      const data = CATEGORIES[category];
+      const from = document.getElementById('fromUnit');
+      const to = document.getElementById('toUnit');
+      from.replaceChildren();
+      to.replaceChildren();
+      data.units.forEach(function (unit) {
+        const first = document.createElement('option');
+        const second = document.createElement('option');
+        first.value = second.value = unit.id;
+        first.textContent = second.textContent = unit.label;
+        from.appendChild(first);
+        to.appendChild(second);
+      });
+      from.value = data.defaults[0];
+      to.value = data.defaults[1];
+    }
+
+    function renderExamples(category) {
+      const list = document.getElementById('examplesList');
+      list.replaceChildren();
+      CATEGORIES[category].examples.forEach(function (text) {
+        const item = document.createElement('li');
+        item.textContent = text;
+        list.appendChild(item);
+      });
+      document.getElementById('volumeNote').hidden = category !== 'cooking';
+    }
+
+    // ====================== 変換処理 ======================
+    function convertTemperature(value, from, to) {
+      if (from === to) return value;
+      return from === 'c' ? value * 9 / 5 + 32 : (value - 32) * 5 / 9;
+    }
+
+    function updateResult() {
+      const input = document.getElementById('inputValue');
+      const raw = input.value.trim();
+      const error = document.getElementById('formError');
+      const result = document.getElementById('resultValue');
+      error.textContent = '';
+
+      if (raw === '') {
+        result.textContent = '数値を入力してください';
+        return;
+      }
+      const value = Number(raw);
+      if (!Number.isFinite(value)) {
+        error.textContent = '数字を入力してください。';
+        result.textContent = '—';
+        return;
+      }
+
+      const fromId = document.getElementById('fromUnit').value;
+      const toId = document.getElementById('toUnit').value;
+      const from = getUnit(currentCategory, fromId);
+      const to = getUnit(currentCategory, toId);
+      const converted = currentCategory === 'temperature'
+        ? convertTemperature(value, fromId, toId)
+        : value * from.factor / to.factor;
+
+      result.textContent = `${formatNumber(value)} ${from.label} = ${formatNumber(converted)} ${to.label}`;
+    }
+
+    // ====================== カテゴリ・ボタン操作 ======================
+    function selectCategory(category) {
+      currentCategory = category;
+      document.querySelectorAll('.category-button').forEach(function (button) {
+        button.setAttribute('aria-pressed', String(button.dataset.category === category));
+      });
+      populateUnits(category);
+      renderExamples(category);
+      document.getElementById('inputValue').value = '';
+      updateResult();
+      try { localStorage.setItem('gomatools-unit-category', category); } catch (error) { /* 保存できない環境でも変換は継続 */ }
+    }
+
+    function swapUnits() {
+      const from = document.getElementById('fromUnit');
+      const to = document.getElementById('toUnit');
+      const previous = from.value;
+      from.value = to.value;
+      to.value = previous;
+      updateResult();
+    }
+
+    function resetConverter() {
+      document.getElementById('inputValue').value = '';
+      const defaults = CATEGORIES[currentCategory].defaults;
+      document.getElementById('fromUnit').value = defaults[0];
+      document.getElementById('toUnit').value = defaults[1];
+      document.getElementById('formError').textContent = '';
+      updateResult();
+      document.getElementById('inputValue').focus();
+    }
+
+    // ====================== 初期表示 ======================
+    function initializePage() {
+      document.querySelectorAll('.category-button').forEach(function (button) {
+        button.addEventListener('click', function () { selectCategory(button.dataset.category); });
+      });
+      document.getElementById('inputValue').addEventListener('input', updateResult);
+      document.getElementById('fromUnit').addEventListener('change', updateResult);
+      document.getElementById('toUnit').addEventListener('change', updateResult);
+      document.getElementById('swapButton').addEventListener('click', swapUnits);
+      document.getElementById('resetButton').addEventListener('click', resetConverter);
+
+      let saved = 'length';
+      try {
+        const stored = localStorage.getItem('gomatools-unit-category');
+        if (stored && CATEGORIES[stored]) saved = stored;
+      } catch (error) { /* 保存を利用できない場合は長さを表示 */ }
+      selectCategory(saved);
+    }
+
+    initializePage();
+  </script>
+</body>
+</html>
