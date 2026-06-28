@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="誕生日まであと何日かを無料で簡単計算。次の誕生日・現在の年齢・曜日も表示。">
+  <title>誕生日カウント｜次の誕生日まであと何日？</title>
+  <style>
+    /* ====================== 基本設定 ====================== */
+    :root { --green:#587c40; --green-dark:#355126; --green-light:#eef5e9; --green-soft:#f8fbf6; --text:#20251d; --muted:#687064; --line:#dde6d8; --white:#fff; --danger:#b44335; --shadow:0 16px 44px rgba(48,70,36,.09); --radius:22px; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--text); background:linear-gradient(180deg,#f9fcf7 0,#fff 25%); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif; line-height:1.75; -webkit-font-smoothing:antialiased; }
+    button,input { font:inherit; }
+    button { cursor:pointer; }
+    a { color:inherit; }
+    .container { width:min(100% - 32px,880px); margin-inline:auto; }
+    .section { margin-top:72px; }
+    .section-title { margin:0 0 20px; font-size:clamp(1.4rem,4vw,1.8rem); }
+    .card { padding:clamp(22px,5vw,38px); border:1px solid var(--line); border-radius:var(--radius); background:var(--white); box-shadow:var(--shadow); }
+
+    /* ====================== ヘッダー・ヒーロー ====================== */
+    .site-header { padding:23px 0; border-bottom:1px solid rgba(88,124,64,.12); background:rgba(255,255,255,.86); }
+    .header-inner { display:flex; align-items:center; justify-content:space-between; gap:24px; }
+    .brand-wrap { display:flex; align-items:baseline; gap:14px; }
+    .logo { margin:0; color:var(--green-dark); font-size:1.2rem; font-weight:850; }
+    .header-copy { margin:0; color:var(--muted); font-size:.82rem; }
+    .home-link { display:inline-flex; min-height:44px; align-items:center; padding:8px 14px; color:var(--green-dark); border:1px solid var(--line); border-radius:12px; background:#fff; font-size:.86rem; font-weight:750; text-decoration:none; }
+    .home-link:hover { background:var(--green-light); }
+    main { padding:78px 0 96px; }
+    .hero { text-align:center; }
+    .eyebrow { display:inline-block; margin:0 0 15px; padding:6px 13px; color:var(--green-dark); border-radius:999px; background:var(--green-light); font-size:.82rem; font-weight:750; }
+    h1 { margin:0; font-size:clamp(2.1rem,8vw,3.7rem); line-height:1.25; letter-spacing:-.035em; }
+    .hero-description { max-width:620px; margin:18px auto 0; color:var(--muted); }
+
+    /* ====================== 入力フォーム ====================== */
+    label { display:block; margin-bottom:8px; font-weight:750; }
+    input { width:100%; min-height:52px; padding:12px 14px; color:var(--text); border:1.5px solid #cdd8c7; border-radius:12px; background:#fff; }
+    input:focus { outline:3px solid rgba(88,124,64,.18); border-color:var(--green); }
+    .button-row { display:grid; grid-template-columns:2fr 1fr; gap:12px; margin-top:20px; }
+    .primary-button,.reset-button { min-height:56px; padding:14px 20px; border-radius:14px; font-weight:850; }
+    .primary-button { color:#fff; border:0; background:var(--green); box-shadow:0 9px 22px rgba(88,124,64,.23); }
+    .primary-button:hover { background:var(--green-dark); }
+    .reset-button { color:var(--green-dark); border:1.5px solid var(--green); background:#fff; }
+    .reset-button:hover { background:var(--green-light); }
+    .primary-button:focus-visible,.reset-button:focus-visible,.home-link:focus-visible,.related-link:focus-visible { outline:3px solid rgba(88,124,64,.35); outline-offset:3px; }
+    .error { min-height:1.6em; margin:12px 0 0; color:var(--danger); font-weight:750; text-align:center; }
+
+    /* ====================== 計算結果 ====================== */
+    .result-panel { margin-top:28px; padding-top:28px; border-top:1px solid var(--line); }
+    .result-panel[hidden] { display:none; }
+    .countdown-main { padding:28px 20px; border-radius:18px; background:var(--green-light); text-align:center; }
+    .result-label { display:block; color:var(--muted); font-size:.84rem; font-weight:750; }
+    .countdown-value { display:block; margin-top:6px; color:var(--green-dark); font-size:clamp(2.4rem,10vw,4.4rem); line-height:1.2; font-weight:900; }
+    .result-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:14px; }
+    .result-item { padding:20px 16px; border-radius:16px; background:var(--green-soft); text-align:center; }
+    .result-value { display:block; margin-top:6px; color:var(--green-dark); font-size:clamp(1.2rem,4vw,1.75rem); line-height:1.4; font-weight:850; overflow-wrap:anywhere; }
+    .age-up { margin:16px 0 0; color:var(--green-dark); text-align:center; font-size:1.05rem; font-weight:850; }
+
+    /* ====================== 進捗バー ====================== */
+    .progress-card { margin-top:18px; padding:20px; border:1px solid var(--line); border-radius:16px; background:#fff; }
+    .progress-heading { display:flex; justify-content:space-between; gap:12px; margin-bottom:9px; color:var(--muted); font-size:.86rem; font-weight:750; }
+    .progress-track { overflow:hidden; height:16px; border-radius:999px; background:#e4ebdf; }
+    .progress-bar { width:0; height:100%; border-radius:inherit; background:linear-gradient(90deg,var(--green),#82a967); transition:width .4s ease; }
+    .progress-note { margin:9px 0 0; color:var(--muted); font-size:.82rem; text-align:center; }
+
+    /* ====================== 補足・関連ツール ====================== */
+    .info-card { box-shadow:none; background:var(--green-soft); }
+    .info-card p { margin:5px 0; color:var(--muted); }
+    .related-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .related-item { padding:19px; border:1px solid var(--line); border-radius:15px; background:var(--green-soft); }
+    .related-name { display:block; font-weight:800; }
+    .related-status { display:block; margin-top:4px; color:var(--muted); font-size:.78rem; }
+    .related-link { display:block; text-decoration:none; transition:border-color .15s ease,transform .15s ease; }
+    .related-link:hover { border-color:var(--green); transform:translateY(-1px); }
+
+    /* ====================== フッター・レスポンシブ ====================== */
+    footer { padding:52px 0; color:var(--muted); border-top:1px solid var(--line); text-align:center; background:var(--green-soft); }
+    .footer-logo { margin:0 0 8px; color:var(--green-dark); font-size:1.15rem; font-weight:850; }
+    footer p { margin:5px 0; }
+    .project-name { margin-top:20px; font-size:.82rem; font-weight:750; letter-spacing:.08em; }
+    .footer-assurance { max-width:620px; margin:28px auto 0; padding-top:26px; border-top:1px solid var(--line); font-size:.78rem; line-height:1.8; }
+    .updated { margin-top:18px; font-size:.72rem; }
+    @media (max-width:620px) { .container{width:min(100% - 24px,880px)} .site-header{padding:18px 0} .header-inner{align-items:flex-start} .brand-wrap{flex-direction:column;gap:0} main{padding:58px 0 76px} .section{margin-top:54px} .card{padding:22px 18px;border-radius:18px} .button-row,.result-grid,.related-grid{grid-template-columns:1fr} }
+    @media (prefers-reduced-motion:reduce) { html{scroll-behavior:auto} *,*::before,*::after{transition:none!important} }
+  </style>
+</head>
+<body>
+  <!-- ====================== ヘッダー ====================== -->
+  <header class="site-header"><div class="container header-inner"><div class="brand-wrap"><p class="logo">🍵 ゴマツール</p><p class="header-copy">無料で使える便利ツール集</p></div><a class="home-link" href="../">← ホームへ戻る</a></div></header>
+
+  <main><div class="container">
+    <!-- ====================== ヒーロー ====================== -->
+    <section class="hero" aria-labelledby="page-title"><p class="eyebrow">次の誕生日をかんたん確認</p><h1 id="page-title">🎉 誕生日カウント</h1><p class="hero-description">次の誕生日まであと何日かを簡単に計算できます。</p></section>
+
+    <!-- ====================== 誕生日計算フォーム ====================== -->
+    <section class="section" aria-labelledby="calculator-title"><h2 class="section-title" id="calculator-title">生年月日を入力</h2><div class="card">
+      <form id="birthdayForm" novalidate><label for="birthDate">生年月日</label><input type="date" id="birthDate" name="birthDate" autocomplete="bday" required><div class="button-row"><button class="primary-button" type="submit">🎂 計算する</button><button class="reset-button" id="resetButton" type="button">リセット</button></div><p class="error" id="formError" role="alert"></p></form>
+
+      <!-- ====================== 計算結果 ====================== -->
+      <div class="result-panel" id="resultPanel" aria-live="polite" hidden>
+        <div class="countdown-main"><span class="result-label">⏳ 次の誕生日まで</span><strong class="countdown-value" id="daysRemaining">—</strong></div>
+        <div class="result-grid">
+          <div class="result-item"><span class="result-label">🎂 現在の年齢</span><strong class="result-value" id="currentAge">—</strong></div>
+          <div class="result-item"><span class="result-label">🎉 次の誕生日</span><strong class="result-value" id="nextBirthday">—</strong></div>
+          <div class="result-item"><span class="result-label">📅 曜日</span><strong class="result-value" id="birthdayWeekday">—</strong></div>
+          <div class="result-item"><span class="result-label">🎈 年齢アップ</span><strong class="result-value" id="nextAge">—</strong></div>
+        </div>
+        <p class="age-up" id="ageUpMessage"></p>
+        <div class="progress-card"><div class="progress-heading"><span>前回の誕生日からの進捗</span><span id="progressPercent">0%</span></div><div class="progress-track" role="progressbar" aria-label="次の誕生日までの進捗" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar" id="progressBar"></div></div><p class="progress-note" id="progressNote"></p></div>
+      </div>
+    </div></section>
+
+    <!-- ====================== 補足 ====================== -->
+    <section class="section card info-card" aria-labelledby="info-title"><h2 class="section-title" id="info-title">🍵 安心してお使いください</h2><p>入力内容と計算処理はブラウザ内だけで行われます。</p><p>サーバーへ送信・保存することはありません。</p><p>2月29日生まれは、平年では2月28日を誕生日として計算します。</p></section>
+
+    <!-- ====================== 関連ツール ====================== -->
+    <section class="section" aria-labelledby="related-title"><h2 class="section-title" id="related-title">おすすめの便利ツール</h2><div class="card related-grid">
+      <a class="related-item related-link" href="../age/"><span class="related-name">🎂 年齢・日付計算</span><span class="related-status">公開中</span></a>
+      <a class="related-item related-link" href="../business-days/"><span class="related-name">📅 営業日計算</span><span class="related-status">公開中</span></a>
+      <a class="related-item related-link" href="../tax/"><span class="related-name">💰 消費税計算</span><span class="related-status">公開中</span></a>
+      <a class="related-item related-link" href="../warikan/"><span class="related-name">👥 割り勘計算</span><span class="related-status">公開中</span></a>
+      <a class="related-item related-link" href="../qrcode/"><span class="related-name">📱 QRコード生成</span><span class="related-status">公開中</span></a>
+      <a class="related-item related-link" href="../school-year/"><span class="related-name">🎓 学年・年齢・卒業年度計算</span><span class="related-status">公開中</span></a>
+      <a class="related-item related-link" href="../wareki/"><span class="related-name">📅 和暦・西暦変換</span><span class="related-status">公開中</span></a>
+      <a class="related-item related-link" href="../text-counter/"><span class="related-name">✍️ 文字数カウント</span><span class="related-status">公開中</span></a>
+      <a class="related-item related-link" href="../password/"><span class="related-name">🔐 パスワード生成</span><span class="related-status">公開中</span></a>
+      <a class="related-item related-link" href="../compound-interest/"><span class="related-name">📈 複利計算</span><span class="related-status">公開中</span></a>
+      <a class="related-item related-link" href="../unit-converter/"><span class="related-name">📏 単位変換ツール</span><span class="related-status">公開中</span></a>
+    </div></section>
+  </div></main>
+
+  <!-- ====================== フッター ====================== -->
+  <footer><div class="container"><p class="footer-logo">🍵 ゴマツール</p><p>30秒で使えて、<br>他より少し便利。</p><p class="project-name">Project Goma</p><div class="footer-assurance"><p>入力したデータはブラウザ内だけで処理されます。</p><p>サーバーへ送信・保存は行いません。</p></div><p class="updated">最終更新：2026年6月28日</p></div></footer>
+
+  <script>
+    'use strict';
+
+    // ====================== 日付ユーティリティ ======================
+    const DAY_MS = 24 * 60 * 60 * 1000;
+    const WEEKDAYS = ['日','月','火','水','木','金','土'];
+
+    function toUtcDate(year, month, day) {
+      const date = new Date(0);
+      date.setUTCHours(0, 0, 0, 0);
+      date.setUTCFullYear(year, month - 1, day);
+      return date;
+    }
+
+    function parseDate(value) {
+      const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
+      if (!match) return null;
+      const year = Number(match[1]);
+      const month = Number(match[2]);
+      const day = Number(match[3]);
+      const date = toUtcDate(year, month, day);
+      return date.getUTCFullYear() === year && date.getUTCMonth() + 1 === month && date.getUTCDate() === day ? date : null;
+    }
+
+    function getTodayUtc() {
+      const now = new Date();
+      return toUtcDate(now.getFullYear(), now.getMonth() + 1, now.getDate());
+    }
+
+    function daysInMonth(year, month) {
+      return new Date(Date.UTC(year, month, 0)).getUTCDate();
+    }
+
+    function birthdayInYear(birth, year) {
+      const month = birth.getUTCMonth() + 1;
+      const day = Math.min(birth.getUTCDate(), daysInMonth(year, month));
+      return toUtcDate(year, month, day);
+    }
+
+    function formatInputDate(date) {
+      return `${date.getUTCFullYear()}-${String(date.getUTCMonth() + 1).padStart(2,'0')}-${String(date.getUTCDate()).padStart(2,'0')}`;
+    }
+
+    function formatDate(date) {
+      return `${date.getUTCFullYear()}年${date.getUTCMonth() + 1}月${date.getUTCDate()}日（${WEEKDAYS[date.getUTCDay()]}）`;
+    }
+
+    // ====================== 誕生日計算 ======================
+    function calculateBirthday(event) {
+      event.preventDefault();
+      const raw = document.getElementById('birthDate').value;
+      const birth = parseDate(raw);
+      const today = getTodayUtc();
+      const error = document.getElementById('formError');
+      const panel = document.getElementById('resultPanel');
+      error.textContent = '';
+      panel.hidden = true;
+
+      if (!raw || !birth) { error.textContent = '生年月日を入力してください。'; return; }
+      if (birth > today) { error.textContent = '今日以前の日付を入力してください。'; return; }
+
+      let age = today.getUTCFullYear() - birth.getUTCFullYear();
+      const thisYearBirthday = birthdayInYear(birth, today.getUTCFullYear());
+      if (today < thisYearBirthday) age--;
+
+      let nextBirthday = thisYearBirthday;
+      if (nextBirthday < today) nextBirthday = birthdayInYear(birth, today.getUTCFullYear() + 1);
+      const daysRemaining = Math.round((nextBirthday - today) / DAY_MS);
+
+      let lastBirthday;
+      if (daysRemaining === 0) {
+        lastBirthday = birthdayInYear(birth, today.getUTCFullYear() - 1);
+      } else {
+        lastBirthday = birthdayInYear(birth, nextBirthday.getUTCFullYear() - 1);
+      }
+      const totalDays = Math.round((nextBirthday - lastBirthday) / DAY_MS);
+      const elapsedDays = Math.round((today - lastBirthday) / DAY_MS);
+      const progress = daysRemaining === 0 ? 100 : Math.max(0, Math.min(100, elapsedDays / totalDays * 100));
+      const nextAge = daysRemaining === 0 ? age : age + 1;
+
+      document.getElementById('daysRemaining').textContent = daysRemaining === 0 ? '今日！' : `あと${daysRemaining}日`;
+      document.getElementById('currentAge').textContent = `${age}歳`;
+      document.getElementById('nextBirthday').textContent = formatDate(nextBirthday);
+      document.getElementById('birthdayWeekday').textContent = `${WEEKDAYS[nextBirthday.getUTCDay()]}曜日`;
+      document.getElementById('nextAge').textContent = `${nextAge}歳`;
+      document.getElementById('ageUpMessage').textContent = daysRemaining === 0 ? `今日は誕生日です！${age}歳になりました。` : `次の誕生日で${nextAge}歳になります。`;
+      document.getElementById('progressPercent').textContent = `${Math.round(progress)}%`;
+      document.getElementById('progressBar').style.width = `${progress}%`;
+      const track = document.querySelector('.progress-track');
+      track.setAttribute('aria-valuenow', String(Math.round(progress)));
+      document.getElementById('progressNote').textContent = daysRemaining === 0 ? '誕生日おめでとうございます！' : `次の誕生日まで、あと${daysRemaining}日です。`;
+
+      panel.hidden = false;
+      panel.scrollIntoView({ behavior:'smooth', block:'nearest' });
+    }
+
+    function resetBirthday() {
+      document.getElementById('birthdayForm').reset();
+      document.getElementById('formError').textContent = '';
+      document.getElementById('resultPanel').hidden = true;
+      document.getElementById('birthDate').focus();
+    }
+
+    // ====================== 初期表示 ======================
+    function initializePage() {
+      const today = getTodayUtc();
+      document.getElementById('birthDate').max = formatInputDate(today);
+      document.getElementById('birthdayForm').addEventListener('submit', calculateBirthday);
+      document.getElementById('resetButton').addEventListener('click', resetBirthday);
+    }
+
+    initializePage();
+  </script>
+</body>
+</html>
