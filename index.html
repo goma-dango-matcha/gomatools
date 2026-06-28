@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="年齢・日付計算、営業日計算、消費税計算、割り勘計算、QRコード生成、学年・年齢・卒業年度計算、和暦・西暦変換、文字数カウントなど、登録不要・無料で使える便利ツール集です。">
+  <meta name="description" content="年齢・日付計算、営業日計算、消費税計算、QRコード生成、文字数カウント、パスワード生成など、登録不要・無料で使える便利ツール集です。">
   <title>ゴマツール｜毎日の「ちょっと便利」を、ひとつに。</title>
-
   <style>
     /* ======================
        基本設定
@@ -23,464 +22,121 @@
       --radius: 22px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 24px;
-    }
-
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 24px; }
     body {
       margin: 0;
       color: var(--text);
       background: linear-gradient(180deg, #f9fcf7 0, #fff 25%);
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        "Hiragino Kaku Gothic ProN",
-        "Yu Gothic",
-        Meiryo,
-        sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
       line-height: 1.75;
       -webkit-font-smoothing: antialiased;
     }
-
-    a {
-      color: inherit;
-    }
-
-    .container {
-      width: min(100% - 32px, 960px);
-      margin-inline: auto;
-    }
-
-    .section {
-      padding-top: 88px;
-    }
-
-    .section-heading {
-      margin: 0 0 10px;
-      font-size: clamp(1.55rem, 4vw, 2rem);
-      letter-spacing: -.01em;
-    }
-
-    .section-lead {
-      margin: 0 0 28px;
-      color: var(--muted);
-    }
-
-    .card {
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--white);
-      box-shadow: var(--shadow);
-    }
+    a { color: inherit; }
+    .container { width: min(100% - 32px, 960px); margin-inline: auto; }
+    .section { padding-top: 88px; }
+    .section-heading { margin: 0 0 10px; font-size: clamp(1.55rem, 4vw, 2rem); letter-spacing: -.01em; }
+    .section-lead { margin: 0 0 28px; color: var(--muted); }
+    .card { border: 1px solid var(--line); border-radius: var(--radius); background: var(--white); box-shadow: var(--shadow); }
 
     /* ======================
        ヘッダー
     ====================== */
-    .site-header {
-      padding: 24px 0;
-      border-bottom: 1px solid rgba(88, 124, 64, .12);
-      background: rgba(255, 255, 255, .86);
-    }
-
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-
-    .logo {
-      margin: 0;
-      color: var(--green-dark);
-      font-size: 1.22rem;
-      font-weight: 850;
-      letter-spacing: .02em;
-    }
-
-    .header-copy {
-      margin: 0;
-      color: var(--muted);
-      font-size: .86rem;
-    }
+    .site-header { padding: 24px 0; border-bottom: 1px solid rgba(88, 124, 64, .12); background: rgba(255, 255, 255, .86); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .logo { margin: 0; color: var(--green-dark); font-size: 1.22rem; font-weight: 850; letter-spacing: .02em; }
+    .header-copy { margin: 0; color: var(--muted); font-size: .86rem; }
 
     /* ======================
        ヒーロー
     ====================== */
-    main {
-      padding-bottom: 96px;
-    }
-
-    .hero {
-      padding: 104px 0 72px;
-      text-align: center;
-    }
-
-    .hero-badge {
-      display: inline-block;
-      margin: 0 0 18px;
-      padding: 7px 14px;
-      color: var(--green-dark);
-      border-radius: 999px;
-      background: var(--green-light);
-      font-size: .83rem;
-      font-weight: 750;
-    }
-
-    h1 {
-      max-width: 760px;
-      margin: 0 auto;
-      font-size: clamp(2.25rem, 8vw, 4.4rem);
-      line-height: 1.2;
-      letter-spacing: -.045em;
-    }
-
-    .hero-description {
-      max-width: 680px;
-      margin: 24px auto 0;
-      color: var(--muted);
-      font-size: clamp(1rem, 2.8vw, 1.12rem);
-    }
-
-    .cta-button,
-    .tool-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 54px;
-      padding: 13px 24px;
-      border-radius: 14px;
-      font-weight: 800;
-      text-decoration: none;
-      transition:
-        transform .15s ease,
-        background .15s ease,
-        box-shadow .15s ease;
-    }
-
-    .cta-button {
-      margin-top: 34px;
-      color: #fff;
-      background: var(--green);
-      box-shadow: 0 10px 25px rgba(88, 124, 64, .25);
-    }
-
-    .cta-button:hover,
-    .tool-button:hover {
-      background: var(--green-dark);
-      transform: translateY(-2px);
-    }
-
-    .cta-button:focus-visible,
-    .tool-button:focus-visible {
-      outline: 3px solid rgba(88, 124, 64, .35);
-      outline-offset: 4px;
-    }
+    main { padding-bottom: 96px; }
+    .hero { padding: 104px 0 72px; text-align: center; }
+    .hero-badge { display: inline-block; margin: 0 0 18px; padding: 7px 14px; color: var(--green-dark); border-radius: 999px; background: var(--green-light); font-size: .83rem; font-weight: 750; }
+    h1 { max-width: 760px; margin: 0 auto; font-size: clamp(2.25rem, 8vw, 4.4rem); line-height: 1.2; letter-spacing: -.045em; }
+    .hero-description { max-width: 680px; margin: 24px auto 0; color: var(--muted); font-size: clamp(1rem, 2.8vw, 1.12rem); }
+    .cta-button, .tool-button { display: inline-flex; align-items: center; justify-content: center; min-height: 54px; padding: 13px 24px; border-radius: 14px; font-weight: 800; text-decoration: none; transition: transform .15s ease, background .15s ease, box-shadow .15s ease; }
+    .cta-button { margin-top: 34px; color: #fff; background: var(--green); box-shadow: 0 10px 25px rgba(88, 124, 64, .25); }
+    .cta-button:hover, .tool-button:hover { background: var(--green-dark); transform: translateY(-2px); }
+    .cta-button:focus-visible, .tool-button:focus-visible { outline: 3px solid rgba(88, 124, 64, .35); outline-offset: 4px; }
 
     /* ======================
        公開中のツール
     ====================== */
-    .published-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .featured-tool {
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      min-height: 295px;
-      padding: clamp(24px, 5vw, 34px);
-      transition:
-        transform .18s ease,
-        border-color .18s ease,
-        box-shadow .18s ease;
-    }
-
-    .featured-tool:hover {
-      transform: translateY(-4px);
-      border-color: #c7d7be;
-      box-shadow: 0 20px 48px rgba(48, 70, 36, .13);
-    }
-
-    .tool-title-row {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .tool-title {
-      margin: 0;
-      font-size: clamp(1.3rem, 4vw, 1.7rem);
-    }
-
-    .status-live {
-      padding: 4px 10px;
-      color: var(--green-dark);
-      border-radius: 999px;
-      background: var(--green-light);
-      font-size: .75rem;
-      font-weight: 800;
-    }
-
-    .tool-description {
-      margin: 14px 0 26px;
-      color: var(--muted);
-    }
-
-    .tool-button {
-      width: 100%;
-      margin-top: auto;
-      color: #fff;
-      background: var(--green);
-    }
+    .published-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .featured-tool { display: flex; flex-direction: column; align-items: stretch; min-height: 295px; padding: clamp(24px, 5vw, 34px); transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease; }
+    .featured-tool:hover { transform: translateY(-4px); border-color: #c7d7be; box-shadow: 0 20px 48px rgba(48, 70, 36, .13); }
+    .tool-title-row { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .tool-title { margin: 0; font-size: clamp(1.3rem, 4vw, 1.7rem); }
+    .status-live { padding: 4px 10px; color: var(--green-dark); border-radius: 999px; background: var(--green-light); font-size: .75rem; font-weight: 800; }
+    .tool-description { margin: 14px 0 26px; color: var(--muted); }
+    .tool-button { width: 100%; margin-top: auto; color: #fff; background: var(--green); }
 
     /* ======================
        制作予定のツール
     ====================== */
-    .planned-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-      gap: 16px;
-    }
-
-    .planned-card {
-      min-height: 142px;
-      padding: 22px;
-      box-shadow: none;
-      transition:
-        transform .18s ease,
-        border-color .18s ease;
-    }
-
-    .planned-card:hover {
-      transform: translateY(-3px);
-      border-color: #c7d7be;
-    }
-
-    .planned-icon {
-      display: block;
-      margin-bottom: 12px;
-      font-size: 1.6rem;
-    }
-
-    .planned-name {
-      display: block;
-      font-weight: 800;
-    }
-
-    .planned-status {
-      display: block;
-      margin-top: 5px;
-      color: var(--muted);
-      font-size: .78rem;
-    }
+    .planned-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 16px; }
+    .planned-card { min-height: 142px; padding: 22px; box-shadow: none; transition: transform .18s ease, border-color .18s ease; }
+    .planned-card:hover { transform: translateY(-3px); border-color: #c7d7be; }
+    .planned-icon { display: block; margin-bottom: 12px; font-size: 1.6rem; }
+    .planned-name { display: block; font-weight: 800; }
+    .planned-status { display: block; margin-top: 5px; color: var(--muted); font-size: .78rem; }
 
     /* ======================
        ゴマツールの約束
     ====================== */
-    .promise-card {
-      padding: clamp(26px, 6vw, 46px);
-      color: #fff;
-      border: 0;
-      background: linear-gradient(
-        135deg,
-        var(--green-dark),
-        #4e7139
-      );
-    }
-
-    .promise-card .section-heading {
-      margin-bottom: 24px;
-    }
-
-    .promise-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px 28px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .promise-list li {
-      display: flex;
-      gap: 9px;
-      align-items: baseline;
-    }
+    .promise-card { padding: clamp(26px, 6vw, 46px); color: #fff; border: 0; background: linear-gradient(135deg, var(--green-dark), #4e7139); }
+    .promise-card .section-heading { margin-bottom: 24px; }
+    .promise-list { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 28px; margin: 0; padding: 0; list-style: none; }
+    .promise-list li { display: flex; gap: 9px; align-items: baseline; }
 
     /* ======================
        ロードマップ
     ====================== */
-    .roadmap-card {
-      padding: clamp(26px, 6vw, 42px);
-    }
-
-    .roadmap-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-
-    .roadmap-item {
-      padding: 20px;
-      border-radius: 16px;
-      background: var(--green-soft);
-    }
-
-    .roadmap-label {
-      display: block;
-      color: var(--muted);
-      font-size: .8rem;
-      font-weight: 700;
-    }
-
-    .roadmap-value {
-      display: block;
-      margin-top: 5px;
-      color: var(--green-dark);
-      font-size: clamp(1.1rem, 3vw, 1.35rem);
-      font-weight: 850;
-    }
-
-    .roadmap-note {
-      margin: 24px 0 0;
-      color: var(--muted);
-    }
+    .roadmap-card { padding: clamp(26px, 6vw, 42px); }
+    .roadmap-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .roadmap-item { padding: 20px; border-radius: 16px; background: var(--green-soft); }
+    .roadmap-label { display: block; color: var(--muted); font-size: .8rem; font-weight: 700; }
+    .roadmap-value { display: block; margin-top: 5px; color: var(--green-dark); font-size: clamp(1.1rem, 3vw, 1.35rem); font-weight: 850; }
+    .roadmap-note { margin: 24px 0 0; color: var(--muted); }
 
     /* ======================
        フッター
     ====================== */
-    footer {
-      padding: 52px 0;
-      color: var(--muted);
-      border-top: 1px solid var(--line);
-      text-align: center;
-      background: var(--green-soft);
-    }
-
-    .footer-logo {
-      margin: 0 0 8px;
-      color: var(--green-dark);
-      font-size: 1.15rem;
-      font-weight: 850;
-    }
-
-    footer p {
-      margin: 5px 0;
-    }
-
-    .project-name {
-      margin-top: 20px;
-      font-size: .82rem;
-      font-weight: 750;
-      letter-spacing: .08em;
-    }
-
-    .footer-motto {
-      margin-top: 18px;
-      font-size: .86rem;
-    }
-
-    .footer-assurance {
-      max-width: 620px;
-      margin: 30px auto 0;
-      padding-top: 28px;
-      border-top: 1px solid var(--line);
-      font-size: .78rem;
-      line-height: 1.8;
-    }
-
-    .footer-assurance p {
-      margin: 3px 0;
-    }
-
-    .updated {
-      margin-top: 18px;
-      font-size: .72rem;
-      line-height: 1.6;
-    }
-
-    .updated-label,
-    .updated-date {
-      display: block;
-    }
+    footer { padding: 52px 0; color: var(--muted); border-top: 1px solid var(--line); text-align: center; background: var(--green-soft); }
+    .footer-logo { margin: 0 0 8px; color: var(--green-dark); font-size: 1.15rem; font-weight: 850; }
+    footer p { margin: 5px 0; }
+    .project-name { margin-top: 20px; font-size: .82rem; font-weight: 750; letter-spacing: .08em; }
+    .footer-motto { margin-top: 18px; font-size: .86rem; }
+    .footer-assurance { max-width: 620px; margin: 30px auto 0; padding-top: 28px; border-top: 1px solid var(--line); font-size: .78rem; line-height: 1.8; }
+    .footer-assurance p { margin: 3px 0; }
+    .updated { margin-top: 18px; font-size: .72rem; line-height: 1.6; }
+    .updated-label, .updated-date { display: block; }
 
     /* ======================
        レスポンシブ
     ====================== */
     @media (max-width: 720px) {
-      .section {
-        padding-top: 66px;
-      }
-
-      .hero {
-        padding: 74px 0 42px;
-      }
-
-      .published-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .featured-tool {
-        min-height: auto;
-      }
-
-      .planned-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .roadmap-stats {
-        grid-template-columns: 1fr;
-      }
+      .section { padding-top: 66px; }
+      .hero { padding: 74px 0 42px; }
+      .published-grid { grid-template-columns: 1fr; }
+      .featured-tool { min-height: auto; }
+      .planned-grid { grid-template-columns: 1fr 1fr; }
+      .roadmap-stats { grid-template-columns: 1fr; }
     }
-
     @media (max-width: 500px) {
-      .container {
-        width: min(100% - 24px, 960px);
-      }
-
-      .header-inner {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 3px;
-      }
-
-      .planned-grid,
-      .promise-list {
-        grid-template-columns: 1fr;
-      }
-
-      .planned-card {
-        min-height: auto;
-      }
-
-      h1 {
-        font-size: clamp(2.15rem, 11vw, 3rem);
-      }
+      .container { width: min(100% - 24px, 960px); }
+      .header-inner { align-items: flex-start; flex-direction: column; gap: 3px; }
+      .planned-grid, .promise-list { grid-template-columns: 1fr; }
+      .planned-card { min-height: auto; }
+      h1 { font-size: clamp(2.15rem, 11vw, 3rem); }
     }
-
     @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      *,
-      *::before,
-      *::after {
-        transition: none !important;
-      }
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; }
     }
   </style>
 </head>
-
 <body>
   <!-- ======================
        ヘッダー
@@ -498,25 +154,10 @@
     ====================== -->
     <section class="hero" aria-labelledby="page-title">
       <div class="container">
-        <p class="hero-badge">
-          無料・登録不要ですぐ使える
-        </p>
-
-        <h1 id="page-title">
-          毎日の「ちょっと便利」を、ひとつに。
-        </h1>
-
-        <p class="hero-description">
-          ゴマツールは、日常で使える便利ツールを少しずつ増やしていく無料サービスです。<br>
-          登録不要・完全無料・スマホ対応。
-        </p>
-
-        <a
-          class="cta-button"
-          href="#available-tools"
-        >
-          公開中のツールを見る&nbsp; ↓
-        </a>
+        <p class="hero-badge">無料・登録不要ですぐ使える</p>
+        <h1 id="page-title">毎日の「ちょっと便利」を、ひとつに。</h1>
+        <p class="hero-description">ゴマツールは、日常で使える便利ツールを少しずつ増やしていく無料サービスです。<br>登録不要・完全無料・スマホ対応。</p>
+        <a class="cta-button" href="#available-tools">公開中のツールを見る&nbsp; ↓</a>
       </div>
     </section>
 
@@ -524,158 +165,91 @@
       <!-- ======================
            公開中のツール
       ====================== -->
-      <section
-        class="section"
-        id="available-tools"
-        aria-labelledby="available-title"
-      >
-        <h2
-          class="section-heading"
-          id="available-title"
-        >
-          公開中のツール
-        </h2>
+      <section class="section" id="available-tools" aria-labelledby="available-title">
+        <h2 class="section-heading" id="available-title">公開中のツール</h2>
+        <p class="section-lead">登録不要で、今すぐ無料で使えます。</p>
 
-        <p class="section-lead">
-          登録不要で、今すぐ無料で使えます。
-        </p>
-
-        <!-- 公開ツールを増やす場合はarticle要素を複製します -->
+        <!-- 公開ツールを増やす場合は、このarticle要素を複製します -->
         <div class="published-grid">
           <article class="card featured-tool">
             <div class="tool-title-row">
-              <h3 class="tool-title">
-                🎂 年齢・日付計算
-              </h3>
+              <h3 class="tool-title">🎂 年齢・日付計算</h3>
               <span class="status-live">公開中</span>
             </div>
-
-            <p class="tool-description">
-              生年月日から年齢・生まれてからの日数・次の誕生日などを計算できます。
-            </p>
-
-            <a class="tool-button" href="./age/">
-              使ってみる
-            </a>
+            <p class="tool-description">生年月日から年齢・生まれてからの日数・次の誕生日などを計算できます。</p>
+            <a class="tool-button" href="./age/">使ってみる</a>
           </article>
 
           <article class="card featured-tool">
             <div class="tool-title-row">
-              <h3 class="tool-title">
-                📅 営業日計算
-              </h3>
+              <h3 class="tool-title">📅 営業日計算</h3>
               <span class="status-live">公開中</span>
             </div>
-
-            <p class="tool-description">
-              土日を除いた営業日を簡単に計算できます。
-            </p>
-
-            <a class="tool-button" href="./business-days/">
-              使ってみる
-            </a>
+            <p class="tool-description">土日を除いた営業日を簡単に計算できます。</p>
+            <a class="tool-button" href="./business-days/">使ってみる</a>
           </article>
 
           <article class="card featured-tool">
             <div class="tool-title-row">
-              <h3 class="tool-title">
-                💰 消費税計算
-              </h3>
+              <h3 class="tool-title">💰 消費税計算</h3>
               <span class="status-live">公開中</span>
             </div>
-
-            <p class="tool-description">
-              税込・税抜・消費税額をかんたんに計算できます。
-            </p>
-
-            <a class="tool-button" href="./tax/">
-              使ってみる
-            </a>
+            <p class="tool-description">税込・税抜・消費税額をかんたんに計算できます。</p>
+            <a class="tool-button" href="./tax/">使ってみる</a>
           </article>
 
           <article class="card featured-tool">
             <div class="tool-title-row">
-              <h3 class="tool-title">
-                👥 割り勘計算
-              </h3>
+              <h3 class="tool-title">👥 割り勘計算</h3>
               <span class="status-live">公開中</span>
             </div>
-
-            <p class="tool-description">
-              合計金額と人数から、1人あたりの金額と余りを計算できます。
-            </p>
-
-            <a class="tool-button" href="./warikan/">
-              使ってみる
-            </a>
+            <p class="tool-description">合計金額と人数から、1人あたりの金額と余りを計算できます。</p>
+            <a class="tool-button" href="./warikan/">使ってみる</a>
           </article>
 
           <article class="card featured-tool">
             <div class="tool-title-row">
-              <h3 class="tool-title">
-                📱 QRコード生成
-              </h3>
+              <h3 class="tool-title">📱 QRコード生成</h3>
               <span class="status-live">公開中</span>
             </div>
-
-            <p class="tool-description">
-              URLやテキストからQRコードを簡単に作成できます。
-            </p>
-
-            <a class="tool-button" href="./qrcode/">
-              使ってみる
-            </a>
+            <p class="tool-description">URLやテキストからQRコードを簡単に作成できます。</p>
+            <a class="tool-button" href="./qrcode/">使ってみる</a>
           </article>
 
           <article class="card featured-tool">
             <div class="tool-title-row">
-              <h3 class="tool-title">
-                🎓 学年・年齢・卒業年度計算
-              </h3>
+              <h3 class="tool-title">🎓 学年・年齢・卒業年度計算</h3>
               <span class="status-live">公開中</span>
             </div>
-
-            <p class="tool-description">
-              生年月日や生まれ年から、年齢と学校の入学年・卒業年を計算できます。
-            </p>
-
-            <a class="tool-button" href="./school-year/">
-              使ってみる
-            </a>
+            <p class="tool-description">生年月日や生まれ年から、年齢と学校の入学年・卒業年を計算できます。</p>
+            <a class="tool-button" href="./school-year/">使ってみる</a>
           </article>
 
           <article class="card featured-tool">
             <div class="tool-title-row">
-              <h3 class="tool-title">
-                📅 和暦・西暦変換
-              </h3>
+              <h3 class="tool-title">📅 和暦・西暦変換</h3>
               <span class="status-live">公開中</span>
             </div>
-
-            <p class="tool-description">
-              西暦と和暦をかんたんに相互変換できます。
-            </p>
-
-            <a class="tool-button" href="./wareki/">
-              使ってみる
-            </a>
+            <p class="tool-description">西暦と和暦をかんたんに相互変換できます。</p>
+            <a class="tool-button" href="./wareki/">使ってみる</a>
           </article>
 
           <article class="card featured-tool">
             <div class="tool-title-row">
-              <h3 class="tool-title">
-                ✍️ 文字数カウント
-              </h3>
+              <h3 class="tool-title">✍️ 文字数カウント</h3>
               <span class="status-live">公開中</span>
             </div>
+            <p class="tool-description">文章の文字数・空白を除いた文字数・改行数を確認できます。</p>
+            <a class="tool-button" href="./text-counter/">使ってみる</a>
+          </article>
 
-            <p class="tool-description">
-              文章の文字数・空白を除いた文字数・改行数を確認できます。
-            </p>
-
-            <a class="tool-button" href="./text-counter/">
-              使ってみる
-            </a>
+          <article class="card featured-tool">
+            <div class="tool-title-row">
+              <h3 class="tool-title">🔐 パスワード生成</h3>
+              <span class="status-live">公開中</span>
+            </div>
+            <p class="tool-description">安全なランダムパスワードを簡単に作成できます。</p>
+            <a class="tool-button" href="./password/">使ってみる</a>
           </article>
         </div>
       </section>
@@ -683,81 +257,26 @@
       <!-- ======================
            制作予定のツール
       ====================== -->
-      <section
-        class="section"
-        aria-labelledby="planned-title"
-      >
-        <h2
-          class="section-heading"
-          id="planned-title"
-        >
-          制作予定のツール
-        </h2>
-
-        <p class="section-lead">
-          暮らしに役立つツールを、ひとつずつ丁寧に追加します。
-        </p>
-
+      <section class="section" aria-labelledby="planned-title">
+        <h2 class="section-heading" id="planned-title">制作予定のツール</h2>
+        <p class="section-lead">暮らしに役立つツールを、ひとつずつ丁寧に追加します。</p>
         <div class="planned-grid">
-          <article class="card planned-card">
-            <span
-              class="planned-icon"
-              aria-hidden="true"
-            >
-              🎲
-            </span>
-
-            <span class="planned-name">
-              ナンバーズ分析
-            </span>
-
-            <span class="planned-status">
-              制作予定
-            </span>
-          </article>
+          <article class="card planned-card"><span class="planned-icon" aria-hidden="true">🎲</span><span class="planned-name">ナンバーズ分析</span><span class="planned-status">制作予定</span></article>
         </div>
       </section>
 
       <!-- ======================
            ゴマツールの約束
       ====================== -->
-      <section
-        class="section"
-        aria-labelledby="promise-title"
-      >
+      <section class="section" aria-labelledby="promise-title">
         <div class="card promise-card">
-          <h2
-            class="section-heading"
-            id="promise-title"
-          >
-            🍵 ゴマツールの約束
-          </h2>
-
+          <h2 class="section-heading" id="promise-title">🍵 ゴマツールの約束</h2>
           <ul class="promise-list">
-            <li>
-              <span aria-hidden="true">✅</span>
-              完全無料
-            </li>
-
-            <li>
-              <span aria-hidden="true">✅</span>
-              登録不要
-            </li>
-
-            <li>
-              <span aria-hidden="true">✅</span>
-              スマホ対応
-            </li>
-
-            <li>
-              <span aria-hidden="true">✅</span>
-              データはブラウザ内だけで処理
-            </li>
-
-            <li>
-              <span aria-hidden="true">✅</span>
-              サーバーへ送信・保存しません
-            </li>
+            <li><span aria-hidden="true">✅</span> 完全無料</li>
+            <li><span aria-hidden="true">✅</span> 登録不要</li>
+            <li><span aria-hidden="true">✅</span> スマホ対応</li>
+            <li><span aria-hidden="true">✅</span> データはブラウザ内だけで処理</li>
+            <li><span aria-hidden="true">✅</span> サーバーへ送信・保存しません</li>
           </ul>
         </div>
       </section>
@@ -765,57 +284,16 @@
       <!-- ======================
            ロードマップ
       ====================== -->
-      <section
-        class="section"
-        aria-labelledby="roadmap-title"
-      >
-        <h2
-          class="section-heading"
-          id="roadmap-title"
-        >
-          これから増やしていく予定
-        </h2>
-
-        <p class="section-lead">
-          ゴマツールは、まだ始まったばかりです。
-        </p>
-
+      <section class="section" aria-labelledby="roadmap-title">
+        <h2 class="section-heading" id="roadmap-title">これから増やしていく予定</h2>
+        <p class="section-lead">ゴマツールは、まだ始まったばかりです。</p>
         <div class="card roadmap-card">
           <div class="roadmap-stats">
-            <div class="roadmap-item">
-              <span class="roadmap-label">
-                現在公開中
-              </span>
-
-              <strong class="roadmap-value">
-                8ツール
-              </strong>
-            </div>
-
-            <div class="roadmap-item">
-              <span class="roadmap-label">
-                次に公開予定
-              </span>
-
-              <strong class="roadmap-value">
-                ナンバーズ分析
-              </strong>
-            </div>
-
-            <div class="roadmap-item">
-              <span class="roadmap-label">
-                目標
-              </span>
-
-              <strong class="roadmap-value">
-                10ツール公開
-              </strong>
-            </div>
+            <div class="roadmap-item"><span class="roadmap-label">現在公開中</span><strong class="roadmap-value">9ツール</strong></div>
+            <div class="roadmap-item"><span class="roadmap-label">次に公開予定</span><strong class="roadmap-value">複利計算</strong></div>
+            <div class="roadmap-item"><span class="roadmap-label">目標</span><strong class="roadmap-value">10ツール公開</strong></div>
           </div>
-
-          <p class="roadmap-note">
-            役立つツールを一つずつ丁寧に作り、公開・改善を繰り返しながら育てていきます。
-          </p>
+          <p class="roadmap-note">役立つツールを一つずつ丁寧に作り、公開・改善を繰り返しながら育てていきます。</p>
         </div>
       </section>
     </div>
@@ -826,47 +304,18 @@
   ====================== -->
   <footer>
     <div class="container">
-      <p class="footer-logo">
-        🍵 ゴマツール
-      </p>
-
-      <p>
-        30秒で使えて、<br>
-        他より少し便利。
-      </p>
-
-      <p class="project-name">
-        Project Goma
-      </p>
-
-      <p class="footer-motto">
-        小さく作って、<br>
-        早く公開して、<br>
-        一歩ずつ育てる。
-      </p>
-
+      <p class="footer-logo">🍵 ゴマツール</p>
+      <p>30秒で使えて、<br>他より少し便利。</p>
+      <p class="project-name">Project Goma</p>
+      <p class="footer-motto">小さく作って、<br>早く公開して、<br>一歩ずつ育てる。</p>
       <div class="footer-assurance">
-        <p>
-          入力したデータはブラウザ内だけで処理されます。
-        </p>
-
-        <p>
-          サーバーへ送信・保存は行いません。
-        </p>
-
-        <p>
-          ゴマツールは、毎日安心して使える便利なツールづくりを目指しています。
-        </p>
+        <p>入力したデータはブラウザ内だけで処理されます。</p>
+        <p>サーバーへ送信・保存は行いません。</p>
+        <p>ゴマツールは、毎日安心して使える便利なツールづくりを目指しています。</p>
       </div>
-
       <p class="updated">
-        <span class="updated-label">
-          最終更新
-        </span>
-
-        <span class="updated-date">
-          2026年6月28日
-        </span>
+        <span class="updated-label">最終更新</span>
+        <span class="updated-date">2026年6月28日</span>
       </p>
     </div>
   </footer>
@@ -875,36 +324,17 @@
     'use strict';
 
     // ======================
-    // ページ内リンク
+    // ページ内リンクのスムーズスクロール
     // ======================
     function initializePageNavigation() {
-      const toolLink =
-        document.querySelector(
-          'a[href="#available-tools"]'
-        );
+      const toolLink = document.querySelector('a[href="#available-tools"]');
+      const target = document.getElementById('available-tools');
 
-      const target =
-        document.getElementById(
-          'available-tools'
-        );
-
-      toolLink.addEventListener(
-        'click',
-        function (event) {
-          event.preventDefault();
-
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-
-          history.replaceState(
-            null,
-            '',
-            '#available-tools'
-          );
-        }
-      );
+      toolLink.addEventListener('click', function (event) {
+        event.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.replaceState(null, '', '#available-tools');
+      });
     }
 
     initializePageNavigation();

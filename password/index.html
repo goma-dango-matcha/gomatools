@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="安全なランダムパスワードを無料で生成できるツールです。長さや使用する文字を選択して簡単に作成できます。">
+  <title>パスワード生成｜ゴマツール</title>
+  <style>
+    /* ====================== 基本設定 ====================== */
+    :root { --green:#587c40; --green-dark:#355126; --green-light:#eef5e9; --green-soft:#f8fbf6; --text:#20251d; --muted:#687064; --line:#dde6d8; --white:#fff; --danger:#b44335; --shadow:0 16px 44px rgba(48,70,36,.09); --radius:22px; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--text); background:linear-gradient(180deg,#f9fcf7 0,#fff 25%); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif; line-height:1.75; -webkit-font-smoothing:antialiased; }
+    button, select, input { font:inherit; }
+    button { cursor:pointer; }
+    a { color:inherit; }
+    .container { width:min(100% - 32px,880px); margin-inline:auto; }
+    .section { margin-top:72px; }
+    .section-title { margin:0 0 20px; font-size:clamp(1.4rem,4vw,1.8rem); }
+    .card { padding:clamp(22px,5vw,38px); border:1px solid var(--line); border-radius:var(--radius); background:var(--white); box-shadow:var(--shadow); }
+
+    /* ====================== ヘッダー・ヒーロー ====================== */
+    .site-header { padding:23px 0; border-bottom:1px solid rgba(88,124,64,.12); background:rgba(255,255,255,.86); }
+    .header-inner { display:flex; align-items:center; justify-content:space-between; gap:24px; }
+    .brand-wrap { display:flex; align-items:baseline; gap:14px; }
+    .logo { margin:0; color:var(--green-dark); font-size:1.2rem; font-weight:850; }
+    .header-copy { margin:0; color:var(--muted); font-size:.82rem; }
+    .home-link { display:inline-flex; min-height:44px; align-items:center; padding:8px 14px; color:var(--green-dark); border:1px solid var(--line); border-radius:12px; background:#fff; font-size:.86rem; font-weight:750; text-decoration:none; }
+    .home-link:hover { background:var(--green-light); }
+    main { padding:78px 0 96px; }
+    .hero { text-align:center; }
+    .eyebrow { display:inline-block; margin:0 0 15px; padding:6px 13px; color:var(--green-dark); border-radius:999px; background:var(--green-light); font-size:.82rem; font-weight:750; }
+    h1 { margin:0; font-size:clamp(2.1rem,8vw,3.7rem); line-height:1.25; letter-spacing:-.035em; }
+    .hero-description { max-width:640px; margin:18px auto 0; color:var(--muted); }
+
+    /* ====================== 生成フォーム ====================== */
+    .form-grid { display:grid; gap:24px; }
+    label, legend { font-weight:750; }
+    select { width:100%; min-height:52px; padding:12px 14px; color:var(--text); border:1.5px solid #cdd8c7; border-radius:12px; background:#fff; }
+    select:focus, input:focus-visible { outline:3px solid rgba(88,124,64,.18); outline-offset:2px; }
+    fieldset { margin:0; padding:0; border:0; }
+    legend { margin-bottom:12px; }
+    .check-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .check-option { display:flex; min-height:52px; align-items:center; gap:10px; padding:11px 14px; border:1px solid var(--line); border-radius:13px; background:var(--green-soft); cursor:pointer; }
+    .check-option input { width:20px; height:20px; accent-color:var(--green); }
+    .primary-button, .copy-button { width:100%; min-height:56px; padding:14px 22px; border-radius:14px; font-weight:850; transition:transform .15s ease,background .15s ease; }
+    .primary-button { color:#fff; border:0; background:var(--green); box-shadow:0 9px 22px rgba(88,124,64,.23); }
+    .primary-button:hover { background:var(--green-dark); transform:translateY(-1px); }
+    .copy-button { color:var(--green-dark); border:1.5px solid var(--green); background:#fff; }
+    .copy-button:hover { background:var(--green-light); }
+    .primary-button:focus-visible, .copy-button:focus-visible, .home-link:focus-visible, .related-link:focus-visible { outline:3px solid rgba(88,124,64,.35); outline-offset:3px; }
+    .error { min-height:1.6em; margin:12px 0 0; color:var(--danger); font-weight:750; text-align:center; }
+
+    /* ====================== 生成結果 ====================== */
+    .result-panel { margin-top:28px; padding-top:28px; border-top:1px solid var(--line); }
+    .result-panel[hidden] { display:none; }
+    .password-box { padding:24px 18px; border-radius:18px; background:var(--green-light); text-align:center; }
+    .result-label { display:block; color:var(--muted); font-size:.84rem; font-weight:750; }
+    .password-value { display:block; margin-top:8px; color:var(--green-dark); font-family:ui-monospace,SFMono-Regular,Consolas,monospace; font-size:clamp(1.25rem,5vw,2rem); line-height:1.45; font-weight:900; overflow-wrap:anywhere; }
+    .strength { margin:16px 0 0; text-align:center; font-size:1.05rem; font-weight:850; }
+    .strength.weak { color:#a13c32; }
+    .strength.normal { color:#8a6b14; }
+    .strength.strong { color:var(--green-dark); }
+    .included-list { display:grid; grid-template-columns:1fr 1fr; gap:8px 16px; margin:18px 0 0; padding:0; list-style:none; color:var(--muted); font-size:.9rem; }
+    .copy-wrap { margin-top:18px; }
+    .copy-status { min-height:1.5em; margin:8px 0 0; color:var(--green-dark); font-size:.86rem; font-weight:750; text-align:center; }
+
+    /* ====================== 補足・関連ツール ====================== */
+    .info-card { box-shadow:none; background:var(--green-soft); }
+    .info-card p { margin:5px 0; color:var(--muted); }
+    .related-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .related-item { padding:19px; border:1px solid var(--line); border-radius:15px; background:var(--green-soft); }
+    .related-name { display:block; font-weight:800; }
+    .related-status { display:block; margin-top:4px; color:var(--muted); font-size:.78rem; }
+    .related-link { display:block; text-decoration:none; transition:border-color .15s ease,transform .15s ease; }
+    .related-link:hover { border-color:var(--green); transform:translateY(-1px); }
+
+    /* ====================== フッター・レスポンシブ ====================== */
+    footer { padding:52px 0; color:var(--muted); border-top:1px solid var(--line); text-align:center; background:var(--green-soft); }
+    .footer-logo { margin:0 0 8px; color:var(--green-dark); font-size:1.15rem; font-weight:850; }
+    footer p { margin:5px 0; }
+    .project-name { margin-top:20px; font-size:.82rem; font-weight:750; letter-spacing:.08em; }
+    .footer-assurance { max-width:620px; margin:28px auto 0; padding-top:26px; border-top:1px solid var(--line); font-size:.78rem; line-height:1.8; }
+    .updated { margin-top:18px; font-size:.72rem; }
+    @media (max-width:620px) { .container{width:min(100% - 24px,880px)} .site-header{padding:18px 0} .header-inner{align-items:flex-start} .brand-wrap{flex-direction:column;gap:0} main{padding:58px 0 76px} .section{margin-top:54px} .card{padding:22px 18px;border-radius:18px} .check-grid,.included-list,.related-grid{grid-template-columns:1fr} }
+    @media (prefers-reduced-motion:reduce) { html{scroll-behavior:auto} *,*::before,*::after{transition:none!important} }
+  </style>
+</head>
+<body>
+  <!-- ====================== ヘッダー ====================== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand-wrap"><p class="logo">🍵 ゴマツール</p><p class="header-copy">無料で使える便利ツール集</p></div>
+      <a class="home-link" href="../">← ホームへ戻る</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <!-- ====================== ヒーロー ====================== -->
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow">安全な乱数をブラウザ内で生成</p>
+        <h1 id="page-title">🔐 パスワード生成</h1>
+        <p class="hero-description">安全なランダムパスワードを無料で生成できます。<br>ブラウザ内だけで処理されるため安心して利用できます。</p>
+      </section>
+
+      <!-- ====================== パスワード生成 ====================== -->
+      <section class="section" aria-labelledby="generator-title">
+        <h2 class="section-title" id="generator-title">生成条件を選ぶ</h2>
+        <div class="card">
+          <form id="passwordForm" novalidate>
+            <div class="form-grid">
+              <div><label for="passwordLength">パスワード長</label><select id="passwordLength" name="passwordLength"><option value="8">8文字</option><option value="12" selected>12文字</option><option value="16">16文字</option><option value="20">20文字</option><option value="24">24文字</option><option value="32">32文字</option></select></div>
+              <fieldset><legend>使用する文字</legend><div class="check-grid">
+                <label class="check-option"><input type="checkbox" id="useUppercase" checked>大文字（A-Z）</label>
+                <label class="check-option"><input type="checkbox" id="useLowercase" checked>小文字（a-z）</label>
+                <label class="check-option"><input type="checkbox" id="useNumbers" checked>数字（0-9）</label>
+                <label class="check-option"><input type="checkbox" id="useSymbols" checked>記号（!@#$%など）</label>
+              </div></fieldset>
+              <button class="primary-button" type="submit">🔐 パスワードを生成</button>
+            </div>
+            <p class="error" id="formError" role="alert"></p>
+          </form>
+
+          <!-- ====================== 生成結果 ====================== -->
+          <div class="result-panel" id="resultPanel" aria-live="polite" hidden>
+            <div class="password-box"><span class="result-label">生成したパスワード</span><strong class="password-value" id="passwordValue">—</strong></div>
+            <p class="strength" id="strengthResult">—</p>
+            <ul class="included-list" id="includedList"></ul>
+            <div class="copy-wrap"><button class="copy-button" type="button" id="copyButton">📋 コピー</button><p class="copy-status" id="copyStatus" role="status"></p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================== 注意書き ====================== -->
+      <section class="section card info-card" aria-labelledby="notice-title"><h2 class="section-title" id="notice-title">🍵 安心してお使いください</h2><p>生成したパスワードはサーバーへ送信・保存されません。</p><p>生成処理はこのブラウザ内だけで行われます。</p></section>
+
+      <!-- ====================== 関連ツール ====================== -->
+      <section class="section" aria-labelledby="related-title"><h2 class="section-title" id="related-title">おすすめの便利ツール</h2><div class="card related-grid">
+        <a class="related-item related-link" href="../age/"><span class="related-name">🎂 年齢・日付計算</span><span class="related-status">公開中</span></a>
+        <a class="related-item related-link" href="../business-days/"><span class="related-name">📅 営業日計算</span><span class="related-status">公開中</span></a>
+        <a class="related-item related-link" href="../tax/"><span class="related-name">💰 消費税計算</span><span class="related-status">公開中</span></a>
+        <a class="related-item related-link" href="../warikan/"><span class="related-name">👥 割り勘計算</span><span class="related-status">公開中</span></a>
+        <a class="related-item related-link" href="../qrcode/"><span class="related-name">📱 QRコード生成</span><span class="related-status">公開中</span></a>
+        <a class="related-item related-link" href="../school-year/"><span class="related-name">🎓 学年・年齢・卒業年度計算</span><span class="related-status">公開中</span></a>
+        <a class="related-item related-link" href="../wareki/"><span class="related-name">📅 和暦・西暦変換</span><span class="related-status">公開中</span></a>
+        <a class="related-item related-link" href="../text-counter/"><span class="related-name">✍️ 文字数カウント</span><span class="related-status">公開中</span></a>
+      </div></section>
+    </div>
+  </main>
+
+  <!-- ====================== フッター ====================== -->
+  <footer><div class="container"><p class="footer-logo">🍵 ゴマツール</p><p>30秒で使えて、<br>他より少し便利。</p><p class="project-name">Project Goma</p><div class="footer-assurance"><p>入力したデータはブラウザ内だけで処理されます。</p><p>サーバーへ送信・保存は行いません。</p></div><p class="updated">最終更新：2026年6月28日</p></div></footer>
+
+  <script>
+    'use strict';
+
+    // ====================== 文字セット ======================
+    const CHARACTER_SETS = {
+      uppercase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+      lowercase: 'abcdefghijklmnopqrstuvwxyz',
+      numbers: '0123456789',
+      symbols: '!@#$%^&*()-_=+[]{}?'
+    };
+    let generatedPassword = '';
+
+    // 偏りを避けるため、採用範囲に収まる乱数だけを使用します。
+    function secureRandomIndex(max) {
+      const limit = Math.floor(0x100000000 / max) * max;
+      const values = new Uint32Array(1);
+      do { crypto.getRandomValues(values); } while (values[0] >= limit);
+      return values[0] % max;
+    }
+
+    function secureShuffle(characters) {
+      for (let i = characters.length - 1; i > 0; i--) {
+        const j = secureRandomIndex(i + 1);
+        [characters[i], characters[j]] = [characters[j], characters[i]];
+      }
+      return characters;
+    }
+
+    function getSelectedSets() {
+      const selected = [];
+      if (document.getElementById('useUppercase').checked) selected.push(['大文字', CHARACTER_SETS.uppercase]);
+      if (document.getElementById('useLowercase').checked) selected.push(['小文字', CHARACTER_SETS.lowercase]);
+      if (document.getElementById('useNumbers').checked) selected.push(['数字', CHARACTER_SETS.numbers]);
+      if (document.getElementById('useSymbols').checked) selected.push(['記号', CHARACTER_SETS.symbols]);
+      return selected;
+    }
+
+    // ====================== 強度判定 ======================
+    function evaluateStrength(length, typeCount) {
+      const score = length + typeCount * 3;
+      if (score >= 24) return { text: '🟢 強度：非常に強い', className: 'strong' };
+      if (score >= 18) return { text: '🟡 強度：普通', className: 'normal' };
+      return { text: '🔴 強度：弱い', className: 'weak' };
+    }
+
+    // ====================== パスワード生成 ======================
+    function generatePassword(event) {
+      event.preventDefault();
+      const length = Number(document.getElementById('passwordLength').value);
+      const selectedSets = getSelectedSets();
+      const error = document.getElementById('formError');
+      const panel = document.getElementById('resultPanel');
+      error.textContent = '';
+
+      if (selectedSets.length === 0) {
+        error.textContent = '使用する文字を1種類以上選択してください。';
+        panel.hidden = true;
+        return;
+      }
+      if (!window.crypto || !window.crypto.getRandomValues) {
+        error.textContent = '安全な乱数を利用できないブラウザです。最新のブラウザでお試しください。';
+        panel.hidden = true;
+        return;
+      }
+
+      const pool = selectedSets.map(function (item) { return item[1]; }).join('');
+      const result = selectedSets.map(function (item) { return item[1][secureRandomIndex(item[1].length)]; });
+      while (result.length < length) result.push(pool[secureRandomIndex(pool.length)]);
+      generatedPassword = secureShuffle(result).join('');
+
+      document.getElementById('passwordValue').textContent = generatedPassword;
+      const strength = evaluateStrength(length, selectedSets.length);
+      const strengthElement = document.getElementById('strengthResult');
+      strengthElement.textContent = strength.text;
+      strengthElement.className = `strength ${strength.className}`;
+
+      const list = document.getElementById('includedList');
+      list.replaceChildren();
+      selectedSets.forEach(function (item) {
+        const li = document.createElement('li');
+        li.textContent = `✅ ${item[0]}あり`;
+        list.appendChild(li);
+      });
+
+      document.getElementById('copyStatus').textContent = '';
+      panel.hidden = false;
+      panel.scrollIntoView({ behavior:'smooth', block:'nearest' });
+    }
+
+    // ====================== コピー ======================
+    async function copyPassword() {
+      const status = document.getElementById('copyStatus');
+      try {
+        await navigator.clipboard.writeText(generatedPassword);
+        status.textContent = 'コピーしました。';
+      } catch (error) {
+        const area = document.createElement('textarea');
+        area.value = generatedPassword;
+        area.style.position = 'fixed';
+        area.style.opacity = '0';
+        document.body.appendChild(area);
+        area.select();
+        const copied = document.execCommand('copy');
+        area.remove();
+        status.textContent = copied ? 'コピーしました。' : 'コピーできませんでした。';
+      }
+    }
+
+    // ====================== 初期表示 ======================
+    document.getElementById('passwordForm').addEventListener('submit', generatePassword);
+    document.getElementById('copyButton').addEventListener('click', copyPassword);
+  </script>
+</body>
+</html>

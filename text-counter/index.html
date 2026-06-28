@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="文章の文字数をリアルタイムでカウントできる無料ツールです。空白を除いた文字数や改行数も確認できます。">
   <title>文字数カウント｜ゴマツール</title>
-
   <style>
     /* ======================
        基本設定
@@ -24,443 +23,96 @@
       --radius: 22px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      color: var(--text);
-      background: linear-gradient(180deg, #f9fcf7 0, #fff 25%);
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        "Hiragino Kaku Gothic ProN",
-        "Yu Gothic",
-        Meiryo,
-        sans-serif;
-      line-height: 1.75;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    button,
-    textarea {
-      font: inherit;
-    }
-
-    button {
-      cursor: pointer;
-    }
-
-    a {
-      color: inherit;
-    }
-
-    .container {
-      width: min(100% - 32px, 880px);
-      margin-inline: auto;
-    }
-
-    .section {
-      margin-top: 72px;
-    }
-
-    .section-title {
-      margin: 0 0 20px;
-      font-size: clamp(1.4rem, 4vw, 1.8rem);
-    }
-
-    .card {
-      padding: clamp(22px, 5vw, 38px);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--white);
-      box-shadow: var(--shadow);
-    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--text); background: linear-gradient(180deg, #f9fcf7 0, #fff 25%); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif; line-height: 1.75; -webkit-font-smoothing: antialiased; }
+    button, textarea { font: inherit; }
+    button { cursor: pointer; }
+    a { color: inherit; }
+    .container { width: min(100% - 32px, 880px); margin-inline: auto; }
+    .section { margin-top: 72px; }
+    .section-title { margin: 0 0 20px; font-size: clamp(1.4rem, 4vw, 1.8rem); }
+    .card { padding: clamp(22px, 5vw, 38px); border: 1px solid var(--line); border-radius: var(--radius); background: var(--white); box-shadow: var(--shadow); }
 
     /* ======================
        ヘッダー・ヒーロー
     ====================== */
-    .site-header {
-      padding: 23px 0;
-      border-bottom: 1px solid rgba(88, 124, 64, .12);
-      background: rgba(255, 255, 255, .86);
-    }
-
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-
-    .brand-wrap {
-      display: flex;
-      align-items: baseline;
-      gap: 14px;
-    }
-
-    .logo {
-      margin: 0;
-      color: var(--green-dark);
-      font-size: 1.2rem;
-      font-weight: 850;
-    }
-
-    .header-copy {
-      margin: 0;
-      color: var(--muted);
-      font-size: .82rem;
-    }
-
-    .home-link {
-      display: inline-flex;
-      min-height: 44px;
-      align-items: center;
-      padding: 8px 14px;
-      color: var(--green-dark);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: var(--white);
-      font-size: .86rem;
-      font-weight: 750;
-      text-decoration: none;
-    }
-
-    .home-link:hover {
-      background: var(--green-light);
-    }
-
-    main {
-      padding: 78px 0 96px;
-    }
-
-    .hero {
-      text-align: center;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      margin: 0 0 15px;
-      padding: 6px 13px;
-      color: var(--green-dark);
-      border-radius: 999px;
-      background: var(--green-light);
-      font-size: .82rem;
-      font-weight: 750;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(2.1rem, 8vw, 3.7rem);
-      line-height: 1.25;
-      letter-spacing: -.035em;
-    }
-
-    .hero-catch {
-      margin: 18px 0 0;
-      color: var(--green-dark);
-      font-size: clamp(1.05rem, 3vw, 1.25rem);
-      font-weight: 800;
-    }
-
-    .hero-description {
-      max-width: 650px;
-      margin: 15px auto 0;
-      color: var(--muted);
-    }
+    .site-header { padding: 23px 0; border-bottom: 1px solid rgba(88, 124, 64, .12); background: rgba(255, 255, 255, .86); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand-wrap { display: flex; align-items: baseline; gap: 14px; }
+    .logo { margin: 0; color: var(--green-dark); font-size: 1.2rem; font-weight: 850; }
+    .header-copy { margin: 0; color: var(--muted); font-size: .82rem; }
+    .home-link { display: inline-flex; min-height: 44px; align-items: center; padding: 8px 14px; color: var(--green-dark); border: 1px solid var(--line); border-radius: 12px; background: var(--white); font-size: .86rem; font-weight: 750; text-decoration: none; }
+    .home-link:hover { background: var(--green-light); }
+    main { padding: 78px 0 96px; }
+    .hero { text-align: center; }
+    .eyebrow { display: inline-block; margin: 0 0 15px; padding: 6px 13px; color: var(--green-dark); border-radius: 999px; background: var(--green-light); font-size: .82rem; font-weight: 750; }
+    h1 { margin: 0; font-size: clamp(2.1rem, 8vw, 3.7rem); line-height: 1.25; letter-spacing: -.035em; }
+    .hero-catch { margin: 18px 0 0; color: var(--green-dark); font-size: clamp(1.05rem, 3vw, 1.25rem); font-weight: 800; }
+    .hero-description { max-width: 650px; margin: 15px auto 0; color: var(--muted); }
 
     /* ======================
        入力欄・操作ボタン
     ====================== */
-    label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 800;
-    }
-
-    textarea {
-      width: 100%;
-      min-height: 280px;
-      padding: 16px 18px;
-      color: var(--text);
-      border: 1.5px solid #cdd8c7;
-      border-radius: 14px;
-      background: #fff;
-      line-height: 1.75;
-      resize: vertical;
-    }
-
-    textarea:focus {
-      outline: 3px solid rgba(88, 124, 64, .18);
-      border-color: var(--green);
-    }
-
-    .input-hint {
-      margin: 7px 0 0;
-      color: var(--muted);
-      font-size: .82rem;
-    }
-
-    .button-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 20px;
-    }
-
-    .action-button {
-      min-height: 54px;
-      padding: 13px 18px;
-      border-radius: 14px;
-      font-weight: 850;
-      transition: transform .15s ease, background .15s ease;
-    }
-
-    .copy-button {
-      color: #fff;
-      border: 0;
-      background: var(--green);
-      box-shadow: 0 9px 22px rgba(88, 124, 64, .2);
-    }
-
-    .copy-button:hover {
-      background: var(--green-dark);
-      transform: translateY(-1px);
-    }
-
-    .clear-button {
-      color: var(--green-dark);
-      border: 1.5px solid var(--green);
-      background: #fff;
-    }
-
-    .clear-button:hover {
-      background: var(--green-light);
-    }
-
-    .action-button:focus-visible,
-    .home-link:focus-visible,
-    .related-link:focus-visible {
-      outline: 3px solid rgba(88, 124, 64, .35);
-      outline-offset: 3px;
-    }
-
-    .action-status {
-      min-height: 1.6em;
-      margin: 9px 0 0;
-      color: var(--green-dark);
-      font-size: .86rem;
-      font-weight: 750;
-      text-align: center;
-    }
+    label { display: block; margin-bottom: 8px; font-weight: 800; }
+    textarea { width: 100%; min-height: 280px; padding: 16px 18px; color: var(--text); border: 1.5px solid #cdd8c7; border-radius: 14px; background: #fff; line-height: 1.75; resize: vertical; }
+    textarea:focus { outline: 3px solid rgba(88, 124, 64, .18); border-color: var(--green); }
+    .input-hint { margin: 7px 0 0; color: var(--muted); font-size: .82rem; }
+    .button-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+    .action-button { min-height: 54px; padding: 13px 18px; border-radius: 14px; font-weight: 850; transition: transform .15s ease, background .15s ease; }
+    .copy-button { color: #fff; border: 0; background: var(--green); box-shadow: 0 9px 22px rgba(88, 124, 64, .2); }
+    .copy-button:hover { background: var(--green-dark); transform: translateY(-1px); }
+    .clear-button { color: var(--green-dark); border: 1.5px solid var(--green); background: #fff; }
+    .clear-button:hover { background: var(--green-light); }
+    .action-button:focus-visible, .home-link:focus-visible, .related-link:focus-visible { outline: 3px solid rgba(88, 124, 64, .35); outline-offset: 3px; }
+    .action-status { min-height: 1.6em; margin: 9px 0 0; color: var(--green-dark); font-size: .86rem; font-weight: 750; text-align: center; }
 
     /* ======================
        カウント結果
     ====================== */
-    .result-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 26px;
-    }
-
-    .result-item {
-      padding: 23px 15px;
-      border-radius: 17px;
-      background: var(--green-soft);
-      text-align: center;
-    }
-
-    .result-item.primary {
-      background: var(--green-light);
-      box-shadow: inset 0 0 0 1px rgba(88, 124, 64, .14);
-    }
-
-    .result-label {
-      display: block;
-      color: var(--muted);
-      font-size: .84rem;
-      font-weight: 750;
-    }
-
-    .result-value {
-      display: block;
-      margin-top: 6px;
-      color: var(--green-dark);
-      font-size: clamp(1.6rem, 5vw, 2.45rem);
-      line-height: 1.25;
-      font-weight: 900;
-      overflow-wrap: anywhere;
-    }
-
-    .result-unit {
-      margin-left: 3px;
-      font-size: .9rem;
-      font-weight: 750;
-    }
+    .result-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 26px; }
+    .result-item { padding: 23px 15px; border-radius: 17px; background: var(--green-soft); text-align: center; }
+    .result-item.primary { background: var(--green-light); box-shadow: inset 0 0 0 1px rgba(88, 124, 64, .14); }
+    .result-label { display: block; color: var(--muted); font-size: .84rem; font-weight: 750; }
+    .result-value { display: block; margin-top: 6px; color: var(--green-dark); font-size: clamp(1.6rem, 5vw, 2.45rem); line-height: 1.25; font-weight: 900; overflow-wrap: anywhere; }
+    .result-unit { margin-left: 3px; font-size: .9rem; font-weight: 750; }
 
     /* ======================
        安心表示・関連ツール
     ====================== */
-    .privacy-card {
-      box-shadow: none;
-      background: var(--green-soft);
-    }
-
-    .privacy-card p {
-      margin: 5px 0;
-      color: var(--muted);
-    }
-
-    .related-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .related-item {
-      padding: 19px;
-      border: 1px solid var(--line);
-      border-radius: 15px;
-      background: var(--green-soft);
-    }
-
-    .related-name {
-      display: block;
-      font-weight: 800;
-    }
-
-    .related-status {
-      display: block;
-      margin-top: 4px;
-      color: var(--muted);
-      font-size: .78rem;
-    }
-
-    .related-link {
-      display: block;
-      text-decoration: none;
-      transition: border-color .15s ease, transform .15s ease;
-    }
-
-    .related-link:hover {
-      border-color: var(--green);
-      transform: translateY(-1px);
-    }
+    .privacy-card { box-shadow: none; background: var(--green-soft); }
+    .privacy-card p { margin: 5px 0; color: var(--muted); }
+    .related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .related-item { padding: 19px; border: 1px solid var(--line); border-radius: 15px; background: var(--green-soft); }
+    .related-name { display: block; font-weight: 800; }
+    .related-status { display: block; margin-top: 4px; color: var(--muted); font-size: .78rem; }
+    .related-link { display: block; text-decoration: none; transition: border-color .15s ease, transform .15s ease; }
+    .related-link:hover { border-color: var(--green); transform: translateY(-1px); }
 
     /* ======================
-       フッター
+       フッター・レスポンシブ
     ====================== */
-    footer {
-      padding: 52px 0;
-      color: var(--muted);
-      border-top: 1px solid var(--line);
-      text-align: center;
-      background: var(--green-soft);
-    }
-
-    .footer-logo {
-      margin: 0 0 8px;
-      color: var(--green-dark);
-      font-size: 1.15rem;
-      font-weight: 850;
-    }
-
-    footer p {
-      margin: 5px 0;
-    }
-
-    .project-name {
-      margin-top: 20px;
-      font-size: .82rem;
-      font-weight: 750;
-      letter-spacing: .08em;
-    }
-
-    .footer-assurance {
-      max-width: 620px;
-      margin: 28px auto 0;
-      padding-top: 26px;
-      border-top: 1px solid var(--line);
-      font-size: .78rem;
-      line-height: 1.8;
-    }
-
-    .updated {
-      margin-top: 18px;
-      font-size: .72rem;
-    }
-
-    /* ======================
-       レスポンシブ
-    ====================== */
-    @media (max-width: 700px) {
-      .result-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
+    footer { padding: 52px 0; color: var(--muted); border-top: 1px solid var(--line); text-align: center; background: var(--green-soft); }
+    .footer-logo { margin: 0 0 8px; color: var(--green-dark); font-size: 1.15rem; font-weight: 850; }
+    footer p { margin: 5px 0; }
+    .project-name { margin-top: 20px; font-size: .82rem; font-weight: 750; letter-spacing: .08em; }
+    .footer-assurance { max-width: 620px; margin: 28px auto 0; padding-top: 26px; border-top: 1px solid var(--line); font-size: .78rem; line-height: 1.8; }
+    .updated { margin-top: 18px; font-size: .72rem; }
+    @media (max-width: 700px) { .result-grid { grid-template-columns: 1fr; } }
     @media (max-width: 620px) {
-      .container {
-        width: min(100% - 24px, 880px);
-      }
-
-      .site-header {
-        padding: 18px 0;
-      }
-
-      .header-inner {
-        align-items: flex-start;
-      }
-
-      .brand-wrap {
-        flex-direction: column;
-        gap: 0;
-      }
-
-      main {
-        padding: 58px 0 76px;
-      }
-
-      .section {
-        margin-top: 54px;
-      }
-
-      .card {
-        padding: 22px 18px;
-        border-radius: 18px;
-      }
-
-      textarea {
-        min-height: 230px;
-      }
-
-      .button-row,
-      .related-grid {
-        grid-template-columns: 1fr;
-      }
+      .container { width: min(100% - 24px, 880px); }
+      .site-header { padding: 18px 0; }
+      .header-inner { align-items: flex-start; }
+      .brand-wrap { flex-direction: column; gap: 0; }
+      main { padding: 58px 0 76px; }
+      .section { margin-top: 54px; }
+      .card { padding: 22px 18px; border-radius: 18px; }
+      textarea { min-height: 230px; }
+      .button-row, .related-grid { grid-template-columns: 1fr; }
     }
-
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      *,
-      *::before,
-      *::after {
-        transition: none !important;
-      }
-    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; } }
   </style>
 </head>
-
 <body>
   <!-- ======================
        ヘッダー
@@ -471,10 +123,7 @@
         <p class="logo">🍵 ゴマツール</p>
         <p class="header-copy">無料で使える便利ツール集</p>
       </div>
-
-      <a class="home-link" href="../">
-        ← ホームへ戻る
-      </a>
+      <a class="home-link" href="../">← ホームへ戻る</a>
     </div>
   </header>
 
@@ -484,229 +133,68 @@
            ヒーロー
       ====================== -->
       <section class="hero" aria-labelledby="page-title">
-        <p class="eyebrow">
-          入力するだけでリアルタイム集計
-        </p>
-
-        <h1 id="page-title">
-          ✍️ 文字数カウント
-        </h1>
-
-        <p class="hero-catch">
-          文章の長さを、すぐに確認。
-        </p>
-
-        <p class="hero-description">
-          文章を入力するだけで文字数をリアルタイムでカウントできます。<br>
-          空白を除いた文字数や改行数も確認できます。
-        </p>
+        <p class="eyebrow">入力するだけでリアルタイム集計</p>
+        <h1 id="page-title">✍️ 文字数カウント</h1>
+        <p class="hero-catch">文章の長さを、すぐに確認。</p>
+        <p class="hero-description">文章を入力するだけで文字数をリアルタイムでカウントできます。<br>空白を除いた文字数や改行数も確認できます。</p>
       </section>
 
       <!-- ======================
            文字入力・結果
       ====================== -->
-      <section
-        class="section"
-        aria-labelledby="counter-title"
-      >
-        <h2
-          class="section-title"
-          id="counter-title"
-        >
-          文章を入力
-        </h2>
-
+      <section class="section" aria-labelledby="counter-title">
+        <h2 class="section-title" id="counter-title">文章を入力</h2>
         <div class="card">
-          <label for="textInput">
-            カウントする文章
-          </label>
+          <label for="textInput">カウントする文章</label>
+          <textarea id="textInput" name="textInput" placeholder="ここに文章を入力してください。&#10;文字数をリアルタイムでカウントします。" aria-describedby="inputHint"></textarea>
+          <p class="input-hint" id="inputHint">入力内容はブラウザ内だけで処理され、外部へ送信されません。</p>
 
-          <textarea
-            id="textInput"
-            name="textInput"
-            placeholder="ここに文章を入力してください。&#10;文字数をリアルタイムでカウントします。"
-            aria-describedby="inputHint"
-          ></textarea>
-
-          <p
-            class="input-hint"
-            id="inputHint"
-          >
-            入力内容はブラウザ内だけで処理され、外部へ送信されません。
-          </p>
-
-          <div
-            class="result-grid"
-            aria-live="polite"
-            aria-atomic="true"
-          >
+          <div class="result-grid" aria-live="polite" aria-atomic="true">
             <div class="result-item primary">
-              <span class="result-label">
-                文字数
-              </span>
-
-              <strong class="result-value">
-                <span id="totalCount">0</span>
-                <span class="result-unit">文字</span>
-              </strong>
+              <span class="result-label">文字数</span>
+              <strong class="result-value"><span id="totalCount">0</span><span class="result-unit">文字</span></strong>
             </div>
-
             <div class="result-item">
-              <span class="result-label">
-                空白を除く
-              </span>
-
-              <strong class="result-value">
-                <span id="noSpaceCount">0</span>
-                <span class="result-unit">文字</span>
-              </strong>
+              <span class="result-label">空白を除く</span>
+              <strong class="result-value"><span id="noSpaceCount">0</span><span class="result-unit">文字</span></strong>
             </div>
-
             <div class="result-item">
-              <span class="result-label">
-                改行数
-              </span>
-
-              <strong class="result-value">
-                <span id="lineBreakCount">0</span>
-                <span class="result-unit">回</span>
-              </strong>
+              <span class="result-label">改行数</span>
+              <strong class="result-value"><span id="lineBreakCount">0</span><span class="result-unit">回</span></strong>
             </div>
           </div>
 
           <div class="button-row">
-            <button
-              class="action-button copy-button"
-              id="copyButton"
-              type="button"
-            >
-              📋 コピー
-            </button>
-
-            <button
-              class="action-button clear-button"
-              id="clearButton"
-              type="button"
-            >
-              すべて消去
-            </button>
+            <button class="action-button copy-button" id="copyButton" type="button">📋 コピー</button>
+            <button class="action-button clear-button" id="clearButton" type="button">すべて消去</button>
           </div>
-
-          <p
-            class="action-status"
-            id="actionStatus"
-            role="status"
-          ></p>
+          <p class="action-status" id="actionStatus" role="status"></p>
         </div>
       </section>
 
       <!-- ======================
            プライバシー
       ====================== -->
-      <section
-        class="section card privacy-card"
-        aria-labelledby="privacy-title"
-      >
-        <h2
-          class="section-title"
-          id="privacy-title"
-        >
-          🍵 安心してお使いください
-        </h2>
-
-        <p>
-          入力内容と文字数の計算はブラウザ内だけで行われます。
-        </p>
-
-        <p>
-          サーバーへ送信・保存することはありません。
-        </p>
+      <section class="section card privacy-card" aria-labelledby="privacy-title">
+        <h2 class="section-title" id="privacy-title">🍵 安心してお使いください</h2>
+        <p>入力内容と文字数の計算はブラウザ内だけで行われます。</p>
+        <p>サーバーへ送信・保存することはありません。</p>
       </section>
 
       <!-- ======================
            関連ツール
       ====================== -->
-      <section
-        class="section"
-        aria-labelledby="related-title"
-      >
-        <h2
-          class="section-title"
-          id="related-title"
-        >
-          おすすめの便利ツール
-        </h2>
-
+      <section class="section" aria-labelledby="related-title">
+        <h2 class="section-title" id="related-title">おすすめの便利ツール</h2>
         <div class="card related-grid">
-          <a
-            class="related-item related-link"
-            href="../age/"
-          >
-            <span class="related-name">
-              🎂 年齢・日付計算
-            </span>
-            <span class="related-status">公開中</span>
-          </a>
-
-          <a
-            class="related-item related-link"
-            href="../business-days/"
-          >
-            <span class="related-name">
-              📅 営業日計算
-            </span>
-            <span class="related-status">公開中</span>
-          </a>
-
-          <a
-            class="related-item related-link"
-            href="../tax/"
-          >
-            <span class="related-name">
-              💰 消費税計算
-            </span>
-            <span class="related-status">公開中</span>
-          </a>
-
-          <a
-            class="related-item related-link"
-            href="../warikan/"
-          >
-            <span class="related-name">
-              👥 割り勘計算
-            </span>
-            <span class="related-status">公開中</span>
-          </a>
-
-          <a
-            class="related-item related-link"
-            href="../qrcode/"
-          >
-            <span class="related-name">
-              📱 QRコード生成
-            </span>
-            <span class="related-status">公開中</span>
-          </a>
-
-          <a
-            class="related-item related-link"
-            href="../school-year/"
-          >
-            <span class="related-name">
-              🎓 学年・年齢・卒業年度計算
-            </span>
-            <span class="related-status">公開中</span>
-          </a>
-
-          <a
-            class="related-item related-link"
-            href="../wareki/"
-          >
-            <span class="related-name">
-              📅 和暦・西暦変換
-            </span>
-            <span class="related-status">公開中</span>
-          </a>
+          <a class="related-item related-link" href="../age/"><span class="related-name">🎂 年齢・日付計算</span><span class="related-status">公開中</span></a>
+          <a class="related-item related-link" href="../business-days/"><span class="related-name">📅 営業日計算</span><span class="related-status">公開中</span></a>
+          <a class="related-item related-link" href="../tax/"><span class="related-name">💰 消費税計算</span><span class="related-status">公開中</span></a>
+          <a class="related-item related-link" href="../warikan/"><span class="related-name">👥 割り勘計算</span><span class="related-status">公開中</span></a>
+          <a class="related-item related-link" href="../qrcode/"><span class="related-name">📱 QRコード生成</span><span class="related-status">公開中</span></a>
+          <a class="related-item related-link" href="../school-year/"><span class="related-name">🎓 学年・年齢・卒業年度計算</span><span class="related-status">公開中</span></a>
+          <a class="related-item related-link" href="../wareki/"><span class="related-name">📅 和暦・西暦変換</span><span class="related-status">公開中</span></a>
+          <a class="related-item related-link" href="../password/"><span class="related-name">🔐 パスワード生成</span><span class="related-status">公開中</span></a>
         </div>
       </section>
     </div>
@@ -717,32 +205,14 @@
   ====================== -->
   <footer>
     <div class="container">
-      <p class="footer-logo">
-        🍵 ゴマツール
-      </p>
-
-      <p>
-        30秒で使えて、<br>
-        他より少し便利。
-      </p>
-
-      <p class="project-name">
-        Project Goma
-      </p>
-
+      <p class="footer-logo">🍵 ゴマツール</p>
+      <p>30秒で使えて、<br>他より少し便利。</p>
+      <p class="project-name">Project Goma</p>
       <div class="footer-assurance">
-        <p>
-          入力したデータはブラウザ内だけで処理されます。
-        </p>
-
-        <p>
-          サーバーへ送信・保存は行いません。
-        </p>
+        <p>入力したデータはブラウザ内だけで処理されます。</p>
+        <p>サーバーへ送信・保存は行いません。</p>
       </div>
-
-      <p class="updated">
-        最終更新：2026年6月28日
-      </p>
+      <p class="updated">最終更新：2026年6月28日</p>
     </div>
   </footer>
 
@@ -757,114 +227,49 @@
     }
 
     function updateCounts() {
-      const text =
-        document.getElementById(
-          'textInput'
-        ).value;
+      const text = document.getElementById('textInput').value;
+      const withoutSpaces = text.replace(/[ \u3000]/g, '');
+      const lineBreaks = text === '' ? 0 : (text.match(/\n/g) || []).length;
 
-      // 半角スペースと全角スペースを除外します。
-      const withoutSpaces =
-        text.replace(/[ \u3000]/g, '');
-
-      const lineBreaks =
-        text === ''
-          ? 0
-          : (text.match(/\n/g) || []).length;
-
-      document.getElementById(
-        'totalCount'
-      ).textContent =
-        countCharacters(text)
-          .toLocaleString('ja-JP');
-
-      document.getElementById(
-        'noSpaceCount'
-      ).textContent =
-        countCharacters(withoutSpaces)
-          .toLocaleString('ja-JP');
-
-      document.getElementById(
-        'lineBreakCount'
-      ).textContent =
-        lineBreaks.toLocaleString('ja-JP');
-
-      document.getElementById(
-        'actionStatus'
-      ).textContent = '';
+      document.getElementById('totalCount').textContent = countCharacters(text).toLocaleString('ja-JP');
+      document.getElementById('noSpaceCount').textContent = countCharacters(withoutSpaces).toLocaleString('ja-JP');
+      document.getElementById('lineBreakCount').textContent = lineBreaks.toLocaleString('ja-JP');
+      document.getElementById('actionStatus').textContent = '';
     }
 
     // ======================
-    // コピー
+    // コピー・全消去
     // ======================
     async function copyText() {
-      const text =
-        document.getElementById(
-          'textInput'
-        ).value;
-
-      const status =
-        document.getElementById(
-          'actionStatus'
-        );
+      const text = document.getElementById('textInput').value;
+      const status = document.getElementById('actionStatus');
 
       if (text === '') {
-        status.textContent =
-          'コピーする文章がありません。';
+        status.textContent = 'コピーする文章がありません。';
         return;
       }
 
       try {
-        await navigator.clipboard.writeText(
-          text
-        );
-
-        status.textContent =
-          'コピーしました。';
+        await navigator.clipboard.writeText(text);
+        status.textContent = 'コピーしました。';
       } catch (error) {
-        const textArea =
-          document.createElement(
-            'textarea'
-          );
-
+        const textArea = document.createElement('textarea');
         textArea.value = text;
         textArea.style.position = 'fixed';
         textArea.style.opacity = '0';
-
-        document.body.appendChild(
-          textArea
-        );
-
+        document.body.appendChild(textArea);
         textArea.select();
-
-        const copied =
-          document.execCommand('copy');
-
+        const copied = document.execCommand('copy');
         textArea.remove();
-
-        status.textContent = copied
-          ? 'コピーしました。'
-          : 'コピーできませんでした。';
+        status.textContent = copied ? 'コピーしました。' : 'コピーできませんでした。';
       }
     }
 
-    // ======================
-    // 全消去
-    // ======================
     function clearText() {
-      const input =
-        document.getElementById(
-          'textInput'
-        );
-
+      const input = document.getElementById('textInput');
       input.value = '';
-
       updateCounts();
-
-      document.getElementById(
-        'actionStatus'
-      ).textContent =
-        'すべて消去しました。';
-
+      document.getElementById('actionStatus').textContent = 'すべて消去しました。';
       input.focus();
     }
 
@@ -872,27 +277,9 @@
     // 初期表示
     // ======================
     function initializePage() {
-      document.getElementById(
-        'textInput'
-      ).addEventListener(
-        'input',
-        updateCounts
-      );
-
-      document.getElementById(
-        'copyButton'
-      ).addEventListener(
-        'click',
-        copyText
-      );
-
-      document.getElementById(
-        'clearButton'
-      ).addEventListener(
-        'click',
-        clearText
-      );
-
+      document.getElementById('textInput').addEventListener('input', updateCounts);
+      document.getElementById('copyButton').addEventListener('click', copyText);
+      document.getElementById('clearButton').addEventListener('click', clearText);
       updateCounts();
     }
 

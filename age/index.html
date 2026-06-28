@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="生年月日から年齢や生まれてからの日数、次の誕生日までの日数を無料で計算できるゴマツールです。">
   <title>年齢・日付計算｜ゴマツール</title>
-
   <style>
     /* ======================
        基本設定
@@ -24,13 +23,8 @@
       --radius: 22px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
@@ -42,29 +36,20 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    button,
-    input,
-    select {
-      font: inherit;
-    }
-
-    button {
-      cursor: pointer;
-    }
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
 
     .container {
       width: min(100% - 32px, 880px);
       margin-inline: auto;
     }
 
-    .section {
-      margin-top: 72px;
-    }
+    .section { margin-top: 72px; }
 
     .section-title {
       margin: 0 0 20px;
       font-size: clamp(1.35rem, 3vw, 1.7rem);
-      letter-spacing: 0.02em;
+      letter-spacing: .02em;
     }
 
     .card {
@@ -80,8 +65,8 @@
     ====================== */
     .site-header {
       padding: 25px 0;
-      border-bottom: 1px solid rgba(86, 123, 60, 0.12);
-      background: rgba(255, 255, 255, 0.82);
+      border-bottom: 1px solid rgba(86, 123, 60, .12);
+      background: rgba(255, 255, 255, .82);
     }
 
     .header-inner {
@@ -96,46 +81,41 @@
       color: var(--green-dark);
       font-size: 1.2rem;
       font-weight: 800;
-      letter-spacing: 0.03em;
+      letter-spacing: .03em;
     }
 
     .tagline {
       margin: 0;
       color: var(--muted);
-      font-size: 0.86rem;
+      font-size: .86rem;
     }
 
     /* ======================
        メイン・今日時点カード
     ====================== */
-    main {
-      padding: 80px 0 96px;
-    }
-
-    .hero {
-      text-align: center;
-    }
+    main { padding: 80px 0 96px; }
+    .hero { text-align: center; }
 
     .eyebrow {
       margin: 0 0 8px;
       color: var(--green);
-      font-size: 0.88rem;
+      font-size: .88rem;
       font-weight: 700;
-      letter-spacing: 0.12em;
+      letter-spacing: .12em;
     }
 
     h1 {
       margin: 0;
       font-size: clamp(2rem, 7vw, 3.5rem);
       line-height: 1.25;
-      letter-spacing: -0.02em;
+      letter-spacing: -.02em;
     }
 
     .hero-description {
       max-width: 600px;
       margin: 22px auto 0;
       color: var(--muted);
-      font-size: clamp(0.98rem, 2.5vw, 1.08rem);
+      font-size: clamp(.98rem, 2.5vw, 1.08rem);
     }
 
     .today-card {
@@ -152,9 +132,7 @@
       text-align: left;
     }
 
-    .today-label {
-      font-weight: 700;
-    }
+    .today-label { font-weight: 700; }
 
     .today-date {
       margin: 0;
@@ -172,9 +150,7 @@
       gap: 20px;
     }
 
-    .field-full {
-      grid-column: 1 / -1;
-    }
+    .field-full { grid-column: 1 / -1; }
 
     label {
       display: block;
@@ -185,11 +161,10 @@
     .hint {
       margin: 6px 0 0;
       color: var(--muted);
-      font-size: 0.82rem;
+      font-size: .82rem;
     }
 
-    input,
-    select {
+    input, select {
       width: 100%;
       min-height: 52px;
       padding: 12px 14px;
@@ -199,27 +174,25 @@
       background: #fff;
     }
 
-    input:focus,
-    select:focus {
-      outline: 3px solid rgba(86, 123, 60, 0.17);
+    input:focus, select:focus {
+      outline: 3px solid rgba(86, 123, 60, .17);
       border-color: var(--green);
     }
 
-    .primary-button,
-    .copy-button {
+    .primary-button, .copy-button {
       width: 100%;
       min-height: 56px;
       padding: 14px 22px;
       border-radius: 14px;
       font-weight: 800;
-      transition: transform 0.15s ease, background 0.15s ease;
+      transition: transform .15s ease, background .15s ease;
     }
 
     .primary-button {
       border: 0;
       color: #fff;
       background: var(--green);
-      box-shadow: 0 8px 20px rgba(86, 123, 60, 0.2);
+      box-shadow: 0 8px 20px rgba(86, 123, 60, .2);
     }
 
     .primary-button:hover {
@@ -233,13 +206,11 @@
       background: #fff;
     }
 
-    .copy-button:hover {
-      background: var(--green-light);
-    }
+    .copy-button:hover { background: var(--green-light); }
 
     .primary-button:focus-visible,
     .copy-button:focus-visible {
-      outline: 3px solid rgba(86, 123, 60, 0.3);
+      outline: 3px solid rgba(86, 123, 60, .3);
       outline-offset: 3px;
     }
 
@@ -260,9 +231,7 @@
       border-top: 1px solid var(--line);
     }
 
-    .result-panel[hidden] {
-      display: none;
-    }
+    .result-panel[hidden] { display: none; }
 
     .result-heading {
       margin: 0 0 18px;
@@ -292,7 +261,7 @@
       display: block;
       margin-bottom: 6px;
       color: var(--muted);
-      font-size: 0.88rem;
+      font-size: .88rem;
       font-weight: 700;
     }
 
@@ -309,15 +278,13 @@
       font-size: clamp(2.8rem, 10vw, 4.5rem);
     }
 
-    .copy-wrap {
-      margin-top: 18px;
-    }
+    .copy-wrap { margin-top: 18px; }
 
     .copy-status {
       min-height: 1.5em;
       margin: 8px 0 0;
       color: var(--green);
-      font-size: 0.88rem;
+      font-size: .88rem;
       font-weight: 700;
       text-align: center;
     }
@@ -329,9 +296,7 @@
       background: var(--green-light);
     }
 
-    .date-result .result-value {
-      margin-top: 6px;
-    }
+    .date-result .result-value { margin-top: 6px; }
 
     /* ======================
        ゴマツールの約束
@@ -342,9 +307,7 @@
       background: var(--green-dark);
     }
 
-    .promise-card .section-title {
-      margin-bottom: 18px;
-    }
+    .promise-card .section-title { margin-bottom: 18px; }
 
     .promise-list {
       display: grid;
@@ -355,9 +318,7 @@
       list-style: none;
     }
 
-    .promise-list li {
-      padding-left: 2px;
-    }
+    .promise-list li { padding-left: 2px; }
 
     /* ======================
        FAQ
@@ -380,9 +341,7 @@
       list-style: none;
     }
 
-    summary::-webkit-details-marker {
-      display: none;
-    }
+    summary::-webkit-details-marker { display: none; }
 
     summary::after {
       content: "+";
@@ -391,9 +350,7 @@
       font-size: 1.25rem;
     }
 
-    details[open] summary::after {
-      content: "−";
-    }
+    details[open] summary::after { content: "−"; }
 
     details p {
       margin: 0;
@@ -422,7 +379,7 @@
     .tool-link {
       display: block;
       text-decoration: none;
-      transition: border-color 0.15s ease, transform 0.15s ease;
+      transition: border-color .15s ease, transform .15s ease;
     }
 
     .tool-link:hover {
@@ -431,14 +388,14 @@
     }
 
     .tool-link:focus-visible {
-      outline: 3px solid rgba(86, 123, 60, 0.3);
+      outline: 3px solid rgba(86, 123, 60, .3);
       outline-offset: 3px;
     }
 
     .tool-status {
       display: block;
       margin-top: 3px;
-      font-size: 0.78rem;
+      font-size: .78rem;
       font-weight: 500;
     }
 
@@ -460,37 +417,27 @@
       font-weight: 800;
     }
 
-    footer p {
-      margin: 4px 0;
-    }
+    footer p { margin: 4px 0; }
 
     .updated {
       margin-top: 16px;
-      font-size: 0.8rem;
+      font-size: .8rem;
     }
 
     /* ======================
        レスポンシブ
     ====================== */
     @media (max-width: 620px) {
-      .container {
-        width: min(100% - 24px, 880px);
-      }
+      .container { width: min(100% - 24px, 880px); }
 
-      .header-inner,
-      .today-card {
+      .header-inner, .today-card {
         align-items: flex-start;
         flex-direction: column;
         gap: 4px;
       }
 
-      main {
-        padding: 58px 0 76px;
-      }
-
-      .section {
-        margin-top: 52px;
-      }
+      main { padding: 58px 0 76px; }
+      .section { margin-top: 52px; }
 
       .card {
         padding: 22px 18px;
@@ -504,13 +451,8 @@
         grid-template-columns: 1fr;
       }
 
-      .result-item.primary {
-        grid-column: auto;
-      }
-
-      .result-item {
-        min-height: 105px;
-      }
+      .result-item.primary { grid-column: auto; }
+      .result-item { min-height: 105px; }
 
       .today-card {
         margin-top: 30px;
@@ -519,13 +461,9 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
+      html { scroll-behavior: auto; }
 
-      *,
-      *::before,
-      *::after {
+      *, *::before, *::after {
         transition: none !important;
       }
     }
@@ -551,7 +489,6 @@
       <section class="hero" aria-labelledby="page-title">
         <p class="eyebrow">30秒でかんたん計算</p>
         <h1 id="page-title">🎂 年齢・日付計算</h1>
-
         <p class="hero-description">
           生年月日から年齢、生まれてからの日数、次の誕生日までの日数などを計算できます。
         </p>
@@ -594,12 +531,7 @@
             <p class="error" id="ageError" role="alert"></p>
           </form>
 
-          <div
-            class="result-panel"
-            id="ageResult"
-            aria-live="polite"
-            hidden
-          >
+          <div class="result-panel" id="ageResult" aria-live="polite" hidden>
             <h3 class="result-heading">計算結果</h3>
 
             <div class="result-grid">
@@ -655,12 +587,7 @@
             <div class="form-grid">
               <div>
                 <label for="baseDate">基準日</label>
-                <input
-                  type="date"
-                  id="baseDate"
-                  name="baseDate"
-                  required
-                >
+                <input type="date" id="baseDate" name="baseDate" required>
               </div>
 
               <div>
@@ -696,16 +623,9 @@
             <p class="error" id="dateError" role="alert"></p>
           </form>
 
-          <div
-            class="result-panel"
-            id="dateResult"
-            aria-live="polite"
-            hidden
-          >
+          <div class="result-panel" id="dateResult" aria-live="polite" hidden>
             <div class="date-result">
-              <span class="result-label" id="dateResultLabel">
-                計算結果
-              </span>
+              <span class="result-label" id="dateResultLabel">計算結果</span>
               <strong class="result-value" id="calculatedDate">—</strong>
             </div>
           </div>
@@ -815,6 +735,11 @@
             ✍️ 文字数カウント
             <span class="tool-status">公開中</span>
           </a>
+
+          <a class="tool-item tool-link" href="../password/">
+            🔐 パスワード生成
+            <span class="tool-status">公開中</span>
+          </a>
         </div>
       </section>
     </div>
@@ -826,12 +751,10 @@
   <footer>
     <div class="container">
       <p class="footer-logo">🍵 ゴマツール</p>
-
       <p>
         30秒で使えて、<br>
         他より少し便利。
       </p>
-
       <p class="updated">
         最終更新日：<span id="lastUpdated"></span>
       </p>
@@ -869,9 +792,7 @@
     function parseDate(value) {
       const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
 
-      if (!match) {
-        return null;
-      }
+      if (!match) return null;
 
       const year = Number(match[1]);
       const month = Number(match[2]);
@@ -974,9 +895,7 @@
           birth.getUTCDate()
         );
 
-        if (candidate > today) {
-          break;
-        }
+        if (candidate > today) break;
 
         months++;
         monthAnchor = candidate;
@@ -986,11 +905,7 @@
         (today - monthAnchor) / DAY_MS
       );
 
-      return {
-        years,
-        months,
-        days
-      };
+      return { years, months, days };
     }
 
     function getNextBirthday(birth, today) {
@@ -1166,13 +1081,15 @@
     // 結果コピー
     // ======================
     async function copyResult() {
-      const status = document.getElementById('copyStatus');
+      const status =
+        document.getElementById('copyStatus');
 
       try {
         await navigator.clipboard.writeText(copyText);
         status.textContent = 'コピーしました！';
       } catch (error) {
-        const textArea = document.createElement('textarea');
+        const textArea =
+          document.createElement('textarea');
 
         textArea.value = copyText;
         textArea.style.position = 'fixed';
@@ -1181,7 +1098,8 @@
         document.body.appendChild(textArea);
         textArea.select();
 
-        const copied = document.execCommand('copy');
+        const copied =
+          document.execCommand('copy');
 
         textArea.remove();
 

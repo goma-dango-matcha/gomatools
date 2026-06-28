@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="西暦から和暦、和暦から西暦を簡単に変換できる無料ツールです。明治・大正・昭和・平成・令和に対応しています。">
   <title>和暦・西暦変換｜ゴマツール</title>
-
   <style>
     /* ======================
        基本設定
@@ -28,392 +27,91 @@
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      color: var(--text);
-      background: linear-gradient(180deg, #f9fcf7 0, #fff 25%);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-        "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
-      line-height: 1.75;
-      -webkit-font-smoothing: antialiased;
-    }
-
+    body { margin: 0; color: var(--text); background: linear-gradient(180deg, #f9fcf7 0, #fff 25%); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif; line-height: 1.75; -webkit-font-smoothing: antialiased; }
     button, input, select { font: inherit; }
     button { cursor: pointer; }
     a { color: inherit; }
-
-    .container {
-      width: min(100% - 32px, 880px);
-      margin-inline: auto;
-    }
-
+    .container { width: min(100% - 32px, 880px); margin-inline: auto; }
     .section { margin-top: 72px; }
-
-    .section-title {
-      margin: 0 0 20px;
-      font-size: clamp(1.4rem, 4vw, 1.8rem);
-    }
-
-    .card {
-      padding: clamp(22px, 5vw, 38px);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--white);
-      box-shadow: var(--shadow);
-    }
+    .section-title { margin: 0 0 20px; font-size: clamp(1.4rem, 4vw, 1.8rem); }
+    .card { padding: clamp(22px, 5vw, 38px); border: 1px solid var(--line); border-radius: var(--radius); background: var(--white); box-shadow: var(--shadow); }
 
     /* ======================
        ヘッダー・ヒーロー
     ====================== */
-    .site-header {
-      padding: 23px 0;
-      border-bottom: 1px solid rgba(88, 124, 64, .12);
-      background: rgba(255, 255, 255, .86);
-    }
-
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-
-    .brand-wrap {
-      display: flex;
-      align-items: baseline;
-      gap: 14px;
-    }
-
-    .logo {
-      margin: 0;
-      color: var(--green-dark);
-      font-size: 1.2rem;
-      font-weight: 850;
-    }
-
-    .header-copy {
-      margin: 0;
-      color: var(--muted);
-      font-size: .82rem;
-    }
-
-    .home-link {
-      display: inline-flex;
-      min-height: 44px;
-      align-items: center;
-      padding: 8px 14px;
-      color: var(--green-dark);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: var(--white);
-      font-size: .86rem;
-      font-weight: 750;
-      text-decoration: none;
-    }
-
+    .site-header { padding: 23px 0; border-bottom: 1px solid rgba(88, 124, 64, .12); background: rgba(255, 255, 255, .86); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand-wrap { display: flex; align-items: baseline; gap: 14px; }
+    .logo { margin: 0; color: var(--green-dark); font-size: 1.2rem; font-weight: 850; }
+    .header-copy { margin: 0; color: var(--muted); font-size: .82rem; }
+    .home-link { display: inline-flex; min-height: 44px; align-items: center; padding: 8px 14px; color: var(--green-dark); border: 1px solid var(--line); border-radius: 12px; background: var(--white); font-size: .86rem; font-weight: 750; text-decoration: none; }
     .home-link:hover { background: var(--green-light); }
-
     main { padding: 78px 0 96px; }
     .hero { text-align: center; }
-
-    .eyebrow {
-      display: inline-block;
-      margin: 0 0 15px;
-      padding: 6px 13px;
-      color: var(--green-dark);
-      border-radius: 999px;
-      background: var(--green-light);
-      font-size: .82rem;
-      font-weight: 750;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(2.1rem, 8vw, 3.7rem);
-      line-height: 1.25;
-      letter-spacing: -.035em;
-    }
-
-    .hero-catch {
-      margin: 18px 0 0;
-      color: var(--green-dark);
-      font-size: clamp(1.05rem, 3vw, 1.25rem);
-      font-weight: 800;
-    }
-
-    .hero-description {
-      max-width: 650px;
-      margin: 15px auto 0;
-      color: var(--muted);
-    }
+    .eyebrow { display: inline-block; margin: 0 0 15px; padding: 6px 13px; color: var(--green-dark); border-radius: 999px; background: var(--green-light); font-size: .82rem; font-weight: 750; }
+    h1 { margin: 0; font-size: clamp(2.1rem, 8vw, 3.7rem); line-height: 1.25; letter-spacing: -.035em; }
+    .hero-catch { margin: 18px 0 0; color: var(--green-dark); font-size: clamp(1.05rem, 3vw, 1.25rem); font-weight: 800; }
+    .hero-description { max-width: 650px; margin: 15px auto 0; color: var(--muted); }
 
     /* ======================
        変換フォーム・結果
     ====================== */
-    .converter-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    .converter-card {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .converter-title {
-      margin: 0 0 20px;
-      color: var(--green-dark);
-      font-size: 1.22rem;
-    }
-
-    .form-grid {
-      display: grid;
-      gap: 18px;
-    }
-
-    .era-inputs {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 750;
-    }
-
-    input, select {
-      width: 100%;
-      min-height: 52px;
-      padding: 12px 14px;
-      color: var(--text);
-      border: 1.5px solid #cdd8c7;
-      border-radius: 12px;
-      background: #fff;
-    }
-
-    input:focus, select:focus {
-      outline: 3px solid rgba(88, 124, 64, .18);
-      border-color: var(--green);
-    }
-
-    .hint {
-      margin: 6px 0 0;
-      color: var(--muted);
-      font-size: .8rem;
-    }
-
-    .primary-button {
-      width: 100%;
-      min-height: 56px;
-      padding: 14px 18px;
-      color: #fff;
-      border: 0;
-      border-radius: 14px;
-      background: var(--green);
-      box-shadow: 0 9px 22px rgba(88, 124, 64, .2);
-      font-weight: 850;
-      transition: transform .15s ease, background .15s ease;
-    }
-
-    .primary-button:hover {
-      background: var(--green-dark);
-      transform: translateY(-1px);
-    }
-
-    .primary-button:focus-visible,
-    .home-link:focus-visible,
-    .related-link:focus-visible {
-      outline: 3px solid rgba(88, 124, 64, .35);
-      outline-offset: 3px;
-    }
-
-    .error {
-      min-height: 1.6em;
-      margin: 11px 0 0;
-      color: var(--danger);
-      font-size: .9rem;
-      font-weight: 750;
-      text-align: center;
-    }
-
-    .result-panel {
-      margin-top: 20px;
-      padding: 22px 16px;
-      border-radius: 17px;
-      background: var(--green-light);
-      text-align: center;
-    }
-
+    .converter-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .converter-card { display: flex; flex-direction: column; }
+    .converter-title { margin: 0 0 20px; color: var(--green-dark); font-size: 1.22rem; }
+    .form-grid { display: grid; gap: 18px; }
+    .era-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    label { display: block; margin-bottom: 8px; font-weight: 750; }
+    input, select { width: 100%; min-height: 52px; padding: 12px 14px; color: var(--text); border: 1.5px solid #cdd8c7; border-radius: 12px; background: #fff; }
+    input:focus, select:focus { outline: 3px solid rgba(88, 124, 64, .18); border-color: var(--green); }
+    .hint { margin: 6px 0 0; color: var(--muted); font-size: .8rem; }
+    .primary-button { width: 100%; min-height: 56px; padding: 14px 18px; color: #fff; border: 0; border-radius: 14px; background: var(--green); box-shadow: 0 9px 22px rgba(88, 124, 64, .2); font-weight: 850; transition: transform .15s ease, background .15s ease; }
+    .primary-button:hover { background: var(--green-dark); transform: translateY(-1px); }
+    .primary-button:focus-visible, .home-link:focus-visible, .related-link:focus-visible { outline: 3px solid rgba(88, 124, 64, .35); outline-offset: 3px; }
+    .error { min-height: 1.6em; margin: 11px 0 0; color: var(--danger); font-size: .9rem; font-weight: 750; text-align: center; }
+    .result-panel { margin-top: 20px; padding: 22px 16px; border-radius: 17px; background: var(--green-light); text-align: center; }
     .result-panel[hidden] { display: none; }
-
-    .result-label {
-      display: block;
-      color: var(--muted);
-      font-size: .82rem;
-      font-weight: 750;
-    }
-
-    .result-value {
-      display: block;
-      margin-top: 7px;
-      color: var(--green-dark);
-      font-size: clamp(1.35rem, 4.8vw, 2rem);
-      line-height: 1.45;
-      font-weight: 900;
-      overflow-wrap: anywhere;
-    }
-
-    .result-sentence {
-      margin: 10px 0 0;
-      color: var(--muted);
-      font-size: .87rem;
-    }
+    .result-label { display: block; color: var(--muted); font-size: .82rem; font-weight: 750; }
+    .result-value { display: block; margin-top: 7px; color: var(--green-dark); font-size: clamp(1.35rem, 4.8vw, 2rem); line-height: 1.45; font-weight: 900; overflow-wrap: anywhere; }
+    .result-sentence { margin: 10px 0 0; color: var(--muted); font-size: .87rem; }
 
     /* ======================
        注意書き・関連ツール
     ====================== */
-    .notice-card {
-      border-color: var(--warning-line);
-      background: var(--warning);
-      box-shadow: none;
-    }
-
-    .notice-card p {
-      margin: 5px 0;
-      color: #625a45;
-    }
-
-    .privacy-card {
-      box-shadow: none;
-      background: var(--green-soft);
-    }
-
-    .privacy-card p {
-      margin: 5px 0;
-      color: var(--muted);
-    }
-
-    .related-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .related-item {
-      padding: 19px;
-      border: 1px solid var(--line);
-      border-radius: 15px;
-      background: var(--green-soft);
-    }
-
-    .related-name {
-      display: block;
-      font-weight: 800;
-    }
-
-    .related-status {
-      display: block;
-      margin-top: 4px;
-      color: var(--muted);
-      font-size: .78rem;
-    }
-
-    .related-link {
-      display: block;
-      text-decoration: none;
-      transition: border-color .15s ease, transform .15s ease;
-    }
-
-    .related-link:hover {
-      border-color: var(--green);
-      transform: translateY(-1px);
-    }
+    .notice-card { border-color: var(--warning-line); background: var(--warning); box-shadow: none; }
+    .notice-card p { margin: 5px 0; color: #625a45; }
+    .privacy-card { box-shadow: none; background: var(--green-soft); }
+    .privacy-card p { margin: 5px 0; color: var(--muted); }
+    .related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .related-item { padding: 19px; border: 1px solid var(--line); border-radius: 15px; background: var(--green-soft); }
+    .related-name { display: block; font-weight: 800; }
+    .related-status { display: block; margin-top: 4px; color: var(--muted); font-size: .78rem; }
+    .related-link { display: block; text-decoration: none; transition: border-color .15s ease, transform .15s ease; }
+    .related-link:hover { border-color: var(--green); transform: translateY(-1px); }
 
     /* ======================
        フッター・レスポンシブ
     ====================== */
-    footer {
-      padding: 52px 0;
-      color: var(--muted);
-      border-top: 1px solid var(--line);
-      text-align: center;
-      background: var(--green-soft);
-    }
-
-    .footer-logo {
-      margin: 0 0 8px;
-      color: var(--green-dark);
-      font-size: 1.15rem;
-      font-weight: 850;
-    }
-
+    footer { padding: 52px 0; color: var(--muted); border-top: 1px solid var(--line); text-align: center; background: var(--green-soft); }
+    .footer-logo { margin: 0 0 8px; color: var(--green-dark); font-size: 1.15rem; font-weight: 850; }
     footer p { margin: 5px 0; }
-
-    .project-name {
-      margin-top: 20px;
-      font-size: .82rem;
-      font-weight: 750;
-      letter-spacing: .08em;
-    }
-
-    .footer-assurance {
-      max-width: 620px;
-      margin: 28px auto 0;
-      padding-top: 26px;
-      border-top: 1px solid var(--line);
-      font-size: .78rem;
-      line-height: 1.8;
-    }
-
-    .updated {
-      margin-top: 18px;
-      font-size: .72rem;
-    }
-
-    @media (max-width: 720px) {
-      .converter-grid { grid-template-columns: 1fr; }
-    }
-
+    .project-name { margin-top: 20px; font-size: .82rem; font-weight: 750; letter-spacing: .08em; }
+    .footer-assurance { max-width: 620px; margin: 28px auto 0; padding-top: 26px; border-top: 1px solid var(--line); font-size: .78rem; line-height: 1.8; }
+    .updated { margin-top: 18px; font-size: .72rem; }
+    @media (max-width: 720px) { .converter-grid { grid-template-columns: 1fr; } }
     @media (max-width: 620px) {
       .container { width: min(100% - 24px, 880px); }
       .site-header { padding: 18px 0; }
       .header-inner { align-items: flex-start; }
-
-      .brand-wrap {
-        flex-direction: column;
-        gap: 0;
-      }
-
+      .brand-wrap { flex-direction: column; gap: 0; }
       main { padding: 58px 0 76px; }
       .section { margin-top: 54px; }
-
-      .card {
-        padding: 22px 18px;
-        border-radius: 18px;
-      }
-
-      .related-grid,
-      .era-inputs {
-        grid-template-columns: 1fr;
-      }
+      .card { padding: 22px 18px; border-radius: 18px; }
+      .related-grid, .era-inputs { grid-template-columns: 1fr; }
     }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-
-      *,
-      *::before,
-      *::after {
-        transition: none !important;
-      }
-    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; } }
   </style>
 </head>
-
 <body>
   <!-- ======================
        ヘッダー
@@ -424,7 +122,6 @@
         <p class="logo">🍵 ゴマツール</p>
         <p class="header-copy">無料で使える便利ツール集</p>
       </div>
-
       <a class="home-link" href="../">← ホームへ戻る</a>
     </div>
   </header>
@@ -435,87 +132,45 @@
            ヒーロー
       ====================== -->
       <section class="hero" aria-labelledby="page-title">
-        <p class="eyebrow">
-          明治・大正・昭和・平成・令和に対応
-        </p>
-
+        <p class="eyebrow">明治・大正・昭和・平成・令和に対応</p>
         <h1 id="page-title">📅 和暦・西暦変換</h1>
-
-        <p class="hero-catch">
-          元号と西暦を、かんたん相互変換。
-        </p>
-
-        <p class="hero-description">
-          西暦から和暦、和暦から西暦をかんたんに変換できます。<br>
-          明治・大正・昭和・平成・令和に対応しています。
-        </p>
+        <p class="hero-catch">元号と西暦を、かんたん相互変換。</p>
+        <p class="hero-description">西暦から和暦、和暦から西暦をかんたんに変換できます。<br>明治・大正・昭和・平成・令和に対応しています。</p>
       </section>
 
       <!-- ======================
            変換フォーム
       ====================== -->
       <section class="section" aria-labelledby="converter-title">
-        <h2 class="section-title" id="converter-title">
-          変換したい年を入力
-        </h2>
-
+        <h2 class="section-title" id="converter-title">変換したい年を入力</h2>
         <div class="converter-grid">
           <article class="card converter-card">
             <h3 class="converter-title">西暦 → 和暦</h3>
-
             <form id="westernForm" novalidate>
               <div class="form-grid">
                 <div>
                   <label for="westernYear">西暦年</label>
-
-                  <input
-                    type="number"
-                    id="westernYear"
-                    name="westernYear"
-                    min="1868"
-                    max="2100"
-                    step="1"
-                    inputmode="numeric"
-                    placeholder="例：2026"
-                    required
-                  >
-
-                  <p class="hint">
-                    1868年〜2100年に対応
-                  </p>
+                  <input type="number" id="westernYear" name="westernYear" min="1868" max="2100" step="1" inputmode="numeric" placeholder="例：2026" required>
+                  <p class="hint">1868年〜2100年に対応</p>
                 </div>
-
-                <button class="primary-button" type="submit">
-                  和暦に変換する
-                </button>
+                <button class="primary-button" type="submit">和暦に変換する</button>
               </div>
-
               <p class="error" id="westernError" role="alert"></p>
             </form>
-
-            <div
-              class="result-panel"
-              id="westernResult"
-              aria-live="polite"
-              hidden
-            >
+            <div class="result-panel" id="westernResult" aria-live="polite" hidden>
               <span class="result-label">変換結果</span>
-              <strong class="result-value" id="westernResultValue">
-                —
-              </strong>
+              <strong class="result-value" id="westernResultValue">—</strong>
               <p class="result-sentence" id="westernResultSentence"></p>
             </div>
           </article>
 
           <article class="card converter-card">
             <h3 class="converter-title">和暦 → 西暦</h3>
-
             <form id="japaneseForm" novalidate>
               <div class="form-grid">
                 <div class="era-inputs">
                   <div>
                     <label for="eraName">元号</label>
-
                     <select id="eraName" name="eraName">
                       <option value="reiwa">令和</option>
                       <option value="heisei">平成</option>
@@ -524,43 +179,19 @@
                       <option value="meiji">明治</option>
                     </select>
                   </div>
-
                   <div>
                     <label for="eraYear">年数</label>
-
-                    <input
-                      type="text"
-                      id="eraYear"
-                      name="eraYear"
-                      inputmode="numeric"
-                      placeholder="例：8 または 元年"
-                      required
-                    >
+                    <input type="text" id="eraYear" name="eraYear" inputmode="numeric" placeholder="例：8 または 元年" required>
                   </div>
                 </div>
-
-                <p class="hint">
-                  1年は「元年」と入力しても変換できます
-                </p>
-
-                <button class="primary-button" type="submit">
-                  西暦に変換する
-                </button>
+                <p class="hint">1年は「元年」と入力しても変換できます</p>
+                <button class="primary-button" type="submit">西暦に変換する</button>
               </div>
-
               <p class="error" id="japaneseError" role="alert"></p>
             </form>
-
-            <div
-              class="result-panel"
-              id="japaneseResult"
-              aria-live="polite"
-              hidden
-            >
+            <div class="result-panel" id="japaneseResult" aria-live="polite" hidden>
               <span class="result-label">変換結果</span>
-              <strong class="result-value" id="japaneseResultValue">
-                —
-              </strong>
+              <strong class="result-value" id="japaneseResultValue">—</strong>
               <p class="result-sentence" id="japaneseResultSentence"></p>
             </div>
           </article>
@@ -570,81 +201,32 @@
       <!-- ======================
            注意書き・プライバシー
       ====================== -->
-      <section
-        class="section card notice-card"
-        aria-labelledby="notice-title"
-      >
-        <h2 class="section-title" id="notice-title">
-          ⚠️ ご注意ください
-        </h2>
-
-        <p>
-          年単位での目安変換です。改元年は同じ年に複数の元号が含まれる場合があります。
-        </p>
-        <p>
-          日付まで指定した厳密な改元日の判定には対応していません。
-        </p>
+      <section class="section card notice-card" aria-labelledby="notice-title">
+        <h2 class="section-title" id="notice-title">⚠️ ご注意ください</h2>
+        <p>年単位での目安変換です。改元年は同じ年に複数の元号が含まれる場合があります。</p>
+        <p>日付まで指定した厳密な改元日の判定には対応していません。</p>
       </section>
 
-      <section
-        class="section card privacy-card"
-        aria-labelledby="privacy-title"
-      >
-        <h2 class="section-title" id="privacy-title">
-          🍵 安心してお使いください
-        </h2>
-
-        <p>
-          入力内容と変換処理はブラウザ内だけで行われます。
-        </p>
-        <p>
-          サーバーへ送信・保存することはありません。
-        </p>
+      <section class="section card privacy-card" aria-labelledby="privacy-title">
+        <h2 class="section-title" id="privacy-title">🍵 安心してお使いください</h2>
+        <p>入力内容と変換処理はブラウザ内だけで行われます。</p>
+        <p>サーバーへ送信・保存することはありません。</p>
       </section>
 
       <!-- ======================
            関連ツール
       ====================== -->
       <section class="section" aria-labelledby="related-title">
-        <h2 class="section-title" id="related-title">
-          おすすめの便利ツール
-        </h2>
-
+        <h2 class="section-title" id="related-title">おすすめの便利ツール</h2>
         <div class="card related-grid">
-          <a class="related-item related-link" href="../age/">
-            <span class="related-name">🎂 年齢・日付計算</span>
-            <span class="related-status">公開中</span>
-          </a>
-
-          <a class="related-item related-link" href="../business-days/">
-            <span class="related-name">📅 営業日計算</span>
-            <span class="related-status">公開中</span>
-          </a>
-
-          <a class="related-item related-link" href="../tax/">
-            <span class="related-name">💰 消費税計算</span>
-            <span class="related-status">公開中</span>
-          </a>
-
-          <a class="related-item related-link" href="../warikan/">
-            <span class="related-name">👥 割り勘計算</span>
-            <span class="related-status">公開中</span>
-          </a>
-
-          <a class="related-item related-link" href="../qrcode/">
-            <span class="related-name">📱 QRコード生成</span>
-            <span class="related-status">公開中</span>
-          </a>
-
-          <a class="related-item related-link" href="../school-year/">
-            <span class="related-name">🎓 学年・年齢・卒業年度計算</span>
-            <span class="related-status">公開中</span>
-          </a>
-
-          <a class="related-item related-link" href="../text-counter/">
-            <span class="related-name">✍️ 文字数カウント</span>
-            <span class="related-status">公開中</span>
-          </a>
+          <a class="related-item related-link" href="../age/"><span class="related-name">🎂 年齢・日付計算</span><span class="related-status">公開中</span></a>
+          <a class="related-item related-link" href="../business-days/"><span class="related-name">📅 営業日計算</span><span class="related-status">公開中</span></a>
+          <a class="related-item related-link" href="../tax/"><span class="related-name">💰 消費税計算</span><span class="related-status">公開中</span></a>
+          <a class="related-item related-link" href="../warikan/"><span class="related-name">👥 割り勘計算</span><span class="related-status">公開中</span></a>
+          <a class="related-item related-link" href="../qrcode/"><span class="related-name">📱 QRコード生成</span><span class="related-status">公開中</span></a>
+          <a class="related-item related-link" href="../school-year/"><span class="related-name">🎓 学年・年齢・卒業年度計算</span><span class="related-status">公開中</span></a>
+          <a class="related-item related-link" href="../text-counter/"><span class="related-name">✍️ 文字数カウント</span><span class="related-status">公開中</span></a>
+          <a class="related-item related-link" href="../password/"><span class="related-name">🔐 パスワード生成</span><span class="related-status">公開中</span></a>
         </div>
       </section>
     </div>
@@ -656,22 +238,13 @@
   <footer>
     <div class="container">
       <p class="footer-logo">🍵 ゴマツール</p>
-
-      <p>
-        30秒で使えて、<br>
-        他より少し便利。
-      </p>
-
+      <p>30秒で使えて、<br>他より少し便利。</p>
       <p class="project-name">Project Goma</p>
-
       <div class="footer-assurance">
         <p>入力したデータはブラウザ内だけで処理されます。</p>
         <p>サーバーへ送信・保存は行いません。</p>
       </div>
-
-      <p class="updated">
-        最終更新：2026年6月28日
-      </p>
+      <p class="updated">最終更新：2026年6月28日</p>
     </div>
   </footer>
 
@@ -683,43 +256,12 @@
     // ======================
     const MIN_YEAR = 1868;
     const MAX_YEAR = 2100;
-
     const ERAS = [
-      {
-        id: 'meiji',
-        name: '明治',
-        start: 1868,
-        end: 1912,
-        offset: 1867
-      },
-      {
-        id: 'taisho',
-        name: '大正',
-        start: 1912,
-        end: 1926,
-        offset: 1911
-      },
-      {
-        id: 'showa',
-        name: '昭和',
-        start: 1926,
-        end: 1989,
-        offset: 1925
-      },
-      {
-        id: 'heisei',
-        name: '平成',
-        start: 1989,
-        end: 2019,
-        offset: 1988
-      },
-      {
-        id: 'reiwa',
-        name: '令和',
-        start: 2019,
-        end: MAX_YEAR,
-        offset: 2018
-      }
+      { id: 'meiji', name: '明治', start: 1868, end: 1912, offset: 1867 },
+      { id: 'taisho', name: '大正', start: 1912, end: 1926, offset: 1911 },
+      { id: 'showa', name: '昭和', start: 1926, end: 1989, offset: 1925 },
+      { id: 'heisei', name: '平成', start: 1989, end: 2019, offset: 1988 },
+      { id: 'reiwa', name: '令和', start: 2019, end: MAX_YEAR, offset: 2018 }
     ];
 
     function formatEraYear(era, eraYear) {
@@ -738,16 +280,10 @@
     function convertWesternToJapanese(event) {
       event.preventDefault();
 
-      const raw =
-        document.getElementById('westernYear').value.trim();
-
+      const raw = document.getElementById('westernYear').value.trim();
       const year = Number(raw);
-
-      const error =
-        document.getElementById('westernError');
-
-      const panel =
-        document.getElementById('westernResult');
+      const error = document.getElementById('westernError');
+      const panel = document.getElementById('westernResult');
 
       error.textContent = '';
       panel.hidden = true;
@@ -756,52 +292,32 @@
         error.textContent = '西暦年を入力してください。';
         return;
       }
-
       if (!Number.isInteger(year)) {
-        error.textContent =
-          '西暦年は数字の整数で入力してください。';
+        error.textContent = '西暦年は数字の整数で入力してください。';
         return;
       }
-
       if (year < MIN_YEAR) {
-        error.textContent =
-          '対応している範囲は明治以降です。';
+        error.textContent = '対応している範囲は明治以降です。';
         return;
       }
-
       if (year > MAX_YEAR) {
-        error.textContent =
-          `${MAX_YEAR}年以前の西暦年を入力してください。`;
+        error.textContent = `${MAX_YEAR}年以前の西暦年を入力してください。`;
         return;
       }
 
-      const matches = ERAS
-        .filter(function (era) {
-          return year >= era.start && year <= era.end;
-        })
-        .map(function (era) {
-          return formatEraYear(
-            era,
-            year - era.offset
-          );
-        });
+      const matches = ERAS.filter(function (era) {
+        return year >= era.start && year <= era.end;
+      }).map(function (era) {
+        return formatEraYear(era, year - era.offset);
+      });
 
       const resultText = matches.join('・');
-
-      document.getElementById('westernResultValue').textContent =
-        resultText;
-
-      document.getElementById('westernResultSentence').textContent =
-        matches.length > 1
-          ? `${year}年は、${resultText}にあたります。`
-          : `${year}年は、${resultText}です。`;
-
+      document.getElementById('westernResultValue').textContent = resultText;
+      document.getElementById('westernResultSentence').textContent = matches.length > 1
+        ? `${year}年は、${resultText}にあたります。`
+        : `${year}年は、${resultText}です。`;
       panel.hidden = false;
-
-      panel.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest'
-      });
+      panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
     // ======================
@@ -810,93 +326,48 @@
     function convertJapaneseToWestern(event) {
       event.preventDefault();
 
-      const era = getEraById(
-        document.getElementById('eraName').value
-      );
-
-      const raw =
-        document.getElementById('eraYear').value.trim();
-
-      const normalized =
-        raw === '元' || raw === '元年'
-          ? '1'
-          : raw.replace(/年$/, '');
-
+      const era = getEraById(document.getElementById('eraName').value);
+      const raw = document.getElementById('eraYear').value.trim();
+      const normalized = raw === '元' || raw === '元年' ? '1' : raw.replace(/年$/, '');
       const eraYear = Number(normalized);
-
-      const error =
-        document.getElementById('japaneseError');
-
-      const panel =
-        document.getElementById('japaneseResult');
+      const error = document.getElementById('japaneseError');
+      const panel = document.getElementById('japaneseResult');
 
       error.textContent = '';
       panel.hidden = true;
 
       if (raw === '') {
-        error.textContent =
-          '和暦の年数を入力してください。';
+        error.textContent = '和暦の年数を入力してください。';
         return;
       }
-
       if (!Number.isInteger(eraYear)) {
-        error.textContent =
-          '年数は数字、または「元年」で入力してください。';
+        error.textContent = '年数は数字、または「元年」で入力してください。';
         return;
       }
-
       if (eraYear <= 0) {
-        error.textContent =
-          '和暦の年数は1以上で入力してください。';
+        error.textContent = '和暦の年数は1以上で入力してください。';
         return;
       }
 
-      const westernYear =
-        era.offset + eraYear;
-
-      if (
-        westernYear < era.start ||
-        westernYear > era.end
-      ) {
-        error.textContent =
-          '元号と年数の組み合わせを確認してください。';
+      const westernYear = era.offset + eraYear;
+      if (westernYear < era.start || westernYear > era.end) {
+        error.textContent = '元号と年数の組み合わせを確認してください。';
         return;
       }
 
-      const eraText =
-        formatEraYear(era, eraYear);
-
-      document.getElementById('japaneseResultValue').textContent =
-        `${westernYear}年`;
-
-      document.getElementById('japaneseResultSentence').textContent =
-        `${eraText}は、${westernYear}年です。`;
-
+      const eraText = formatEraYear(era, eraYear);
+      document.getElementById('japaneseResultValue').textContent = `${westernYear}年`;
+      document.getElementById('japaneseResultSentence').textContent = `${eraText}は、${westernYear}年です。`;
       panel.hidden = false;
-
-      panel.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest'
-      });
+      panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
     // ======================
     // 初期表示
     // ======================
     function initializePage() {
-      document
-        .getElementById('westernForm')
-        .addEventListener(
-          'submit',
-          convertWesternToJapanese
-        );
-
-      document
-        .getElementById('japaneseForm')
-        .addEventListener(
-          'submit',
-          convertJapaneseToWestern
-        );
+      document.getElementById('westernForm').addEventListener('submit', convertWesternToJapanese);
+      document.getElementById('japaneseForm').addEventListener('submit', convertJapaneseToWestern);
     }
 
     initializePage();
