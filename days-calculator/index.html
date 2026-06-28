@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="開始日と終了日から日数を無料で計算。○日後・○日前の日付、曜日、週数換算も簡単に確認できます。">
+  <title>日数計算ツール｜日付から日数・○日後・○日前を簡単計算</title>
+  <style>
+    /* ====================== 基本設定 ====================== */
+    :root { --green:#587c40; --green-dark:#355126; --green-light:#eef5e9; --green-soft:#f8fbf6; --text:#20251d; --muted:#687064; --line:#dde6d8; --white:#fff; --danger:#b44335; --warning:#8a6b14; --shadow:0 16px 44px rgba(48,70,36,.09); --radius:22px; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--text); background:linear-gradient(180deg,#f9fcf7 0,#fff 25%); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif; line-height:1.75; -webkit-font-smoothing:antialiased; }
+    button,input,select { font:inherit; }
+    button { cursor:pointer; }
+    a { color:inherit; }
+    .container { width:min(100% - 32px,880px); margin-inline:auto; }
+    .section { margin-top:72px; }
+    .section-title { margin:0 0 20px; font-size:clamp(1.4rem,4vw,1.8rem); }
+    .card { padding:clamp(22px,5vw,38px); border:1px solid var(--line); border-radius:var(--radius); background:var(--white); box-shadow:var(--shadow); }
+
+    /* ====================== ヘッダー・ヒーロー ====================== */
+    .site-header { padding:23px 0; border-bottom:1px solid rgba(88,124,64,.12); background:rgba(255,255,255,.86); }
+    .header-inner { display:flex; align-items:center; justify-content:space-between; gap:24px; }
+    .brand-wrap { display:flex; align-items:baseline; gap:14px; }
+    .logo { margin:0; color:var(--green-dark); font-size:1.2rem; font-weight:850; }
+    .header-copy { margin:0; color:var(--muted); font-size:.82rem; }
+    .home-link { display:inline-flex; min-height:44px; align-items:center; padding:8px 14px; color:var(--green-dark); border:1px solid var(--line); border-radius:12px; background:#fff; font-size:.86rem; font-weight:750; text-decoration:none; }
+    .home-link:hover { background:var(--green-light); }
+    main { padding:78px 0 96px; }
+    .hero { text-align:center; }
+    .eyebrow { display:inline-block; margin:0 0 15px; padding:6px 13px; color:var(--green-dark); border-radius:999px; background:var(--green-light); font-size:.82rem; font-weight:750; }
+    h1 { margin:0; font-size:clamp(2.1rem,8vw,3.7rem); line-height:1.25; letter-spacing:-.035em; }
+    .hero-description { max-width:680px; margin:18px auto 0; color:var(--muted); }
+
+    /* ====================== タブ・フォーム ====================== */
+    .tabs { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:24px; }
+    .tab-button { min-height:54px; padding:12px; color:var(--green-dark); border:1px solid var(--line); border-radius:13px; background:var(--green-soft); font-weight:850; }
+    .tab-button[aria-selected="true"] { color:#fff; border-color:var(--green); background:var(--green); }
+    .calculator-panel[hidden] { display:none; }
+    .panel-title { margin:0 0 18px; color:var(--green-dark); font-size:1.25rem; }
+    .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .field-full { grid-column:1 / -1; }
+    label { display:block; margin-bottom:8px; font-weight:750; }
+    input,select { width:100%; min-height:52px; padding:12px 14px; color:var(--text); border:1.5px solid #cdd8c7; border-radius:12px; background:#fff; }
+    input:focus,select:focus { outline:3px solid rgba(88,124,64,.18); border-color:var(--green); }
+    .button-row { display:grid; grid-template-columns:2fr 1fr 1fr; gap:10px; margin-top:20px; }
+    .primary-button,.secondary-button,.reset-button { min-height:54px; padding:12px 14px; border-radius:13px; font-weight:850; }
+    .primary-button { color:#fff; border:0; background:var(--green); }
+    .primary-button:hover { background:var(--green-dark); }
+    .secondary-button { color:var(--green-dark); border:1px solid var(--line); background:var(--green-light); }
+    .reset-button { color:var(--green-dark); border:1.5px solid var(--green); background:#fff; }
+    .tab-button:focus-visible,.primary-button:focus-visible,.secondary-button:focus-visible,.reset-button:focus-visible,.home-link:focus-visible,.related-link:focus-visible { outline:3px solid rgba(88,124,64,.35); outline-offset:3px; }
+    .error { min-height:1.6em; margin:12px 0 0; color:var(--danger); font-weight:750; text-align:center; }
+    .notice { min-height:1.5em; margin:6px 0 0; color:var(--warning); font-size:.88rem; font-weight:750; text-align:center; }
+
+    /* ====================== 計算結果 ====================== */
+    .result-panel { margin-top:24px; padding-top:24px; border-top:1px solid var(--line); }
+    .result-panel[hidden] { display:none; }
+    .main-result { padding:26px 18px; border-radius:18px; background:var(--green-light); text-align:center; }
+    .result-label { display:block; color:var(--muted); font-size:.84rem; font-weight:750; }
+    .main-value { display:block; margin-top:6px; color:var(--green-dark); font-size:clamp(2rem,8vw,3.5rem); line-height:1.25; font-weight:900; }
+    .result-summary { margin:10px 0 0; color:var(--muted); font-size:.88rem; }
+    .result-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:14px; }
+    .result-item { padding:19px 15px; border-radius:15px; background:var(--green-soft); text-align:center; }
+    .result-value { display:block; margin-top:5px; color:var(--green-dark); font-size:clamp(1.15rem,4vw,1.6rem); font-weight:850; overflow-wrap:anywhere; }
+
+    /* ====================== 補足・関連ツール ====================== */
+    .info-card { box-shadow:none; background:var(--green-soft); }
+    .info-card p { margin:5px 0; color:var(--muted); }
+    .related-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .related-item { padding:19px; border:1px solid var(--line); border-radius:15px; background:var(--green-soft); }
+    .related-name { display:block; font-weight:800; }
+    .related-status { display:block; margin-top:4px; color:var(--muted); font-size:.78rem; }
+    .related-link { display:block; text-decoration:none; transition:border-color .15s ease,transform .15s ease; }
+    .related-link:hover { border-color:var(--green); transform:translateY(-1px); }
+
+    /* ====================== フッター・レスポンシブ ====================== */
+    footer { padding:52px 0; color:var(--muted); border-top:1px solid var(--line); text-align:center; background:var(--green-soft); }
+    .footer-logo { margin:0 0 8px; color:var(--green-dark); font-size:1.15rem; font-weight:850; }
+    footer p { margin:5px 0; }
+    .project-name { margin-top:20px; font-size:.82rem; font-weight:750; letter-spacing:.08em; }
+    .footer-assurance { max-width:620px; margin:28px auto 0; padding-top:26px; border-top:1px solid var(--line); font-size:.78rem; line-height:1.8; }
+    .updated { margin-top:18px; font-size:.72rem; }
+    @media (max-width:620px) { .container{width:min(100% - 24px,880px)} .site-header{padding:18px 0} .header-inner{align-items:flex-start} .brand-wrap{flex-direction:column;gap:0} main{padding:58px 0 76px} .section{margin-top:54px} .card{padding:22px 18px;border-radius:18px} .form-grid,.button-row,.result-grid,.related-grid{grid-template-columns:1fr} .field-full{grid-column:auto} }
+    @media (prefers-reduced-motion:reduce) { html{scroll-behavior:auto} *,*::before,*::after{transition:none!important} }
+  </style>
+</head>
+<body>
+  <!-- ====================== ヘッダー ====================== -->
+  <header class="site-header"><div class="container header-inner"><div class="brand-wrap"><p class="logo">🍵 ゴマツール</p><p class="header-copy">無料で使える便利ツール集</p></div><a class="home-link" href="../">← ホームへ戻る</a></div></header>
+
+  <main><div class="container">
+    <!-- ====================== ヒーロー ====================== -->
+    <section class="hero" aria-labelledby="page-title"><p class="eyebrow">日付と日数をかんたん計算</p><h1 id="page-title">📆 日数計算ツール</h1><p class="hero-description">開始日と終了日から日数を計算できます。○日後・○日前の日付も簡単に調べられます。</p></section>
+
+    <!-- ====================== 計算エリア ====================== -->
+    <section class="section" aria-labelledby="calculator-title"><h2 class="section-title" id="calculator-title">計算方法を選ぶ</h2><div class="card">
+      <div class="tabs" role="tablist" aria-label="計算方法"><button class="tab-button" id="rangeTab" type="button" role="tab" aria-selected="true" aria-controls="rangePanel">日付間の日数</button><button class="tab-button" id="offsetTab" type="button" role="tab" aria-selected="false" aria-controls="offsetPanel">○日後・○日前</button></div>
+
+      <!-- ====================== 日付間の日数 ====================== -->
+      <div class="calculator-panel" id="rangePanel" role="tabpanel" aria-labelledby="rangeTab">
+        <h3 class="panel-title">日付間の日数を計算</h3>
+        <form id="rangeForm" novalidate><div class="form-grid"><div><label for="startDate">開始日</label><input type="date" id="startDate" name="startDate" required></div><div><label for="endDate">終了日</label><input type="date" id="endDate" name="endDate" required></div></div><div class="button-row"><button class="primary-button" type="submit">📆 計算する</button><button class="secondary-button" id="rangeTodayButton" type="button">今日を入れる</button><button class="reset-button" id="rangeResetButton" type="button">リセット</button></div><p class="error" id="rangeError" role="alert"></p><p class="notice" id="rangeNotice" role="status"></p></form>
+        <div class="result-panel" id="rangeResult" aria-live="polite" hidden><div class="main-result"><span class="result-label">日数差</span><strong class="main-value" id="differenceDays">—</strong><p class="result-summary" id="rangeSummary"></p></div><div class="result-grid"><div class="result-item"><span class="result-label">開始日を含める</span><strong class="result-value" id="inclusiveDays">—</strong></div><div class="result-item"><span class="result-label">週数換算（開始日を含む）</span><strong class="result-value" id="weeksResult">—</strong></div><div class="result-item"><span class="result-label">開始日の曜日</span><strong class="result-value" id="startWeekday">—</strong></div><div class="result-item"><span class="result-label">終了日の曜日</span><strong class="result-value" id="endWeekday">—</strong></div></div></div>
+      </div>
+
+      <!-- ====================== ○日後・○日前 ====================== -->
+      <div class="calculator-panel" id="offsetPanel" role="tabpanel" aria-labelledby="offsetTab" hidden>
+        <h3 class="panel-title">○日後・○日前を計算</h3>
+        <form id="offsetForm" novalidate><div class="form-grid"><div><label for="baseDate">基準日</label><input type="date" id="baseDate" name="baseDate" required></div><div><label for="offsetDays">日数</label><input type="number" id="offsetDays" name="offsetDays" min="0" max="100000" step="1" inputmode="numeric" placeholder="例：100" required></div><div class="field-full"><label for="direction">計算方向</label><select id="direction" name="direction"><option value="after">○日後</option><option value="before">○日前</option></select></div></div><div class="button-row"><button class="primary-button" type="submit">📆 計算する</button><button class="secondary-button" id="offsetTodayButton" type="button">今日を入れる</button><button class="reset-button" id="offsetResetButton" type="button">リセット</button></div><p class="error" id="offsetError" role="alert"></p></form>
+        <div class="result-panel" id="offsetResult" aria-live="polite" hidden><div class="main-result"><span class="result-label" id="offsetResultLabel">計算結果</span><strong class="result-value" id="offsetResultDate">—</strong><p class="result-summary" id="offsetSummary"></p></div></div>
+      </div>
+    </div></section>
+
+    <!-- ====================== 補足 ====================== -->
+    <section class="section card info-card" aria-labelledby="info-title"><h2 class="section-title" id="info-title">🍵 計算について</h2><p>時刻を含めず、日付だけで計算します。</p><p>入力内容と計算処理はブラウザ内だけで行われ、サーバーへ送信・保存しません。</p></section>
+
+    <!-- ====================== 関連ツール ====================== -->
+    <section class="section" aria-labelledby="related-title"><h2 class="section-title" id="related-title">おすすめの便利ツール</h2><div class="card related-grid">
+      <a class="related-item related-link" href="../age/"><span class="related-name">🎂 年齢・日付計算</span><span class="related-status">公開中</span></a>
+      <a class="related-item related-link" href="../business-days/"><span class="related-name">📅 営業日計算</span><span class="related-status">公開中</span></a>
+      <a class="related-item related-link" href="../birthday-countdown/"><span class="related-name">🎉 誕生日カウント</span><span class="related-status">公開中</span></a>
+      <a class="related-item related-link" href="../wareki/"><span class="related-name">📅 和暦・西暦変換</span><span class="related-status">公開中</span></a>
+    </div></section>
+  </div></main>
+
+  <!-- ====================== フッター ====================== -->
+  <footer><div class="container"><p class="footer-logo">🍵 ゴマツール</p><p>30秒で使えて、<br>他より少し便利。</p><p class="project-name">Project Goma</p><div class="footer-assurance"><p>入力したデータはブラウザ内だけで処理されます。</p><p>サーバーへ送信・保存は行いません。</p></div><p class="updated">最終更新：2026年6月28日</p></div></footer>
+
+  <script>
+    'use strict';
+
+    // ====================== 日付ユーティリティ ======================
+    const DAY_MS = 24 * 60 * 60 * 1000;
+    const WEEKDAYS = ['日曜日','月曜日','火曜日','水曜日','木曜日','金曜日','土曜日'];
+
+    function toUtcDate(year, month, day) {
+      const date = new Date(0);
+      date.setUTCHours(0, 0, 0, 0);
+      date.setUTCFullYear(year, month - 1, day);
+      return date;
+    }
+
+    function parseDate(value) {
+      const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
+      if (!match) return null;
+      const year = Number(match[1]);
+      const month = Number(match[2]);
+      const day = Number(match[3]);
+      const date = toUtcDate(year, month, day);
+      return date.getUTCFullYear() === year && date.getUTCMonth() + 1 === month && date.getUTCDate() === day ? date : null;
+    }
+
+    function getTodayUtc() {
+      const now = new Date();
+      return toUtcDate(now.getFullYear(), now.getMonth() + 1, now.getDate());
+    }
+
+    function formatInputDate(date) {
+      return `${date.getUTCFullYear()}-${String(date.getUTCMonth() + 1).padStart(2,'0')}-${String(date.getUTCDate()).padStart(2,'0')}`;
+    }
+
+    function formatDate(date, includeWeekday) {
+      const text = `${date.getUTCFullYear()}年${date.getUTCMonth() + 1}月${date.getUTCDate()}日`;
+      return includeWeekday ? `${text}（${WEEKDAYS[date.getUTCDay()].replace('曜日','')}）` : text;
+    }
+
+    // ====================== タブ切り替え ======================
+    function showPanel(panelName) {
+      const isRange = panelName === 'range';
+      document.getElementById('rangeTab').setAttribute('aria-selected', String(isRange));
+      document.getElementById('offsetTab').setAttribute('aria-selected', String(!isRange));
+      document.getElementById('rangePanel').hidden = !isRange;
+      document.getElementById('offsetPanel').hidden = isRange;
+    }
+
+    // ====================== 日付間計算 ======================
+    function calculateRange(event) {
+      event.preventDefault();
+      const start = parseDate(document.getElementById('startDate').value);
+      const end = parseDate(document.getElementById('endDate').value);
+      const error = document.getElementById('rangeError');
+      const notice = document.getElementById('rangeNotice');
+      const result = document.getElementById('rangeResult');
+      error.textContent = '';
+      notice.textContent = '';
+      result.hidden = true;
+
+      if (!start || !end) { error.textContent = '開始日と終了日を入力してください。'; return; }
+      const difference = Math.round((end - start) / DAY_MS);
+      const inclusive = difference >= 0 ? difference + 1 : difference - 1;
+      const absoluteInclusive = Math.abs(inclusive);
+      const weeks = Math.floor(absoluteInclusive / 7);
+      const remainingDays = absoluteInclusive % 7;
+
+      if (difference < 0) notice.textContent = '終了日が開始日より前です。日数差をマイナスで表示します。';
+      document.getElementById('differenceDays').textContent = `${difference.toLocaleString('ja-JP')}日間`;
+      document.getElementById('rangeSummary').textContent = `${formatDate(start, false)} から ${formatDate(end, false)} まで`;
+      document.getElementById('inclusiveDays').textContent = `${inclusive.toLocaleString('ja-JP')}日間`;
+      document.getElementById('weeksResult').textContent = `${weeks.toLocaleString('ja-JP')}週間${remainingDays}日`;
+      document.getElementById('startWeekday').textContent = WEEKDAYS[start.getUTCDay()];
+      document.getElementById('endWeekday').textContent = WEEKDAYS[end.getUTCDay()];
+      result.hidden = false;
+      result.scrollIntoView({ behavior:'smooth', block:'nearest' });
+    }
+
+    // ====================== ○日後・○日前計算 ======================
+    function calculateOffset(event) {
+      event.preventDefault();
+      const base = parseDate(document.getElementById('baseDate').value);
+      const rawDays = document.getElementById('offsetDays').value.trim();
+      const days = Number(rawDays);
+      const direction = document.getElementById('direction').value;
+      const error = document.getElementById('offsetError');
+      const result = document.getElementById('offsetResult');
+      error.textContent = '';
+      result.hidden = true;
+
+      if (!base) { error.textContent = '基準日を入力してください。'; return; }
+      if (rawDays === '') { error.textContent = '日数を入力してください。'; return; }
+      if (!Number.isInteger(days)) { error.textContent = '日数は整数で入力してください。'; return; }
+      if (days < 0) { error.textContent = '0以上の日数を入力してください。'; return; }
+      if (days > 100000) { error.textContent = '日数は100,000以下で入力してください。'; return; }
+
+      const signedDays = direction === 'before' ? -days : days;
+      const calculated = new Date(base.getTime() + signedDays * DAY_MS);
+      const directionText = direction === 'before' ? '日前' : '日後';
+      document.getElementById('offsetResultLabel').textContent = `${days.toLocaleString('ja-JP')}${directionText}の日付`;
+      document.getElementById('offsetResultDate').textContent = formatDate(calculated, true);
+      document.getElementById('offsetSummary').textContent = `${formatDate(base, false)}の${days.toLocaleString('ja-JP')}${directionText}`;
+      result.hidden = false;
+      result.scrollIntoView({ behavior:'smooth', block:'nearest' });
+    }
+
+    // ====================== 今日入力・リセット ======================
+    function setRangeToday() {
+      const value = formatInputDate(getTodayUtc());
+      document.getElementById('startDate').value = value;
+      document.getElementById('endDate').value = value;
+      document.getElementById('rangeError').textContent = '';
+    }
+
+    function setOffsetToday() {
+      document.getElementById('baseDate').value = formatInputDate(getTodayUtc());
+      document.getElementById('offsetError').textContent = '';
+    }
+
+    function resetRange() {
+      document.getElementById('rangeForm').reset();
+      document.getElementById('rangeError').textContent = '';
+      document.getElementById('rangeNotice').textContent = '';
+      document.getElementById('rangeResult').hidden = true;
+    }
+
+    function resetOffset() {
+      document.getElementById('offsetForm').reset();
+      document.getElementById('offsetError').textContent = '';
+      document.getElementById('offsetResult').hidden = true;
+    }
+
+    // ====================== 初期表示 ======================
+    document.getElementById('rangeTab').addEventListener('click', function () { showPanel('range'); });
+    document.getElementById('offsetTab').addEventListener('click', function () { showPanel('offset'); });
+    document.getElementById('rangeForm').addEventListener('submit', calculateRange);
+    document.getElementById('offsetForm').addEventListener('submit', calculateOffset);
+    document.getElementById('rangeTodayButton').addEventListener('click', setRangeToday);
+    document.getElementById('offsetTodayButton').addEventListener('click', setOffsetToday);
+    document.getElementById('rangeResetButton').addEventListener('click', resetRange);
+    document.getElementById('offsetResetButton').addEventListener('click', resetOffset);
+  </script>
+</body>
+</html>
