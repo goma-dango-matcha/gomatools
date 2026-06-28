@@ -152,6 +152,94 @@ a { color: var(--terms-green-dark); }
 .faq-answer p + p { margin-top: 10px; }
 .answer-label { color: var(--terms-green); font-weight: 900; }
 
+/* ====================== ゴマ知識 ====================== */
+.knowledge-main { padding: 28px 0 80px; }
+
+.knowledge-container {
+  width: min(100% - 32px, 960px);
+  margin-inline: auto;
+}
+
+.knowledge-heading {
+  margin-bottom: 26px;
+  padding: clamp(32px, 7vw, 54px);
+  border: 1px solid var(--terms-line);
+  border-radius: 22px;
+  background: linear-gradient(145deg, #fff, #f2f8ee);
+  box-shadow: 0 14px 40px rgba(45, 67, 34, .09);
+  text-align: center;
+}
+
+.knowledge-heading h1 {
+  margin: 0;
+  font-size: clamp(2rem, 7vw, 3.2rem);
+}
+
+.knowledge-lead {
+  max-width: 620px;
+  margin: 18px auto 0;
+  color: var(--terms-muted);
+}
+
+.knowledge-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.knowledge-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: clamp(24px, 5vw, 32px);
+  border: 1px solid var(--terms-line);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 10px 28px rgba(45, 67, 34, .07);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.knowledge-card:hover {
+  box-shadow: 0 16px 36px rgba(45, 67, 34, .12);
+  transform: translateY(-3px);
+}
+
+.knowledge-icon {
+  margin: 0 0 13px;
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.knowledge-card h2 {
+  margin: 0;
+  color: var(--terms-green-dark);
+  font-size: clamp(1.16rem, 3vw, 1.42rem);
+}
+
+.knowledge-card > p:not(.knowledge-icon) {
+  flex-grow: 1;
+  margin: 14px 0 22px;
+  color: var(--terms-muted);
+}
+
+.knowledge-button {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 16px;
+  color: var(--terms-green-dark);
+  border: 1px solid #c9d9c1;
+  border-radius: 13px;
+  background: var(--terms-green-light);
+  font: inherit;
+  font-size: .88rem;
+  font-weight: 800;
+}
+
+.knowledge-button:disabled {
+  cursor: not-allowed;
+  opacity: .72;
+}
+
 /* ====================== 上部へ戻る ====================== */
 .back-to-top {
   margin-top: 28px;
@@ -191,6 +279,9 @@ a { color: var(--terms-green-dark); }
   .terms-body section + section { margin-top: 26px; padding-top: 24px; }
   .faq-list { padding-inline: 14px; }
   .faq-item { padding: 20px 18px; }
+  .knowledge-main { padding-top: 22px; }
+  .knowledge-container { width: min(100% - 22px, 960px); }
+  .knowledge-grid { grid-template-columns: 1fr; gap: 16px; }
   .top-button { width: 100%; }
 }
 
