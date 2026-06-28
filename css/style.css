@@ -166,7 +166,7 @@ a { color: var(--terms-green-dark); }
 
 .knowledge-heading {
   margin-bottom: 26px;
-  padding: clamp(32px, 7vw, 54px);
+  padding: clamp(26px, 5vw, 40px);
   border: 1px solid var(--terms-line);
   border-radius: 22px;
   background: linear-gradient(145deg, #fff, #f2f8ee);
@@ -242,6 +242,12 @@ a { color: var(--terms-green-dark); }
 .knowledge-button:disabled {
   cursor: not-allowed;
   opacity: .72;
+}
+
+.knowledge-button--coming-soon {
+  color: var(--terms-muted);
+  border-color: var(--terms-line);
+  background: #f3f6f1;
 }
 
 /* タブレットでは読みやすさを優先して1列にします */
