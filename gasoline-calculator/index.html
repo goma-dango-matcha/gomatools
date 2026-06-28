@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ガソリン代計算ツール｜距離・燃費・ガソリン価格から簡単計算</title>
+  <meta name="description" content="走行距離・燃費・ガソリン価格を入力するだけでガソリン代を無料で簡単計算。往復計算や割り勘にも対応。">
+  <style>
+    /* ====================== 基本設定 ====================== */
+    :root { --green:#587c40; --green-dark:#35552b; --green-light:#eaf3e5; --green-soft:#f6f9f4; --text:#263126; --muted:#687167; --line:#dce6d7; --white:#fff; --danger:#b33a3a; --radius:22px; --shadow:0 14px 40px rgba(45,67,34,.09); }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--text); background:var(--green-soft); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif; line-height:1.7; }
+    input, button { font:inherit; }
+    button { cursor:pointer; }
+    .container { width:min(100% - 32px,960px); margin-inline:auto; }
+    .card { border:1px solid var(--line); border-radius:var(--radius); background:#fff; box-shadow:var(--shadow); }
+    .section { margin-top:54px; }
+    .section-title { margin:0 0 18px; font-size:clamp(1.35rem,4vw,1.8rem); }
+
+    /* ====================== ヘッダー・ヒーロー ====================== */
+    header { padding:22px 0; border-bottom:1px solid var(--line); background:rgba(255,255,255,.9); }
+    .header-inner { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+    .brand { margin:0; color:var(--green-dark); font-weight:850; }
+    .home-link { color:var(--green-dark); font-size:.9rem; font-weight:750; }
+    main { padding:64px 0 88px; }
+    .hero { margin-bottom:34px; text-align:center; }
+    .hero-badge { display:inline-block; margin:0 0 12px; padding:6px 13px; color:var(--green-dark); border-radius:999px; background:var(--green-light); font-size:.82rem; font-weight:800; }
+    h1 { margin:0; font-size:clamp(1.95rem,7vw,3.35rem); letter-spacing:-.035em; }
+    .hero-description { max-width:630px; margin:14px auto 0; color:var(--muted); }
+
+    /* ====================== 入力フォーム ====================== */
+    .calculator-card { padding:clamp(22px,5vw,38px); }
+    .form-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+    label { display:block; margin-bottom:7px; font-weight:800; }
+    input[type="number"] { width:100%; min-height:54px; padding:12px 14px; color:var(--text); border:1px solid #cbd8c5; border-radius:13px; background:#fff; }
+    input:focus, button:focus-visible { outline:3px solid rgba(88,124,64,.25); outline-offset:2px; }
+    .preview { min-height:24px; margin:5px 0 0; color:var(--green-dark); font-size:.86rem; font-weight:750; }
+    .preset-label { margin:16px 0 7px; color:var(--muted); font-size:.85rem; font-weight:750; }
+    .preset-row { display:flex; flex-wrap:wrap; gap:9px; }
+    .preset { min-height:42px; padding:8px 14px; color:var(--green-dark); border:1px solid var(--line); border-radius:999px; background:#fff; font-weight:800; }
+    .preset:hover, .preset.active { color:#fff; border-color:var(--green); background:var(--green); }
+    .options { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:22px; padding-top:22px; border-top:1px solid var(--line); }
+    .check-card { display:flex; align-items:center; gap:11px; min-height:58px; padding:12px 15px; border:1px solid var(--line); border-radius:14px; background:var(--green-soft); font-weight:800; cursor:pointer; }
+    .check-card input { width:21px; height:21px; accent-color:var(--green); }
+    .error { min-height:26px; margin:15px 0 0; color:var(--danger); font-weight:750; }
+
+    /* ====================== 計算結果 ====================== */
+    .result-card { margin-top:22px; padding:clamp(22px,5vw,32px); border-color:#bfd2b5; background:linear-gradient(145deg,#fff,#f2f8ee); }
+    .result-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:13px; }
+    .result-item { padding:19px 14px; border:1px solid var(--line); border-radius:16px; background:#fff; text-align:center; }
+    .result-item.primary { border:2px solid var(--green); background:var(--green-light); }
+    .result-label { display:block; color:var(--muted); font-size:.82rem; font-weight:750; }
+    .result-value { display:block; margin-top:5px; color:var(--green-dark); font-size:clamp(1.25rem,4vw,1.85rem); font-weight:900; overflow-wrap:anywhere; }
+    .route-note { margin:16px 0 0; color:var(--muted); font-size:.84rem; text-align:center; }
+
+    /* ====================== 安心表示・関連ツール ====================== */
+    .info-card { padding:25px; box-shadow:none; }
+    .info-card p { margin:5px 0; color:var(--muted); }
+    .related-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:13px; }
+    .related-link { display:block; padding:18px; color:var(--green-dark); border:1px solid var(--line); border-radius:15px; background:#fff; font-weight:800; text-decoration:none; transition:transform .15s ease,border-color .15s ease; }
+    .related-link:hover { transform:translateY(-2px); border-color:#b9cdb0; }
+    footer { padding:44px 16px; color:var(--muted); border-top:1px solid var(--line); text-align:center; background:#fff; }
+    footer p { margin:4px 0; }
+    .footer-logo { color:var(--green-dark); font-weight:850; }
+
+    /* ====================== レスポンシブ ====================== */
+    @media (max-width:760px) { .form-grid, .result-grid { grid-template-columns:1fr; } }
+    @media (max-width:540px) { .container { width:min(100% - 22px,960px); } main { padding-top:46px; } .header-inner { align-items:flex-start; flex-direction:column; gap:3px; } .options, .related-grid { grid-template-columns:1fr; } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } * { transition:none !important; } }
+  </style>
+</head>
+<body>
+  <!-- ====================== ヘッダー ====================== -->
+  <header><div class="container header-inner"><p class="brand">🍵 ゴマツール</p><a class="home-link" href="../">← ホームへ戻る</a></div></header>
+
+  <main class="container">
+    <!-- ====================== ヒーロー ====================== -->
+    <section class="hero" aria-labelledby="page-title"><p class="hero-badge">無料・登録不要</p><h1 id="page-title">⛽ ガソリン代計算ツール</h1><p class="hero-description">走行距離・燃費・ガソリン価格からガソリン代を簡単に計算できます。ドライブ・旅行・送迎・通勤の目安確認に便利です。</p></section>
+
+    <!-- ====================== ガソリン代計算 ====================== -->
+    <section class="card calculator-card" aria-labelledby="calculator-title">
+      <h2 class="section-title" id="calculator-title">条件を入力する</h2>
+      <div class="form-grid">
+        <div><label for="distance">走行距離（km）</label><input id="distance" type="number" min="0" step="any" inputmode="decimal" placeholder="例：100"><p class="preview" id="distancePreview"></p></div>
+        <div><label for="fuelEfficiency">燃費（km/L）</label><input id="fuelEfficiency" type="number" min="0" step="any" inputmode="decimal" placeholder="例：15"><p class="preview" id="efficiencyPreview"></p></div>
+        <div><label for="gasPrice">ガソリン価格（円/L）</label><input id="gasPrice" type="number" min="1" step="any" inputmode="decimal" placeholder="例：180"><p class="preview" id="pricePreview"></p></div>
+      </div>
+
+      <p class="preset-label">🚗 燃費の目安</p>
+      <div class="preset-row" aria-label="車種別の燃費目安"><button class="preset efficiency-preset" type="button" data-efficiency="20">軽自動車 20km/L</button><button class="preset efficiency-preset" type="button" data-efficiency="18">コンパクトカー 18km/L</button><button class="preset efficiency-preset" type="button" data-efficiency="12">ミニバン 12km/L</button><button class="preset efficiency-preset" type="button" data-efficiency="10">SUV 10km/L</button></div>
+      <p class="preview">※車種や走行条件で異なるため、あくまで目安です。</p>
+
+      <p class="preset-label">よく使うガソリン価格</p>
+      <div class="preset-row" aria-label="ガソリン価格プリセット"><button class="preset price-preset" type="button" data-price="160">160円/L</button><button class="preset price-preset" type="button" data-price="170">170円/L</button><button class="preset price-preset" type="button" data-price="180">180円/L</button><button class="preset price-preset" type="button" data-price="190">190円/L</button><button class="preset price-preset" type="button" data-price="200">200円/L</button></div>
+
+      <div class="options">
+        <label class="check-card" for="roundTrip"><input id="roundTrip" type="checkbox">往復で計算する</label>
+        <div><label for="people">同乗者の人数</label><input id="people" type="number" min="1" step="1" inputmode="numeric" value="1"><p class="preview">1人以上。1人あたりの負担額を表示します。</p></div>
+      </div>
+      <p class="error" id="error" role="alert"></p>
+
+      <div class="card result-card" id="resultCard" aria-live="polite" hidden>
+        <div class="result-grid">
+          <div class="result-item"><span class="result-label">⛽ 使用ガソリン量</span><strong class="result-value" id="fuelResult">—</strong></div>
+          <div class="result-item primary"><span class="result-label">💴 ガソリン代</span><strong class="result-value" id="costResult">—</strong></div>
+          <div class="result-item"><span class="result-label">👥 1人あたり</span><strong class="result-value" id="perPersonResult">—</strong></div>
+        </div>
+        <p class="route-note" id="routeNote"></p>
+      </div>
+    </section>
+
+    <!-- ====================== 注意書き ====================== -->
+    <section class="section card info-card" aria-labelledby="notice-title"><h2 class="section-title" id="notice-title">計算について</h2><p>燃料使用量は「走行距離 ÷ 燃費」、ガソリン代は「燃料使用量 × 価格」で計算します。</p><p>道路状況・運転方法・積載量などにより、実際の燃費や金額とは異なる場合があります。</p><p>入力内容はブラウザ内だけで処理し、サーバーへ送信・保存しません。</p></section>
+
+    <!-- ====================== 関連ツール ====================== -->
+    <section class="section" aria-labelledby="related-title"><h2 class="section-title" id="related-title">おすすめの便利ツール</h2><div class="related-grid"><a class="related-link" href="../warikan/">👥 割り勘計算</a><a class="related-link" href="../unit-converter/">📏 単位変換</a><a class="related-link" href="../calculator/">🧮 電卓</a><a class="related-link" href="../interest-calculator/">💴 利息計算</a></div></section>
+  </main>
+
+  <!-- ====================== フッター ====================== -->
+  <footer><p class="footer-logo">🍵 ゴマツール</p><p>30秒で使えて、他より少し便利。</p><p>最終更新：2026年6月28日</p></footer>
+
+  <script>
+    /* ====================== 要素・表示関数 ====================== */
+    const distanceInput = document.getElementById('distance');
+    const efficiencyInput = document.getElementById('fuelEfficiency');
+    const priceInput = document.getElementById('gasPrice');
+    const roundTripInput = document.getElementById('roundTrip');
+    const peopleInput = document.getElementById('people');
+    const errorElement = document.getElementById('error');
+    const resultCard = document.getElementById('resultCard');
+    const formatNumber = (value, digits = 2) => Number(value.toFixed(digits)).toLocaleString('ja-JP', { maximumFractionDigits:digits });
+    const formatYen = value => `${Math.round(value).toLocaleString('ja-JP')}円`;
+
+    function updatePreviews() {
+      const distance = Number(distanceInput.value), efficiency = Number(efficiencyInput.value), price = Number(priceInput.value);
+      document.getElementById('distancePreview').textContent = distanceInput.value && Number.isFinite(distance) ? `${formatNumber(distance)}km` : '';
+      document.getElementById('efficiencyPreview').textContent = efficiencyInput.value && Number.isFinite(efficiency) ? `${formatNumber(efficiency)}km/L` : '';
+      document.getElementById('pricePreview').textContent = priceInput.value && Number.isFinite(price) ? `${formatNumber(price)}円/L` : '';
+      document.querySelectorAll('.price-preset').forEach(button => button.classList.toggle('active', Number(button.dataset.price) === price));
+      document.querySelectorAll('.efficiency-preset').forEach(button => button.classList.toggle('active', Number(button.dataset.efficiency) === efficiency));
+    }
+
+    /* ====================== ガソリン代計算 ====================== */
+    function calculateGasolineCost() {
+      updatePreviews();
+      errorElement.textContent = '';
+      resultCard.hidden = true;
+      if (!distanceInput.value || !efficiencyInput.value || !priceInput.value || !peopleInput.value) return;
+
+      const distance = Number(distanceInput.value), efficiency = Number(efficiencyInput.value), price = Number(priceInput.value), people = Number(peopleInput.value);
+      if (![distance, efficiency, price, people].every(Number.isFinite)) { errorElement.textContent = '数値を入力してください。'; return; }
+      if (distance <= 0) { errorElement.textContent = '走行距離は0より大きい値を入力してください。'; return; }
+      if (efficiency <= 0) { errorElement.textContent = '燃費は0より大きい値を入力してください。'; return; }
+      if (price < 1) { errorElement.textContent = 'ガソリン価格は1円以上入力してください。'; return; }
+      if (people < 1 || !Number.isInteger(people)) { errorElement.textContent = '人数は1以上の整数を入力してください。'; return; }
+
+      const calculatedDistance = roundTripInput.checked ? distance * 2 : distance;
+      const fuel = calculatedDistance / efficiency;
+      const cost = fuel * price;
+      document.getElementById('fuelResult').textContent = `${formatNumber(fuel)}L`;
+      document.getElementById('costResult').textContent = formatYen(cost);
+      document.getElementById('perPersonResult').textContent = formatYen(cost / people);
+      document.getElementById('routeNote').textContent = `${roundTripInput.checked ? '往復' : '片道'} ${formatNumber(calculatedDistance)}km・${people}人で計算しています。`;
+      resultCard.hidden = false;
+    }
+
+    [distanceInput, efficiencyInput, priceInput, peopleInput].forEach(input => input.addEventListener('input', calculateGasolineCost));
+    roundTripInput.addEventListener('change', calculateGasolineCost);
+    document.querySelectorAll('.price-preset').forEach(button => button.addEventListener('click', () => { priceInput.value = button.dataset.price; calculateGasolineCost(); }));
+    document.querySelectorAll('.efficiency-preset').forEach(button => button.addEventListener('click', () => { efficiencyInput.value = button.dataset.efficiency; calculateGasolineCost(); }));
+    updatePreviews();
+  </script>
+</body>
+</html>
