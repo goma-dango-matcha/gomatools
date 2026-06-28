@@ -1,0 +1,131 @@
+/* =========================================================
+   ゴマツール 共通UI v1.1
+   新しいページでもこのファイルを最後に読み込んでください。
+========================================================= */
+:root {
+  --goma-green: #587c40;
+  --goma-green-dark: #35552b;
+  --goma-green-light: #eaf3e5;
+  --goma-green-soft: #f6f9f4;
+  --goma-text: #263126;
+  --goma-muted: #687167;
+  --goma-line: #dce6d7;
+  --goma-radius: 18px;
+  --goma-shadow: 0 14px 40px rgba(45, 67, 34, .09);
+}
+
+html { scroll-behavior: smooth; }
+body { color: var(--goma-text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", sans-serif; }
+
+/* ====================== 共通ヘッダー ====================== */
+.goma-header {
+  padding: 0 !important;
+  border-bottom: 1px solid var(--goma-line) !important;
+  background: rgba(255, 255, 255, .94) !important;
+}
+.goma-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  width: min(100% - 32px, 960px);
+  min-height: 82px;
+  margin-inline: auto;
+}
+.goma-brand-wrap { min-width: 0; }
+.goma-brand {
+  display: block;
+  margin: 0;
+  color: var(--goma-green-dark) !important;
+  font-size: 1.18rem;
+  font-weight: 850;
+  line-height: 1.35;
+  text-decoration: none;
+}
+.goma-brand-copy { margin: 2px 0 0; color: var(--goma-muted); font-size: .78rem; line-height: 1.45; }
+.goma-home-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  min-height: 46px;
+  padding: 9px 16px;
+  color: #fff !important;
+  border-radius: 13px;
+  background: var(--goma-green);
+  box-shadow: 0 6px 16px rgba(88, 124, 64, .2);
+  font-size: .9rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform .15s ease, background .15s ease;
+}
+.goma-home-button:hover { background: var(--goma-green-dark); transform: translateY(-1px); }
+
+/* ====================== 見出し・説明 ====================== */
+h1 { line-height: 1.25 !important; letter-spacing: -.035em !important; }
+h2 { line-height: 1.4 !important; }
+.hero-description, .section-lead { color: var(--goma-muted) !important; }
+
+/* ====================== ボタン ====================== */
+:where(button, .tool-button, .cta-button, .primary-button, .copy-button, .action-button) {
+  min-height: 48px;
+  border-radius: 14px !important;
+  font-weight: 800;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform .14s ease, background-color .14s ease, border-color .14s ease, box-shadow .14s ease !important;
+}
+:where(button, .tool-button, .cta-button, .primary-button, .copy-button, .action-button):active { transform: scale(.98); }
+:where(button, a):focus-visible { outline: 3px solid rgba(88, 124, 64, .35) !important; outline-offset: 3px !important; }
+
+/* ====================== 入力欄 ====================== */
+:where(input:not([type="checkbox"]):not([type="radio"]), select, textarea) {
+  min-height: 54px !important;
+  padding: 12px 14px !important;
+  color: var(--goma-text) !important;
+  border: 1px solid #cbd8c5 !important;
+  border-radius: 13px !important;
+  background: #fff !important;
+  font-size: 1rem !important;
+}
+textarea { min-height: 150px !important; line-height: 1.65; }
+:where(input, select, textarea):focus { outline: 3px solid rgba(88, 124, 64, .2) !important; border-color: var(--goma-green) !important; }
+label { font-weight: 800; }
+
+/* ====================== 結果表示 ====================== */
+:where(.result-card, .result-panel, .result-box, .result-area, .results-card, .result-container) {
+  border: 1px solid #bfd2b5 !important;
+  border-radius: var(--goma-radius) !important;
+  background: linear-gradient(145deg, #fff, #f2f8ee) !important;
+  box-shadow: var(--goma-shadow);
+}
+:where(.result-item, .result-card-item, .result-stat) { border-radius: 15px !important; }
+:where(.result-value, .main-value, .saving-value) { color: var(--goma-green-dark) !important; font-weight: 900 !important; }
+
+/* ====================== 共通フッター ====================== */
+.goma-footer {
+  padding: 48px 16px !important;
+  color: var(--goma-muted) !important;
+  border-top: 1px solid var(--goma-line) !important;
+  background: var(--goma-green-soft) !important;
+  text-align: center;
+}
+.goma-footer-inner { width: min(100%, 720px); margin-inline: auto; }
+.goma-footer-logo { margin: 0 0 6px; color: var(--goma-green-dark); font-size: 1.1rem; font-weight: 850; }
+.goma-footer-copy { margin: 0; font-size: .88rem; }
+.goma-footer-nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px 22px; margin-top: 20px; }
+.goma-footer-nav a { color: var(--goma-green-dark); font-size: .86rem; font-weight: 750; text-decoration: underline; text-underline-offset: 3px; }
+.goma-copyright { margin: 22px 0 0; color: var(--goma-muted); font-size: .72rem; }
+
+/* ====================== スマホ ====================== */
+@media (max-width: 560px) {
+  .goma-header-inner { width: min(100% - 22px, 960px); min-height: 74px; gap: 10px; }
+  .goma-brand { font-size: 1.02rem; }
+  .goma-brand-copy { display: none; }
+  .goma-home-button { min-height: 44px; padding: 8px 12px; font-size: .82rem; }
+  .goma-footer { padding-block: 40px !important; }
+  :where(button, .tool-button, .cta-button, .primary-button, .copy-button, .action-button) { min-height: 50px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; }
+}
