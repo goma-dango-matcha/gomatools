@@ -22,9 +22,11 @@ body {
 
 a { color: var(--terms-green-dark); }
 
-.terms-main { padding: 28px 0 80px; }
+.terms-main,
+.faq-main { padding: 28px 0 80px; }
 
-.terms-container {
+.terms-container,
+.faq-container {
   width: min(100% - 32px, 880px);
   margin-inline: auto;
 }
@@ -49,7 +51,8 @@ a { color: var(--terms-green-dark); }
 .breadcrumb a { text-underline-offset: 3px; }
 
 /* ====================== 規約カード ====================== */
-.terms-card {
+.terms-card,
+.faq-card {
   overflow: hidden;
   border: 1px solid var(--terms-line);
   border-radius: 22px;
@@ -57,7 +60,8 @@ a { color: var(--terms-green-dark); }
   box-shadow: 0 14px 40px rgba(45, 67, 34, .09);
 }
 
-.terms-heading {
+.terms-heading,
+.faq-heading {
   padding: clamp(32px, 7vw, 54px);
   border-bottom: 1px solid var(--terms-line);
   background: linear-gradient(145deg, #fff, #f2f8ee);
@@ -76,7 +80,8 @@ a { color: var(--terms-green-dark); }
   letter-spacing: .04em;
 }
 
-.terms-heading h1 {
+.terms-heading h1,
+.faq-heading h1 {
   margin: 0;
   font-size: clamp(2rem, 7vw, 3.2rem);
 }
@@ -87,7 +92,8 @@ a { color: var(--terms-green-dark); }
   font-size: .86rem;
 }
 
-.terms-lead {
+.terms-lead,
+.faq-lead {
   max-width: 620px;
   margin: 18px auto 0;
   color: var(--terms-muted);
@@ -115,6 +121,36 @@ a { color: var(--terms-green-dark); }
 }
 
 .terms-body li + li { margin-top: 8px; }
+
+/* ====================== FAQ一覧 ====================== */
+.faq-list { padding: clamp(24px, 6vw, 46px); }
+
+.faq-item {
+  padding: clamp(22px, 5vw, 30px);
+  border: 1px solid var(--terms-line);
+  border-radius: 17px;
+  background: #fff;
+}
+
+.faq-item + .faq-item { margin-top: 18px; }
+
+.faq-item h2 {
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  color: var(--terms-green-dark);
+  font-size: clamp(1.05rem, 4vw, 1.3rem);
+}
+
+.faq-answer {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--terms-line);
+}
+
+.faq-answer p { margin: 0; }
+.faq-answer p + p { margin-top: 10px; }
+.answer-label { color: var(--terms-green); font-weight: 900; }
 
 /* ====================== 上部へ戻る ====================== */
 .back-to-top {
@@ -148,9 +184,13 @@ a { color: var(--terms-green-dark); }
 }
 
 @media (max-width: 560px) {
-  .terms-main { padding-top: 22px; }
-  .terms-container { width: min(100% - 22px, 880px); }
+  .terms-main,
+  .faq-main { padding-top: 22px; }
+  .terms-container,
+  .faq-container { width: min(100% - 22px, 880px); }
   .terms-body section + section { margin-top: 26px; padding-top: 24px; }
+  .faq-list { padding-inline: 14px; }
+  .faq-item { padding: 20px 18px; }
   .top-button { width: 100%; }
 }
 
