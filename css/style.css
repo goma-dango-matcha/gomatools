@@ -1128,9 +1128,10 @@ a { color: var(--terms-green-dark); }
 .bodyfat-result-main.is-standard { background: var(--terms-green-light); }
 .bodyfat-result-main.is-slightly-high { background: #fff5dc; }
 .bodyfat-result-main.is-high { background: #fff0ee; }
-.bodyfat-result-main span,
+.bodyfat-result-label,
 .bodyfat-result-grid span { display: block; color: var(--terms-muted); font-size: .87rem; font-weight: 800; }
-.bodyfat-result-main strong { display: block; margin-top: 8px; color: var(--terms-green-dark); font-size: clamp(2.3rem, 8vw, 3.45rem); }
+.bodyfat-result-value { display: inline-flex; align-items: baseline; justify-content: center; gap: .02em; margin-top: 8px; color: var(--terms-green-dark); font-size: clamp(2.8rem, 10vw, 4rem); font-weight: 900; line-height: 1; letter-spacing: -.03em; white-space: nowrap; }
+.bodyfat-result-value span { display: inline; color: inherit; font: inherit; line-height: inherit; }
 .bodyfat-result-main.is-high strong { color: #a23c32; }
 .bodyfat-result-main small { display: inline-block; margin-top: 8px; padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,.72); color: var(--terms-green-dark); font-weight: 850; }
 .bodyfat-result-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 16px; }
