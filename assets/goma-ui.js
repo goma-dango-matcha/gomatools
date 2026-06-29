@@ -118,7 +118,7 @@
     section.setAttribute('aria-labelledby', 'school-series-title');
     section.innerHTML = `
       <h2 id="school-series-title">🎓 学校・教育シリーズ</h2>
-      <p>学校・教育シリーズでは、成績や出席率などを無料で簡単に計算できます。</p>
+      <p>学校・教育シリーズでは、成績や出席率など、学校生活や学習に役立つ計算ツールを無料で利用できます。</p>
       <p>目的に合わせて他のツールもぜひご利用ください。</p>
       <ul class="school-series-list">${items}</ul>`;
   }

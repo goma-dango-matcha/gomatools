@@ -231,34 +231,34 @@ label { font-weight: 800; }
 
 /* ====================== 学校・教育シリーズ ====================== */
 .school-series-card {
-  width: 100%;
   margin-top: 24px;
   padding: clamp(22px, 4vw, 34px);
-  border: 1px solid #cbd9e8;
+  border: 1px solid #d7e2d0;
   border-radius: 22px;
-  background: #f8fbff;
-  box-shadow: var(--goma-shadow);
+  background: #fff;
+  box-shadow: 0 12px 32px rgba(67, 91, 49, .08);
 }
-.school-series-card h2 { margin: 0 0 10px; color: #45688f; font-size: 1.35rem; }
-.school-series-card p { margin: 5px 0; color: var(--goma-muted); line-height: 1.75; }
+.school-series-card h2 { margin: 0 0 14px; color: #4b6a36; font-size: clamp(1.2rem, 3vw, 1.45rem); }
+.school-series-card p { margin: 4px 0; color: #66705f; line-height: 1.75; }
 .school-series-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 20px 0 0; padding: 0; list-style: none; }
 .school-series-list a,
 .school-series-current {
   display: flex;
+  min-height: 52px;
   align-items: center;
-  justify-content: center;
-  min-height: 54px;
-  padding: 12px 14px;
-  border: 1px solid #b9cde0;
+  gap: 7px;
+  padding: 11px 14px;
+  border: 1px solid #d7e2d0;
   border-radius: 13px;
-  font-weight: 850;
-  text-align: center;
+  font-weight: 800;
+  line-height: 1.45;
 }
-.school-series-list a { color: #365d86; background: #fff; text-decoration: none; transition: transform .15s, background .15s; }
-.school-series-list a:hover { transform: translateY(-2px); background: #edf5fc; }
-.school-series-current { flex-wrap: wrap; gap: 5px; color: #526474; background: #e9eff5; }
-.school-series-current small { display: block; width: 100%; color: #687887; font-size: .72rem; }
-@media (max-width: 560px) {
-  .school-series-card { padding: 20px 16px; border-radius: 18px; }
+.school-series-list a { color: #4b6a36; background: #f7faf5; text-decoration: none; transition: transform .18s, background .18s, box-shadow .18s; }
+.school-series-list a:hover { transform: translateY(-2px); background: #edf5e8; box-shadow: 0 8px 18px rgba(67, 91, 49, .12); }
+.school-series-list a:focus-visible { outline: 3px solid rgba(99, 132, 63, .3); outline-offset: 2px; }
+.school-series-current { flex-wrap: wrap; color: #fff; border-color: #63843f; background: #63843f; }
+.school-series-current small { margin-left: auto; padding: 3px 7px; border-radius: 999px; background: rgba(255, 255, 255, .2); color: #fff; font-size: .72rem; }
+@media (max-width: 620px) {
   .school-series-list { grid-template-columns: 1fr; }
+  .school-series-current small { margin-left: 0; }
 }
