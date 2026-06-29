@@ -577,3 +577,60 @@ a { color: var(--terms-green-dark); }
   .work-time-form-buttons button,
   .work-time-copy { width: 100%; }
 }
+
+/* ======================
+   基礎代謝（BMR）計算ツール
+====================== */
+.bmr-main { padding: 42px 20px 72px; }
+.bmr-container { width: min(100%, 1100px); margin: 0 auto; }
+.bmr-hero { margin-bottom: 28px; text-align: center; }
+.bmr-hero h1 { margin: 8px 0 12px; color: var(--terms-text); font-size: clamp(1.9rem, 5vw, 2.7rem); }
+.bmr-hero p { max-width: 760px; margin: 0 auto; color: var(--terms-muted); line-height: 1.8; }
+.bmr-eyebrow { color: #a44659 !important; font-weight: 800; }
+.bmr-card { margin-top: 24px; padding: clamp(22px, 4vw, 36px); border: 1px solid var(--terms-line); border-radius: 22px; background: #fff; box-shadow: 0 12px 32px rgba(67, 91, 49, .08); }
+.bmr-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
+.bmr-gender { display: flex; gap: 12px; margin: 0 0 20px; padding: 0; border: 0; }
+.bmr-gender legend { margin-bottom: 9px; color: var(--terms-text); font-weight: 800; }
+.bmr-gender label { min-width: 120px; padding: 12px 16px; border: 1px solid #cbd6c5; border-radius: 12px; background: #fcfdfb; font-weight: 800; cursor: pointer; }
+.bmr-gender input { width: auto; min-height: auto; margin-right: 5px; accent-color: var(--terms-green); }
+.bmr-form-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.bmr-field label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
+.bmr-error { min-height: 1.5em; margin: 12px 0 0; color: #b42318; font-weight: 800; text-align: center; }
+.bmr-warning { margin: 16px 0 0; padding: 12px 14px; border-radius: 11px; background: #fff5dc; color: #76550e; font-weight: 800; }
+.bmr-form-buttons { display: flex; justify-content: center; gap: 12px; margin-top: 18px; }
+.bmr-form-buttons button,
+.bmr-copy { min-width: 180px; min-height: 52px; padding: 12px 22px; border: 1px solid #afc1a5; border-radius: 13px; background: #f7faf5; color: var(--terms-green-dark); font: inherit; font-weight: 850; cursor: pointer; transition: transform .18s, background .18s, box-shadow .18s; }
+.bmr-form-buttons .bmr-primary,
+.bmr-copy { border-color: var(--terms-green); background: var(--terms-green); color: #fff; }
+.bmr-form-buttons button:hover,
+.bmr-copy:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(67, 91, 49, .16); }
+.bmr-form-buttons .bmr-primary:hover,
+.bmr-copy:hover { background: var(--terms-green-dark); }
+.bmr-result { border-color: #b7cba9; background: #fbfdf9; }
+.bmr-result-main { padding: 28px 18px; border-radius: 18px; background: var(--terms-green-light); text-align: center; }
+.bmr-result-main > span { display: block; color: var(--terms-muted); font-weight: 800; }
+.bmr-result-main strong { display: block; margin-top: 8px; color: var(--terms-green-dark); font-size: clamp(2.15rem, 7vw, 3.2rem); }
+.bmr-result-main small { font-size: .42em; }
+.bmr-result-description { margin: 18px 0 0; color: var(--terms-muted); line-height: 1.8; text-align: center; }
+.bmr-copy { display: block; margin: 20px auto 0; }
+.bmr-copy-message { min-height: 1.5em; margin: 10px 0 0; color: var(--terms-green-dark); font-weight: 800; text-align: center; }
+.bmr-info { line-height: 1.85; }
+.bmr-info h2:not(:first-child) { margin-top: 28px; }
+.bmr-info p,
+.bmr-related p { margin: 0; color: var(--terms-muted); }
+.bmr-related-link { display: inline-flex; min-height: 48px; align-items: center; margin-top: 16px; padding: 10px 18px; border-radius: 12px; background: var(--terms-green-light); color: var(--terms-green-dark); font-weight: 850; text-decoration: none; }
+.bmr-related-link:hover { background: #dfead8; }
+
+@media (max-width: 760px) {
+  .bmr-form-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .bmr-main { padding: 28px 16px 56px; }
+  .bmr-card { padding: 20px 16px; border-radius: 18px; }
+  .bmr-gender { flex-direction: column; }
+  .bmr-gender label { width: 100%; }
+  .bmr-form-buttons { flex-direction: column; }
+  .bmr-form-buttons button,
+  .bmr-copy { width: 100%; }
+}
