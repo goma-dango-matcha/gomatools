@@ -93,12 +93,43 @@
       <ul class="health-series-list">${items}</ul>`;
   }
 
+  /* =========================================================
+     学校・教育シリーズ 共通リンク
+     公開ツールを追加するときは、この配列だけを更新します。
+  ========================================================= */
+  const schoolSeriesTools = [
+    { id: 'grade-calculator', icon: '🎓', name: '成績計算ツール', path: 'tools/grade-calculator.html' },
+    { id: 'attendance-rate', icon: '📊', name: '出席率計算ツール', path: 'tools/attendance-rate.html' }
+  ];
+
+  function createSchoolSeries(paths) {
+    const section = document.querySelector('[data-school-series]');
+    if (!section) return;
+
+    const current = section.dataset.current;
+    const items = schoolSeriesTools.map(tool => {
+      if (tool.id === current) {
+        return `<li><span class="school-series-current" aria-current="page"><span aria-hidden="true">✓</span> ${tool.icon} ${tool.name}<small>現在閲覧中</small></span></li>`;
+      }
+      return `<li><a href="${paths.home}${tool.path}">${tool.icon} ${tool.name}</a></li>`;
+    }).join('');
+
+    section.className = 'school-series-card';
+    section.setAttribute('aria-labelledby', 'school-series-title');
+    section.innerHTML = `
+      <h2 id="school-series-title">🎓 学校・教育シリーズ</h2>
+      <p>学校・教育シリーズでは、成績や出席率などを無料で簡単に計算できます。</p>
+      <p>目的に合わせて他のツールもぜひご利用ください。</p>
+      <ul class="school-series-list">${items}</ul>`;
+  }
+
   function initializeCommonUI() {
     const paths = getPaths();
     document.documentElement.classList.add('goma-ui-v11');
     createHeader(paths);
     createFooter(paths);
     createHealthSeries(paths);
+    createSchoolSeries(paths);
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initializeCommonUI);
