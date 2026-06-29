@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8BNDHPNEHY"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-8BNDHPNEHY');</script>
+  <!-- SEO -->
+  <title>テキスト整形ツール｜改行・空白削除・重複行削除を無料で簡単変換</title>
+  <meta name="description" content="文章の改行削除、空白削除、重複行削除、行の並び替えなどをブラウザ上で簡単に行える無料のテキスト整形ツールです。">
+  <link rel="canonical" href="https://goma-dango-matcha.github.io/gomatools/tools/text-format.html">
+  <!-- OGP / Twitter Card -->
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ゴマツール">
+  <meta property="og:title" content="テキスト整形ツール｜ゴマツール">
+  <meta property="og:description" content="改行・空白・重複行などをまとめて整形できる無料ツールです。">
+  <meta property="og:url" content="https://goma-dango-matcha.github.io/gomatools/tools/text-format.html">
+  <meta property="og:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta property="og:image:secure_url" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ゴマツール — 一歩便利を、毎日の暮らしに。">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="テキスト整形ツール｜ゴマツール">
+  <meta name="twitter:description" content="改行・空白・重複行などをまとめて整形できる無料ツールです。">
+  <meta name="twitter:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta name="twitter:image:alt" content="ゴマツール — 一歩便利を、毎日の暮らしに。">
+  <!-- ブランドアイコン -->
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <meta name="theme-color" content="#63843F">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../assets/goma-ui.css">
+  <script defer src="../assets/goma-ui.js"></script>
+</head>
+<body>
+  <!-- ====================== 共通ヘッダー ====================== -->
+  <header>
+    <div class="goma-header-inner">
+      <div class="goma-brand-wrap"><a class="goma-brand" href="../">ゴマツール</a><p class="goma-brand-copy">無料で使える便利ツール集</p></div>
+      <a class="goma-home-button" href="../">🏠 ホームへ戻る</a>
+    </div>
+  </header>
+
+  <main class="text-format-main">
+    <div class="text-format-container">
+      <!-- ====================== ヒーロー ====================== -->
+      <section class="text-format-hero" aria-labelledby="page-title">
+        <p class="text-format-eyebrow">📝 仕事・テキスト</p>
+        <h1 id="page-title">テキスト整形ツール</h1>
+        <p>文章の改行・空白・全角半角などをまとめて整形できる無料ツールです。</p>
+      </section>
+
+      <!-- ====================== 入力エリア ====================== -->
+      <section class="text-format-card" aria-labelledby="input-title">
+        <div class="text-format-heading-row"><h2 id="input-title">整形したい文章</h2><span class="text-format-count" id="inputCount">0文字・0行</span></div>
+        <label class="text-format-label" for="inputText">入力テキスト</label>
+        <textarea id="inputText" class="text-format-textarea" placeholder="ここに整形したい文章を貼り付けてください" spellcheck="false"></textarea>
+        <p class="text-format-message" id="message" role="status" aria-live="polite"></p>
+        <p class="text-format-warning" id="largeTextWarning" hidden>文字数が多いため、処理に時間がかかる場合があります。</p>
+      </section>
+
+      <!-- ====================== 整形操作 ====================== -->
+      <section class="text-format-card" aria-labelledby="actions-title">
+        <h2 id="actions-title">整形方法を選ぶ</h2>
+        <div class="text-format-action-group"><h3>基本整形</h3><div class="text-format-button-grid">
+          <button type="button" data-action="remove-newlines">改行を削除</button>
+          <button type="button" data-action="remove-empty-lines">空行を削除</button>
+          <button type="button" data-action="remove-half-spaces">半角スペースを削除</button>
+          <button type="button" data-action="remove-full-spaces">全角スペースを削除</button>
+          <button type="button" data-action="collapse-spaces">連続スペースを1つにする</button>
+          <button type="button" data-action="trim-lines">行頭・行末の空白を削除</button>
+        </div></div>
+        <div class="text-format-action-group"><h3>文字変換</h3><div class="text-format-button-grid">
+          <button type="button" data-action="to-half-width">全角英数字を半角に変換</button>
+          <button type="button" data-action="to-full-width">半角英数字を全角に変換</button>
+          <button type="button" data-action="katakana-to-hiragana">カタカナをひらがなに変換</button>
+          <button type="button" data-action="hiragana-to-katakana">ひらがなをカタカナに変換</button>
+        </div></div>
+        <div class="text-format-action-group"><h3>行操作</h3><div class="text-format-button-grid">
+          <button type="button" data-action="remove-duplicates">重複行を削除</button>
+          <button type="button" data-action="sort-asc">行を昇順に並び替え</button>
+          <button type="button" data-action="sort-desc">行を降順に並び替え</button>
+          <button type="button" data-action="reverse-lines">全行を逆順にする</button>
+        </div></div>
+      </section>
+
+      <!-- ====================== 出力エリア ====================== -->
+      <section class="text-format-card text-format-result" aria-labelledby="result-title">
+        <div class="text-format-heading-row"><h2 id="result-title">整形結果</h2><span class="text-format-count" id="outputCount">0文字・0行</span></div>
+        <label class="text-format-label" for="outputText">出力テキスト</label>
+        <textarea id="outputText" class="text-format-textarea" placeholder="ここに整形結果が表示されます" spellcheck="false" readonly></textarea>
+        <div class="text-format-result-buttons">
+          <button class="text-format-primary" id="copyButton" type="button">📋 結果をコピー</button>
+          <button id="reuseButton" type="button">↩ 結果を入力へ戻す</button>
+          <button class="text-format-clear" id="clearButton" type="button">すべてクリア</button>
+        </div>
+      </section>
+
+      <!-- ====================== 説明 ====================== -->
+      <section class="text-format-card text-format-info" aria-labelledby="about-title">
+        <h2 id="about-title">このツールでできること</h2>
+        <p>このテキスト整形ツールでは、文章の改行削除、空白削除、重複行削除、行の並び替えなどを簡単に行えます。コピーした文章を整えたいときや、メモ・リスト・原稿・データ整理をしたいときに便利です。</p>
+        <h2>入力内容について</h2>
+        <p>このツールはブラウザ上で動作します。入力した文章はサーバーへ送信されません。</p>
+      </section>
+      <div class="back-to-top"><a class="top-button" href="../">🏠 トップへ戻る</a></div>
+    </div>
+  </main>
+
+  <!-- ====================== 共通フッター ====================== -->
+  <footer><div class="goma-footer-inner">
+    <p class="goma-footer-logo">ゴマツール</p><p class="goma-footer-copy">30秒で使えて、他より少し便利。</p>
+    <nav class="goma-footer-nav" aria-label="フッターナビゲーション">
+      <a href="../">🏠 ホーム</a><a href="../privacy/">📄 プライバシーポリシー</a><a href="../terms.html">📜 利用規約</a><a href="../faq.html">❓ FAQ</a><a href="../knowledge.html">🌱 ゴマ知識</a>
+    </nav><p class="goma-copyright">© 2026 Project Goma</p>
+  </div></footer>
+
+  <script>
+    'use strict';
+    const inputText=document.getElementById('inputText');
+    const outputText=document.getElementById('outputText');
+    const inputCount=document.getElementById('inputCount');
+    const outputCount=document.getElementById('outputCount');
+    const message=document.getElementById('message');
+    const largeTextWarning=document.getElementById('largeTextWarning');
+
+    function normalizeNewlines(text){return text.replace(/\r\n?/g,'\n')}
+    function countLines(text){return text.length===0?0:normalizeNewlines(text).split('\n').length}
+    function updateCounts(){
+      inputCount.textContent=`${inputText.value.length.toLocaleString('ja-JP')}文字・${countLines(inputText.value).toLocaleString('ja-JP')}行`;
+      outputCount.textContent=`${outputText.value.length.toLocaleString('ja-JP')}文字・${countLines(outputText.value).toLocaleString('ja-JP')}行`;
+      largeTextWarning.hidden=inputText.value.length<100000;
+    }
+    function setMessage(text,type=''){message.textContent=text;message.className=`text-format-message${type?` is-${type}`:''}`}
+    function getInputOrShowError(){if(inputText.value.length===0){setMessage('整形したい文章を入力してください。','error');inputText.focus();return null}return normalizeNewlines(inputText.value)}
+    function toHalfWidth(text){return text.replace(/[！-～]/g,c=>String.fromCharCode(c.charCodeAt(0)-0xFEE0)).replace(/　/g,' ')}
+    function toFullWidth(text){return text.replace(/[!-~]/g,c=>String.fromCharCode(c.charCodeAt(0)+0xFEE0)).replace(/ /g,'　')}
+    function katakanaToHiragana(text){return text.replace(/[ァ-ヶ]/g,c=>String.fromCharCode(c.charCodeAt(0)-0x60))}
+    function hiraganaToKatakana(text){return text.replace(/[ぁ-ゖ]/g,c=>String.fromCharCode(c.charCodeAt(0)+0x60))}
+    function transformText(action,text){
+      const lines=text.split('\n');
+      const transforms={
+        'remove-newlines':()=>text.replace(/\n/g,''),
+        'remove-empty-lines':()=>lines.filter(line=>line.trim()!=='').join('\n'),
+        'remove-half-spaces':()=>text.replace(/ /g,''),
+        'remove-full-spaces':()=>text.replace(/　/g,''),
+        'collapse-spaces':()=>text.replace(/[ 　]+/g,' '),
+        'trim-lines':()=>lines.map(line=>line.trim()).join('\n'),
+        'to-half-width':()=>toHalfWidth(text),'to-full-width':()=>toFullWidth(text),
+        'katakana-to-hiragana':()=>katakanaToHiragana(text),'hiragana-to-katakana':()=>hiraganaToKatakana(text),
+        'remove-duplicates':()=>[...new Set(lines)].join('\n'),
+        'sort-asc':()=>[...lines].sort((a,b)=>a.localeCompare(b,'ja')).join('\n'),
+        'sort-desc':()=>[...lines].sort((a,b)=>b.localeCompare(a,'ja')).join('\n'),
+        'reverse-lines':()=>[...lines].reverse().join('\n')
+      };return transforms[action]?transforms[action]():text;
+    }
+    function formatText(action){const text=getInputOrShowError();if(text===null)return;outputText.value=transformText(action,text);setMessage('整形しました。','success');updateCounts();outputText.scrollIntoView({behavior:'smooth',block:'nearest'})}
+    async function copyResult(){if(!outputText.value){setMessage('コピーする整形結果がありません。','error');return}try{await navigator.clipboard.writeText(outputText.value);setMessage('コピーしました。','success')}catch(error){setMessage('コピーできませんでした。手動で選択してコピーしてください。','error');outputText.removeAttribute('readonly');outputText.select();outputText.setAttribute('readonly','')}}
+    function reuseResult(){if(!outputText.value){setMessage('入力へ戻す整形結果がありません。','error');return}inputText.value=outputText.value;setMessage('整形結果を入力欄へ戻しました。続けて別の整形ができます。','success');updateCounts();inputText.focus()}
+    function clearAll(){inputText.value='';outputText.value='';setMessage('');updateCounts();inputText.focus()}
+    document.querySelectorAll('[data-action]').forEach(button=>button.addEventListener('click',()=>formatText(button.dataset.action)));
+    document.getElementById('copyButton').addEventListener('click',copyResult);
+    document.getElementById('reuseButton').addEventListener('click',reuseResult);
+    document.getElementById('clearButton').addEventListener('click',clearAll);
+    inputText.addEventListener('input',()=>{setMessage('');updateCounts()});updateCounts();
+  </script>
+</body>
+</html>
