@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8BNDHPNEHY"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-8BNDHPNEHY');</script>
+  <!-- SEO -->
+  <title>適正体重計算ツール｜BMI22から標準体重を無料計算</title>
+  <meta name="description" content="身長を入力するだけでBMI22を基準にした標準体重やBMI別の体重目安を無料で計算できます。">
+  <link rel="canonical" href="https://goma-dango-matcha.github.io/gomatools/tools/ideal-weight.html">
+  <!-- OGP / Twitter Card -->
+  <meta property="og:locale" content="ja_JP"><meta property="og:type" content="website"><meta property="og:site_name" content="ゴマツール">
+  <meta property="og:title" content="適正体重計算ツール｜ゴマツール"><meta property="og:description" content="BMI22を基準にした標準体重を簡単に計算できます。">
+  <meta property="og:url" content="https://goma-dango-matcha.github.io/gomatools/tools/ideal-weight.html">
+  <meta property="og:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png"><meta property="og:image:secure_url" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="ゴマツール — 一歩便利を、毎日の暮らしに。">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="適正体重計算ツール｜ゴマツール"><meta name="twitter:description" content="BMI22を基準にした標準体重を簡単に計算できます。">
+  <meta name="twitter:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png"><meta name="twitter:image:alt" content="ゴマツール — 一歩便利を、毎日の暮らしに。">
+  <!-- ブランドアイコン -->
+  <link rel="icon" href="../favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"><link rel="manifest" href="../site.webmanifest"><meta name="theme-color" content="#63843F">
+  <link rel="stylesheet" href="../css/style.css"><link rel="stylesheet" href="../assets/goma-ui.css"><script defer src="../assets/goma-ui.js"></script>
+</head>
+<body>
+  <!-- ====================== 共通ヘッダー ====================== -->
+  <header><div class="goma-header-inner"><div class="goma-brand-wrap"><a class="goma-brand" href="../">ゴマツール</a><p class="goma-brand-copy">無料で使える便利ツール集</p></div><a class="goma-home-button" href="../">🏠 ホームへ戻る</a></div></header>
+
+  <main class="ideal-main"><div class="ideal-container">
+    <!-- ====================== ヒーロー ====================== -->
+    <section class="ideal-hero" aria-labelledby="page-title"><p class="ideal-eyebrow">❤️ 健康・美容</p><h1 id="page-title">適正体重計算ツール</h1><p>身長を入力するだけで、BMI22を基準にした標準体重の目安を計算できます。</p></section>
+
+    <!-- ====================== 入力フォーム ====================== -->
+    <section class="ideal-card" aria-labelledby="input-title"><h2 id="input-title">身長を入力</h2>
+      <form id="idealForm" novalidate><div class="ideal-form-grid">
+        <div class="ideal-field"><label for="height">身長（cm）<span class="ideal-required">必須</span></label><input id="height" type="number" min="1" step="0.1" inputmode="decimal" placeholder="例：166"></div>
+        <div class="ideal-field"><label for="weight">現在の体重（kg）<span class="ideal-optional">任意</span></label><input id="weight" type="number" min="1" step="0.1" inputmode="decimal" placeholder="例：68"></div>
+      </div><p class="ideal-hint">現在の体重は未入力でも計算できます。</p><p class="ideal-warning" id="valueWarning" hidden>入力値を確認してください。</p><p class="ideal-error" id="errorMessage" role="alert"></p>
+      <div class="ideal-form-buttons"><button class="ideal-primary" type="submit">計算する</button><button id="clearButton" type="button">クリア</button></div></form>
+    </section>
+
+    <!-- ====================== 計算結果 ====================== -->
+    <section class="ideal-card ideal-result" id="resultCard" aria-labelledby="result-title" aria-live="polite" hidden><h2 id="result-title">計算結果</h2>
+      <div class="ideal-result-main"><span>BMI22（標準体重）</span><strong><span id="idealValue">—</span> <small>kg</small></strong></div>
+      <div class="ideal-current-grid" id="currentDetails" hidden><div><span>現在BMI</span><strong id="currentBmi">—</strong></div><div><span>現在体重 − 標準体重</span><strong id="weightDifference">—</strong></div></div>
+      <h3 class="ideal-reference-title">BMI別の体重目安</h3><div class="ideal-reference-grid"><div><span>BMI18.5</span><strong id="lowWeight">—</strong><small>低体重の判定基準</small></div><div class="is-standard"><span>BMI22</span><strong id="standardWeight">—</strong><small>標準体重</small></div><div><span>BMI25</span><strong id="upperWeight">—</strong><small>肥満の判定基準</small></div></div>
+      <button class="ideal-copy" id="copyButton" type="button">📋 結果をコピー</button><p class="ideal-copy-message" id="copyMessage" role="status" aria-live="polite"></p>
+    </section>
+
+    <!-- ====================== 説明・注意事項 ====================== -->
+    <section class="ideal-card ideal-info" aria-labelledby="about-title"><h2 id="about-title">このツールについて</h2><p>身長からBMI22を基準とした標準体重を計算できます。BMI22は日本で一般的に標準体重の目安として利用されている数値です。</p><h2>BMIとの違い</h2><p>BMIは現在の体格を表す指標です。標準体重はBMI22を基準に計算した目安の体重です。</p><h2>注意事項</h2><p>結果は健康管理の参考値です。体格や筋肉量、年齢などによって適切な体重は異なるため、医療上の診断には利用できません。</p></section>
+
+    <!-- ====================== 関連ツール ====================== -->
+    <section class="ideal-card ideal-related" aria-labelledby="related-title"><h2 id="related-title">関連ツール</h2><div class="ideal-related-links"><a href="../bmi/">❤️ BMI計算</a><a href="./bmr.html">🔥 BMR計算</a><a href="./tdee.html">🏃 TDEE計算</a></div></section>
+    <div class="back-to-top"><a class="top-button" href="../">🏠 トップへ戻る</a></div>
+  </div></main>
+
+  <!-- ====================== 共通フッター ====================== -->
+  <footer><div class="goma-footer-inner"><p class="goma-footer-logo">ゴマツール</p><p class="goma-footer-copy">30秒で使えて、他より少し便利。</p><nav class="goma-footer-nav" aria-label="フッターナビゲーション"><a href="../">🏠 ホーム</a><a href="../privacy/">📄 プライバシーポリシー</a><a href="../terms.html">📜 利用規約</a><a href="../faq.html">❓ FAQ</a><a href="../knowledge.html">🌱 ゴマ知識</a></nav><p class="goma-copyright">© 2026 Project Goma</p></div></footer>
+
+  <script>
+    'use strict';
+    const form=document.getElementById('idealForm'),heightInput=document.getElementById('height'),weightInput=document.getElementById('weight'),errorMessage=document.getElementById('errorMessage'),valueWarning=document.getElementById('valueWarning'),resultCard=document.getElementById('resultCard');let latestResult=null;
+    function validateInputs(){if(heightInput.value==='')return '身長を入力してください。';const height=Number(heightInput.value);if(!Number.isFinite(height))return '身長は数値で入力してください。';if(height<=0)return '身長は1cm以上で入力してください。';if(weightInput.value!==''){const weight=Number(weightInput.value);if(!Number.isFinite(weight))return '体重は数値で入力してください。';if(weight<=0)return '体重は1kg以上で入力してください。';}return ''}
+    function kg(value){return `${value.toFixed(1)}kg`}
+    function signedKg(value){const rounded=Math.round(value*10)/10;return `${rounded>0?'+':''}${rounded.toFixed(1)}kg`}
+    function calculateIdeal(event){
+      event.preventDefault();errorMessage.textContent='';document.getElementById('copyMessage').textContent='';valueWarning.hidden=true;const error=validateInputs();if(error){errorMessage.textContent=error;resultCard.hidden=true;latestResult=null;return}
+      const height=Number(heightInput.value),meters=height/100,square=meters*meters,ideal=22*square,low=18.5*square,upper=25*square,hasWeight=weightInput.value!=='';
+      const weight=hasWeight?Number(weightInput.value):null,currentBmi=hasWeight?weight/square:null,difference=hasWeight?weight-ideal:null;valueWarning.hidden=!(height>=250||(hasWeight&&weight>=300));
+      latestResult={height,weight,ideal,low,upper,currentBmi,difference,hasWeight};document.getElementById('idealValue').textContent=ideal.toFixed(1);document.getElementById('lowWeight').textContent=kg(low);document.getElementById('standardWeight').textContent=kg(ideal);document.getElementById('upperWeight').textContent=kg(upper);
+      document.getElementById('currentDetails').hidden=!hasWeight;if(hasWeight){document.getElementById('currentBmi').textContent=currentBmi.toFixed(1);document.getElementById('weightDifference').textContent=signedKg(difference)}resultCard.hidden=false;resultCard.scrollIntoView({behavior:'smooth',block:'nearest'});
+    }
+    function clearForm(){form.reset();errorMessage.textContent='';valueWarning.hidden=true;document.getElementById('copyMessage').textContent='';resultCard.hidden=true;latestResult=null}
+    async function copyResult(){if(!latestResult)return;let text=`【ゴマツール 適正体重計算結果】\n身長：${latestResult.height}cm\n標準体重（BMI22）：${kg(latestResult.ideal)}`;if(latestResult.hasWeight)text+=`\n現在体重：${kg(latestResult.weight)}\n現在BMI：${latestResult.currentBmi.toFixed(1)}\n現在体重 − 標準体重：${signedKg(latestResult.difference)}`;text+=`\nBMI18.5の体重目安：${kg(latestResult.low)}\nBMI25の体重目安：${kg(latestResult.upper)}`;try{await navigator.clipboard.writeText(text);document.getElementById('copyMessage').textContent='コピーしました。'}catch(error){document.getElementById('copyMessage').textContent='コピーできませんでした。手動で選択してコピーしてください。'}}
+    form.addEventListener('submit',calculateIdeal);document.getElementById('clearButton').addEventListener('click',clearForm);document.getElementById('copyButton').addEventListener('click',copyResult);
+  </script>
+</body>
+</html>
