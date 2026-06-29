@@ -99,7 +99,8 @@
   ========================================================= */
   const schoolSeriesTools = [
     { id: 'grade-calculator', icon: '🎓', name: '成績計算ツール', path: 'tools/grade-calculator.html' },
-    { id: 'attendance-rate', icon: '📊', name: '出席率計算ツール', path: 'tools/attendance-rate.html' }
+    { id: 'attendance-rate', icon: '📊', name: '出席率計算ツール', path: 'tools/attendance-rate.html' },
+    { id: 'required-score', icon: '🎯', name: '必要点数計算ツール', path: 'tools/required-score.html' }
   ];
 
   function createSchoolSeries(paths) {

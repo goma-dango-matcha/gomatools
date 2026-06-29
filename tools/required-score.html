@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8BNDHPNEHY"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-8BNDHPNEHY');</script>
+  <!-- SEO -->
+  <title>必要点数計算ツール｜あと何点取ればいいか無料で簡単計算</title>
+  <meta name="description" content="現在の点数や平均点、目標点から、残りのテストや課題で何点必要かを簡単に計算できる無料ツールです。">
+  <link rel="canonical" href="https://goma-dango-matcha.github.io/gomatools/tools/required-score.html">
+  <!-- OGP / Twitter Card -->
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ゴマツール">
+  <meta property="og:title" content="必要点数計算ツール｜ゴマツール">
+  <meta property="og:description" content="目標達成に必要な点数を簡単に計算できます。">
+  <meta property="og:url" content="https://goma-dango-matcha.github.io/gomatools/tools/required-score.html">
+  <meta property="og:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta property="og:image:secure_url" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ゴマツール — 一歩便利を、毎日の暮らしに。">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="必要点数計算ツール｜ゴマツール">
+  <meta name="twitter:description" content="目標達成に必要な点数を簡単に計算できます。">
+  <meta name="twitter:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta name="twitter:image:alt" content="ゴマツール — 一歩便利を、毎日の暮らしに。">
+  <!-- ブランドアイコン -->
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <meta name="theme-color" content="#63843F">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../assets/goma-ui.css?v=1.6">
+  <script defer src="../assets/goma-ui.js?v=1.6"></script>
+</head>
+<body>
+  <!-- ====================== 共通ヘッダー ====================== -->
+  <header>
+    <div class="goma-header-inner">
+      <div class="goma-brand-wrap">
+        <a class="goma-brand" href="../">ゴマツール</a>
+        <p class="goma-brand-copy">無料で使える便利ツール集</p>
+      </div>
+      <a class="goma-home-button" href="../">🏠 ホームへ戻る</a>
+    </div>
+  </header>
+
+  <main class="required-main">
+    <div class="required-container">
+      <!-- ====================== ヒーロー ====================== -->
+      <section class="required-hero" aria-labelledby="page-title">
+        <p class="required-eyebrow">🎓 学校・教育</p>
+        <h1 id="page-title">必要点数計算ツール</h1>
+        <p>現在の点数と目標点から、残りのテストで何点必要かを簡単に計算できます。</p>
+      </section>
+
+      <!-- ====================== 計算パターン ====================== -->
+      <section class="required-card" aria-labelledby="input-title">
+        <h2 id="input-title">計算パターンを選ぶ</h2>
+        <div class="required-tabs" role="tablist" aria-label="必要点数の計算パターン">
+          <button type="button" role="tab" aria-selected="true" data-mode="total">合計点ベース</button>
+          <button type="button" role="tab" aria-selected="false" data-mode="average">平均点ベース</button>
+        </div>
+
+        <form id="requiredForm" novalidate>
+          <!-- 合計点ベース -->
+          <div class="required-panel" id="totalPanel">
+            <p class="required-form-title">現在の合計点と目標得点率から、残り満点中で必要な点数を計算します。</p>
+            <div class="required-form-grid">
+              <div class="required-field"><label for="currentScore">現在の得点</label><input id="currentScore" type="number" min="0" step="0.1" inputmode="decimal" placeholder="例：320"></div>
+              <div class="required-field"><label for="currentMax">現在までの満点</label><input id="currentMax" type="number" min="0.1" step="0.1" inputmode="decimal" placeholder="例：400"></div>
+              <div class="required-field"><label for="targetRate">目標得点率（％）</label><input id="targetRate" type="number" min="0.1" step="0.1" inputmode="decimal" placeholder="例：80"></div>
+              <div class="required-field"><label for="remainingMax">残りの満点</label><input id="remainingMax" type="number" min="0.1" step="0.1" inputmode="decimal" placeholder="例：100"></div>
+            </div>
+          </div>
+
+          <!-- 平均点ベース -->
+          <div class="required-panel" id="averagePanel" hidden>
+            <p class="required-form-title">現在平均と目標平均から、残り1回あたり必要な点数を計算します。</p>
+            <div class="required-form-grid">
+              <div class="required-field"><label for="currentAverage">現在の平均点</label><input id="currentAverage" type="number" min="0" step="0.1" inputmode="decimal" placeholder="例：75"></div>
+              <div class="required-field"><label for="currentCount">現在までの回数</label><input id="currentCount" type="number" min="1" step="1" inputmode="numeric" placeholder="例：3"></div>
+              <div class="required-field"><label for="targetAverage">目標平均点</label><input id="targetAverage" type="number" min="0" step="0.1" inputmode="decimal" placeholder="例：80"></div>
+              <div class="required-field"><label for="remainingCount">残りの回数</label><input id="remainingCount" type="number" min="1" step="1" inputmode="numeric" placeholder="例：1"></div>
+            </div>
+          </div>
+
+          <p class="required-error" id="errorMessage" role="alert"></p>
+          <p class="required-warning" id="warningMessage" role="status" hidden></p>
+          <div class="required-form-buttons">
+            <button class="required-primary" type="submit">計算する</button>
+            <button id="resetButton" type="button">リセット</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- ====================== 計算結果 ====================== -->
+      <section class="required-card required-result" id="resultCard" aria-labelledby="result-title" aria-live="polite" hidden>
+        <h2 id="result-title">計算結果</h2>
+        <div class="required-result-main" id="resultMain">
+          <span id="mainLabel">必要点数</span>
+          <strong id="requiredScore">—</strong>
+        </div>
+        <div class="required-result-grid">
+          <div><span>残り1回あたり</span><strong id="perRemaining">—</strong></div>
+          <div><span>目標達成判定</span><strong id="statusLabel">—</strong></div>
+          <div><span id="marginLabel">余裕点・不足点</span><strong id="marginValue">—</strong></div>
+        </div>
+        <div class="required-message" id="resultMessage"></div>
+        <button class="required-copy" id="copyButton" type="button">📋 結果をコピー</button>
+        <p class="required-copy-message" id="copyMessage" role="status" aria-live="polite"></p>
+      </section>
+
+      <!-- ====================== 説明・注意事項 ====================== -->
+      <section class="required-card required-info" aria-labelledby="about-title">
+        <h2 id="about-title">このツールについて</h2>
+        <p>このツールでは、現在の点数や平均点から、目標達成に必要な点数を計算できます。「あと何点取れば合格できるか」「次のテストで何点取れば平均点が目標に届くか」を確認したいときに便利です。</p>
+        <h2>注意事項</h2>
+        <p>学校や試験によって、成績の計算方法や評価基準は異なります。このツールは一般的な点数計算の補助として利用してください。</p>
+      </section>
+
+      <!-- 学校・教育シリーズ：内容は assets/goma-ui.js で一元管理 -->
+      <section data-school-series data-current="required-score"></section>
+      <div class="back-to-top"><a class="top-button" href="../">🏠 トップへ戻る</a></div>
+    </div>
+  </main>
+
+  <!-- ====================== 共通フッター ====================== -->
+  <footer>
+    <div class="goma-footer-inner">
+      <p class="goma-footer-logo">ゴマツール</p>
+      <p class="goma-footer-copy">30秒で使えて、他より少し便利。</p>
+      <nav class="goma-footer-nav" aria-label="フッターナビゲーション">
+        <a href="../">🏠 ホーム</a>
+        <a href="../privacy/">📄 プライバシーポリシー</a>
+        <a href="../terms.html">📜 利用規約</a>
+        <a href="../faq.html">❓ FAQ</a>
+        <a href="../knowledge.html">🌱 ゴマ知識</a>
+      </nav>
+      <p class="goma-copyright">© 2026 Project Goma</p>
+    </div>
+  </footer>
+
+  <script>
+    'use strict';
+
+    const form = document.getElementById('requiredForm');
+    const resultCard = document.getElementById('resultCard');
+    const errorMessage = document.getElementById('errorMessage');
+    const warningMessage = document.getElementById('warningMessage');
+    let currentMode = 'total';
+    let latestResult = null;
+
+    function formatNumber(value) {
+      if (!Number.isFinite(value)) return '—';
+      return value.toLocaleString('ja-JP', { maximumFractionDigits: 1 });
+    }
+
+    function parseNumber(id, label, options = {}) {
+      const input = document.getElementById(id);
+      if (input.value === '') return { error: `${label}を入力してください。` };
+      const value = Number(input.value);
+      if (!Number.isFinite(value)) return { error: `${label}は数値で入力してください。` };
+      if (options.integer && !Number.isInteger(value)) return { error: `${label}は整数で入力してください。` };
+      if (options.positive && value <= 0) return { error: `${label}は0より大きい数値を入力してください。` };
+      if (options.nonNegative && value < 0) return { error: `${label}は0以上で入力してください。` };
+      return { value };
+    }
+
+    function setMode(mode) {
+      currentMode = mode;
+      document.querySelectorAll('[data-mode]').forEach(button => {
+        button.setAttribute('aria-selected', String(button.dataset.mode === mode));
+      });
+      document.getElementById('totalPanel').hidden = mode !== 'total';
+      document.getElementById('averagePanel').hidden = mode !== 'average';
+      errorMessage.textContent = '';
+      warningMessage.hidden = true;
+      warningMessage.textContent = '';
+      document.getElementById('copyMessage').textContent = '';
+      resultCard.hidden = true;
+      latestResult = null;
+    }
+
+    function calculateTotalMode() {
+      const currentScore = parseNumber('currentScore', '現在の得点', { nonNegative: true });
+      if (currentScore.error) return { error: currentScore.error };
+      const currentMax = parseNumber('currentMax', '現在までの満点', { positive: true });
+      if (currentMax.error) return { error: currentMax.error };
+      const targetRate = parseNumber('targetRate', '目標得点率', { positive: true });
+      if (targetRate.error) return { error: targetRate.error };
+      const remainingMax = parseNumber('remainingMax', '残りの満点', { positive: true });
+      if (remainingMax.error) return { error: remainingMax.error };
+      if (currentScore.value > currentMax.value) return { error: '現在の得点が現在までの満点を超えています。' };
+
+      const finalMax = currentMax.value + remainingMax.value;
+      const targetTotal = finalMax * targetRate.value / 100;
+      const required = targetTotal - currentScore.value;
+      const perRemaining = required;
+      const possible = required <= remainingMax.value;
+      const already = required <= 0;
+      const margin = already ? -required : (possible ? remainingMax.value - required : required - remainingMax.value);
+      const warning = targetRate.value > 100 ? '目標得点率が100%を超えています。満点以上が必要になる可能性があります。' : '';
+      let message;
+      let status;
+      if (already) {
+        status = '達成済み';
+        message = '現時点で目標を達成しています。';
+      } else if (possible) {
+        status = '達成可能';
+        message = `残り${formatNumber(remainingMax.value)}点満点中、${formatNumber(required)}点以上で目標達成できます。`;
+      } else {
+        status = '達成困難';
+        message = `残り${formatNumber(remainingMax.value)}点満点では、目標達成には${formatNumber(required)}点必要です。`;
+      }
+      return { mode: '合計点ベース', required, perRemaining, status, possible, already, margin, message, warning, marginLabel: already || possible ? '余裕点' : '不足点' };
+    }
+
+    function calculateAverageMode() {
+      const currentAverage = parseNumber('currentAverage', '現在の平均点', { nonNegative: true });
+      if (currentAverage.error) return { error: currentAverage.error };
+      const currentCount = parseNumber('currentCount', '現在までの回数', { positive: true, integer: true });
+      if (currentCount.error) return { error: currentCount.error };
+      const targetAverage = parseNumber('targetAverage', '目標平均点', { nonNegative: true });
+      if (targetAverage.error) return { error: targetAverage.error };
+      const remainingCount = parseNumber('remainingCount', '残りの回数', { positive: true, integer: true });
+      if (remainingCount.error) return { error: remainingCount.error };
+
+      const finalCount = currentCount.value + remainingCount.value;
+      const targetTotal = targetAverage.value * finalCount;
+      const currentTotal = currentAverage.value * currentCount.value;
+      const required = targetTotal - currentTotal;
+      const perRemaining = required / remainingCount.value;
+      const possible = perRemaining <= 100;
+      const already = required <= 0;
+      const margin = already ? -perRemaining : (possible ? 100 - perRemaining : perRemaining - 100);
+      let message;
+      let status;
+      if (already) {
+        status = '達成済み';
+        message = '現時点で目標平均に届いています。';
+      } else if (possible) {
+        status = '達成可能';
+        message = `残り${remainingCount.value}回で、1回あたり${formatNumber(perRemaining)}点以上取ると平均${formatNumber(targetAverage.value)}点に届きます。`;
+      } else {
+        status = '達成困難';
+        message = `1回あたり${formatNumber(perRemaining)}点が必要です。100点満点想定では目標達成が難しい状態です。`;
+      }
+      return { mode: '平均点ベース', required, perRemaining, status, possible, already, margin, message, warning: '', marginLabel: already || possible ? '余裕点' : '不足点' };
+    }
+
+    function renderResult(result) {
+      latestResult = result;
+      document.getElementById('requiredScore').textContent = `${formatNumber(result.required)}点`;
+      document.getElementById('perRemaining').textContent = `${formatNumber(result.perRemaining)}点`;
+      document.getElementById('statusLabel').textContent = result.status;
+      document.getElementById('marginLabel').textContent = result.marginLabel;
+      document.getElementById('marginValue').textContent = `${formatNumber(result.margin)}点`;
+      document.getElementById('resultMessage').textContent = result.message;
+      document.getElementById('resultMain').className = `required-result-main ${result.already ? 'is-already' : result.possible ? 'is-possible' : 'is-difficult'}`;
+      warningMessage.textContent = result.warning;
+      warningMessage.hidden = !result.warning;
+      resultCard.hidden = false;
+      resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function calculateRequiredScore(event) {
+      event.preventDefault();
+      errorMessage.textContent = '';
+      document.getElementById('copyMessage').textContent = '';
+      const result = currentMode === 'total' ? calculateTotalMode() : calculateAverageMode();
+      if (result.error) {
+        errorMessage.textContent = result.error;
+        warningMessage.hidden = true;
+        resultCard.hidden = true;
+        latestResult = null;
+        return;
+      }
+      renderResult(result);
+    }
+
+    function resetAll() {
+      form.reset();
+      setMode('total');
+      document.getElementById('currentScore').focus();
+    }
+
+    async function copyResult() {
+      if (!latestResult) return;
+      const text = `【ゴマツール 必要点数計算結果】\n計算方法：${latestResult.mode}\n必要点数：${formatNumber(latestResult.required)}点\n残り1回あたり：${formatNumber(latestResult.perRemaining)}点\n判定：${latestResult.status}\n${latestResult.marginLabel}：${formatNumber(latestResult.margin)}点\n${latestResult.message}`;
+      try {
+        await navigator.clipboard.writeText(text);
+        document.getElementById('copyMessage').textContent = 'コピーしました。';
+      } catch (error) {
+        document.getElementById('copyMessage').textContent = 'コピーできませんでした。手動で選択してコピーしてください。';
+      }
+    }
+
+    document.querySelectorAll('[data-mode]').forEach(button => {
+      button.addEventListener('click', () => setMode(button.dataset.mode));
+    });
+    form.addEventListener('submit', calculateRequiredScore);
+    document.getElementById('resetButton').addEventListener('click', resetAll);
+    document.getElementById('copyButton').addEventListener('click', copyResult);
+  </script>
+</body>
+</html>
