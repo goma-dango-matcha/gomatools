@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8BNDHPNEHY"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-8BNDHPNEHY');</script>
+  <!-- SEO -->
+  <title>TDEE計算ツール｜1日の消費カロリーを無料で簡単計算</title>
+  <meta name="description" content="年齢・性別・身長・体重・活動量を入力するだけで、1日の消費カロリー（TDEE）の目安を簡単に計算できる無料ツールです。ダイエットや体重管理の参考に使えます。">
+  <link rel="canonical" href="https://goma-dango-matcha.github.io/gomatools/tools/tdee.html">
+  <!-- OGP / Twitter Card -->
+  <meta property="og:locale" content="ja_JP"><meta property="og:type" content="website"><meta property="og:site_name" content="ゴマツール">
+  <meta property="og:title" content="TDEE計算ツール｜ゴマツール"><meta property="og:description" content="年齢・性別・身長・体重・活動量から、1日の消費カロリーの目安を簡単に計算できます。">
+  <meta property="og:url" content="https://goma-dango-matcha.github.io/gomatools/tools/tdee.html">
+  <meta property="og:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png"><meta property="og:image:secure_url" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="ゴマツール — 一歩便利を、毎日の暮らしに。">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="TDEE計算ツール｜ゴマツール"><meta name="twitter:description" content="年齢・性別・身長・体重・活動量から、1日の消費カロリーの目安を簡単に計算できます。">
+  <meta name="twitter:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png"><meta name="twitter:image:alt" content="ゴマツール — 一歩便利を、毎日の暮らしに。">
+  <!-- ブランドアイコン -->
+  <link rel="icon" href="../favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"><link rel="manifest" href="../site.webmanifest"><meta name="theme-color" content="#63843F">
+  <link rel="stylesheet" href="../css/style.css"><link rel="stylesheet" href="../assets/goma-ui.css"><script defer src="../assets/goma-ui.js"></script>
+</head>
+<body>
+  <!-- ====================== 共通ヘッダー ====================== -->
+  <header><div class="goma-header-inner"><div class="goma-brand-wrap"><a class="goma-brand" href="../">ゴマツール</a><p class="goma-brand-copy">無料で使える便利ツール集</p></div><a class="goma-home-button" href="../">🏠 ホームへ戻る</a></div></header>
+
+  <main class="tdee-main"><div class="tdee-container">
+    <!-- ====================== ヒーロー ====================== -->
+    <section class="tdee-hero" aria-labelledby="page-title"><p class="tdee-eyebrow">❤️ 健康・美容</p><h1 id="page-title">1日の消費カロリー（TDEE）計算ツール</h1><p>年齢・性別・身長・体重・活動量から、1日の総消費カロリーの目安を計算できます。</p></section>
+
+    <!-- ====================== 入力フォーム ====================== -->
+    <section class="tdee-card" aria-labelledby="input-title"><h2 id="input-title">計算する情報を入力</h2>
+      <form id="tdeeForm" novalidate>
+        <fieldset class="tdee-gender"><legend>性別</legend><label><input type="radio" name="gender" value="male"> 男性</label><label><input type="radio" name="gender" value="female"> 女性</label></fieldset>
+        <div class="tdee-form-grid">
+          <div class="tdee-field"><label for="age">年齢（歳）</label><input id="age" type="number" min="1" step="1" inputmode="numeric" placeholder="例：30"></div>
+          <div class="tdee-field"><label for="height">身長（cm）</label><input id="height" type="number" min="1" step="0.1" inputmode="decimal" placeholder="例：160"></div>
+          <div class="tdee-field"><label for="weight">体重（kg）</label><input id="weight" type="number" min="1" step="0.1" inputmode="decimal" placeholder="例：55"></div>
+        </div>
+        <div class="tdee-activity"><label for="activity">活動量</label><select id="activity"><option value="">選択してください</option><option value="1.2">ほとんど運動しない｜デスクワーク中心</option><option value="1.375">軽い運動をする｜週1〜3回程度</option><option value="1.55">週に数回運動する｜週3〜5回程度</option><option value="1.725">かなり運動する｜週6〜7回程度</option><option value="1.9">非常に活動的｜肉体労働・高強度の運動</option></select></div>
+        <p class="tdee-warning" id="valueWarning" hidden>入力値が大きいため、計算結果を確認してください。</p><p class="tdee-error" id="errorMessage" role="alert"></p>
+        <div class="tdee-form-buttons"><button class="tdee-primary" type="submit">計算する</button><button id="clearButton" type="button">クリア</button></div>
+      </form>
+    </section>
+
+    <!-- ====================== 計算結果 ====================== -->
+    <section class="tdee-card tdee-result" id="resultCard" aria-labelledby="result-title" aria-live="polite" hidden><h2 id="result-title">計算結果</h2>
+      <div class="tdee-result-main"><span>1日の消費カロリー（TDEE）</span><strong><span id="tdeeValue">—</span> <small>kcal/日</small></strong></div>
+      <div class="tdee-result-grid"><div><span>基礎代謝量（BMR）</span><strong id="bmrValue">—</strong></div><div><span>活動量</span><strong id="activityLabel">—</strong></div></div>
+      <p class="tdee-description">TDEEは、基礎代謝に日常活動や運動量を加えた、1日の消費カロリーの目安です。</p>
+      <h3 class="tdee-guide-title">体重管理の目安</h3><div class="tdee-guide-grid"><div><span>体重維持</span><strong id="maintainValue">—</strong></div><div><span>ゆるやかに減量</span><strong id="lossValue">—</strong></div><div><span>ゆるやかに増量</span><strong id="gainValue">—</strong></div></div>
+      <p class="tdee-guide-note">※減量・増量はTDEEから1日300 kcalを増減した参考値です。</p>
+      <button class="tdee-copy" id="copyButton" type="button">📋 結果をコピー</button><p class="tdee-copy-message" id="copyMessage" role="status" aria-live="polite"></p>
+    </section>
+
+    <!-- ====================== 説明・注意事項 ====================== -->
+    <section class="tdee-card tdee-info" aria-labelledby="about-title"><h2 id="about-title">このツールでできること</h2><p>年齢・性別・身長・体重・活動量を入力するだけで、1日の消費カロリーの目安を計算できます。TDEEは、基礎代謝に日常生活や運動による消費を加えた、1日に消費するエネルギー量の目安です。</p><h2>BMRとTDEEの違い</h2><p>BMRは生命維持のために消費されるエネルギー量、TDEEはBMRに日常活動や運動量を加えた総消費カロリーの目安です。</p><h2>注意事項</h2><p>結果は目安です。体格、筋肉量、生活習慣、健康状態などによって実際の消費エネルギーは変わります。医療・診断目的ではなく、健康管理やダイエットの参考として利用してください。</p></section>
+
+    <!-- ====================== 関連ツール ====================== -->
+    <section class="tdee-card tdee-related" aria-labelledby="related-title"><h2 id="related-title">関連ツール</h2><div class="tdee-related-links"><a href="../bmi/">❤️ BMI計算ツール</a><a href="./bmr.html">🔥 基礎代謝（BMR）計算ツール</a></div></section>
+    <div class="back-to-top"><a class="top-button" href="../">🏠 トップへ戻る</a></div>
+  </div></main>
+
+  <!-- ====================== 共通フッター ====================== -->
+  <footer><div class="goma-footer-inner"><p class="goma-footer-logo">ゴマツール</p><p class="goma-footer-copy">30秒で使えて、他より少し便利。</p><nav class="goma-footer-nav" aria-label="フッターナビゲーション"><a href="../">🏠 ホーム</a><a href="../privacy/">📄 プライバシーポリシー</a><a href="../terms.html">📜 利用規約</a><a href="../faq.html">❓ FAQ</a><a href="../knowledge.html">🌱 ゴマ知識</a></nav><p class="goma-copyright">© 2026 Project Goma</p></div></footer>
+
+  <script>
+    'use strict';
+    const form=document.getElementById('tdeeForm'),ageInput=document.getElementById('age'),heightInput=document.getElementById('height'),weightInput=document.getElementById('weight'),activityInput=document.getElementById('activity');
+    const errorMessage=document.getElementById('errorMessage'),valueWarning=document.getElementById('valueWarning'),resultCard=document.getElementById('resultCard');let latestResult=null;
+    const activityNames={'1.2':'ほとんど運動しない','1.375':'軽い運動をする','1.55':'週に数回運動する','1.725':'かなり運動する','1.9':'非常に活動的'};
+    function getGender(){return form.querySelector('input[name="gender"]:checked')?.value||''}
+    function validateInputs(){
+      if(!getGender()||ageInput.value===''||heightInput.value===''||weightInput.value==='')return 'すべての項目を入力してください。';
+      if(!activityInput.value)return '活動量を選択してください。';
+      const age=Number(ageInput.value),height=Number(heightInput.value),weight=Number(weightInput.value);
+      if(!Number.isFinite(age)||!Number.isFinite(height)||!Number.isFinite(weight))return '数値を正しく入力してください。';
+      if(age<=0)return '年齢は1歳以上で入力してください。';if(!Number.isInteger(age))return '年齢は整数で入力してください。';if(height<=0)return '身長は1cm以上で入力してください。';if(weight<=0)return '体重は1kg以上で入力してください。';return '';
+    }
+    function kcal(value){return `${value.toLocaleString('ja-JP')} kcal/日`}
+    function calculateTdee(event){
+      event.preventDefault();errorMessage.textContent='';document.getElementById('copyMessage').textContent='';valueWarning.hidden=true;const error=validateInputs();if(error){errorMessage.textContent=error;resultCard.hidden=true;latestResult=null;return}
+      const gender=getGender(),age=Number(ageInput.value),height=Number(heightInput.value),weight=Number(weightInput.value),factor=Number(activityInput.value);
+      const rawBmr=10*weight+6.25*height-5*age+(gender==='male'?5:-161),bmr=Math.round(rawBmr),tdee=Math.round(rawBmr*factor),maintain=tdee,loss=Math.max(0,tdee-300),gain=tdee+300;
+      valueWarning.hidden=!(age>=120||height>=250||weight>=300);latestResult={gender,age,height,weight,factor,bmr,tdee,maintain,loss,gain,activity:activityNames[activityInput.value]};
+      document.getElementById('tdeeValue').textContent=tdee.toLocaleString('ja-JP');document.getElementById('bmrValue').textContent=kcal(bmr);document.getElementById('activityLabel').textContent=latestResult.activity;
+      document.getElementById('maintainValue').textContent=kcal(maintain);document.getElementById('lossValue').textContent=kcal(loss);document.getElementById('gainValue').textContent=kcal(gain);resultCard.hidden=false;resultCard.scrollIntoView({behavior:'smooth',block:'nearest'});
+    }
+    function clearForm(){form.reset();errorMessage.textContent='';valueWarning.hidden=true;document.getElementById('copyMessage').textContent='';resultCard.hidden=true;latestResult=null}
+    async function copyResult(){if(!latestResult)return;const gender=latestResult.gender==='male'?'男性':'女性';const text=`【ゴマツール TDEE計算結果】\n性別：${gender}\n年齢：${latestResult.age}歳\n身長：${latestResult.height}cm\n体重：${latestResult.weight}kg\n活動量：${latestResult.activity}\nBMR：約${kcal(latestResult.bmr)}\nTDEE：約${kcal(latestResult.tdee)}\n体重維持：約${kcal(latestResult.maintain)}\nゆるやかに減量：約${kcal(latestResult.loss)}\nゆるやかに増量：約${kcal(latestResult.gain)}`;try{await navigator.clipboard.writeText(text);document.getElementById('copyMessage').textContent='コピーしました。'}catch(error){document.getElementById('copyMessage').textContent='コピーできませんでした。手動で選択してコピーしてください。'}}
+    form.addEventListener('submit',calculateTdee);document.getElementById('clearButton').addEventListener('click',clearForm);document.getElementById('copyButton').addEventListener('click',copyResult);
+  </script>
+</body>
+</html>

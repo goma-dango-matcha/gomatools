@@ -634,3 +634,76 @@ a { color: var(--terms-green-dark); }
   .bmr-form-buttons button,
   .bmr-copy { width: 100%; }
 }
+
+/* ======================
+   1日の消費カロリー（TDEE）計算ツール
+====================== */
+.tdee-main { padding: 42px 20px 72px; }
+.tdee-container { width: min(100%, 1100px); margin: 0 auto; }
+.tdee-hero { margin-bottom: 28px; text-align: center; }
+.tdee-hero h1 { margin: 8px 0 12px; color: var(--terms-text); font-size: clamp(1.85rem, 5vw, 2.65rem); }
+.tdee-hero p { max-width: 780px; margin: 0 auto; color: var(--terms-muted); line-height: 1.8; }
+.tdee-eyebrow { color: #a44659 !important; font-weight: 800; }
+.tdee-card { margin-top: 24px; padding: clamp(22px, 4vw, 36px); border: 1px solid var(--terms-line); border-radius: 22px; background: #fff; box-shadow: 0 12px 32px rgba(67, 91, 49, .08); }
+.tdee-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
+.tdee-gender { display: flex; gap: 12px; margin: 0 0 20px; padding: 0; border: 0; }
+.tdee-gender legend { margin-bottom: 9px; color: var(--terms-text); font-weight: 800; }
+.tdee-gender label { min-width: 120px; padding: 12px 16px; border: 1px solid #cbd6c5; border-radius: 12px; background: #fcfdfb; font-weight: 800; cursor: pointer; }
+.tdee-gender input { width: auto; min-height: auto; margin-right: 5px; accent-color: var(--terms-green); }
+.tdee-form-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.tdee-field label,
+.tdee-activity > label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
+.tdee-activity { margin-top: 18px; }
+.tdee-error { min-height: 1.5em; margin: 12px 0 0; color: #b42318; font-weight: 800; text-align: center; }
+.tdee-warning { margin: 16px 0 0; padding: 12px 14px; border-radius: 11px; background: #fff5dc; color: #76550e; font-weight: 800; }
+.tdee-form-buttons { display: flex; justify-content: center; gap: 12px; margin-top: 18px; }
+.tdee-form-buttons button,
+.tdee-copy { min-width: 180px; min-height: 52px; padding: 12px 22px; border: 1px solid #afc1a5; border-radius: 13px; background: #f7faf5; color: var(--terms-green-dark); font: inherit; font-weight: 850; cursor: pointer; transition: transform .18s, background .18s, box-shadow .18s; }
+.tdee-form-buttons .tdee-primary,
+.tdee-copy { border-color: var(--terms-green); background: var(--terms-green); color: #fff; }
+.tdee-form-buttons button:hover,
+.tdee-copy:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(67, 91, 49, .16); }
+.tdee-form-buttons .tdee-primary:hover,
+.tdee-copy:hover { background: var(--terms-green-dark); }
+.tdee-result { border-color: #b7cba9; background: #fbfdf9; }
+.tdee-result-main { padding: 28px 18px; border-radius: 18px; background: var(--terms-green-light); text-align: center; }
+.tdee-result-main > span,
+.tdee-result-grid span,
+.tdee-guide-grid span { display: block; color: var(--terms-muted); font-size: .86rem; font-weight: 800; }
+.tdee-result-main strong { display: block; margin-top: 8px; color: var(--terms-green-dark); font-size: clamp(2.15rem, 7vw, 3.2rem); }
+.tdee-result-main small { font-size: .42em; }
+.tdee-result-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 16px; }
+.tdee-result-grid > div,
+.tdee-guide-grid > div { padding: 19px 14px; border: 1px solid #d8e4d2; border-radius: 15px; background: #fff; text-align: center; }
+.tdee-result-grid strong,
+.tdee-guide-grid strong { display: block; margin-top: 7px; color: var(--terms-text); font-size: 1.08rem; }
+.tdee-description { margin: 18px 0 0; color: var(--terms-muted); line-height: 1.8; text-align: center; }
+.tdee-guide-title { margin: 28px 0 14px; color: var(--terms-green-dark); font-size: 1.1rem; }
+.tdee-guide-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.tdee-guide-grid > div:nth-child(2) { background: #f8fbf5; }
+.tdee-guide-grid > div:nth-child(3) { background: #fffaf2; }
+.tdee-guide-note { margin: 12px 0 0; color: var(--terms-muted); font-size: .88rem; }
+.tdee-copy { display: block; margin: 20px auto 0; }
+.tdee-copy-message { min-height: 1.5em; margin: 10px 0 0; color: var(--terms-green-dark); font-weight: 800; text-align: center; }
+.tdee-info { line-height: 1.85; }
+.tdee-info h2:not(:first-child) { margin-top: 28px; }
+.tdee-info p { margin: 0; color: var(--terms-muted); }
+.tdee-related-links { display: flex; flex-wrap: wrap; gap: 12px; }
+.tdee-related-links a { display: inline-flex; min-height: 48px; align-items: center; padding: 10px 18px; border-radius: 12px; background: var(--terms-green-light); color: var(--terms-green-dark); font-weight: 850; text-decoration: none; }
+.tdee-related-links a:hover { background: #dfead8; }
+
+@media (max-width: 760px) {
+  .tdee-form-grid,
+  .tdee-guide-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .tdee-main { padding: 28px 16px 56px; }
+  .tdee-card { padding: 20px 16px; border-radius: 18px; }
+  .tdee-gender,
+  .tdee-form-buttons { flex-direction: column; }
+  .tdee-gender label,
+  .tdee-form-buttons button,
+  .tdee-copy { width: 100%; }
+  .tdee-result-grid { grid-template-columns: 1fr; }
+}
