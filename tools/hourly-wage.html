@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8BNDHPNEHY"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-8BNDHPNEHY');</script>
+  <!-- SEO -->
+  <title>時給計算ツール｜日給・月収・年収を無料で簡単計算</title>
+  <meta name="description" content="時給・勤務時間・勤務日数を入力するだけで、日給・週給・月収・年収の目安を無料で計算できるツールです。">
+  <link rel="canonical" href="https://goma-dango-matcha.github.io/gomatools/tools/hourly-wage.html">
+  <!-- OGP / Twitter Card -->
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ゴマツール">
+  <meta property="og:title" content="時給計算ツール｜ゴマツール">
+  <meta property="og:description" content="時給から日給・月収・年収の目安を簡単に計算できます。">
+  <meta property="og:url" content="https://goma-dango-matcha.github.io/gomatools/tools/hourly-wage.html">
+  <meta property="og:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta property="og:image:secure_url" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ゴマツール — 一歩便利を、毎日の暮らしに。">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="時給計算ツール｜ゴマツール">
+  <meta name="twitter:description" content="時給から日給・月収・年収の目安を簡単に計算できます。">
+  <meta name="twitter:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta name="twitter:image:alt" content="ゴマツール — 一歩便利を、毎日の暮らしに。">
+  <!-- ブランドアイコン -->
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <meta name="theme-color" content="#63843F">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../assets/goma-ui.css?v=1.5">
+  <script defer src="../assets/goma-ui.js?v=1.5"></script>
+</head>
+<body>
+  <!-- ====================== 共通ヘッダー ====================== -->
+  <header>
+    <div class="goma-header-inner">
+      <div class="goma-brand-wrap">
+        <a class="goma-brand" href="../">ゴマツール</a>
+        <p class="goma-brand-copy">無料で使える便利ツール集</p>
+      </div>
+      <a class="goma-home-button" href="../">🏠 ホームへ戻る</a>
+    </div>
+  </header>
+
+  <main class="hourly-main">
+    <div class="hourly-container">
+      <!-- ====================== ヒーロー ====================== -->
+      <section class="hourly-hero" aria-labelledby="page-title">
+        <p class="hourly-eyebrow">💼 仕事・テキスト</p>
+        <h1 id="page-title">時給計算ツール</h1>
+        <p>時給・勤務時間・勤務日数を入力するだけで、日給・月収・年収の目安を簡単に計算できます。</p>
+      </section>
+
+      <!-- ====================== 入力フォーム ====================== -->
+      <section class="hourly-card" aria-labelledby="input-title">
+        <h2 id="input-title">条件を入力</h2>
+        <form id="hourlyForm" novalidate>
+          <div class="hourly-form-grid">
+            <div class="hourly-field">
+              <label for="hourlyWage">時給（円）</label>
+              <input id="hourlyWage" type="number" min="1" step="1" inputmode="numeric" placeholder="例：1200">
+            </div>
+            <div class="hourly-field">
+              <label for="workHours">1日の勤務時間</label>
+              <input id="workHours" type="number" min="0.1" step="0.25" inputmode="decimal" placeholder="例：8">
+            </div>
+            <div class="hourly-field">
+              <label for="weekDays">週の勤務日数</label>
+              <input id="weekDays" type="number" min="0" step="0.5" inputmode="decimal" value="5" placeholder="例：5">
+            </div>
+            <div class="hourly-field">
+              <label for="monthDays">月の勤務日数 <span>任意</span></label>
+              <input id="monthDays" type="number" min="0" step="0.5" inputmode="decimal" placeholder="未入力なら週日数×4.3で概算">
+            </div>
+          </div>
+          <p class="hourly-hint">月の勤務日数が未入力の場合は、週の勤務日数 × 4.3週で月収を概算します。</p>
+          <p class="hourly-error" id="errorMessage" role="alert"></p>
+          <div class="hourly-form-buttons">
+            <button class="hourly-primary" type="submit">計算する</button>
+            <button id="resetButton" type="button">リセット</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- ====================== 計算結果 ====================== -->
+      <section class="hourly-card hourly-result" id="resultCard" aria-labelledby="result-title" aria-live="polite" hidden>
+        <h2 id="result-title">計算結果</h2>
+        <div class="hourly-result-main">
+          <span>月収（目安）</span>
+          <strong id="monthlyIncome">—</strong>
+        </div>
+        <div class="hourly-result-grid">
+          <div><span>日給</span><strong id="dailyIncome">—</strong></div>
+          <div><span>週給</span><strong id="weeklyIncome">—</strong></div>
+          <div><span>年収（目安）</span><strong id="yearlyIncome">—</strong></div>
+          <div><span>月の勤務日数</span><strong id="monthlyDaysUsed">—</strong></div>
+        </div>
+        <p class="hourly-note" id="estimateNote">月収・年収は目安です。</p>
+        <button class="hourly-copy" id="copyButton" type="button">📋 結果をコピー</button>
+        <p class="hourly-copy-message" id="copyMessage" role="status" aria-live="polite"></p>
+      </section>
+
+      <!-- ====================== 勤務時間計算への導線 ====================== -->
+      <section class="hourly-card hourly-link-card" aria-labelledby="work-time-link-title">
+        <h2 id="work-time-link-title">勤務時間が分からない場合</h2>
+        <p>出勤時刻・退勤時刻・休憩時間から実働時間を出したいときは、勤務時間計算ツールも使えます。</p>
+        <a class="hourly-related-button" href="./work-time.html">⏰ 勤務時間計算ツールはこちら</a>
+      </section>
+
+      <!-- ====================== 説明・注意事項 ====================== -->
+      <section class="hourly-card hourly-info" aria-labelledby="about-title">
+        <h2 id="about-title">このツールについて</h2>
+        <p>時給・勤務時間・勤務日数から、日給・週給・月収・年収の目安を計算できます。アルバイトやパート、副業などの収入シミュレーションに便利です。</p>
+        <h2>注意事項</h2>
+        <p>このツールの結果は概算です。実際の給与は、残業代・深夜手当・交通費・税金・社会保険料などにより異なります。</p>
+      </section>
+
+      <!-- 仕事・テキストシリーズ：内容は assets/goma-ui.js で一元管理 -->
+      <section data-work-series data-current="hourly-wage"></section>
+      <div class="back-to-top"><a class="top-button" href="../">🏠 トップへ戻る</a></div>
+    </div>
+  </main>
+
+  <!-- ====================== 共通フッター ====================== -->
+  <footer>
+    <div class="goma-footer-inner">
+      <p class="goma-footer-logo">ゴマツール</p>
+      <p class="goma-footer-copy">30秒で使えて、他より少し便利。</p>
+      <nav class="goma-footer-nav" aria-label="フッターナビゲーション">
+        <a href="../">🏠 ホーム</a>
+        <a href="../privacy/">📄 プライバシーポリシー</a>
+        <a href="../terms.html">📜 利用規約</a>
+        <a href="../faq.html">❓ FAQ</a>
+        <a href="../knowledge.html">🌱 ゴマ知識</a>
+      </nav>
+      <p class="goma-copyright">© 2026 Project Goma</p>
+    </div>
+  </footer>
+
+  <script>
+    'use strict';
+
+    const form = document.getElementById('hourlyForm');
+    const wageInput = document.getElementById('hourlyWage');
+    const hoursInput = document.getElementById('workHours');
+    const weekDaysInput = document.getElementById('weekDays');
+    const monthDaysInput = document.getElementById('monthDays');
+    const errorMessage = document.getElementById('errorMessage');
+    const resultCard = document.getElementById('resultCard');
+    let latestResult = null;
+
+    function formatYen(value) {
+      return `${Math.round(value).toLocaleString('ja-JP')}円`;
+    }
+
+    function parsePositive(input, label, allowBlank = false) {
+      if (input.value === '') {
+        return allowBlank ? { value: null } : { error: `${label}を入力してください。` };
+      }
+      const value = Number(input.value);
+      if (!Number.isFinite(value)) return { error: `${label}は数値で入力してください。` };
+      if (value <= 0) return { error: `${label}は0より大きい数値を入力してください。` };
+      return { value };
+    }
+
+    function validateInputs() {
+      const wage = parsePositive(wageInput, '時給');
+      if (wage.error) return { error: wage.error };
+      const hours = parsePositive(hoursInput, '勤務時間');
+      if (hours.error) return { error: hours.error };
+      const weekDays = parsePositive(weekDaysInput, '週の勤務日数', true);
+      if (weekDays.error) return { error: weekDays.error };
+      const monthDays = parsePositive(monthDaysInput, '月の勤務日数', true);
+      if (monthDays.error) return { error: monthDays.error };
+      if (weekDays.value === null && monthDays.value === null) {
+        return { error: '週の勤務日数、または月の勤務日数を入力してください。' };
+      }
+      if (weekDays.value !== null && weekDays.value > 7) {
+        return { error: '週の勤務日数は7日以内で入力してください。' };
+      }
+      if (monthDays.value !== null && monthDays.value > 31) {
+        return { error: '月の勤務日数は31日以内で入力してください。' };
+      }
+      if (hours.value > 24) {
+        return { error: '1日の勤務時間は24時間以内で入力してください。' };
+      }
+      return { wage: wage.value, hours: hours.value, weekDays: weekDays.value, monthDays: monthDays.value };
+    }
+
+    function calculateHourlyWage(event) {
+      event.preventDefault();
+      errorMessage.textContent = '';
+      document.getElementById('copyMessage').textContent = '';
+      const data = validateInputs();
+      if (data.error) {
+        errorMessage.textContent = data.error;
+        resultCard.hidden = true;
+        latestResult = null;
+        return;
+      }
+
+      const daily = data.wage * data.hours;
+      const effectiveWeekDays = data.weekDays ?? data.monthDays / 4.3;
+      const effectiveMonthDays = data.monthDays ?? data.weekDays * 4.3;
+      const weekly = daily * effectiveWeekDays;
+      const monthly = daily * effectiveMonthDays;
+      const yearly = monthly * 12;
+      const isEstimatedMonth = data.monthDays === null;
+
+      latestResult = { ...data, daily, weekly, monthly, yearly, effectiveWeekDays, effectiveMonthDays, isEstimatedMonth };
+      document.getElementById('dailyIncome').textContent = formatYen(daily);
+      document.getElementById('weeklyIncome').textContent = formatYen(weekly);
+      document.getElementById('monthlyIncome').textContent = `約${formatYen(monthly)}`;
+      document.getElementById('yearlyIncome').textContent = `約${formatYen(yearly)}`;
+      document.getElementById('monthlyDaysUsed').textContent = `${effectiveMonthDays.toLocaleString('ja-JP', { maximumFractionDigits: 1 })}日${isEstimatedMonth ? '（概算）' : ''}`;
+      document.getElementById('estimateNote').textContent = isEstimatedMonth
+        ? '月の勤務日数は「週の勤務日数 × 4.3週」で概算しています。'
+        : '入力された月の勤務日数をもとに計算しています。';
+      resultCard.hidden = false;
+      resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function resetAll() {
+      form.reset();
+      weekDaysInput.value = '5';
+      errorMessage.textContent = '';
+      document.getElementById('copyMessage').textContent = '';
+      resultCard.hidden = true;
+      latestResult = null;
+      wageInput.focus();
+    }
+
+    async function copyResult() {
+      if (!latestResult) return;
+      const monthNote = latestResult.isEstimatedMonth ? '（週の勤務日数×4.3週で概算）' : '';
+      const text = `【ゴマツール 時給計算結果】\n時給：${formatYen(latestResult.wage)}\n1日の勤務時間：${latestResult.hours}時間\n週の勤務日数：約${latestResult.effectiveWeekDays.toLocaleString('ja-JP', { maximumFractionDigits: 1 })}日\n月の勤務日数：約${latestResult.effectiveMonthDays.toLocaleString('ja-JP', { maximumFractionDigits: 1 })}日${monthNote}\n日給：${formatYen(latestResult.daily)}\n週給：${formatYen(latestResult.weekly)}\n月収：約${formatYen(latestResult.monthly)}\n年収：約${formatYen(latestResult.yearly)}`;
+      try {
+        await navigator.clipboard.writeText(text);
+        document.getElementById('copyMessage').textContent = 'コピーしました。';
+      } catch (error) {
+        document.getElementById('copyMessage').textContent = 'コピーできませんでした。手動で選択してコピーしてください。';
+      }
+    }
+
+    form.addEventListener('submit', calculateHourlyWage);
+    document.getElementById('resetButton').addEventListener('click', resetAll);
+    document.getElementById('copyButton').addEventListener('click', copyResult);
+  </script>
+</body>
+</html>

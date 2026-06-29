@@ -158,6 +158,37 @@
       <ul class="money-series-list">${items}</ul>`;
   }
 
+  /* =========================================================
+     仕事・テキストシリーズ 共通リンク
+     公開ツールを追加するときは、この配列だけを更新します。
+  ========================================================= */
+  const workSeriesTools = [
+    { id: 'text-format', icon: '📝', name: 'テキスト整形ツール', path: 'tools/text-format.html' },
+    { id: 'work-time', icon: '⏰', name: '勤務時間計算ツール', path: 'tools/work-time.html' },
+    { id: 'hourly-wage', icon: '💴', name: '時給計算ツール', path: 'tools/hourly-wage.html' }
+  ];
+
+  function createWorkSeries(paths) {
+    const section = document.querySelector('[data-work-series]');
+    if (!section) return;
+
+    const current = section.dataset.current;
+    const items = workSeriesTools.map(tool => {
+      if (tool.id === current) {
+        return `<li><span class="work-series-current" aria-current="page"><span aria-hidden="true">✓</span> ${tool.icon} ${tool.name}<small>現在閲覧中</small></span></li>`;
+      }
+      return `<li><a href="${paths.home}${tool.path}">${tool.icon} ${tool.name}</a></li>`;
+    }).join('');
+
+    section.className = 'work-series-card';
+    section.setAttribute('aria-labelledby', 'work-series-title');
+    section.innerHTML = `
+      <h2 id="work-series-title">💼 仕事・テキストシリーズ</h2>
+      <p>仕事・テキストシリーズでは、文章作業や勤務時間、時給の目安などを無料で簡単に確認できます。</p>
+      <p>目的に合わせて他のツールもぜひご利用ください。</p>
+      <ul class="work-series-list">${items}</ul>`;
+  }
+
   function initializeCommonUI() {
     const paths = getPaths();
     document.documentElement.classList.add('goma-ui-v11');
@@ -166,6 +197,7 @@
     createHealthSeries(paths);
     createSchoolSeries(paths);
     createMoneySeries(paths);
+    createWorkSeries(paths);
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initializeCommonUI);
