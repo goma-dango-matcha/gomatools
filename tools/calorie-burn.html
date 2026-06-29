@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8BNDHPNEHY"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-8BNDHPNEHY');</script>
+  <!-- SEO -->
+  <title>消費カロリー計算ツール｜運動で消費するカロリーを無料計算</title>
+  <meta name="description" content="体重・運動時間・運動内容を入力するだけで、運動による消費カロリーの目安を無料で計算できます。">
+  <link rel="canonical" href="https://goma-dango-matcha.github.io/gomatools/tools/calorie-burn.html">
+  <!-- OGP / Twitter Card -->
+  <meta property="og:locale" content="ja_JP"><meta property="og:type" content="website"><meta property="og:site_name" content="ゴマツール">
+  <meta property="og:title" content="消費カロリー計算ツール｜ゴマツール"><meta property="og:description" content="運動による消費カロリーを簡単に計算できます。">
+  <meta property="og:url" content="https://goma-dango-matcha.github.io/gomatools/tools/calorie-burn.html"><meta property="og:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png"><meta property="og:image:secure_url" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="ゴマツール — 一歩便利を、毎日の暮らしに。">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="消費カロリー計算ツール｜ゴマツール"><meta name="twitter:description" content="運動による消費カロリーを簡単に計算できます。"><meta name="twitter:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png"><meta name="twitter:image:alt" content="ゴマツール — 一歩便利を、毎日の暮らしに。">
+  <!-- ブランドアイコン -->
+  <link rel="icon" href="../favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"><link rel="manifest" href="../site.webmanifest"><meta name="theme-color" content="#63843F">
+  <link rel="stylesheet" href="../css/style.css"><link rel="stylesheet" href="../assets/goma-ui.css"><script defer src="../assets/goma-ui.js"></script>
+</head>
+<body>
+  <!-- ====================== 共通ヘッダー ====================== -->
+  <header><div class="goma-header-inner"><div class="goma-brand-wrap"><a class="goma-brand" href="../">ゴマツール</a><p class="goma-brand-copy">無料で使える便利ツール集</p></div><a class="goma-home-button" href="../">🏠 ホームへ戻る</a></div></header>
+
+  <main class="burn-main"><div class="burn-container">
+    <!-- ====================== ヒーロー ====================== -->
+    <section class="burn-hero" aria-labelledby="page-title"><p class="burn-eyebrow">❤️ 健康・美容</p><h1 id="page-title">消費カロリー計算ツール</h1><p>運動の種類・体重・運動時間から、運動による消費カロリーの目安を計算できます。</p></section>
+
+    <!-- ====================== 入力フォーム ====================== -->
+    <section class="burn-card" aria-labelledby="input-title"><h2 id="input-title">運動内容を入力</h2><form id="burnForm" novalidate>
+      <div class="burn-field"><label for="activity">運動の種類</label><select id="activity"><option value="">選択してください</option></select></div>
+      <div class="burn-form-grid"><div class="burn-field"><label for="weight">体重（kg）</label><input id="weight" type="number" min="1" step="0.1" inputmode="decimal" placeholder="例：60"></div><div class="burn-field"><label for="hours">運動時間（時間）</label><input id="hours" type="number" min="0" step="1" inputmode="numeric" value="0"></div><div class="burn-field"><label for="minutes">運動時間（分）</label><input id="minutes" type="number" min="0" max="59" step="1" inputmode="numeric" value="0" placeholder="例：45"></div></div>
+      <p class="burn-hint" id="activityHint">運動を選ぶと強度の目安を表示します。</p><p class="burn-warning" id="valueWarning" hidden>入力内容を確認してください。</p><p class="burn-error" id="errorMessage" role="alert"></p>
+      <div class="burn-form-buttons"><button class="burn-primary" type="submit">計算する</button><button id="clearButton" type="button">クリア</button></div>
+    </form></section>
+
+    <!-- ====================== 計算結果 ====================== -->
+    <section class="burn-card burn-result" id="resultCard" aria-labelledby="result-title" aria-live="polite" hidden><h2 id="result-title">計算結果</h2>
+      <div class="burn-result-main"><span>消費カロリーの目安</span><strong>約<span id="calorieValue">—</span> <small>kcal</small></strong></div>
+      <div class="burn-summary-grid"><div><span>運動内容</span><strong id="activityLabel">—</strong></div><div><span>運動時間</span><strong id="durationLabel">—</strong></div><div><span>体重</span><strong id="weightLabel">—</strong></div></div>
+      <h3 class="burn-food-title">食品換算（目安）</h3><div class="burn-food-grid"><div><span>🍙 おにぎり</span><strong>約<span id="riceBallValue">—</span>個分</strong></div><div><span>🍞 食パン</span><strong>約<span id="breadValue">—</span>枚分</strong></div></div><p class="burn-food-note">※おにぎり1個約180kcal、食パン1枚約160kcalとして換算した目安です。</p>
+      <button class="burn-copy" id="copyButton" type="button">📋 結果をコピー</button><p class="burn-copy-message" id="copyMessage" role="status" aria-live="polite"></p>
+    </section>
+
+    <!-- ====================== 説明・注意事項 ====================== -->
+    <section class="burn-card burn-info" aria-labelledby="about-title"><h2 id="about-title">このツールについて</h2><p>運動内容・体重・運動時間から、運動による消費カロリーの目安を計算できます。計算には一般的なMETs（運動強度）の考え方を利用しています。</p><h2>注意事項</h2><p>表示される消費カロリーはあくまで目安です。年齢、筋肉量、運動強度、個人差によって実際の消費量は異なります。医療・診断目的ではなく、健康管理やダイエットの参考として利用してください。</p></section>
+
+    <!-- ====================== 関連ツール ====================== -->
+    <section class="burn-card burn-related" aria-labelledby="related-title"><h2 id="related-title">関連ツール</h2><div class="burn-related-links"><a href="../bmi/">❤️ BMI計算</a><a href="./bmr.html">🔥 BMR計算</a><a href="./tdee.html">🏃 TDEE計算</a><a href="./ideal-weight.html">⚖️ 適正体重計算</a></div></section>
+    <div class="back-to-top"><a class="top-button" href="../">🏠 トップへ戻る</a></div>
+  </div></main>
+
+  <!-- ====================== 共通フッター ====================== -->
+  <footer><div class="goma-footer-inner"><p class="goma-footer-logo">ゴマツール</p><p class="goma-footer-copy">30秒で使えて、他より少し便利。</p><nav class="goma-footer-nav" aria-label="フッターナビゲーション"><a href="../">🏠 ホーム</a><a href="../privacy/">📄 プライバシーポリシー</a><a href="../terms.html">📜 利用規約</a><a href="../faq.html">❓ FAQ</a><a href="../knowledge.html">🌱 ゴマ知識</a></nav><p class="goma-copyright">© 2026 Project Goma</p></div></footer>
+
+  <script>
+    'use strict';
+    const activities=[
+      {category:'ウォーキング',items:[{name:'ゆっくり歩く',mets:2.8},{name:'普通に歩く',mets:4.0},{name:'速歩き',mets:4.8}]},
+      {category:'ランニング',items:[{name:'軽いジョギング',mets:7.0},{name:'ランニング',mets:8.3}]},
+      {category:'その他の運動',items:[{name:'自転車',mets:6.8},{name:'水泳',mets:6.0},{name:'筋トレ',mets:3.5},{name:'ヨガ',mets:2.5},{name:'ストレッチ',mets:2.3},{name:'階段昇降',mets:8.8},{name:'縄跳び',mets:11.0}]},
+      {category:'家事',items:[{name:'掃除',mets:3.3},{name:'洗濯',mets:2.0},{name:'料理',mets:2.5}]}
+    ];
+    const form=document.getElementById('burnForm'),activityInput=document.getElementById('activity'),weightInput=document.getElementById('weight'),hoursInput=document.getElementById('hours'),minutesInput=document.getElementById('minutes'),errorMessage=document.getElementById('errorMessage'),valueWarning=document.getElementById('valueWarning'),resultCard=document.getElementById('resultCard');let latestResult=null;
+    function populateActivities(){activities.forEach(group=>{const optgroup=document.createElement('optgroup');optgroup.label=group.category;group.items.forEach(item=>{const option=document.createElement('option');option.value=String(item.mets);option.textContent=`${item.name}（${item.mets} METs）`;option.dataset.name=item.name;optgroup.appendChild(option)});activityInput.appendChild(optgroup)})}
+    function selectedActivity(){const option=activityInput.options[activityInput.selectedIndex];return option&&option.value?{name:option.dataset.name,mets:Number(option.value)}:null}
+    function validateInputs(){if(!activityInput.value||weightInput.value===''||hoursInput.value===''||minutesInput.value==='')return 'すべての項目を入力してください。';const weight=Number(weightInput.value),hours=Number(hoursInput.value),minutes=Number(minutesInput.value);if(!Number.isFinite(weight)||!Number.isFinite(hours)||!Number.isFinite(minutes))return '数値を正しく入力してください。';if(weight<=0)return '体重は1kg以上で入力してください。';if(hours<0||minutes<0)return '運動時間は0以上で入力してください。';if(!Number.isInteger(hours)||!Number.isInteger(minutes))return '運動時間は整数で入力してください。';if(minutes>=60)return '分は0〜59の範囲で入力してください。';if(hours*60+minutes<=0)return '運動時間を入力してください。';return ''}
+    function durationText(totalMinutes){const h=Math.floor(totalMinutes/60),m=totalMinutes%60;return h>0?`${h}時間${m>0?`${m}分`:''}`:`${m}分`}
+    function calculateBurn(event){event.preventDefault();errorMessage.textContent='';document.getElementById('copyMessage').textContent='';valueWarning.hidden=true;const error=validateInputs();if(error){errorMessage.textContent=error;resultCard.hidden=true;latestResult=null;return}const activity=selectedActivity(),weight=Number(weightInput.value),totalMinutes=Number(hoursInput.value)*60+Number(minutesInput.value),calories=Math.round(activity.mets*weight*(totalMinutes/60)*1.05),rice=calories/180,bread=calories/160;valueWarning.hidden=!(weight>=300||totalMinutes>=1440);latestResult={activity,weight,totalMinutes,calories,rice,bread};document.getElementById('calorieValue').textContent=calories.toLocaleString('ja-JP');document.getElementById('activityLabel').textContent=activity.name;document.getElementById('durationLabel').textContent=durationText(totalMinutes);document.getElementById('weightLabel').textContent=`${weight}kg`;document.getElementById('riceBallValue').textContent=rice.toFixed(1);document.getElementById('breadValue').textContent=bread.toFixed(1);resultCard.hidden=false;resultCard.scrollIntoView({behavior:'smooth',block:'nearest'})}
+    function clearForm(){form.reset();hoursInput.value='0';minutesInput.value='0';errorMessage.textContent='';valueWarning.hidden=true;document.getElementById('activityHint').textContent='運動を選ぶと強度の目安を表示します。';document.getElementById('copyMessage').textContent='';resultCard.hidden=true;latestResult=null}
+    async function copyResult(){if(!latestResult)return;const text=`【ゴマツール 消費カロリー計算結果】\n運動：${latestResult.activity.name}\n運動強度：${latestResult.activity.mets} METs\n体重：${latestResult.weight}kg\n運動時間：${durationText(latestResult.totalMinutes)}\n消費カロリー：約${latestResult.calories.toLocaleString('ja-JP')}kcal\nおにぎり：約${latestResult.rice.toFixed(1)}個分\n食パン：約${latestResult.bread.toFixed(1)}枚分`;try{await navigator.clipboard.writeText(text);document.getElementById('copyMessage').textContent='コピーしました。'}catch(error){document.getElementById('copyMessage').textContent='コピーできませんでした。手動で選択してコピーしてください。'}}
+    activityInput.addEventListener('change',()=>{const activity=selectedActivity();document.getElementById('activityHint').textContent=activity?`${activity.name}：${activity.mets} METs（運動強度の目安）`:'運動を選ぶと強度の目安を表示します。'});form.addEventListener('submit',calculateBurn);document.getElementById('clearButton').addEventListener('click',clearForm);document.getElementById('copyButton').addEventListener('click',copyResult);populateActivities();
+  </script>
+</body>
+</html>
