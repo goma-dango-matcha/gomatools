@@ -60,11 +60,45 @@
       </div>`;
   }
 
+  /* =========================================================
+     健康・美容シリーズ 共通リンク
+     新しい公開ツールは、この配列へ1件追加すると全対象ページへ反映されます。
+  ========================================================= */
+  const healthSeriesTools = [
+    { id: 'bmi', icon: '❤️', name: 'BMI計算ツール', path: 'bmi/' },
+    { id: 'bmr', icon: '🔥', name: '基礎代謝（BMR）計算ツール', path: 'tools/bmr.html' },
+    { id: 'tdee', icon: '🏃', name: '1日の消費カロリー（TDEE）計算ツール', path: 'tools/tdee.html' },
+    { id: 'ideal-weight', icon: '⚖️', name: '適正体重計算ツール', path: 'tools/ideal-weight.html' },
+    { id: 'calorie-burn', icon: '🔥', name: '消費カロリー計算ツール', path: 'tools/calorie-burn.html' }
+  ];
+
+  function createHealthSeries(paths) {
+    const section = document.querySelector('[data-health-series]');
+    if (!section) return;
+
+    const current = section.dataset.current;
+    const items = healthSeriesTools.map(tool => {
+      if (tool.id === current) {
+        return `<li><span class="health-series-current" aria-current="page"><span aria-hidden="true">✓</span> ${tool.icon} ${tool.name}<small>現在閲覧中</small></span></li>`;
+      }
+      return `<li><a href="${paths.home}${tool.path}">${tool.icon} ${tool.name}</a></li>`;
+    }).join('');
+
+    section.className = 'health-series-card';
+    section.setAttribute('aria-labelledby', 'health-series-title');
+    section.innerHTML = `
+      <h2 id="health-series-title">❤️ 健康・美容シリーズ</h2>
+      <p>健康・美容シリーズでは、BMIや基礎代謝、消費カロリーなどを無料で簡単に計算できます。</p>
+      <p>目的に合わせて他のツールもぜひご利用ください。</p>
+      <ul class="health-series-list">${items}</ul>`;
+  }
+
   function initializeCommonUI() {
     const paths = getPaths();
     document.documentElement.classList.add('goma-ui-v11');
     createHeader(paths);
     createFooter(paths);
+    createHealthSeries(paths);
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initializeCommonUI);

@@ -26,7 +26,7 @@
   <link rel="icon" href="../favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
   <link rel="manifest" href="../site.webmanifest"><meta name="theme-color" content="#63843F">
-  <link rel="stylesheet" href="../css/style.css"><link rel="stylesheet" href="../assets/goma-ui.css"><script defer src="../assets/goma-ui.js"></script>
+  <link rel="stylesheet" href="../css/style.css"><link rel="stylesheet" href="../assets/goma-ui.css?v=1.2"><script defer src="../assets/goma-ui.js?v=1.2"></script>
 </head>
 <body>
   <!-- ====================== 共通ヘッダー ====================== -->
@@ -78,11 +78,8 @@
       <p>結果は目安です。体格、筋肉量、生活習慣、健康状態などによって実際の消費エネルギーは変わります。医療・診断目的ではなく、健康管理やダイエットの参考として利用してください。</p>
     </section>
 
-    <!-- ====================== 関連ツール ====================== -->
-    <section class="bmr-card bmr-related" aria-labelledby="related-title">
-      <h2 id="related-title">関連ツール</h2><p>体格の目安も確認したい方はこちら。</p>
-      <a class="bmr-related-link" href="../bmi/">❤️ BMI計算ツールを使う</a>
-    </section>
+    <!-- 健康・美容シリーズ：内容は assets/goma-ui.js で一元管理 -->
+    <section data-health-series data-current="bmr"></section>
     <div class="back-to-top"><a class="top-button" href="../">🏠 トップへ戻る</a></div>
   </div></main>
 

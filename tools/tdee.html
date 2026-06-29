@@ -20,7 +20,7 @@
   <!-- ブランドアイコン -->
   <link rel="icon" href="../favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"><link rel="manifest" href="../site.webmanifest"><meta name="theme-color" content="#63843F">
-  <link rel="stylesheet" href="../css/style.css"><link rel="stylesheet" href="../assets/goma-ui.css"><script defer src="../assets/goma-ui.js"></script>
+  <link rel="stylesheet" href="../css/style.css"><link rel="stylesheet" href="../assets/goma-ui.css?v=1.2"><script defer src="../assets/goma-ui.js?v=1.2"></script>
 </head>
 <body>
   <!-- ====================== 共通ヘッダー ====================== -->
@@ -58,8 +58,8 @@
     <!-- ====================== 説明・注意事項 ====================== -->
     <section class="tdee-card tdee-info" aria-labelledby="about-title"><h2 id="about-title">このツールでできること</h2><p>年齢・性別・身長・体重・活動量を入力するだけで、1日の消費カロリーの目安を計算できます。TDEEは、基礎代謝に日常生活や運動による消費を加えた、1日に消費するエネルギー量の目安です。</p><h2>BMRとTDEEの違い</h2><p>BMRは生命維持のために消費されるエネルギー量、TDEEはBMRに日常活動や運動量を加えた総消費カロリーの目安です。</p><h2>注意事項</h2><p>結果は目安です。体格、筋肉量、生活習慣、健康状態などによって実際の消費エネルギーは変わります。医療・診断目的ではなく、健康管理やダイエットの参考として利用してください。</p></section>
 
-    <!-- ====================== 関連ツール ====================== -->
-    <section class="tdee-card tdee-related" aria-labelledby="related-title"><h2 id="related-title">関連ツール</h2><div class="tdee-related-links"><a href="../bmi/">❤️ BMI計算ツール</a><a href="./bmr.html">🔥 基礎代謝（BMR）計算ツール</a></div></section>
+    <!-- 健康・美容シリーズ：内容は assets/goma-ui.js で一元管理 -->
+    <section data-health-series data-current="tdee"></section>
     <div class="back-to-top"><a class="top-button" href="../">🏠 トップへ戻る</a></div>
   </div></main>
 
