@@ -123,6 +123,41 @@
       <ul class="school-series-list">${items}</ul>`;
   }
 
+  /* =========================================================
+     お金・計算シリーズ 共通リンク
+     公開ツールを追加するときは、この配列だけを更新します。
+  ========================================================= */
+  const moneySeriesTools = [
+    { id: 'tax', icon: '💰', name: '消費税計算', path: 'tax/' },
+    { id: 'warikan', icon: '👥', name: '割り勘計算', path: 'warikan/' },
+    { id: 'compound-interest', icon: '📈', name: '複利計算', path: 'compound-interest/' },
+    { id: 'discount-calculator', icon: '💹', name: '割引率計算ツール', path: 'discount-calculator/' },
+    { id: 'interest-calculator', icon: '💴', name: '利息計算ツール', path: 'interest-calculator/' },
+    { id: 'net-income-calculator', icon: '💵', name: '手取り・税込逆算ツール', path: 'net-income-calculator/' },
+    { id: 'percentage-calculator', icon: '％', name: 'パーセント計算ツール', path: 'tools/percentage-calculator.html' }
+  ];
+
+  function createMoneySeries(paths) {
+    const section = document.querySelector('[data-money-series]');
+    if (!section) return;
+
+    const current = section.dataset.current;
+    const items = moneySeriesTools.map(tool => {
+      if (tool.id === current) {
+        return `<li><span class="money-series-current" aria-current="page"><span aria-hidden="true">✓</span> ${tool.icon} ${tool.name}<small>現在閲覧中</small></span></li>`;
+      }
+      return `<li><a href="${paths.home}${tool.path}">${tool.icon} ${tool.name}</a></li>`;
+    }).join('');
+
+    section.className = 'money-series-card';
+    section.setAttribute('aria-labelledby', 'money-series-title');
+    section.innerHTML = `
+      <h2 id="money-series-title">💰 お金・計算シリーズ</h2>
+      <p>お金・計算シリーズでは、税金や割引、利息、割合などを無料で簡単に計算できます。</p>
+      <p>目的に合わせて他のツールもぜひご利用ください。</p>
+      <ul class="money-series-list">${items}</ul>`;
+  }
+
   function initializeCommonUI() {
     const paths = getPaths();
     document.documentElement.classList.add('goma-ui-v11');
@@ -130,6 +165,7 @@
     createFooter(paths);
     createHealthSeries(paths);
     createSchoolSeries(paths);
+    createMoneySeries(paths);
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initializeCommonUI);

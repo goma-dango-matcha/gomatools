@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8BNDHPNEHY"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-8BNDHPNEHY');</script>
+  <!-- SEO -->
+  <title>パーセント計算ツール｜○％・何％・増減を無料で簡単計算</title>
+  <meta name="description" content="○％は？・何％？・○％増加・○％減少・元の数値の逆算まで対応した無料のパーセント計算ツールです。">
+  <link rel="canonical" href="https://goma-dango-matcha.github.io/gomatools/tools/percentage-calculator.html">
+  <!-- OGP / Twitter Card -->
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ゴマツール">
+  <meta property="og:title" content="パーセント計算ツール｜ゴマツール">
+  <meta property="og:description" content="パーセント計算をまとめて行える無料ツールです。">
+  <meta property="og:url" content="https://goma-dango-matcha.github.io/gomatools/tools/percentage-calculator.html">
+  <meta property="og:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta property="og:image:secure_url" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ゴマツール — 一歩便利を、毎日の暮らしに。">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="パーセント計算ツール｜ゴマツール">
+  <meta name="twitter:description" content="パーセント計算をまとめて行える無料ツールです。">
+  <meta name="twitter:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta name="twitter:image:alt" content="ゴマツール — 一歩便利を、毎日の暮らしに。">
+  <!-- ブランドアイコン -->
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <meta name="theme-color" content="#63843F">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../assets/goma-ui.css?v=1.4">
+  <script defer src="../assets/goma-ui.js?v=1.4"></script>
+</head>
+<body>
+  <!-- ====================== 共通ヘッダー ====================== -->
+  <header>
+    <div class="goma-header-inner">
+      <div class="goma-brand-wrap">
+        <a class="goma-brand" href="../">ゴマツール</a>
+        <p class="goma-brand-copy">無料で使える便利ツール集</p>
+      </div>
+      <a class="goma-home-button" href="../">🏠 ホームへ戻る</a>
+    </div>
+  </header>
+
+  <main class="percentage-main">
+    <div class="percentage-container">
+      <!-- ====================== ヒーロー ====================== -->
+      <section class="percentage-hero" aria-labelledby="page-title">
+        <p class="percentage-eyebrow">💰 お金・計算</p>
+        <h1 id="page-title">パーセント計算ツール</h1>
+        <p>「○％は？」「何％？」「○％増減」など、パーセント計算をまとめて行える無料ツールです。</p>
+      </section>
+
+      <!-- ====================== 計算フォーム ====================== -->
+      <section class="percentage-card" aria-labelledby="calculator-title">
+        <h2 id="calculator-title">計算方法を選ぶ</h2>
+        <div class="percentage-tabs" role="tablist" aria-label="パーセント計算の種類">
+          <button type="button" role="tab" aria-selected="true" data-mode="part">○％は？</button>
+          <button type="button" role="tab" aria-selected="false" data-mode="ratio">何％？</button>
+          <button type="button" role="tab" aria-selected="false" data-mode="increase">○％増やす</button>
+          <button type="button" role="tab" aria-selected="false" data-mode="decrease">○％減らす</button>
+          <button type="button" role="tab" aria-selected="false" data-mode="reverse-up">増加前を逆算</button>
+          <button type="button" role="tab" aria-selected="false" data-mode="reverse-down">減少前を逆算</button>
+        </div>
+
+        <form id="percentageForm" novalidate>
+          <p class="percentage-form-title" id="modeDescription">数値のうち、指定したパーセントにあたる値を計算します。</p>
+          <div class="percentage-form-grid">
+            <div class="percentage-field">
+              <label for="valueA" id="labelA">数値</label>
+              <input id="valueA" type="number" step="any" inputmode="decimal" placeholder="例：1000">
+            </div>
+            <div class="percentage-field">
+              <label for="valueB" id="labelB">パーセント（％）</label>
+              <input id="valueB" type="number" step="any" inputmode="decimal" placeholder="例：20">
+            </div>
+          </div>
+          <p class="percentage-error" id="errorMessage" role="alert"></p>
+          <div class="percentage-form-buttons">
+            <button class="percentage-primary" type="submit">計算する</button>
+            <button id="resetButton" type="button">リセット</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- ====================== 計算結果 ====================== -->
+      <section class="percentage-card percentage-result" id="resultCard" aria-labelledby="result-title" aria-live="polite" hidden>
+        <h2 id="result-title">計算結果</h2>
+        <div class="percentage-result-main">
+          <span id="resultLabel">結果</span>
+          <strong id="resultValue">—</strong>
+        </div>
+        <div class="percentage-formula">
+          <span>使用した式</span>
+          <strong id="formulaText">—</strong>
+        </div>
+        <button class="percentage-copy" id="copyButton" type="button">📋 結果をコピー</button>
+        <p class="percentage-copy-message" id="copyMessage" role="status" aria-live="polite"></p>
+      </section>
+
+      <!-- ====================== 説明・注意事項 ====================== -->
+      <section class="percentage-card percentage-info" aria-labelledby="about-title">
+        <h2 id="about-title">このツールについて</h2>
+        <p>このツールでは、パーセントに関する代表的な計算を1ページで行えます。買い物・仕事・勉強・家計管理など、日常生活のさまざまな場面で活用できます。</p>
+        <h2>できること</h2>
+        <ul>
+          <li>数値の○％を計算</li>
+          <li>2つの数値から割合を計算</li>
+          <li>○％増加・○％減少した値を計算</li>
+          <li>増減後の値から元の数値を逆算</li>
+        </ul>
+        <h2>注意事項</h2>
+        <p>計算結果は入力値をもとに算出したものです。画面では読みやすい桁数に丸めて表示するため、小数点以下の表示が計算途中の値と異なる場合があります。</p>
+      </section>
+
+      <!-- お金・計算シリーズ：内容は assets/goma-ui.js で一元管理 -->
+      <section data-money-series data-current="percentage-calculator"></section>
+      <div class="back-to-top"><a class="top-button" href="../">🏠 トップへ戻る</a></div>
+    </div>
+  </main>
+
+  <!-- ====================== 共通フッター ====================== -->
+  <footer>
+    <div class="goma-footer-inner">
+      <p class="goma-footer-logo">ゴマツール</p>
+      <p class="goma-footer-copy">30秒で使えて、他より少し便利。</p>
+      <nav class="goma-footer-nav" aria-label="フッターナビゲーション">
+        <a href="../">🏠 ホーム</a>
+        <a href="../privacy/">📄 プライバシーポリシー</a>
+        <a href="../terms.html">📜 利用規約</a>
+        <a href="../faq.html">❓ FAQ</a>
+        <a href="../knowledge.html">🌱 ゴマ知識</a>
+      </nav>
+      <p class="goma-copyright">© 2026 Project Goma</p>
+    </div>
+  </footer>
+
+  <script>
+    'use strict';
+
+    const modes = {
+      part: {
+        title: '数値のうち、指定したパーセントにあたる値を計算します。',
+        labelA: '数値',
+        labelB: 'パーセント（％）',
+        placeholderA: '例：1000',
+        placeholderB: '例：20',
+        resultLabel: '指定した割合の値'
+      },
+      ratio: {
+        title: '数値Aが数値Bの何パーセントかを計算します。',
+        labelA: '数値A',
+        labelB: '基準となる数値B',
+        placeholderA: '例：25',
+        placeholderB: '例：100',
+        resultLabel: '割合'
+      },
+      increase: {
+        title: '元の数値を、指定したパーセントだけ増やします。',
+        labelA: '元の数値',
+        labelB: '増加率（％）',
+        placeholderA: '例：1000',
+        placeholderB: '例：20',
+        resultLabel: '増加後の値'
+      },
+      decrease: {
+        title: '元の数値を、指定したパーセントだけ減らします。',
+        labelA: '元の数値',
+        labelB: '減少率（％）',
+        placeholderA: '例：1000',
+        placeholderB: '例：20',
+        resultLabel: '減少後の値'
+      },
+      'reverse-up': {
+        title: '○％アップした後の値から、増加前の元の値を逆算します。',
+        labelA: 'アップ後の値',
+        labelB: '増加率（％）',
+        placeholderA: '例：1200',
+        placeholderB: '例：20',
+        resultLabel: '増加前の元の値'
+      },
+      'reverse-down': {
+        title: '○％ダウンした後の値から、減少前の元の値を逆算します。',
+        labelA: 'ダウン後の値',
+        labelB: '減少率（％）',
+        placeholderA: '例：800',
+        placeholderB: '例：20',
+        resultLabel: '減少前の元の値'
+      }
+    };
+
+    const form = document.getElementById('percentageForm');
+    const valueAInput = document.getElementById('valueA');
+    const valueBInput = document.getElementById('valueB');
+    const resultCard = document.getElementById('resultCard');
+    const errorMessage = document.getElementById('errorMessage');
+    let currentMode = 'part';
+    let latestResult = null;
+
+    function formatNumber(value) {
+      if (!Number.isFinite(value)) return '—';
+      const rounded = Math.abs(value) < 1e-12 ? 0 : value;
+      return rounded.toLocaleString('ja-JP', { maximumFractionDigits: 10 });
+    }
+
+    function setMode(mode) {
+      currentMode = mode;
+      const config = modes[mode];
+      document.querySelectorAll('[data-mode]').forEach(button => {
+        button.setAttribute('aria-selected', String(button.dataset.mode === mode));
+      });
+      document.getElementById('modeDescription').textContent = config.title;
+      document.getElementById('labelA').textContent = config.labelA;
+      document.getElementById('labelB').textContent = config.labelB;
+      valueAInput.placeholder = config.placeholderA;
+      valueBInput.placeholder = config.placeholderB;
+      errorMessage.textContent = '';
+      document.getElementById('copyMessage').textContent = '';
+      resultCard.hidden = true;
+      latestResult = null;
+    }
+
+    function validateInputs() {
+      if (valueAInput.value === '' || valueBInput.value === '') {
+        return { error: '2つの入力欄をどちらも入力してください。' };
+      }
+      const a = Number(valueAInput.value);
+      const b = Number(valueBInput.value);
+      if (!Number.isFinite(a) || !Number.isFinite(b)) {
+        return { error: '数値を入力してください。' };
+      }
+      if (currentMode === 'ratio' && b === 0) {
+        return { error: '基準となる数値Bは0以外を入力してください。' };
+      }
+      if (currentMode === 'reverse-up' && 1 + b / 100 === 0) {
+        return { error: '-100％アップ後の値から元の値は逆算できません。' };
+      }
+      if (currentMode === 'reverse-down' && 1 - b / 100 === 0) {
+        return { error: '100％ダウン後の値から元の値は逆算できません。' };
+      }
+      return { a, b };
+    }
+
+    function getCalculation(a, b) {
+      const percent = b / 100;
+      switch (currentMode) {
+        case 'part':
+          return { value: a * percent, formula: `${formatNumber(a)} × ${formatNumber(b)} ÷ 100` };
+        case 'ratio':
+          return { value: a / b * 100, formula: `${formatNumber(a)} ÷ ${formatNumber(b)} × 100`, suffix: '%' };
+        case 'increase':
+          return { value: a * (1 + percent), formula: `${formatNumber(a)} ×（1 ＋ ${formatNumber(b)} ÷ 100）` };
+        case 'decrease':
+          return { value: a * (1 - percent), formula: `${formatNumber(a)} ×（1 − ${formatNumber(b)} ÷ 100）` };
+        case 'reverse-up':
+          return { value: a / (1 + percent), formula: `${formatNumber(a)} ÷（1 ＋ ${formatNumber(b)} ÷ 100）` };
+        case 'reverse-down':
+          return { value: a / (1 - percent), formula: `${formatNumber(a)} ÷（1 − ${formatNumber(b)} ÷ 100）` };
+        default:
+          return null;
+      }
+    }
+
+    function calculatePercentage(event) {
+      event.preventDefault();
+      errorMessage.textContent = '';
+      document.getElementById('copyMessage').textContent = '';
+      const input = validateInputs();
+      if (input.error) {
+        errorMessage.textContent = input.error;
+        resultCard.hidden = true;
+        latestResult = null;
+        return;
+      }
+      const calculation = getCalculation(input.a, input.b);
+      if (!calculation || !Number.isFinite(calculation.value)) {
+        errorMessage.textContent = '計算できませんでした。入力内容を確認してください。';
+        resultCard.hidden = true;
+        latestResult = null;
+        return;
+      }
+      const config = modes[currentMode];
+      const resultText = `${formatNumber(calculation.value)}${calculation.suffix || ''}`;
+      latestResult = { label: config.resultLabel, resultText, formula: calculation.formula };
+      document.getElementById('resultLabel').textContent = config.resultLabel;
+      document.getElementById('resultValue').textContent = resultText;
+      document.getElementById('formulaText').textContent = calculation.formula;
+      resultCard.hidden = false;
+      resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function resetAll() {
+      form.reset();
+      setMode('part');
+      valueAInput.focus();
+    }
+
+    async function copyResult() {
+      if (!latestResult) return;
+      const text = `【ゴマツール パーセント計算結果】\n${latestResult.label}：${latestResult.resultText}\n計算式：${latestResult.formula}`;
+      try {
+        await navigator.clipboard.writeText(text);
+        document.getElementById('copyMessage').textContent = 'コピーしました。';
+      } catch (error) {
+        document.getElementById('copyMessage').textContent = 'コピーできませんでした。手動で選択してコピーしてください。';
+      }
+    }
+
+    document.querySelectorAll('[data-mode]').forEach(button => {
+      button.addEventListener('click', () => setMode(button.dataset.mode));
+    });
+    form.addEventListener('submit', calculatePercentage);
+    document.getElementById('resetButton').addEventListener('click', resetAll);
+    document.getElementById('copyButton').addEventListener('click', copyResult);
+  </script>
+</body>
+</html>
