@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8BNDHPNEHY"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-8BNDHPNEHY');</script>
+  <!-- SEO -->
+  <title>成績計算ツール｜平均点・加重平均を無料で簡単計算</title>
+  <meta name="description" content="テストや課題の得点・満点・重みを入力するだけで、平均点や最終成績を簡単に計算できる無料ツールです。">
+  <link rel="canonical" href="https://goma-dango-matcha.github.io/gomatools/tools/grade-calculator.html">
+  <!-- OGP / Twitter Card -->
+  <meta property="og:locale" content="ja_JP"><meta property="og:type" content="website"><meta property="og:site_name" content="ゴマツール">
+  <meta property="og:title" content="成績計算ツール｜ゴマツール"><meta property="og:description" content="テストや課題の成績を簡単に計算できます。">
+  <meta property="og:url" content="https://goma-dango-matcha.github.io/gomatools/tools/grade-calculator.html"><meta property="og:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png"><meta property="og:image:secure_url" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="ゴマツール — 一歩便利を、毎日の暮らしに。">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="成績計算ツール｜ゴマツール"><meta name="twitter:description" content="テストや課題の成績を簡単に計算できます。"><meta name="twitter:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png"><meta name="twitter:image:alt" content="ゴマツール — 一歩便利を、毎日の暮らしに。">
+  <!-- ブランドアイコン -->
+  <link rel="icon" href="../favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"><link rel="manifest" href="../site.webmanifest"><meta name="theme-color" content="#63843F">
+  <link rel="stylesheet" href="../css/style.css"><link rel="stylesheet" href="../assets/goma-ui.css"><script defer src="../assets/goma-ui.js"></script>
+</head>
+<body>
+  <!-- ====================== 共通ヘッダー ====================== -->
+  <header><div class="goma-header-inner"><div class="goma-brand-wrap"><a class="goma-brand" href="../">ゴマツール</a><p class="goma-brand-copy">無料で使える便利ツール集</p></div><a class="goma-home-button" href="../">🏠 ホームへ戻る</a></div></header>
+
+  <main class="grade-main"><div class="grade-container">
+    <!-- ====================== ヒーロー ====================== -->
+    <section class="grade-hero" aria-labelledby="page-title"><p class="grade-eyebrow">🎓 学校・教育</p><h1 id="page-title">成績計算ツール</h1><p>テスト・課題・レポートなどの点数や配点から、合計点や平均点を簡単に計算できます。</p></section>
+
+    <!-- ====================== 入力フォーム ====================== -->
+    <section class="grade-card" aria-labelledby="input-title"><div class="grade-heading-row"><div><h2 id="input-title">評価項目を入力</h2><p>空の行は計算から除外します。重みを使う場合は、入力する全項目へ設定してください。</p></div><button class="grade-add" id="addButton" type="button">＋ 項目追加</button></div>
+      <form id="gradeForm" novalidate><div class="grade-table-head" aria-hidden="true"><span>項目名（任意）</span><span>得点</span><span>満点</span><span>重み（%・任意）</span><span>削除</span></div><div id="gradeRows"></div><p class="grade-error" id="errorMessage" role="alert"></p><div class="grade-form-buttons"><button class="grade-primary" type="submit">計算する</button><button id="resetButton" type="button">リセット</button></div></form>
+    </section>
+
+    <!-- ====================== 計算結果 ====================== -->
+    <section class="grade-card grade-result" id="resultCard" aria-labelledby="result-title" aria-live="polite" hidden><h2 id="result-title">計算結果</h2>
+      <div class="grade-result-main"><span id="mainResultLabel">得点率</span><strong id="mainResult">—</strong></div>
+      <div class="grade-result-grid"><div><span>合計得点</span><strong id="totalScore">—</strong></div><div><span>合計満点</span><strong id="totalMax">—</strong></div><div><span>平均点</span><strong id="averageScore">—</strong></div><div><span>得点率</span><strong id="scoreRate">—</strong></div><div id="weightedItem" hidden><span>加重平均</span><strong id="weightedAverage">—</strong></div><div id="weightTotalItem" hidden><span>重み合計</span><strong id="weightTotal">—</strong></div></div>
+      <div class="grade-rating"><span>評価</span><strong id="ratingStars">—</strong><p id="ratingText"></p></div>
+      <button class="grade-copy" id="copyButton" type="button">📋 結果をコピー</button><p class="grade-copy-message" id="copyMessage" role="status" aria-live="polite"></p>
+    </section>
+
+    <!-- ====================== 説明・注意事項 ====================== -->
+    <section class="grade-card grade-info" aria-labelledby="about-title"><h2 id="about-title">このツールについて</h2><p>テスト・課題・レポートなど複数の評価項目から、平均点や加重平均を計算できます。学校だけでなく、資格試験や研修などにも利用できます。</p><h2>通常平均と加重平均</h2><p>重みを入力しない場合は通常の合計・平均・得点率を表示します。重みを入力した場合は、各項目の得点率に重みを反映した加重平均も表示します。</p><h2>注意事項</h2><p>学校ごとに評価方法や計算方法が異なる場合があります。このツールは一般的な計算の補助として利用してください。</p></section>
+    <div class="back-to-top"><a class="top-button" href="../">🏠 トップへ戻る</a></div>
+  </div></main>
+
+  <!-- ====================== 共通フッター ====================== -->
+  <footer><div class="goma-footer-inner"><p class="goma-footer-logo">ゴマツール</p><p class="goma-footer-copy">30秒で使えて、他より少し便利。</p><nav class="goma-footer-nav" aria-label="フッターナビゲーション"><a href="../">🏠 ホーム</a><a href="../privacy/">📄 プライバシーポリシー</a><a href="../terms.html">📜 利用規約</a><a href="../faq.html">❓ FAQ</a><a href="../knowledge.html">🌱 ゴマ知識</a></nav><p class="goma-copyright">© 2026 Project Goma</p></div></footer>
+
+  <script>
+    'use strict';
+    const INITIAL_ROWS=5,rowsContainer=document.getElementById('gradeRows'),form=document.getElementById('gradeForm'),errorMessage=document.getElementById('errorMessage'),resultCard=document.getElementById('resultCard');let rowSequence=0,latestResult=null;
+    const ratings=[{min:90,stars:'★★★★★',text:'非常に良い'},{min:80,stars:'★★★★☆',text:'良い'},{min:70,stars:'★★★☆☆',text:'まずまず'},{min:60,stars:'★★☆☆☆',text:'もう少し'},{min:0,stars:'★☆☆☆☆',text:'復習してみましょう'}];
+    function createRow(){rowSequence+=1;const row=document.createElement('div');row.className='grade-row';row.dataset.row=String(rowSequence);row.innerHTML=`<div class="grade-row-number">項目 ${rowSequence}</div><label><span>項目名</span><input class="grade-name" type="text" placeholder="例：中間テスト" aria-label="項目${rowSequence}の項目名"></label><label><span>得点</span><input class="grade-score" type="number" min="0" step="0.1" inputmode="decimal" placeholder="例：80" aria-label="項目${rowSequence}の得点"></label><label><span>満点</span><input class="grade-max" type="number" min="0.1" step="0.1" inputmode="decimal" placeholder="例：100" aria-label="項目${rowSequence}の満点"></label><label><span>重み（%）</span><input class="grade-weight" type="number" min="0" max="100" step="0.1" inputmode="decimal" placeholder="任意" aria-label="項目${rowSequence}の重み"></label><button class="grade-remove" type="button" aria-label="項目${rowSequence}を削除">削除</button>`;row.querySelector('.grade-remove').addEventListener('click',()=>removeRow(row));rowsContainer.appendChild(row)}
+    function removeRow(row){if(rowsContainer.children.length===1){errorMessage.textContent='項目は1行以上必要です。';return}row.remove();errorMessage.textContent=''}
+    function resetAll(){rowsContainer.innerHTML='';rowSequence=0;for(let i=0;i<INITIAL_ROWS;i+=1)createRow();errorMessage.textContent='';document.getElementById('copyMessage').textContent='';resultCard.hidden=true;latestResult=null}
+    function readRows(){return [...rowsContainer.querySelectorAll('.grade-row')].map((row,index)=>({index:index+1,name:row.querySelector('.grade-name').value.trim(),scoreText:row.querySelector('.grade-score').value,maxText:row.querySelector('.grade-max').value,weightText:row.querySelector('.grade-weight').value}))}
+    function validateRows(rows){const used=rows.filter(row=>row.name||row.scoreText!==''||row.maxText!==''||row.weightText!=='');if(used.length===0)return{error:'得点と満点を1項目以上入力してください。'};const anyWeight=used.some(row=>row.weightText!=='');for(const row of used){if(row.scoreText==='')return{error:`項目${row.index}の得点を入力してください。`};if(row.maxText==='')return{error:`項目${row.index}の満点を入力してください。`};const score=Number(row.scoreText),max=Number(row.maxText);if(!Number.isFinite(score)||!Number.isFinite(max))return{error:`項目${row.index}は数値で入力してください。`};if(score<0)return{error:`項目${row.index}の得点は0以上で入力してください。`};if(max<=0)return{error:`項目${row.index}の満点は0より大きい数値を入力してください。`};if(score>max)return{error:`項目${row.index}の得点が満点を超えています。`};if(anyWeight&&row.weightText==='')return{error:`項目${row.index}の重みを入力してください。`};if(row.weightText!==''){const weight=Number(row.weightText);if(!Number.isFinite(weight)||weight<0)return{error:`項目${row.index}の重みは0以上で入力してください。`};row.weight=weight}row.score=score;row.max=max;row.name=row.name||`項目${row.index}`;}const weightTotal=anyWeight?used.reduce((sum,row)=>sum+row.weight,0):0;if(anyWeight&&weightTotal<=0)return{error:'重み合計は0%より大きくしてください。'};if(weightTotal>100.000001)return{error:'重み合計が100%を超えています。'};return{rows:used,anyWeight,weightTotal}}
+    function getRating(percent){return ratings.find(rating=>percent>=rating.min)}
+    function formatNumber(value){return Number.isInteger(value)?value.toLocaleString('ja-JP'):value.toLocaleString('ja-JP',{maximumFractionDigits:1})}
+    function calculateGrades(event){event.preventDefault();errorMessage.textContent='';document.getElementById('copyMessage').textContent='';const validation=validateRows(readRows());if(validation.error){errorMessage.textContent=validation.error;resultCard.hidden=true;latestResult=null;return}const rows=validation.rows,totalScore=rows.reduce((sum,row)=>sum+row.score,0),totalMax=rows.reduce((sum,row)=>sum+row.max,0),average=totalScore/rows.length,rate=totalScore/totalMax*100,weighted=validation.anyWeight?rows.reduce((sum,row)=>sum+(row.score/row.max*100)*row.weight,0)/validation.weightTotal:null,finalPercent=weighted??rate,rating=getRating(finalPercent);latestResult={rows,totalScore,totalMax,average,rate,weighted,weightTotal:validation.weightTotal,rating};document.getElementById('mainResultLabel').textContent=validation.anyWeight?'加重平均':'得点率';document.getElementById('mainResult').textContent=`${finalPercent.toFixed(1)}%`;document.getElementById('totalScore').textContent=`${formatNumber(totalScore)}点`;document.getElementById('totalMax').textContent=`${formatNumber(totalMax)}点`;document.getElementById('averageScore').textContent=`${formatNumber(average)}点`;document.getElementById('scoreRate').textContent=`${rate.toFixed(1)}%`;document.getElementById('weightedItem').hidden=!validation.anyWeight;document.getElementById('weightTotalItem').hidden=!validation.anyWeight;if(validation.anyWeight){document.getElementById('weightedAverage').textContent=`${weighted.toFixed(1)}%`;document.getElementById('weightTotal').textContent=`${formatNumber(validation.weightTotal)}%`;}document.getElementById('ratingStars').textContent=rating.stars;document.getElementById('ratingText').textContent=rating.text;resultCard.hidden=false;resultCard.scrollIntoView({behavior:'smooth',block:'nearest'})}
+    async function copyResult(){if(!latestResult)return;const itemLines=latestResult.rows.map(row=>`${row.name}：${formatNumber(row.score)} / ${formatNumber(row.max)}${row.weight!==undefined?`（重み${formatNumber(row.weight)}%）`:''}`).join('\n');let text=`【ゴマツール 成績計算結果】\n${itemLines}\n合計：${formatNumber(latestResult.totalScore)} / ${formatNumber(latestResult.totalMax)}\n平均点：${formatNumber(latestResult.average)}点\n得点率：${latestResult.rate.toFixed(1)}%`;if(latestResult.weighted!==null)text+=`\n加重平均：${latestResult.weighted.toFixed(1)}%\n重み合計：${formatNumber(latestResult.weightTotal)}%`;text+=`\n評価：${latestResult.rating.stars} ${latestResult.rating.text}`;try{await navigator.clipboard.writeText(text);document.getElementById('copyMessage').textContent='コピーしました。'}catch(error){document.getElementById('copyMessage').textContent='コピーできませんでした。手動で選択してコピーしてください。'}}
+    document.getElementById('addButton').addEventListener('click',createRow);document.getElementById('resetButton').addEventListener('click',resetAll);document.getElementById('copyButton').addEventListener('click',copyResult);form.addEventListener('submit',calculateGrades);resetAll();
+  </script>
+</body>
+</html>

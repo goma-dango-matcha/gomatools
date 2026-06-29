@@ -92,6 +92,7 @@
     .category-family { --category-color:#b95f7b; --category-soft:#fff0f5; }
     .category-health { --category-color:#b55667; --category-soft:#fff0f2; }
     .category-work { --category-color:#6f628f; --category-soft:#f4f0fb; }
+    .category-school { --category-color:#5577a1; --category-soft:#edf4fb; }
     .category-description { margin:-8px 0 20px; color:var(--muted); }
     .featured-tool { display: flex; flex-direction: column; align-items: stretch; min-height: 295px; padding: clamp(24px, 5vw, 34px); transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease; }
     .featured-tool:hover { transform: translateY(-4px); border-color: #c7d7be; box-shadow: 0 20px 48px rgba(48, 70, 36, .13); }
@@ -238,6 +239,11 @@
           <p class="discovery-note">最近公開した5つのツールです。</p>
           <div class="published-grid">
             <article class="card featured-tool">
+              <div class="tool-title-row"><h3 class="tool-title">🎓 成績計算ツール</h3><span class="highlight-badge">NEW</span></div>
+              <p class="tool-description">テストや課題の得点・満点・重みから、平均点や加重平均を計算できます。</p>
+              <a class="tool-button" href="./tools/grade-calculator.html">使ってみる</a>
+            </article>
+            <article class="card featured-tool">
               <div class="tool-title-row"><h3 class="tool-title">🔥 消費カロリー計算ツール</h3><span class="highlight-badge">NEW</span></div>
               <p class="tool-description">運動の種類・体重・運動時間から、消費カロリーの目安を計算できます。</p>
               <a class="tool-button" href="./tools/calorie-burn.html">使ってみる</a>
@@ -256,11 +262,6 @@
               <div class="tool-title-row"><h3 class="tool-title">🔥 基礎代謝（BMR）計算ツール</h3><span class="highlight-badge">NEW</span></div>
               <p class="tool-description">年齢・性別・身長・体重から、基礎代謝量の目安を計算できます。</p>
               <a class="tool-button" href="./tools/bmr.html">使ってみる</a>
-            </article>
-            <article class="card featured-tool">
-              <div class="tool-title-row"><h3 class="tool-title">⏰ 勤務時間計算ツール</h3><span class="highlight-badge">NEW</span></div>
-              <p class="tool-description">出勤・退勤・休憩時間から、実働時間と総拘束時間を計算できます。</p>
-              <a class="tool-button" href="./tools/work-time.html">使ってみる</a>
             </article>
           </div>
         </section>
@@ -562,6 +563,24 @@
         </section>
 
         <!-- ======================
+             学校・教育
+        ====================== -->
+        <section class="tool-category category-school" aria-labelledby="school-education-title">
+          <h2 class="category-heading" id="school-education-title">🎓 学校・教育 <span class="category-count">（1）</span></h2>
+          <p class="category-description">学習や試験、学校生活に役立つ計算ツールです。</p>
+          <div class="published-grid">
+            <article class="card featured-tool">
+              <div class="tool-title-row">
+                <h3 class="tool-title">🎓 成績計算ツール</h3>
+                <span class="status-live">公開中</span>
+              </div>
+              <p class="tool-description">テストや課題の得点・満点・重みから、平均点や加重平均を計算できます。</p>
+              <a class="tool-button" href="./tools/grade-calculator.html">使ってみる</a>
+            </article>
+          </div>
+        </section>
+
+        <!-- ======================
              仕事・テキスト
         ====================== -->
         <section class="tool-category category-work" aria-labelledby="work-text-title">
@@ -624,11 +643,11 @@
         <p class="section-lead">ゴマツールは、まだ始まったばかりです。</p>
         <div class="card roadmap-card">
           <div class="roadmap-stats">
-            <div class="roadmap-item"><span class="roadmap-label">現在公開中</span><strong class="roadmap-value">27ツール公開</strong></div>
+            <div class="roadmap-item"><span class="roadmap-label">現在公開中</span><strong class="roadmap-value">28ツール公開</strong></div>
             <div class="roadmap-item"><span class="roadmap-label">次に公開予定</span><strong class="roadmap-value">PFCバランス計算ツール</strong></div>
             <div class="roadmap-item"><span class="roadmap-label">次の目標</span><strong class="roadmap-value">30ツール公開</strong></div>
           </div>
-          <p class="roadmap-note">🎉 27ツールを公開中です。体格・代謝・活動量・運動の消費カロリーをまとめて確認できるシリーズへ育てています。</p>
+          <p class="roadmap-note">🎉 28ツールを公開中です。新しい学校・教育カテゴリも加え、学習や日々の記録に役立つツールを育てています。</p>
         </div>
       </section>
     </div>
