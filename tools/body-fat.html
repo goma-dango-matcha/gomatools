@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8BNDHPNEHY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8BNDHPNEHY');
+  </script>
+
+  <!-- SEO -->
+  <title>体脂肪率計算ツール｜BMIから無料で簡単計算</title>
+  <meta name="description" content="年齢・性別・身長・体重から推定体脂肪率を簡単に計算できる無料ツールです。">
+  <link rel="canonical" href="https://goma-dango-matcha.github.io/gomatools/tools/body-fat.html">
+
+  <!-- OGP / Twitter Card -->
+  <meta property="og:title" content="体脂肪率計算ツール｜ゴマツール">
+  <meta property="og:description" content="体脂肪率の目安を簡単に計算できます。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://goma-dango-matcha.github.io/gomatools/tools/body-fat.html">
+  <meta property="og:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta property="og:image:secure_url" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ゴマツール — 一歩便利を、毎日の暮らしに。">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="体脂肪率計算ツール｜ゴマツール">
+  <meta name="twitter:description" content="体脂肪率の目安を簡単に計算できます。">
+  <meta name="twitter:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta name="twitter:image:alt" content="ゴマツール — 一歩便利を、毎日の暮らしに。">
+
+  <!-- ブランドアイコン -->
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <meta name="theme-color" content="#63843F">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../assets/goma-ui.css?v=1.7">
+  <script defer src="../assets/goma-ui.js?v=1.7"></script>
+</head>
+<body>
+  <header></header>
+
+  <main class="bodyfat-main">
+    <div class="bodyfat-container">
+      <!-- ======================
+           ヒーロー
+      ====================== -->
+      <section class="bodyfat-hero" aria-labelledby="page-title">
+        <p class="bodyfat-eyebrow">❤️ 健康・美容</p>
+        <h1 id="page-title">体脂肪率計算ツール</h1>
+        <p>年齢・性別・身長・体重などから体脂肪率の目安を簡単に計算できます。</p>
+      </section>
+
+      <!-- ======================
+           入力フォーム
+      ====================== -->
+      <section class="bodyfat-card" aria-labelledby="input-title">
+        <h2 id="input-title">入力してください</h2>
+        <form id="bodyfatForm" novalidate>
+          <div class="bodyfat-form-grid">
+            <div class="bodyfat-field">
+              <label for="gender">性別</label>
+              <select id="gender" required>
+                <option value="">選択してください</option>
+                <option value="male">男性</option>
+                <option value="female">女性</option>
+              </select>
+            </div>
+            <div class="bodyfat-field">
+              <label for="age">年齢 <span>歳</span></label>
+              <input id="age" type="number" min="1" step="1" inputmode="numeric" placeholder="例：30" required>
+            </div>
+            <div class="bodyfat-field">
+              <label for="height">身長 <span>cm</span></label>
+              <input id="height" type="number" min="1" step="0.1" inputmode="decimal" placeholder="例：170" required>
+            </div>
+            <div class="bodyfat-field">
+              <label for="weight">体重 <span>kg</span></label>
+              <input id="weight" type="number" min="1" step="0.1" inputmode="decimal" placeholder="例：65" required>
+            </div>
+          </div>
+
+          <p class="bodyfat-hint">BMIは入力された身長・体重から自動計算します。ウエスト入力などの高精度な方式は今後追加予定です。</p>
+          <p class="bodyfat-error" id="errorMessage" role="alert" aria-live="polite"></p>
+          <p class="bodyfat-warning" id="valueWarning" hidden>入力値が大きいため、計算結果を確認してください。</p>
+
+          <div class="bodyfat-form-buttons">
+            <button class="bodyfat-primary" type="submit">計算する</button>
+            <button type="button" id="resetButton">リセット</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- ======================
+           結果表示
+      ====================== -->
+      <section class="bodyfat-card bodyfat-result" id="resultCard" aria-labelledby="result-title" aria-live="polite" hidden>
+        <h2 id="result-title">計算結果</h2>
+        <div class="bodyfat-result-main" id="resultMain">
+          <span>推定体脂肪率</span>
+          <strong><span id="bodyFatValue">--</span>%</strong>
+          <small id="judgeLabel">--</small>
+        </div>
+        <div class="bodyfat-result-grid">
+          <div>
+            <span>BMI</span>
+            <strong id="bmiValue">--</strong>
+          </div>
+          <div>
+            <span>判定</span>
+            <strong id="judgeValue">--</strong>
+          </div>
+          <div>
+            <span>計算方式</span>
+            <strong>Deurenberg式</strong>
+          </div>
+        </div>
+        <p class="bodyfat-message" id="resultMessage"></p>
+        <button class="bodyfat-copy" type="button" id="copyButton">📋 結果をコピー</button>
+        <p class="bodyfat-copy-message" id="copyMessage" aria-live="polite"></p>
+      </section>
+
+      <!-- ======================
+           説明・注意事項
+      ====================== -->
+      <section class="bodyfat-card bodyfat-info" aria-labelledby="about-title">
+        <h2 id="about-title">このツールについて</h2>
+        <p>このツールでは、年齢・性別・身長・体重から推定体脂肪率を計算できます。</p>
+        <p>BMIだけでは分かりにくい体組成の目安として活用できます。</p>
+
+        <h2>注意事項</h2>
+        <p>表示される体脂肪率は一般的な推定式による目安です。</p>
+        <p>実際の体脂肪率は体組成計や医療機関で測定した値とは異なる場合があります。</p>
+      </section>
+
+      <!-- 健康・美容シリーズ：内容は assets/goma-ui.js で一元管理 -->
+      <section data-health-series data-current="body-fat"></section>
+
+      <div class="back-to-top">
+        <a class="top-button" href="../">🏠 トップへ戻る</a>
+      </div>
+    </div>
+  </main>
+
+  <footer></footer>
+
+  <script>
+    'use strict';
+
+    const form = document.getElementById('bodyfatForm');
+    const genderInput = document.getElementById('gender');
+    const ageInput = document.getElementById('age');
+    const heightInput = document.getElementById('height');
+    const weightInput = document.getElementById('weight');
+    const errorMessage = document.getElementById('errorMessage');
+    const valueWarning = document.getElementById('valueWarning');
+    const resultCard = document.getElementById('resultCard');
+    let latestResult = null;
+
+    function round(value, digits) {
+      const scale = 10 ** digits;
+      return Math.round(value * scale) / scale;
+    }
+
+    function validateInputs() {
+      if (!genderInput.value || ageInput.value === '' || heightInput.value === '' || weightInput.value === '') {
+        return 'すべての項目を入力してください。';
+      }
+
+      const age = Number(ageInput.value);
+      const height = Number(heightInput.value);
+      const weight = Number(weightInput.value);
+
+      if (!Number.isFinite(age) || !Number.isFinite(height) || !Number.isFinite(weight)) {
+        return '数値を正しく入力してください。';
+      }
+      if (!Number.isInteger(age)) return '年齢は整数で入力してください。';
+      if (age <= 0) return '年齢は1歳以上で入力してください。';
+      if (height <= 0) return '身長は1cm以上で入力してください。';
+      if (weight <= 0) return '体重は1kg以上で入力してください。';
+      return '';
+    }
+
+    function judgeBodyFat(gender, bodyFat) {
+      if (gender === 'male') {
+        if (bodyFat < 10) return { label: '低い', className: 'is-low', message: '体脂肪率は低めの目安です。体調や筋肉量もあわせて確認しましょう。' };
+        if (bodyFat < 20) return { label: '標準', className: 'is-standard', message: '体脂肪率は標準的な目安です。' };
+        if (bodyFat < 25) return { label: 'やや高い', className: 'is-slightly-high', message: '体脂肪率はやや高めの目安です。生活習慣を見直すきっかけにできます。' };
+        return { label: '高い', className: 'is-high', message: '体脂肪率は高めの目安です。健康管理の参考として確認しましょう。' };
+      }
+
+      if (bodyFat < 20) return { label: '低い', className: 'is-low', message: '体脂肪率は低めの目安です。体調や筋肉量もあわせて確認しましょう。' };
+      if (bodyFat < 30) return { label: '標準', className: 'is-standard', message: '体脂肪率は標準的な目安です。' };
+      if (bodyFat < 35) return { label: 'やや高い', className: 'is-slightly-high', message: '体脂肪率はやや高めの目安です。生活習慣を見直すきっかけにできます。' };
+      return { label: '高い', className: 'is-high', message: '体脂肪率は高めの目安です。健康管理の参考として確認しましょう。' };
+    }
+
+    function calculateBodyFat(event) {
+      event.preventDefault();
+      errorMessage.textContent = '';
+      document.getElementById('copyMessage').textContent = '';
+      valueWarning.hidden = true;
+
+      const error = validateInputs();
+      if (error) {
+        errorMessage.textContent = error;
+        resultCard.hidden = true;
+        latestResult = null;
+        return;
+      }
+
+      const gender = genderInput.value;
+      const age = Number(ageInput.value);
+      const height = Number(heightInput.value);
+      const weight = Number(weightInput.value);
+      const heightM = height / 100;
+      const bmi = weight / (heightM * heightM);
+      const bodyFatRaw = 1.2 * bmi + 0.23 * age + (gender === 'male' ? -16.2 : -5.4);
+      const bodyFat = round(bodyFatRaw, 1);
+      const bmiRounded = round(bmi, 1);
+      const judge = judgeBodyFat(gender, bodyFat);
+
+      valueWarning.hidden = !(age >= 120 || height >= 250 || weight >= 300 || bodyFat < 0 || bodyFat > 70);
+      latestResult = { gender, age, height, weight, bmi: bmiRounded, bodyFat, judge };
+
+      document.getElementById('bodyFatValue').textContent = bodyFat.toFixed(1);
+      document.getElementById('bmiValue').textContent = bmiRounded.toFixed(1);
+      document.getElementById('judgeLabel').textContent = judge.label;
+      document.getElementById('judgeValue').textContent = judge.label;
+      document.getElementById('resultMessage').textContent = judge.message;
+
+      const main = document.getElementById('resultMain');
+      main.className = `bodyfat-result-main ${judge.className}`;
+      resultCard.hidden = false;
+      resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function resetForm() {
+      form.reset();
+      errorMessage.textContent = '';
+      document.getElementById('copyMessage').textContent = '';
+      valueWarning.hidden = true;
+      resultCard.hidden = true;
+      latestResult = null;
+    }
+
+    async function copyResult() {
+      if (!latestResult) return;
+      const genderLabel = latestResult.gender === 'male' ? '男性' : '女性';
+      const text = `【ゴマツール 体脂肪率計算結果】\n性別：${genderLabel}\n年齢：${latestResult.age}歳\n身長：${latestResult.height}cm\n体重：${latestResult.weight}kg\nBMI：${latestResult.bmi.toFixed(1)}\n推定体脂肪率：${latestResult.bodyFat.toFixed(1)}%\n判定：${latestResult.judge.label}\n※一般的な推定式による目安です。`;
+
+      try {
+        await navigator.clipboard.writeText(text);
+        document.getElementById('copyMessage').textContent = 'コピーしました。';
+      } catch (error) {
+        document.getElementById('copyMessage').textContent = 'コピーできませんでした。手動で選択してコピーしてください。';
+      }
+    }
+
+    form.addEventListener('submit', calculateBodyFat);
+    document.getElementById('resetButton').addEventListener('click', resetForm);
+    document.getElementById('copyButton').addEventListener('click', copyResult);
+  </script>
+</body>
+</html>

@@ -69,7 +69,8 @@
     { id: 'bmr', icon: '🔥', name: '基礎代謝（BMR）計算ツール', path: 'tools/bmr.html' },
     { id: 'tdee', icon: '🏃', name: '1日の消費カロリー（TDEE）計算ツール', path: 'tools/tdee.html' },
     { id: 'ideal-weight', icon: '⚖️', name: '適正体重計算ツール', path: 'tools/ideal-weight.html' },
-    { id: 'calorie-burn', icon: '🔥', name: '消費カロリー計算ツール', path: 'tools/calorie-burn.html' }
+    { id: 'calorie-burn', icon: '🔥', name: '消費カロリー計算ツール', path: 'tools/calorie-burn.html' },
+    { id: 'body-fat', icon: '📊', name: '体脂肪率計算ツール', path: 'tools/body-fat.html' }
   ];
 
   function createHealthSeries(paths) {
