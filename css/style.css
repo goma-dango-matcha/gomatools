@@ -525,3 +525,55 @@ a { color: var(--terms-green-dark); }
   .text-format-result-buttons { flex-direction: column; }
   .text-format-result-buttons button { flex-basis: auto; width: 100%; }
 }
+
+/* ======================
+   勤務時間計算ツール
+====================== */
+.work-time-main { padding: 42px 20px 72px; }
+.work-time-container { width: min(100%, 1100px); margin: 0 auto; }
+.work-time-hero { margin-bottom: 28px; text-align: center; }
+.work-time-hero h1 { margin: 8px 0 12px; color: var(--terms-text); font-size: clamp(1.9rem, 5vw, 2.7rem); }
+.work-time-hero p { max-width: 760px; margin: 0 auto; color: var(--terms-muted); line-height: 1.8; }
+.work-time-eyebrow { color: var(--terms-green) !important; font-weight: 800; }
+.work-time-card { margin-top: 24px; padding: clamp(22px, 4vw, 36px); border: 1px solid var(--terms-line); border-radius: 22px; background: #fff; box-shadow: 0 12px 32px rgba(67, 91, 49, .08); }
+.work-time-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
+.work-time-form-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.work-time-field label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
+.work-time-hint { margin: 14px 0 0; color: var(--terms-muted); font-size: .92rem; }
+.work-time-error { min-height: 1.5em; margin: 12px 0 0; color: #b42318; font-weight: 800; text-align: center; }
+.work-time-form-buttons { display: flex; justify-content: center; gap: 12px; margin-top: 18px; }
+.work-time-form-buttons button,
+.work-time-copy { min-width: 180px; min-height: 52px; padding: 12px 22px; border: 1px solid #afc1a5; border-radius: 13px; background: #f7faf5; color: var(--terms-green-dark); font: inherit; font-weight: 850; cursor: pointer; transition: transform .18s, background .18s, box-shadow .18s; }
+.work-time-form-buttons .work-time-primary,
+.work-time-copy { border-color: var(--terms-green); background: var(--terms-green); color: #fff; }
+.work-time-form-buttons button:hover,
+.work-time-copy:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(67, 91, 49, .16); }
+.work-time-form-buttons .work-time-primary:hover,
+.work-time-copy:hover { background: var(--terms-green-dark); }
+.work-time-result { border-color: #b7cba9; background: #fbfdf9; }
+.work-time-result-main { padding: 26px 18px; border-radius: 17px; background: var(--terms-green-light); text-align: center; }
+.work-time-result-main span,
+.work-time-result-grid span { display: block; color: var(--terms-muted); font-size: .88rem; font-weight: 800; }
+.work-time-result-main strong { display: block; margin-top: 8px; color: var(--terms-green-dark); font-size: clamp(2.15rem, 7vw, 3.2rem); }
+.work-time-result-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 16px; }
+.work-time-result-grid > div { padding: 20px 14px; border: 1px solid #d8e4d2; border-radius: 15px; background: #fff; text-align: center; }
+.work-time-result-grid strong { display: block; margin-top: 7px; color: var(--terms-text); font-size: clamp(1.05rem, 3vw, 1.35rem); }
+.work-time-overnight { margin: 16px 0 0; padding: 11px 14px; border-radius: 11px; background: #f2effa; color: #594d78; font-weight: 800; text-align: center; }
+.work-time-copy { display: block; margin: 20px auto 0; }
+.work-time-copy-message { min-height: 1.5em; margin: 10px 0 0; color: var(--terms-green-dark); font-weight: 800; text-align: center; }
+.work-time-info { line-height: 1.85; }
+.work-time-info h2:not(:first-child) { margin-top: 28px; }
+.work-time-info p { margin: 0; color: var(--terms-muted); }
+
+@media (max-width: 760px) {
+  .work-time-form-grid,
+  .work-time-result-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .work-time-main { padding: 28px 16px 56px; }
+  .work-time-card { padding: 20px 16px; border-radius: 18px; }
+  .work-time-form-buttons { flex-direction: column; }
+  .work-time-form-buttons button,
+  .work-time-copy { width: 100%; }
+}
