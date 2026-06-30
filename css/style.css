@@ -1107,6 +1107,10 @@ a { color: var(--terms-green-dark); }
 .bodyfat-eyebrow { color: #4f7938 !important; font-weight: 800; }
 .bodyfat-card { margin-top: 24px; padding: clamp(22px, 4vw, 36px); border: 1px solid var(--terms-line); border-radius: 22px; background: #fff; box-shadow: 0 12px 32px rgba(67, 91, 49, .08); }
 .bodyfat-card h2 { margin: 0 0 18px; color: var(--terms-green-dark); font-size: 1.35rem; }
+.bodyfat-gender { display: flex; gap: 12px; margin: 0 0 20px; padding: 0; border: 0; }
+.bodyfat-gender legend { margin-bottom: 9px; color: var(--terms-text); font-weight: 800; }
+.bodyfat-gender label { min-width: 120px; padding: 12px 16px; border: 1px solid #cbd6c5; border-radius: 12px; background: #fcfdfb; font-weight: 800; cursor: pointer; }
+.bodyfat-gender input { width: auto; min-height: auto; margin-right: 5px; accent-color: var(--terms-green); }
 .bodyfat-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
 .bodyfat-field label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
 .bodyfat-field label span { color: var(--terms-muted); font-size: .78rem; font-weight: 700; }
@@ -1130,7 +1134,7 @@ a { color: var(--terms-green-dark); }
 .bodyfat-result-main.is-high { background: #fff0ee; }
 .bodyfat-result-label,
 .bodyfat-result-grid span { display: block; color: var(--terms-muted); font-size: .87rem; font-weight: 800; }
-.bodyfat-result-value { display: inline-flex; align-items: baseline; justify-content: center; gap: .02em; margin-top: 8px; color: var(--terms-green-dark); font-size: clamp(2.8rem, 10vw, 4rem); font-weight: 900; line-height: 1; letter-spacing: -.03em; white-space: nowrap; }
+.bodyfat-result-value { display: inline-flex; align-items: baseline; justify-content: center; gap: .02em; margin-top: 8px; color: var(--terms-green-dark); font-size: clamp(2.2rem, 7vw, 3.25rem); font-weight: 800; line-height: 1.1; letter-spacing: -.02em; white-space: nowrap; }
 .bodyfat-result-value span { display: inline; color: inherit; font: inherit; line-height: inherit; }
 .bodyfat-result-main.is-high strong { color: #a23c32; }
 .bodyfat-result-main small { display: inline-block; margin-top: 8px; padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,.72); color: var(--terms-green-dark); font-weight: 850; }

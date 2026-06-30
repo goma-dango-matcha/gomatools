@@ -67,15 +67,12 @@
       <section class="bodyfat-card" aria-labelledby="input-title">
         <h2 id="input-title">入力してください</h2>
         <form id="bodyfatForm" novalidate>
+          <fieldset class="bodyfat-gender">
+            <legend>性別</legend>
+            <label><input type="radio" name="gender" value="male"> 男性</label>
+            <label><input type="radio" name="gender" value="female"> 女性</label>
+          </fieldset>
           <div class="bodyfat-form-grid">
-            <div class="bodyfat-field">
-              <label for="gender">性別</label>
-              <select id="gender" required>
-                <option value="">選択してください</option>
-                <option value="male">男性</option>
-                <option value="female">女性</option>
-              </select>
-            </div>
             <div class="bodyfat-field">
               <label for="age">年齢 <span>歳</span></label>
               <input id="age" type="number" min="1" step="1" inputmode="numeric" placeholder="例：30" required>
@@ -158,7 +155,6 @@
     'use strict';
 
     const form = document.getElementById('bodyfatForm');
-    const genderInput = document.getElementById('gender');
     const ageInput = document.getElementById('age');
     const heightInput = document.getElementById('height');
     const weightInput = document.getElementById('weight');
@@ -173,7 +169,7 @@
     }
 
     function validateInputs() {
-      if (!genderInput.value || ageInput.value === '' || heightInput.value === '' || weightInput.value === '') {
+      if (!getGender() || ageInput.value === '' || heightInput.value === '' || weightInput.value === '') {
         return 'すべての項目を入力してください。';
       }
 
@@ -219,7 +215,7 @@
         return;
       }
 
-      const gender = genderInput.value;
+      const gender = getGender();
       const age = Number(ageInput.value);
       const height = Number(heightInput.value);
       const weight = Number(weightInput.value);
@@ -273,3 +269,6 @@
   </script>
 </body>
 </html>
+    function getGender() {
+      return form.querySelector('input[name="gender"]:checked')?.value || '';
+    }
