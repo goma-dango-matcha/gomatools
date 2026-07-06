@@ -296,6 +296,23 @@ a { color: var(--terms-green-dark); }
   line-height: 1.9;
 }
 
+.knowledge-article-tool-lead {
+  max-width: 720px;
+  margin: 18px auto 0;
+  padding: 14px 16px;
+  border: 1px solid #c8d8bd;
+  border-radius: 14px;
+  background: #fff;
+  color: var(--terms-green-dark);
+  font-weight: 850;
+  line-height: 1.75;
+}
+
+.knowledge-article-tool-lead a {
+  color: var(--terms-green-dark);
+  text-underline-offset: 3px;
+}
+
 .knowledge-article-card {
   margin-top: 22px;
   padding: clamp(24px, 5vw, 38px);
@@ -325,6 +342,41 @@ a { color: var(--terms-green-dark); }
 
 .knowledge-article-card p + p {
   margin-top: 12px;
+}
+
+.knowledge-table-wrap {
+  overflow-x: auto;
+  margin: 18px 0 0;
+}
+
+.knowledge-table {
+  width: 100%;
+  min-width: 620px;
+  border-collapse: collapse;
+  border: 1px solid var(--terms-line);
+  border-radius: 16px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.knowledge-table th,
+.knowledge-table td {
+  padding: 13px 14px;
+  border: 1px solid var(--terms-line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.knowledge-table thead th {
+  color: var(--terms-green-dark);
+  background: var(--terms-green-light);
+  font-weight: 850;
+}
+
+.knowledge-table tbody th {
+  width: 9em;
+  color: var(--terms-green-dark);
+  background: #fbfdf9;
 }
 
 .knowledge-faq details {

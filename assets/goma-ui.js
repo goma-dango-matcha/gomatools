@@ -6,17 +6,22 @@
 
   function getPaths() {
     const path = window.location.pathname.replace(/index\.html$/, '');
-    const isHome = /\/gomatools\/$/.test(path) || path === '/';
-    const isRootStaticPage = /\/gomatools\/(?:terms|faq|knowledge)\.html$/.test(path) || /^\/(?:terms|faq|knowledge)\.html$/.test(path);
-    const isRootPage = isHome || isRootStaticPage;
+    const relativePath = path.startsWith('/gomatools/')
+      ? path.replace(/^\/gomatools\/?/, '')
+      : path.replace(/^\//, '');
+    const cleanPath = relativePath.replace(/\/$/, '');
+    const segments = cleanPath ? cleanPath.split('/').filter(Boolean) : [];
+    const lastSegment = segments[segments.length - 1] || '';
+    const depth = lastSegment.includes('.') ? Math.max(segments.length - 1, 0) : segments.length;
+    const base = depth === 0 ? './' : '../'.repeat(depth);
     return {
-      home: isRootPage ? './' : '../',
-      allTools: isRootPage ? './all-tools/' : '../all-tools/',
-      privacy: isRootPage ? './privacy/' : '../privacy/',
-      terms: isRootPage ? './terms.html' : '../terms.html',
-      faq: isRootPage ? './faq.html' : '../faq.html',
-      knowledge: isRootPage ? './knowledge.html' : '../knowledge.html',
-      logo: isRootPage ? './assets/logo.svg' : '../assets/logo.svg'
+      home: base,
+      allTools: `${base}all-tools/`,
+      privacy: `${base}privacy/`,
+      terms: `${base}terms.html`,
+      faq: `${base}faq.html`,
+      knowledge: `${base}knowledge.html`,
+      logo: `${base}assets/logo.svg`
     };
   }
 
