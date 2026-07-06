@@ -1160,6 +1160,78 @@ a { color: var(--terms-green-dark); }
   .bodyfat-copy { width: 100%; }
 }
 
+/* =========================================================
+   PFCバランス計算ツール
+========================================================= */
+.pfc-main { padding: 42px 20px 72px; }
+.pfc-container { width: min(100%, 1100px); margin: 0 auto; }
+.pfc-hero { margin-bottom: 28px; text-align: center; }
+.pfc-hero h1 { margin: 8px 0 12px; color: var(--terms-text); font-size: clamp(1.9rem, 5vw, 2.7rem); }
+.pfc-hero p { max-width: 760px; margin: 0 auto; color: var(--terms-muted); line-height: 1.8; }
+.pfc-eyebrow { color: #4f7938 !important; font-weight: 800; }
+.pfc-card { margin-top: 24px; padding: clamp(22px, 4vw, 36px); border: 1px solid var(--terms-line); border-radius: 22px; background: #fff; box-shadow: 0 12px 32px rgba(67, 91, 49, .08); }
+.pfc-card h2 { margin: 0 0 18px; color: var(--terms-green-dark); font-size: 1.35rem; }
+.pfc-field label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
+.pfc-field label span { color: var(--terms-muted); font-size: .82rem; }
+.pfc-calorie-field { max-width: 480px; margin: 0 auto 24px; }
+.pfc-presets { margin: 0 0 24px; padding: 0; border: 0; }
+.pfc-presets legend { margin-bottom: 10px; color: var(--terms-text); font-weight: 800; }
+.pfc-preset-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.pfc-preset { min-height: 68px; padding: 10px; border: 1px solid #cbd6c5; border-radius: 13px; background: #fcfdfb; color: var(--terms-green-dark); font: inherit; font-weight: 850; cursor: pointer; transition: transform .18s, border-color .18s, background .18s; }
+.pfc-preset small { display: block; margin-top: 4px; color: var(--terms-muted); font-size: .72rem; font-weight: 700; }
+.pfc-preset:hover { transform: translateY(-2px); border-color: var(--terms-green); }
+.pfc-preset.is-active { border-color: var(--terms-green); background: var(--terms-green-light); box-shadow: inset 0 0 0 1px var(--terms-green); }
+.pfc-ratio-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.pfc-total { margin: 14px 0 0; color: var(--terms-green-dark); font-weight: 850; text-align: center; }
+.pfc-total.is-invalid { color: #b42318; }
+.pfc-error { min-height: 1.5em; margin: 10px 0 0; color: #b42318; font-weight: 800; text-align: center; }
+.pfc-form-buttons { display: flex; justify-content: center; gap: 12px; margin-top: 18px; }
+.pfc-form-buttons button,
+.pfc-copy { min-width: 180px; min-height: 52px; padding: 12px 22px; border: 1px solid #afc1a5; border-radius: 13px; background: #f7faf5; color: var(--terms-green-dark); font: inherit; font-weight: 850; cursor: pointer; transition: transform .18s, background .18s, box-shadow .18s; }
+.pfc-form-buttons .pfc-primary,
+.pfc-copy { border-color: var(--terms-green); background: var(--terms-green); color: #fff; }
+.pfc-form-buttons button:hover,
+.pfc-copy:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(67, 91, 49, .16); }
+.pfc-form-buttons .pfc-primary:hover,
+.pfc-copy:hover { background: var(--terms-green-dark); }
+.pfc-result { border-color: #b7cba9; background: #fbfdf9; }
+.pfc-result-lead { margin: 0 0 18px; color: var(--terms-muted); text-align: center; }
+.pfc-result-lead strong { color: var(--terms-green-dark); font-size: 1.4rem; }
+.pfc-result-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.pfc-macro { padding: 24px 14px; border: 1px solid #d8e4d2; border-radius: 17px; background: #fff; text-align: center; }
+.pfc-macro > span { display: block; color: var(--terms-muted); font-weight: 800; }
+.pfc-macro strong { display: inline-flex; align-items: baseline; gap: .14em; margin-top: 8px; color: var(--terms-green-dark); font-size: clamp(2rem, 6vw, 3rem); line-height: 1.1; }
+.pfc-macro strong small { font-size: .45em; }
+.pfc-macro p { margin: 8px 0 0; font-weight: 850; }
+.pfc-protein { border-top: 5px solid #56865c; }
+.pfc-fat { border-top: 5px solid #d19738; }
+.pfc-carb { border-top: 5px solid #6686ad; }
+.pfc-result-note { margin: 18px 0 0; color: var(--terms-muted); font-size: .9rem; line-height: 1.7; text-align: center; }
+.pfc-copy { display: block; margin: 20px auto 0; }
+.pfc-copy-message { min-height: 1.5em; margin: 10px 0 0; color: var(--terms-green-dark); font-weight: 800; text-align: center; }
+.pfc-info { color: var(--terms-muted); line-height: 1.85; }
+.pfc-info h2:not(:first-child) { margin-top: 28px; }
+.pfc-info p { margin: 0; }
+.pfc-info ul { margin: 0; padding-left: 1.4em; }
+
+@media (max-width: 800px) {
+  .pfc-preset-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 680px) {
+  .pfc-ratio-grid,
+  .pfc-result-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .pfc-main { padding: 28px 16px 56px; }
+  .pfc-card { padding: 20px 16px; border-radius: 18px; }
+  .pfc-preset-grid { grid-template-columns: 1fr 1fr; }
+  .pfc-form-buttons { flex-direction: column; }
+  .pfc-form-buttons button,
+  .pfc-copy { width: 100%; }
+}
+
 /* ======================
    パーセント計算ツール
 ====================== */

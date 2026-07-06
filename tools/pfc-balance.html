@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8BNDHPNEHY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8BNDHPNEHY');
+  </script>
+
+  <!-- SEO -->
+  <title>PFCバランス計算ツール｜たんぱく質・脂質・炭水化物を無料計算</title>
+  <meta name="description" content="1日に必要な摂取カロリーから、PFC（たんぱく質・脂質・炭水化物）の摂取目安を無料で計算できます。">
+  <link rel="canonical" href="https://goma-dango-matcha.github.io/gomatools/tools/pfc-balance.html">
+
+  <!-- OGP / Twitter Card -->
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ゴマツール">
+  <meta property="og:title" content="PFCバランス計算ツール｜ゴマツール">
+  <meta property="og:description" content="PFCバランスを簡単に計算できます。">
+  <meta property="og:url" content="https://goma-dango-matcha.github.io/gomatools/tools/pfc-balance.html">
+  <meta property="og:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta property="og:image:secure_url" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ゴマツール — 一歩便利を、毎日の暮らしに。">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PFCバランス計算ツール｜ゴマツール">
+  <meta name="twitter:description" content="PFCバランスを簡単に計算できます。">
+  <meta name="twitter:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta name="twitter:image:alt" content="ゴマツール — 一歩便利を、毎日の暮らしに。">
+
+  <!-- ブランドアイコン -->
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <meta name="theme-color" content="#63843F">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../assets/goma-ui.css?v=1.8">
+  <script defer src="../assets/goma-ui.js?v=1.8"></script>
+</head>
+<body>
+  <header></header>
+
+  <main class="pfc-main">
+    <div class="pfc-container">
+      <!-- ====================== ヒーロー ====================== -->
+      <section class="pfc-hero" aria-labelledby="page-title">
+        <p class="pfc-eyebrow">❤️ 健康・美容</p>
+        <h1 id="page-title">PFCバランス計算ツール</h1>
+        <p>1日に必要な摂取カロリーから、PFC（たんぱく質・脂質・炭水化物）の目安を簡単に計算できます。</p>
+      </section>
+
+      <!-- ====================== 入力フォーム ====================== -->
+      <section class="pfc-card" aria-labelledby="input-title">
+        <h2 id="input-title">摂取カロリーとPFC比率を入力</h2>
+        <form id="pfcForm" novalidate>
+          <div class="pfc-field pfc-calorie-field">
+            <label for="calories">1日の摂取カロリー <span>kcal</span></label>
+            <input id="calories" type="number" min="1" step="1" inputmode="numeric" placeholder="例：2000" required>
+          </div>
+
+          <fieldset class="pfc-presets">
+            <legend>目的別プリセット</legend>
+            <div class="pfc-preset-grid">
+              <button type="button" class="pfc-preset is-active" data-p="20" data-f="25" data-c="55" aria-pressed="true">バランス型<small>P20・F25・C55</small></button>
+              <button type="button" class="pfc-preset" data-p="30" data-f="20" data-c="50" aria-pressed="false">ダイエット向け<small>P30・F20・C50</small></button>
+              <button type="button" class="pfc-preset" data-p="30" data-f="25" data-c="45" aria-pressed="false">筋トレ向け<small>P30・F25・C45</small></button>
+              <button type="button" class="pfc-preset" data-p="30" data-f="35" data-c="35" aria-pressed="false">糖質控えめ<small>P30・F35・C35</small></button>
+            </div>
+          </fieldset>
+
+          <div class="pfc-ratio-grid">
+            <div class="pfc-field"><label for="proteinRatio">たんぱく質（P）<span>%</span></label><input id="proteinRatio" type="number" min="0" max="100" step="0.1" inputmode="decimal" value="20" required></div>
+            <div class="pfc-field"><label for="fatRatio">脂質（F）<span>%</span></label><input id="fatRatio" type="number" min="0" max="100" step="0.1" inputmode="decimal" value="25" required></div>
+            <div class="pfc-field"><label for="carbRatio">炭水化物（C）<span>%</span></label><input id="carbRatio" type="number" min="0" max="100" step="0.1" inputmode="decimal" value="55" required></div>
+          </div>
+          <p class="pfc-total" id="ratioTotal" aria-live="polite">合計：100%</p>
+          <p class="pfc-error" id="errorMessage" role="alert" aria-live="polite"></p>
+          <div class="pfc-form-buttons">
+            <button class="pfc-primary" type="submit">計算する</button>
+            <button type="button" id="resetButton">リセット</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- ====================== 計算結果 ====================== -->
+      <section class="pfc-card pfc-result" id="resultCard" aria-labelledby="result-title" aria-live="polite" hidden>
+        <h2 id="result-title">計算結果</h2>
+        <p class="pfc-result-lead"><strong id="calorieResult">—</strong> kcal／日のPFC目安</p>
+        <div class="pfc-result-grid">
+          <article class="pfc-macro pfc-protein"><span>P・たんぱく質</span><strong><span id="proteinValue">—</span><small>g</small></strong><p id="proteinPercent">—%</p></article>
+          <article class="pfc-macro pfc-fat"><span>F・脂質</span><strong><span id="fatValue">—</span><small>g</small></strong><p id="fatPercent">—%</p></article>
+          <article class="pfc-macro pfc-carb"><span>C・炭水化物</span><strong><span id="carbValue">—</span><small>g</small></strong><p id="carbPercent">—%</p></article>
+        </div>
+        <p class="pfc-result-note">たんぱく質・炭水化物は1g＝4kcal、脂質は1g＝9kcalとして計算しています。</p>
+        <button class="pfc-copy" type="button" id="copyButton">📋 結果をコピー</button>
+        <p class="pfc-copy-message" id="copyMessage" role="status" aria-live="polite"></p>
+      </section>
+
+      <!-- ====================== 説明・注意事項 ====================== -->
+      <section class="pfc-card pfc-info" aria-labelledby="about-title">
+        <h2 id="about-title">このツールについて</h2>
+        <p>1日に必要な摂取カロリーから、PFC（たんぱく質・脂質・炭水化物）の摂取目安を計算できます。ダイエットや筋トレ、健康管理など、目的に応じた食事管理の参考として利用できます。</p>
+        <h2>PFCとは</h2>
+        <ul><li><strong>P（Protein）</strong>：たんぱく質</li><li><strong>F（Fat）</strong>：脂質</li><li><strong>C（Carbohydrate）</strong>：炭水化物</li></ul>
+        <h2>注意事項</h2>
+        <p>計算結果は一般的な目安です。必要な栄養バランスは年齢・性別・活動量・健康状態・目的によって異なります。医療・栄養指導の代わりとなるものではありません。</p>
+      </section>
+
+      <!-- 健康・美容シリーズ：内容は assets/goma-ui.js で一元管理 -->
+      <section data-health-series data-current="pfc-balance"></section>
+      <div class="back-to-top"><a class="top-button" href="../">🏠 トップへ戻る</a></div>
+    </div>
+  </main>
+
+  <footer></footer>
+
+  <script>
+    'use strict';
+
+    const form = document.getElementById('pfcForm');
+    const caloriesInput = document.getElementById('calories');
+    const proteinInput = document.getElementById('proteinRatio');
+    const fatInput = document.getElementById('fatRatio');
+    const carbInput = document.getElementById('carbRatio');
+    const ratioTotal = document.getElementById('ratioTotal');
+    const errorMessage = document.getElementById('errorMessage');
+    const resultCard = document.getElementById('resultCard');
+    let latestResult = null;
+
+    function getRatios() {
+      return { protein: Number(proteinInput.value), fat: Number(fatInput.value), carb: Number(carbInput.value) };
+    }
+
+    function updateRatioTotal() {
+      const ratios = getRatios();
+      const total = ratios.protein + ratios.fat + ratios.carb;
+      ratioTotal.textContent = `合計：${Number.isFinite(total) ? Math.round(total * 10) / 10 : '—'}%`;
+      ratioTotal.classList.toggle('is-invalid', Math.abs(total - 100) > 0.001);
+    }
+
+    function validateInputs() {
+      if (caloriesInput.value === '') return '1日の摂取カロリーを入力してください。';
+      if (proteinInput.value === '' || fatInput.value === '' || carbInput.value === '') return 'PFC比率をすべて入力してください。';
+      const calories = Number(caloriesInput.value);
+      const ratios = getRatios();
+      if (![calories, ratios.protein, ratios.fat, ratios.carb].every(Number.isFinite)) return '数値を正しく入力してください。';
+      if (calories <= 0) return '摂取カロリーは1kcal以上で入力してください。';
+      if ([ratios.protein, ratios.fat, ratios.carb].some(value => value < 0 || value > 100)) return 'PFC比率は0〜100%の範囲で入力してください。';
+      if (Math.abs(ratios.protein + ratios.fat + ratios.carb - 100) > 0.001) return 'PFC比率の合計が100%になるように入力してください。';
+      return '';
+    }
+
+    function calculatePfc(event) {
+      event.preventDefault();
+      errorMessage.textContent = '';
+      document.getElementById('copyMessage').textContent = '';
+      const error = validateInputs();
+      if (error) {
+        errorMessage.textContent = error;
+        resultCard.hidden = true;
+        latestResult = null;
+        return;
+      }
+
+      const calories = Number(caloriesInput.value);
+      const ratios = getRatios();
+      const result = {
+        calories,
+        ratios,
+        protein: calories * ratios.protein / 100 / 4,
+        fat: calories * ratios.fat / 100 / 9,
+        carb: calories * ratios.carb / 100 / 4
+      };
+      latestResult = result;
+
+      document.getElementById('calorieResult').textContent = calories.toLocaleString('ja-JP');
+      document.getElementById('proteinValue').textContent = result.protein.toFixed(1);
+      document.getElementById('fatValue').textContent = result.fat.toFixed(1);
+      document.getElementById('carbValue').textContent = result.carb.toFixed(1);
+      document.getElementById('proteinPercent').textContent = `${ratios.protein}%`;
+      document.getElementById('fatPercent').textContent = `${ratios.fat}%`;
+      document.getElementById('carbPercent').textContent = `${ratios.carb}%`;
+      resultCard.hidden = false;
+      resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function applyPreset(button) {
+      proteinInput.value = button.dataset.p;
+      fatInput.value = button.dataset.f;
+      carbInput.value = button.dataset.c;
+      document.querySelectorAll('.pfc-preset').forEach(item => {
+        const active = item === button;
+        item.classList.toggle('is-active', active);
+        item.setAttribute('aria-pressed', String(active));
+      });
+      updateRatioTotal();
+      errorMessage.textContent = '';
+    }
+
+    function resetForm() {
+      form.reset();
+      proteinInput.value = '20';
+      fatInput.value = '25';
+      carbInput.value = '55';
+      const defaultPreset = document.querySelector('.pfc-preset[data-p="20"][data-f="25"][data-c="55"]');
+      applyPreset(defaultPreset);
+      errorMessage.textContent = '';
+      document.getElementById('copyMessage').textContent = '';
+      resultCard.hidden = true;
+      latestResult = null;
+      caloriesInput.focus();
+    }
+
+    async function copyResult() {
+      if (!latestResult) return;
+      const text = `【ゴマツール PFCバランス計算結果】\n摂取カロリー：${latestResult.calories.toLocaleString('ja-JP')}kcal／日\nたんぱく質：${latestResult.protein.toFixed(1)}g（${latestResult.ratios.protein}%）\n脂質：${latestResult.fat.toFixed(1)}g（${latestResult.ratios.fat}%）\n炭水化物：${latestResult.carb.toFixed(1)}g（${latestResult.ratios.carb}%）\n※一般的な目安です。`;
+      try {
+        await navigator.clipboard.writeText(text);
+        document.getElementById('copyMessage').textContent = 'コピーしました。';
+      } catch (error) {
+        document.getElementById('copyMessage').textContent = 'コピーできませんでした。手動で選択してコピーしてください。';
+      }
+    }
+
+    document.querySelectorAll('.pfc-preset').forEach(button => button.addEventListener('click', () => applyPreset(button)));
+    [proteinInput, fatInput, carbInput].forEach(input => input.addEventListener('input', updateRatioTotal));
+    form.addEventListener('submit', calculatePfc);
+    document.getElementById('resetButton').addEventListener('click', resetForm);
+    document.getElementById('copyButton').addEventListener('click', copyResult);
+    updateRatioTotal();
+  </script>
+</body>
+</html>

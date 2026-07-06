@@ -70,7 +70,8 @@
     { id: 'tdee', icon: '🏃', name: '1日の消費カロリー（TDEE）計算ツール', path: 'tools/tdee.html' },
     { id: 'ideal-weight', icon: '⚖️', name: '適正体重計算ツール', path: 'tools/ideal-weight.html' },
     { id: 'calorie-burn', icon: '🔥', name: '消費カロリー計算ツール', path: 'tools/calorie-burn.html' },
-    { id: 'body-fat', icon: '📊', name: '体脂肪率計算ツール', path: 'tools/body-fat.html' }
+    { id: 'body-fat', icon: '📊', name: '体脂肪率計算ツール', path: 'tools/body-fat.html' },
+    { id: 'pfc-balance', icon: '🥗', name: 'PFCバランス計算ツール', path: 'tools/pfc-balance.html' }
   ];
 
   function createHealthSeries(paths) {
