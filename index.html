@@ -134,6 +134,9 @@
     .roadmap-label { display: block; color: var(--muted); font-size: .8rem; font-weight: 700; }
     .roadmap-value { display: block; margin-top: 5px; color: var(--green-dark); font-size: clamp(1.1rem, 3vw, 1.35rem); font-weight: 850; }
     .roadmap-note { margin: 24px 0 0; color: var(--muted); }
+    .roadmap-news { display: grid; gap: 10px; margin: 22px 0 0; padding: 0; list-style: none; }
+    .roadmap-news li { padding: 13px 15px; border: 1px solid var(--line); border-radius: 14px; background: #fff; color: var(--muted); font-weight: 700; }
+    .roadmap-next-list { margin: 10px 0 0; padding-left: 1.2em; color: var(--muted); font-size: .9rem; }
 
     /* ======================
        フッター
@@ -751,18 +754,32 @@
       </section>
 
       <!-- ======================
-           ロードマップ
+           ゴマツールのこれから
       ====================== -->
       <section class="section" aria-labelledby="roadmap-title">
-        <h2 class="section-heading" id="roadmap-title">これから増やしていく予定</h2>
-        <p class="section-lead">ゴマツールは、まだ始まったばかりです。</p>
+        <h2 class="section-heading" id="roadmap-title">🍵 ゴマツールのこれから</h2>
+        <p class="section-lead">毎日に、一歩便利。ゴマツールは、便利なツールや知識を少しずつ増やしながら育てています。これからも新しいツールや「ゴマ知識」を追加し、より使いやすいサービスを目指していきます。</p>
         <div class="card roadmap-card">
           <div class="roadmap-stats">
-            <div class="roadmap-item"><span class="roadmap-label">現在公開中</span><strong class="roadmap-value">40ツール公開</strong></div>
-            <div class="roadmap-item"><span class="roadmap-label">次に公開予定</span><strong class="roadmap-value">新しい便利ツールを準備中</strong></div>
-            <div class="roadmap-item"><span class="roadmap-label">次の目標</span><strong class="roadmap-value">41ツール公開</strong></div>
+            <div class="roadmap-item"><span class="roadmap-label">🔧 公開中ツール</span><strong class="roadmap-value">40ツール公開</strong></div>
+            <div class="roadmap-item"><span class="roadmap-label">📚 ゴマ知識</span><strong class="roadmap-value">公開準備中</strong></div>
+            <div class="roadmap-item">
+              <span class="roadmap-label">🎯 次の目標</span>
+              <strong class="roadmap-value">ゴマ知識10記事公開</strong>
+              <ul class="roadmap-next-list">
+                <li>SEO改善</li>
+                <li>Analytics分析</li>
+                <li>Search Console分析</li>
+                <li>AdSense準備</li>
+              </ul>
+            </div>
           </div>
-          <p class="roadmap-note">🎉 40ツールを公開中です。仕事・テキストカテゴリに、URLエンコードやBase64変換ができる文字コード変換ツールが加わりました。</p>
+          <p class="roadmap-note">🆕 最新情報</p>
+          <ul class="roadmap-news" aria-label="最新情報">
+            <li>🎉 公開中40ツールを達成しました。</li>
+            <li>仕事・テキストカテゴリへ「文字コード変換ツール」を追加しました。</li>
+            <li>今後は「ゴマ知識」の公開を予定しています。</li>
+          </ul>
         </div>
       </section>
     </div>
