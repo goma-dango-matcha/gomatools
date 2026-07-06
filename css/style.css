@@ -637,6 +637,85 @@ a { color: var(--terms-green-dark); }
 }
 
 /* ======================
+   残業代計算ツール
+====================== */
+.overtime-pay-main { padding: 42px 20px 72px; }
+.overtime-pay-container { width: min(100%, 1100px); margin: 0 auto; }
+.overtime-pay-hero { margin-bottom: 28px; text-align: center; }
+.overtime-pay-hero h1 { margin: 8px 0 12px; color: var(--terms-text); font-size: clamp(1.9rem, 5vw, 2.7rem); }
+.overtime-pay-hero p { max-width: 760px; margin: 0 auto; color: var(--terms-muted); line-height: 1.8; }
+.overtime-pay-eyebrow { color: var(--terms-green) !important; font-weight: 800; }
+.overtime-pay-card { margin-top: 24px; padding: clamp(22px, 4vw, 36px); border: 1px solid var(--terms-line); border-radius: 22px; background: #fff; box-shadow: 0 12px 32px rgba(67, 91, 49, .08); }
+.overtime-pay-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
+.overtime-pay-form-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 18px; align-items: stretch; }
+.overtime-pay-field label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
+.overtime-pay-field label span,
+.overtime-pay-duration legend span,
+.overtime-pay-rate legend span { color: var(--terms-muted); font-size: .78rem; }
+.overtime-pay-duration,
+.overtime-pay-rate { margin: 0; padding: 18px; border: 1px solid #d8e4d2; border-radius: 15px; }
+.overtime-pay-duration legend,
+.overtime-pay-rate legend { padding: 0 8px; color: var(--terms-green-dark); font-weight: 850; }
+.overtime-pay-duration-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.overtime-pay-rate { margin-top: 22px; }
+.overtime-pay-presets { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+.overtime-pay-presets label { position: relative; cursor: pointer; }
+.overtime-pay-presets input { position: absolute; inline-size: 1px; block-size: 1px; opacity: 0; }
+.overtime-pay-presets label > span { display: flex; min-height: 76px; padding: 12px 8px; border: 1px solid #cad9c2; border-radius: 13px; background: #f8faf6; color: var(--terms-text); font-weight: 850; text-align: center; align-items: center; justify-content: center; flex-direction: column; transition: border-color .18s, background .18s, transform .18s; }
+.overtime-pay-presets label > span small { display: block; margin-top: 4px; color: var(--terms-muted); font-size: .82rem; }
+.overtime-pay-presets input:checked + span { border-color: var(--terms-green); background: var(--terms-green-light); color: var(--terms-green-dark); box-shadow: 0 0 0 2px rgba(99, 132, 63, .12); }
+.overtime-pay-presets input:focus-visible + span { outline: 3px solid rgba(99, 132, 63, .3); outline-offset: 2px; }
+.overtime-pay-presets label:hover > span { transform: translateY(-2px); border-color: var(--terms-green); }
+.overtime-pay-custom { width: min(100%, 300px); margin-top: 16px; }
+.overtime-pay-custom label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
+.overtime-pay-hint { margin: 14px 0 0; color: var(--terms-muted); font-size: .92rem; }
+.overtime-pay-error { min-height: 1.5em; margin: 12px 0 0; color: #b42318; font-weight: 800; text-align: center; }
+.overtime-pay-form-buttons { display: flex; justify-content: center; gap: 12px; margin-top: 18px; }
+.overtime-pay-form-buttons button,
+.overtime-pay-copy { min-width: 180px; min-height: 52px; padding: 12px 22px; border: 1px solid #afc1a5; border-radius: 13px; background: #f7faf5; color: var(--terms-green-dark); font: inherit; font-weight: 850; cursor: pointer; transition: transform .18s, background .18s, box-shadow .18s; }
+.overtime-pay-form-buttons .overtime-pay-primary,
+.overtime-pay-copy { border-color: var(--terms-green); background: var(--terms-green); color: #fff; }
+.overtime-pay-form-buttons button:hover,
+.overtime-pay-copy:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(67, 91, 49, .16); }
+.overtime-pay-form-buttons .overtime-pay-primary:hover,
+.overtime-pay-copy:hover { background: var(--terms-green-dark); }
+.overtime-pay-result { border-color: #b7cba9; background: #fbfdf9; }
+.overtime-pay-result-main { padding: 28px 18px; border-radius: 18px; background: var(--terms-green-light); text-align: center; }
+.overtime-pay-result-main span,
+.overtime-pay-result-grid span { display: block; color: var(--terms-muted); font-size: .88rem; font-weight: 800; }
+.overtime-pay-result-main strong { display: block; margin-top: 8px; color: var(--terms-green-dark); font-size: clamp(2.15rem, 7vw, 3.2rem); }
+.overtime-pay-result-main p { margin: 8px 0 0; color: var(--terms-muted); }
+.overtime-pay-result-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 16px; }
+.overtime-pay-result-grid > div { padding: 20px 14px; border: 1px solid #d8e4d2; border-radius: 15px; background: #fff; text-align: center; }
+.overtime-pay-result-grid strong { display: block; margin-top: 7px; color: var(--terms-text); font-size: clamp(1rem, 3vw, 1.28rem); }
+.overtime-pay-copy { display: block; margin: 20px auto 0; }
+.overtime-pay-copy-message { min-height: 1.5em; margin: 10px 0 0; color: var(--terms-green-dark); font-weight: 800; text-align: center; }
+.overtime-pay-related p,
+.overtime-pay-info p { margin: 0; color: var(--terms-muted); line-height: 1.85; }
+.overtime-pay-related-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.overtime-pay-related-links a { display: inline-flex; padding: 10px 14px; border: 1px solid #cad9c2; border-radius: 11px; color: var(--terms-green-dark); background: #f8faf6; font-weight: 850; text-decoration: none; }
+.overtime-pay-info h2:not(:first-child) { margin-top: 28px; }
+
+@media (max-width: 820px) {
+  .overtime-pay-presets { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 760px) {
+  .overtime-pay-form-grid,
+  .overtime-pay-result-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .overtime-pay-main { padding: 28px 16px 56px; }
+  .overtime-pay-card { padding: 20px 16px; border-radius: 18px; }
+  .overtime-pay-presets { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .overtime-pay-form-buttons { flex-direction: column; }
+  .overtime-pay-form-buttons button,
+  .overtime-pay-copy { width: 100%; }
+  .overtime-pay-related-links { flex-direction: column; }
+}
+
+/* ======================
    時給計算ツール
 ====================== */
 .hourly-main { padding: 42px 20px 72px; }

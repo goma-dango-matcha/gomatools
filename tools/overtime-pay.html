@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8BNDHPNEHY"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-8BNDHPNEHY');</script>
+  <title>残業代計算ツール｜時給と残業時間から無料で簡単計算</title>
+  <meta name="description" content="時給・残業時間・割増率を入力するだけで、残業代の目安を簡単に計算できる無料ツールです。">
+  <meta name="keywords" content="残業代計算,残業代,時給 残業代,割増賃金 計算,残業手当 計算,深夜残業 計算,休日労働 計算,給料計算">
+  <link rel="canonical" href="https://goma-dango-matcha.github.io/gomatools/tools/overtime-pay.html">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ゴマツール">
+  <meta property="og:title" content="残業代計算ツール｜ゴマツール">
+  <meta property="og:description" content="時給と残業時間から残業代を簡単に計算できます。">
+  <meta property="og:url" content="https://goma-dango-matcha.github.io/gomatools/tools/overtime-pay.html">
+  <meta property="og:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta property="og:image:secure_url" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ゴマツール — 一歩便利を、毎日の暮らしに。">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="残業代計算ツール｜ゴマツール">
+  <meta name="twitter:description" content="時給と残業時間から残業代を簡単に計算できます。">
+  <meta name="twitter:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta name="twitter:image:alt" content="ゴマツール — 一歩便利を、毎日の暮らしに。">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <meta name="theme-color" content="#63843F">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../assets/goma-ui.css?v=2.0">
+  <script defer src="../assets/goma-ui.js?v=2.0"></script>
+</head>
+<body>
+  <header><div class="goma-header-inner">
+    <div class="goma-brand-wrap"><a class="goma-brand" href="../">ゴマツール</a><p class="goma-brand-copy">無料で使える便利ツール集</p></div>
+    <a class="goma-home-button" href="../">🏠 ホームへ戻る</a>
+  </div></header>
+
+  <main class="overtime-pay-main"><div class="overtime-pay-container">
+    <section class="overtime-pay-hero" aria-labelledby="page-title">
+      <p class="overtime-pay-eyebrow">💼 仕事・テキスト</p>
+      <h1 id="page-title">残業代計算ツール</h1>
+      <p>時給・残業時間・割増率から、残業代の目安を簡単に計算できます。</p>
+    </section>
+
+    <section class="overtime-pay-card" aria-labelledby="input-title">
+      <h2 id="input-title">計算条件を入力</h2>
+      <form id="overtimePayForm" novalidate>
+        <div class="overtime-pay-form-grid">
+          <div class="overtime-pay-field">
+            <label for="hourlyWage">時給（円） <span>必須</span></label>
+            <input id="hourlyWage" type="number" min="1" step="1" inputmode="numeric" placeholder="例：1200" required>
+          </div>
+          <fieldset class="overtime-pay-duration">
+            <legend>残業時間 <span>必須</span></legend>
+            <div class="overtime-pay-duration-grid">
+              <div class="overtime-pay-field"><label for="overtimeHours">時間</label><input id="overtimeHours" type="number" min="0" step="1" inputmode="numeric" placeholder="例：2" required></div>
+              <div class="overtime-pay-field"><label for="overtimeMinutes">分</label><input id="overtimeMinutes" type="number" min="0" max="59" step="1" inputmode="numeric" placeholder="例：30" required></div>
+            </div>
+          </fieldset>
+        </div>
+
+        <fieldset class="overtime-pay-rate">
+          <legend>割増率 <span>必須</span></legend>
+          <div class="overtime-pay-presets">
+            <label><input type="radio" name="ratePreset" value="25" data-label="通常残業" checked><span>通常残業<small>25%</small></span></label>
+            <label><input type="radio" name="ratePreset" value="25" data-label="深夜労働"><span>深夜労働<small>25%</small></span></label>
+            <label><input type="radio" name="ratePreset" value="35" data-label="休日労働"><span>休日労働<small>35%</small></span></label>
+            <label><input type="radio" name="ratePreset" value="50" data-label="深夜残業"><span>深夜残業<small>50%</small></span></label>
+            <label><input type="radio" name="ratePreset" value="custom" data-label="カスタム"><span>カスタム<small>自由入力</small></span></label>
+          </div>
+          <div class="overtime-pay-custom" id="customRateWrap" hidden>
+            <label for="customRate">カスタム割増率（%）</label>
+            <input id="customRate" type="number" min="0" step="0.1" inputmode="decimal" placeholder="例：30">
+          </div>
+        </fieldset>
+
+        <p class="overtime-pay-hint">残業時間の「時間」と「分」は、該当しない方に0を入力してください。</p>
+        <p class="overtime-pay-error" id="errorMessage" role="alert"></p>
+        <div class="overtime-pay-form-buttons">
+          <button class="overtime-pay-primary" type="submit">計算する</button>
+          <button id="resetButton" type="button">リセット</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="overtime-pay-card overtime-pay-result" id="resultCard" aria-labelledby="result-title" aria-live="polite" hidden>
+      <h2 id="result-title">計算結果</h2>
+      <div class="overtime-pay-result-main"><span>残業代の目安</span><strong id="overtimePayValue">—</strong><p>端数は1円単位で四捨五入しています。</p></div>
+      <div class="overtime-pay-result-grid">
+        <div><span>割増込み時給</span><strong id="premiumHourlyWage">—</strong></div>
+        <div><span>残業時間</span><strong id="overtimeDuration">—</strong></div>
+        <div><span>割増率</span><strong id="premiumRate">—</strong></div>
+      </div>
+      <button class="overtime-pay-copy" id="copyButton" type="button">📋 結果をコピー</button>
+      <p class="overtime-pay-copy-message" id="copyMessage" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="overtime-pay-card overtime-pay-related" aria-labelledby="related-title">
+      <h2 id="related-title">残業時間や時給が分からない場合</h2>
+      <p>勤務記録から残業時間を出す場合や、日給・月収の目安も確認したい場合は関連ツールをご利用ください。</p>
+      <div class="overtime-pay-related-links">
+        <a href="./overtime-hours.html">🕒 残業時間計算ツール</a>
+        <a href="./hourly-wage.html">💴 時給計算ツール</a>
+        <a href="./work-time.html">⏰ 勤務時間計算ツール</a>
+      </div>
+    </section>
+
+    <section class="overtime-pay-card overtime-pay-info" aria-labelledby="about-title">
+      <h2 id="about-title">このツールについて</h2>
+      <p>時給・残業時間・割増率から、残業代の目安を計算できます。通常残業・深夜労働・休日労働など、割増率を選んで簡単に計算できます。</p>
+      <h2>計算方法</h2>
+      <p>割増込み時給は「時給 ×（1 ＋ 割増率 ÷ 100）」、残業代は「割増込み時給 × 残業時間」で計算します。</p>
+      <h2>注意事項</h2>
+      <p>結果は一般的な目安です。実際の残業代は、雇用形態・会社の就業規則・給与体系・法定労働時間の扱いなどによって異なります。正確な金額は勤務先の規定や専門機関の情報をご確認ください。</p>
+    </section>
+
+    <!-- 仕事・テキストシリーズ：内容は assets/goma-ui.js で一元管理 -->
+    <section data-work-series data-current="overtime-pay"></section>
+    <div class="back-to-top"><a class="top-button" href="../">🏠 トップへ戻る</a></div>
+  </div></main>
+
+  <footer><div class="goma-footer-inner">
+    <p class="goma-footer-logo">ゴマツール</p><p class="goma-footer-copy">30秒で使えて、昨日より少し便利。</p>
+    <nav class="goma-footer-nav" aria-label="フッターナビゲーション"><a href="../">🏠 ホーム</a><a href="../privacy/">🔒 プライバシーポリシー</a><a href="../terms.html">📜 利用規約</a><a href="../faq.html">❓ FAQ</a><a href="../knowledge.html">🍵 ゴマ知識</a></nav>
+    <p class="goma-copyright">© 2026 Project Goma</p>
+  </div></footer>
+
+  <script>
+    'use strict';
+    const form = document.getElementById('overtimePayForm');
+    const wageInput = document.getElementById('hourlyWage');
+    const hoursInput = document.getElementById('overtimeHours');
+    const minutesInput = document.getElementById('overtimeMinutes');
+    const customRateInput = document.getElementById('customRate');
+    const customRateWrap = document.getElementById('customRateWrap');
+    const errorMessage = document.getElementById('errorMessage');
+    const resultCard = document.getElementById('resultCard');
+    let latestResult = null;
+
+    function selectedPreset() {
+      return document.querySelector('input[name="ratePreset"]:checked');
+    }
+
+    function formatYen(value) {
+      return `${Math.round(value).toLocaleString('ja-JP')}円`;
+    }
+
+    function formatDuration(totalMinutes) {
+      const hours = Math.floor(totalMinutes / 60);
+      const minutes = totalMinutes % 60;
+      if (hours === 0) return `${minutes}分`;
+      return minutes === 0 ? `${hours}時間` : `${hours}時間${minutes}分`;
+    }
+
+    function readInputs() {
+      if (wageInput.value === '') return { error: '時給を入力してください。' };
+      const wage = Number(wageInput.value);
+      if (!Number.isFinite(wage) || wage <= 0) return { error: '時給は0円より大きい数値で入力してください。' };
+
+      if (hoursInput.value === '' || minutesInput.value === '') return { error: '残業時間の「時間」と「分」を入力してください。' };
+      const hours = Number(hoursInput.value);
+      const minutes = Number(minutesInput.value);
+      if (!Number.isInteger(hours) || hours < 0) return { error: '残業時間の「時間」は0以上の整数で入力してください。' };
+      if (!Number.isInteger(minutes) || minutes < 0 || minutes > 59) return { error: '残業時間の「分」は0〜59の整数で入力してください。' };
+      const totalMinutes = hours * 60 + minutes;
+      if (totalMinutes === 0) return { error: '残業時間は1分以上にしてください。' };
+
+      const preset = selectedPreset();
+      if (!preset) return { error: '割増率を選択してください。' };
+      const isCustom = preset.value === 'custom';
+      if (isCustom && customRateInput.value === '') return { error: 'カスタム割増率を入力してください。' };
+      const rate = isCustom ? Number(customRateInput.value) : Number(preset.value);
+      if (!Number.isFinite(rate) || rate < 0) return { error: '割増率は0以上の数値で入力してください。' };
+
+      return { wage, hours, minutes, totalMinutes, rate, rateLabel: preset.dataset.label };
+    }
+
+    function calculatePay(event) {
+      event.preventDefault();
+      errorMessage.textContent = '';
+      document.getElementById('copyMessage').textContent = '';
+      const input = readInputs();
+      if (input.error) {
+        errorMessage.textContent = input.error;
+        resultCard.hidden = true;
+        latestResult = null;
+        return;
+      }
+
+      const premiumHourly = input.wage * (1 + input.rate / 100);
+      const overtimePay = premiumHourly * (input.totalMinutes / 60);
+      latestResult = { ...input, premiumHourly, overtimePay };
+      document.getElementById('overtimePayValue').textContent = formatYen(overtimePay);
+      document.getElementById('premiumHourlyWage').textContent = formatYen(premiumHourly);
+      document.getElementById('overtimeDuration').textContent = formatDuration(input.totalMinutes);
+      document.getElementById('premiumRate').textContent = `${input.rateLabel}（${input.rate}%）`;
+      resultCard.hidden = false;
+      resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function updateCustomRate() {
+      const preset = selectedPreset();
+      const custom = preset && preset.value === 'custom';
+      customRateWrap.hidden = !custom;
+      customRateInput.required = custom;
+      if (!custom) customRateInput.value = '';
+      errorMessage.textContent = '';
+    }
+
+    function resetAll() {
+      form.reset();
+      hoursInput.value = '0';
+      minutesInput.value = '0';
+      customRateWrap.hidden = true;
+      customRateInput.required = false;
+      errorMessage.textContent = '';
+      document.getElementById('copyMessage').textContent = '';
+      resultCard.hidden = true;
+      latestResult = null;
+      wageInput.focus();
+    }
+
+    async function copyResult() {
+      if (!latestResult) return;
+      const text = `【ゴマツール 残業代計算結果】\n時給：${formatYen(latestResult.wage)}\n残業時間：${formatDuration(latestResult.totalMinutes)}\n割増率：${latestResult.rateLabel}（${latestResult.rate}%）\n割増込み時給：${formatYen(latestResult.premiumHourly)}\n残業代の目安：${formatYen(latestResult.overtimePay)}`;
+      try {
+        await navigator.clipboard.writeText(text);
+        document.getElementById('copyMessage').textContent = 'コピーしました。';
+      } catch (error) {
+        document.getElementById('copyMessage').textContent = 'コピーできませんでした。手動で選択してコピーしてください。';
+      }
+    }
+
+    document.querySelectorAll('input[name="ratePreset"]').forEach(input => input.addEventListener('change', updateCustomRate));
+    form.addEventListener('submit', calculatePay);
+    document.getElementById('resetButton').addEventListener('click', resetAll);
+    document.getElementById('copyButton').addEventListener('click', copyResult);
+    hoursInput.value = '0';
+    minutesInput.value = '0';
+  </script>
+</body>
+</html>

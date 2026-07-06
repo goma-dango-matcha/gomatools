@@ -169,7 +169,8 @@
     { id: 'text-format', icon: '📝', name: 'テキスト整形ツール', path: 'tools/text-format.html' },
     { id: 'work-time', icon: '⏰', name: '勤務時間計算ツール', path: 'tools/work-time.html' },
     { id: 'hourly-wage', icon: '💴', name: '時給計算ツール', path: 'tools/hourly-wage.html' },
-    { id: 'overtime-hours', icon: '🕒', name: '残業時間計算ツール', path: 'tools/overtime-hours.html' }
+    { id: 'overtime-hours', icon: '🕒', name: '残業時間計算ツール', path: 'tools/overtime-hours.html' },
+    { id: 'overtime-pay', icon: '💰', name: '残業代計算ツール', path: 'tools/overtime-pay.html' }
   ];
 
   function createWorkSeries(paths) {
@@ -188,7 +189,7 @@
     section.setAttribute('aria-labelledby', 'work-series-title');
     section.innerHTML = `
       <h2 id="work-series-title">💼 仕事・テキストシリーズ</h2>
-      <p>仕事・テキストシリーズでは、文章作業や勤務時間、残業時間、時給の目安などを無料で簡単に確認できます。</p>
+      <p>仕事・テキストシリーズでは、文章作業や勤務時間、残業時間、時給・残業代の目安などを無料で簡単に確認できます。</p>
       <p>目的に合わせて他のツールもぜひご利用ください。</p>
       <ul class="work-series-list">${items}</ul>`;
   }
