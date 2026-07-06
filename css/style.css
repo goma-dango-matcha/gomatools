@@ -579,6 +579,64 @@ a { color: var(--terms-green-dark); }
 }
 
 /* ======================
+   残業時間計算ツール
+====================== */
+.overtime-main { padding: 42px 20px 72px; }
+.overtime-container { width: min(100%, 1100px); margin: 0 auto; }
+.overtime-hero { margin-bottom: 28px; text-align: center; }
+.overtime-hero h1 { margin: 8px 0 12px; color: var(--terms-text); font-size: clamp(1.9rem, 5vw, 2.7rem); }
+.overtime-hero p { max-width: 760px; margin: 0 auto; color: var(--terms-muted); line-height: 1.8; }
+.overtime-eyebrow { color: var(--terms-green) !important; font-weight: 800; }
+.overtime-card { margin-top: 24px; padding: clamp(22px, 4vw, 36px); border: 1px solid var(--terms-line); border-radius: 22px; background: #fff; box-shadow: 0 12px 32px rgba(67, 91, 49, .08); }
+.overtime-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
+.overtime-form-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.overtime-field label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
+.overtime-field label span { color: var(--terms-muted); font-size: .78rem; }
+.overtime-scheduled { margin: 22px 0 0; padding: 18px; border: 1px solid #d8e4d2; border-radius: 15px; }
+.overtime-scheduled legend { padding: 0 8px; color: var(--terms-green-dark); font-weight: 850; }
+.overtime-duration-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 180px)); gap: 14px; }
+.overtime-hint { margin: 14px 0 0; color: var(--terms-muted); font-size: .92rem; }
+.overtime-error { min-height: 1.5em; margin: 12px 0 0; color: #b42318; font-weight: 800; text-align: center; }
+.overtime-form-buttons { display: flex; justify-content: center; gap: 12px; margin-top: 18px; }
+.overtime-form-buttons button,
+.overtime-copy { min-width: 180px; min-height: 52px; padding: 12px 22px; border: 1px solid #afc1a5; border-radius: 13px; background: #f7faf5; color: var(--terms-green-dark); font: inherit; font-weight: 850; cursor: pointer; transition: transform .18s, background .18s, box-shadow .18s; }
+.overtime-form-buttons .overtime-primary,
+.overtime-copy { border-color: var(--terms-green); background: var(--terms-green); color: #fff; }
+.overtime-form-buttons button:hover,
+.overtime-copy:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(67, 91, 49, .16); }
+.overtime-form-buttons .overtime-primary:hover,
+.overtime-copy:hover { background: var(--terms-green-dark); }
+.overtime-result { border-color: #b7cba9; background: #fbfdf9; }
+.overtime-result-main { padding: 26px 18px; border-radius: 17px; background: var(--terms-green-light); text-align: center; }
+.overtime-result-main span,
+.overtime-result-grid span { display: block; color: var(--terms-muted); font-size: .88rem; font-weight: 800; }
+.overtime-result-main strong { display: block; margin-top: 8px; color: var(--terms-green-dark); font-size: clamp(2.15rem, 7vw, 3.2rem); }
+.overtime-result-main p { margin: 8px 0 0; color: var(--terms-muted); }
+.overtime-result-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 16px; }
+.overtime-result-grid > div { padding: 20px 14px; border: 1px solid #d8e4d2; border-radius: 15px; background: #fff; text-align: center; }
+.overtime-result-grid strong { display: block; margin-top: 7px; color: var(--terms-text); font-size: clamp(1.05rem, 3vw, 1.35rem); }
+.overtime-copy { display: block; margin: 20px auto 0; }
+.overtime-copy-message { min-height: 1.5em; margin: 10px 0 0; color: var(--terms-green-dark); font-weight: 800; text-align: center; }
+.overtime-related p,
+.overtime-info p { margin: 0; color: var(--terms-muted); line-height: 1.85; }
+.overtime-related a { display: inline-flex; margin-top: 16px; color: var(--terms-green-dark); font-weight: 850; }
+.overtime-info h2:not(:first-child) { margin-top: 28px; }
+
+@media (max-width: 760px) {
+  .overtime-form-grid,
+  .overtime-result-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .overtime-main { padding: 28px 16px 56px; }
+  .overtime-card { padding: 20px 16px; border-radius: 18px; }
+  .overtime-duration-grid { grid-template-columns: 1fr 1fr; }
+  .overtime-form-buttons { flex-direction: column; }
+  .overtime-form-buttons button,
+  .overtime-copy { width: 100%; }
+}
+
+/* ======================
    時給計算ツール
 ====================== */
 .hourly-main { padding: 42px 20px 72px; }

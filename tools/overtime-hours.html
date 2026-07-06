@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8BNDHPNEHY"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-8BNDHPNEHY');</script>
+  <title>残業時間計算ツール｜勤務時間から残業時間を無料計算</title>
+  <meta name="description" content="始業・終業・休憩時間から実働時間と残業時間を簡単に計算できる無料ツールです。">
+  <meta name="keywords" content="残業時間計算,実働時間,勤務時間計算,残業時間,労働時間計算,勤怠計算">
+  <link rel="canonical" href="https://goma-dango-matcha.github.io/gomatools/tools/overtime-hours.html">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ゴマツール">
+  <meta property="og:title" content="残業時間計算ツール｜ゴマツール">
+  <meta property="og:description" content="勤務時間から残業時間を簡単に計算できます。">
+  <meta property="og:url" content="https://goma-dango-matcha.github.io/gomatools/tools/overtime-hours.html">
+  <meta property="og:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta property="og:image:secure_url" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ゴマツール — 一歩便利を、毎日の暮らしに。">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="残業時間計算ツール｜ゴマツール">
+  <meta name="twitter:description" content="勤務時間から残業時間を簡単に計算できます。">
+  <meta name="twitter:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta name="twitter:image:alt" content="ゴマツール — 一歩便利を、毎日の暮らしに。">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <meta name="theme-color" content="#63843F">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../assets/goma-ui.css?v=1.9">
+  <script defer src="../assets/goma-ui.js?v=1.9"></script>
+</head>
+<body>
+  <header><div class="goma-header-inner">
+    <div class="goma-brand-wrap"><a class="goma-brand" href="../">ゴマツール</a><p class="goma-brand-copy">無料で使える便利ツール集</p></div>
+    <a class="goma-home-button" href="../">🏠 ホームへ戻る</a>
+  </div></header>
+
+  <main class="overtime-main"><div class="overtime-container">
+    <section class="overtime-hero" aria-labelledby="page-title">
+      <p class="overtime-eyebrow">💼 仕事・テキスト</p>
+      <h1 id="page-title">残業時間計算ツール</h1>
+      <p>勤務時間・休憩時間・所定労働時間から、残業時間を簡単に計算できます。</p>
+    </section>
+
+    <section class="overtime-card" aria-labelledby="input-title">
+      <h2 id="input-title">勤務時間を入力</h2>
+      <form id="overtimeForm" novalidate>
+        <div class="overtime-form-grid">
+          <div class="overtime-field"><label for="startTime">始業時間 <span>必須</span></label><input id="startTime" type="time" required></div>
+          <div class="overtime-field"><label for="endTime">終業時間 <span>必須</span></label><input id="endTime" type="time" required></div>
+          <div class="overtime-field"><label for="breakMinutes">休憩時間（分） <span>必須</span></label><input id="breakMinutes" type="number" min="0" step="1" inputmode="numeric" value="60" placeholder="例：60" required></div>
+        </div>
+        <fieldset class="overtime-scheduled">
+          <legend>所定労働時間（任意・初期値8時間）</legend>
+          <div class="overtime-duration-grid">
+            <div class="overtime-field"><label for="scheduledHours">時間</label><input id="scheduledHours" type="number" min="0" max="23" step="1" inputmode="numeric" value="8"></div>
+            <div class="overtime-field"><label for="scheduledMinutes">分</label><input id="scheduledMinutes" type="number" min="0" max="59" step="1" inputmode="numeric" value="0"></div>
+          </div>
+        </fieldset>
+        <p class="overtime-hint">この初回版は、始業から終業までが同じ日の勤務を計算します。</p>
+        <p class="overtime-error" id="errorMessage" role="alert"></p>
+        <div class="overtime-form-buttons">
+          <button class="overtime-primary" type="submit">計算する</button>
+          <button id="resetButton" type="button">リセット</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="overtime-card overtime-result" id="resultCard" aria-labelledby="result-title" aria-live="polite" hidden>
+      <h2 id="result-title">計算結果</h2>
+      <div class="overtime-result-main">
+        <span id="resultLabel">本日の残業時間</span>
+        <strong id="overtimeValue">—</strong>
+        <p id="resultMessage"></p>
+      </div>
+      <div class="overtime-result-grid">
+        <div><span>実働時間</span><strong id="workingTime">—</strong></div>
+        <div><span>所定労働時間</span><strong id="scheduledTime">—</strong></div>
+        <div><span>休憩時間</span><strong id="breakTime">—</strong></div>
+      </div>
+      <button class="overtime-copy" id="copyButton" type="button">📋 結果をコピー</button>
+      <p class="overtime-copy-message" id="copyMessage" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="overtime-card overtime-related" aria-labelledby="related-title">
+      <h2 id="related-title">勤務時間だけを確認したい場合</h2>
+      <p>日またぎ勤務を含む拘束時間や実働時間の確認には、勤務時間計算ツールをご利用ください。</p>
+      <a href="./work-time.html">⏰ 勤務時間計算ツールはこちら</a>
+    </section>
+
+    <section class="overtime-card overtime-info" aria-labelledby="about-title">
+      <h2 id="about-title">このツールについて</h2>
+      <p>始業時間・終業時間・休憩時間から、実働時間と残業時間を計算できます。日々の勤怠管理や勤務記録の確認に便利です。</p>
+      <h2>計算方法</h2>
+      <p>実働時間は「終業時間 − 始業時間 − 休憩時間」、残業時間は「実働時間 − 所定労働時間」で計算します。残業時間がマイナスになる場合は0時間と表示します。</p>
+      <h2>注意事項</h2>
+      <p>会社によって所定労働時間や残業時間の計算方法が異なる場合があります。このツールは一般的な計算方法を基にした目安です。給与や正式な勤怠の確認には勤務先の規定をご確認ください。</p>
+    </section>
+
+    <!-- 仕事・テキストシリーズ：内容は assets/goma-ui.js で一元管理 -->
+    <section data-work-series data-current="overtime-hours"></section>
+    <div class="back-to-top"><a class="top-button" href="../">🏠 トップへ戻る</a></div>
+  </div></main>
+
+  <footer><div class="goma-footer-inner">
+    <p class="goma-footer-logo">ゴマツール</p><p class="goma-footer-copy">30秒で使えて、昨日より少し便利。</p>
+    <nav class="goma-footer-nav" aria-label="フッターナビゲーション"><a href="../">🏠 ホーム</a><a href="../privacy/">🔒 プライバシーポリシー</a><a href="../terms.html">📜 利用規約</a><a href="../faq.html">❓ FAQ</a><a href="../knowledge.html">🍵 ゴマ知識</a></nav>
+    <p class="goma-copyright">© 2026 Project Goma</p>
+  </div></footer>
+
+  <script>
+    'use strict';
+    const form = document.getElementById('overtimeForm');
+    const startInput = document.getElementById('startTime');
+    const endInput = document.getElementById('endTime');
+    const breakInput = document.getElementById('breakMinutes');
+    const scheduledHoursInput = document.getElementById('scheduledHours');
+    const scheduledMinutesInput = document.getElementById('scheduledMinutes');
+    const errorMessage = document.getElementById('errorMessage');
+    const resultCard = document.getElementById('resultCard');
+    let latestResult = null;
+
+    function parseTime(value) {
+      const [hours, minutes] = value.split(':').map(Number);
+      return hours * 60 + minutes;
+    }
+
+    function formatMinutes(totalMinutes) {
+      const hours = Math.floor(totalMinutes / 60);
+      const minutes = totalMinutes % 60;
+      if (hours === 0) return minutes === 0 ? '0時間' : `${minutes}分`;
+      return minutes === 0 ? `${hours}時間` : `${hours}時間${minutes}分`;
+    }
+
+    function readInputs() {
+      if (!startInput.value) return { error: '始業時間を入力してください。' };
+      if (!endInput.value) return { error: '終業時間を入力してください。' };
+      if (breakInput.value === '') return { error: '休憩時間を入力してください。' };
+
+      const start = parseTime(startInput.value);
+      const end = parseTime(endInput.value);
+      const breakMinutes = Number(breakInput.value);
+      const scheduledHours = Number(scheduledHoursInput.value);
+      const scheduledMinutes = Number(scheduledMinutesInput.value);
+
+      if (end <= start) return { error: '終業時間は始業時間より後の時刻を入力してください。' };
+      if (!Number.isInteger(breakMinutes) || breakMinutes < 0) return { error: '休憩時間は0以上の整数で入力してください。' };
+      if (!Number.isInteger(scheduledHours) || scheduledHours < 0 || scheduledHours > 23) return { error: '所定労働時間の「時間」は0〜23の整数で入力してください。' };
+      if (!Number.isInteger(scheduledMinutes) || scheduledMinutes < 0 || scheduledMinutes > 59) return { error: '所定労働時間の「分」は0〜59の整数で入力してください。' };
+
+      const totalMinutes = end - start;
+      if (breakMinutes >= totalMinutes) return { error: '休憩時間は始業から終業までの時間より短くしてください。' };
+
+      const workingMinutes = totalMinutes - breakMinutes;
+      const scheduledTotal = scheduledHours * 60 + scheduledMinutes;
+      if (scheduledTotal <= 0) return { error: '所定労働時間は1分以上にしてください。' };
+
+      return { start: startInput.value, end: endInput.value, breakMinutes, workingMinutes, scheduledTotal };
+    }
+
+    function calculateOvertime(event) {
+      event.preventDefault();
+      errorMessage.textContent = '';
+      document.getElementById('copyMessage').textContent = '';
+      const input = readInputs();
+      if (input.error) {
+        errorMessage.textContent = input.error;
+        resultCard.hidden = true;
+        latestResult = null;
+        return;
+      }
+
+      const overtimeMinutes = Math.max(0, input.workingMinutes - input.scheduledTotal);
+      latestResult = { ...input, overtimeMinutes };
+      document.getElementById('overtimeValue').textContent = formatMinutes(overtimeMinutes);
+      document.getElementById('workingTime').textContent = formatMinutes(input.workingMinutes);
+      document.getElementById('scheduledTime').textContent = formatMinutes(input.scheduledTotal);
+      document.getElementById('breakTime').textContent = formatMinutes(input.breakMinutes);
+      document.getElementById('resultLabel').textContent = overtimeMinutes > 0 ? '本日の残業時間' : '残業なし';
+      document.getElementById('resultMessage').textContent = overtimeMinutes > 0 ? '入力した所定労働時間を超えた分です。' : '実働時間は所定労働時間以内です。';
+      resultCard.hidden = false;
+      resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function resetAll() {
+      form.reset();
+      breakInput.value = '60';
+      scheduledHoursInput.value = '8';
+      scheduledMinutesInput.value = '0';
+      errorMessage.textContent = '';
+      document.getElementById('copyMessage').textContent = '';
+      resultCard.hidden = true;
+      latestResult = null;
+      startInput.focus();
+    }
+
+    async function copyResult() {
+      if (!latestResult) return;
+      const text = `【ゴマツール 残業時間計算結果】\n始業時間：${latestResult.start}\n終業時間：${latestResult.end}\n休憩時間：${formatMinutes(latestResult.breakMinutes)}\n実働時間：${formatMinutes(latestResult.workingMinutes)}\n所定労働時間：${formatMinutes(latestResult.scheduledTotal)}\n残業時間：${formatMinutes(latestResult.overtimeMinutes)}`;
+      try {
+        await navigator.clipboard.writeText(text);
+        document.getElementById('copyMessage').textContent = 'コピーしました。';
+      } catch (error) {
+        document.getElementById('copyMessage').textContent = 'コピーできませんでした。手動で選択してコピーしてください。';
+      }
+    }
+
+    form.addEventListener('submit', calculateOvertime);
+    document.getElementById('resetButton').addEventListener('click', resetAll);
+    document.getElementById('copyButton').addEventListener('click', copyResult);
+  </script>
+</body>
+</html>
