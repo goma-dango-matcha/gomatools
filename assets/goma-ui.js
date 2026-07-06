@@ -138,7 +138,8 @@
     { id: 'discount-calculator', icon: '💹', name: '割引率計算ツール', path: 'discount-calculator/' },
     { id: 'interest-calculator', icon: '💴', name: '利息計算ツール', path: 'interest-calculator/' },
     { id: 'net-income-calculator', icon: '💵', name: '手取り・税込逆算ツール', path: 'net-income-calculator/' },
-    { id: 'percentage-calculator', icon: '％', name: 'パーセント計算ツール', path: 'tools/percentage-calculator.html' }
+    { id: 'percentage-calculator', icon: '％', name: 'パーセント計算ツール', path: 'tools/percentage-calculator.html' },
+    { id: 'loan-calculator', icon: '🏦', name: 'ローン返済シミュレーター', path: 'tools/loan-calculator.html' }
   ];
 
   function createMoneySeries(paths) {
@@ -157,7 +158,7 @@
     section.setAttribute('aria-labelledby', 'money-series-title');
     section.innerHTML = `
       <h2 id="money-series-title">💰 お金・計算シリーズ</h2>
-      <p>お金・計算シリーズでは、税金や割引、利息、割合などを無料で簡単に計算できます。</p>
+      <p>お金・計算シリーズでは、税金や割引、利息、割合、ローン返済などを無料で簡単に計算できます。</p>
       <p>目的に合わせて他のツールもぜひご利用ください。</p>
       <ul class="money-series-list">${items}</ul>`;
   }

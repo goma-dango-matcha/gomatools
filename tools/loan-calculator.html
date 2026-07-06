@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8BNDHPNEHY"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-8BNDHPNEHY');</script>
+  <title>ローン返済シミュレーター｜毎月返済額・総返済額を無料計算</title>
+  <meta name="description" content="借入金額・金利・返済期間を入力するだけで、毎月の返済額、総返済額、利息総額の目安を簡単に計算できる無料ツールです。">
+  <meta name="keywords" content="ローン返済シミュレーター,ローン計算,返済額計算,毎月返済額,借入 計算,住宅ローン 計算,自動車ローン 計算,教育ローン 計算">
+  <link rel="canonical" href="https://goma-dango-matcha.github.io/gomatools/tools/loan-calculator.html">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ゴマツール">
+  <meta property="og:title" content="ローン返済シミュレーター｜ゴマツール">
+  <meta property="og:description" content="借入金額・金利・返済期間から毎月返済額を簡単に計算できます。">
+  <meta property="og:url" content="https://goma-dango-matcha.github.io/gomatools/tools/loan-calculator.html">
+  <meta property="og:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta property="og:image:secure_url" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ゴマツール — 一歩便利を、毎日の暮らしに。">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ローン返済シミュレーター｜ゴマツール">
+  <meta name="twitter:description" content="借入金額・金利・返済期間から毎月返済額を簡単に計算できます。">
+  <meta name="twitter:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta name="twitter:image:alt" content="ゴマツール — 一歩便利を、毎日の暮らしに。">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <meta name="theme-color" content="#63843F">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../assets/goma-ui.css?v=2.2">
+  <script defer src="../assets/goma-ui.js?v=2.2"></script>
+</head>
+<body>
+  <header><div class="goma-header-inner">
+    <div class="goma-brand-wrap"><a class="goma-brand" href="../">ゴマツール</a><p class="goma-brand-copy">無料で使える便利ツール集</p></div>
+    <a class="goma-home-button" href="../">🏠 ホームへ戻る</a>
+  </div></header>
+
+  <main class="loan-main"><div class="loan-container">
+    <section class="loan-hero" aria-labelledby="page-title">
+      <p class="loan-eyebrow">💰 お金・計算</p>
+      <h1 id="page-title">ローン返済シミュレーター</h1>
+      <p>借入金額・金利・返済期間から、毎月返済額・総返済額・利息総額の目安を簡単に計算できます。</p>
+    </section>
+
+    <section class="loan-card" aria-labelledby="input-title">
+      <h2 id="input-title">ローン条件を入力</h2>
+      <form id="loanForm" novalidate>
+        <div class="loan-form-grid">
+          <div class="loan-field"><label for="principal">借入金額（円） <span>必須</span></label><input id="principal" type="number" min="1" step="1" inputmode="numeric" placeholder="例：1000000" required></div>
+          <div class="loan-field"><label for="annualRate">年利（%） <span>必須</span></label><input id="annualRate" type="number" min="0" step="0.01" inputmode="decimal" placeholder="例：3" required></div>
+        </div>
+        <fieldset class="loan-period">
+          <legend>返済期間 <span>必須</span></legend>
+          <div class="loan-period-grid">
+            <div class="loan-field"><label for="periodYears">年</label><input id="periodYears" type="number" min="0" step="1" inputmode="numeric" placeholder="例：3" required></div>
+            <div class="loan-field"><label for="periodMonths">月</label><input id="periodMonths" type="number" min="0" max="11" step="1" inputmode="numeric" placeholder="例：0" required></div>
+          </div>
+        </fieldset>
+        <p class="loan-hint">初回版は元利均等返済・ボーナス返済なしの簡易計算です。年または月が0の場合も「0」と入力してください。</p>
+        <p class="loan-error" id="errorMessage" role="alert"></p>
+        <div class="loan-form-buttons">
+          <button class="loan-primary" type="submit">計算する</button>
+          <button id="resetButton" type="button">リセット</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="loan-card loan-result" id="resultCard" aria-labelledby="result-title" aria-live="polite" hidden>
+      <h2 id="result-title">計算結果</h2>
+      <div class="loan-result-main"><span>毎月返済額の目安</span><strong id="monthlyPayment">—</strong><p>ボーナス返済なし・元利均等返済の簡易計算です。</p></div>
+      <div class="loan-result-grid">
+        <div><span>総返済額</span><strong id="totalPayment">—</strong></div>
+        <div class="loan-interest-item"><span>利息総額</span><strong id="totalInterest">—</strong></div>
+        <div><span>返済回数</span><strong id="paymentCount">—</strong></div>
+      </div>
+      <button class="loan-copy" id="copyButton" type="button">📋 結果をコピー</button>
+      <p class="loan-copy-message" id="copyMessage" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="loan-card loan-related" aria-labelledby="related-title">
+      <h2 id="related-title">関連するお金の計算</h2>
+      <p>利息だけを確認したい場合や、資産運用の複利計算には関連ツールもご利用ください。</p>
+      <div class="loan-related-links">
+        <a href="../interest-calculator/">💴 利息計算ツール</a>
+        <a href="../compound-interest/">📈 複利計算</a>
+        <a href="./percentage-calculator.html">％ パーセント計算ツール</a>
+      </div>
+    </section>
+
+    <section class="loan-card loan-info" aria-labelledby="about-title">
+      <h2 id="about-title">このツールについて</h2>
+      <p>借入金額・金利・返済期間から、毎月返済額や総返済額、利息総額の目安を計算できます。住宅ローン、自動車ローン、教育ローンなどの簡易確認に利用できます。</p>
+      <h2>計算方法</h2>
+      <p>元利均等返済の計算式を使用します。金利0%の場合は、借入金額を返済回数で割って毎月返済額を計算します。</p>
+      <h2>注意事項</h2>
+      <p>結果は簡易計算による目安です。実際の返済額は金融機関、手数料、端数処理、返済方式、契約条件によって異なります。正式な金額は金融機関の情報をご確認ください。</p>
+    </section>
+
+    <!-- お金・計算シリーズ：内容は assets/goma-ui.js で一元管理 -->
+    <section data-money-series data-current="loan-calculator"></section>
+    <div class="back-to-top"><a class="top-button" href="../">🏠 トップへ戻る</a></div>
+  </div></main>
+
+  <footer><div class="goma-footer-inner">
+    <p class="goma-footer-logo">ゴマツール</p><p class="goma-footer-copy">30秒で使えて、昨日より少し便利。</p>
+    <nav class="goma-footer-nav" aria-label="フッターナビゲーション"><a href="../">🏠 ホーム</a><a href="../privacy/">🔒 プライバシーポリシー</a><a href="../terms.html">📜 利用規約</a><a href="../faq.html">❓ FAQ</a><a href="../knowledge.html">🍵 ゴマ知識</a></nav>
+    <p class="goma-copyright">© 2026 Project Goma</p>
+  </div></footer>
+
+  <script>
+    'use strict';
+    const form = document.getElementById('loanForm');
+    const principalInput = document.getElementById('principal');
+    const rateInput = document.getElementById('annualRate');
+    const yearsInput = document.getElementById('periodYears');
+    const monthsInput = document.getElementById('periodMonths');
+    const errorMessage = document.getElementById('errorMessage');
+    const resultCard = document.getElementById('resultCard');
+    let latestResult = null;
+
+    function formatYen(value) {
+      return `約${Math.round(value).toLocaleString('ja-JP')}円`;
+    }
+
+    function readInputs() {
+      if (principalInput.value === '') return { error: '借入金額を入力してください。' };
+      const principal = Number(principalInput.value);
+      if (!Number.isFinite(principal) || principal <= 0) return { error: '借入金額は0円より大きい数値で入力してください。' };
+
+      if (rateInput.value === '') return { error: '年利を入力してください。' };
+      const annualRate = Number(rateInput.value);
+      if (!Number.isFinite(annualRate) || annualRate < 0) return { error: '年利は0以上の数値で入力してください。' };
+
+      if (yearsInput.value === '' || monthsInput.value === '') return { error: '返済期間の「年」と「月」を両方入力してください。' };
+      const years = Number(yearsInput.value);
+      const months = Number(monthsInput.value);
+      if (!Number.isInteger(years) || years < 0) return { error: '返済期間の「年」は0以上の整数で入力してください。' };
+      if (!Number.isInteger(months) || months < 0 || months > 11) return { error: '返済期間の「月」は0〜11の整数で入力してください。' };
+      const paymentCount = years * 12 + months;
+      if (paymentCount <= 0) return { error: '返済期間は1か月以上にしてください。' };
+      return { principal, annualRate, years, months, paymentCount };
+    }
+
+    function calculateLoan(event) {
+      event.preventDefault();
+      errorMessage.textContent = '';
+      document.getElementById('copyMessage').textContent = '';
+      const input = readInputs();
+      if (input.error) {
+        errorMessage.textContent = input.error;
+        resultCard.hidden = true;
+        latestResult = null;
+        return;
+      }
+
+      const monthlyRate = input.annualRate / 12 / 100;
+      let exactMonthly;
+      if (monthlyRate === 0) {
+        exactMonthly = input.principal / input.paymentCount;
+      } else {
+        const factor = Math.pow(1 + monthlyRate, input.paymentCount);
+        exactMonthly = input.principal * monthlyRate * factor / (factor - 1);
+      }
+      const monthlyPayment = Math.round(exactMonthly);
+      const totalPayment = monthlyPayment * input.paymentCount;
+      const totalInterest = Math.max(0, totalPayment - input.principal);
+      latestResult = { ...input, monthlyPayment, totalPayment, totalInterest };
+
+      document.getElementById('monthlyPayment').textContent = formatYen(monthlyPayment);
+      document.getElementById('totalPayment').textContent = formatYen(totalPayment);
+      document.getElementById('totalInterest').textContent = formatYen(totalInterest);
+      document.getElementById('paymentCount').textContent = `${input.paymentCount.toLocaleString('ja-JP')}回`;
+      resultCard.hidden = false;
+      resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function resetAll() {
+      form.reset();
+      errorMessage.textContent = '';
+      document.getElementById('copyMessage').textContent = '';
+      resultCard.hidden = true;
+      latestResult = null;
+      principalInput.focus();
+    }
+
+    async function copyResult() {
+      if (!latestResult) return;
+      const periodText = `${latestResult.years}年${latestResult.months}か月`;
+      const text = `【ゴマツール ローン返済シミュレーション】\n借入金額：${Math.round(latestResult.principal).toLocaleString('ja-JP')}円\n年利：${latestResult.annualRate}%\n返済期間：${periodText}\n毎月返済額：${formatYen(latestResult.monthlyPayment)}\n総返済額：${formatYen(latestResult.totalPayment)}\n利息総額：${formatYen(latestResult.totalInterest)}\n返済回数：${latestResult.paymentCount.toLocaleString('ja-JP')}回`;
+      try {
+        await navigator.clipboard.writeText(text);
+        document.getElementById('copyMessage').textContent = 'コピーしました。';
+      } catch (error) {
+        document.getElementById('copyMessage').textContent = 'コピーできませんでした。手動で選択してコピーしてください。';
+      }
+    }
+
+    form.addEventListener('submit', calculateLoan);
+    document.getElementById('resetButton').addEventListener('click', resetAll);
+    document.getElementById('copyButton').addEventListener('click', copyResult);
+  </script>
+</body>
+</html>
