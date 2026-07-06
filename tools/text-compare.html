@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8BNDHPNEHY"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-8BNDHPNEHY');</script>
+  <title>テキスト比較ツール｜2つの文章の違いを無料で比較</title>
+  <meta name="description" content="2つの文章やコードを比較し、追加・削除・変更箇所を簡単に確認できる無料ツールです。">
+  <link rel="canonical" href="https://goma-dango-matcha.github.io/gomatools/tools/text-compare.html">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ゴマツール">
+  <meta property="og:title" content="テキスト比較ツール｜ゴマツール">
+  <meta property="og:description" content="2つの文章やコードの違いを簡単に比較できます。">
+  <meta property="og:url" content="https://goma-dango-matcha.github.io/gomatools/tools/text-compare.html">
+  <meta property="og:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="テキスト比較ツール｜ゴマツール">
+  <meta name="twitter:description" content="文章の修正確認やコード・設定ファイルの比較に使える無料ツールです。">
+  <meta name="twitter:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../assets/goma-ui.css?v=2.4">
+  <script defer src="../assets/goma-ui.js?v=2.4"></script>
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <meta name="theme-color" content="#63843F">
+</head>
+<body>
+  <header></header>
+
+  <main class="text-compare-main">
+    <div class="text-compare-container">
+      <section class="text-compare-hero" aria-labelledby="page-title">
+        <p class="text-compare-eyebrow">💼 仕事・テキスト</p>
+        <h1 id="page-title">テキスト比較ツール</h1>
+        <p>2つのテキストを比較し、追加・削除・変更箇所を簡単に確認できます。文章の修正確認、プログラムコード、設定ファイルなどの比較に便利です。</p>
+      </section>
+
+      <section class="text-compare-card" aria-labelledby="input-title">
+        <h2 id="input-title">比較するテキストを入力</h2>
+        <div class="text-compare-input-grid">
+          <div class="text-compare-field">
+            <label for="sourceText">比較元テキスト</label>
+            <textarea id="sourceText" rows="12" placeholder="左側に比較元の文章を入力してください。"></textarea>
+            <p class="text-compare-count" id="sourceCount">0文字 / 0行</p>
+          </div>
+          <div class="text-compare-field">
+            <label for="targetText">比較先テキスト</label>
+            <textarea id="targetText" rows="12" placeholder="右側に比較先の文章を入力してください。"></textarea>
+            <p class="text-compare-count" id="targetCount">0文字 / 0行</p>
+          </div>
+        </div>
+        <p class="text-compare-hint">行単位で比較し、変更行は文字単位の違いも色分けします。入力内容はブラウザ内だけで処理されます。</p>
+        <p class="text-compare-error" id="errorMessage" aria-live="polite"></p>
+        <div class="text-compare-buttons">
+          <button class="text-compare-primary" type="button" id="compareButton">比較する</button>
+          <button type="button" id="copyButton">結果コピー</button>
+          <button type="button" id="resetButton">リセット</button>
+        </div>
+        <p class="text-compare-copy-message" id="copyMessage" aria-live="polite"></p>
+      </section>
+
+      <section class="text-compare-card text-compare-result" id="resultSection" aria-labelledby="result-title" hidden>
+        <h2 id="result-title">比較結果</h2>
+        <div class="text-compare-result-main" id="resultMain">
+          <span>判定</span>
+          <strong id="resultStatus">未比較</strong>
+          <p id="resultSummary">テキストを入力して比較してください。</p>
+        </div>
+        <div class="text-compare-stats">
+          <div><span>一致率</span><strong id="matchRate">0%</strong></div>
+          <div><span>違い</span><strong id="diffCount">0か所</strong></div>
+          <div><span>追加</span><strong id="addedCount">0行</strong></div>
+          <div><span>削除</span><strong id="removedCount">0行</strong></div>
+          <div><span>変更</span><strong id="changedCount">0行</strong></div>
+        </div>
+        <div class="text-compare-diff" id="diffOutput" aria-live="polite"></div>
+      </section>
+
+      <section class="text-compare-card text-compare-info">
+        <h2>このツールについて</h2>
+        <p>テキスト比較ツールでは、2つの文章を行単位で比較し、追加・削除・変更を色分けして表示します。変更された行では、文字単位の差分も確認できます。</p>
+        <h2>使い方</h2>
+        <p>左に比較元、右に比較先のテキストを入力して「比較する」を押してください。結果コピーを押すと、判定・一致率・違いの概要をコピーできます。</p>
+        <h2>注意事項</h2>
+        <p>このツールはブラウザ内で動作する簡易比較ツールです。非常に大きなテキストや複雑な差分では、専用の差分確認ソフトと結果が異なる場合があります。</p>
+      </section>
+
+      <!-- 仕事・テキストシリーズ：内容は assets/goma-ui.js で一元管理 -->
+      <section data-work-series data-current="text-compare"></section>
+
+      <div class="back-to-top"><a class="top-button" href="../">🏠 ホームへ戻る</a></div>
+    </div>
+  </main>
+
+  <footer></footer>
+
+  <script>
+    'use strict';
+
+    const sourceText = document.getElementById('sourceText');
+    const targetText = document.getElementById('targetText');
+    const sourceCount = document.getElementById('sourceCount');
+    const targetCount = document.getElementById('targetCount');
+    const errorMessage = document.getElementById('errorMessage');
+    const copyMessage = document.getElementById('copyMessage');
+    const resultSection = document.getElementById('resultSection');
+    const resultMain = document.getElementById('resultMain');
+    const resultStatus = document.getElementById('resultStatus');
+    const resultSummary = document.getElementById('resultSummary');
+    const matchRate = document.getElementById('matchRate');
+    const diffCount = document.getElementById('diffCount');
+    const addedCount = document.getElementById('addedCount');
+    const removedCount = document.getElementById('removedCount');
+    const changedCount = document.getElementById('changedCount');
+    const diffOutput = document.getElementById('diffOutput');
+    const maxLength = 100000;
+    let lastSummaryText = '';
+
+    function escapeHtml(value) {
+      return value.replace(/[&<>"']/g, char => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      }[char]));
+    }
+
+    function splitLines(value) {
+      return value.replace(/\r\n/g, '\n').replace(/\r/g, '\n').split('\n');
+    }
+
+    function countLines(value) {
+      if (!value) return 0;
+      return splitLines(value).length;
+    }
+
+    function updateCounts() {
+      sourceCount.textContent = `${sourceText.value.length.toLocaleString()}文字 / ${countLines(sourceText.value).toLocaleString()}行`;
+      targetCount.textContent = `${targetText.value.length.toLocaleString()}文字 / ${countLines(targetText.value).toLocaleString()}行`;
+    }
+
+    function setError(message) {
+      errorMessage.textContent = message;
+      copyMessage.textContent = '';
+    }
+
+    function clearError() {
+      errorMessage.textContent = '';
+    }
+
+    function getCommonPrefixLength(a, b) {
+      let index = 0;
+      const max = Math.min(a.length, b.length);
+      while (index < max && a[index] === b[index]) index += 1;
+      return index;
+    }
+
+    function getCommonSuffixLength(a, b, prefixLength) {
+      let count = 0;
+      const max = Math.min(a.length, b.length) - prefixLength;
+      while (count < max && a[a.length - 1 - count] === b[b.length - 1 - count]) count += 1;
+      return count;
+    }
+
+    function highlightChangedText(a, b) {
+      const prefix = getCommonPrefixLength(a, b);
+      const suffix = getCommonSuffixLength(a, b, prefix);
+      const aStart = escapeHtml(a.slice(0, prefix));
+      const bStart = escapeHtml(b.slice(0, prefix));
+      const aMiddle = escapeHtml(a.slice(prefix, a.length - suffix));
+      const bMiddle = escapeHtml(b.slice(prefix, b.length - suffix));
+      const aEnd = escapeHtml(suffix ? a.slice(a.length - suffix) : '');
+      const bEnd = escapeHtml(suffix ? b.slice(b.length - suffix) : '');
+      return {
+        source: `${aStart}<mark>${aMiddle || ' '}</mark>${aEnd}`,
+        target: `${bStart}<mark>${bMiddle || ' '}</mark>${bEnd}`
+      };
+    }
+
+    function compareLines(source, target) {
+      const leftLines = splitLines(source);
+      const rightLines = splitLines(target);
+      const max = Math.max(leftLines.length, rightLines.length);
+      const rows = [];
+      const stats = { added: 0, removed: 0, changed: 0, same: 0 };
+
+      for (let index = 0; index < max; index += 1) {
+        const leftExists = index < leftLines.length;
+        const rightExists = index < rightLines.length;
+        const left = leftExists ? leftLines[index] : '';
+        const right = rightExists ? rightLines[index] : '';
+
+        if (leftExists && rightExists && left === right) {
+          stats.same += 1;
+          rows.push({ type: 'same', line: index + 1, left, right });
+        } else if (!leftExists && rightExists) {
+          stats.added += 1;
+          rows.push({ type: 'added', line: index + 1, left: '', right });
+        } else if (leftExists && !rightExists) {
+          stats.removed += 1;
+          rows.push({ type: 'removed', line: index + 1, left, right: '' });
+        } else {
+          stats.changed += 1;
+          rows.push({ type: 'changed', line: index + 1, left, right, highlight: highlightChangedText(left, right) });
+        }
+      }
+
+      return { rows, stats, total: max };
+    }
+
+    function renderDiff(rows) {
+      diffOutput.innerHTML = rows.map(row => {
+        if (row.type === 'same') {
+          return `<article class="text-compare-diff-row is-same"><span class="text-compare-line">行 ${row.line}</span><span class="text-compare-label">一致</span><pre>${escapeHtml(row.left)}</pre></article>`;
+        }
+        if (row.type === 'added') {
+          return `<article class="text-compare-diff-row is-added"><span class="text-compare-line">行 ${row.line}</span><span class="text-compare-label">追加</span><pre>${escapeHtml(row.right)}</pre></article>`;
+        }
+        if (row.type === 'removed') {
+          return `<article class="text-compare-diff-row is-removed"><span class="text-compare-line">行 ${row.line}</span><span class="text-compare-label">削除</span><pre>${escapeHtml(row.left)}</pre></article>`;
+        }
+        return `<article class="text-compare-diff-row is-changed"><span class="text-compare-line">行 ${row.line}</span><span class="text-compare-label">変更</span><div class="text-compare-change"><pre><b>元</b>${row.highlight.source}</pre><pre><b>先</b>${row.highlight.target}</pre></div></article>`;
+      }).join('');
+    }
+
+    function validateInputs(left, right) {
+      if (!left && !right) return '比較元テキストと比較先テキストを入力してください。';
+      if (!left) return '比較元テキストを入力してください。';
+      if (!right) return '比較先テキストを入力してください。';
+      if (left.length > maxLength || right.length > maxLength) return 'テキストが長すぎます。各テキストは10万文字以内で入力してください。';
+      return '';
+    }
+
+    function compareText() {
+      const left = sourceText.value;
+      const right = targetText.value;
+      const validationMessage = validateInputs(left, right);
+
+      if (validationMessage) {
+        setError(validationMessage);
+        resultSection.hidden = true;
+        return;
+      }
+
+      clearError();
+      const comparison = compareLines(left, right);
+      const different = comparison.stats.added + comparison.stats.removed + comparison.stats.changed;
+      const rate = comparison.total === 0 ? 100 : Math.round((comparison.stats.same / comparison.total) * 100);
+
+      resultSection.hidden = false;
+      resultMain.classList.toggle('is-match', different === 0);
+      resultMain.classList.toggle('is-different', different > 0);
+      resultStatus.textContent = different === 0 ? '一致しています' : `${different.toLocaleString()}か所違います`;
+      resultSummary.textContent = different === 0
+        ? '2つのテキストに違いはありません。'
+        : `追加 ${comparison.stats.added}行、削除 ${comparison.stats.removed}行、変更 ${comparison.stats.changed}行があります。`;
+      matchRate.textContent = `${rate}%`;
+      diffCount.textContent = `${different.toLocaleString()}か所`;
+      addedCount.textContent = `${comparison.stats.added.toLocaleString()}行`;
+      removedCount.textContent = `${comparison.stats.removed.toLocaleString()}行`;
+      changedCount.textContent = `${comparison.stats.changed.toLocaleString()}行`;
+      renderDiff(comparison.rows);
+
+      lastSummaryText = [
+        'テキスト比較結果',
+        `判定：${resultStatus.textContent}`,
+        `一致率：${matchRate.textContent}`,
+        `違い：${diffCount.textContent}`,
+        `追加：${addedCount.textContent}`,
+        `削除：${removedCount.textContent}`,
+        `変更：${changedCount.textContent}`
+      ].join('\n');
+      copyMessage.textContent = '';
+    }
+
+    async function copyResult() {
+      if (!lastSummaryText) {
+        setError('先に比較してください。');
+        return;
+      }
+      try {
+        await navigator.clipboard.writeText(lastSummaryText);
+        copyMessage.textContent = '結果をコピーしました。';
+        clearError();
+      } catch (error) {
+        setError('コピーに失敗しました。ブラウザの設定をご確認ください。');
+      }
+    }
+
+    function resetForm() {
+      sourceText.value = '';
+      targetText.value = '';
+      lastSummaryText = '';
+      resultSection.hidden = true;
+      diffOutput.innerHTML = '';
+      clearError();
+      copyMessage.textContent = '';
+      updateCounts();
+      sourceText.focus();
+    }
+
+    sourceText.addEventListener('input', updateCounts);
+    targetText.addEventListener('input', updateCounts);
+    document.getElementById('compareButton').addEventListener('click', compareText);
+    document.getElementById('copyButton').addEventListener('click', copyResult);
+    document.getElementById('resetButton').addEventListener('click', resetForm);
+    updateCounts();
+  </script>
+</body>
+</html>
