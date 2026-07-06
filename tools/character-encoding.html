@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8BNDHPNEHY"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-8BNDHPNEHY');</script>
+  <title>文字コード変換ツール｜URLエンコード・Base64を無料変換</title>
+  <meta name="description" content="URLエンコード・URLデコード・Base64エンコード・Base64デコードを簡単に相互変換できる無料ツールです。">
+  <link rel="canonical" href="https://goma-dango-matcha.github.io/gomatools/tools/character-encoding.html">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ゴマツール">
+  <meta property="og:title" content="文字コード変換ツール｜ゴマツール">
+  <meta property="og:description" content="URLエンコード・URLデコード・Base64変換を簡単に利用できます。">
+  <meta property="og:url" content="https://goma-dango-matcha.github.io/gomatools/tools/character-encoding.html">
+  <meta property="og:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="文字コード変換ツール｜ゴマツール">
+  <meta name="twitter:description" content="URLエンコード・URLデコード・Base64エンコード・Base64デコードを無料で変換できます。">
+  <meta name="twitter:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../assets/goma-ui.css?v=2.5">
+  <script defer src="../assets/goma-ui.js?v=2.5"></script>
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <meta name="theme-color" content="#63843F">
+</head>
+<body>
+  <header></header>
+
+  <main class="encoding-main">
+    <div class="encoding-container">
+      <section class="encoding-hero" aria-labelledby="page-title">
+        <p class="encoding-eyebrow">💼 仕事・テキスト</p>
+        <h1 id="page-title">文字コード変換ツール</h1>
+        <p>URLエンコード・URLデコード・Base64エンコード・Base64デコードを、ブラウザ内で簡単に変換できます。</p>
+      </section>
+
+      <section class="encoding-card" aria-labelledby="input-title">
+        <h2 id="input-title">変換内容を入力</h2>
+        <div class="encoding-mode-grid" role="group" aria-label="変換方法">
+          <label><input type="radio" name="mode" value="url-encode" checked> URLエンコード</label>
+          <label><input type="radio" name="mode" value="url-decode"> URLデコード</label>
+          <label><input type="radio" name="mode" value="base64-encode"> Base64エンコード</label>
+          <label><input type="radio" name="mode" value="base64-decode"> Base64デコード</label>
+        </div>
+
+        <div class="encoding-field">
+          <label for="sourceText">テキスト入力</label>
+          <textarea id="sourceText" rows="10" placeholder="変換したいテキストを入力してください。"></textarea>
+          <p class="encoding-count" id="sourceCount">0文字</p>
+        </div>
+
+        <p class="encoding-hint">入力内容はサーバーへ送信されず、ブラウザ内だけで処理されます。</p>
+        <p class="encoding-error" id="errorMessage" aria-live="polite"></p>
+        <div class="encoding-buttons">
+          <button class="encoding-primary" type="button" id="convertButton">変換する</button>
+          <button type="button" id="copyButton">コピー</button>
+          <button type="button" id="resetButton">リセット</button>
+        </div>
+        <p class="encoding-copy-message" id="copyMessage" aria-live="polite"></p>
+      </section>
+
+      <section class="encoding-card encoding-result" id="resultSection" aria-labelledby="result-title" hidden>
+        <h2 id="result-title">変換結果</h2>
+        <div class="encoding-result-main">
+          <span id="resultMode">変換結果</span>
+          <strong id="resultLength">0文字</strong>
+        </div>
+        <textarea id="resultText" rows="10" readonly></textarea>
+      </section>
+
+      <section class="encoding-card encoding-info">
+        <h2>このツールについて</h2>
+        <p>文字コード変換ツールでは、URLエンコード・URLデコード・Base64エンコード・Base64デコードをシンプルに利用できます。文章、URL、設定値の確認などに便利です。</p>
+        <h2>対応している変換</h2>
+        <p>Version1.0では、よく使う4種類の変換に絞っています。Unicode変換、Shift_JIS、HTMLエスケープなどは今後の拡張候補です。</p>
+        <h2>注意事項</h2>
+        <p>Base64デコードはUTF-8のテキストとして復元できる内容を対象にしています。画像やバイナリデータのBase64は、正しく文字として表示できない場合があります。</p>
+      </section>
+
+      <!-- 仕事・テキストシリーズ：内容は assets/goma-ui.js で一元管理 -->
+      <section data-work-series data-current="character-encoding"></section>
+
+      <div class="back-to-top"><a class="top-button" href="../">🏠 ホームへ戻る</a></div>
+    </div>
+  </main>
+
+  <footer></footer>
+
+  <script>
+    'use strict';
+
+    const sourceText = document.getElementById('sourceText');
+    const resultText = document.getElementById('resultText');
+    const sourceCount = document.getElementById('sourceCount');
+    const resultLength = document.getElementById('resultLength');
+    const resultMode = document.getElementById('resultMode');
+    const errorMessage = document.getElementById('errorMessage');
+    const copyMessage = document.getElementById('copyMessage');
+    const resultSection = document.getElementById('resultSection');
+    const modeLabels = {
+      'url-encode': 'URLエンコード',
+      'url-decode': 'URLデコード',
+      'base64-encode': 'Base64エンコード',
+      'base64-decode': 'Base64デコード'
+    };
+    let latestResult = '';
+
+    function getMode() {
+      return document.querySelector('input[name="mode"]:checked').value;
+    }
+
+    function setError(message) {
+      errorMessage.textContent = message;
+      copyMessage.textContent = '';
+    }
+
+    function clearError() {
+      errorMessage.textContent = '';
+    }
+
+    function updateSourceCount() {
+      sourceCount.textContent = `${sourceText.value.length.toLocaleString()}文字`;
+    }
+
+    function bytesToBinary(bytes) {
+      let binary = '';
+      const chunkSize = 8192;
+      for (let index = 0; index < bytes.length; index += chunkSize) {
+        const chunk = bytes.slice(index, index + chunkSize);
+        binary += String.fromCharCode(...chunk);
+      }
+      return binary;
+    }
+
+    function base64Encode(value) {
+      const bytes = new TextEncoder().encode(value);
+      return btoa(bytesToBinary(bytes));
+    }
+
+    function normalizeBase64(value) {
+      return value.replace(/\s+/g, '');
+    }
+
+    function validateBase64(value) {
+      if (!value || value.length % 4 !== 0) return false;
+      return /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(value);
+    }
+
+    function base64Decode(value) {
+      const normalized = normalizeBase64(value);
+      if (!validateBase64(normalized)) {
+        throw new Error('Base64として読み取れない文字列です。英数字、+、/、= の形式を確認してください。');
+      }
+      const binary = atob(normalized);
+      const bytes = Uint8Array.from(binary, char => char.charCodeAt(0));
+      return new TextDecoder('utf-8', { fatal: true }).decode(bytes);
+    }
+
+    function convertValue(value, mode) {
+      if (mode === 'url-encode') return encodeURIComponent(value);
+      if (mode === 'url-decode') return decodeURIComponent(value);
+      if (mode === 'base64-encode') return base64Encode(value);
+      if (mode === 'base64-decode') return base64Decode(value);
+      throw new Error('変換方法を選択してください。');
+    }
+
+    function convertText() {
+      const value = sourceText.value;
+      const mode = getMode();
+
+      if (!value) {
+        setError('変換したいテキストを入力してください。');
+        resultSection.hidden = true;
+        latestResult = '';
+        return;
+      }
+
+      try {
+        const converted = convertValue(value, mode);
+        latestResult = converted;
+        resultText.value = converted;
+        resultMode.textContent = modeLabels[mode];
+        resultLength.textContent = `${converted.length.toLocaleString()}文字`;
+        resultSection.hidden = false;
+        clearError();
+        copyMessage.textContent = '';
+      } catch (error) {
+        latestResult = '';
+        resultSection.hidden = true;
+        const message = mode === 'url-decode'
+          ? 'URLデコードできない文字列です。% の後ろの文字などを確認してください。'
+          : error.message || '変換中にエラーが発生しました。入力内容を確認してください。';
+        setError(message);
+      }
+    }
+
+    async function copyResult() {
+      if (!latestResult) {
+        setError('先に変換してください。');
+        return;
+      }
+      try {
+        await navigator.clipboard.writeText(latestResult);
+        clearError();
+        copyMessage.textContent = '変換結果をコピーしました。';
+      } catch (error) {
+        setError('コピーに失敗しました。ブラウザの設定をご確認ください。');
+      }
+    }
+
+    function resetForm() {
+      sourceText.value = '';
+      resultText.value = '';
+      latestResult = '';
+      resultSection.hidden = true;
+      clearError();
+      copyMessage.textContent = '';
+      updateSourceCount();
+      sourceText.focus();
+    }
+
+    sourceText.addEventListener('input', updateSourceCount);
+    document.getElementById('convertButton').addEventListener('click', convertText);
+    document.getElementById('copyButton').addEventListener('click', copyResult);
+    document.getElementById('resetButton').addEventListener('click', resetForm);
+    updateSourceCount();
+  </script>
+</body>
+</html>
