@@ -102,7 +102,8 @@
   const schoolSeriesTools = [
     { id: 'grade-calculator', icon: '🎓', name: '成績計算ツール', path: 'tools/grade-calculator.html' },
     { id: 'attendance-rate', icon: '📊', name: '出席率計算ツール', path: 'tools/attendance-rate.html' },
-    { id: 'required-score', icon: '🎯', name: '必要点数計算ツール', path: 'tools/required-score.html' }
+    { id: 'required-score', icon: '🎯', name: '必要点数計算ツール', path: 'tools/required-score.html' },
+    { id: 'study-time', icon: '📚', name: '学習時間計算ツール', path: 'tools/study-time.html' }
   ];
 
   function createSchoolSeries(paths) {
@@ -121,7 +122,7 @@
     section.setAttribute('aria-labelledby', 'school-series-title');
     section.innerHTML = `
       <h2 id="school-series-title">🎓 学校・教育シリーズ</h2>
-      <p>学校・教育シリーズでは、成績や出席率など、学校生活や学習に役立つ計算ツールを無料で利用できます。</p>
+      <p>学校・教育シリーズでは、成績や出席率、学習時間など、学校生活や学習計画に役立つ計算ツールを無料で利用できます。</p>
       <p>目的に合わせて他のツールもぜひご利用ください。</p>
       <ul class="school-series-list">${items}</ul>`;
   }

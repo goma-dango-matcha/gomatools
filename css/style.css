@@ -1039,6 +1039,67 @@ a { color: var(--terms-green-dark); }
 }
 
 /* ======================
+   学習時間計算ツール
+====================== */
+.study-time-main { padding: 42px 20px 72px; }
+.study-time-container { width: min(100%, 1100px); margin: 0 auto; }
+.study-time-hero { margin-bottom: 28px; text-align: center; }
+.study-time-hero h1 { margin: 8px 0 12px; color: var(--terms-text); font-size: clamp(1.9rem, 5vw, 2.7rem); }
+.study-time-hero p { max-width: 760px; margin: 0 auto; color: var(--terms-muted); line-height: 1.8; }
+.study-time-eyebrow { color: var(--terms-green) !important; font-weight: 800; }
+.study-time-card { margin-top: 24px; padding: clamp(22px, 4vw, 36px); border: 1px solid var(--terms-line); border-radius: 22px; background: #fff; box-shadow: 0 12px 32px rgba(67, 91, 49, .08); }
+.study-time-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
+.study-time-group { margin: 0; padding: 18px; border: 1px solid #d8e4d2; border-radius: 15px; background: #fbfdf9; }
+.study-time-group legend { padding: 0 8px; color: var(--terms-green-dark); font-weight: 850; }
+.study-time-group legend span,
+.study-time-field label span { color: var(--terms-muted); font-size: .78rem; }
+.study-time-today { border-color: #b7cba9; }
+.study-time-duration-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.study-time-field label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
+.study-time-field p { margin: 9px 0 0; color: var(--terms-muted); font-size: .86rem; line-height: 1.6; }
+.study-time-optional-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 18px; }
+.study-time-deadline { display: flex; align-items: center; }
+.study-time-deadline .study-time-field { width: 100%; }
+.study-time-hint { margin: 14px 0 0; color: var(--terms-muted); font-size: .92rem; line-height: 1.7; }
+.study-time-error { min-height: 1.5em; margin: 12px 0 0; color: #b42318; font-weight: 800; text-align: center; }
+.study-time-form-buttons { display: flex; justify-content: center; gap: 12px; margin-top: 18px; }
+.study-time-form-buttons button,
+.study-time-copy { min-width: 180px; min-height: 52px; padding: 12px 22px; border: 1px solid #afc1a5; border-radius: 13px; background: #f7faf5; color: var(--terms-green-dark); font: inherit; font-weight: 850; cursor: pointer; transition: transform .18s, background .18s, box-shadow .18s; }
+.study-time-form-buttons .study-time-primary,
+.study-time-copy { border-color: var(--terms-green); background: var(--terms-green); color: #fff; }
+.study-time-form-buttons button:hover,
+.study-time-copy:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(67, 91, 49, .16); }
+.study-time-form-buttons .study-time-primary:hover,
+.study-time-copy:hover { background: var(--terms-green-dark); }
+.study-time-result { border-color: #b7cba9; background: #fbfdf9; }
+.study-time-result-main { padding: 28px 18px; border-radius: 18px; background: var(--terms-green-light); text-align: center; }
+.study-time-result-main span,
+.study-time-result-grid span { display: block; color: var(--terms-muted); font-size: .88rem; font-weight: 800; }
+.study-time-result-main strong { display: block; margin-top: 8px; color: var(--terms-green-dark); font-size: clamp(2.15rem, 7vw, 3.2rem); }
+.study-time-result-main p { margin: 8px 0 0; color: var(--terms-muted); }
+.study-time-result-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 16px; }
+.study-time-result-grid > div { padding: 20px 14px; border: 1px solid #d8e4d2; border-radius: 15px; background: #fff; text-align: center; }
+.study-time-result-grid strong { display: block; margin-top: 7px; color: var(--terms-text); font-size: clamp(1rem, 3vw, 1.28rem); }
+.study-time-copy { display: block; margin: 20px auto 0; }
+.study-time-copy-message { min-height: 1.5em; margin: 10px 0 0; color: var(--terms-green-dark); font-weight: 800; text-align: center; }
+.study-time-info p { margin: 0; color: var(--terms-muted); line-height: 1.85; }
+.study-time-info h2:not(:first-child) { margin-top: 28px; }
+
+@media (max-width: 760px) {
+  .study-time-optional-grid,
+  .study-time-result-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .study-time-main { padding: 28px 16px 56px; }
+  .study-time-card { padding: 20px 16px; border-radius: 18px; }
+  .study-time-duration-grid { grid-template-columns: 1fr 1fr; }
+  .study-time-form-buttons { flex-direction: column; }
+  .study-time-form-buttons button,
+  .study-time-copy { width: 100%; }
+}
+
+/* ======================
    成績計算ツール
 ====================== */
 .grade-main { padding: 42px 20px 72px; }

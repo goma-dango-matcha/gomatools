@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8BNDHPNEHY"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-8BNDHPNEHY');</script>
+  <title>学習時間計算ツール｜勉強時間と目標までの残り時間を無料計算</title>
+  <meta name="description" content="勉強時間を入力するだけで、合計学習時間や目標までの残り時間、1日あたり必要な学習時間を簡単に計算できる無料ツールです。">
+  <meta name="keywords" content="学習時間計算,勉強時間計算,勉強時間,目標時間 計算,学習計画,勉強計画,1日何時間 勉強">
+  <link rel="canonical" href="https://goma-dango-matcha.github.io/gomatools/tools/study-time.html">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ゴマツール">
+  <meta property="og:title" content="学習時間計算ツール｜ゴマツール">
+  <meta property="og:description" content="勉強時間や目標までの残り時間を簡単に計算できます。">
+  <meta property="og:url" content="https://goma-dango-matcha.github.io/gomatools/tools/study-time.html">
+  <meta property="og:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta property="og:image:secure_url" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ゴマツール — 一歩便利を、毎日の暮らしに。">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="学習時間計算ツール｜ゴマツール">
+  <meta name="twitter:description" content="勉強時間や目標までの残り時間を簡単に計算できます。">
+  <meta name="twitter:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta name="twitter:image:alt" content="ゴマツール — 一歩便利を、毎日の暮らしに。">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <meta name="theme-color" content="#63843F">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../assets/goma-ui.css?v=2.1">
+  <script defer src="../assets/goma-ui.js?v=2.1"></script>
+</head>
+<body>
+  <header><div class="goma-header-inner">
+    <div class="goma-brand-wrap"><a class="goma-brand" href="../">ゴマツール</a><p class="goma-brand-copy">無料で使える便利ツール集</p></div>
+    <a class="goma-home-button" href="../">🏠 ホームへ戻る</a>
+  </div></header>
+
+  <main class="study-time-main"><div class="study-time-container">
+    <section class="study-time-hero" aria-labelledby="page-title">
+      <p class="study-time-eyebrow">🎓 学校・教育</p>
+      <h1 id="page-title">学習時間計算ツール</h1>
+      <p>今日の勉強時間から、目標までの残り時間や1日あたりの学習時間を簡単に計算できます。</p>
+    </section>
+
+    <section class="study-time-card" aria-labelledby="input-title">
+      <h2 id="input-title">学習時間を入力</h2>
+      <form id="studyTimeForm" novalidate>
+        <fieldset class="study-time-group study-time-today">
+          <legend>今日の学習時間 <span>必須</span></legend>
+          <div class="study-time-duration-grid">
+            <div class="study-time-field"><label for="todayHours">時間</label><input id="todayHours" type="number" min="0" step="1" inputmode="numeric" placeholder="例：2" required></div>
+            <div class="study-time-field"><label for="todayMinutes">分</label><input id="todayMinutes" type="number" min="0" max="59" step="1" inputmode="numeric" placeholder="例：30" required></div>
+          </div>
+        </fieldset>
+
+        <div class="study-time-optional-grid">
+          <fieldset class="study-time-group">
+            <legend>目標学習時間 <span>任意</span></legend>
+            <div class="study-time-duration-grid">
+              <div class="study-time-field"><label for="targetHours">時間</label><input id="targetHours" type="number" min="0" step="1" inputmode="numeric" placeholder="例：10"></div>
+              <div class="study-time-field"><label for="targetMinutes">分</label><input id="targetMinutes" type="number" min="0" max="59" step="1" inputmode="numeric" placeholder="例：0"></div>
+            </div>
+          </fieldset>
+          <div class="study-time-group study-time-deadline">
+            <div class="study-time-field"><label for="deadlineDays">目標期限までの日数 <span>任意</span></label><input id="deadlineDays" type="number" min="1" step="1" inputmode="numeric" placeholder="例：6"><p>今日を除き、目標達成まで学習できる日数を入力します。</p></div>
+          </div>
+        </div>
+
+        <p class="study-time-hint">目標時間と期限を設定しなくても、今日の学習時間と週換算を確認できます。時間または分が0の場合も「0」と入力してください。</p>
+        <p class="study-time-error" id="errorMessage" role="alert"></p>
+        <div class="study-time-form-buttons">
+          <button class="study-time-primary" type="submit">計算する</button>
+          <button id="resetButton" type="button">リセット</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="study-time-card study-time-result" id="resultCard" aria-labelledby="result-title" aria-live="polite" hidden>
+      <h2 id="result-title">計算結果</h2>
+      <div class="study-time-result-main"><span>今日の学習時間</span><strong id="todayResult">—</strong><p id="resultMessage"></p></div>
+      <div class="study-time-result-grid">
+        <div><span>目標まであと</span><strong id="remainingResult">未設定</strong></div>
+        <div><span>1日あたり</span><strong id="dailyResult">未設定</strong></div>
+        <div><span>週換算</span><strong id="weeklyResult">—</strong></div>
+      </div>
+      <button class="study-time-copy" id="copyButton" type="button">📋 結果をコピー</button>
+      <p class="study-time-copy-message" id="copyMessage" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="study-time-card study-time-info" aria-labelledby="about-title">
+      <h2 id="about-title">このツールについて</h2>
+      <p>今日の勉強時間や目標学習時間から、残り時間や1日あたり必要な学習時間を計算できます。試験勉強、資格学習、毎日の学習管理に便利です。</p>
+      <h2>週換算について</h2>
+      <p>今日と同じ学習時間を7日間続けた場合の目安です。1日あたり必要な時間に端数が出る場合は、目標に不足しないよう1分単位で切り上げます。</p>
+      <h2>注意事項</h2>
+      <p>このツールは学習時間の目安を計算するものです。学習効果は内容・集中度・学習方法によって異なります。</p>
+    </section>
+
+    <!-- 学校・教育シリーズ：内容は assets/goma-ui.js で一元管理 -->
+    <section data-school-series data-current="study-time"></section>
+    <div class="back-to-top"><a class="top-button" href="../">🏠 トップへ戻る</a></div>
+  </div></main>
+
+  <footer><div class="goma-footer-inner">
+    <p class="goma-footer-logo">ゴマツール</p><p class="goma-footer-copy">30秒で使えて、昨日より少し便利。</p>
+    <nav class="goma-footer-nav" aria-label="フッターナビゲーション"><a href="../">🏠 ホーム</a><a href="../privacy/">🔒 プライバシーポリシー</a><a href="../terms.html">📜 利用規約</a><a href="../faq.html">❓ FAQ</a><a href="../knowledge.html">🍵 ゴマ知識</a></nav>
+    <p class="goma-copyright">© 2026 Project Goma</p>
+  </div></footer>
+
+  <script>
+    'use strict';
+    const form = document.getElementById('studyTimeForm');
+    const todayHoursInput = document.getElementById('todayHours');
+    const todayMinutesInput = document.getElementById('todayMinutes');
+    const targetHoursInput = document.getElementById('targetHours');
+    const targetMinutesInput = document.getElementById('targetMinutes');
+    const deadlineInput = document.getElementById('deadlineDays');
+    const errorMessage = document.getElementById('errorMessage');
+    const resultCard = document.getElementById('resultCard');
+    let latestResult = null;
+
+    function formatMinutes(totalMinutes) {
+      const hours = Math.floor(totalMinutes / 60);
+      const minutes = totalMinutes % 60;
+      if (hours === 0) return minutes === 0 ? '0分' : `${minutes}分`;
+      return minutes === 0 ? `${hours}時間` : `${hours}時間${minutes}分`;
+    }
+
+    function readDuration(hoursInput, minutesInput, label, required) {
+      const bothEmpty = hoursInput.value === '' && minutesInput.value === '';
+      if (bothEmpty && !required) return { total: null };
+      if (hoursInput.value === '' || minutesInput.value === '') return { error: `${label}の「時間」と「分」を両方入力してください。` };
+      const hours = Number(hoursInput.value);
+      const minutes = Number(minutesInput.value);
+      if (!Number.isInteger(hours) || hours < 0) return { error: `${label}の「時間」は0以上の整数で入力してください。` };
+      if (!Number.isInteger(minutes) || minutes < 0 || minutes > 59) return { error: `${label}の「分」は0〜59の整数で入力してください。` };
+      return { total: hours * 60 + minutes };
+    }
+
+    function readInputs() {
+      const today = readDuration(todayHoursInput, todayMinutesInput, '今日の学習時間', true);
+      if (today.error) return today;
+      const target = readDuration(targetHoursInput, targetMinutesInput, '目標学習時間', false);
+      if (target.error) return target;
+      if (target.total !== null && target.total <= 0) return { error: '目標学習時間は1分以上にしてください。' };
+
+      let days = null;
+      if (deadlineInput.value !== '') {
+        days = Number(deadlineInput.value);
+        if (!Number.isInteger(days) || days <= 0) return { error: '目標期限までの日数は1以上の整数で入力してください。' };
+        if (target.total === null) return { error: '目標期限を設定する場合は、目標学習時間も入力してください。' };
+      }
+      return { todayMinutes: today.total, targetMinutes: target.total, days };
+    }
+
+    function calculateStudyTime(event) {
+      event.preventDefault();
+      errorMessage.textContent = '';
+      document.getElementById('copyMessage').textContent = '';
+      const input = readInputs();
+      if (input.error) {
+        errorMessage.textContent = input.error;
+        resultCard.hidden = true;
+        latestResult = null;
+        return;
+      }
+
+      const weeklyMinutes = input.todayMinutes * 7;
+      const remainingMinutes = input.targetMinutes === null ? null : Math.max(0, input.targetMinutes - input.todayMinutes);
+      const dailyMinutes = input.days === null ? null : Math.ceil(remainingMinutes / input.days);
+      latestResult = { ...input, weeklyMinutes, remainingMinutes, dailyMinutes };
+
+      document.getElementById('todayResult').textContent = formatMinutes(input.todayMinutes);
+      document.getElementById('weeklyResult').textContent = formatMinutes(weeklyMinutes);
+      document.getElementById('remainingResult').textContent = remainingMinutes === null ? '未設定' : formatMinutes(remainingMinutes);
+      document.getElementById('dailyResult').textContent = dailyMinutes === null ? '未設定' : formatMinutes(dailyMinutes);
+      document.getElementById('resultMessage').textContent = remainingMinutes === 0 ? '目標学習時間を達成しています。' : input.targetMinutes === null ? '同じペースを続けた場合の週換算です。' : '目標に向けて、無理のない計画で続けましょう。';
+      resultCard.hidden = false;
+      resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function resetAll() {
+      form.reset();
+      errorMessage.textContent = '';
+      document.getElementById('copyMessage').textContent = '';
+      resultCard.hidden = true;
+      latestResult = null;
+      todayHoursInput.focus();
+    }
+
+    async function copyResult() {
+      if (!latestResult) return;
+      const remainingText = latestResult.remainingMinutes === null ? '未設定' : formatMinutes(latestResult.remainingMinutes);
+      const dailyText = latestResult.dailyMinutes === null ? '未設定' : formatMinutes(latestResult.dailyMinutes);
+      const text = `【ゴマツール 学習時間計算結果】\n今日の学習時間：${formatMinutes(latestResult.todayMinutes)}\n目標まであと：${remainingText}\n1日あたり：${dailyText}\n週換算：${formatMinutes(latestResult.weeklyMinutes)}`;
+      try {
+        await navigator.clipboard.writeText(text);
+        document.getElementById('copyMessage').textContent = 'コピーしました。';
+      } catch (error) {
+        document.getElementById('copyMessage').textContent = 'コピーできませんでした。手動で選択してコピーしてください。';
+      }
+    }
+
+    form.addEventListener('submit', calculateStudyTime);
+    document.getElementById('resetButton').addEventListener('click', resetAll);
+    document.getElementById('copyButton').addEventListener('click', copyResult);
+  </script>
+</body>
+</html>
