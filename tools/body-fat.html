@@ -163,6 +163,10 @@
     const resultCard = document.getElementById('resultCard');
     let latestResult = null;
 
+    function getGender() {
+      return form.querySelector('input[name="gender"]:checked')?.value || '';
+    }
+
     function round(value, digits) {
       const scale = 10 ** digits;
       return Math.round(value * scale) / scale;
@@ -269,6 +273,3 @@
   </script>
 </body>
 </html>
-    function getGender() {
-      return form.querySelector('input[name="gender"]:checked')?.value || '';
-    }
