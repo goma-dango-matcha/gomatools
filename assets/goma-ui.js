@@ -11,6 +11,7 @@
     const isRootPage = isHome || isRootStaticPage;
     return {
       home: isRootPage ? './' : '../',
+      allTools: isRootPage ? './all-tools/' : '../all-tools/',
       privacy: isRootPage ? './privacy/' : '../privacy/',
       terms: isRootPage ? './terms.html' : '../terms.html',
       faq: isRootPage ? './faq.html' : '../faq.html',
@@ -51,10 +52,12 @@
         <p class="goma-footer-copy">30秒で使えて、他より少し便利。</p>
         <nav class="goma-footer-nav" aria-label="フッターナビゲーション">
           <a href="${paths.home}">🏠 ホーム</a>
-          <a href="${paths.privacy}">📄 プライバシーポリシー</a>
-          <a href="${paths.terms}">📜 利用規約</a>
+          <a href="${paths.allTools}">🔧 全ツール一覧</a>
+          <a href="${paths.knowledge}">🍵 ゴマ知識</a>
           <a href="${paths.faq}">❓ FAQ</a>
-          <a href="${paths.knowledge}">🌱 ゴマ知識</a>
+          <span class="goma-footer-soon">📩 お問い合わせ（準備中）</span>
+          <a href="${paths.terms}">📄 利用規約</a>
+          <a href="${paths.privacy}">🔒 プライバシーポリシー</a>
         </nav>
         <p class="goma-copyright">© 2026 Project Goma</p>
       </div>`;
