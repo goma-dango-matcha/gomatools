@@ -121,6 +121,9 @@
     .promise-card .section-heading { margin-bottom: 24px; }
     .promise-list { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 28px; margin: 0; padding: 0; list-style: none; }
     .promise-list li { display: flex; gap: 9px; align-items: baseline; }
+    .knowledge-promo-card { padding: clamp(26px, 6vw, 42px); }
+    .knowledge-promo-card p { margin: 0 0 20px; color: var(--muted); }
+    .knowledge-promo-card .tool-button { width: min(100%, 320px); }
 
     /* ======================
        ロードマップ
@@ -717,6 +720,17 @@
         <div class="planned-grid">
           <article class="card planned-card"><span class="planned-icon" aria-hidden="true">🌱</span><span class="planned-name">次の便利ツールを企画中</span><span class="planned-status">準備中</span></article>
           <!-- ナンバーズ分析は、ツール数とサイト基盤がもう少し育ってから検討する将来候補。 -->
+        </div>
+      </section>
+
+      <!-- ======================
+           ゴマ知識
+      ====================== -->
+      <section class="section" aria-labelledby="knowledge-home-title">
+        <div class="card knowledge-promo-card">
+          <h2 class="section-heading" id="knowledge-home-title">🍵 ゴマ知識</h2>
+          <p>知ると、毎日に、一歩便利。ツールの仕組みや、日常で役立つ小さな知識を分かりやすくまとめていきます。</p>
+          <a class="tool-button" href="./knowledge.html">ゴマ知識を見る</a>
         </div>
       </section>
 
