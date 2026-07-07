@@ -315,6 +315,13 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://goma-dango-matcha.github.io/gomatools/knowledge/what-is-basal-metabolism/</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
     <loc>https://goma-dango-matcha.github.io/gomatools/knowledge.html</loc>
     <lastmod>2026-07-07</lastmod>
     <changefreq>monthly</changefreq>
