@@ -169,8 +169,8 @@
     @media (max-width: 500px) {
       .container { width: min(100% - 24px, 960px); }
       .header-inner { align-items: flex-start; flex-direction: column; gap: 3px; }
-      .hero-actions { flex-direction: column; align-items: stretch; gap: 10px; }
-      .cta-button { width: 100%; min-width: 0; }
+      .hero-actions { flex-direction: column; align-items: center; gap: 14px; }
+      .hero .cta-button { width: calc(100% - 48px); max-width: 320px; min-width: 0; }
       .planned-grid, .promise-list { grid-template-columns: 1fr; }
       .planned-card { min-height: auto; }
       h1 { font-size: clamp(2.15rem, 11vw, 3rem); }
