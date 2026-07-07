@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja" id="top">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8BNDHPNEHY"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-8BNDHPNEHY');</script>
+  <title>QRコードの仕組みとは？読み取れる理由や特徴をわかりやすく解説｜ゴマ知識｜ゴマツール</title>
+  <meta name="description" content="QRコードの仕組みや読み取れる理由、バーコードとの違い、できることをわかりやすく解説します。QRコード生成ツールとあわせて活用できる基礎知識も紹介します。">
+  <link rel="canonical" href="https://goma-dango-matcha.github.io/gomatools/knowledge/how-qr-codes-work/">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="ゴマツール">
+  <meta property="og:title" content="QRコードの仕組みとは？読み取れる理由をわかりやすく解説">
+  <meta property="og:description" content="QRコードはなぜ読み取れるのでしょうか？バーコードとの違いや特徴、身近な利用例をわかりやすく紹介します。">
+  <meta property="og:url" content="https://goma-dango-matcha.github.io/gomatools/knowledge/how-qr-codes-work/">
+  <meta property="og:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="QRコードの仕組みとは？読み取れる理由をわかりやすく解説">
+  <meta name="twitter:description" content="QRコードはなぜ読み取れるのでしょうか？バーコードとの違いや特徴、身近な利用例をわかりやすく紹介します。">
+  <meta name="twitter:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <link rel="icon" href="../../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <meta name="theme-color" content="#63843F">
+  <link rel="stylesheet" href="../../css/style.css?v=2.6">
+  <link rel="stylesheet" href="../../assets/goma-ui.css?v=2.6">
+  <script defer src="../../assets/goma-ui.js?v=2.6"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "QRコードの仕組みとは？読み取れる理由や特徴をわかりやすく解説",
+    "description": "QRコードの仕組みや読み取れる理由、バーコードとの違い、できることをわかりやすく解説します。QRコード生成ツールとあわせて活用できる基礎知識も紹介します。",
+    "inLanguage": "ja",
+    "dateModified": "2026-07-07",
+    "author": { "@type": "Organization", "name": "ゴマツール" },
+    "publisher": { "@type": "Organization", "name": "ゴマツール", "logo": { "@type": "ImageObject", "url": "https://goma-dango-matcha.github.io/gomatools/images/ogp.png" } },
+    "mainEntityOfPage": "https://goma-dango-matcha.github.io/gomatools/knowledge/how-qr-codes-work/"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "QRコードとバーコードは同じですか？", "acceptedAnswer": { "@type": "Answer", "text": "異なります。QRコードは二次元コード、バーコードは一次元コードです。" } },
+      { "@type": "Question", "name": "QRコードには何が保存できますか？", "acceptedAnswer": { "@type": "Answer", "text": "URLや電話番号、メールアドレス、Wi-Fi情報など、さまざまな情報を保存できます。" } },
+      { "@type": "Question", "name": "QRコードは無料で作れますか？", "acceptedAnswer": { "@type": "Answer", "text": "多くのQRコード生成サービスやツールでは無料で作成できます。" } }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://goma-dango-matcha.github.io/gomatools/" },
+      { "@type": "ListItem", "position": 2, "name": "ゴマ知識", "item": "https://goma-dango-matcha.github.io/gomatools/knowledge.html" },
+      { "@type": "ListItem", "position": 3, "name": "QRコードの仕組み", "item": "https://goma-dango-matcha.github.io/gomatools/knowledge/how-qr-codes-work/" }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header></header>
+
+  <main class="knowledge-article-main">
+    <article class="knowledge-article-container">
+      <nav aria-label="パンくずリスト">
+        <ol class="breadcrumb">
+          <li><a href="../../">ホーム</a></li>
+          <li><a href="../../knowledge.html">ゴマ知識</a></li>
+          <li aria-current="page">QRコードの仕組み</li>
+        </ol>
+      </nav>
+
+      <header class="knowledge-article-hero">
+        <p class="knowledge-article-eyebrow">🍵 ゴマ知識</p>
+        <h1>QRコードの仕組み</h1>
+        <p class="knowledge-article-lead">スマートフォンで読み取るだけで、Webサイトやアプリ、連絡先などを簡単に開けるQRコード。今では日常生活のさまざまな場面で利用されていますが、「どうして読み取れるの？」「バーコードとは何が違うの？」と思ったことはありませんか。この記事では、QRコードの仕組みをわかりやすく解説します。</p>
+        <p class="knowledge-article-tool-lead">🔧 QRコードを作りたい方は <a href="../../qrcode/">QRコード生成ツール</a> もご利用ください。</p>
+      </header>
+
+      <section class="knowledge-article-card knowledge-article-body">
+        <h2>この記事でわかること</h2>
+        <ul class="knowledge-check-list">
+          <li>QRコードの仕組み</li>
+          <li>バーコードとの違い</li>
+          <li>QRコードでできること</li>
+          <li>QRコードを安全に利用するポイント</li>
+        </ul>
+
+        <h2>QRコードとは？</h2>
+        <p>QRコードは、文字やURLなどの情報を四角い模様として記録した二次元コードです。</p>
+        <p>横方向だけではなく縦方向にも情報を記録できるため、多くのデータを保存できます。</p>
+        <div class="knowledge-note">
+          <h3>ポイント</h3>
+          <p>QRは「Quick Response（素早い応答）」の略です。</p>
+        </div>
+
+        <h2>なぜ読み取れるの？</h2>
+        <p>QRコードには、白と黒のパターン、位置検出パターン、情報を記録する領域などがあります。スマートフォンのカメラはそれらを解析して、記録された情報を読み取っています。</p>
+        <figure class="qr-structure-figure" aria-labelledby="qr-structure-title">
+          <figcaption id="qr-structure-title">QRコードの主な構造</figcaption>
+          <div class="qr-structure-art" role="img" aria-label="左上、右上、左下に位置検出パターンがあり、中央と右下にデータ領域が広がるQRコードの図解">
+            <span class="qr-marker qr-marker--tl"></span>
+            <span class="qr-marker qr-marker--tr"></span>
+            <span class="qr-marker qr-marker--bl"></span>
+            <span class="qr-data qr-data--one"></span>
+            <span class="qr-data qr-data--two"></span>
+            <span class="qr-data qr-data--three"></span>
+            <span class="qr-data qr-data--four"></span>
+          </div>
+          <ul class="qr-structure-legend">
+            <li><span class="qr-legend-marker"></span>位置検出パターン</li>
+            <li><span class="qr-legend-data"></span>データ領域</li>
+          </ul>
+        </figure>
+        <div class="knowledge-note">
+          <h3>豆知識</h3>
+          <p>大きな四角が3つあることで、どの向きからでも読み取りやすくなっています。</p>
+        </div>
+
+        <h2>バーコードとの違い</h2>
+        <div class="knowledge-table-wrap">
+          <table class="knowledge-table">
+            <thead>
+              <tr><th>QRコード</th><th>バーコード</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>二次元コード</td><td>一次元コード</td></tr>
+              <tr><td>多くの情報を保存できる</td><td>保存できる情報量は少ない</td></tr>
+              <tr><td>縦横から読み取る</td><td>横方向のみ読み取る</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>QRコードでできること</h2>
+        <p>QRコードにはさまざまな情報を登録できます。Webサイト、電話番号、メールアドレス、Wi-Fi情報、名刺情報、地図、イベント情報など、仕事から日常生活まで幅広く活用されています。</p>
+
+        <h2>利用するときの注意点</h2>
+        <p>便利なQRコードですが、安全に利用することも大切です。</p>
+        <div class="knowledge-caution">
+          <h3>注意</h3>
+          <ul class="knowledge-check-list">
+            <li>提供元が分からないQRコードは注意する</li>
+            <li>不審なサイトへアクセスしない</li>
+            <li>URLを確認してから開く</li>
+          </ul>
+        </div>
+        <p>安心できる発行元かどうかを確認して利用しましょう。</p>
+      </section>
+
+      <section class="knowledge-article-card knowledge-faq" aria-labelledby="faq-title">
+        <h2 id="faq-title">FAQ</h2>
+        <details open>
+          <summary>Q. QRコードとバーコードは同じですか？</summary>
+          <p>A. 異なります。QRコードは二次元コード、バーコードは一次元コードです。</p>
+        </details>
+        <details>
+          <summary>Q. QRコードには何が保存できますか？</summary>
+          <p>A. URLや電話番号、メールアドレス、Wi-Fi情報など、さまざまな情報を保存できます。</p>
+        </details>
+        <details>
+          <summary>Q. QRコードは無料で作れますか？</summary>
+          <p>A. 多くのQRコード生成サービスやツールでは無料で作成できます。</p>
+        </details>
+      </section>
+
+      <section class="knowledge-article-card knowledge-goma-point" aria-labelledby="goma-point-title">
+        <h2 id="goma-point-title">🍵 ゴマポイント</h2>
+        <p>QRコードは「白黒の模様」ではなく、「情報を効率よく記録する仕組み」です。仕組みを知ると、安全に活用しやすくなります。</p>
+      </section>
+
+      <section class="knowledge-article-card knowledge-related-tools" aria-labelledby="related-tools-title">
+        <h2 id="related-tools-title">🔗 関連ツール</h2>
+        <div class="knowledge-link-grid">
+          <a href="../../qrcode/">QRコード生成ツール</a>
+        </div>
+      </section>
+
+      <section class="knowledge-article-card knowledge-related-articles" aria-labelledby="related-articles-title">
+        <h2 id="related-articles-title">📚 関連記事</h2>
+        <div class="knowledge-link-grid">
+          <span class="knowledge-link-coming-soon">パスワードを安全に作るコツ（準備中）</span>
+          <span class="knowledge-link-coming-soon">文字コードって何？（準備中）</span>
+          <a href="../../knowledge.html">ゴマ知識一覧</a>
+        </div>
+      </section>
+
+      <section class="knowledge-updated" aria-label="最終更新">
+        <span>最終更新</span>
+        <time datetime="2026-07">2026年7月</time>
+      </section>
+
+      <div class="back-to-top">
+        <a class="top-button" href="#top">↑ ページ上部へ戻る</a>
+      </div>
+    </article>
+  </main>
+
+  <footer></footer>
+</body>
+</html>
