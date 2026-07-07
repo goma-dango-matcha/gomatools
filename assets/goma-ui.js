@@ -210,6 +210,106 @@
       <ul class="work-series-list">${items}</ul>`;
   }
 
+
+  /* =========================================================
+     ツール → ゴマ知識 関連リンク
+     関連記事があるツールページだけ、下部に導線を追加します。
+  ========================================================= */
+  const relatedKnowledgeByPath = {
+    'age/': [
+      { title: '年齢の数え方について', path: 'knowledge/age-counting/' },
+      { title: 'うるう年とは？', path: 'knowledge/leap-year/' }
+    ],
+    'business-days/': [
+      { title: '営業日はどう決まる？', path: 'knowledge/business-days/' }
+    ],
+    'days-calculator/': [
+      { title: 'うるう年とは？', path: 'knowledge/leap-year/' },
+      { title: '営業日はどう決まる？', path: 'knowledge/business-days/' }
+    ],
+    'wareki/': [
+      { title: '年齢の数え方について', path: 'knowledge/age-counting/' }
+    ],
+    'qrcode/': [
+      { title: 'QRコードの仕組み', path: 'knowledge/how-qr-codes-work/' }
+    ],
+    'tools/character-encoding.html': [
+      { title: '文字コードって何？', path: 'knowledge/what-is-character-encoding/' }
+    ],
+    'password/': [
+      { title: 'パスワードを安全に作るコツ', path: 'knowledge/password-security-tips/' }
+    ],
+    'bmi/': [
+      { title: 'BMIとは？', path: 'knowledge/what-is-bmi/' },
+      { title: '基礎代謝とは？', path: 'knowledge/what-is-basal-metabolism/' }
+    ],
+    'tools/bmr.html': [
+      { title: '基礎代謝とは？', path: 'knowledge/what-is-basal-metabolism/' },
+      { title: 'BMIとは？', path: 'knowledge/what-is-bmi/' }
+    ],
+    'tools/tdee.html': [
+      { title: '基礎代謝とは？', path: 'knowledge/what-is-basal-metabolism/' },
+      { title: 'BMIとは？', path: 'knowledge/what-is-bmi/' }
+    ],
+    'tools/ideal-weight.html': [
+      { title: 'BMIとは？', path: 'knowledge/what-is-bmi/' }
+    ],
+    'tools/body-fat.html': [
+      { title: 'BMIとは？', path: 'knowledge/what-is-bmi/' }
+    ],
+    'tools/pfc-balance.html': [
+      { title: '基礎代謝とは？', path: 'knowledge/what-is-basal-metabolism/' }
+    ],
+    'compound-interest/': [
+      { title: '複利とは？', path: 'knowledge/what-is-compound-interest/' }
+    ],
+    'interest-calculator/': [
+      { title: '複利とは？', path: 'knowledge/what-is-compound-interest/' },
+      { title: 'ローン返済の仕組み', path: 'knowledge/how-loan-repayment-works/' }
+    ],
+    'tools/loan-calculator.html': [
+      { title: 'ローン返済の仕組み', path: 'knowledge/how-loan-repayment-works/' },
+      { title: '複利とは？', path: 'knowledge/what-is-compound-interest/' }
+    ]
+  };
+
+  function getCurrentPageKey() {
+    const path = window.location.pathname.replace(/index\.html$/, '');
+    const relativePath = path.startsWith('/gomatools/')
+      ? path.replace(/^\/gomatools\/?/, '')
+      : path.replace(/^\//, '');
+    const cleanPath = relativePath.replace(/^\/+|\/+$/g, '');
+    if (!cleanPath) return '';
+    return cleanPath.includes('.') ? cleanPath : `${cleanPath}/`;
+  }
+
+  function createRelatedKnowledge(paths) {
+    if (document.querySelector('.goma-related-knowledge')) return;
+
+    const items = relatedKnowledgeByPath[getCurrentPageKey()];
+    if (!items || items.length === 0) return;
+
+    const section = document.createElement('section');
+    section.className = 'goma-related-knowledge';
+    section.setAttribute('aria-labelledby', 'goma-related-knowledge-title');
+
+    const lead = items.length === 1
+      ? 'このツールに関連する仕組みや考え方を、わかりやすく解説しています。'
+      : 'このツールに関連する知識を、あわせて確認できます。';
+    const links = items.map(item => `<li><a href="${paths.home}${item.path}">${item.title}</a></li>`).join('');
+
+    section.innerHTML = `
+      <h2 id="goma-related-knowledge-title">💡 関連するゴマ知識</h2>
+      <p>${lead}</p>
+      <ul class="goma-related-knowledge-list">${links}</ul>`;
+
+    const anchor = document.querySelector('[data-health-series], [data-school-series], [data-money-series], [data-work-series], [data-goma-series]')
+      || document.querySelector('section[aria-labelledby="related-title"], section[aria-labelledby="tools-title"], .related-tools, .loan-related, .bmr-related, .tdee-related, .ideal-related, .burn-related');
+    const main = document.querySelector('main');
+
+    if (anchor) anchor.before(section);
+    else if (main) main.appendChild(section);
+  }
   function initializeCommonUI() {
     const paths = getPaths();
     document.documentElement.classList.add('goma-ui-v11');
@@ -219,6 +319,7 @@
     createSchoolSeries(paths);
     createMoneySeries(paths);
     createWorkSeries(paths);
+    createRelatedKnowledge(paths);
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initializeCommonUI);
