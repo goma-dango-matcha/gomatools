@@ -63,10 +63,11 @@
     .hero { padding: 104px 0 72px; text-align: center; }
     .hero-badge { display: inline-block; margin: 0 0 18px; padding: 7px 14px; color: var(--green-dark); border-radius: 999px; background: var(--green-light); font-size: .83rem; font-weight: 750; }
     h1 { max-width: 760px; margin: 0 auto; font-size: clamp(2.25rem, 8vw, 4.4rem); line-height: 1.2; letter-spacing: -.045em; }
-    .hero-description { max-width: 680px; margin: 24px auto 0; color: var(--muted); font-size: clamp(1rem, 2.8vw, 1.12rem); }
+    .hero-description { max-width: 720px; margin: 24px auto 0; color: var(--muted); font-size: clamp(1rem, 2.8vw, 1.12rem); }
     .cta-button, .tool-button { display: inline-flex; align-items: center; justify-content: center; min-height: 54px; padding: 13px 24px; border-radius: 14px; font-weight: 800; text-decoration: none; transition: transform .15s ease, background .15s ease, box-shadow .15s ease; }
-    .cta-button { margin-top: 34px; color: #fff; background: var(--green); box-shadow: 0 10px 25px rgba(88, 124, 64, .25); }
-    .cta-secondary { margin-left: 10px; color: var(--green-dark); border: 1px solid #c7d7be; background: #fff; box-shadow: none; }
+    .hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 34px; }
+    .cta-button { min-width: 220px; color: #fff; background: var(--green); box-shadow: 0 10px 25px rgba(88, 124, 64, .25); }
+    .cta-secondary { color: var(--green-dark); border: 1px solid #c7d7be; background: #fff; box-shadow: none; }
     .cta-button:hover, .tool-button:hover { background: var(--green-dark); transform: translateY(-2px); }
     .cta-secondary:hover { color: #fff; }
     .cta-button:focus-visible, .tool-button:focus-visible { outline: 3px solid rgba(88, 124, 64, .35); outline-offset: 4px; }
@@ -168,7 +169,8 @@
     @media (max-width: 500px) {
       .container { width: min(100% - 24px, 960px); }
       .header-inner { align-items: flex-start; flex-direction: column; gap: 3px; }
-      .cta-secondary { margin-left: 0; margin-top: 12px; }
+      .hero-actions { flex-direction: column; align-items: stretch; gap: 10px; }
+      .cta-button { width: 100%; min-width: 0; }
       .planned-grid, .promise-list { grid-template-columns: 1fr; }
       .planned-card { min-height: auto; }
       h1 { font-size: clamp(2.15rem, 11vw, 3rem); }
@@ -230,10 +232,11 @@
       <div class="container">
         <p class="hero-badge">無料・登録不要ですぐ使える</p>
         <h1 id="page-title">毎日の「ちょっと便利」を、ひとつに。</h1>
-        <p class="hero-description">ゴマツールは、日常で使える便利ツールを少しずつ増やしていく無料サービスです。<br>登録不要・完全無料・スマホ対応。</p>
-        <a class="cta-button" href="#available-tools">公開中のツールを見る&nbsp; ↓</a>
-        <a class="cta-button cta-secondary" href="./all-tools/">🔧 全ツール一覧を見る</a>
-      </div>
+        <p class="hero-description">毎日の計算や生活に役立つ、シンプルで使いやすい無料ツールを公開しています。<br>暮らしに役立つ知識も「ゴマ知識」としてわかりやすく紹介しています。</p>
+        <div class="hero-actions" aria-label="主要コンテンツ">
+          <a class="cta-button" href="./all-tools/">🛠 全ツール一覧を見る</a>
+          <a class="cta-button cta-secondary" href="./knowledge.html">🍵 ゴマ知識一覧を見る</a>
+        </div></div>
     </section>
 
     <div class="container">
@@ -813,22 +816,6 @@
 
   <script>
     'use strict';
-
-    // ======================
-    // ページ内リンクのスムーズスクロール
-    // ======================
-    function initializePageNavigation() {
-      const toolLink = document.querySelector('a[href="#available-tools"]');
-      const target = document.getElementById('available-tools');
-
-      toolLink.addEventListener('click', function (event) {
-        event.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        history.replaceState(null, '', '#available-tools');
-      });
-    }
-
-    initializePageNavigation();
   </script>
 </body>
 </html>
