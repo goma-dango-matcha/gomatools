@@ -92,6 +92,9 @@ a { color: var(--terms-green-dark); }
   color: var(--terms-muted);
   font-size: .86rem;
 }
+.updated-date span {
+  display: block;
+}
 
 .terms-lead,
 .faq-lead {

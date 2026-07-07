@@ -210,6 +210,10 @@ label { font-weight: 800; }
 }
 .goma-footer-mark { display: block; width: 28px; height: 28px; }
 .goma-footer-copy { margin: 0; font-size: .88rem; }
+.goma-last-updated { margin: 14px 0 0; color: var(--goma-muted); font-size: .78rem; line-height: 1.5; }
+.goma-last-updated span,
+.goma-last-updated time { display: block; }
+.goma-last-updated span { font-weight: 850; }
 .goma-footer-nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px 22px; margin-top: 20px; }
 .goma-footer-nav a,
 .goma-footer-soon { color: var(--goma-green-dark); font-size: .86rem; font-weight: 750; text-decoration: underline; text-underline-offset: 3px; }

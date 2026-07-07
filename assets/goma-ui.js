@@ -55,6 +55,10 @@
           <span>ゴマツール</span>
         </p>
         <p class="goma-footer-copy">30秒で使えて、他より少し便利。</p>
+        <p class="goma-last-updated">
+          <span>最終更新</span>
+          <time datetime="2026-07">2026年7月</time>
+        </p>
         <nav class="goma-footer-nav" aria-label="フッターナビゲーション">
           <a href="${paths.home}">🏠 ホーム</a>
           <a href="${paths.allTools}">🔧 全ツール一覧</a>

@@ -432,6 +432,9 @@
       margin-top: 16px;
       font-size: .8rem;
     }
+    .updated span {
+      display: block;
+    }
 
     /* ======================
        レスポンシブ
@@ -831,7 +834,8 @@
         他より少し便利。
       </p>
       <p class="updated">
-        最終更新日：<span id="lastUpdated"></span>
+        <span>最終更新</span>
+        <span id="lastUpdated">2026年7月</span>
       </p>
     </div>
     <p><a href="../privacy/" style="color:inherit">プライバシーポリシー</a></p>
@@ -1186,7 +1190,7 @@
     }
 
     // ======================
-    // 初期表示・最終更新日
+    // 初期表示・最終更新
     // ======================
     function initializePage() {
       const today = getTodayUtc();
@@ -1202,7 +1206,7 @@
         todayValue;
 
       document.getElementById('lastUpdated').textContent =
-        '2026年6月28日';
+        '2026年7月';
 
       document.getElementById('ageForm').addEventListener(
         'submit',
