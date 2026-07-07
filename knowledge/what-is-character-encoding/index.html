@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ja" id="top">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8BNDHPNEHY"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-8BNDHPNEHY');</script>
+  <title>文字コードとは？UTF-8・Shift_JIS・文字化けの仕組みをわかりやすく解説｜ゴマ知識｜ゴマツール</title>
+  <meta name="description" content="文字コードとは何か、UTF-8やShift_JISの違い、文字化けが起こる原因を初心者にもわかりやすく解説します。文字コード変換ツールとあわせて役立つ基礎知識も紹介します。">
+  <link rel="canonical" href="https://goma-dango-matcha.github.io/gomatools/knowledge/what-is-character-encoding/">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="ゴマツール">
+  <meta property="og:title" content="文字コードとは？文字化けの原因もわかりやすく解説">
+  <meta property="og:description" content="UTF-8やShift_JISなどの文字コードの違いと、文字化けが起こる理由を図解イメージでやさしく解説します。">
+  <meta property="og:url" content="https://goma-dango-matcha.github.io/gomatools/knowledge/what-is-character-encoding/">
+  <meta property="og:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="文字コードとは？文字化けの原因もわかりやすく解説">
+  <meta name="twitter:description" content="UTF-8やShift_JISなどの文字コードの違いと、文字化けが起こる理由を図解イメージでやさしく解説します。">
+  <meta name="twitter:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <link rel="icon" href="../../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <meta name="theme-color" content="#63843F">
+  <link rel="stylesheet" href="../../css/style.css?v=2.6">
+  <link rel="stylesheet" href="../../assets/goma-ui.css?v=2.6">
+  <script defer src="../../assets/goma-ui.js?v=2.6"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "文字コードとは？UTF-8・Shift_JIS・文字化けの仕組みをわかりやすく解説",
+    "description": "文字コードとは何か、UTF-8やShift_JISの違い、文字化けが起こる原因を初心者にもわかりやすく解説します。文字コード変換ツールとあわせて役立つ基礎知識も紹介します。",
+    "inLanguage": "ja",
+    "dateModified": "2026-07-07",
+    "author": { "@type": "Organization", "name": "ゴマツール" },
+    "publisher": { "@type": "Organization", "name": "ゴマツール", "logo": { "@type": "ImageObject", "url": "https://goma-dango-matcha.github.io/gomatools/images/ogp.png" } },
+    "mainEntityOfPage": "https://goma-dango-matcha.github.io/gomatools/knowledge/what-is-character-encoding/"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "UTF-8とは何ですか？", "acceptedAnswer": { "@type": "Answer", "text": "世界中の多くの文字を扱える、現在もっとも広く利用されている文字コードです。" } },
+      { "@type": "Question", "name": "なぜ文字化けするのですか？", "acceptedAnswer": { "@type": "Answer", "text": "保存した文字コードと、開くときの文字コードが異なる場合に発生することがあります。" } },
+      { "@type": "Question", "name": "Shift_JISはもう使われていませんか？", "acceptedAnswer": { "@type": "Answer", "text": "現在でも一部の業務システムやソフトでは利用されていますが、WebサイトではUTF-8が主流です。" } }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://goma-dango-matcha.github.io/gomatools/" },
+      { "@type": "ListItem", "position": 2, "name": "ゴマ知識", "item": "https://goma-dango-matcha.github.io/gomatools/knowledge.html" },
+      { "@type": "ListItem", "position": 3, "name": "文字コードって何？", "item": "https://goma-dango-matcha.github.io/gomatools/knowledge/what-is-character-encoding/" }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header></header>
+
+  <main class="knowledge-article-main">
+    <article class="knowledge-article-container">
+      <nav aria-label="パンくずリスト">
+        <ol class="breadcrumb">
+          <li><a href="../../">ホーム</a></li>
+          <li><a href="../../knowledge.html">ゴマ知識</a></li>
+          <li aria-current="page">文字コードって何？</li>
+        </ol>
+      </nav>
+
+      <header class="knowledge-article-hero">
+        <p class="knowledge-article-eyebrow">🍵 ゴマ知識</p>
+        <h1>文字コードって何？</h1>
+        <p class="knowledge-article-lead">パソコンやスマートフォンで文字を入力すると、相手にも同じ文字が表示されるのが当たり前になっています。しかし、設定が合わないと「文字化け」が起こることがあります。この記事では、文字コードの仕組みや文字化けの原因を、初心者にもわかりやすく解説します。</p>
+        <p class="knowledge-article-tool-lead">🔧 文字コードを変換したい方は <a href="../../tools/character-encoding.html">文字コード変換ツール</a> もご利用ください。</p>
+      </header>
+
+      <section class="knowledge-article-card knowledge-article-body">
+        <h2>この記事でわかること</h2>
+        <ul class="knowledge-check-list">
+          <li>文字コードとは何か</li>
+          <li>UTF-8とShift_JISの違い</li>
+          <li>文字化けが起こる理由</li>
+          <li>文字コード変換ツールを使う場面</li>
+        </ul>
+
+        <h2>文字コードとは？</h2>
+        <p>コンピューターは文字をそのまま理解しているわけではありません。</p>
+        <p>「あ」「A」「1」などの文字を、それぞれ決められた番号（コード）に置き換えて保存・表示しています。このルールを「文字コード」と呼びます。</p>
+        <div class="knowledge-note">
+          <h3>ポイント</h3>
+          <p>文字コードは「文字をコンピューターで扱うための共通ルール」です。</p>
+        </div>
+
+        <h2>よく使われる文字コード</h2>
+        <p>代表的な文字コードには次のようなものがあります。</p>
+        <div class="knowledge-table-wrap">
+          <table class="knowledge-table">
+            <thead>
+              <tr><th>文字コード</th><th>特徴</th></tr>
+            </thead>
+            <tbody>
+              <tr><th>UTF-8</th><td>現在もっとも広く利用されている</td></tr>
+              <tr><th>Shift_JIS</th><td>日本語環境で長く利用されてきた</td></tr>
+              <tr><th>UTF-16</th><td>一部のシステムやソフトで利用される</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>現在のWebサイトではUTF-8が主流です。</p>
+
+        <h2>文字化けはなぜ起こる？</h2>
+        <p>文字化けは、「保存した文字コード」と「読み込む文字コード」が一致していないときに発生します。</p>
+        <figure class="encoding-flow-figure" aria-labelledby="encoding-flow-title">
+          <figcaption id="encoding-flow-title">文字化けが起こる流れ</figcaption>
+          <div class="encoding-flow" role="img" aria-label="UTF-8で保存した文字をShift_JISとして開くと文字化けする流れの図解">
+            <span class="encoding-flow-box">UTF-8で保存</span>
+            <span class="encoding-flow-arrow">→</span>
+            <span class="encoding-flow-box">Shift_JISで開く</span>
+            <span class="encoding-flow-arrow">→</span>
+            <span class="encoding-flow-box encoding-flow-box--error">文字化け</span>
+          </div>
+        </figure>
+        <p>例えば、UTF-8で保存したファイルをShift_JISとして開くと、正しく文字を表示できず、意味の分からない文字列になることがあります。</p>
+        <div class="knowledge-note">
+          <h3>豆知識</h3>
+          <p>昔のソフトではShift_JISが使われることが多く、現在のWebではUTF-8が標準になっています。</p>
+        </div>
+
+        <h2>文字コード変換はどんなときに使う？</h2>
+        <p>文字コード変換は、CSVファイルの読み込み、Excelとのデータ受け渡し、Webサイト制作、プログラム開発、システム間のデータ連携などで利用されます。</p>
+        <p>文字コード変換ツールを使うことで、必要な形式へ変換できます。</p>
+
+        <h2>迷ったらUTF-8がおすすめ</h2>
+        <p>現在では、多くのWebサービスやアプリでUTF-8が採用されています。新しくファイルを作成する場合やWebサイトを制作する場合は、UTF-8を選ぶことが一般的です。</p>
+        <div class="knowledge-caution">
+          <h3>注意</h3>
+          <p>既存システムではShift_JISなどが指定されている場合があります。利用する環境に合わせて選びましょう。</p>
+        </div>
+      </section>
+
+      <section class="knowledge-article-card knowledge-faq" aria-labelledby="faq-title">
+        <h2 id="faq-title">FAQ</h2>
+        <details open>
+          <summary>Q. UTF-8とは何ですか？</summary>
+          <p>A. 世界中の多くの文字を扱える、現在もっとも広く利用されている文字コードです。</p>
+        </details>
+        <details>
+          <summary>Q. なぜ文字化けするのですか？</summary>
+          <p>A. 保存した文字コードと、開くときの文字コードが異なる場合に発生することがあります。</p>
+        </details>
+        <details>
+          <summary>Q. Shift_JISはもう使われていませんか？</summary>
+          <p>A. 現在でも一部の業務システムやソフトでは利用されていますが、WebサイトではUTF-8が主流です。</p>
+        </details>
+      </section>
+
+      <section class="knowledge-article-card knowledge-goma-point" aria-labelledby="goma-point-title">
+        <h2 id="goma-point-title">🍵 ゴマポイント</h2>
+        <p>文字コードは普段意識することは少ないですが、文字化けを防ぐための大切な仕組みです。困ったときは「保存した文字コード」と「開く文字コード」が同じか確認してみましょう。</p>
+      </section>
+
+      <section class="knowledge-article-card knowledge-related-tools" aria-labelledby="related-tools-title">
+        <h2 id="related-tools-title">🔗 関連ツール</h2>
+        <div class="knowledge-link-grid">
+          <a href="../../tools/character-encoding.html">文字コード変換ツール</a>
+        </div>
+      </section>
+
+      <section class="knowledge-article-card knowledge-related-articles" aria-labelledby="related-articles-title">
+        <h2 id="related-articles-title">📚 関連記事</h2>
+        <div class="knowledge-link-grid">
+          <a href="../../knowledge/how-qr-codes-work/">QRコードの仕組み</a>
+          <span class="knowledge-link-coming-soon">パスワードを安全に作るコツ（準備中）</span>
+          <a href="../../knowledge.html">ゴマ知識一覧</a>
+        </div>
+      </section>
+
+      <section class="knowledge-updated" aria-label="最終更新">
+        <span>最終更新</span>
+        <time datetime="2026-07">2026年7月</time>
+      </section>
+
+      <div class="back-to-top">
+        <a class="top-button" href="#top">↑ ページ上部へ戻る</a>
+      </div>
+    </article>
+  </main>
+
+  <footer></footer>
+</body>
+</html>
