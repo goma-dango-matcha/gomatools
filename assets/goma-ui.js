@@ -326,7 +326,9 @@
     'tools/character-encoding.html': '文字化けは、保存時と読み込み時の文字コードが合わないと起こることがあります。',
     'compound-interest/': '複利は期間が長いほど差が出やすい仕組みです。条件を変えて比べると効果を確認しやすくなります。',
     'interest-calculator/': '利息は金利だけでなく、期間によっても変わります。総額とあわせて確認すると安心です。',
-    'tools/loan-calculator.html': 'ローンは毎月の返済額だけでなく、利息総額と総返済額もあわせて見ることが大切です。'
+    'tools/loan-calculator.html': 'ローンは毎月の返済額だけでなく、利息総額と総返済額もあわせて見ることが大切です。',
+    'age/': '年齢や日数は、基準日にすると変わります。手続きや予定では、いつ時点かも一緒に確認しましょう。',
+    'business-days/': '営業日は土日や休業日を含めない数え方です。祝日や会社ごとの休業日は別途確認しましょう。'
   };
 
   const relatedToolsByPath = {
@@ -374,6 +376,16 @@
       { title: '利息計算ツール', path: 'interest-calculator/' },
       { title: '複利計算ツール', path: 'compound-interest/' },
       { title: '割引率計算ツール', path: 'discount-calculator/' }
+    ],
+    'age/': [
+      { title: '営業日計算ツール', path: 'business-days/' },
+      { title: '日数計算ツール', path: 'days-calculator/' },
+      { title: '和暦・西暦変換ツール', path: 'wareki/' }
+    ],
+    'business-days/': [
+      { title: '年齢・日付計算ツール', path: 'age/' },
+      { title: '日数計算ツール', path: 'days-calculator/' },
+      { title: '和暦・西暦変換ツール', path: 'wareki/' }
     ]
   };
 
@@ -382,7 +394,9 @@
     'password/': { selector: '#resultPanel', beforeSelector: '.copy-wrap' },
     'tools/character-encoding.html': { selector: '#resultSection' },
     'compound-interest/': { selector: '#resultPanel' },
-    'tools/loan-calculator.html': { selector: '#resultCard', beforeSelector: '.loan-copy' }
+    'tools/loan-calculator.html': { selector: '#resultCard', beforeSelector: '.loan-copy' },
+    'age/': { selector: '#ageResult', beforeSelector: '.copy-wrap' },
+    'business-days/': { selector: '#resultPanel' }
   };
 
   function getOnePointTarget() {
@@ -447,7 +461,9 @@
       ? 'あわせて使うと、健康管理の目安を確認しやすくなります。'
       : ['compound-interest/', 'interest-calculator/', 'tools/loan-calculator.html'].includes(currentPageKey)
         ? 'あわせて使うと、お金の計算や比較を進めやすくなります。'
-        : 'あわせて使うと、作成や確認の作業を進めやすくなります。';
+        : ['age/', 'business-days/'].includes(currentPageKey)
+          ? 'あわせて使うと、日付や期限の確認を進めやすくなります。'
+          : 'あわせて使うと、作成や確認の作業を進めやすくなります。';
     section.innerHTML = `
       <h2 id="goma-related-tools-title">🔗 関連ツール</h2>
       <p>${lead}</p>
