@@ -323,7 +323,10 @@
     'tools/tdee.html': 'TDEEは、活動量を含めた1日の消費カロリーの目安です。体重管理の計画に役立ちます。',
     'qrcode/': 'QRコードにはURLだけでなく、連絡先やWi-Fi情報なども保存できます。内容を確認してから共有しましょう。',
     'password/': '長くて使い回していないパスワードほど、推測されにくくなります。サービスごとに分けるのが安心です。',
-    'tools/character-encoding.html': '文字化けは、保存時と読み込み時の文字コードが合わないと起こることがあります。'
+    'tools/character-encoding.html': '文字化けは、保存時と読み込み時の文字コードが合わないと起こることがあります。',
+    'compound-interest/': '複利は期間が長いほど差が出やすい仕組みです。条件を変えて比べると効果を確認しやすくなります。',
+    'interest-calculator/': '利息は金利だけでなく、期間によっても変わります。総額とあわせて確認すると安心です。',
+    'tools/loan-calculator.html': 'ローンは毎月の返済額だけでなく、利息総額と総返済額もあわせて見ることが大切です。'
   };
 
   const relatedToolsByPath = {
@@ -356,13 +359,30 @@
       { title: 'QRコード生成ツール', path: 'qrcode/' },
       { title: 'テキスト整形ツール', path: 'tools/text-format.html' },
       { title: 'テキスト比較ツール', path: 'tools/text-compare.html' }
+    ],
+    'compound-interest/': [
+      { title: '利息計算ツール', path: 'interest-calculator/' },
+      { title: 'ローン返済シミュレーター', path: 'tools/loan-calculator.html' },
+      { title: '割引率計算ツール', path: 'discount-calculator/' }
+    ],
+    'interest-calculator/': [
+      { title: '複利計算ツール', path: 'compound-interest/' },
+      { title: 'ローン返済シミュレーター', path: 'tools/loan-calculator.html' },
+      { title: '消費税計算ツール', path: 'tax/' }
+    ],
+    'tools/loan-calculator.html': [
+      { title: '利息計算ツール', path: 'interest-calculator/' },
+      { title: '複利計算ツール', path: 'compound-interest/' },
+      { title: '割引率計算ツール', path: 'discount-calculator/' }
     ]
   };
 
   const onePointTargetByPath = {
     'qrcode/': { selector: '#resultArea', beforeSelector: '#saveButton', revealSelector: '#qrCanvas' },
     'password/': { selector: '#resultPanel', beforeSelector: '.copy-wrap' },
-    'tools/character-encoding.html': { selector: '#resultSection' }
+    'tools/character-encoding.html': { selector: '#resultSection' },
+    'compound-interest/': { selector: '#resultPanel' },
+    'tools/loan-calculator.html': { selector: '#resultCard', beforeSelector: '.loan-copy' }
   };
 
   function getOnePointTarget() {
@@ -374,7 +394,7 @@
 
     const resultCard = document.querySelector('#resultCard');
     if (!resultCard) return null;
-    return { target: resultCard, beforeSelector: '.bmr-copy, .tdee-copy, .bmi-copy, .copy-button' };
+    return { target: resultCard, beforeSelector: '.bmr-copy, .tdee-copy, .bmi-copy, .copy-button, .loan-copy' };
   }
 
   function syncOnePointVisibility(section, config) {
@@ -422,9 +442,12 @@
     section.setAttribute('aria-labelledby', 'goma-related-tools-title');
 
     const links = items.map(item => `<li><a href="${paths.home}${item.path}">${item.title}</a></li>`).join('');
-    const lead = getCurrentPageKey().startsWith('tools/tdee.html') || ['bmi/', 'tools/bmr.html'].includes(getCurrentPageKey())
+    const currentPageKey = getCurrentPageKey();
+    const lead = ['bmi/', 'tools/bmr.html', 'tools/tdee.html'].includes(currentPageKey)
       ? 'あわせて使うと、健康管理の目安を確認しやすくなります。'
-      : 'あわせて使うと、作成や確認の作業を進めやすくなります。';
+      : ['compound-interest/', 'interest-calculator/', 'tools/loan-calculator.html'].includes(currentPageKey)
+        ? 'あわせて使うと、お金の計算や比較を進めやすくなります。'
+        : 'あわせて使うと、作成や確認の作業を進めやすくなります。';
     section.innerHTML = `
       <h2 id="goma-related-tools-title">🔗 関連ツール</h2>
       <p>${lead}</p>
