@@ -320,7 +320,10 @@
   const toolOnePointByPath = {
     'bmi/': 'BMIは体格を知る目安のひとつです。体脂肪率などもあわせて見ると、より参考になります。',
     'tools/bmr.html': '基礎代謝は、何もしなくても体が使うエネルギーの目安です。食事管理の出発点になります。',
-    'tools/tdee.html': 'TDEEは、活動量を含めた1日の消費カロリーの目安です。体重管理の計画に役立ちます。'
+    'tools/tdee.html': 'TDEEは、活動量を含めた1日の消費カロリーの目安です。体重管理の計画に役立ちます。',
+    'qrcode/': 'QRコードにはURLだけでなく、連絡先やWi-Fi情報なども保存できます。内容を確認してから共有しましょう。',
+    'password/': '長くて使い回していないパスワードほど、推測されにくくなります。サービスごとに分けるのが安心です。',
+    'tools/character-encoding.html': '文字化けは、保存時と読み込み時の文字コードが合わないと起こることがあります。'
   };
 
   const relatedToolsByPath = {
@@ -338,8 +341,52 @@
       { title: '基礎代謝（BMR）計算ツール', path: 'tools/bmr.html' },
       { title: 'BMI計算ツール', path: 'bmi/' },
       { title: 'PFCバランス計算ツール', path: 'tools/pfc-balance.html' }
+    ],
+    'qrcode/': [
+      { title: 'パスワード生成ツール', path: 'password/' },
+      { title: '文字コード変換ツール', path: 'tools/character-encoding.html' },
+      { title: 'テキスト整形ツール', path: 'tools/text-format.html' }
+    ],
+    'password/': [
+      { title: 'QRコード生成ツール', path: 'qrcode/' },
+      { title: '文字コード変換ツール', path: 'tools/character-encoding.html' },
+      { title: 'テキスト比較ツール', path: 'tools/text-compare.html' }
+    ],
+    'tools/character-encoding.html': [
+      { title: 'QRコード生成ツール', path: 'qrcode/' },
+      { title: 'テキスト整形ツール', path: 'tools/text-format.html' },
+      { title: 'テキスト比較ツール', path: 'tools/text-compare.html' }
     ]
   };
+
+  const onePointTargetByPath = {
+    'qrcode/': { selector: '#resultArea', beforeSelector: '#saveButton', revealSelector: '#qrCanvas' },
+    'password/': { selector: '#resultPanel', beforeSelector: '.copy-wrap' },
+    'tools/character-encoding.html': { selector: '#resultSection' }
+  };
+
+  function getOnePointTarget() {
+    const config = onePointTargetByPath[getCurrentPageKey()];
+    if (config) {
+      const target = document.querySelector(config.selector);
+      if (target) return { target, ...config };
+    }
+
+    const resultCard = document.querySelector('#resultCard');
+    if (!resultCard) return null;
+    return { target: resultCard, beforeSelector: '.bmr-copy, .tdee-copy, .bmi-copy, .copy-button' };
+  }
+
+  function syncOnePointVisibility(section, config) {
+    if (!config.revealSelector) return;
+
+    const revealTarget = document.querySelector(config.revealSelector);
+    if (!revealTarget) return;
+
+    const update = () => { section.hidden = revealTarget.hidden; };
+    update();
+    new MutationObserver(update).observe(revealTarget, { attributes: true, attributeFilter: ['hidden'] });
+  }
 
   function createToolOnePoint() {
     if (document.querySelector('.goma-one-point')) return;
@@ -347,8 +394,8 @@
     const text = toolOnePointByPath[getCurrentPageKey()];
     if (!text) return;
 
-    const resultCard = document.querySelector('#resultCard');
-    if (!resultCard) return;
+    const targetConfig = getOnePointTarget();
+    if (!targetConfig) return;
 
     const section = document.createElement('section');
     section.className = 'goma-one-point';
@@ -357,9 +404,11 @@
       <h3 id="goma-one-point-title">🍵 ゴマワンポイント</h3>
       <p>${text}</p>`;
 
-    const beforeTarget = resultCard.querySelector('.bmr-copy, .tdee-copy, .bmi-copy, .copy-button');
+    const beforeTarget = targetConfig.beforeSelector ? targetConfig.target.querySelector(targetConfig.beforeSelector) : null;
     if (beforeTarget) beforeTarget.before(section);
-    else resultCard.appendChild(section);
+    else targetConfig.target.appendChild(section);
+
+    syncOnePointVisibility(section, targetConfig);
   }
 
   function createRelatedTools(paths) {
@@ -373,9 +422,12 @@
     section.setAttribute('aria-labelledby', 'goma-related-tools-title');
 
     const links = items.map(item => `<li><a href="${paths.home}${item.path}">${item.title}</a></li>`).join('');
+    const lead = getCurrentPageKey().startsWith('tools/tdee.html') || ['bmi/', 'tools/bmr.html'].includes(getCurrentPageKey())
+      ? 'あわせて使うと、健康管理の目安を確認しやすくなります。'
+      : 'あわせて使うと、作成や確認の作業を進めやすくなります。';
     section.innerHTML = `
       <h2 id="goma-related-tools-title">🔗 関連ツール</h2>
-      <p>あわせて使うと、健康管理の目安を確認しやすくなります。</p>
+      <p>${lead}</p>
       <ul class="goma-related-tools-list">${links}</ul>`;
 
     const relatedKnowledge = document.querySelector('.goma-related-knowledge');
