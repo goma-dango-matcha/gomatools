@@ -312,6 +312,85 @@
     if (anchor) anchor.before(section);
     else if (main) main.appendChild(section);
   }
+
+  /* =========================================================
+     ツールブランド強化：ゴマワンポイント・関連ツール
+     結果表示や回遊性を、ツール共通仕様書 v3.0 に寄せます。
+  ========================================================= */
+  const toolOnePointByPath = {
+    'bmi/': 'BMIは体格を知る目安のひとつです。体脂肪率などもあわせて見ると、より参考になります。',
+    'tools/bmr.html': '基礎代謝は、何もしなくても体が使うエネルギーの目安です。食事管理の出発点になります。',
+    'tools/tdee.html': 'TDEEは、活動量を含めた1日の消費カロリーの目安です。体重管理の計画に役立ちます。'
+  };
+
+  const relatedToolsByPath = {
+    'bmi/': [
+      { title: '基礎代謝（BMR）計算ツール', path: 'tools/bmr.html' },
+      { title: '体脂肪率計算ツール', path: 'tools/body-fat.html' },
+      { title: '適正体重計算ツール', path: 'tools/ideal-weight.html' }
+    ],
+    'tools/bmr.html': [
+      { title: 'BMI計算ツール', path: 'bmi/' },
+      { title: '1日の消費カロリー（TDEE）計算ツール', path: 'tools/tdee.html' },
+      { title: 'PFCバランス計算ツール', path: 'tools/pfc-balance.html' }
+    ],
+    'tools/tdee.html': [
+      { title: '基礎代謝（BMR）計算ツール', path: 'tools/bmr.html' },
+      { title: 'BMI計算ツール', path: 'bmi/' },
+      { title: 'PFCバランス計算ツール', path: 'tools/pfc-balance.html' }
+    ]
+  };
+
+  function createToolOnePoint() {
+    if (document.querySelector('.goma-one-point')) return;
+
+    const text = toolOnePointByPath[getCurrentPageKey()];
+    if (!text) return;
+
+    const resultCard = document.querySelector('#resultCard');
+    if (!resultCard) return;
+
+    const section = document.createElement('section');
+    section.className = 'goma-one-point';
+    section.setAttribute('aria-labelledby', 'goma-one-point-title');
+    section.innerHTML = `
+      <h3 id="goma-one-point-title">🍵 ゴマワンポイント</h3>
+      <p>${text}</p>`;
+
+    const beforeTarget = resultCard.querySelector('.bmr-copy, .tdee-copy, .bmi-copy, .copy-button');
+    if (beforeTarget) beforeTarget.before(section);
+    else resultCard.appendChild(section);
+  }
+
+  function createRelatedTools(paths) {
+    if (document.querySelector('.goma-related-tools')) return;
+
+    const items = relatedToolsByPath[getCurrentPageKey()];
+    if (!items || items.length === 0) return;
+
+    const section = document.createElement('section');
+    section.className = 'goma-related-tools';
+    section.setAttribute('aria-labelledby', 'goma-related-tools-title');
+
+    const links = items.map(item => `<li><a href="${paths.home}${item.path}">${item.title}</a></li>`).join('');
+    section.innerHTML = `
+      <h2 id="goma-related-tools-title">🔗 関連ツール</h2>
+      <p>あわせて使うと、健康管理の目安を確認しやすくなります。</p>
+      <ul class="goma-related-tools-list">${links}</ul>`;
+
+    const relatedKnowledge = document.querySelector('.goma-related-knowledge');
+    if (relatedKnowledge) {
+      relatedKnowledge.after(section);
+      return;
+    }
+
+    const anchor = document.querySelector('[data-health-series], [data-school-series], [data-money-series], [data-work-series], [data-goma-series]')
+      || document.querySelector('section[aria-labelledby="related-title"], section[aria-labelledby="tools-title"], .related-tools, .loan-related, .bmr-related, .tdee-related, .ideal-related, .burn-related');
+    const main = document.querySelector('main');
+
+    if (anchor) anchor.before(section);
+    else if (main) main.appendChild(section);
+  }
   function initializeCommonUI() {
     const paths = getPaths();
     document.documentElement.classList.add('goma-ui-v11');
@@ -322,6 +401,8 @@
     createMoneySeries(paths);
     createWorkSeries(paths);
     createRelatedKnowledge(paths);
+    createRelatedTools(paths);
+    createToolOnePoint();
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initializeCommonUI);
