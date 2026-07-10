@@ -82,7 +82,17 @@
     h1 { margin: 0; font-size: clamp(2.1rem, 8vw, 3.55rem); line-height: 1.25; letter-spacing: -.035em; }
     .hero-catch { margin: 18px 0 0; color: var(--green-dark); font-size: clamp(1.05rem, 3vw, 1.25rem); font-weight: 850; }
     .hero-description { max-width: 680px; margin: 15px auto 0; color: var(--muted); }
-    .static-description { max-width: 760px; margin: 24px auto 0; color: var(--muted); font-size: .92rem; }
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
 
     .today-panel { margin-top: 34px; }
     .today-main-card {
@@ -118,6 +128,15 @@
     .info-card-title { display: block; color: var(--muted); font-size: .86rem; font-weight: 850; }
     .info-card-value { display: block; margin-top: 8px; color: var(--green-dark); font-size: clamp(1.4rem, 5vw, 2rem); line-height: 1.35; font-weight: 900; overflow-wrap: anywhere; }
     .info-card-note { margin: 8px 0 0; color: var(--muted); font-size: .86rem; }
+    .answer-note {
+      max-width: 760px;
+      margin: 18px auto 0;
+      color: var(--muted);
+      font-size: .9rem;
+      text-align: center;
+    }
+    .answer-note p { margin: 5px 0; }
+    .brand-note { color: var(--green-dark); font-weight: 800; }
 
     .copy-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 22px; }
     .copy-button {
@@ -254,12 +273,6 @@
         <p class="eyebrow">端末の日付から自動表示</p>
         <h1 id="page-title">📅 今日の情報</h1>
         <p class="hero-catch">今日の答えを、ひとつの画面に。</p>
-        <div class="hero-description">
-          <p>ページを開くだけで、今日の日付と曜日がすぐに分かります。</p>
-          <p>和暦や今年の何日目か、残り日数も一緒に確認できるため、書類の記入や予定の確認など、日常のさまざまな場面で役立ちます。</p>
-          <p>毎日の「今知りたい」を、迷わずすぐに確認できるようにまとめています。</p>
-        </div>
-        <p class="static-description">表示内容は、お使いの端末の日時をもとに自動で更新しています。</p>
       </section>
 
       <noscript>
@@ -269,13 +282,12 @@
         </section>
       </noscript>
 
-      <section class="section today-panel" aria-labelledby="today-title">
-        <h2 class="section-title" id="today-title">今日の日付</h2>
+      <section class="today-panel" aria-labelledby="today-title">
+        <h2 class="visually-hidden" id="today-title">今日の日付</h2>
         <div class="today-main-card" id="todayInfo" aria-live="polite">
           <span class="today-label">📅 今日の日付</span>
           <strong class="today-date" id="westernDate">読み込み中...</strong>
           <p class="today-sentence" id="todaySentence">端末の日付を確認しています。</p>
-          <p class="today-meta" id="timezoneNote">お使いの端末に設定されている日時をもとに表示します。</p>
           <div class="copy-actions">
             <button class="copy-button" type="button" data-copy-target="westernDate">西暦の日付をコピー</button>
             <button class="copy-button" type="button" data-copy-target="japaneseDate">和暦の日付をコピー</button>
@@ -304,6 +316,14 @@
             <strong class="info-card-value" id="yearInfo">—</strong>
             <p class="info-card-note" id="monthInfo">今月の情報もあわせて表示します。</p>
           </article>
+        </div>
+
+        <div class="answer-note">
+          <p>ページを開くだけで、今日の日付と曜日がすぐに分かります。</p>
+          <p>今年の何日目か、残り日数もまとめて確認できます。</p>
+          <p class="brand-note">毎日の「今知りたい」を、迷わずすぐに確認できるようにまとめています。</p>
+          <p>表示内容は、お使いの端末の日時をもとに自動で更新しています。</p>
+          <p>端末の日時設定が正しくない場合、表示結果も正しくならないことがあります。</p>
         </div>
       </section>
 
@@ -339,12 +359,6 @@
           <li><a href="../../days-calculator/">日数計算ツール</a></li>
           <li><a href="../../business-days/">営業日計算ツール</a></li>
         </ul>
-      </section>
-
-      <section class="section card notice-card" aria-labelledby="notice-title">
-        <h2 class="section-title" id="notice-title">⚠️ ご注意ください</h2>
-        <p>表示内容は、お使いの端末に設定されている日時をもとに計算しています。</p>
-        <p>端末の日時設定が正しくない場合、表示結果も正しくならないことがあります。</p>
       </section>
 
       <section class="section" aria-labelledby="faq-title">
