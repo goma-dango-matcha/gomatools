@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8BNDHPNEHY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8BNDHPNEHY');
+  </script>
+  <title>次の祝日はいつ？あと何日・曜日も確認｜ゴマツール</title>
+  <meta name="description" content="次の日本の祝日を開くだけで確認できます。祝日名、日付、曜日、あと何日かをまとめて表示する無料ツールです。">
+  <link rel="canonical" href="https://goma-dango-matcha.github.io/gomatools/tools/next-holiday/">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ゴマツール">
+  <meta property="og:title" content="次の祝日はいつ？あと何日・曜日も確認">
+  <meta property="og:description" content="次の日本の祝日を、祝日名・日付・曜日・あと何日までまとめて確認できます。">
+  <meta property="og:url" content="https://goma-dango-matcha.github.io/gomatools/tools/next-holiday/">
+  <meta property="og:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="次の祝日はいつ？あと何日・曜日も確認">
+  <meta name="twitter:description" content="次の日本の祝日を、祝日名・日付・曜日・あと何日までまとめて確認できます。">
+  <meta name="twitter:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <link rel="stylesheet" href="../../assets/goma-ui.css?v=2.6">
+  <script defer src="../../assets/goma-ui.js?v=2.6"></script>
+  <script defer src="../../assets/jp-holidays.js?v=1.0"></script>
+  <link rel="icon" href="../../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <meta name="theme-color" content="#63843F">
+  <style>
+    :root {
+      --green: #587c40;
+      --green-dark: #355126;
+      --green-light: #eef5e9;
+      --green-soft: #f8fbf6;
+      --text: #20251d;
+      --muted: #687064;
+      --line: #dde6d8;
+      --white: #fff;
+      --warning: #fff8e8;
+      --warning-line: #ead7a0;
+      --shadow: 0 16px 44px rgba(48, 70, 36, .09);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background: linear-gradient(180deg, #f9fcf7 0, #fff 28%);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    .container { width: min(100% - 32px, 920px); margin-inline: auto; }
+    main { padding: 58px 0 94px; }
+    .section { margin-top: 58px; }
+    .section-title { margin: 0 0 18px; font-size: clamp(1.35rem, 4vw, 1.8rem); line-height: 1.35; }
+    .card { padding: clamp(22px, 5vw, 38px); border: 1px solid var(--line); border-radius: var(--radius); background: var(--white); box-shadow: var(--shadow); }
+    .breadcrumb { margin: 0 0 36px; color: var(--muted); font-size: .86rem; }
+    .breadcrumb ol { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+    .breadcrumb li:not(:last-child)::after { content: ">"; margin-left: 8px; color: #9aa493; }
+    .breadcrumb a { color: var(--green-dark); font-weight: 750; text-decoration: none; }
+
+    .hero { text-align: center; }
+    .eyebrow { display: inline-block; margin: 0 0 15px; padding: 6px 13px; color: var(--green-dark); border-radius: 999px; background: var(--green-light); font-size: .82rem; font-weight: 750; }
+    h1 { margin: 0; font-size: clamp(2.1rem, 8vw, 3.55rem); line-height: 1.25; letter-spacing: -.035em; }
+    .hero-catch { margin: 18px 0 0; color: var(--green-dark); font-size: clamp(1.05rem, 3vw, 1.25rem); font-weight: 850; }
+    .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+    .holiday-panel { margin-top: 34px; }
+    .holiday-main-card {
+      padding: clamp(26px, 6vw, 44px);
+      border: 1px solid rgba(88, 124, 64, .24);
+      border-radius: 24px;
+      background: linear-gradient(135deg, #f1f8ec, #fff);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    .holiday-label { display: block; color: var(--green-dark); font-size: .9rem; font-weight: 850; }
+    .holiday-name { display: block; margin-top: 8px; color: var(--green-dark); font-size: clamp(2rem, 8vw, 3.4rem); line-height: 1.22; font-weight: 950; overflow-wrap: anywhere; }
+    .holiday-date { display: block; margin-top: 10px; color: var(--text); font-size: clamp(1.35rem, 5.4vw, 2.15rem); line-height: 1.38; font-weight: 900; overflow-wrap: anywhere; }
+    .holiday-count { display: inline-flex; align-items: baseline; justify-content: center; gap: 5px; margin-top: 16px; padding: 8px 16px; color: #fff; border-radius: 999px; background: var(--green); font-weight: 900; }
+    .holiday-count strong { font-size: clamp(1.55rem, 5.8vw, 2.2rem); line-height: 1; }
+    .holiday-sentence { margin: 16px auto 0; color: var(--text); font-weight: 750; }
+
+    .info-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 18px; }
+    .info-card { min-width: 0; padding: 22px; border: 1px solid var(--line); border-radius: 18px; background: var(--white); box-shadow: 0 10px 30px rgba(48, 70, 36, .06); }
+    .info-card-title { display: block; color: var(--muted); font-size: .86rem; font-weight: 850; }
+    .info-card-value { display: block; margin-top: 8px; color: var(--green-dark); font-size: clamp(1.25rem, 4.6vw, 1.85rem); line-height: 1.35; font-weight: 900; overflow-wrap: anywhere; }
+    .info-card-note { margin: 8px 0 0; color: var(--muted); font-size: .86rem; }
+    .answer-note { max-width: 760px; margin: 18px auto 0; color: var(--muted); font-size: .9rem; text-align: center; }
+    .answer-note p { margin: 5px 0; }
+    .brand-note { color: var(--green-dark); font-weight: 800; }
+    .support-list { margin: 0; padding-left: 1.25em; }
+    .support-list li + li { margin-top: 6px; }
+    .faq-list { display: grid; gap: 12px; }
+    details { border: 1px solid var(--line); border-radius: 15px; background: #fff; }
+    summary { padding: 18px 20px; font-weight: 780; cursor: pointer; list-style: none; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; float: right; color: var(--green); font-size: 1.2rem; }
+    details[open] summary::after { content: "-"; }
+    details p { margin: 0; padding: 0 20px 20px; color: var(--muted); }
+    .last-updated { color: var(--muted); font-size: .86rem; text-align: center; }
+    .last-updated span,
+    .last-updated time { display: block; }
+    .last-updated span { font-weight: 850; }
+
+    @media (max-width: 760px) {
+      .info-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 680px) {
+      .container { width: min(100% - 24px, 920px); }
+      main { padding: 42px 0 76px; }
+      .section { margin-top: 48px; }
+      .card { padding: 22px 18px; border-radius: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "次の祝日",
+    "url": "https://goma-dango-matcha.github.io/gomatools/tools/next-holiday/",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "description": "次の日本の祝日、日付、曜日、あと何日かをまとめて確認できる無料ツールです。",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "JPY"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "ホーム",
+        "item": "https://goma-dango-matcha.github.io/gomatools/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "全ツール一覧",
+        "item": "https://goma-dango-matcha.github.io/gomatools/all-tools/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "次の祝日",
+        "item": "https://goma-dango-matcha.github.io/gomatools/tools/next-holiday/"
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "今日が祝日の場合は？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "今日の祝日を表示します。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "あと何日はどのように計算していますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "お使いの端末の日付をもとに計算しています。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "日本以外の祝日にも対応していますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "現在は日本の祝日のみ対応しています。"
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header></header>
+
+  <main>
+    <div class="container">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <ol>
+          <li><a href="../../">ホーム</a></li>
+          <li><a href="../../all-tools/">全ツール一覧</a></li>
+          <li>次の祝日</li>
+        </ol>
+      </nav>
+
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow">開くだけでわかる</p>
+        <h1 id="page-title">🎌 次の祝日</h1>
+        <p class="hero-catch">次の休みを、すぐ確認。</p>
+      </section>
+
+      <noscript>
+        <section class="section card">
+          <h2 class="section-title">JavaScriptを有効にしてください</h2>
+          <p>次の祝日を表示するには、JavaScriptを有効にしてください。</p>
+        </section>
+      </noscript>
+
+      <section class="holiday-panel" aria-labelledby="holiday-title">
+        <h2 class="visually-hidden" id="holiday-title">次の祝日</h2>
+        <div class="holiday-main-card" aria-live="polite">
+          <span class="holiday-label">🎌 次の祝日</span>
+          <strong class="holiday-name" id="holidayName">読み込み中...</strong>
+          <span class="holiday-date" id="holidayDate">—</span>
+          <span class="holiday-count" id="daysUntilWrap">あと <strong id="daysUntil">—</strong> 日</span>
+          <p class="holiday-sentence" id="holidaySentence">端末の日付をもとに確認しています。</p>
+        </div>
+
+        <div class="info-grid" aria-label="次の祝日の詳しい情報">
+          <article class="info-card">
+            <span class="info-card-title">📅 曜日</span>
+            <strong class="info-card-value" id="weekdayInfo">—</strong>
+            <p class="info-card-note">祝日の曜日です。</p>
+          </article>
+          <article class="info-card">
+            <span class="info-card-title">⏳ あと何日</span>
+            <strong class="info-card-value" id="daysInfo">—</strong>
+            <p class="info-card-note">今日が祝日の場合は0日です。</p>
+          </article>
+          <article class="info-card">
+            <span class="info-card-title">🗓 連休メモ</span>
+            <strong class="info-card-value" id="holidayMemo">—</strong>
+            <p class="info-card-note" id="holidayMemoNote">土日とのつながりを確認します。</p>
+          </article>
+        </div>
+
+        <div class="answer-note">
+          <p>次の日本の祝日を、開くだけで確認できます。</p>
+          <p>祝日名だけでなく、曜日やあと何日あるかもまとめて表示します。</p>
+          <p class="brand-note">毎日の「今知りたい」を、迷わずすぐに確認できるようにまとめています。</p>
+          <p>表示内容は、お使いの端末の日付をもとに自動で更新しています。</p>
+        </div>
+      </section>
+
+      <section class="section card" aria-labelledby="support-title">
+        <h2 class="section-title" id="support-title">一歩便利情報</h2>
+        <ul class="support-list">
+          <li>今日が祝日の場合は、その祝日を表示します。</li>
+          <li>振替休日も祝日データに含めて判定しています。</li>
+          <li>祝日が土曜日と重なる場合は、振替休日にならない年もあります。</li>
+        </ul>
+      </section>
+
+      <section class="section card goma-one-point" aria-labelledby="goma-one-point-title">
+        <h2 class="section-title" id="goma-one-point-title">🍵 ゴマワンポイント</h2>
+        <p>祝日が土曜日と重なる場合は振替休日にならないため、連休にならない年もあります。</p>
+      </section>
+
+      <section class="section card goma-related-knowledge" aria-labelledby="goma-related-knowledge-title">
+        <h2 class="section-title" id="goma-related-knowledge-title">💡 関連するゴマ知識</h2>
+        <p>祝日や日付に関連する知識を、あわせて確認できます。</p>
+        <ul class="goma-related-knowledge-list">
+          <li><a href="../../knowledge/business-days/">営業日はどう決まる？</a></li>
+          <li><a href="../../knowledge/leap-year/">うるう年とは？</a></li>
+        </ul>
+      </section>
+
+      <section class="section card goma-related-tools" aria-labelledby="goma-related-tools-title">
+        <h2 class="section-title" id="goma-related-tools-title">🔗 関連ツール</h2>
+        <p>あわせて使うと、日付や予定の確認を進めやすくなります。</p>
+        <ul class="goma-related-tools-list">
+          <li><a href="../today/">今日の情報</a></li>
+          <li><a href="../../business-days/">営業日計算ツール</a></li>
+          <li><a href="../../days-calculator/">日数計算ツール</a></li>
+        </ul>
+      </section>
+
+      <section class="section" aria-labelledby="faq-title">
+        <h2 class="section-title" id="faq-title">よくある質問</h2>
+        <div class="faq-list">
+          <details>
+            <summary>Q. 今日が祝日の場合は？</summary>
+            <p>A. 今日の祝日を表示します。</p>
+          </details>
+          <details>
+            <summary>Q. あと何日はどのように計算していますか？</summary>
+            <p>A. お使いの端末の日付をもとに計算しています。</p>
+          </details>
+          <details>
+            <summary>Q. 日本以外の祝日にも対応していますか？</summary>
+            <p>A. 現在は日本の祝日のみ対応しています。</p>
+          </details>
+        </div>
+      </section>
+
+      <section class="section last-updated" aria-label="最終更新">
+        <span>最終更新</span>
+        <time datetime="2026-07">2026年7月</time>
+      </section>
+    </div>
+  </main>
+
+  <footer></footer>
+
+  <script>
+    'use strict';
+
+    const DAY_MS = 24 * 60 * 60 * 1000;
+    const WEEKDAYS = ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日'];
+
+    function toDateKey(date) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    }
+
+    function toUtcDate(dateKey) {
+      const parts = dateKey.split('-').map(Number);
+      return Date.UTC(parts[0], parts[1] - 1, parts[2]);
+    }
+
+    function formatDate(dateKey) {
+      const parts = dateKey.split('-').map(Number);
+      const date = new Date(toUtcDate(dateKey));
+      return `${parts[0]}年${parts[1]}月${parts[2]}日（${WEEKDAYS[date.getUTCDay()]}）`;
+    }
+
+    function getWeekday(dateKey) {
+      return WEEKDAYS[new Date(toUtcDate(dateKey)).getUTCDay()];
+    }
+
+    function getConsecutiveHolidayInfo(holiday) {
+      const weekday = new Date(toUtcDate(holiday.date)).getUTCDay();
+      if (weekday === 1) return { title: '3連休の可能性', note: '土日とつながる祝日です。' };
+      if (weekday === 5) return { title: '3連休の可能性', note: '土日とつながる祝日です。' };
+      if (weekday === 0 || holiday.name === '振替休日') return { title: '連休になりやすい日', note: '前後の休日とつながる場合があります。' };
+      if (weekday === 6) return { title: '土曜日の祝日', note: '振替休日にならないため、連休にならない年もあります。' };
+      return { title: '平日の祝日', note: '週の途中で休みになります。' };
+    }
+
+    function findNextHoliday(date = new Date()) {
+      const todayKey = toDateKey(date);
+      const todayUtc = toUtcDate(todayKey);
+      const holidays = window.GomaJpHolidays.getHolidays()
+        .slice()
+        .sort((a, b) => a.date.localeCompare(b.date));
+
+      const holiday = holidays.find(item => item.date >= todayKey);
+      if (!holiday) return null;
+
+      const daysUntil = Math.round((toUtcDate(holiday.date) - todayUtc) / DAY_MS);
+      return { holiday, daysUntil };
+    }
+
+    function updateNextHoliday(date = new Date()) {
+      const result = findNextHoliday(date);
+      if (!result) {
+        document.getElementById('holidayName').textContent = '祝日データを更新してください';
+        document.getElementById('holidayDate').textContent = '現在のデータ範囲外です';
+        document.getElementById('daysUntilWrap').hidden = true;
+        document.getElementById('holidaySentence').textContent = '祝日データの追加が必要です。';
+        return null;
+      }
+
+      const { holiday, daysUntil } = result;
+      const weekday = getWeekday(holiday.date);
+      const memo = getConsecutiveHolidayInfo(holiday);
+      const dateText = formatDate(holiday.date);
+
+      document.getElementById('holidayName').textContent = holiday.name;
+      document.getElementById('holidayDate').textContent = dateText;
+      document.getElementById('daysUntilWrap').hidden = false;
+      document.getElementById('daysUntil').textContent = daysUntil.toLocaleString('ja-JP');
+      document.getElementById('holidaySentence').textContent = daysUntil === 0
+        ? `今日は${holiday.name}です。`
+        : `次の祝日は、${dateText}の「${holiday.name}」です。`;
+      document.getElementById('weekdayInfo').textContent = weekday;
+      document.getElementById('daysInfo').textContent = daysUntil === 0 ? '今日です' : `あと${daysUntil.toLocaleString('ja-JP')}日`;
+      document.getElementById('holidayMemo').textContent = memo.title;
+      document.getElementById('holidayMemoNote').textContent = memo.note;
+
+      return { holiday, daysUntil, weekday, memo };
+    }
+
+    function initializePage() {
+      updateNextHoliday();
+    }
+
+    window.gomaNextHolidayTool = {
+      findNextHoliday,
+      updateNextHoliday,
+      toDateKey
+    };
+
+    window.addEventListener('DOMContentLoaded', initializePage);
+  </script>
+</body>
+</html>

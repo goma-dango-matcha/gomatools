@@ -223,6 +223,10 @@
       { title: '年齢の数え方について', path: 'knowledge/age-counting/' },
       { title: '営業日はどう決まる？', path: 'knowledge/business-days/' }
     ],
+    'tools/next-holiday/': [
+      { title: '営業日はどう決まる？', path: 'knowledge/business-days/' },
+      { title: 'うるう年とは？', path: 'knowledge/leap-year/' }
+    ],
     'age/': [
       { title: '年齢の数え方について', path: 'knowledge/age-counting/' },
       { title: 'うるう年とは？', path: 'knowledge/leap-year/' }
@@ -338,9 +342,14 @@
 
   const relatedToolsByPath = {
     'tools/today/': [
-      { title: '和暦・西暦変換ツール', path: 'wareki/' },
+      { title: '次の祝日', path: 'tools/next-holiday/' },
       { title: '日数計算ツール', path: 'days-calculator/' },
       { title: '営業日計算ツール', path: 'business-days/' }
+    ],
+    'tools/next-holiday/': [
+      { title: '今日の情報', path: 'tools/today/' },
+      { title: '営業日計算ツール', path: 'business-days/' },
+      { title: '日数計算ツール', path: 'days-calculator/' }
     ],
     'bmi/': [
       { title: '基礎代謝（BMR）計算ツール', path: 'tools/bmr.html' },
