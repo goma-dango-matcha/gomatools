@@ -45,6 +45,11 @@
       --white: #fff;
       --warning: #fff8e8;
       --warning-line: #ead7a0;
+      --holiday: #b84f3e;
+      --holiday-soft: #fff1ed;
+      --sat: #356f9f;
+      --sat-soft: #eef6fb;
+      --sun-soft: #fff3f0;
       --shadow: 0 16px 44px rgba(48, 70, 36, .09);
       --radius: 22px;
     }
@@ -97,6 +102,50 @@
     .info-card-title { display: block; color: var(--muted); font-size: .86rem; font-weight: 850; }
     .info-card-value { display: block; margin-top: 8px; color: var(--green-dark); font-size: clamp(1.25rem, 4.6vw, 1.85rem); line-height: 1.35; font-weight: 900; overflow-wrap: anywhere; }
     .info-card-note { margin: 8px 0 0; color: var(--muted); font-size: .86rem; }
+    .mini-calendar-card {
+      margin-top: 18px;
+      padding: clamp(18px, 4vw, 26px);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: var(--white);
+      box-shadow: 0 10px 30px rgba(48, 70, 36, .06);
+    }
+    .mini-calendar-head { display: flex; align-items: end; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+    .mini-calendar-title { margin: 0; color: var(--green-dark); font-size: clamp(1.05rem, 3.8vw, 1.28rem); line-height: 1.35; }
+    .mini-calendar-caption { margin: 4px 0 0; color: var(--muted); font-size: .84rem; }
+    .mini-calendar-legend { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; color: var(--muted); font-size: .74rem; font-weight: 850; }
+    .mini-calendar-legend span { display: inline-flex; align-items: center; gap: 5px; }
+    .mini-dot { width: 9px; height: 9px; border-radius: 999px; background: var(--green); }
+    .mini-dot.holiday { background: var(--holiday); }
+    .mini-dot.weekend { background: var(--sat); }
+    .mini-calendar-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 5px; }
+    .mini-calendar-link { margin: 12px 0 0; text-align: center; }
+    .mini-calendar-link a { color: var(--green-dark); font-size: .86rem; font-weight: 850; text-decoration: none; }
+    .mini-calendar-link a:hover { text-decoration: underline; }
+    .mini-weekday { min-width: 0; padding: 5px 2px; color: var(--muted); font-size: .76rem; font-weight: 900; text-align: center; }
+    .mini-weekday.sunday { color: var(--holiday); }
+    .mini-weekday.saturday { color: var(--sat); }
+    .mini-day {
+      min-width: 0;
+      min-height: 58px;
+      padding: 6px 4px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      text-align: center;
+      overflow: hidden;
+    }
+    .mini-day.saturday { background: var(--sat-soft); }
+    .mini-day.sunday { background: var(--sun-soft); }
+    .mini-day.holiday { border-color: rgba(184, 79, 62, .38); background: var(--holiday-soft); }
+    .mini-day.today { border-color: var(--green); box-shadow: inset 0 0 0 2px var(--green); }
+    .mini-date { display: inline-flex; align-items: center; justify-content: center; min-width: 25px; height: 25px; border-radius: 999px; font-weight: 950; line-height: 1; }
+    .mini-day.today .mini-date { color: #fff; background: var(--green); }
+    .mini-day.holiday:not(.today) .mini-date,
+    .mini-day.sunday:not(.today) .mini-date { color: var(--holiday); }
+    .mini-day.saturday:not(.today):not(.holiday) .mini-date { color: var(--sat); }
+    .mini-label { display: block; margin-top: 5px; color: var(--muted); font-size: .64rem; font-weight: 850; line-height: 1.25; overflow-wrap: anywhere; }
+    .mini-day.holiday .mini-label { color: var(--holiday); }
     .answer-note { max-width: 760px; margin: 18px auto 0; color: var(--muted); font-size: .9rem; text-align: center; }
     .answer-note p { margin: 5px 0; }
     .brand-note { color: var(--green-dark); font-weight: 800; }
@@ -116,12 +165,20 @@
 
     @media (max-width: 760px) {
       .info-grid { grid-template-columns: 1fr; }
+      .mini-calendar-head { display: block; text-align: center; }
+      .mini-calendar-legend { justify-content: center; margin-top: 9px; }
     }
     @media (max-width: 680px) {
       .container { width: min(100% - 24px, 920px); }
       main { padding: 42px 0 76px; }
       .section { margin-top: 48px; }
       .card { padding: 22px 18px; border-radius: 18px; }
+      .mini-calendar-card { padding: 14px; border-radius: 16px; }
+      .mini-calendar-grid { gap: 4px; }
+      .mini-weekday { padding: 4px 0; font-size: .7rem; }
+      .mini-day { min-height: 50px; padding: 5px 3px; border-radius: 10px; }
+      .mini-date { min-width: 22px; height: 22px; font-size: .8rem; }
+      .mini-label { margin-top: 3px; font-size: .54rem; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -257,6 +314,22 @@
           </article>
         </div>
 
+        <div class="mini-calendar-card" aria-labelledby="mini-calendar-title">
+          <div class="mini-calendar-head">
+            <div>
+              <h3 class="mini-calendar-title" id="mini-calendar-title">🗓 祝日まわりのミニカレンダー</h3>
+              <p class="mini-calendar-caption" id="miniCalendarCaption">日付の並びを確認しています。</p>
+            </div>
+            <div class="mini-calendar-legend" aria-label="ミニカレンダー凡例">
+              <span><i class="mini-dot"></i>今日</span>
+              <span><i class="mini-dot holiday"></i>祝日</span>
+              <span><i class="mini-dot weekend"></i>土日</span>
+            </div>
+          </div>
+          <div class="mini-calendar-grid" id="miniCalendarGrid" role="grid" aria-label="次の祝日まわりのミニカレンダー"></div>
+          <p class="mini-calendar-link"><a href="../month-calendar/">📅 今月のカレンダーを見る</a></p>
+        </div>
+
         <div class="answer-note">
           <p>次の日本の祝日を、開くだけで確認できます。</p>
           <p>祝日名だけでなく、曜日やあと何日あるかもまとめて表示します。</p>
@@ -330,6 +403,7 @@
 
     const DAY_MS = 24 * 60 * 60 * 1000;
     const WEEKDAYS = ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日'];
+    const WEEKDAYS_SHORT = ['日', '月', '火', '水', '木', '金', '土'];
 
     function toDateKey(date) {
       const year = date.getFullYear();
@@ -362,6 +436,90 @@
       return { title: '平日の祝日', note: '週の途中で休みになります。' };
     }
 
+    function getHolidayMap() {
+      return new Map(window.GomaJpHolidays.getHolidays().map(item => [item.date, item.name]));
+    }
+
+    function getMiniCalendarStart(today, holiday, daysUntil) {
+      if (daysUntil <= 13) return new Date(today.getFullYear(), today.getMonth(), today.getDate());
+      const holidayDate = new Date(toUtcDate(holiday.date));
+      const localHoliday = new Date(holidayDate.getUTCFullYear(), holidayDate.getUTCMonth(), holidayDate.getUTCDate());
+      return new Date(localHoliday.getFullYear(), localHoliday.getMonth(), localHoliday.getDate() - localHoliday.getDay() - 7);
+    }
+
+    function formatMiniCaption(start, end) {
+      const startText = `${start.getFullYear()}年${start.getMonth() + 1}月${start.getDate()}日`;
+      const endText = start.getFullYear() === end.getFullYear()
+        ? `${end.getMonth() + 1}月${end.getDate()}日`
+        : `${end.getFullYear()}年${end.getMonth() + 1}月${end.getDate()}日`;
+      return `${startText}〜${endText}`;
+    }
+
+    function createMiniDayCell(date, todayKey, holiday, holidayMap) {
+      const dateKey = toDateKey(date);
+      const weekday = date.getDay();
+      const holidayName = holidayMap.get(dateKey);
+      const isToday = dateKey === todayKey;
+      const isNextHoliday = dateKey === holiday.date;
+      const cell = document.createElement('div');
+      cell.className = 'mini-day';
+      if (weekday === 0) cell.classList.add('sunday');
+      if (weekday === 6) cell.classList.add('saturday');
+      if (holidayName) cell.classList.add('holiday');
+      if (isToday) cell.classList.add('today');
+      cell.setAttribute('role', 'gridcell');
+      cell.setAttribute('aria-label', `${formatDate(dateKey)}${holidayName ? ` ${holidayName}` : ''}${isToday ? ' 今日' : ''}`);
+
+      const number = document.createElement('span');
+      number.className = 'mini-date';
+      number.textContent = date.getDate();
+      cell.appendChild(number);
+
+      if (isNextHoliday) {
+        const label = document.createElement('span');
+        label.className = 'mini-label';
+        label.textContent = holiday.name;
+        cell.appendChild(label);
+      } else if (isToday) {
+        const label = document.createElement('span');
+        label.className = 'mini-label';
+        label.textContent = '今日';
+        cell.appendChild(label);
+      }
+
+      return cell;
+    }
+
+    function renderMiniCalendar(today, result) {
+      const grid = document.getElementById('miniCalendarGrid');
+      grid.innerHTML = '';
+      if (!result) {
+        document.getElementById('miniCalendarCaption').textContent = '祝日データの追加が必要です。';
+        return;
+      }
+
+      const todayKey = toDateKey(today);
+      const holidayMap = getHolidayMap();
+      const start = getMiniCalendarStart(today, result.holiday, result.daysUntil);
+      const end = new Date(start.getFullYear(), start.getMonth(), start.getDate() + 13);
+      document.getElementById('miniCalendarCaption').textContent = formatMiniCaption(start, end);
+
+      WEEKDAYS_SHORT.forEach((weekday, index) => {
+        const cell = document.createElement('div');
+        cell.className = 'mini-weekday';
+        if (index === 0) cell.classList.add('sunday');
+        if (index === 6) cell.classList.add('saturday');
+        cell.setAttribute('role', 'columnheader');
+        cell.textContent = weekday;
+        grid.appendChild(cell);
+      });
+
+      for (let offset = 0; offset < 14; offset += 1) {
+        const date = new Date(start.getFullYear(), start.getMonth(), start.getDate() + offset);
+        grid.appendChild(createMiniDayCell(date, todayKey, result.holiday, holidayMap));
+      }
+    }
+
     function findNextHoliday(date = new Date()) {
       const todayKey = toDateKey(date);
       const todayUtc = toUtcDate(todayKey);
@@ -383,6 +541,7 @@
         document.getElementById('holidayDate').textContent = '現在のデータ範囲外です';
         document.getElementById('daysUntilWrap').hidden = true;
         document.getElementById('holidaySentence').textContent = '祝日データの追加が必要です。';
+        renderMiniCalendar(date, null);
         return null;
       }
 
@@ -402,6 +561,7 @@
       document.getElementById('daysInfo').textContent = daysUntil === 0 ? '今日です' : `あと${daysUntil.toLocaleString('ja-JP')}日`;
       document.getElementById('holidayMemo').textContent = memo.title;
       document.getElementById('holidayMemoNote').textContent = memo.note;
+      renderMiniCalendar(date, result);
 
       return { holiday, daysUntil, weekday, memo };
     }
@@ -413,6 +573,7 @@
     window.gomaNextHolidayTool = {
       findNextHoliday,
       updateNextHoliday,
+      renderMiniCalendar,
       toDateKey
     };
 
