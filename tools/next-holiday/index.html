@@ -122,6 +122,15 @@
     .mini-calendar-link { margin: 12px 0 0; text-align: center; }
     .mini-calendar-link a { color: var(--green-dark); font-size: .86rem; font-weight: 850; text-decoration: none; }
     .mini-calendar-link a:hover { text-decoration: underline; }
+    .holiday-origin-card {
+      margin-top: 18px;
+      padding: 18px 20px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--green-soft);
+    }
+    .holiday-origin-card h3 { margin: 0 0 8px; color: var(--green-dark); font-size: 1.05rem; line-height: 1.4; }
+    .holiday-origin-card p { margin: 0; color: var(--text); font-size: .94rem; line-height: 1.75; }
     .mini-weekday { min-width: 0; padding: 5px 2px; color: var(--muted); font-size: .76rem; font-weight: 900; text-align: center; }
     .mini-weekday.sunday { color: var(--holiday); }
     .mini-weekday.saturday { color: var(--sat); }
@@ -330,6 +339,11 @@
           <p class="mini-calendar-link"><a href="../month-calendar/">📅 今月のカレンダーを見る</a></p>
         </div>
 
+        <div class="holiday-origin-card" aria-labelledby="holiday-origin-title">
+          <h3 id="holiday-origin-title">🎌 祝日の由来</h3>
+          <p id="holidayOriginText">祝日の概要を確認しています。</p>
+        </div>
+
         <div class="answer-note">
           <p>次の日本の祝日を、開くだけで確認できます。</p>
           <p>祝日名だけでなく、曜日やあと何日あるかもまとめて表示します。</p>
@@ -404,6 +418,26 @@
     const DAY_MS = 24 * 60 * 60 * 1000;
     const WEEKDAYS = ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日'];
     const WEEKDAYS_SHORT = ['日', '月', '火', '水', '木', '金', '土'];
+    const HOLIDAY_ORIGINS = {
+      '元日': '元日は、年のはじめを祝う祝日です。新しい一年の始まりを大切にし、家族や身近な人と過ごす日として親しまれています。',
+      '成人の日': '成人の日は、おとなになった若い人を祝い、自立への意識を持ってもらうための祝日です。各地で成人式などが行われます。',
+      '建国記念の日': '建国記念の日は、日本の建国をしのび、国を愛する心を養うことを目的とした祝日です。国の成り立ちに思いを向ける日です。',
+      '天皇誕生日': '天皇誕生日は、天皇の誕生日を祝う祝日です。現在は2月23日で、国民の祝日の一つとして定められています。',
+      '春分の日': '春分の日は、自然をたたえ、生きものをいつくしむことを目的とした祝日です。昼と夜の長さが近くなる春分のころにあたります。',
+      '昭和の日': '昭和の日は、昭和の時代を振り返り、国の将来に思いを向けるための祝日です。大型連休の始まりとしても親しまれています。',
+      '憲法記念日': '憲法記念日は、日本国憲法の施行を記念し、国の成長を願う祝日です。憲法や社会の仕組みについて考えるきっかけになります。',
+      'みどりの日': 'みどりの日は、自然に親しみ、その恵みに感謝するとともに、豊かな心を育むことを目的とした祝日です。',
+      'こどもの日': 'こどもの日は、子どもの人格を大切にし、幸せを願う祝日です。母への感謝も込められた日とされています。',
+      '海の日': '海の日は、海の恩恵に感謝するとともに、海洋国日本の繁栄を願うことを目的とした祝日です。',
+      '山の日': '山の日は、山に親しむ機会を得て、山の恩恵に感謝することを目的とした祝日です。',
+      '敬老の日': '敬老の日は、長年社会に貢献してきた高齢者を敬い、長寿を祝う祝日です。家族や地域で感謝を伝える日として親しまれています。',
+      '秋分の日': '秋分の日は、祖先を敬い、亡くなった人をしのぶことを目的とした祝日です。秋分のころにあたり、お墓参りとも関わりが深い日です。',
+      'スポーツの日': 'スポーツの日は、スポーツを楽しみ、健康で活力ある生活を願う祝日です。以前は体育の日として知られていました。',
+      '文化の日': '文化の日は、自由と平和を大切にし、文化をすすめることを目的とした祝日です。文化活動や芸術に親しむ日でもあります。',
+      '勤労感謝の日': '勤労感謝の日は、働くことを尊び、生産を祝い、たがいに感謝し合うことを目的とした祝日です。',
+      '振替休日': '振替休日は、祝日が日曜日にあたる場合などに、次の平日を休日にする仕組みです。連休になることもあります。',
+      '国民の休日': '国民の休日は、祝日と祝日に挟まれた平日が休日になる仕組みです。年によって発生する場合があります。'
+    };
 
     function toDateKey(date) {
       const year = date.getFullYear();
@@ -438,6 +472,10 @@
 
     function getHolidayMap() {
       return new Map(window.GomaJpHolidays.getHolidays().map(item => [item.date, item.name]));
+    }
+
+    function getHolidayOrigin(name) {
+      return HOLIDAY_ORIGINS[name] || `${name}は、日本の国民の祝日の一つです。詳しい趣旨は、最新の祝日情報もあわせて確認しましょう。`;
     }
 
     function getMiniCalendarStart(today, holiday, daysUntil) {
@@ -541,6 +579,7 @@
         document.getElementById('holidayDate').textContent = '現在のデータ範囲外です';
         document.getElementById('daysUntilWrap').hidden = true;
         document.getElementById('holidaySentence').textContent = '祝日データの追加が必要です。';
+        document.getElementById('holidayOriginText').textContent = '祝日の概要を表示するには、祝日データの追加が必要です。';
         renderMiniCalendar(date, null);
         return null;
       }
@@ -561,6 +600,7 @@
       document.getElementById('daysInfo').textContent = daysUntil === 0 ? '今日です' : `あと${daysUntil.toLocaleString('ja-JP')}日`;
       document.getElementById('holidayMemo').textContent = memo.title;
       document.getElementById('holidayMemoNote').textContent = memo.note;
+      document.getElementById('holidayOriginText').textContent = getHolidayOrigin(holiday.name);
       renderMiniCalendar(date, result);
 
       return { holiday, daysUntil, weekday, memo };
@@ -574,6 +614,7 @@
       findNextHoliday,
       updateNextHoliday,
       renderMiniCalendar,
+      getHolidayOrigin,
       toDateKey
     };
 
