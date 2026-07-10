@@ -1,0 +1,533 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8BNDHPNEHY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8BNDHPNEHY');
+  </script>
+  <title>今月のカレンダー｜今日・祝日・曜日をすぐ確認｜ゴマツール</title>
+  <meta name="description" content="今月のカレンダーを開くだけで確認できます。今日の日付、祝日、土日、曜日を見やすく表示する無料ツールです。">
+  <link rel="canonical" href="https://goma-dango-matcha.github.io/gomatools/tools/month-calendar/">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ゴマツール">
+  <meta property="og:title" content="今月のカレンダー｜今日・祝日・曜日をすぐ確認">
+  <meta property="og:description" content="今月のカレンダーを、今日・祝日・土日まで見やすくまとめて確認できます。">
+  <meta property="og:url" content="https://goma-dango-matcha.github.io/gomatools/tools/month-calendar/">
+  <meta property="og:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="今月のカレンダー｜今日・祝日・曜日をすぐ確認">
+  <meta name="twitter:description" content="今月のカレンダーを、今日・祝日・土日まで見やすくまとめて確認できます。">
+  <meta name="twitter:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <link rel="stylesheet" href="../../assets/goma-ui.css?v=2.6">
+  <script defer src="../../assets/goma-ui.js?v=2.6"></script>
+  <script defer src="../../assets/jp-holidays.js?v=1.0"></script>
+  <link rel="icon" href="../../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <meta name="theme-color" content="#63843F">
+  <style>
+    :root {
+      --green: #587c40;
+      --green-dark: #355126;
+      --green-light: #eef5e9;
+      --green-soft: #f8fbf6;
+      --text: #20251d;
+      --muted: #687064;
+      --line: #dde6d8;
+      --white: #fff;
+      --holiday: #b84f3e;
+      --holiday-soft: #fff1ed;
+      --sat: #356f9f;
+      --sat-soft: #eef6fb;
+      --sun-soft: #fff3f0;
+      --shadow: 0 16px 44px rgba(48, 70, 36, .09);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background: linear-gradient(180deg, #f9fcf7 0, #fff 28%);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    .container { width: min(100% - 32px, 980px); margin-inline: auto; }
+    main { padding: 58px 0 94px; }
+    .section { margin-top: 58px; }
+    .section-title { margin: 0 0 18px; font-size: clamp(1.35rem, 4vw, 1.8rem); line-height: 1.35; }
+    .card { padding: clamp(22px, 5vw, 38px); border: 1px solid var(--line); border-radius: var(--radius); background: var(--white); box-shadow: var(--shadow); }
+    .breadcrumb { margin: 0 0 36px; color: var(--muted); font-size: .86rem; }
+    .breadcrumb ol { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+    .breadcrumb li:not(:last-child)::after { content: ">"; margin-left: 8px; color: #9aa493; }
+    .breadcrumb a { color: var(--green-dark); font-weight: 750; text-decoration: none; }
+
+    .hero { text-align: center; }
+    .eyebrow { display: inline-block; margin: 0 0 15px; padding: 6px 13px; color: var(--green-dark); border-radius: 999px; background: var(--green-light); font-size: .82rem; font-weight: 750; }
+    h1 { margin: 0; font-size: clamp(2.05rem, 7.5vw, 3.45rem); line-height: 1.25; }
+    .hero-catch { margin: 16px 0 0; color: var(--green-dark); font-size: clamp(1.05rem, 3vw, 1.25rem); font-weight: 850; }
+    .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+    .calendar-panel { margin-top: 30px; }
+    .calendar-card {
+      padding: clamp(18px, 4vw, 34px);
+      border: 1px solid rgba(88, 124, 64, .24);
+      border-radius: 24px;
+      background: linear-gradient(135deg, #f1f8ec, #fff);
+      box-shadow: var(--shadow);
+    }
+    .calendar-heading { display: flex; align-items: end; justify-content: space-between; gap: 14px; margin-bottom: 16px; }
+    .calendar-month { display: block; color: var(--green-dark); font-size: clamp(1.85rem, 7vw, 3rem); line-height: 1.15; font-weight: 950; }
+    .calendar-sentence { margin: 6px 0 0; color: var(--muted); font-size: .94rem; }
+    .calendar-legend { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; color: var(--muted); font-size: .78rem; font-weight: 800; }
+    .legend-item { display: inline-flex; align-items: center; gap: 5px; }
+    .legend-dot { width: 10px; height: 10px; border-radius: 999px; background: var(--green); }
+    .legend-dot.holiday { background: var(--holiday); }
+    .legend-dot.weekend { background: var(--sat); }
+
+    .calendar-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
+    .weekday-cell { min-width: 0; padding: 8px 4px; color: var(--muted); font-size: .83rem; font-weight: 900; text-align: center; }
+    .weekday-cell.sunday { color: var(--holiday); }
+    .weekday-cell.saturday { color: var(--sat); }
+    .day-cell {
+      position: relative;
+      min-width: 0;
+      min-height: 86px;
+      padding: 8px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, .92);
+      overflow: hidden;
+    }
+    .day-cell.outside { color: #a8b0a3; background: rgba(248, 251, 246, .72); }
+    .day-cell.saturday { background: var(--sat-soft); }
+    .day-cell.sunday { background: var(--sun-soft); }
+    .day-cell.holiday { border-color: rgba(184, 79, 62, .35); background: var(--holiday-soft); }
+    .day-cell.today { border-color: var(--green); box-shadow: inset 0 0 0 2px var(--green), 0 10px 24px rgba(88, 124, 64, .14); }
+    .day-number { display: inline-flex; align-items: center; justify-content: center; min-width: 28px; height: 28px; padding: 0 6px; border-radius: 999px; font-weight: 950; line-height: 1; }
+    .day-cell.today .day-number { color: #fff; background: var(--green); }
+    .day-cell.holiday:not(.today) .day-number,
+    .day-cell.sunday:not(.today) .day-number { color: var(--holiday); }
+    .day-cell.saturday:not(.today):not(.holiday) .day-number { color: var(--sat); }
+    .holiday-name { display: block; margin-top: 7px; color: var(--holiday); font-size: .72rem; font-weight: 850; line-height: 1.35; overflow-wrap: anywhere; }
+    .today-badge { display: block; margin-top: 7px; color: var(--green-dark); font-size: .72rem; font-weight: 900; }
+
+    .info-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 18px; }
+    .info-card { min-width: 0; padding: 22px; border: 1px solid var(--line); border-radius: 18px; background: var(--white); box-shadow: 0 10px 30px rgba(48, 70, 36, .06); }
+    .info-card-title { display: block; color: var(--muted); font-size: .86rem; font-weight: 850; }
+    .info-card-value { display: block; margin-top: 8px; color: var(--green-dark); font-size: clamp(1.16rem, 4.4vw, 1.72rem); line-height: 1.35; font-weight: 900; overflow-wrap: anywhere; }
+    .info-card-note { margin: 8px 0 0; color: var(--muted); font-size: .86rem; }
+    .answer-note { max-width: 760px; margin: 18px auto 0; color: var(--muted); font-size: .9rem; text-align: center; }
+    .answer-note p { margin: 5px 0; }
+    .brand-note { color: var(--green-dark); font-weight: 800; }
+    .support-list { margin: 0; padding-left: 1.25em; }
+    .support-list li + li { margin-top: 6px; }
+    .faq-list { display: grid; gap: 12px; }
+    details { border: 1px solid var(--line); border-radius: 15px; background: #fff; }
+    summary { padding: 18px 20px; font-weight: 780; cursor: pointer; list-style: none; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; float: right; color: var(--green); font-size: 1.2rem; }
+    details[open] summary::after { content: "-"; }
+    details p { margin: 0; padding: 0 20px 20px; color: var(--muted); }
+    .last-updated { color: var(--muted); font-size: .86rem; text-align: center; }
+    .last-updated span,
+    .last-updated time { display: block; }
+    .last-updated span { font-weight: 850; }
+
+    @media (max-width: 760px) {
+      .calendar-heading { display: block; text-align: center; }
+      .calendar-legend { justify-content: center; margin-top: 10px; }
+      .info-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 680px) {
+      .container { width: min(100% - 22px, 980px); }
+      main { padding: 42px 0 76px; }
+      .section { margin-top: 48px; }
+      .card { padding: 22px 18px; border-radius: 18px; }
+      .calendar-card { padding: 14px; border-radius: 18px; }
+      .calendar-panel { margin-top: 24px; }
+      .calendar-grid { gap: 4px; }
+      .weekday-cell { padding: 6px 0; font-size: .76rem; }
+      .day-cell { min-height: 58px; padding: 5px; border-radius: 10px; }
+      .day-number { min-width: 22px; height: 22px; font-size: .82rem; }
+      .holiday-name { margin-top: 4px; font-size: .58rem; line-height: 1.25; }
+      .today-badge { margin-top: 3px; font-size: .58rem; }
+      .calendar-sentence { font-size: .86rem; }
+    }
+    @media (max-width: 380px) {
+      .container { width: min(100% - 18px, 980px); }
+      .day-cell { min-height: 54px; padding: 4px; }
+      .holiday-name { font-size: .54rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "今月のカレンダー",
+    "url": "https://goma-dango-matcha.github.io/gomatools/tools/month-calendar/",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "description": "今月のカレンダー、今日の日付、祝日、土日、曜日をまとめて確認できる無料ツールです。",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "JPY"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "ホーム",
+        "item": "https://goma-dango-matcha.github.io/gomatools/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "全ツール一覧",
+        "item": "https://goma-dango-matcha.github.io/gomatools/all-tools/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "今月のカレンダー",
+        "item": "https://goma-dango-matcha.github.io/gomatools/tools/month-calendar/"
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "今日の日付はどのように判定していますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "お使いの端末の日付をもとに表示しています。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "祝日は何を基準にしていますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "日本の祝日を表示しています。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "スマートフォンでも利用できますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "PC・スマートフォンの両方に対応しています。"
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header></header>
+
+  <main>
+    <div class="container">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <ol>
+          <li><a href="../../">ホーム</a></li>
+          <li><a href="../../all-tools/">全ツール一覧</a></li>
+          <li>今月のカレンダー</li>
+        </ol>
+      </nav>
+
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow">開くだけでわかる</p>
+        <h1 id="page-title">🗓 今月のカレンダー</h1>
+        <p class="hero-catch">今月と今日を、すぐ確認。</p>
+      </section>
+
+      <noscript>
+        <section class="section card">
+          <h2 class="section-title">JavaScriptを有効にしてください</h2>
+          <p>今月のカレンダーを表示するには、JavaScriptを有効にしてください。</p>
+        </section>
+      </noscript>
+
+      <section class="calendar-panel" aria-labelledby="calendar-title">
+        <div class="calendar-card" aria-live="polite">
+          <div class="calendar-heading">
+            <div>
+              <h2 class="calendar-month" id="calendar-title">読み込み中...</h2>
+              <p class="calendar-sentence" id="calendarSentence">端末の日付をもとに今月を確認しています。</p>
+            </div>
+            <div class="calendar-legend" aria-label="カレンダー凡例">
+              <span class="legend-item"><span class="legend-dot"></span>今日</span>
+              <span class="legend-item"><span class="legend-dot holiday"></span>祝日</span>
+              <span class="legend-item"><span class="legend-dot weekend"></span>土日</span>
+            </div>
+          </div>
+          <div class="calendar-grid" id="calendarGrid"></div>
+        </div>
+
+        <div class="info-grid" aria-label="今月の補足情報">
+          <article class="info-card">
+            <span class="info-card-title">📅 今日</span>
+            <strong class="info-card-value" id="todayInfo">—</strong>
+            <p class="info-card-note">端末の日付をもとに表示します。</p>
+          </article>
+          <article class="info-card">
+            <span class="info-card-title">🎌 次の祝日</span>
+            <strong class="info-card-value" id="nextHolidayInfo">—</strong>
+            <p class="info-card-note" id="nextHolidayNote">祝日データを確認しています。</p>
+          </article>
+          <article class="info-card">
+            <span class="info-card-title">📆 今月あと</span>
+            <strong class="info-card-value" id="monthRemainingInfo">—</strong>
+            <p class="info-card-note">今日を含まない残り日数です。</p>
+          </article>
+        </div>
+
+        <div class="answer-note">
+          <p>今月のカレンダーを、開くだけで確認できます。</p>
+          <p>今日の日付や祝日も見やすく表示し、予定の確認にも役立ちます。</p>
+          <p class="brand-note">毎日の「今知りたい」を、迷わずすぐに確認できるようにまとめています。</p>
+          <p>表示内容は、お使いの端末の日付をもとに自動で更新しています。</p>
+        </div>
+      </section>
+
+      <section class="section card" aria-labelledby="support-title">
+        <h2 class="section-title" id="support-title">補足情報</h2>
+        <ul class="support-list">
+          <li>今日の日付は、カレンダー内で最も目立つように表示します。</li>
+          <li>祝日は日本の祝日データをもとに表示しています。</li>
+          <li>前月・翌月の日付は薄く表示し、今月の日付と見分けやすくしています。</li>
+        </ul>
+      </section>
+
+      <section class="section card goma-one-point" aria-labelledby="goma-one-point-title">
+        <h2 class="section-title" id="goma-one-point-title">🍵 ゴマワンポイント</h2>
+        <p>祝日は法律の改正により変更されることがあります。予定を立てるときは最新情報も確認しましょう。</p>
+      </section>
+
+      <section class="section card goma-related-knowledge" aria-labelledby="goma-related-knowledge-title">
+        <h2 class="section-title" id="goma-related-knowledge-title">💡 関連するゴマ知識</h2>
+        <p>日付や祝日に関連する知識を、あわせて確認できます。</p>
+        <ul class="goma-related-knowledge-list">
+          <li><a href="../../knowledge/business-days/">営業日はどう決まる？</a></li>
+          <li><a href="../../knowledge/leap-year/">うるう年とは？</a></li>
+          <li><a href="../../knowledge/age-counting/">年齢の数え方について</a></li>
+        </ul>
+      </section>
+
+      <section class="section card goma-related-tools" aria-labelledby="goma-related-tools-title">
+        <h2 class="section-title" id="goma-related-tools-title">🔗 関連ツール</h2>
+        <p>あわせて使うと、日付や予定の確認を進めやすくなります。</p>
+        <ul class="goma-related-tools-list">
+          <li><a href="../today/">今日の情報</a></li>
+          <li><a href="../next-holiday/">次の祝日</a></li>
+          <li><a href="../../business-days/">営業日計算ツール</a></li>
+          <li><a href="../../days-calculator/">日数計算ツール</a></li>
+        </ul>
+      </section>
+
+      <section class="section" aria-labelledby="faq-title">
+        <h2 class="section-title" id="faq-title">よくある質問</h2>
+        <div class="faq-list">
+          <details>
+            <summary>Q. 今日の日付はどのように判定していますか？</summary>
+            <p>A. お使いの端末の日付をもとに表示しています。</p>
+          </details>
+          <details>
+            <summary>Q. 祝日は何を基準にしていますか？</summary>
+            <p>A. 日本の祝日を表示しています。</p>
+          </details>
+          <details>
+            <summary>Q. スマートフォンでも利用できますか？</summary>
+            <p>A. PC・スマートフォンの両方に対応しています。</p>
+          </details>
+        </div>
+      </section>
+
+      <section class="section last-updated" aria-label="最終更新">
+        <span>最終更新</span>
+        <time datetime="2026-07">2026年7月</time>
+      </section>
+    </div>
+  </main>
+
+  <footer></footer>
+
+  <script>
+    'use strict';
+
+    const DAY_MS = 24 * 60 * 60 * 1000;
+    const WEEKDAYS_SHORT = ['日', '月', '火', '水', '木', '金', '土'];
+    const WEEKDAYS_LONG = ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日'];
+
+    function toDateKey(date) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    }
+
+    function toUtcDate(dateKey) {
+      const parts = dateKey.split('-').map(Number);
+      return Date.UTC(parts[0], parts[1] - 1, parts[2]);
+    }
+
+    function formatDate(dateKey, weekdayType = 'long') {
+      const parts = dateKey.split('-').map(Number);
+      const date = new Date(toUtcDate(dateKey));
+      const weekday = weekdayType === 'short' ? WEEKDAYS_SHORT[date.getUTCDay()] : WEEKDAYS_LONG[date.getUTCDay()];
+      return `${parts[0]}年${parts[1]}月${parts[2]}日（${weekday}）`;
+    }
+
+    function getHolidayMap() {
+      if (!window.GomaJpHolidays) return new Map();
+      return new Map(window.GomaJpHolidays.getHolidays().map(item => [item.date, item.name]));
+    }
+
+    function getCalendarRange(year, monthIndex) {
+      const first = new Date(year, monthIndex, 1);
+      const last = new Date(year, monthIndex + 1, 0);
+      const start = new Date(year, monthIndex, 1 - first.getDay());
+      const end = new Date(year, monthIndex + 1, last.getDay() === 6 ? 0 : 6 - last.getDay());
+      return { start, end, last };
+    }
+
+    function findNextHoliday(date = new Date()) {
+      if (!window.GomaJpHolidays) return null;
+      const todayKey = toDateKey(date);
+      const todayUtc = toUtcDate(todayKey);
+      const holidays = window.GomaJpHolidays.getHolidays()
+        .slice()
+        .sort((a, b) => a.date.localeCompare(b.date));
+      const holiday = holidays.find(item => item.date >= todayKey);
+      if (!holiday) return null;
+      return {
+        holiday,
+        daysUntil: Math.round((toUtcDate(holiday.date) - todayUtc) / DAY_MS)
+      };
+    }
+
+    function createDayCell(date, currentMonthIndex, todayKey, holidayMap) {
+      const dateKey = toDateKey(date);
+      const day = date.getDay();
+      const isCurrentMonth = date.getMonth() === currentMonthIndex;
+      const isToday = dateKey === todayKey;
+      const holidayName = holidayMap.get(dateKey);
+      const cell = document.createElement('div');
+      cell.className = 'day-cell';
+      if (!isCurrentMonth) cell.classList.add('outside');
+      if (day === 0) cell.classList.add('sunday');
+      if (day === 6) cell.classList.add('saturday');
+      if (holidayName) cell.classList.add('holiday');
+      if (isToday) cell.classList.add('today');
+      cell.setAttribute('role', 'gridcell');
+      cell.setAttribute('aria-label', `${formatDate(dateKey)}${holidayName ? ` ${holidayName}` : ''}${isToday ? ' 今日' : ''}`);
+
+      const number = document.createElement('span');
+      number.className = 'day-number';
+      number.textContent = date.getDate();
+      cell.appendChild(number);
+
+      if (isToday) {
+        const badge = document.createElement('span');
+        badge.className = 'today-badge';
+        badge.textContent = '今日';
+        cell.appendChild(badge);
+      }
+      if (holidayName) {
+        const label = document.createElement('span');
+        label.className = 'holiday-name';
+        label.textContent = holidayName;
+        cell.appendChild(label);
+      }
+      return cell;
+    }
+
+    function renderCalendar(date = new Date()) {
+      const todayKey = toDateKey(date);
+      const year = date.getFullYear();
+      const monthIndex = date.getMonth();
+      const holidayMap = getHolidayMap();
+      const { start, end, last } = getCalendarRange(year, monthIndex);
+      const grid = document.getElementById('calendarGrid');
+      grid.innerHTML = '';
+      grid.setAttribute('role', 'grid');
+      grid.setAttribute('aria-label', `${year}年${monthIndex + 1}月のカレンダー`);
+
+      WEEKDAYS_SHORT.forEach((weekday, index) => {
+        const cell = document.createElement('div');
+        cell.className = 'weekday-cell';
+        if (index === 0) cell.classList.add('sunday');
+        if (index === 6) cell.classList.add('saturday');
+        cell.setAttribute('role', 'columnheader');
+        cell.textContent = weekday;
+        grid.appendChild(cell);
+      });
+
+      for (let current = new Date(start); current <= end; current.setDate(current.getDate() + 1)) {
+        grid.appendChild(createDayCell(new Date(current), monthIndex, todayKey, holidayMap));
+      }
+
+      const nextHoliday = findNextHoliday(date);
+      const remainingDays = last.getDate() - date.getDate();
+      const currentMonthText = `${year}年${monthIndex + 1}月`;
+
+      document.getElementById('calendar-title').textContent = currentMonthText;
+      document.getElementById('calendarSentence').textContent = `現在表示しているのは${currentMonthText}のカレンダーです。`;
+      document.getElementById('todayInfo').textContent = formatDate(todayKey, 'short');
+      document.getElementById('monthRemainingInfo').textContent = `${remainingDays.toLocaleString('ja-JP')}日`;
+
+      if (nextHoliday) {
+        document.getElementById('nextHolidayInfo').textContent = nextHoliday.holiday.name;
+        document.getElementById('nextHolidayNote').textContent = nextHoliday.daysUntil === 0
+          ? '今日は祝日です。'
+          : `あと${nextHoliday.daysUntil.toLocaleString('ja-JP')}日です。`;
+      } else {
+        document.getElementById('nextHolidayInfo').textContent = '祝日データを更新してください';
+        document.getElementById('nextHolidayNote').textContent = '現在のデータ範囲外です。';
+      }
+
+      return { year, month: monthIndex + 1, todayKey, nextHoliday, remainingDays };
+    }
+
+    function initializePage() {
+      renderCalendar();
+    }
+
+    window.gomaMonthCalendarTool = {
+      renderCalendar,
+      findNextHoliday,
+      toDateKey
+    };
+
+    window.addEventListener('DOMContentLoaded', initializePage);
+  </script>
+</body>
+</html>

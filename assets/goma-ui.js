@@ -227,6 +227,11 @@
       { title: '営業日はどう決まる？', path: 'knowledge/business-days/' },
       { title: 'うるう年とは？', path: 'knowledge/leap-year/' }
     ],
+    'tools/month-calendar/': [
+      { title: '営業日はどう決まる？', path: 'knowledge/business-days/' },
+      { title: 'うるう年とは？', path: 'knowledge/leap-year/' },
+      { title: '年齢の数え方について', path: 'knowledge/age-counting/' }
+    ],
     'age/': [
       { title: '年齢の数え方について', path: 'knowledge/age-counting/' },
       { title: 'うるう年とは？', path: 'knowledge/leap-year/' }
@@ -343,12 +348,17 @@
   const relatedToolsByPath = {
     'tools/today/': [
       { title: '次の祝日', path: 'tools/next-holiday/' },
-      { title: '日数計算ツール', path: 'days-calculator/' },
-      { title: '営業日計算ツール', path: 'business-days/' }
+      { title: '今月のカレンダー', path: 'tools/month-calendar/' },
+      { title: '日数計算ツール', path: 'days-calculator/' }
     ],
     'tools/next-holiday/': [
       { title: '今日の情報', path: 'tools/today/' },
-      { title: '営業日計算ツール', path: 'business-days/' },
+      { title: '今月のカレンダー', path: 'tools/month-calendar/' },
+      { title: '営業日計算ツール', path: 'business-days/' }
+    ],
+    'tools/month-calendar/': [
+      { title: '今日の情報', path: 'tools/today/' },
+      { title: '次の祝日', path: 'tools/next-holiday/' },
       { title: '日数計算ツール', path: 'days-calculator/' }
     ],
     'bmi/': [
