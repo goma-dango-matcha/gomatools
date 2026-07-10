@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8BNDHPNEHY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8BNDHPNEHY');
+  </script>
+  <title>今日の日付は？西暦・和暦・曜日・今年あと何日かを確認｜ゴマツール</title>
+  <meta name="description" content="今日の日付、西暦・和暦、曜日、今年の何日目か、今年の残り日数をまとめて確認できます。端末の日付をもとに自動表示する無料ツールです。">
+  <link rel="canonical" href="https://goma-dango-matcha.github.io/gomatools/tools/today/">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ゴマツール">
+  <meta property="og:title" content="今日の日付は？西暦・和暦・曜日をまとめて確認">
+  <meta property="og:description" content="今日の日付、曜日、令和何年か、今年の何日目か、今年あと何日かを一つのページで確認できます。">
+  <meta property="og:url" content="https://goma-dango-matcha.github.io/gomatools/tools/today/">
+  <meta property="og:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta property="og:image:secure_url" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ゴマツール — 一歩便利を、毎日の暮らしに。">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="今日の日付は？西暦・和暦・曜日をまとめて確認">
+  <meta name="twitter:description" content="今日の日付、曜日、令和何年か、今年の何日目か、今年あと何日かを一つのページで確認できます。">
+  <meta name="twitter:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta name="twitter:image:alt" content="ゴマツール — 一歩便利を、毎日の暮らしに。">
+  <link rel="stylesheet" href="../../assets/goma-ui.css?v=2.6">
+  <script defer src="../../assets/goma-ui.js?v=2.6"></script>
+  <link rel="icon" href="../../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <meta name="theme-color" content="#63843F">
+  <style>
+    :root {
+      --green: #587c40;
+      --green-dark: #355126;
+      --green-light: #eef5e9;
+      --green-soft: #f8fbf6;
+      --text: #20251d;
+      --muted: #687064;
+      --line: #dde6d8;
+      --white: #fff;
+      --warning: #fff8e8;
+      --warning-line: #ead7a0;
+      --shadow: 0 16px 44px rgba(48, 70, 36, .09);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background: linear-gradient(180deg, #f9fcf7 0, #fff 28%);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+    button { font: inherit; cursor: pointer; }
+    a { color: inherit; }
+    .container { width: min(100% - 32px, 920px); margin-inline: auto; }
+    main { padding: 58px 0 94px; }
+    .section { margin-top: 58px; }
+    .section-title { margin: 0 0 18px; font-size: clamp(1.35rem, 4vw, 1.8rem); line-height: 1.35; }
+    .card { padding: clamp(22px, 5vw, 38px); border: 1px solid var(--line); border-radius: var(--radius); background: var(--white); box-shadow: var(--shadow); }
+    .breadcrumb { margin: 0 0 36px; color: var(--muted); font-size: .86rem; }
+    .breadcrumb ol { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+    .breadcrumb li:not(:last-child)::after { content: ">"; margin-left: 8px; color: #9aa493; }
+    .breadcrumb a { color: var(--green-dark); font-weight: 750; text-decoration: none; }
+
+    .hero { text-align: center; }
+    .eyebrow { display: inline-block; margin: 0 0 15px; padding: 6px 13px; color: var(--green-dark); border-radius: 999px; background: var(--green-light); font-size: .82rem; font-weight: 750; }
+    h1 { margin: 0; font-size: clamp(2.1rem, 8vw, 3.55rem); line-height: 1.25; letter-spacing: -.035em; }
+    .hero-catch { margin: 18px 0 0; color: var(--green-dark); font-size: clamp(1.05rem, 3vw, 1.25rem); font-weight: 850; }
+    .hero-description { max-width: 680px; margin: 15px auto 0; color: var(--muted); }
+    .static-description { max-width: 760px; margin: 24px auto 0; color: var(--muted); font-size: .92rem; }
+
+    .today-panel { margin-top: 34px; }
+    .today-main-card {
+      padding: clamp(26px, 6vw, 44px);
+      border: 1px solid rgba(88, 124, 64, .24);
+      border-radius: 24px;
+      background: linear-gradient(135deg, #f1f8ec, #fff);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    .today-label { display: block; color: var(--green-dark); font-size: .9rem; font-weight: 850; }
+    .today-date {
+      display: block;
+      margin-top: 10px;
+      color: var(--green-dark);
+      font-size: clamp(1.8rem, 7.2vw, 3.1rem);
+      line-height: 1.32;
+      font-weight: 900;
+      overflow-wrap: anywhere;
+    }
+    .today-sentence { margin: 16px auto 0; color: var(--text); font-weight: 750; }
+    .today-meta { margin: 6px 0 0; color: var(--muted); font-size: .9rem; }
+
+    .info-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 18px; }
+    .info-card {
+      min-width: 0;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--white);
+      box-shadow: 0 10px 30px rgba(48, 70, 36, .06);
+    }
+    .info-card-title { display: block; color: var(--muted); font-size: .86rem; font-weight: 850; }
+    .info-card-value { display: block; margin-top: 8px; color: var(--green-dark); font-size: clamp(1.4rem, 5vw, 2rem); line-height: 1.35; font-weight: 900; overflow-wrap: anywhere; }
+    .info-card-note { margin: 8px 0 0; color: var(--muted); font-size: .86rem; }
+
+    .copy-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 22px; }
+    .copy-button {
+      min-height: 48px;
+      padding: 10px 16px;
+      color: var(--green-dark);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--white);
+      font-weight: 850;
+    }
+    .copy-button:hover { background: var(--green-light); }
+    .copy-status { min-height: 1.5em; margin: 10px 0 0; color: var(--green-dark); font-size: .86rem; font-weight: 800; text-align: center; }
+
+    .support-list { margin: 0; padding-left: 1.25em; }
+    .support-list li + li { margin-top: 6px; }
+    .notice-card { border-color: var(--warning-line); background: var(--warning); box-shadow: none; }
+    .notice-card p { margin: 5px 0; color: #625a45; }
+    .faq-list { display: grid; gap: 12px; }
+    details { border: 1px solid var(--line); border-radius: 15px; background: #fff; }
+    summary { padding: 18px 20px; font-weight: 780; cursor: pointer; list-style: none; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; float: right; color: var(--green); font-size: 1.2rem; }
+    details[open] summary::after { content: "-"; }
+    details p { margin: 0; padding: 0 20px 20px; color: var(--muted); }
+    .last-updated { color: var(--muted); font-size: .86rem; text-align: center; }
+    .last-updated span,
+    .last-updated time { display: block; }
+    .last-updated span { font-weight: 850; }
+
+    @media (max-width: 680px) {
+      .container { width: min(100% - 24px, 920px); }
+      main { padding: 42px 0 76px; }
+      .section { margin-top: 48px; }
+      .card { padding: 22px 18px; border-radius: 18px; }
+      .info-grid { grid-template-columns: 1fr; }
+      .copy-actions { flex-direction: column; align-items: center; }
+      .copy-button { width: min(100%, 320px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "今日の情報",
+    "url": "https://goma-dango-matcha.github.io/gomatools/tools/today/",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "description": "今日の日付、西暦・和暦、曜日、今年の何日目か、今年の残り日数をまとめて確認できる無料ツールです。",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "JPY"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "ホーム",
+        "item": "https://goma-dango-matcha.github.io/gomatools/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "全ツール一覧",
+        "item": "https://goma-dango-matcha.github.io/gomatools/all-tools/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "今日の情報",
+        "item": "https://goma-dango-matcha.github.io/gomatools/tools/today/"
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "今日の日付はどの時間を基準にしていますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "お使いの端末に設定されている日時をもとに表示しています。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "表示される日付が違う場合はどうすればよいですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "スマートフォンやパソコンの日時・タイムゾーン設定をご確認ください。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "今年の残り日数に今日は含まれますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "今日は含めずに計算します。"
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header></header>
+
+  <main>
+    <div class="container">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <ol>
+          <li><a href="../../">ホーム</a></li>
+          <li><a href="../../all-tools/">全ツール一覧</a></li>
+          <li>今日の情報</li>
+        </ol>
+      </nav>
+
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow">端末の日付から自動表示</p>
+        <h1 id="page-title">📅 今日の情報</h1>
+        <p class="hero-catch">今日の日付・曜日・和暦・今年の残り日数をまとめて確認。</p>
+        <div class="hero-description">
+          <p>今日の日付や曜日、現在の和暦をまとめて確認できます。</p>
+          <p>今年の何日目か、今年があと何日あるかも自動で表示します。</p>
+          <p>表示内容は、お使いの端末に設定されている日時をもとに計算しています。</p>
+        </div>
+        <p class="static-description">このページでは、今日の日付、西暦・和暦、曜日、今年の何日目か、今年の残り日数を確認できます。</p>
+      </section>
+
+      <noscript>
+        <section class="section card notice-card">
+          <h2 class="section-title">JavaScriptを有効にしてください</h2>
+          <p>今日の日付を表示するには、JavaScriptを有効にしてください。</p>
+        </section>
+      </noscript>
+
+      <section class="section today-panel" aria-labelledby="today-title">
+        <h2 class="section-title" id="today-title">今日の日付</h2>
+        <div class="today-main-card" id="todayInfo" aria-live="polite">
+          <span class="today-label">📅 今日の日付</span>
+          <strong class="today-date" id="westernDate">読み込み中...</strong>
+          <p class="today-sentence" id="todaySentence">端末の日付を確認しています。</p>
+          <p class="today-meta" id="timezoneNote">お使いの端末に設定されている日時をもとに表示します。</p>
+          <div class="copy-actions">
+            <button class="copy-button" type="button" data-copy-target="westernDate">西暦の日付をコピー</button>
+            <button class="copy-button" type="button" data-copy-target="japaneseDate">和暦の日付をコピー</button>
+          </div>
+          <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
+        </div>
+
+        <div class="info-grid" aria-label="今日の詳しい情報">
+          <article class="info-card">
+            <span class="info-card-title">🗓 和暦</span>
+            <strong class="info-card-value" id="japaneseDate">—</strong>
+            <p class="info-card-note">現在の元号をもとに表示します。</p>
+          </article>
+          <article class="info-card">
+            <span class="info-card-title">📍 今年の何日目</span>
+            <strong class="info-card-value" id="dayOfYear">—</strong>
+            <p class="info-card-note" id="dayOfYearSentence">1月1日を1日目として数えます。</p>
+          </article>
+          <article class="info-card">
+            <span class="info-card-title">⏳ 今年の残り日数</span>
+            <strong class="info-card-value" id="remainingDays">—</strong>
+            <p class="info-card-note">今日を含まない残り日数です。</p>
+          </article>
+          <article class="info-card">
+            <span class="info-card-title">📖 補足情報</span>
+            <strong class="info-card-value" id="yearInfo">—</strong>
+            <p class="info-card-note" id="monthInfo">今月の情報もあわせて表示します。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section card" aria-labelledby="support-title">
+        <h2 class="section-title" id="support-title">補足情報</h2>
+        <ul class="support-list">
+          <li>今年の残り日数は、今日を含めずに計算しています。</li>
+          <li>うるう年の場合は、2月29日を含めて日数を計算します。</li>
+          <li>書類に日付を書くときは、西暦と和暦の指定を確認すると安心です。</li>
+        </ul>
+      </section>
+
+      <section class="section card goma-one-point" aria-labelledby="goma-one-point-title">
+        <h2 class="section-title" id="goma-one-point-title">🍵 ゴマワンポイント</h2>
+        <p>日付を書く書類では、西暦と和暦のどちらを指定されているか確認すると安心です。</p>
+      </section>
+
+      <section class="section card goma-related-knowledge" aria-labelledby="goma-related-knowledge-title">
+        <h2 class="section-title" id="goma-related-knowledge-title">💡 関連するゴマ知識</h2>
+        <p>このツールに関連する知識を、あわせて確認できます。</p>
+        <ul class="goma-related-knowledge-list">
+          <li><a href="../../knowledge/leap-year/">うるう年とは？</a></li>
+          <li><a href="../../knowledge/age-counting/">年齢の数え方について</a></li>
+          <li><a href="../../knowledge/business-days/">営業日はどう決まる？</a></li>
+        </ul>
+      </section>
+
+      <section class="section card goma-related-tools" aria-labelledby="goma-related-tools-title">
+        <h2 class="section-title" id="goma-related-tools-title">🔗 関連ツール</h2>
+        <p>あわせて使うと、日付や期限の確認を進めやすくなります。</p>
+        <ul class="goma-related-tools-list">
+          <li><a href="../../wareki/">和暦・西暦変換ツール</a></li>
+          <li><a href="../../days-calculator/">日数計算ツール</a></li>
+          <li><a href="../../business-days/">営業日計算ツール</a></li>
+        </ul>
+      </section>
+
+      <section class="section card notice-card" aria-labelledby="notice-title">
+        <h2 class="section-title" id="notice-title">⚠️ ご注意ください</h2>
+        <p>表示内容は、お使いの端末に設定されている日時をもとに計算しています。</p>
+        <p>端末の日時設定が正しくない場合、表示結果も正しくならないことがあります。</p>
+      </section>
+
+      <section class="section" aria-labelledby="faq-title">
+        <h2 class="section-title" id="faq-title">よくある質問</h2>
+        <div class="faq-list">
+          <details>
+            <summary>Q. 今日の日付はどの時間を基準にしていますか？</summary>
+            <p>A. お使いの端末に設定されている日時をもとに表示しています。</p>
+          </details>
+          <details>
+            <summary>Q. 表示される日付が違う場合はどうすればよいですか？</summary>
+            <p>A. スマートフォンやパソコンの日時・タイムゾーン設定をご確認ください。</p>
+          </details>
+          <details>
+            <summary>Q. 今年の残り日数に今日は含まれますか？</summary>
+            <p>A. 今日は含めずに計算します。</p>
+          </details>
+        </div>
+      </section>
+
+      <section class="section last-updated" aria-label="最終更新">
+        <span>最終更新</span>
+        <time datetime="2026-07">2026年7月</time>
+      </section>
+    </div>
+  </main>
+
+  <footer></footer>
+
+  <script>
+    'use strict';
+
+    const DAY_MS = 24 * 60 * 60 * 1000;
+    const WEEKDAYS = ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日'];
+
+    function createLocalDateOnly(date) {
+      return {
+        year: date.getFullYear(),
+        month: date.getMonth() + 1,
+        day: date.getDate(),
+        weekday: date.getDay()
+      };
+    }
+
+    function toUtcDate(year, month, day) {
+      return Date.UTC(year, month - 1, day);
+    }
+
+    function isLeapYear(year) {
+      return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0);
+    }
+
+    function formatWesternDate(parts, includeWeekday = true) {
+      const text = `${parts.year}年${parts.month}月${parts.day}日`;
+      return includeWeekday ? `${text}（${WEEKDAYS[parts.weekday]}）` : text;
+    }
+
+    function getJapaneseEra(parts) {
+      const reiwaStart = toUtcDate(2019, 5, 1);
+      const target = toUtcDate(parts.year, parts.month, parts.day);
+
+      if (target >= reiwaStart) {
+        const eraYear = parts.year - 2018;
+        return {
+          era: '令和',
+          yearText: eraYear === 1 ? '元' : String(eraYear)
+        };
+      }
+
+      return {
+        era: '平成以前',
+        yearText: ''
+      };
+    }
+
+    function formatJapaneseDate(parts) {
+      const era = getJapaneseEra(parts);
+      if (era.era === '令和') {
+        return `${era.era}${era.yearText}年${parts.month}月${parts.day}日`;
+      }
+      return `${parts.year}年${parts.month}月${parts.day}日`;
+    }
+
+    function getDayOfYear(parts) {
+      const current = toUtcDate(parts.year, parts.month, parts.day);
+      const start = toUtcDate(parts.year, 1, 1);
+      return Math.floor((current - start) / DAY_MS) + 1;
+    }
+
+    function getRemainingDays(parts) {
+      const current = toUtcDate(parts.year, parts.month, parts.day);
+      const nextYear = toUtcDate(parts.year + 1, 1, 1);
+      return Math.floor((nextYear - current) / DAY_MS) - 1;
+    }
+
+    function getDaysInMonth(year, month) {
+      return new Date(year, month, 0).getDate();
+    }
+
+    function updateTodayInfo(date = new Date()) {
+      const parts = createLocalDateOnly(date);
+      const westernDate = formatWesternDate(parts);
+      const japaneseDate = formatJapaneseDate(parts);
+      const dayOfYear = getDayOfYear(parts);
+      const remainingDays = getRemainingDays(parts);
+      const daysInMonth = getDaysInMonth(parts.year, parts.month);
+      const monthRemaining = daysInMonth - parts.day;
+      const leapText = isLeapYear(parts.year) ? 'うるう年です' : '平年です';
+
+      document.getElementById('westernDate').textContent = westernDate;
+      document.getElementById('todaySentence').textContent = `今日は${westernDate}です。`;
+      document.getElementById('japaneseDate').textContent = japaneseDate;
+      document.getElementById('dayOfYear').textContent = `${dayOfYear.toLocaleString('ja-JP')}日目`;
+      document.getElementById('dayOfYearSentence').textContent = `今日は今年の${dayOfYear.toLocaleString('ja-JP')}日目です。`;
+      document.getElementById('remainingDays').textContent = `あと${remainingDays.toLocaleString('ja-JP')}日`;
+      document.getElementById('yearInfo').textContent = leapText;
+      document.getElementById('monthInfo').textContent = `今月はあと${monthRemaining.toLocaleString('ja-JP')}日です。`;
+
+      return { parts, westernDate, japaneseDate, dayOfYear, remainingDays, leapText, monthRemaining };
+    }
+
+    async function copyText(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.setAttribute('readonly', '');
+      textarea.style.position = 'fixed';
+      textarea.style.top = '-9999px';
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      textarea.remove();
+    }
+
+    function initializeCopyButtons() {
+      const status = document.getElementById('copyStatus');
+      document.querySelectorAll('[data-copy-target]').forEach(function (button) {
+        button.addEventListener('click', async function () {
+          const target = document.getElementById(button.dataset.copyTarget);
+          if (!target) return;
+
+          try {
+            await copyText(target.textContent.trim());
+            status.textContent = 'コピーしました';
+          } catch (error) {
+            status.textContent = 'コピーできませんでした';
+          }
+
+          window.setTimeout(function () {
+            status.textContent = '';
+          }, 2400);
+        });
+      });
+    }
+
+    function initializePage() {
+      updateTodayInfo();
+      initializeCopyButtons();
+    }
+
+    window.gomaTodayTool = {
+      updateTodayInfo,
+      getDayOfYear,
+      getRemainingDays,
+      isLeapYear,
+      formatJapaneseDate,
+      formatWesternDate
+    };
+
+    initializePage();
+  </script>
+</body>
+</html>

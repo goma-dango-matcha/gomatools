@@ -218,6 +218,11 @@
      関連記事があるツールページだけ、下部に導線を追加します。
   ========================================================= */
   const relatedKnowledgeByPath = {
+    'tools/today/': [
+      { title: 'うるう年とは？', path: 'knowledge/leap-year/' },
+      { title: '年齢の数え方について', path: 'knowledge/age-counting/' },
+      { title: '営業日はどう決まる？', path: 'knowledge/business-days/' }
+    ],
     'age/': [
       { title: '年齢の数え方について', path: 'knowledge/age-counting/' },
       { title: 'うるう年とは？', path: 'knowledge/leap-year/' }
@@ -332,6 +337,11 @@
   };
 
   const relatedToolsByPath = {
+    'tools/today/': [
+      { title: '和暦・西暦変換ツール', path: 'wareki/' },
+      { title: '日数計算ツール', path: 'days-calculator/' },
+      { title: '営業日計算ツール', path: 'business-days/' }
+    ],
     'bmi/': [
       { title: '基礎代謝（BMR）計算ツール', path: 'tools/bmr.html' },
       { title: '体脂肪率計算ツール', path: 'tools/body-fat.html' },
@@ -378,12 +388,12 @@
       { title: '割引率計算ツール', path: 'discount-calculator/' }
     ],
     'age/': [
-      { title: '営業日計算ツール', path: 'business-days/' },
+      { title: '今日の情報', path: 'tools/today/' },
       { title: '日数計算ツール', path: 'days-calculator/' },
       { title: '和暦・西暦変換ツール', path: 'wareki/' }
     ],
     'business-days/': [
-      { title: '年齢・日付計算ツール', path: 'age/' },
+      { title: '今日の情報', path: 'tools/today/' },
       { title: '日数計算ツール', path: 'days-calculator/' },
       { title: '和暦・西暦変換ツール', path: 'wareki/' }
     ]
