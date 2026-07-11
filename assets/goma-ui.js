@@ -339,7 +339,7 @@
     'password/': '長くて使い回していないパスワードほど、推測されにくくなります。サービスごとに分けるのが安心です。',
     'tools/character-encoding.html': '文字化けは、保存時と読み込み時の文字コードが合わないと起こることがあります。',
     'compound-interest/': '複利は期間が長いほど差が出やすい仕組みです。条件を変えて比べると効果を確認しやすくなります。',
-    'interest-calculator/': '利息は金利だけでなく、期間によっても変わります。総額とあわせて確認すると安心です。',
+    'interest-calculator/': '預金や借入の前に利息を確認すると、資金計画を立てやすくなります。利率だけでなく、期間と計算方法も確認しましょう。',
     'tools/loan-calculator.html': 'ローンは毎月の返済額だけでなく、利息総額と総返済額もあわせて見ることが大切です。',
     'age/': '年齢や日数は、基準日にすると変わります。手続きや予定では、いつ時点かも一緒に確認しましょう。',
     'business-days/': '営業日は土日や休業日を含めない数え方です。祝日や会社ごとの休業日は別途確認しましょう。'
@@ -399,6 +399,8 @@
     'interest-calculator/': [
       { title: '複利計算ツール', path: 'compound-interest/' },
       { title: 'ローン返済シミュレーター', path: 'tools/loan-calculator.html' },
+      { title: '手取り・税込逆算ツール', path: 'net-income-calculator/' },
+      { title: 'パーセント計算ツール', path: 'tools/percentage-calculator.html' },
       { title: '消費税計算ツール', path: 'tax/' }
     ],
     'tools/loan-calculator.html': [
@@ -528,4 +530,3 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initializeCommonUI);
   else initializeCommonUI();
 }());
-

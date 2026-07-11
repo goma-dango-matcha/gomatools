@@ -64,24 +64,21 @@
     .comparison-button:hover { background:var(--green-dark); }
     .comparison-button:focus-visible { outline:3px solid rgba(88,124,64,.35); outline-offset:3px; }
 
-    /* ====================== 注意・関連ツール ====================== */
-    .info-card { padding:26px; box-shadow:none; }
-    .info-card p { margin:6px 0; color:var(--muted); }
-    .related-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
-    .related-link { display:block; padding:18px; color:var(--green-dark); border:1px solid var(--line); border-radius:16px; background:#fff; font-weight:800; text-decoration:none; transition:transform .15s ease,border-color .15s ease; }
-    .related-link:hover { transform:translateY(-2px); border-color:#b9cdb0; }
-    .related-link:focus-visible { outline:3px solid rgba(88,124,64,.35); outline-offset:3px; }
+    /* ====================== ブランド改善セクション ====================== */
+    .support-card { padding:26px; }
+    .support-list { margin:0; padding-left:1.25em; color:var(--muted); }
+    .support-list li + li { margin-top:8px; }
     footer { padding:44px 16px; color:var(--muted); border-top:1px solid var(--line); text-align:center; background:#fff; }
     footer p { margin:4px 0; }
     .footer-logo { color:var(--green-dark); font-weight:850; }
 
     /* ====================== レスポンシブ ====================== */
     @media (max-width:650px) { .form-grid, .result-grid { grid-template-columns:1fr; } .comparison-card { align-items:stretch; flex-direction:column; } .comparison-button { width:100%; } }
-    @media (max-width:500px) { .container { width:min(100% - 22px,960px); } main { padding-top:46px; } .header-inner { align-items:flex-start; flex-direction:column; gap:3px; } .related-grid { grid-template-columns:1fr; } }
+    @media (max-width:500px) { .container { width:min(100% - 22px,960px); } main { padding-top:46px; } .header-inner { align-items:flex-start; flex-direction:column; gap:3px; } .support-list { padding-left:1.15em; } }
     @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } * { transition:none !important; } }
   </style>
   <link rel="stylesheet" href="../assets/goma-ui.css?v=2.2">
-  <script defer src="../assets/goma-ui.js?v=2.2"></script>
+  <script defer src="../assets/goma-ui.js?v=2.3"></script>
   <!-- ======================
        ブランドアイコン
   ====================== -->
@@ -122,7 +119,7 @@
     <section class="hero" aria-labelledby="page-title">
       <p class="hero-badge">無料・登録不要</p>
       <h1 id="page-title">💴 利息計算ツール</h1>
-      <p class="hero-description">元金・年利・期間から単利の利息を簡単に計算できます。預金や貸付の目安確認に使えます。</p>
+      <p class="hero-description">元金・利率・期間から、単利の利息を簡単に計算できます。</p>
     </section>
 
     <!-- ====================== 利息計算 ====================== -->
@@ -162,22 +159,15 @@
       </div>
     </section>
 
+    <!-- ====================== 補足情報 ====================== -->
+    <section class="section card support-card" aria-labelledby="support-title"><h2 class="section-title" id="support-title">補足情報</h2><ul class="support-list"><li>元金・年利・期間から、単利の利息と元利合計を計算できます。</li><li>月利と1日あたりの利息は、入力した条件をもとにした概算です。</li><li>実際の利息は、契約内容や日割り方法、税金、端数処理などによって異なる場合があります。</li></ul></section>
+
     <!-- ====================== 複利計算への案内 ====================== -->
     <aside class="card comparison-card" aria-label="複利計算の案内">
       <div><p class="comparison-title">📈 利息が利息を生む場合は複利計算</p><p class="comparison-text">積立や長期運用の将来金額を調べたい方におすすめです。</p></div>
       <a class="comparison-button" href="../compound-interest/">複利計算はこちら</a>
     </aside>
 
-    <!-- ====================== 注意書き ====================== -->
-    <section class="section card info-card" aria-labelledby="notice-title"><h2 class="section-title" id="notice-title">ご注意ください</h2><p>この結果は一般的な単利計算による目安です。</p><p>金融機関や契約によって、日割り方法・税金・端数処理などが異なる場合があります。</p><p>入力内容はブラウザ内だけで処理し、サーバーへ送信・保存しません。</p></section>
-
-    <!-- ====================== 関連ツール ====================== -->
-    <section class="section" aria-labelledby="related-title"><h2 class="section-title" id="related-title">おすすめの便利ツール</h2><div class="related-grid">
-      <a class="related-link" href="../compound-interest/">📈 複利計算</a>
-      <a class="related-link" href="../discount-calculator/">💹 割引率計算</a>
-      <a class="related-link" href="../tax/">💰 消費税計算</a>
-      <a class="related-link" href="../warikan/">👥 割り勘計算</a>
-    </div></section>
     <section data-money-series data-current="interest-calculator"></section>
   </main>
 
