@@ -44,8 +44,8 @@
   <meta name="theme-color" content="#63843F">
 
   <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="../assets/goma-ui.css?v=1.8">
-  <script defer src="../assets/goma-ui.js?v=1.8"></script>
+  <link rel="stylesheet" href="../assets/goma-ui.css?v=2.4">
+  <script defer src="../assets/goma-ui.js?v=2.3"></script>
 </head>
 <body>
   <header></header>
@@ -127,17 +127,38 @@
         <p class="bodyfat-copy-message" id="copyMessage" aria-live="polite"></p>
       </section>
 
-      <!-- ======================
-           説明・注意事項
-      ====================== -->
-      <section class="bodyfat-card bodyfat-info" aria-labelledby="about-title">
-        <h2 id="about-title">このツールについて</h2>
-        <p>このツールでは、年齢・性別・身長・体重から推定体脂肪率を計算できます。</p>
-        <p>BMIだけでは分かりにくい体組成の目安として活用できます。</p>
+      <section class="health-brand-section" aria-labelledby="support-title">
+        <h2 id="support-title">補足情報</h2>
+        <ul class="health-support-list">
+          <li>体脂肪率は、体重に占める脂肪の割合を表す、体組成の目安です。</li>
+          <li>BMIは身長と体重から体格を確認する指標、体脂肪率は体重の内訳を考えるための目安です。</li>
+          <li>筋肉量や年齢などによって数値の見え方が異なり、実際の測定値と差が出る場合があります。</li>
+          <li>体重とあわせて継続的に確認し、健康管理の参考としてご利用ください。</li>
+        </ul>
+      </section>
 
-        <h2>注意事項</h2>
-        <p>表示される体脂肪率は一般的な推定式による目安です。</p>
-        <p>実際の体脂肪率は体組成計や医療機関で測定した値とは異なる場合があります。</p>
+      <section class="health-brand-section goma-one-point" aria-labelledby="one-point-title">
+        <h2 id="one-point-title">🍵 ゴマワンポイント</h2>
+        <p>一度の数値だけでなく、同じ条件で定期的に記録すると変化を確認しやすくなります。体重と体脂肪率の両方を見ながら、無理のない運動とバランスのよい食事を続けることが大切です。</p>
+      </section>
+
+      <section class="goma-related-knowledge" aria-labelledby="goma-related-knowledge-title">
+        <h2 id="goma-related-knowledge-title">💡 関連するゴマ知識</h2>
+        <p>BMIの意味や計算方法を知ると、体脂肪率との違いを理解しやすくなります。</p>
+        <ul class="goma-related-knowledge-list">
+          <li><a href="../knowledge/what-is-bmi/">BMIとは？</a></li>
+        </ul>
+      </section>
+
+      <section class="goma-related-tools" aria-labelledby="goma-related-tools-title">
+        <h2 id="goma-related-tools-title">🔗 関連ツール</h2>
+        <p>体格・代謝・1日の消費エネルギーを、段階的に確認できます。</p>
+        <ul class="goma-related-tools-list">
+          <li><a href="../bmi/">BMI計算ツール</a></li>
+          <li><a href="./ideal-weight.html">適正体重計算ツール</a></li>
+          <li><a href="./bmr.html">基礎代謝（BMR）計算ツール</a></li>
+          <li><a href="./tdee.html">1日の消費カロリー（TDEE）計算ツール</a></li>
+        </ul>
       </section>
 
       <!-- 健康・美容シリーズ：内容は assets/goma-ui.js で一元管理 -->
