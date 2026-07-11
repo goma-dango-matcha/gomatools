@@ -46,8 +46,8 @@
   <meta name="theme-color" content="#63843F">
 
   <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="../assets/goma-ui.css?v=1.8">
-  <script defer src="../assets/goma-ui.js?v=1.8"></script>
+  <link rel="stylesheet" href="../assets/goma-ui.css?v=2.4">
+  <script defer src="../assets/goma-ui.js?v=2.3"></script>
 </head>
 <body>
   <header></header>
@@ -108,14 +108,33 @@
         <p class="pfc-copy-message" id="copyMessage" role="status" aria-live="polite"></p>
       </section>
 
-      <!-- ====================== 説明・注意事項 ====================== -->
-      <section class="pfc-card pfc-info" aria-labelledby="about-title">
-        <h2 id="about-title">このツールについて</h2>
-        <p>1日に必要な摂取カロリーから、PFC（たんぱく質・脂質・炭水化物）の摂取目安を計算できます。ダイエットや筋トレ、健康管理など、目的に応じた食事管理の参考として利用できます。</p>
-        <h2>PFCとは</h2>
-        <ul><li><strong>P（Protein）</strong>：たんぱく質</li><li><strong>F（Fat）</strong>：脂質</li><li><strong>C（Carbohydrate）</strong>：炭水化物</li></ul>
-        <h2>注意事項</h2>
-        <p>計算結果は一般的な目安です。必要な栄養バランスは年齢・性別・活動量・健康状態・目的によって異なります。医療・栄養指導の代わりとなるものではありません。</p>
+      <section class="health-brand-section" aria-labelledby="support-title">
+        <h2 id="support-title">補足情報</h2>
+        <ul class="health-support-list">
+          <li>PFCは、たんぱく質（Protein）・脂質（Fat）・炭水化物（Carbohydrate）の三大栄養素を表します。</li>
+          <li>たんぱく質は体づくり、脂質は細胞やホルモンの材料、炭水化物は活動するための主なエネルギー源になります。</li>
+          <li>入力した摂取カロリーと比率から、それぞれの摂取量をグラムで計算しています。</li>
+          <li>必要なバランスは年齢や活動量、目的などによって異なるため、毎日の食事管理の目安としてご利用ください。</li>
+        </ul>
+      </section>
+
+      <section class="health-brand-section goma-one-point" aria-labelledby="one-point-title">
+        <h2 id="one-point-title">🍵 ゴマワンポイント</h2>
+        <p>たんぱく質は筋肉だけでなく、体づくり全般に欠かせません。脂質や炭水化物も大切な役割があるため、極端に減らさず、続けやすいバランスを意識しましょう。</p>
+      </section>
+
+      <!-- 公開済みの関連するゴマ知識がないため、共通スクリプトの自動挿入を抑止 -->
+      <div class="goma-related-knowledge" hidden aria-hidden="true"></div>
+
+      <section class="goma-related-tools" aria-labelledby="goma-related-tools-title">
+        <h2 id="goma-related-tools-title">🔗 関連ツール</h2>
+        <p>食事や運動の目安となる数値を、段階的に確認できます。</p>
+        <ul class="goma-related-tools-list">
+          <li><a href="./tdee.html">1日の消費カロリー（TDEE）計算ツール</a></li>
+          <li><a href="./bmr.html">基礎代謝（BMR）計算ツール</a></li>
+          <li><a href="./calorie-burn.html">消費カロリー計算ツール</a></li>
+          <li><a href="../bmi/">BMI計算ツール</a></li>
+        </ul>
       </section>
 
       <!-- 健康・美容シリーズ：内容は assets/goma-ui.js で一元管理 -->
