@@ -73,9 +73,15 @@
     .progress-bar { width:0; height:100%; border-radius:inherit; background:linear-gradient(90deg,var(--green),#82a967); transition:width .4s ease; }
     .progress-note { margin:9px 0 0; color:var(--muted); font-size:.82rem; text-align:center; }
 
-    /* ====================== 補足・関連ツール ====================== */
-    .info-card { box-shadow:none; background:var(--green-soft); }
-    .info-card p { margin:5px 0; color:var(--muted); }
+    /* ====================== ブランド改善セクション ====================== */
+    .support-list { margin:0; padding-left:1.25em; }
+    .support-list li + li { margin-top:8px; }
+    .goma-one-point { border-color:rgba(88,124,64,.24); background:linear-gradient(135deg,var(--green-light),#fff); }
+    .section-intro { margin:0 0 18px; color:var(--muted); }
+    .knowledge-list { display:grid; gap:12px; margin:0; padding:0; list-style:none; }
+    .knowledge-list a { display:block; padding:16px 18px; color:var(--green-dark); border:1px solid var(--line); border-radius:14px; background:var(--green-soft); font-weight:750; text-decoration:none; }
+    .knowledge-list a:hover { border-color:var(--green); }
+    .knowledge-list a:focus-visible { outline:3px solid rgba(88,124,64,.35); outline-offset:3px; }
     .related-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
     .related-item { padding:19px; border:1px solid var(--line); border-radius:15px; background:var(--green-soft); }
     .related-name { display:block; font-weight:800; }
@@ -90,7 +96,7 @@
     .project-name { margin-top:20px; font-size:.82rem; font-weight:750; letter-spacing:.08em; }
     .footer-assurance { max-width:620px; margin:28px auto 0; padding-top:26px; border-top:1px solid var(--line); font-size:.78rem; line-height:1.8; }
     .updated { margin-top:18px; font-size:.72rem; }
-    @media (max-width:620px) { .container{width:min(100% - 24px,880px)} .site-header{padding:18px 0} .header-inner{align-items:flex-start} .brand-wrap{flex-direction:column;gap:0} main{padding:58px 0 76px} .section{margin-top:54px} .card{padding:22px 18px;border-radius:18px} .button-row,.result-grid,.related-grid{grid-template-columns:1fr} }
+    @media (max-width:620px) { .container{width:min(100% - 24px,880px)} .site-header{padding:18px 0} .header-inner{align-items:flex-start} .brand-wrap{flex-direction:column;gap:0} main{padding:58px 0 76px} .section{margin-top:54px} .card{padding:22px 18px;border-radius:18px} .button-row,.result-grid,.related-grid{grid-template-columns:1fr} .support-list{padding-left:1.15em} }
     @media (prefers-reduced-motion:reduce) { html{scroll-behavior:auto} *,*::before,*::after{transition:none!important} }
   </style>
   <link rel="stylesheet" href="../assets/goma-ui.css">
@@ -132,7 +138,7 @@
 
   <main><div class="container">
     <!-- ====================== ヒーロー ====================== -->
-    <section class="hero" aria-labelledby="page-title"><p class="eyebrow">次の誕生日をかんたん確認</p><h1 id="page-title">🎉 誕生日カウント</h1><p class="hero-description">次の誕生日まであと何日かを簡単に計算できます。</p></section>
+    <section class="hero" aria-labelledby="page-title"><p class="eyebrow">次の誕生日をかんたん確認</p><h1 id="page-title">🎉 誕生日カウント</h1><p class="hero-description">生年月日から、次の誕生日までの残り日数を簡単に確認できます。</p></section>
 
     <!-- ====================== 誕生日計算フォーム ====================== -->
     <section class="section" aria-labelledby="calculator-title"><h2 class="section-title" id="calculator-title">生年月日を入力</h2><div class="card">
@@ -152,26 +158,22 @@
       </div>
     </div></section>
 
-    <!-- ====================== 補足 ====================== -->
-    <section class="section card info-card" aria-labelledby="info-title"><h2 class="section-title" id="info-title">🍵 安心してお使いください</h2><p>入力内容と計算処理はブラウザ内だけで行われます。</p><p>サーバーへ送信・保存することはありません。</p><p>2月29日生まれは、平年では2月28日を誕生日として計算します。</p></section>
+    <!-- ====================== 補足情報 ====================== -->
+    <section class="section card" aria-labelledby="support-title"><h2 class="section-title" id="support-title">補足情報</h2><ul class="support-list"><li>端末に設定されている今日の日付を基準に、次の誕生日までの日数を計算します。</li><li>現在の年齢と、次の誕生日で迎える年齢もあわせて表示します。</li><li>2月29日生まれは、2月29日がない年は2月28日を誕生日として計算します。</li></ul></section>
+
+    <!-- ====================== ゴマワンポイント ====================== -->
+    <section class="section card goma-one-point" aria-labelledby="goma-one-point-title"><h2 class="section-title" id="goma-one-point-title">🍵 ゴマワンポイント</h2><p>誕生日までの日数が分かると、お祝いの準備や予定を立てやすくなります。年齢の節目となる誕生日は、手続きや契約の確認日としても役立つことがあります。</p></section>
+
+    <!-- ====================== 関連するゴマ知識 ====================== -->
+    <section class="section card" aria-labelledby="knowledge-title"><h2 class="section-title" id="knowledge-title">💡 関連するゴマ知識</h2><p class="section-intro">年齢の数え方や、2月29日に関係する仕組みを分かりやすく紹介しています。</p><ul class="knowledge-list"><li><a href="../knowledge/age-counting/">年齢の数え方について</a></li><li><a href="../knowledge/leap-year/">うるう年とは？</a></li></ul></section>
 
     <!-- ====================== 関連ツール ====================== -->
-    <section class="section" aria-labelledby="related-title"><h2 class="section-title" id="related-title">おすすめの便利ツール</h2><div class="card related-grid">
+    <section class="section" aria-labelledby="related-title"><h2 class="section-title" id="related-title">🔗 関連ツール</h2><p class="section-intro">年齢や日付を続けて確認するときに役立つツールです。</p><div class="card related-grid">
       <a class="related-item related-link" href="../age/"><span class="related-name">🎂 年齢・日付計算</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../business-days/"><span class="related-name">📅 営業日計算</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../tax/"><span class="related-name">💰 消費税計算</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../warikan/"><span class="related-name">👥 割り勘計算</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../qrcode/"><span class="related-name">📱 QRコード生成</span><span class="related-status">公開中</span></a>
       <a class="related-item related-link" href="../school-year/"><span class="related-name">🎓 学年・年齢・卒業年度計算</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../wareki/"><span class="related-name">📅 和暦・西暦変換</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../text-counter/"><span class="related-name">✍️ 文字数カウント</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../password/"><span class="related-name">🔐 パスワード生成</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../compound-interest/"><span class="related-name">📈 複利計算</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../unit-converter/"><span class="related-name">📏 単位変換ツール</span><span class="related-status">公開中</span></a>
       <a class="related-item related-link" href="../days-calculator/"><span class="related-name">📆 日数計算ツール</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../random-picker/"><span class="related-name">📋 ランダム抽選ツール</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../discount-calculator/"><span class="related-name">💹 割引率計算ツール</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../calculator/"><span class="related-name">🧮 電卓ツール</span><span class="related-status">公開中</span></a>
+      <a class="related-item related-link" href="../tools/today/"><span class="related-name">📅 今日の情報</span><span class="related-status">公開中</span></a>
+      <a class="related-item related-link" href="../wareki/"><span class="related-name">📅 和暦・西暦変換</span><span class="related-status">公開中</span></a>
     </div></section>
   </div></main>
 
