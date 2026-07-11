@@ -338,7 +338,7 @@
     'qrcode/': 'QRコードにはURLだけでなく、連絡先やWi-Fi情報なども保存できます。内容を確認してから共有しましょう。',
     'password/': '長くて使い回していないパスワードほど、推測されにくくなります。サービスごとに分けるのが安心です。',
     'tools/character-encoding.html': '文字化けは、保存時と読み込み時の文字コードが合わないと起こることがあります。',
-    'compound-interest/': '複利は期間が長いほど差が出やすい仕組みです。条件を変えて比べると効果を確認しやすくなります。',
+    'compound-interest/': '複利は「利息にも利息が付く」仕組みです。運用期間が長くなるほど効果が大きくなるため、条件を変えて比べてみましょう。',
     'interest-calculator/': '預金や借入の前に利息を確認すると、資金計画を立てやすくなります。利率だけでなく、期間と計算方法も確認しましょう。',
     'tools/loan-calculator.html': 'ローンは毎月の返済額だけでなく、利息総額と総返済額もあわせて見ることが大切です。',
     'age/': '年齢や日数は、基準日にすると変わります。手続きや予定では、いつ時点かも一緒に確認しましょう。',
@@ -394,7 +394,9 @@
     'compound-interest/': [
       { title: '利息計算ツール', path: 'interest-calculator/' },
       { title: 'ローン返済シミュレーター', path: 'tools/loan-calculator.html' },
-      { title: '割引率計算ツール', path: 'discount-calculator/' }
+      { title: 'パーセント計算ツール', path: 'tools/percentage-calculator.html' },
+      { title: '手取り・税込逆算ツール', path: 'net-income-calculator/' },
+      { title: '消費税計算ツール', path: 'tax/' }
     ],
     'interest-calculator/': [
       { title: '複利計算ツール', path: 'compound-interest/' },

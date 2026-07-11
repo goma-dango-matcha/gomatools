@@ -72,17 +72,11 @@
     .simple-interest-link:hover { background:var(--green-dark); }
     .simple-interest-link:focus-visible { outline:3px solid rgba(88,124,64,.35); outline-offset:3px; }
 
-    /* ====================== 注意書き・関連ツール ====================== */
-    .notice-card { border-color:var(--warning-line); background:var(--warning); box-shadow:none; }
-    .notice-card p { margin:5px 0; color:#625a45; }
+    /* ====================== 補足情報 ====================== */
+    .support-list { margin:0; padding-left:1.25em; color:var(--muted); }
+    .support-list li + li { margin-top:8px; }
     .privacy-card { box-shadow:none; background:var(--green-soft); }
     .privacy-card p { margin:5px 0; color:var(--muted); }
-    .related-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-    .related-item { padding:19px; border:1px solid var(--line); border-radius:15px; background:var(--green-soft); }
-    .related-name { display:block; font-weight:800; }
-    .related-status { display:block; margin-top:4px; color:var(--muted); font-size:.78rem; }
-    .related-link { display:block; text-decoration:none; transition:border-color .15s ease,transform .15s ease; }
-    .related-link:hover { border-color:var(--green); transform:translateY(-1px); }
 
     /* ====================== フッター・レスポンシブ ====================== */
     footer { padding:52px 0; color:var(--muted); border-top:1px solid var(--line); text-align:center; background:var(--green-soft); }
@@ -92,11 +86,11 @@
     .footer-assurance { max-width:620px; margin:28px auto 0; padding-top:26px; border-top:1px solid var(--line); font-size:.78rem; line-height:1.8; }
     .updated { margin-top:18px; font-size:.72rem; }
     @media (max-width:700px) { .result-grid{grid-template-columns:1fr} }
-    @media (max-width:620px) { .container{width:min(100% - 24px,880px)} .site-header{padding:18px 0} .header-inner{align-items:flex-start} .brand-wrap{flex-direction:column;gap:0} main{padding:58px 0 76px} .section{margin-top:54px} .form-grid,.related-grid{grid-template-columns:1fr} .field-full{grid-column:auto} .card{padding:22px 18px;border-radius:18px} .simple-interest-guide{align-items:stretch;flex-direction:column}.simple-interest-link{width:100%} }
+    @media (max-width:620px) { .container{width:min(100% - 24px,880px)} .site-header{padding:18px 0} .header-inner{align-items:flex-start} .brand-wrap{flex-direction:column;gap:0} main{padding:58px 0 76px} .section{margin-top:54px} .form-grid{grid-template-columns:1fr} .field-full{grid-column:auto} .card{padding:22px 18px;border-radius:18px} .simple-interest-guide{align-items:stretch;flex-direction:column}.simple-interest-link{width:100%} .support-list{padding-left:1.15em} }
     @media (prefers-reduced-motion:reduce) { html{scroll-behavior:auto} *,*::before,*::after{transition:none!important} }
   </style>
   <link rel="stylesheet" href="../assets/goma-ui.css?v=2.2">
-  <script defer src="../assets/goma-ui.js?v=2.2"></script>
+  <script defer src="../assets/goma-ui.js?v=2.3"></script>
   <!-- ======================
        ブランドアイコン
   ====================== -->
@@ -134,7 +128,7 @@
 
   <main><div class="container">
     <!-- ====================== ヒーロー ====================== -->
-    <section class="hero" aria-labelledby="page-title"><p class="eyebrow">将来の資産額をかんたん試算</p><h1 id="page-title">📈 複利計算</h1><p class="hero-description">複利の効果を簡単にシミュレーションできます。<br>元本・年利・運用年数・毎月積立を入力するだけで将来の資産額を計算できます。</p></section>
+    <section class="hero" aria-labelledby="page-title"><p class="eyebrow">将来の資産額をかんたん試算</p><h1 id="page-title">📈 複利計算</h1><p class="hero-description">元金・利率・運用期間から、複利による資産の増え方を簡単に計算できます。</p></section>
 
     <!-- ====================== 複利計算フォーム ====================== -->
     <section class="section" aria-labelledby="calculator-title"><h2 class="section-title" id="calculator-title">条件を入力する</h2><div class="card">
@@ -159,31 +153,13 @@
       </div>
     </div></section>
 
+    <!-- ====================== 補足情報 ====================== -->
+    <section class="section card" aria-labelledby="support-title"><h2 class="section-title" id="support-title">補足情報</h2><ul class="support-list"><li>元金・利率・運用期間をもとに、毎月複利で将来の資産額を計算します。</li><li>利息を資産へ組み入れることで、時間の経過とともに運用益にも利息が付きます。</li><li>実際の運用結果は、金融商品や税金、手数料、価格変動などによって異なる場合があります。</li></ul></section>
+
     <!-- ====================== 単利計算への案内 ====================== -->
     <aside class="simple-interest-guide" aria-label="単利計算の案内"><p>💴 元金だけに利息が付く計算をしたい方へ</p><a class="simple-interest-link" href="../interest-calculator/">単利で計算したい方はこちら</a></aside>
-
-    <!-- ====================== 注意書き ====================== -->
-    <section class="section card notice-card" aria-labelledby="notice-title"><h2 class="section-title" id="notice-title">⚠️ ご注意ください</h2><p>この計算結果はシミュレーションです。</p><p>実際の運用成果を保証するものではありません。税金・手数料・価格変動は含みません。</p></section>
     <section class="section card privacy-card" aria-labelledby="privacy-title"><h2 class="section-title" id="privacy-title">🍵 安心してお使いください</h2><p>入力内容と計算処理はブラウザ内だけで行われます。</p><p>サーバーへ送信・保存することはありません。</p></section>
 
-    <!-- ====================== 関連ツール ====================== -->
-    <section class="section" aria-labelledby="related-title"><h2 class="section-title" id="related-title">おすすめの便利ツール</h2><div class="card related-grid">
-      <a class="related-item related-link" href="../age/"><span class="related-name">🎂 年齢・日付計算</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../business-days/"><span class="related-name">📅 営業日計算</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../tax/"><span class="related-name">💰 消費税計算</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../warikan/"><span class="related-name">👥 割り勘計算</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../qrcode/"><span class="related-name">📱 QRコード生成</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../school-year/"><span class="related-name">🎓 学年・年齢・卒業年度計算</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../wareki/"><span class="related-name">📅 和暦・西暦変換</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../text-counter/"><span class="related-name">✍️ 文字数カウント</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../password/"><span class="related-name">🔐 パスワード生成</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../unit-converter/"><span class="related-name">📏 単位変換ツール</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../birthday-countdown/"><span class="related-name">🎉 誕生日カウント</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../days-calculator/"><span class="related-name">📆 日数計算ツール</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../random-picker/"><span class="related-name">📋 ランダム抽選ツール</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../discount-calculator/"><span class="related-name">💹 割引率計算ツール</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../calculator/"><span class="related-name">🧮 電卓ツール</span><span class="related-status">公開中</span></a>
-    </div></section>
     <section data-money-series data-current="compound-interest"></section>
   </div></main>
 
