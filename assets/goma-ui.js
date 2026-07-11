@@ -340,6 +340,7 @@
     'compound-interest/': '複利は「利息にも利息が付く」仕組みです。運用期間が長くなるほど効果が大きくなるため、条件を変えて比べてみましょう。',
     'interest-calculator/': '預金や借入の前に利息を確認すると、資金計画を立てやすくなります。利率だけでなく、期間と計算方法も確認しましょう。',
     'tools/loan-calculator.html': '借入前は、毎月の返済額だけでなく返済総額も確認すると計画を立てやすくなります。金利や期間を変えて比べてみましょう。',
+    'warikan/': '食事会や旅行では、事前に1人あたりの金額を確認すると支払いがスムーズです。余りの分け方も一緒に決めておくと安心です。',
     'age/': '年齢や日数は、基準日にすると変わります。手続きや予定では、いつ時点かも一緒に確認しましょう。',
     'business-days/': '営業日は土日や休業日を含めない数え方です。祝日や会社ごとの休業日は別途確認しましょう。'
   };
@@ -411,6 +412,13 @@
       { title: '手取り・税込逆算ツール', path: 'net-income-calculator/' },
       { title: '消費税計算ツール', path: 'tax/' }
     ],
+    'warikan/': [
+      { title: 'パーセント計算ツール', path: 'tools/percentage-calculator.html' },
+      { title: '消費税計算ツール', path: 'tax/' },
+      { title: '割引率計算ツール', path: 'discount-calculator/' },
+      { title: '手取り・税込逆算ツール', path: 'net-income-calculator/' },
+      { title: '電卓ツール', path: 'calculator/' }
+    ],
     'age/': [
       { title: '今日の情報', path: 'tools/today/' },
       { title: '日数計算ツール', path: 'days-calculator/' },
@@ -429,6 +437,7 @@
     'tools/character-encoding.html': { selector: '#resultSection' },
     'compound-interest/': { selector: '#resultPanel' },
     'tools/loan-calculator.html': { selector: '#resultCard', beforeSelector: '.loan-copy' },
+    'warikan/': { selector: '#resultPanel' },
     'age/': { selector: '#ageResult', beforeSelector: '.copy-wrap' },
     'business-days/': { selector: '#resultPanel' }
   };
