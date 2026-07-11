@@ -308,6 +308,52 @@
     .date-result .result-value { margin-top: 6px; }
 
     /* ======================
+       ブランド改善セクション
+    ====================== */
+    .support-list {
+      margin: 0;
+      padding-left: 1.25em;
+    }
+
+    .support-list li + li { margin-top: 8px; }
+
+    .goma-one-point {
+      border-color: rgba(86, 123, 60, .24);
+      background: linear-gradient(135deg, var(--green-light), #fff);
+    }
+
+    .section-intro {
+      margin: 0 0 18px;
+      color: var(--muted);
+    }
+
+    .knowledge-list {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .knowledge-list a {
+      display: block;
+      padding: 16px 18px;
+      color: var(--green-dark);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--green-soft);
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .knowledge-list a:hover { border-color: var(--green); }
+
+    .knowledge-list a:focus-visible {
+      outline: 3px solid rgba(86, 123, 60, .3);
+      outline-offset: 3px;
+    }
+
+    /* ======================
        ゴマツールの約束
     ====================== */
     .promise-card {
@@ -470,6 +516,8 @@
         margin-top: 30px;
         padding: 18px 20px;
       }
+
+      .support-list { padding-left: 1.15em; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -534,7 +582,7 @@
         <p class="eyebrow">30秒でかんたん計算</p>
         <h1 id="page-title">🎂 年齢・日付計算</h1>
         <p class="hero-description">
-          生年月日から年齢、生まれてからの日数、次の誕生日までの日数などを計算できます。
+          生年月日から、現在の満年齢や生まれてからの日数、次の誕生日までの日数をまとめて計算できます。
         </p>
 
         <!-- 今日時点カード -->
@@ -677,6 +725,38 @@
       </section>
 
       <!-- ======================
+           補足情報
+      ====================== -->
+      <section class="section card" aria-labelledby="support-title">
+        <h2 class="section-title" id="support-title">補足情報</h2>
+        <ul class="support-list">
+          <li>年齢は、端末に設定されている今日の日付を基準に満年齢で計算します。</li>
+          <li>生まれてからの日数には、うるう年の2月29日も含めて計算します。</li>
+          <li>2月29日生まれの場合、2月29日がない年は2月28日を次の誕生日として扱います。</li>
+        </ul>
+      </section>
+
+      <!-- ======================
+           ゴマワンポイント
+      ====================== -->
+      <section class="section card goma-one-point" aria-labelledby="goma-one-point-title">
+        <h2 class="section-title" id="goma-one-point-title">🍵 ゴマワンポイント</h2>
+        <p>日本の手続きでは、一般的に満年齢が使われます。契約や申請では基準日によって年齢が変わることがあるため、書類に指定された日付も確認すると安心です。</p>
+      </section>
+
+      <!-- ======================
+           関連するゴマ知識
+      ====================== -->
+      <section class="section card" aria-labelledby="knowledge-title">
+        <h2 class="section-title" id="knowledge-title">💡 関連するゴマ知識</h2>
+        <p class="section-intro">年齢の数え方や、誕生日に関係する日付の仕組みを分かりやすく紹介しています。</p>
+        <ul class="knowledge-list">
+          <li><a href="../knowledge/age-counting/">年齢の数え方について</a></li>
+          <li><a href="../knowledge/leap-year/">うるう年とは？</a></li>
+        </ul>
+      </section>
+
+      <!-- ======================
            ゴマツールの約束
       ====================== -->
       <section
@@ -740,31 +820,10 @@
            関連ツール
       ====================== -->
       <section class="section" aria-labelledby="tools-title">
-        <h2 class="section-title" id="tools-title">
-          おすすめの便利ツール
-        </h2>
+        <h2 class="section-title" id="tools-title">🔗 関連ツール</h2>
+        <p class="section-intro">年齢や日付を続けて確認するときに役立つツールです。</p>
 
         <div class="card tool-grid">
-          <a class="tool-item tool-link" href="../business-days/">
-            📅 営業日計算
-            <span class="tool-status">公開中</span>
-          </a>
-
-          <a class="tool-item tool-link" href="../tax/">
-            💰 消費税計算
-            <span class="tool-status">公開中</span>
-          </a>
-
-          <a class="tool-item tool-link" href="../warikan/">
-            👥 割り勘計算
-            <span class="tool-status">公開中</span>
-          </a>
-
-          <a class="tool-item tool-link" href="../qrcode/">
-            📱 QRコード生成
-            <span class="tool-status">公開中</span>
-          </a>
-
           <a class="tool-item tool-link" href="../school-year/">
             🎓 学年・年齢・卒業年度計算
             <span class="tool-status">公開中</span>
@@ -772,26 +831,6 @@
 
           <a class="tool-item tool-link" href="../wareki/">
             📅 和暦・西暦変換
-            <span class="tool-status">公開中</span>
-          </a>
-
-          <a class="tool-item tool-link" href="../text-counter/">
-            ✍️ 文字数カウント
-            <span class="tool-status">公開中</span>
-          </a>
-
-          <a class="tool-item tool-link" href="../password/">
-            🔐 パスワード生成
-            <span class="tool-status">公開中</span>
-          </a>
-
-          <a class="tool-item tool-link" href="../compound-interest/">
-            📈 複利計算
-            <span class="tool-status">公開中</span>
-          </a>
-
-          <a class="tool-item tool-link" href="../unit-converter/">
-            📏 単位変換ツール
             <span class="tool-status">公開中</span>
           </a>
 
@@ -805,17 +844,8 @@
             <span class="tool-status">公開中</span>
           </a>
 
-          <a class="tool-item tool-link" href="../random-picker/">
-            📋 ランダム抽選ツール
-            <span class="tool-status">公開中</span>
-          </a>
-
-          <a class="tool-item tool-link" href="../discount-calculator/">
-            💹 割引率計算ツール
-            <span class="tool-status">公開中</span>
-          </a>
-          <a class="tool-item tool-link" href="../calculator/">
-            🧮 電卓ツール
+          <a class="tool-item tool-link" href="../tools/today/">
+            📅 今日の情報
             <span class="tool-status">公開中</span>
           </a>
         </div>
