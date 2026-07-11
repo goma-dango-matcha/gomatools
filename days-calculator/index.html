@@ -74,9 +74,15 @@
     .result-item { padding:19px 15px; border-radius:15px; background:var(--green-soft); text-align:center; }
     .result-value { display:block; margin-top:5px; color:var(--green-dark); font-size:clamp(1.15rem,4vw,1.6rem); font-weight:850; overflow-wrap:anywhere; }
 
-    /* ====================== 補足・関連ツール ====================== */
-    .info-card { box-shadow:none; background:var(--green-soft); }
-    .info-card p { margin:5px 0; color:var(--muted); }
+    /* ====================== ブランド改善セクション ====================== */
+    .support-list { margin:0; padding-left:1.25em; }
+    .support-list li + li { margin-top:8px; }
+    .goma-one-point { border-color:rgba(88,124,64,.24); background:linear-gradient(135deg,var(--green-light),#fff); }
+    .section-intro { margin:0 0 18px; color:var(--muted); }
+    .knowledge-list { margin:0; padding:0; list-style:none; }
+    .knowledge-list a { display:block; padding:16px 18px; color:var(--green-dark); border:1px solid var(--line); border-radius:14px; background:var(--green-soft); font-weight:750; text-decoration:none; }
+    .knowledge-list a:hover { border-color:var(--green); }
+    .knowledge-list a:focus-visible { outline:3px solid rgba(88,124,64,.35); outline-offset:3px; }
     .related-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
     .related-item { padding:19px; border:1px solid var(--line); border-radius:15px; background:var(--green-soft); }
     .related-name { display:block; font-weight:800; }
@@ -91,7 +97,7 @@
     .project-name { margin-top:20px; font-size:.82rem; font-weight:750; letter-spacing:.08em; }
     .footer-assurance { max-width:620px; margin:28px auto 0; padding-top:26px; border-top:1px solid var(--line); font-size:.78rem; line-height:1.8; }
     .updated { margin-top:18px; font-size:.72rem; }
-    @media (max-width:620px) { .container{width:min(100% - 24px,880px)} .site-header{padding:18px 0} .header-inner{align-items:flex-start} .brand-wrap{flex-direction:column;gap:0} main{padding:58px 0 76px} .section{margin-top:54px} .card{padding:22px 18px;border-radius:18px} .form-grid,.button-row,.result-grid,.related-grid{grid-template-columns:1fr} .field-full{grid-column:auto} }
+    @media (max-width:620px) { .container{width:min(100% - 24px,880px)} .site-header{padding:18px 0} .header-inner{align-items:flex-start} .brand-wrap{flex-direction:column;gap:0} main{padding:58px 0 76px} .section{margin-top:54px} .card{padding:22px 18px;border-radius:18px} .form-grid,.button-row,.result-grid,.related-grid{grid-template-columns:1fr} .field-full{grid-column:auto} .support-list{padding-left:1.15em} }
     @media (prefers-reduced-motion:reduce) { html{scroll-behavior:auto} *,*::before,*::after{transition:none!important} }
   </style>
   <link rel="stylesheet" href="../assets/goma-ui.css">
@@ -133,7 +139,7 @@
 
   <main><div class="container">
     <!-- ====================== ヒーロー ====================== -->
-    <section class="hero" aria-labelledby="page-title"><p class="eyebrow">日付と日数をかんたん計算</p><h1 id="page-title">📆 日数計算ツール</h1><p class="hero-description">開始日と終了日から日数を計算できます。○日後・○日前の日付も簡単に調べられます。</p></section>
+    <section class="hero" aria-labelledby="page-title"><p class="eyebrow">日付と日数をかんたん計算</p><h1 id="page-title">📆 日数計算ツール</h1><p class="hero-description">2つの日付の間の日数を簡単に確認できます。○日後・○日前の日付も調べられます。</p></section>
 
     <!-- ====================== 計算エリア ====================== -->
     <section class="section" aria-labelledby="calculator-title"><h2 class="section-title" id="calculator-title">計算方法を選ぶ</h2><div class="card">
@@ -154,18 +160,22 @@
       </div>
     </div></section>
 
-    <!-- ====================== 補足 ====================== -->
-    <section class="section card info-card" aria-labelledby="info-title"><h2 class="section-title" id="info-title">🍵 計算について</h2><p>時刻を含めず、日付だけで計算します。</p><p>入力内容と計算処理はブラウザ内だけで行われ、サーバーへ送信・保存しません。</p></section>
+    <!-- ====================== 補足情報 ====================== -->
+    <section class="section card" aria-labelledby="support-title"><h2 class="section-title" id="support-title">補足情報</h2><ul class="support-list"><li>開始日と終了日の時刻は含めず、日付だけで日数を計算します。</li><li>「日数差」は開始日を含まず、「開始日を含める」は両方の日付を数えます。</li><li>入力内容と計算処理はブラウザ内だけで行われ、サーバーへ送信・保存しません。</li></ul></section>
+
+    <!-- ====================== ゴマワンポイント ====================== -->
+    <section class="section card goma-one-point" aria-labelledby="goma-one-point-title"><h2 class="section-title" id="goma-one-point-title">🍵 ゴマワンポイント</h2><p>契約期間や旅行日数では、開始日と終了日を数に含めるかによって結果が変わります。予定を立てるときは、どちらの数え方が必要かを先に確認すると安心です。</p></section>
+
+    <!-- ====================== 関連するゴマ知識 ====================== -->
+    <section class="section card" aria-labelledby="knowledge-title"><h2 class="section-title" id="knowledge-title">💡 関連するゴマ知識</h2><p class="section-intro">日数計算にも関係する、うるう年の仕組みを分かりやすく紹介しています。</p><ul class="knowledge-list"><li><a href="../knowledge/leap-year/">うるう年とは？</a></li></ul></section>
 
     <!-- ====================== 関連ツール ====================== -->
-    <section class="section" aria-labelledby="related-title"><h2 class="section-title" id="related-title">おすすめの便利ツール</h2><div class="card related-grid">
-      <a class="related-item related-link" href="../age/"><span class="related-name">🎂 年齢・日付計算</span><span class="related-status">公開中</span></a>
+    <section class="section" aria-labelledby="related-title"><h2 class="section-title" id="related-title">🔗 関連ツール</h2><p class="section-intro">日付や予定を続けて確認するときに役立つツールです。</p><div class="card related-grid">
       <a class="related-item related-link" href="../business-days/"><span class="related-name">📅 営業日計算</span><span class="related-status">公開中</span></a>
       <a class="related-item related-link" href="../birthday-countdown/"><span class="related-name">🎉 誕生日カウント</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../wareki/"><span class="related-name">📅 和暦・西暦変換</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../random-picker/"><span class="related-name">📋 ランダム抽選ツール</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../discount-calculator/"><span class="related-name">💹 割引率計算ツール</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../calculator/"><span class="related-name">🧮 電卓ツール</span><span class="related-status">公開中</span></a>
+      <a class="related-item related-link" href="../age/"><span class="related-name">🎂 年齢・日付計算</span><span class="related-status">公開中</span></a>
+      <a class="related-item related-link" href="../tools/today/"><span class="related-name">📅 今日の情報</span><span class="related-status">公開中</span></a>
+      <a class="related-item related-link" href="../tools/month-calendar/"><span class="related-name">🗓 今月のカレンダー</span><span class="related-status">公開中</span></a>
     </div></section>
   </div></main>
 
