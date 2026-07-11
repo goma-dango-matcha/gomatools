@@ -2137,9 +2137,18 @@ a { color: var(--terms-green-dark); }
 .percentage-copy { display: block; margin: 20px auto 0; }
 .percentage-copy-message { min-height: 1.5em; margin: 10px 0 0; color: var(--terms-green-dark); font-weight: 800; text-align: center; }
 .percentage-info { line-height: 1.85; }
-.percentage-info h2:not(:first-child) { margin-top: 28px; }
-.percentage-info p { margin: 0; color: var(--terms-muted); }
-.percentage-info ul { margin: 0; padding-left: 1.4em; color: var(--terms-muted); }
+.percentage-info p,
+.percentage-one-point p,
+.percentage-related-intro { margin: 0; color: var(--terms-muted); }
+.percentage-support-list { margin: 0; padding-left: 1.4em; color: var(--terms-muted); }
+.percentage-support-list li + li { margin-top: 8px; }
+.percentage-one-point { border-color: #c8d9bd; background: linear-gradient(135deg, #f5faf1, #fff); box-shadow: none; }
+.percentage-related-intro { margin-bottom: 18px; }
+.percentage-related-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.percentage-related-grid a { display: flex; min-width: 0; min-height: 92px; flex-direction: column; justify-content: center; padding: 16px; border: 1px solid #d6e2d0; border-radius: 14px; background: #fbfdf9; color: var(--terms-green-dark); text-decoration: none; transition: transform .18s, border-color .18s, box-shadow .18s; }
+.percentage-related-grid a:hover { border-color: var(--terms-green); box-shadow: 0 8px 18px rgba(67, 91, 49, .12); transform: translateY(-2px); }
+.percentage-related-grid strong { font-size: 1rem; }
+.percentage-related-grid span { margin-top: 4px; color: var(--terms-muted); font-size: .86rem; line-height: 1.55; }
 
 @media (max-width: 720px) {
   .percentage-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -2148,10 +2157,12 @@ a { color: var(--terms-green-dark); }
   .percentage-main { padding: 28px 16px 56px; }
   .percentage-card { padding: 20px 16px; border-radius: 18px; }
   .percentage-tabs,
-  .percentage-form-grid { grid-template-columns: 1fr; }
+  .percentage-form-grid,
+  .percentage-related-grid { grid-template-columns: 1fr; }
   .percentage-form-buttons { flex-direction: column; }
   .percentage-form-buttons button,
   .percentage-copy { width: 100%; }
+  .percentage-support-list { padding-left: 1.2em; }
 }
 
 /* =========================================================
