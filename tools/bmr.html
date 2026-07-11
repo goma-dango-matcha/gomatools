@@ -26,7 +26,7 @@
   <link rel="icon" href="../favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
   <link rel="manifest" href="../site.webmanifest"><meta name="theme-color" content="#63843F">
-  <link rel="stylesheet" href="../css/style.css"><link rel="stylesheet" href="../assets/goma-ui.css?v=1.8"><script defer src="../assets/goma-ui.js?v=1.8"></script>
+  <link rel="stylesheet" href="../css/style.css"><link rel="stylesheet" href="../assets/goma-ui.css?v=2.4"><script defer src="../assets/goma-ui.js?v=2.3"></script>
 </head>
 <body>
   <!-- ====================== 共通ヘッダー ====================== -->
@@ -70,12 +70,42 @@
       <p class="bmr-copy-message" id="copyMessage" role="status" aria-live="polite"></p>
     </section>
 
-    <!-- ====================== 説明・注意事項 ====================== -->
-    <section class="bmr-card bmr-info" aria-labelledby="about-title">
-      <h2 id="about-title">このツールでできること</h2>
-      <p>年齢・性別・身長・体重を入力するだけで、基礎代謝量（BMR）の目安を計算できます。基礎代謝は、呼吸や体温維持など、何もしなくても生命維持のために使われるエネルギー量の目安です。</p>
-      <h2>注意事項</h2>
-      <p>結果は目安です。体格、筋肉量、生活習慣、健康状態などによって実際の消費エネルギーは変わります。医療・診断目的ではなく、健康管理やダイエットの参考として利用してください。</p>
+    <!-- ====================== 補足情報 ====================== -->
+    <section class="health-brand-section" aria-labelledby="support-title">
+      <h2 id="support-title">補足情報</h2>
+      <ul class="health-support-list">
+        <li>基礎代謝は、呼吸や体温維持など、生命を維持するために安静時でも消費されるエネルギーの目安です。</li>
+        <li>基礎代謝量は、年齢・性別・身長・体重に加え、筋肉量や体格によっても変わります。</li>
+        <li>1日の消費カロリー（TDEE）は、基礎代謝に日常生活や運動による消費を加えた目安です。</li>
+        <li>計算結果は医療上の診断ではなく、健康管理や食事・運動を考える際の参考としてご利用ください。</li>
+      </ul>
+    </section>
+
+    <!-- ====================== ゴマワンポイント ====================== -->
+    <section class="health-brand-section goma-one-point" aria-labelledby="one-point-title">
+      <h2 id="one-point-title">🍵 ゴマワンポイント</h2>
+      <p>基礎代謝は年齢や筋肉量によって変化します。数値だけでなく、睡眠や運動など毎日の生活習慣もあわせて見直すと健康管理に役立ちます。</p>
+    </section>
+
+    <!-- ====================== 関連するゴマ知識 ====================== -->
+    <section class="goma-related-knowledge" aria-labelledby="goma-related-knowledge-title">
+      <h2 id="goma-related-knowledge-title">💡 関連するゴマ知識</h2>
+      <p>基礎代謝の意味や役割、1日の消費カロリーとの違いを分かりやすく解説しています。</p>
+      <ul class="goma-related-knowledge-list">
+        <li><a href="../knowledge/what-is-basal-metabolism/">基礎代謝とは？</a></li>
+      </ul>
+    </section>
+
+    <!-- ====================== 関連ツール ====================== -->
+    <section class="goma-related-tools" aria-labelledby="goma-related-tools-title">
+      <h2 id="goma-related-tools-title">🔗 関連ツール</h2>
+      <p>基礎代謝をもとに、1日の消費エネルギーや食事の目安を確認できます。</p>
+      <ul class="goma-related-tools-list">
+        <li><a href="./tdee.html">1日の消費カロリー（TDEE）計算ツール</a></li>
+        <li><a href="./pfc-balance.html">PFCバランス計算ツール</a></li>
+        <li><a href="../bmi/">BMI計算ツール</a></li>
+        <li><a href="./calorie-burn.html">消費カロリー計算ツール</a></li>
+      </ul>
     </section>
 
     <!-- 健康・美容シリーズ：内容は assets/goma-ui.js で一元管理 -->
