@@ -105,10 +105,16 @@
     .schedule-table tr:last-child th, .schedule-table tr:last-child td { border-bottom: 0; }
 
     /* ======================
-       注意書き・関連ツール
+       ブランド改善セクション
     ====================== */
-    .notice-card { border-color: var(--warning-line); background: var(--warning); box-shadow: none; }
-    .notice-card p { margin: 5px 0; color: #625a45; }
+    .support-list { margin: 0; padding-left: 1.25em; }
+    .support-list li + li { margin-top: 8px; }
+    .goma-one-point { border-color: rgba(88, 124, 64, .24); background: linear-gradient(135deg, var(--green-light), #fff); }
+    .section-intro { margin: 0 0 18px; color: var(--muted); }
+    .knowledge-list { margin: 0; padding: 0; list-style: none; }
+    .knowledge-list a { display: block; padding: 16px 18px; color: var(--green-dark); border: 1px solid var(--line); border-radius: 14px; background: var(--green-soft); font-weight: 750; text-decoration: none; }
+    .knowledge-list a:hover { border-color: var(--green); }
+    .knowledge-list a:focus-visible { outline: 3px solid rgba(88, 124, 64, .35); outline-offset: 3px; }
     .privacy-card { box-shadow: none; background: var(--green-soft); }
     .privacy-card p { margin: 5px 0; color: var(--muted); }
     .related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -141,6 +147,7 @@
       .form-grid, .result-summary, .related-grid { grid-template-columns: 1fr; }
       .field-full { grid-column: auto; }
       .card { padding: 22px 18px; border-radius: 18px; }
+      .support-list { padding-left: 1.15em; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -202,8 +209,8 @@
       <section class="hero" aria-labelledby="page-title">
         <p class="eyebrow">入学年・卒業年をかんたん確認</p>
         <h1 id="page-title">🎓 学年・年齢・卒業年度計算</h1>
-        <p class="hero-catch">生年月日や卒業年から、進学時期の目安を計算。</p>
-        <p class="hero-description">生年月日や生まれ年から、現在の年齢や小学校・中学校・高校の入学年・卒業年を計算できます。</p>
+        <p class="hero-catch">学年・年齢・卒業年度を、まとめて確認。</p>
+        <p class="hero-description">生年月日や生まれ年から、現在の年齢と小学校・中学校・高校の入学年・卒業年を計算できます。</p>
       </section>
 
       <!-- ======================
@@ -272,12 +279,34 @@
       </section>
 
       <!-- ======================
-           注意書き
+           補足情報
       ====================== -->
-      <section class="section card notice-card" aria-labelledby="notice-title">
-        <h2 class="section-title" id="notice-title">⚠️ ご注意ください</h2>
-        <p>進学時期は一般的な日本の制度をもとにした目安です。実際の入学・卒業時期とは異なる場合があります。</p>
-        <p>留学・留年・飛び級・学校制度の違いなどは計算に含みません。</p>
+      <section class="section card" aria-labelledby="support-title">
+        <h2 class="section-title" id="support-title">補足情報</h2>
+        <ul class="support-list">
+          <li>学年は、4月2日から翌年4月1日までを同じ学年とする一般的な日本の学校制度を基準に計算します。</li>
+          <li>入学年・卒業年は、一般的な進級スケジュールをもとにした目安です。</li>
+          <li>留学・留年・飛び級や、学校・地域・制度による違いは計算に含みません。</li>
+        </ul>
+      </section>
+
+      <!-- ======================
+           ゴマワンポイント
+      ====================== -->
+      <section class="section card goma-one-point" aria-labelledby="goma-one-point-title">
+        <h2 class="section-title" id="goma-one-point-title">🍵 ゴマワンポイント</h2>
+        <p>入学手続きや受験では、学年だけでなく対象年齢の確認が必要になる場合があります。学校や自治体の案内に基準日が書かれているときは、あわせて確認すると安心です。</p>
+      </section>
+
+      <!-- ======================
+           関連するゴマ知識
+      ====================== -->
+      <section class="section card" aria-labelledby="knowledge-title">
+        <h2 class="section-title" id="knowledge-title">💡 関連するゴマ知識</h2>
+        <p class="section-intro">満年齢や数え年など、年齢の数え方を分かりやすく紹介しています。</p>
+        <ul class="knowledge-list">
+          <li><a href="../knowledge/age-counting/">年齢の数え方について</a></li>
+        </ul>
       </section>
 
       <!-- ======================
@@ -293,23 +322,14 @@
            関連ツール
       ====================== -->
       <section class="section" aria-labelledby="related-title">
-        <h2 class="section-title" id="related-title">おすすめの便利ツール</h2>
+        <h2 class="section-title" id="related-title">🔗 関連ツール</h2>
+        <p class="section-intro">年齢や日付を続けて確認するときに役立つツールです。</p>
         <div class="card related-grid">
           <a class="related-item related-link" href="../age/"><span class="related-name">🎂 年齢・日付計算</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../business-days/"><span class="related-name">📅 営業日計算</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../tax/"><span class="related-name">💰 消費税計算</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../warikan/"><span class="related-name">👥 割り勘計算</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../qrcode/"><span class="related-name">📱 QRコード生成</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../wareki/"><span class="related-name">📅 和暦・西暦変換</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../text-counter/"><span class="related-name">✍️ 文字数カウント</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../password/"><span class="related-name">🔐 パスワード生成</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../compound-interest/"><span class="related-name">📈 複利計算</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../unit-converter/"><span class="related-name">📏 単位変換ツール</span><span class="related-status">公開中</span></a>
           <a class="related-item related-link" href="../birthday-countdown/"><span class="related-name">🎉 誕生日カウント</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../days-calculator/"><span class="related-name">📆 日数計算ツール</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../random-picker/"><span class="related-name">📋 ランダム抽選ツール</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../discount-calculator/"><span class="related-name">💹 割引率計算ツール</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../calculator/"><span class="related-name">🧮 電卓ツール</span><span class="related-status">公開中</span></a>
+          <a class="related-item related-link" href="../days-calculator/"><span class="related-name">📆 日数計算</span><span class="related-status">公開中</span></a>
+          <a class="related-item related-link" href="../tools/today/"><span class="related-name">📅 今日の情報</span><span class="related-status">公開中</span></a>
+          <a class="related-item related-link" href="../wareki/"><span class="related-name">📅 和暦・西暦変換</span><span class="related-status">公開中</span></a>
         </div>
       </section>
     </div>
