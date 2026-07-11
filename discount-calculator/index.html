@@ -72,10 +72,13 @@
     .payment-ratio { margin:14px 0 0; padding:14px 16px; color:var(--green-dark); border:1px solid var(--line); border-radius:14px; background:#fff; text-align:center; font-weight:850; }
     .result-note { margin:12px 0 0; color:var(--muted); font-size:.8rem; text-align:center; }
 
-    /* ====================== 補足・関連ツール ====================== */
-    .info-card { box-shadow:none; background:var(--green-soft); }
-    .info-card p { margin:5px 0; color:var(--muted); }
-    .related-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    /* ====================== ブランド改善セクション ====================== */
+    .support-list { margin:0; padding-left:1.25em; color:var(--muted); }
+    .support-list li + li { margin-top:8px; }
+    .one-point-card { border-color:rgba(88,124,64,.28); background:linear-gradient(135deg,#f5faf1,#fff); box-shadow:none; }
+    .one-point-card p,.section-intro { margin:0; color:var(--muted); }
+    .section-intro { margin-bottom:18px; }
+    .related-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
     .related-item { padding:19px; border:1px solid var(--line); border-radius:15px; background:var(--green-soft); }
     .related-name { display:block; font-weight:800; }
     .related-status { display:block; margin-top:4px; color:var(--muted); font-size:.78rem; }
@@ -90,7 +93,7 @@
     .footer-assurance { max-width:620px; margin:28px auto 0; padding-top:26px; border-top:1px solid var(--line); font-size:.78rem; line-height:1.8; }
     .updated { margin-top:18px; font-size:.72rem; }
     @media (max-width:700px) { .related-grid{grid-template-columns:1fr} }
-    @media (max-width:620px) { .container{width:min(100% - 24px,880px)} .site-header{padding:18px 0} .header-inner{align-items:flex-start} .brand-wrap{flex-direction:column;gap:0} main{padding:58px 0 76px} .section{margin-top:54px} .card{padding:22px 18px;border-radius:18px} .form-grid,.result-grid{grid-template-columns:1fr} }
+    @media (max-width:620px) { .container{width:min(100% - 24px,880px)} .site-header{padding:18px 0} .header-inner{align-items:flex-start} .brand-wrap{flex-direction:column;gap:0} main{padding:58px 0 76px} .section{margin-top:54px} .card{padding:22px 18px;border-radius:18px} .form-grid,.result-grid{grid-template-columns:1fr} .support-list{padding-left:1.15em} }
     @media (prefers-reduced-motion:reduce) { html{scroll-behavior:auto} *,*::before,*::after{transition:none!important} }
   </style>
   <link rel="stylesheet" href="../assets/goma-ui.css?v=2.2">
@@ -132,7 +135,7 @@
 
   <main><div class="container">
     <!-- ====================== ヒーロー ====================== -->
-    <section class="hero" aria-labelledby="page-title"><p class="eyebrow">セール価格をリアルタイム計算</p><h1 id="page-title">💹 割引率計算ツール</h1><p class="hero-description">商品の割引後価格・割引額・割引率を簡単に計算できます。</p></section>
+    <section class="hero" aria-labelledby="page-title"><p class="eyebrow">セール価格をリアルタイム計算</p><h1 id="page-title">💹 割引率計算ツール</h1><p class="hero-description">割引率や割引後の価格、割引額を簡単に計算できます。</p></section>
 
     <!-- ====================== 計算エリア ====================== -->
     <section class="section" aria-labelledby="calculator-title"><h2 class="section-title" id="calculator-title">計算方法を選ぶ</h2><div class="card">
@@ -145,11 +148,14 @@
       <div class="calculator-panel" id="reversePanel" role="tabpanel" aria-labelledby="reverseTab" hidden><h3 class="panel-title">割引率を逆算</h3><div class="form-grid"><div><label for="reverseOriginalPrice">元の価格（円）</label><input type="number" id="reverseOriginalPrice" min="1" max="999999999999999" step="1" inputmode="numeric" placeholder="例：5000"><p class="input-preview" id="reverseOriginalPreview"></p></div><div><label for="salePrice">割引後価格（円）</label><input type="number" id="salePrice" min="0" max="999999999999999" step="1" inputmode="numeric" placeholder="例：3500"><p class="input-preview" id="salePreview"></p></div></div><p class="error" id="reverseError" role="alert"></p><div class="result-panel" id="reverseResult" aria-live="polite" hidden><div class="saving-card"><span class="saving-icon">💹</span><span class="result-label">割引率</span><strong class="saving-value" id="reverseRate">—</strong></div><div class="result-grid"><div class="result-item"><span class="result-label">💰 割引額</span><strong class="result-value" id="reverseSaving">—</strong></div><div class="result-item"><span class="result-label">💳 支払額</span><strong class="result-value" id="reversePayment">—</strong></div></div><p class="payment-ratio" id="reversePaymentRatio">📊 元の価格の—％を支払います</p></div></div>
     </div></section>
 
-    <!-- ====================== 補足 ====================== -->
-    <section class="section card info-card" aria-labelledby="info-title"><h2 class="section-title" id="info-title">🍵 計算について</h2><p>入力内容に応じて結果をリアルタイムで更新します。</p><p>入力内容と計算処理はブラウザ内だけで行われ、サーバーへ送信・保存しません。</p></section>
+    <!-- ====================== 補足情報 ====================== -->
+    <section class="section card" aria-labelledby="support-title"><h2 class="section-title" id="support-title">補足情報</h2><ul class="support-list"><li>割引率・割引額・割引後の価格を計算できます。</li><li>計算結果は、入力した金額と割引率をもとに表示します。</li><li>割引額の1円未満は切り捨てて計算するため、実際の販売価格と異なる場合があります。</li></ul></section>
+
+    <!-- ====================== ゴマワンポイント ====================== -->
+    <section class="section card one-point-card" aria-labelledby="one-point-title"><h2 class="section-title" id="one-point-title">🍵 ゴマワンポイント</h2><p>セール価格を比べるときは、割引率だけでなく実際の割引額も確認すると分かりやすくなります。複数の割引は単純に足し合わせず、表示価格が税込か税抜かも確かめると安心です。</p></section>
 
     <!-- ====================== 関連ツール ====================== -->
-    <section class="section" aria-labelledby="related-title"><h2 class="section-title" id="related-title">おすすめの便利ツール</h2><div class="card related-grid"><a class="related-item related-link" href="../tax/"><span class="related-name">💰 消費税計算</span><span class="related-status">公開中</span></a><a class="related-item related-link" href="../warikan/"><span class="related-name">👥 割り勘計算</span><span class="related-status">公開中</span></a><a class="related-item related-link" href="../compound-interest/"><span class="related-name">📈 複利計算</span><span class="related-status">公開中</span></a><a class="related-item related-link" href="../calculator/"><span class="related-name">🧮 電卓ツール</span><span class="related-status">公開中</span></a></div></section>
+    <section class="section" aria-labelledby="related-title"><h2 class="section-title" id="related-title">🔗 関連ツール</h2><p class="section-intro">買い物や金額の確認に役立つツールです。</p><div class="card related-grid"><a class="related-item related-link" href="../tax/"><span class="related-name">消費税計算</span><span class="related-status">税込・税抜・消費税額を確認</span></a><a class="related-item related-link" href="../tools/percentage-calculator.html"><span class="related-name">パーセント計算</span><span class="related-status">割合や増減率を確認</span></a><a class="related-item related-link" href="../net-income-calculator/"><span class="related-name">手取り税込逆算</span><span class="related-status">手取り額から必要金額を逆算</span></a><a class="related-item related-link" href="../warikan/"><span class="related-name">割り勘計算</span><span class="related-status">人数ごとの支払額を確認</span></a><a class="related-item related-link" href="../interest-calculator/"><span class="related-name">利息計算</span><span class="related-status">利息と返済総額を確認</span></a></div></section>
     <section data-money-series data-current="discount-calculator"></section>
   </div></main>
 
