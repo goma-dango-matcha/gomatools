@@ -158,6 +158,14 @@
     .answer-note { max-width: 760px; margin: 18px auto 0; color: var(--muted); font-size: .9rem; text-align: center; }
     .answer-note p { margin: 5px 0; }
     .brand-note { color: var(--green-dark); font-weight: 800; }
+    .knowledge-coming-soon {
+      margin: 14px 0 0;
+      padding: 14px 16px;
+      border-left: 4px solid var(--green);
+      border-radius: 0 12px 12px 0;
+      background: var(--green-soft);
+      color: var(--muted);
+    }
     .support-list { margin: 0; padding-left: 1.25em; }
     .support-list li + li { margin-top: 6px; }
     .faq-list { display: grid; gap: 12px; }
@@ -188,6 +196,9 @@
       .mini-day { min-height: 50px; padding: 5px 3px; border-radius: 10px; }
       .mini-date { min-width: 22px; height: 22px; font-size: .8rem; }
       .mini-label { margin-top: 3px; font-size: .54rem; }
+      .answer-note { text-align: left; }
+      .answer-note p { margin: 8px 0; }
+      .support-list { padding-left: 1.15em; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -345,16 +356,15 @@
         </div>
 
         <div class="answer-note">
-          <p>次の日本の祝日を、開くだけで確認できます。</p>
-          <p>祝日名だけでなく、曜日やあと何日あるかもまとめて表示します。</p>
+          <p>次の祝日と日付・曜日・残り日数を、ひとつの画面で見通せます。</p>
           <p class="brand-note">毎日の「今知りたい」を、迷わずすぐに確認できるようにまとめています。</p>
-          <p>表示内容は、お使いの端末の日付をもとに自動で更新しています。</p>
         </div>
       </section>
 
       <section class="section card" aria-labelledby="support-title">
         <h2 class="section-title" id="support-title">補足情報</h2>
         <ul class="support-list">
+          <li>表示内容は、お使いの端末の日付をもとに自動で更新します。</li>
           <li>今日が祝日の場合は、その祝日を表示します。</li>
           <li>振替休日も祝日データに含めて判定しています。</li>
           <li>祝日が土曜日と重なる場合は、振替休日にならない年もあります。</li>
@@ -363,16 +373,16 @@
 
       <section class="section card goma-one-point" aria-labelledby="goma-one-point-title">
         <h2 class="section-title" id="goma-one-point-title">🍵 ゴマワンポイント</h2>
-        <p>祝日が土曜日と重なる場合は振替休日にならないため、連休にならない年もあります。</p>
+        <p>祝日を含む予定は、早めにカレンダーへ入れておくと準備しやすくなります。連休に移動や予約を考えている場合は、混み合う前に候補日を決めておくと安心です。</p>
       </section>
 
       <section class="section card goma-related-knowledge" aria-labelledby="goma-related-knowledge-title">
         <h2 class="section-title" id="goma-related-knowledge-title">💡 関連するゴマ知識</h2>
-        <p>祝日や日付に関連する知識を、あわせて確認できます。</p>
+        <p>祝日と予定を考えるときに役立つ知識を、あわせて確認できます。</p>
         <ul class="goma-related-knowledge-list">
           <li><a href="../../knowledge/business-days/">営業日はどう決まる？</a></li>
-          <li><a href="../../knowledge/leap-year/">うるう年とは？</a></li>
         </ul>
+        <p class="knowledge-coming-soon">日本の祝日の仕組みや振替休日・国民の休日についての記事は、公開後にこの場所から確認できるようにします。</p>
       </section>
 
       <section class="section card goma-related-tools" aria-labelledby="goma-related-tools-title">
@@ -382,6 +392,7 @@
           <li><a href="../today/">今日の情報</a></li>
           <li><a href="../month-calendar/">今月のカレンダー</a></li>
           <li><a href="../../business-days/">営業日計算ツール</a></li>
+          <li><a href="../../days-calculator/">日数計算ツール</a></li>
         </ul>
       </section>
 
@@ -622,4 +633,3 @@
   </script>
 </body>
 </html>
-
