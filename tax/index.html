@@ -107,11 +107,13 @@
     .copy-status { min-height: 1.5em; margin: 8px 0 0; color: var(--green); font-size: .86rem; font-weight: 750; text-align: center; }
 
     /* ======================
-       注意書き
+       ブランド改善セクション
     ====================== */
-    .notice-card { border-color: var(--warning-line); background: var(--warning); box-shadow: none; }
-    .notice-card .section-title { margin-bottom: 12px; }
-    .notice-card p { margin: 5px 0; color: #625a45; }
+    .support-list { margin: 0; padding-left: 1.25em; }
+    .support-list li + li { margin-top: 8px; }
+    .goma-one-point { border-color: rgba(88, 124, 64, .28); background: linear-gradient(135deg, #f5faF1, #fff); box-shadow: none; }
+    .goma-one-point p, .section-intro { margin: 0; color: var(--muted); }
+    .section-intro { margin-bottom: 18px; }
 
     /* ======================
        ゴマツールの約束
@@ -170,6 +172,7 @@
       .card { padding: 22px 18px; border-radius: 18px; }
       .field-full { grid-column: auto; }
       .result-meta { flex-direction: column; gap: 2px; }
+      .support-list { padding-left: 1.15em; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -231,8 +234,8 @@
       <section class="hero" aria-labelledby="page-title">
         <p class="eyebrow">30秒でかんたん計算</p>
         <h1 id="page-title">💰 消費税計算</h1>
-        <p class="hero-catch">税込・税抜・消費税額をかんたん計算。</p>
-        <p class="hero-description">金額と税率を入力すると、税込金額・税抜金額・消費税額を計算できます。<br>10%・8%に加えて、将来の税率変更にも対応しやすい自由入力にも対応しています。</p>
+        <p class="hero-catch">税込・税抜・消費税額を、まとめて確認。</p>
+        <p class="hero-description">金額と税率を入力すると、税込価格・税抜価格・消費税額を簡単に計算できます。</p>
       </section>
 
       <!-- ======================
@@ -313,13 +316,20 @@
       </section>
 
       <!-- ======================
-           注意書き
+           補足情報・ゴマワンポイント
       ====================== -->
-      <section class="section card notice-card" aria-labelledby="notice-title">
-        <h2 class="section-title" id="notice-title">⚠️ ご注意ください</h2>
-        <p>このツールは一般的な消費税計算を行うためのものです。</p>
-        <p>実際の請求・会計・税務処理では、端数処理や計算方法が異なる場合があります。</p>
-        <p>必要に応じて、事業者・会計ソフト・税理士などの基準も確認してください。</p>
+      <section class="section card" aria-labelledby="support-title">
+        <h2 class="section-title" id="support-title">補足情報</h2>
+        <ul class="support-list">
+          <li>税込価格・税抜価格・消費税額を、選択した計算方法に合わせて表示します。</li>
+          <li>計算結果は、選択した消費税率と端数処理をもとに算出します。</li>
+          <li>実際の税額は、取引内容や事業者ごとの端数処理によって異なる場合があります。</li>
+        </ul>
+      </section>
+
+      <section class="section card goma-one-point" aria-labelledby="one-point-title">
+        <h2 class="section-title" id="one-point-title">🍵 ゴマワンポイント</h2>
+        <p>買い物や見積書を確認するときは、表示金額が税込か税抜かを確かめると安心です。複数の商品では、端数処理の方法によって合計金額が変わる場合があります。</p>
       </section>
 
       <!-- ======================
@@ -354,23 +364,14 @@
            関連ツール
       ====================== -->
       <section class="section" aria-labelledby="related-title">
-        <h2 class="section-title" id="related-title">おすすめの便利ツール</h2>
+        <h2 class="section-title" id="related-title">🔗 関連ツール</h2>
+        <p class="section-intro">金額や割合を確認するときに役立つツールです。</p>
         <div class="card related-grid">
-          <a class="related-item related-link" href="../age/"><span class="related-name">🎂 年齢・日付計算</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../business-days/"><span class="related-name">📅 営業日計算</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../warikan/"><span class="related-name">👥 割り勘計算</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../qrcode/"><span class="related-name">📱 QRコード生成</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../school-year/"><span class="related-name">🎓 学年・年齢・卒業年度計算</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../wareki/"><span class="related-name">📅 和暦・西暦変換</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../text-counter/"><span class="related-name">✍️ 文字数カウント</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../password/"><span class="related-name">🔐 パスワード生成</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../compound-interest/"><span class="related-name">📈 複利計算</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../unit-converter/"><span class="related-name">📏 単位変換ツール</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../birthday-countdown/"><span class="related-name">🎉 誕生日カウント</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../days-calculator/"><span class="related-name">📆 日数計算ツール</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../random-picker/"><span class="related-name">📋 ランダム抽選ツール</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../discount-calculator/"><span class="related-name">💹 割引率計算ツール</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../calculator/"><span class="related-name">🧮 電卓ツール</span><span class="related-status">公開中</span></a>
+          <a class="related-item related-link" href="../tools/percentage-calculator.html"><span class="related-name">パーセント計算</span><span class="related-status">割合や増減率を確認</span></a>
+          <a class="related-item related-link" href="../discount-calculator/"><span class="related-name">割引率計算</span><span class="related-status">割引後の価格を確認</span></a>
+          <a class="related-item related-link" href="../net-income-calculator/"><span class="related-name">手取り税込逆算</span><span class="related-status">手取り額から必要金額を逆算</span></a>
+          <a class="related-item related-link" href="../interest-calculator/"><span class="related-name">利息計算</span><span class="related-status">利息と返済総額を確認</span></a>
+          <a class="related-item related-link" href="../warikan/"><span class="related-name">割り勘計算</span><span class="related-status">人数ごとの支払額を確認</span></a>
         </div>
       </section>
       <section data-money-series data-current="tax"></section>
