@@ -131,6 +131,14 @@
     .answer-note { max-width: 760px; margin: 18px auto 0; color: var(--muted); font-size: .9rem; text-align: center; }
     .answer-note p { margin: 5px 0; }
     .brand-note { color: var(--green-dark); font-weight: 800; }
+    .knowledge-coming-soon {
+      margin: 14px 0 0;
+      padding: 14px 16px;
+      border-left: 4px solid var(--green);
+      border-radius: 0 12px 12px 0;
+      background: var(--green-soft);
+      color: var(--muted);
+    }
     .support-list { margin: 0; padding-left: 1.25em; }
     .support-list li + li { margin-top: 6px; }
     .faq-list { display: grid; gap: 12px; }
@@ -164,6 +172,9 @@
       .holiday-name { margin-top: 4px; font-size: .58rem; line-height: 1.25; }
       .today-badge { margin-top: 3px; font-size: .58rem; }
       .calendar-sentence { font-size: .86rem; }
+      .answer-note { text-align: left; }
+      .answer-note p { margin: 8px 0; }
+      .support-list { padding-left: 1.15em; }
     }
     @media (max-width: 380px) {
       .container { width: min(100% - 18px, 980px); }
@@ -311,16 +322,15 @@
         </div>
 
         <div class="answer-note">
-          <p>今月のカレンダーを、開くだけで確認できます。</p>
-          <p>今日の日付や祝日も見やすく表示し、予定の確認にも役立ちます。</p>
+          <p>今月の日付・曜日・土日・祝日の並びを、ひとつの画面で見通せます。</p>
           <p class="brand-note">毎日の「今知りたい」を、迷わずすぐに確認できるようにまとめています。</p>
-          <p>表示内容は、お使いの端末の日付をもとに自動で更新しています。</p>
         </div>
       </section>
 
       <section class="section card" aria-labelledby="support-title">
         <h2 class="section-title" id="support-title">補足情報</h2>
         <ul class="support-list">
+          <li>表示する月と今日の日付は、お使いの端末の日付をもとに自動で更新します。</li>
           <li>今日の日付は、カレンダー内で最も目立つように表示します。</li>
           <li>祝日は日本の祝日データをもとに表示しています。</li>
           <li>前月・翌月の日付は薄く表示し、今月の日付と見分けやすくしています。</li>
@@ -329,17 +339,16 @@
 
       <section class="section card goma-one-point" aria-labelledby="goma-one-point-title">
         <h2 class="section-title" id="goma-one-point-title">🍵 ゴマワンポイント</h2>
-        <p>祝日は法律の改正により変更されることがあります。予定を立てるときは最新情報も確認しましょう。</p>
+        <p>月のはじめに大切な予定と締め切りをカレンダーで見渡すと、準備の順番を決めやすくなります。祝日を含む週は、いつもより少し早めに予定を確認しておくと安心です。</p>
       </section>
 
       <section class="section card goma-related-knowledge" aria-labelledby="goma-related-knowledge-title">
         <h2 class="section-title" id="goma-related-knowledge-title">💡 関連するゴマ知識</h2>
-        <p>日付や祝日に関連する知識を、あわせて確認できます。</p>
+        <p>予定を考えるときに役立つ日付や営業日の知識を、あわせて確認できます。</p>
         <ul class="goma-related-knowledge-list">
           <li><a href="../../knowledge/business-days/">営業日はどう決まる？</a></li>
-          <li><a href="../../knowledge/leap-year/">うるう年とは？</a></li>
-          <li><a href="../../knowledge/age-counting/">年齢の数え方について</a></li>
         </ul>
+        <p class="knowledge-coming-soon">カレンダーの見方や曜日の仕組み、祝日の考え方についての記事は、公開後にこの場所から確認できるようにします。</p>
       </section>
 
       <section class="section card goma-related-tools" aria-labelledby="goma-related-tools-title">
