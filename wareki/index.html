@@ -85,10 +85,16 @@
     .result-sentence { margin: 10px 0 0; color: var(--muted); font-size: .87rem; }
 
     /* ======================
-       注意書き・関連ツール
+       ブランド改善セクション
     ====================== */
-    .notice-card { border-color: var(--warning-line); background: var(--warning); box-shadow: none; }
-    .notice-card p { margin: 5px 0; color: #625a45; }
+    .support-list { margin: 0; padding-left: 1.25em; }
+    .support-list li + li { margin-top: 8px; }
+    .goma-one-point { border-color: rgba(88, 124, 64, .24); background: linear-gradient(135deg, var(--green-light), #fff); }
+    .section-intro { margin: 0 0 18px; color: var(--muted); }
+    .knowledge-list { margin: 0; padding: 0; list-style: none; }
+    .knowledge-list a { display: block; padding: 16px 18px; color: var(--green-dark); border: 1px solid var(--line); border-radius: 14px; background: var(--green-soft); font-weight: 750; text-decoration: none; }
+    .knowledge-list a:hover { border-color: var(--green); }
+    .knowledge-list a:focus-visible { outline: 3px solid rgba(88, 124, 64, .35); outline-offset: 3px; }
     .privacy-card { box-shadow: none; background: var(--green-soft); }
     .privacy-card p { margin: 5px 0; color: var(--muted); }
     .related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -117,6 +123,7 @@
       .section { margin-top: 54px; }
       .card { padding: 22px 18px; border-radius: 18px; }
       .related-grid, .era-inputs { grid-template-columns: 1fr; }
+      .support-list { padding-left: 1.15em; }
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; } }
   </style>
@@ -175,8 +182,8 @@
       <section class="hero" aria-labelledby="page-title">
         <p class="eyebrow">明治・大正・昭和・平成・令和に対応</p>
         <h1 id="page-title">📅 和暦・西暦変換</h1>
-        <p class="hero-catch">元号と西暦を、かんたん相互変換。</p>
-        <p class="hero-description">西暦から和暦、和暦から西暦をかんたんに変換できます。<br>明治・大正・昭和・平成・令和に対応しています。</p>
+        <p class="hero-catch">和暦と西暦を、かんたん相互変換。</p>
+        <p class="hero-description">西暦から和暦、和暦から西暦を簡単に変換できます。明治・大正・昭和・平成・令和に対応しています。</p>
       </section>
 
       <!-- ======================
@@ -240,12 +247,34 @@
       </section>
 
       <!-- ======================
-           注意書き・プライバシー
+           補足情報
       ====================== -->
-      <section class="section card notice-card" aria-labelledby="notice-title">
-        <h2 class="section-title" id="notice-title">⚠️ ご注意ください</h2>
-        <p>年単位での目安変換です。改元年は同じ年に複数の元号が含まれる場合があります。</p>
-        <p>日付まで指定した厳密な改元日の判定には対応していません。</p>
+      <section class="section card" aria-labelledby="support-title">
+        <h2 class="section-title" id="support-title">補足情報</h2>
+        <ul class="support-list">
+          <li>和暦と西暦を年単位で相互に変換します。</li>
+          <li>改元された年は、同じ西暦年に複数の元号を表示する場合があります。</li>
+          <li>日付まで指定した厳密な改元日の判定には対応していません。</li>
+        </ul>
+      </section>
+
+      <!-- ======================
+           ゴマワンポイント
+      ====================== -->
+      <section class="section card goma-one-point" aria-labelledby="goma-one-point-title">
+        <h2 class="section-title" id="goma-one-point-title">🍵 ゴマワンポイント</h2>
+        <p>履歴書や契約書、公的な申請書では、和暦・西暦のどちらかを指定される場合があります。記入前に書類の指定を確認すると安心です。</p>
+      </section>
+
+      <!-- ======================
+           関連するゴマ知識
+      ====================== -->
+      <section class="section card" aria-labelledby="knowledge-title">
+        <h2 class="section-title" id="knowledge-title">💡 関連するゴマ知識</h2>
+        <p class="section-intro">西暦の日付にも関係する、うるう年の仕組みを分かりやすく紹介しています。</p>
+        <ul class="knowledge-list">
+          <li><a href="../knowledge/leap-year/">うるう年とは？</a></li>
+        </ul>
       </section>
 
       <section class="section card privacy-card" aria-labelledby="privacy-title">
@@ -258,23 +287,14 @@
            関連ツール
       ====================== -->
       <section class="section" aria-labelledby="related-title">
-        <h2 class="section-title" id="related-title">おすすめの便利ツール</h2>
+        <h2 class="section-title" id="related-title">🔗 関連ツール</h2>
+        <p class="section-intro">年齢や日付を続けて確認するときに役立つツールです。</p>
         <div class="card related-grid">
           <a class="related-item related-link" href="../age/"><span class="related-name">🎂 年齢・日付計算</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../business-days/"><span class="related-name">📅 営業日計算</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../tax/"><span class="related-name">💰 消費税計算</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../warikan/"><span class="related-name">👥 割り勘計算</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../qrcode/"><span class="related-name">📱 QRコード生成</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../school-year/"><span class="related-name">🎓 学年・年齢・卒業年度計算</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../text-counter/"><span class="related-name">✍️ 文字数カウント</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../password/"><span class="related-name">🔐 パスワード生成</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../compound-interest/"><span class="related-name">📈 複利計算</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../unit-converter/"><span class="related-name">📏 単位変換ツール</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../birthday-countdown/"><span class="related-name">🎉 誕生日カウント</span><span class="related-status">公開中</span></a>
+          <a class="related-item related-link" href="../tools/today/"><span class="related-name">📅 今日の情報</span><span class="related-status">公開中</span></a>
+          <a class="related-item related-link" href="../tools/month-calendar/"><span class="related-name">🗓 今月のカレンダー</span><span class="related-status">公開中</span></a>
           <a class="related-item related-link" href="../days-calculator/"><span class="related-name">📆 日数計算ツール</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../random-picker/"><span class="related-name">📋 ランダム抽選ツール</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../discount-calculator/"><span class="related-name">💹 割引率計算ツール</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../calculator/"><span class="related-name">🧮 電卓ツール</span><span class="related-status">公開中</span></a>
+          <a class="related-item related-link" href="../school-year/"><span class="related-name">🎓 学年・年齢・卒業年度計算</span><span class="related-status">公開中</span></a>
         </div>
       </section>
     </div>
