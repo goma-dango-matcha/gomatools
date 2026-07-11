@@ -138,6 +138,15 @@
     .answer-note p { margin: 5px 0; }
     .brand-note { color: var(--green-dark); font-weight: 800; }
 
+    .knowledge-coming-soon {
+      margin: 14px 0 0;
+      padding: 14px 16px;
+      border-left: 4px solid var(--green);
+      border-radius: 0 12px 12px 0;
+      background: var(--green-soft);
+      color: var(--muted);
+    }
+
     .copy-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 22px; }
     .copy-button {
       min-height: 48px;
@@ -175,6 +184,9 @@
       .info-grid { grid-template-columns: 1fr; }
       .copy-actions { flex-direction: column; align-items: center; }
       .copy-button { width: min(100%, 320px); }
+      .answer-note { text-align: left; }
+      .answer-note p { margin: 8px 0; }
+      .support-list { padding-left: 1.15em; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -319,36 +331,30 @@
         </div>
 
         <div class="answer-note">
-          <p>ページを開くだけで、今日の日付と曜日がすぐに分かります。</p>
-          <p>今年の何日目か、残り日数もまとめて確認できます。</p>
+          <p>今日の日付・曜日・和暦と、今年の経過や残り日数をまとめて確認できます。</p>
           <p class="brand-note">毎日の「今知りたい」を、迷わずすぐに確認できるようにまとめています。</p>
-          <p>表示内容は、お使いの端末の日時をもとに自動で更新しています。</p>
-          <p>端末の日時設定が正しくない場合、表示結果も正しくならないことがあります。</p>
         </div>
       </section>
 
       <section class="section card" aria-labelledby="support-title">
         <h2 class="section-title" id="support-title">補足情報</h2>
         <ul class="support-list">
+          <li>表示内容は、お使いの端末の日時をもとに自動で更新します。</li>
           <li>今年の残り日数は、今日を含めずに計算しています。</li>
           <li>うるう年の場合は、2月29日を含めて日数を計算します。</li>
-          <li>書類に日付を書くときは、西暦と和暦の指定を確認すると安心です。</li>
+          <li>日付が違う場合は、端末の日時・タイムゾーン設定をご確認ください。</li>
         </ul>
       </section>
 
       <section class="section card goma-one-point" aria-labelledby="goma-one-point-title">
         <h2 class="section-title" id="goma-one-point-title">🍵 ゴマワンポイント</h2>
-        <p>日付を書く書類では、西暦と和暦のどちらを指定されているか確認すると安心です。</p>
+        <p>予定を立てるときは、今日を起点に「いつまでに」「何日後に」を決めると動きやすくなります。書類へ日付を書く場合は、西暦と和暦の指定も確認しておくと安心です。</p>
       </section>
 
       <section class="section card goma-related-knowledge" aria-labelledby="goma-related-knowledge-title">
         <h2 class="section-title" id="goma-related-knowledge-title">💡 関連するゴマ知識</h2>
-        <p>このツールに関連する知識を、あわせて確認できます。</p>
-        <ul class="goma-related-knowledge-list">
-          <li><a href="../../knowledge/leap-year/">うるう年とは？</a></li>
-          <li><a href="../../knowledge/age-counting/">年齢の数え方について</a></li>
-          <li><a href="../../knowledge/business-days/">営業日はどう決まる？</a></li>
-        </ul>
+        <p>日付や暦をもっと身近に活用できるゴマ知識を、順次追加します。</p>
+        <p class="knowledge-coming-soon">うるう年の仕組みや曜日の決まり方など、今日の情報に関連する記事を公開後、この場所からすぐに確認できるようにします。</p>
       </section>
 
       <section class="section card goma-related-tools" aria-labelledby="goma-related-tools-title">
@@ -358,6 +364,7 @@
           <li><a href="../next-holiday/">次の祝日</a></li>
           <li><a href="../month-calendar/">今月のカレンダー</a></li>
           <li><a href="../../days-calculator/">日数計算ツール</a></li>
+          <li><a href="../../birthday-countdown/">誕生日カウント</a></li>
         </ul>
       </section>
 
