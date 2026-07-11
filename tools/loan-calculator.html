@@ -35,7 +35,7 @@
   <meta name="theme-color" content="#63843F">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../assets/goma-ui.css?v=2.2">
-  <script defer src="../assets/goma-ui.js?v=2.2"></script>
+  <script defer src="../assets/goma-ui.js?v=2.3"></script>
 </head>
 <body>
   <header><div class="goma-header-inner">
@@ -47,7 +47,7 @@
     <section class="loan-hero" aria-labelledby="page-title">
       <p class="loan-eyebrow">💰 お金・計算</p>
       <h1 id="page-title">ローン返済シミュレーター</h1>
-      <p>借入金額・金利・返済期間から、毎月返済額・総返済額・利息総額の目安を簡単に計算できます。</p>
+      <p>借入金額・金利・返済期間から、毎月の返済額や返済総額を簡単に確認できます。</p>
     </section>
 
     <section class="loan-card" aria-labelledby="input-title">
@@ -85,23 +85,13 @@
       <p class="loan-copy-message" id="copyMessage" role="status" aria-live="polite"></p>
     </section>
 
-    <section class="loan-card loan-related" aria-labelledby="related-title">
-      <h2 id="related-title">関連するお金の計算</h2>
-      <p>利息だけを確認したい場合や、資産運用の複利計算には関連ツールもご利用ください。</p>
-      <div class="loan-related-links">
-        <a href="../interest-calculator/">💴 利息計算ツール</a>
-        <a href="../compound-interest/">📈 複利計算</a>
-        <a href="./percentage-calculator.html">％ パーセント計算ツール</a>
-      </div>
-    </section>
-
-    <section class="loan-card loan-info" aria-labelledby="about-title">
-      <h2 id="about-title">このツールについて</h2>
-      <p>借入金額・金利・返済期間から、毎月返済額や総返済額、利息総額の目安を計算できます。住宅ローン、自動車ローン、教育ローンなどの簡易確認に利用できます。</p>
-      <h2>計算方法</h2>
-      <p>元利均等返済の計算式を使用します。金利0%の場合は、借入金額を返済回数で割って毎月返済額を計算します。</p>
-      <h2>注意事項</h2>
-      <p>結果は簡易計算による目安です。実際の返済額は金融機関、手数料、端数処理、返済方式、契約条件によって異なります。正式な金額は金融機関の情報をご確認ください。</p>
+    <section class="loan-card loan-support" aria-labelledby="support-title">
+      <h2 id="support-title">補足情報</h2>
+      <ul class="loan-support-list">
+        <li>借入金額・金利・返済期間から、毎月の返済額・返済総額・利息総額を計算できます。</li>
+        <li>元利均等返済・ボーナス返済なしの条件で、入力内容をもとに算出します。</li>
+        <li>実際の返済額は、金融機関の契約条件や手数料、端数処理などによって異なる場合があります。</li>
+      </ul>
     </section>
 
     <!-- お金・計算シリーズ：内容は assets/goma-ui.js で一元管理 -->

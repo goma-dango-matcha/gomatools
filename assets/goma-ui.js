@@ -284,8 +284,7 @@
       { title: 'ローン返済の仕組み', path: 'knowledge/how-loan-repayment-works/' }
     ],
     'tools/loan-calculator.html': [
-      { title: 'ローン返済の仕組み', path: 'knowledge/how-loan-repayment-works/' },
-      { title: '複利とは？', path: 'knowledge/what-is-compound-interest/' }
+      { title: 'ローン返済の仕組み', path: 'knowledge/how-loan-repayment-works/' }
     ]
   };
 
@@ -340,7 +339,7 @@
     'tools/character-encoding.html': '文字化けは、保存時と読み込み時の文字コードが合わないと起こることがあります。',
     'compound-interest/': '複利は「利息にも利息が付く」仕組みです。運用期間が長くなるほど効果が大きくなるため、条件を変えて比べてみましょう。',
     'interest-calculator/': '預金や借入の前に利息を確認すると、資金計画を立てやすくなります。利率だけでなく、期間と計算方法も確認しましょう。',
-    'tools/loan-calculator.html': 'ローンは毎月の返済額だけでなく、利息総額と総返済額もあわせて見ることが大切です。',
+    'tools/loan-calculator.html': '借入前は、毎月の返済額だけでなく返済総額も確認すると計画を立てやすくなります。金利や期間を変えて比べてみましょう。',
     'age/': '年齢や日数は、基準日にすると変わります。手続きや予定では、いつ時点かも一緒に確認しましょう。',
     'business-days/': '営業日は土日や休業日を含めない数え方です。祝日や会社ごとの休業日は別途確認しましょう。'
   };
@@ -406,9 +405,11 @@
       { title: '消費税計算ツール', path: 'tax/' }
     ],
     'tools/loan-calculator.html': [
-      { title: '利息計算ツール', path: 'interest-calculator/' },
       { title: '複利計算ツール', path: 'compound-interest/' },
-      { title: '割引率計算ツール', path: 'discount-calculator/' }
+      { title: '利息計算ツール', path: 'interest-calculator/' },
+      { title: 'パーセント計算ツール', path: 'tools/percentage-calculator.html' },
+      { title: '手取り・税込逆算ツール', path: 'net-income-calculator/' },
+      { title: '消費税計算ツール', path: 'tax/' }
     ],
     'age/': [
       { title: '今日の情報', path: 'tools/today/' },

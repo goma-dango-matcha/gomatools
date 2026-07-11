@@ -2079,11 +2079,8 @@ a { color: var(--terms-green-dark); }
 .loan-interest-item strong { color: #8a5a19; }
 .loan-copy { display: block; margin: 20px auto 0; }
 .loan-copy-message { min-height: 1.5em; margin: 10px 0 0; color: var(--terms-green-dark); font-weight: 800; text-align: center; }
-.loan-related p,
-.loan-info p { margin: 0; color: var(--terms-muted); line-height: 1.85; }
-.loan-related-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
-.loan-related-links a { display: inline-flex; padding: 10px 14px; border: 1px solid #cad9c2; border-radius: 11px; color: var(--terms-green-dark); background: #f8faf6; font-weight: 850; text-decoration: none; }
-.loan-info h2:not(:first-child) { margin-top: 28px; }
+.loan-support-list { margin: 0; padding-left: 1.4em; color: var(--terms-muted); line-height: 1.85; }
+.loan-support-list li + li { margin-top: 8px; }
 
 @media (max-width: 760px) {
   .loan-form-grid,
@@ -2097,7 +2094,7 @@ a { color: var(--terms-green-dark); }
   .loan-form-buttons { flex-direction: column; }
   .loan-form-buttons button,
   .loan-copy { width: 100%; }
-  .loan-related-links { flex-direction: column; }
+  .loan-support-list { padding-left: 1.2em; }
 }
 
 /* ======================
