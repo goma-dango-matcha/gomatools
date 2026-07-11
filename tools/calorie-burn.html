@@ -17,7 +17,7 @@
   <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="消費カロリー計算ツール｜ゴマツール"><meta name="twitter:description" content="運動による消費カロリーを簡単に計算できます。"><meta name="twitter:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png"><meta name="twitter:image:alt" content="ゴマツール — 一歩便利を、毎日の暮らしに。">
   <!-- ブランドアイコン -->
   <link rel="icon" href="../favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"><link rel="manifest" href="../site.webmanifest"><meta name="theme-color" content="#63843F">
-  <link rel="stylesheet" href="../css/style.css"><link rel="stylesheet" href="../assets/goma-ui.css?v=1.8"><script defer src="../assets/goma-ui.js?v=1.8"></script>
+  <link rel="stylesheet" href="../css/style.css"><link rel="stylesheet" href="../assets/goma-ui.css?v=2.4"><script defer src="../assets/goma-ui.js?v=2.3"></script>
 </head>
 <body>
   <!-- ====================== 共通ヘッダー ====================== -->
@@ -43,8 +43,34 @@
       <button class="burn-copy" id="copyButton" type="button">📋 結果をコピー</button><p class="burn-copy-message" id="copyMessage" role="status" aria-live="polite"></p>
     </section>
 
-    <!-- ====================== 説明・注意事項 ====================== -->
-    <section class="burn-card burn-info" aria-labelledby="about-title"><h2 id="about-title">このツールについて</h2><p>運動内容・体重・運動時間から、運動による消費カロリーの目安を計算できます。計算には一般的なMETs（運動強度）の考え方を利用しています。</p><h2>注意事項</h2><p>表示される消費カロリーはあくまで目安です。年齢、筋肉量、運動強度、個人差によって実際の消費量は異なります。医療・診断目的ではなく、健康管理やダイエットの参考として利用してください。</p></section>
+    <section class="health-brand-section" aria-labelledby="support-title">
+      <h2 id="support-title">補足情報</h2>
+      <ul class="health-support-list">
+        <li>消費カロリーは、選択した運動の強度・体重・運動時間から算出した、運動による消費エネルギーの目安です。</li>
+        <li>同じ運動でも、運動強度や時間、体重によって消費カロリーは変わります。</li>
+        <li>基礎代謝は生命維持に必要なエネルギー、TDEEは日常生活を含む1日の総消費エネルギーの目安です。</li>
+        <li>結果には個人差があるため、無理のない運動習慣を考える際の参考としてご利用ください。</li>
+      </ul>
+    </section>
+
+    <section class="health-brand-section goma-one-point" aria-labelledby="one-point-title">
+      <h2 id="one-point-title">🍵 ゴマワンポイント</h2>
+      <p>短時間でも、無理なく続けることが運動習慣づくりにつながります。日常の歩行や階段の利用も活動量を増やす一歩になるので、食事とのバランスを意識しながら取り入れてみましょう。</p>
+    </section>
+
+    <!-- 公開済みの関連するゴマ知識がないため、共通スクリプトの自動挿入を抑止 -->
+    <div class="goma-related-knowledge" hidden aria-hidden="true"></div>
+
+    <section class="goma-related-tools" aria-labelledby="goma-related-tools-title">
+      <h2 id="goma-related-tools-title">🔗 関連ツール</h2>
+      <p>運動・食事・体格に関する数値を、あわせて確認できます。</p>
+      <ul class="goma-related-tools-list">
+        <li><a href="./tdee.html">1日の消費カロリー（TDEE）計算ツール</a></li>
+        <li><a href="./bmr.html">基礎代謝（BMR）計算ツール</a></li>
+        <li><a href="./pfc-balance.html">PFCバランス計算ツール</a></li>
+        <li><a href="../bmi/">BMI計算ツール</a></li>
+      </ul>
+    </section>
 
     <!-- 健康・美容シリーズ：内容は assets/goma-ui.js で一元管理 -->
     <section data-health-series data-current="calorie-burn"></section>
