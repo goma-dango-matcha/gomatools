@@ -89,7 +89,7 @@
     @media (max-width:620px) { .container{width:min(100% - 24px,880px)} .site-header{padding:18px 0} .header-inner{align-items:flex-start} .brand-wrap{flex-direction:column;gap:0} main{padding:58px 0 76px} .section{margin-top:54px} .form-grid{grid-template-columns:1fr} .field-full{grid-column:auto} .card{padding:22px 18px;border-radius:18px} .simple-interest-guide{align-items:stretch;flex-direction:column}.simple-interest-link{width:100%} .support-list{padding-left:1.15em} }
     @media (prefers-reduced-motion:reduce) { html{scroll-behavior:auto} *,*::before,*::after{transition:none!important} }
   </style>
-  <link rel="stylesheet" href="../assets/goma-ui.css?v=2.2">
+  <link rel="stylesheet" href="../assets/goma-ui.css?v=2.3">
   <script defer src="../assets/goma-ui.js?v=2.3"></script>
   <!-- ======================
        ブランドアイコン
@@ -154,13 +154,12 @@
     </div></section>
 
     <!-- ====================== 補足情報 ====================== -->
-    <section class="section card" aria-labelledby="support-title"><h2 class="section-title" id="support-title">補足情報</h2><ul class="support-list"><li>元金・利率・運用期間をもとに、毎月複利で将来の資産額を計算します。</li><li>利息を資産へ組み入れることで、時間の経過とともに運用益にも利息が付きます。</li><li>実際の運用結果は、金融商品や税金、手数料、価格変動などによって異なる場合があります。</li></ul></section>
+    <section class="money-brand-section" aria-labelledby="support-title"><h2 id="support-title">補足情報</h2><ul class="money-support-list"><li>元金・利率・運用期間をもとに、毎月複利で将来の資産額を計算します。</li><li>利息を資産へ組み入れることで、時間の経過とともに運用益にも利息が付きます。</li><li>実際の運用結果は、金融商品や税金、手数料、価格変動などによって異なる場合があります。</li></ul></section>
 
-    <!-- ====================== 単利計算への案内 ====================== -->
-    <aside class="simple-interest-guide" aria-label="単利計算の案内"><p>💴 元金だけに利息が付く計算をしたい方へ</p><a class="simple-interest-link" href="../interest-calculator/">単利で計算したい方はこちら</a></aside>
-    <section class="section card privacy-card" aria-labelledby="privacy-title"><h2 class="section-title" id="privacy-title">🍵 安心してお使いください</h2><p>入力内容と計算処理はブラウザ内だけで行われます。</p><p>サーバーへ送信・保存することはありません。</p></section>
+    <section class="money-brand-section goma-one-point" aria-labelledby="one-point-title"><h2 id="one-point-title">🍵 ゴマワンポイント</h2><p>複利は「利息にも利息が付く」仕組みです。運用期間が長くなるほど効果が大きくなるため、条件を変えて比べてみましょう。</p></section>
 
     <section data-money-series data-current="compound-interest"></section>
+    <section class="section card privacy-card" aria-labelledby="privacy-title"><h2 class="section-title" id="privacy-title">🍵 安心してお使いください</h2><p>入力内容と計算処理はブラウザ内だけで行われます。</p><p>サーバーへ送信・保存することはありません。</p></section>
   </div></main>
 
   <!-- ====================== フッター ====================== -->

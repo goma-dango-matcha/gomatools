@@ -129,7 +129,7 @@
       *, *::before, *::after { transition: none !important; }
     }
   </style>
-  <link rel="stylesheet" href="../assets/goma-ui.css?v=2.2">
+  <link rel="stylesheet" href="../assets/goma-ui.css?v=2.3">
   <script defer src="../assets/goma-ui.js?v=2.3"></script>
   <!-- ======================
        ブランドアイコン
@@ -233,12 +233,29 @@
       <!-- ======================
            補足情報
       ====================== -->
-      <section class="section card" aria-labelledby="support-title">
-        <h2 class="section-title" id="support-title">補足情報</h2>
-        <ul class="support-list">
+      <section class="money-brand-section" aria-labelledby="support-title">
+        <h2 id="support-title">補足情報</h2>
+        <ul class="money-support-list">
           <li>合計金額と人数から、1人あたりの支払額を計算できます。</li>
           <li>1人あたりの金額は1円未満を切り捨て、割り切れない金額は余りとして表示します。</li>
           <li>実際の支払額は、余りの分け方や端数処理の方法によって異なる場合があります。</li>
+        </ul>
+      </section>
+
+      <section class="money-brand-section goma-one-point" aria-labelledby="one-point-title">
+        <h2 id="one-point-title">🍵 ゴマワンポイント</h2>
+        <p>食事会や旅行では、事前に1人あたりの金額を確認すると支払いがスムーズです。余りの分け方も一緒に決めておくと安心です。</p>
+      </section>
+
+      <section class="goma-related-tools" aria-labelledby="goma-related-tools-title">
+        <h2 id="goma-related-tools-title">🔗 関連ツール</h2>
+        <p>あわせて使うと、お金の計算や比較を進めやすくなります。</p>
+        <ul class="goma-related-tools-list">
+          <li><a href="../tools/percentage-calculator.html">パーセント計算ツール</a></li>
+          <li><a href="../tax/">消費税計算ツール</a></li>
+          <li><a href="../discount-calculator/">割引率計算ツール</a></li>
+          <li><a href="../net-income-calculator/">手取り・税込逆算ツール</a></li>
+          <li><a href="../calculator/">電卓ツール</a></li>
         </ul>
       </section>
       <section data-money-series data-current="warikan"></section>

@@ -77,7 +77,7 @@
     @media (max-width:500px) { .container { width:min(100% - 22px,960px); } main { padding-top:46px; } .header-inner { align-items:flex-start; flex-direction:column; gap:3px; } .support-list { padding-left:1.15em; } }
     @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } * { transition:none !important; } }
   </style>
-  <link rel="stylesheet" href="../assets/goma-ui.css?v=2.2">
+  <link rel="stylesheet" href="../assets/goma-ui.css?v=2.3">
   <script defer src="../assets/goma-ui.js?v=2.3"></script>
   <!-- ======================
        ブランドアイコン
@@ -160,13 +160,9 @@
     </section>
 
     <!-- ====================== 補足情報 ====================== -->
-    <section class="section card support-card" aria-labelledby="support-title"><h2 class="section-title" id="support-title">補足情報</h2><ul class="support-list"><li>元金・年利・期間から、単利の利息と元利合計を計算できます。</li><li>月利と1日あたりの利息は、入力した条件をもとにした概算です。</li><li>実際の利息は、契約内容や日割り方法、税金、端数処理などによって異なる場合があります。</li></ul></section>
+    <section class="money-brand-section" aria-labelledby="support-title"><h2 id="support-title">補足情報</h2><ul class="money-support-list"><li>元金・年利・期間から、単利の利息と元利合計を計算できます。</li><li>月利と1日あたりの利息は、入力した条件をもとにした概算です。</li><li>実際の利息は、契約内容や日割り方法、税金、端数処理などによって異なる場合があります。</li></ul></section>
 
-    <!-- ====================== 複利計算への案内 ====================== -->
-    <aside class="card comparison-card" aria-label="複利計算の案内">
-      <div><p class="comparison-title">📈 利息が利息を生む場合は複利計算</p><p class="comparison-text">積立や長期運用の将来金額を調べたい方におすすめです。</p></div>
-      <a class="comparison-button" href="../compound-interest/">複利計算はこちら</a>
-    </aside>
+    <section class="money-brand-section goma-one-point" aria-labelledby="one-point-title"><h2 id="one-point-title">🍵 ゴマワンポイント</h2><p>預金や借入の前に利息を確認すると、資金計画を立てやすくなります。利率だけでなく、期間と計算方法も確認しましょう。</p></section>
 
     <section data-money-series data-current="interest-calculator"></section>
   </main>

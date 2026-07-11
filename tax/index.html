@@ -179,7 +179,7 @@
       *, *::before, *::after { transition: none !important; }
     }
   </style>
-  <link rel="stylesheet" href="../assets/goma-ui.css?v=2.2">
+  <link rel="stylesheet" href="../assets/goma-ui.css?v=2.3">
   <script defer src="../assets/goma-ui.js?v=2.2"></script>
   <!-- ======================
        ブランドアイコン
@@ -318,18 +318,30 @@
       <!-- ======================
            補足情報・ゴマワンポイント
       ====================== -->
-      <section class="section card" aria-labelledby="support-title">
-        <h2 class="section-title" id="support-title">補足情報</h2>
-        <ul class="support-list">
+      <section class="money-brand-section" aria-labelledby="support-title">
+        <h2 id="support-title">補足情報</h2>
+        <ul class="money-support-list">
           <li>税込価格・税抜価格・消費税額を、選択した計算方法に合わせて表示します。</li>
           <li>計算結果は、選択した消費税率と端数処理をもとに算出します。</li>
           <li>実際の税額は、取引内容や事業者ごとの端数処理によって異なる場合があります。</li>
         </ul>
       </section>
 
-      <section class="section card goma-one-point" aria-labelledby="one-point-title">
-        <h2 class="section-title" id="one-point-title">🍵 ゴマワンポイント</h2>
+      <section class="money-brand-section goma-one-point" aria-labelledby="one-point-title">
+        <h2 id="one-point-title">🍵 ゴマワンポイント</h2>
         <p>買い物や見積書を確認するときは、表示金額が税込か税抜かを確かめると安心です。複数の商品では、端数処理の方法によって合計金額が変わる場合があります。</p>
+      </section>
+
+      <section class="goma-related-tools" aria-labelledby="goma-related-tools-title">
+        <h2 id="goma-related-tools-title">🔗 関連ツール</h2>
+        <p>あわせて使うと、お金の計算や比較を進めやすくなります。</p>
+        <ul class="goma-related-tools-list">
+          <li><a href="../tools/percentage-calculator.html">パーセント計算ツール</a></li>
+          <li><a href="../discount-calculator/">割引率計算ツール</a></li>
+          <li><a href="../net-income-calculator/">手取り・税込逆算ツール</a></li>
+          <li><a href="../interest-calculator/">利息計算ツール</a></li>
+          <li><a href="../warikan/">割り勘計算ツール</a></li>
+        </ul>
       </section>
 
       <!-- ======================
@@ -360,20 +372,6 @@
         </div>
       </section>
 
-      <!-- ======================
-           関連ツール
-      ====================== -->
-      <section class="section" aria-labelledby="related-title">
-        <h2 class="section-title" id="related-title">🔗 関連ツール</h2>
-        <p class="section-intro">金額や割合を確認するときに役立つツールです。</p>
-        <div class="card related-grid">
-          <a class="related-item related-link" href="../tools/percentage-calculator.html"><span class="related-name">パーセント計算</span><span class="related-status">割合や増減率を確認</span></a>
-          <a class="related-item related-link" href="../discount-calculator/"><span class="related-name">割引率計算</span><span class="related-status">割引後の価格を確認</span></a>
-          <a class="related-item related-link" href="../net-income-calculator/"><span class="related-name">手取り税込逆算</span><span class="related-status">手取り額から必要金額を逆算</span></a>
-          <a class="related-item related-link" href="../interest-calculator/"><span class="related-name">利息計算</span><span class="related-status">利息と返済総額を確認</span></a>
-          <a class="related-item related-link" href="../warikan/"><span class="related-name">割り勘計算</span><span class="related-status">人数ごとの支払額を確認</span></a>
-        </div>
-      </section>
       <section data-money-series data-current="tax"></section>
     </div>
   </main>

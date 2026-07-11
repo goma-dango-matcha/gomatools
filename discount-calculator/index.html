@@ -96,7 +96,7 @@
     @media (max-width:620px) { .container{width:min(100% - 24px,880px)} .site-header{padding:18px 0} .header-inner{align-items:flex-start} .brand-wrap{flex-direction:column;gap:0} main{padding:58px 0 76px} .section{margin-top:54px} .card{padding:22px 18px;border-radius:18px} .form-grid,.result-grid{grid-template-columns:1fr} .support-list{padding-left:1.15em} }
     @media (prefers-reduced-motion:reduce) { html{scroll-behavior:auto} *,*::before,*::after{transition:none!important} }
   </style>
-  <link rel="stylesheet" href="../assets/goma-ui.css?v=2.2">
+  <link rel="stylesheet" href="../assets/goma-ui.css?v=2.3">
   <script defer src="../assets/goma-ui.js?v=2.2"></script>
   <!-- ======================
        ブランドアイコン
@@ -149,13 +149,13 @@
     </div></section>
 
     <!-- ====================== 補足情報 ====================== -->
-    <section class="section card" aria-labelledby="support-title"><h2 class="section-title" id="support-title">補足情報</h2><ul class="support-list"><li>割引率・割引額・割引後の価格を計算できます。</li><li>計算結果は、入力した金額と割引率をもとに表示します。</li><li>割引額の1円未満は切り捨てて計算するため、実際の販売価格と異なる場合があります。</li></ul></section>
+    <section class="money-brand-section" aria-labelledby="support-title"><h2 id="support-title">補足情報</h2><ul class="money-support-list"><li>割引率・割引額・割引後の価格を計算できます。</li><li>計算結果は、入力した金額と割引率をもとに表示します。</li><li>割引額の1円未満は切り捨てて計算するため、実際の販売価格と異なる場合があります。</li></ul></section>
 
     <!-- ====================== ゴマワンポイント ====================== -->
-    <section class="section card one-point-card" aria-labelledby="one-point-title"><h2 class="section-title" id="one-point-title">🍵 ゴマワンポイント</h2><p>セール価格を比べるときは、割引率だけでなく実際の割引額も確認すると分かりやすくなります。複数の割引は単純に足し合わせず、表示価格が税込か税抜かも確かめると安心です。</p></section>
+    <section class="money-brand-section goma-one-point" aria-labelledby="one-point-title"><h2 id="one-point-title">🍵 ゴマワンポイント</h2><p>セール価格を比べるときは、割引率だけでなく実際の割引額も確認すると分かりやすくなります。複数の割引は単純に足し合わせず、表示価格が税込か税抜かも確かめると安心です。</p></section>
 
     <!-- ====================== 関連ツール ====================== -->
-    <section class="section" aria-labelledby="related-title"><h2 class="section-title" id="related-title">🔗 関連ツール</h2><p class="section-intro">買い物や金額の確認に役立つツールです。</p><div class="card related-grid"><a class="related-item related-link" href="../tax/"><span class="related-name">消費税計算</span><span class="related-status">税込・税抜・消費税額を確認</span></a><a class="related-item related-link" href="../tools/percentage-calculator.html"><span class="related-name">パーセント計算</span><span class="related-status">割合や増減率を確認</span></a><a class="related-item related-link" href="../net-income-calculator/"><span class="related-name">手取り税込逆算</span><span class="related-status">手取り額から必要金額を逆算</span></a><a class="related-item related-link" href="../warikan/"><span class="related-name">割り勘計算</span><span class="related-status">人数ごとの支払額を確認</span></a><a class="related-item related-link" href="../interest-calculator/"><span class="related-name">利息計算</span><span class="related-status">利息と返済総額を確認</span></a></div></section>
+    <section class="goma-related-tools" aria-labelledby="goma-related-tools-title"><h2 id="goma-related-tools-title">🔗 関連ツール</h2><p>あわせて使うと、お金の計算や比較を進めやすくなります。</p><ul class="goma-related-tools-list"><li><a href="../tax/">消費税計算ツール</a></li><li><a href="../tools/percentage-calculator.html">パーセント計算ツール</a></li><li><a href="../net-income-calculator/">手取り・税込逆算ツール</a></li><li><a href="../warikan/">割り勘計算ツール</a></li><li><a href="../interest-calculator/">利息計算ツール</a></li></ul></section>
     <section data-money-series data-current="discount-calculator"></section>
   </div></main>
 
