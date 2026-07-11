@@ -20,7 +20,7 @@
   <!-- ブランドアイコン -->
   <link rel="icon" href="../favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"><link rel="manifest" href="../site.webmanifest"><meta name="theme-color" content="#63843F">
-  <link rel="stylesheet" href="../css/style.css"><link rel="stylesheet" href="../assets/goma-ui.css?v=1.8"><script defer src="../assets/goma-ui.js?v=1.8"></script>
+  <link rel="stylesheet" href="../css/style.css"><link rel="stylesheet" href="../assets/goma-ui.css?v=2.4"><script defer src="../assets/goma-ui.js?v=2.3"></script>
 </head>
 <body>
   <!-- ====================== 共通ヘッダー ====================== -->
@@ -47,8 +47,39 @@
       <button class="ideal-copy" id="copyButton" type="button">📋 結果をコピー</button><p class="ideal-copy-message" id="copyMessage" role="status" aria-live="polite"></p>
     </section>
 
-    <!-- ====================== 説明・注意事項 ====================== -->
-    <section class="ideal-card ideal-info" aria-labelledby="about-title"><h2 id="about-title">このツールについて</h2><p>身長からBMI22を基準とした標準体重を計算できます。BMI22は日本で一般的に標準体重の目安として利用されている数値です。</p><h2>BMIとの違い</h2><p>BMIは現在の体格を表す指標です。標準体重はBMI22を基準に計算した目安の体重です。</p><h2>注意事項</h2><p>結果は健康管理の参考値です。体格や筋肉量、年齢などによって適切な体重は異なるため、医療上の診断には利用できません。</p></section>
+    <section class="health-brand-section" aria-labelledby="support-title">
+      <h2 id="support-title">補足情報</h2>
+      <ul class="health-support-list">
+        <li>適正体重は、身長とBMI22を基準に算出した、健康管理のための体重目安です。</li>
+        <li>BMIは現在の体格を表す指標、適正体重はBMI22となる体重の目安です。</li>
+        <li>体格や筋肉量、年齢などによって適した体重には個人差があります。</li>
+        <li>数値だけにとらわれず、食事や運動を含めた継続的な健康管理の参考としてご利用ください。</li>
+      </ul>
+    </section>
+
+    <section class="health-brand-section goma-one-point" aria-labelledby="one-point-title">
+      <h2 id="one-point-title">🍵 ゴマワンポイント</h2>
+      <p>急激な減量より、続けやすい食事や運動の習慣を整えることが大切です。定期的に体重を記録すると、日々の変化を振り返りやすくなります。</p>
+    </section>
+
+    <section class="goma-related-knowledge" aria-labelledby="goma-related-knowledge-title">
+      <h2 id="goma-related-knowledge-title">💡 関連するゴマ知識</h2>
+      <p>BMIの計算方法や判定基準、適正体重との関係を分かりやすく解説しています。</p>
+      <ul class="goma-related-knowledge-list">
+        <li><a href="../knowledge/what-is-bmi/">BMIとは？</a></li>
+      </ul>
+    </section>
+
+    <section class="goma-related-tools" aria-labelledby="goma-related-tools-title">
+      <h2 id="goma-related-tools-title">🔗 関連ツール</h2>
+      <p>体格の確認から、毎日の健康管理に役立つ数値へ進めます。</p>
+      <ul class="goma-related-tools-list">
+        <li><a href="../bmi/">BMI計算ツール</a></li>
+        <li><a href="./bmr.html">基礎代謝（BMR）計算ツール</a></li>
+        <li><a href="./tdee.html">1日の消費カロリー（TDEE）計算ツール</a></li>
+        <li><a href="./body-fat.html">体脂肪率計算ツール</a></li>
+      </ul>
+    </section>
 
     <!-- 健康・美容シリーズ：内容は assets/goma-ui.js で一元管理 -->
     <section data-health-series data-current="ideal-weight"></section>
