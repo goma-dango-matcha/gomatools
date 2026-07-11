@@ -99,6 +99,18 @@
     .result-details { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 20px; margin: 8px 0 0; color: var(--muted); font-size: .9rem; }
 
     /* ======================
+       ブランド改善セクション
+    ====================== */
+    .support-list { margin: 0; padding-left: 1.25em; }
+    .support-list li + li { margin-top: 8px; }
+    .goma-one-point { border-color: rgba(88, 124, 64, .24); background: linear-gradient(135deg, var(--green-light), #fff); }
+    .section-intro { margin: 0 0 18px; color: var(--muted); }
+    .knowledge-list { margin: 0; padding: 0; list-style: none; }
+    .knowledge-list a { display: block; padding: 16px 18px; color: var(--green-dark); border: 1px solid var(--line); border-radius: 14px; background: var(--green-soft); font-weight: 750; text-decoration: none; }
+    .knowledge-list a:hover { border-color: var(--green); }
+    .knowledge-list a:focus-visible { outline: 3px solid rgba(88, 124, 64, .35); outline-offset: 3px; }
+
+    /* ======================
        注意書き
     ====================== */
     .notice-card { border-color: var(--warning-line); background: var(--warning); box-shadow: none; }
@@ -156,6 +168,7 @@
       .card { padding: 22px 18px; border-radius: 18px; }
       .field-full { grid-column: auto; }
       .result-details { flex-direction: column; gap: 2px; }
+      .support-list { padding-left: 1.15em; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -217,8 +230,8 @@
       <section class="hero" aria-labelledby="page-title">
         <p class="eyebrow">30秒でかんたん計算</p>
         <h1 id="page-title">📅 営業日計算</h1>
-        <p class="hero-catch">土日を除いて、○営業日後・○営業日前をかんたん計算。</p>
-        <p class="hero-description">基準日と営業日数を入力すると、土日を除いた日付を計算できます。<br>納期・締切・提出期限などの確認に使えます。</p>
+        <p class="hero-catch">開始日から、営業日前後の日付をすぐ確認。</p>
+        <p class="hero-description">基準日と営業日数を入力すると、土日を除いた営業日後・営業日前の日付を計算できます。</p>
       </section>
 
       <!-- ======================
@@ -277,13 +290,34 @@
       </section>
 
       <!-- ======================
-           注意書き
+           補足情報
       ====================== -->
-      <section class="section card notice-card" aria-labelledby="notice-title">
-        <h2 class="section-title" id="notice-title">⚠️ ご注意ください</h2>
-        <p class="notice-strong">現在は土日を除いた営業日計算に対応しています。</p>
-        <p>祝日・年末年始などの休業日は含めていません。</p>
-        <p>より正確な業務日程では、会社や自治体の営業日もあわせて確認してください。</p>
+      <section class="section card" aria-labelledby="support-title">
+        <h2 class="section-title" id="support-title">補足情報</h2>
+        <ul class="support-list">
+          <li>土曜日と日曜日を除いて営業日を計算します。</li>
+          <li>祝日・年末年始・企業独自の休業日は除外されません。</li>
+          <li>営業日の定義は企業や団体によって異なるため、納期や手続きでは相手先の案内もご確認ください。</li>
+        </ul>
+      </section>
+
+      <!-- ======================
+           ゴマワンポイント
+      ====================== -->
+      <section class="section card goma-one-point" aria-labelledby="goma-one-point-title">
+        <h2 class="section-title" id="goma-one-point-title">🍵 ゴマワンポイント</h2>
+        <p>契約や納期が「営業日」で示されているときは、土日だけでなく祝日や年末年始の扱いも確認すると安心です。銀行・役所・企業では、営業日の定義が異なる場合があります。</p>
+      </section>
+
+      <!-- ======================
+           関連するゴマ知識
+      ====================== -->
+      <section class="section card" aria-labelledby="knowledge-title">
+        <h2 class="section-title" id="knowledge-title">💡 関連するゴマ知識</h2>
+        <p class="section-intro">営業日の意味や数え方を、分かりやすく紹介しています。</p>
+        <ul class="knowledge-list">
+          <li><a href="../knowledge/business-days/">営業日はどう決まる？</a></li>
+        </ul>
       </section>
 
       <!-- ======================
@@ -330,66 +364,27 @@
            関連ツール
       ====================== -->
       <section class="section" aria-labelledby="related-title">
-        <h2 class="section-title" id="related-title">おすすめの便利ツール</h2>
+        <h2 class="section-title" id="related-title">🔗 関連ツール</h2>
+        <p class="section-intro">日付や予定を続けて確認するときに役立つツールです。</p>
         <div class="card related-grid">
+          <a class="related-item related-link" href="../days-calculator/">
+            <span class="related-name">📆 日数計算</span>
+            <span class="related-status">公開中</span>
+          </a>
+          <a class="related-item related-link" href="../tools/today/">
+            <span class="related-name">📅 今日の情報</span>
+            <span class="related-status">公開中</span>
+          </a>
+          <a class="related-item related-link" href="../tools/next-holiday/">
+            <span class="related-name">🎌 次の祝日</span>
+            <span class="related-status">公開中</span>
+          </a>
+          <a class="related-item related-link" href="../tools/month-calendar/">
+            <span class="related-name">🗓 今月のカレンダー</span>
+            <span class="related-status">公開中</span>
+          </a>
           <a class="related-item related-link" href="../age/">
             <span class="related-name">🎂 年齢・日付計算</span>
-            <span class="related-status">公開中</span>
-          </a>
-          <a class="related-item related-link" href="../tax/">
-            <span class="related-name">💰 消費税計算</span>
-            <span class="related-status">公開中</span>
-          </a>
-          <a class="related-item related-link" href="../warikan/">
-            <span class="related-name">👥 割り勘計算</span>
-            <span class="related-status">公開中</span>
-          </a>
-          <a class="related-item related-link" href="../qrcode/">
-            <span class="related-name">📱 QRコード生成</span>
-            <span class="related-status">公開中</span>
-          </a>
-          <a class="related-item related-link" href="../school-year/">
-            <span class="related-name">🎓 学年・年齢・卒業年度計算</span>
-            <span class="related-status">公開中</span>
-          </a>
-          <a class="related-item related-link" href="../wareki/">
-            <span class="related-name">📅 和暦・西暦変換</span>
-            <span class="related-status">公開中</span>
-          </a>
-          <a class="related-item related-link" href="../text-counter/">
-            <span class="related-name">✍️ 文字数カウント</span>
-            <span class="related-status">公開中</span>
-          </a>
-          <a class="related-item related-link" href="../password/">
-            <span class="related-name">🔐 パスワード生成</span>
-            <span class="related-status">公開中</span>
-          </a>
-          <a class="related-item related-link" href="../compound-interest/">
-            <span class="related-name">📈 複利計算</span>
-            <span class="related-status">公開中</span>
-          </a>
-          <a class="related-item related-link" href="../unit-converter/">
-            <span class="related-name">📏 単位変換ツール</span>
-            <span class="related-status">公開中</span>
-          </a>
-          <a class="related-item related-link" href="../birthday-countdown/">
-            <span class="related-name">🎉 誕生日カウント</span>
-            <span class="related-status">公開中</span>
-          </a>
-          <a class="related-item related-link" href="../days-calculator/">
-            <span class="related-name">📆 日数計算ツール</span>
-            <span class="related-status">公開中</span>
-          </a>
-          <a class="related-item related-link" href="../random-picker/">
-            <span class="related-name">📋 ランダム抽選ツール</span>
-            <span class="related-status">公開中</span>
-          </a>
-          <a class="related-item related-link" href="../discount-calculator/">
-            <span class="related-name">💹 割引率計算ツール</span>
-            <span class="related-status">公開中</span>
-          </a>
-          <a class="related-item related-link" href="../calculator/">
-            <span class="related-name">🧮 電卓ツール</span>
             <span class="related-status">公開中</span>
           </a>
         </div>
