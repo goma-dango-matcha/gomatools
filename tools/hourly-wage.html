@@ -57,7 +57,7 @@
       <section class="hourly-hero" aria-labelledby="page-title">
         <p class="hourly-eyebrow">💼 仕事・テキスト</p>
         <h1 id="page-title">時給計算ツール</h1>
-        <p>時給・勤務時間・勤務日数を入力するだけで、日給・月収・年収の目安を簡単に計算できます。</p>
+        <p>時給と1日の勤務時間、勤務日数から、日給・週給・月収・年収の目安を計算できます。月の勤務日数は入力するか、週の勤務日数から概算できます。</p>
       </section>
 
       <!-- ====================== 入力フォーム ====================== -->
@@ -66,27 +66,31 @@
         <form id="hourlyForm" novalidate>
           <div class="hourly-form-grid">
             <div class="hourly-field">
-              <label for="hourlyWage">時給（円）</label>
-              <input id="hourlyWage" type="number" min="1" step="1" inputmode="numeric" placeholder="例：1200">
+              <label for="hourlyWage">時給（円） <span class="hourly-required">必須</span></label>
+              <input id="hourlyWage" type="number" min="1" step="1" inputmode="numeric" placeholder="例：1200" aria-describedby="hourlyWageHelp" required>
+              <small id="hourlyWageHelp">1時間あたりの金額を入力</small>
             </div>
             <div class="hourly-field">
-              <label for="workHours">1日の勤務時間</label>
-              <input id="workHours" type="number" min="0.1" step="0.25" inputmode="decimal" placeholder="例：8">
+              <label for="workHours">1日の勤務時間（時間） <span class="hourly-required">必須</span></label>
+              <input id="workHours" type="number" min="0.1" step="0.25" inputmode="decimal" placeholder="例：7.5" aria-describedby="workHoursHelp" required>
+              <small id="workHoursHelp">7時間30分は「7.5」と入力</small>
             </div>
             <div class="hourly-field">
               <label for="weekDays">週の勤務日数</label>
-              <input id="weekDays" type="number" min="0" step="0.5" inputmode="decimal" value="5" placeholder="例：5">
+              <input id="weekDays" type="number" min="0" step="0.5" inputmode="decimal" value="5" placeholder="例：5" aria-describedby="weekDaysHelp">
+              <small id="weekDaysHelp">初期値は週5日。月の日数だけで計算する場合は空欄でも可</small>
             </div>
             <div class="hourly-field">
-              <label for="monthDays">月の勤務日数 <span>任意</span></label>
-              <input id="monthDays" type="number" min="0" step="0.5" inputmode="decimal" placeholder="未入力なら週日数×4.3で概算">
+              <label for="monthDays">月の勤務日数 <span class="hourly-optional">任意</span></label>
+              <input id="monthDays" type="number" min="0" step="0.5" inputmode="decimal" placeholder="例：20" aria-describedby="monthDaysHelp">
+              <small id="monthDaysHelp">未入力の場合は、週の勤務日数×4.3週で概算</small>
             </div>
           </div>
           <p class="hourly-hint">月の勤務日数が未入力の場合は、週の勤務日数 × 4.3週で月収を概算します。</p>
-          <p class="hourly-error" id="errorMessage" role="alert"></p>
+          <p class="hourly-error" id="errorMessage" role="alert" aria-live="assertive"></p>
           <div class="hourly-form-buttons">
             <button class="hourly-primary" type="submit">計算する</button>
-            <button id="resetButton" type="button">リセット</button>
+            <button id="resetButton" type="button">入力と結果をリセット</button>
           </div>
         </form>
       </section>
@@ -98,6 +102,7 @@
           <span>月収（目安）</span>
           <strong id="monthlyIncome">—</strong>
         </div>
+        <p class="hourly-result-description">入力した時給・勤務時間・勤務日数をもとにした、控除前の金額です。</p>
         <div class="hourly-result-grid">
           <div><span>日給</span><strong id="dailyIncome">—</strong></div>
           <div><span>週給</span><strong id="weeklyIncome">—</strong></div>
@@ -109,19 +114,21 @@
         <p class="hourly-copy-message" id="copyMessage" role="status" aria-live="polite"></p>
       </section>
 
-      <!-- ====================== 勤務時間計算への導線 ====================== -->
-      <section class="hourly-card hourly-link-card" aria-labelledby="work-time-link-title">
-        <h2 id="work-time-link-title">勤務時間が分からない場合</h2>
-        <p>出勤時刻・退勤時刻・休憩時間から実働時間を出したいときは、勤務時間計算ツールも使えます。</p>
-        <a class="hourly-related-button" href="./work-time.html">⏰ 勤務時間計算ツールはこちら</a>
+      <!-- ====================== 補足情報 ====================== -->
+      <section class="hourly-card hourly-info" aria-labelledby="support-title">
+        <h2 id="support-title">補足情報</h2>
+        <ul class="hourly-support-list">
+          <li>日給は時給×1日の勤務時間、週給・月収・年収は日給と勤務日数をもとに計算します。</li>
+          <li>勤務時間は小数で入力します。30分は0.5時間、15分は0.25時間として換算してください。</li>
+          <li>月の勤務日数が未入力の場合は、週の勤務日数×4.3週で月収を概算します。表示金額は1円単位に四捨五入します。</li>
+          <li>税金・社会保険料・交通費・手当・割増賃金などは含みません。正式な金額は雇用条件や給与明細もご確認ください。</li>
+        </ul>
       </section>
 
-      <!-- ====================== 説明・注意事項 ====================== -->
-      <section class="hourly-card hourly-info" aria-labelledby="about-title">
-        <h2 id="about-title">このツールについて</h2>
-        <p>時給・勤務時間・勤務日数から、日給・週給・月収・年収の目安を計算できます。アルバイトやパート、副業などの収入シミュレーションに便利です。</p>
-        <h2>注意事項</h2>
-        <p>このツールの結果は概算です。実際の給与は、残業代・深夜手当・交通費・税金・社会保険料などにより異なります。</p>
+      <!-- ====================== ゴマワンポイント ====================== -->
+      <section class="hourly-card hourly-one-point" aria-labelledby="one-point-title">
+        <h2 id="one-point-title">🍵 ゴマワンポイント</h2>
+        <p>給与明細と計算結果が異なるときは、交通費や手当、勤務先の端数処理が含まれていないか確認してみましょう。勤務時間には、休憩を除いた実働時間を使うと比べやすくなります。</p>
       </section>
 
       <!-- 仕事・テキストシリーズ：内容は assets/goma-ui.js で一元管理 -->
