@@ -47,7 +47,7 @@
     <section class="study-time-hero" aria-labelledby="page-title">
       <p class="study-time-eyebrow">🎓 学校・教育</p>
       <h1 id="page-title">学習時間計算ツール</h1>
-      <p>今日の勉強時間から、目標までの残り時間や1日あたりの学習時間を簡単に計算できます。</p>
+      <p>今日の学習時間と目標・日数から、目標までの残り時間と1日あたりの学習時間を計算できます。毎日の学習計画を立てる目安として利用できます。</p>
     </section>
 
     <section class="study-time-card" aria-labelledby="input-title">
@@ -59,18 +59,20 @@
             <div class="study-time-field"><label for="todayHours">時間</label><input id="todayHours" type="number" min="0" step="1" inputmode="numeric" placeholder="例：2" required></div>
             <div class="study-time-field"><label for="todayMinutes">分</label><input id="todayMinutes" type="number" min="0" max="59" step="1" inputmode="numeric" placeholder="例：30" required></div>
           </div>
+          <p class="study-time-group-note">今日取り組んだ学習時間を、時間と分に分けて入力します。</p>
         </fieldset>
 
         <div class="study-time-optional-grid">
           <fieldset class="study-time-group">
-            <legend>目標学習時間 <span>任意</span></legend>
+            <legend>目標の学習時間 <span>任意</span></legend>
             <div class="study-time-duration-grid">
               <div class="study-time-field"><label for="targetHours">時間</label><input id="targetHours" type="number" min="0" step="1" inputmode="numeric" placeholder="例：10"></div>
               <div class="study-time-field"><label for="targetMinutes">分</label><input id="targetMinutes" type="number" min="0" max="59" step="1" inputmode="numeric" placeholder="例：0"></div>
             </div>
+            <p class="study-time-group-note">目標までに確保したい合計学習時間を入力します。</p>
           </fieldset>
           <div class="study-time-group study-time-deadline">
-            <div class="study-time-field"><label for="deadlineDays">目標期限までの日数 <span>任意</span></label><input id="deadlineDays" type="number" min="1" step="1" inputmode="numeric" placeholder="例：6"><p>今日を除き、目標達成まで学習できる日数を入力します。</p></div>
+            <div class="study-time-field"><label for="deadlineDays">目標期限までの学習日数 <span>任意</span></label><input id="deadlineDays" type="number" min="1" step="1" inputmode="numeric" placeholder="例：6"><p>今日を除き、目標までに学習できる日数を入力します。</p></div>
           </div>
         </div>
 
@@ -85,23 +87,40 @@
 
     <section class="study-time-card study-time-result" id="resultCard" aria-labelledby="result-title" aria-live="polite" hidden>
       <h2 id="result-title">計算結果</h2>
-      <div class="study-time-result-main"><span>今日の学習時間</span><strong id="todayResult">—</strong><p id="resultMessage"></p></div>
+      <div class="study-time-result-main"><span>1日あたりの学習時間</span><strong id="dailyResult">未設定</strong><p id="resultMessage"></p></div>
+      <p class="study-time-result-description">入力した条件をもとにした目安です。実際の予定や学習内容に合わせて調整してください。</p>
       <div class="study-time-result-grid">
+        <div><span>今日の学習時間</span><strong id="todayResult">—</strong></div>
         <div><span>目標まであと</span><strong id="remainingResult">未設定</strong></div>
-        <div><span>1日あたり</span><strong id="dailyResult">未設定</strong></div>
         <div><span>週換算</span><strong id="weeklyResult">—</strong></div>
       </div>
       <button class="study-time-copy" id="copyButton" type="button">📋 結果をコピー</button>
       <p class="study-time-copy-message" id="copyMessage" role="status" aria-live="polite"></p>
     </section>
 
-    <section class="study-time-card study-time-info" aria-labelledby="about-title">
-      <h2 id="about-title">このツールについて</h2>
-      <p>今日の勉強時間や目標学習時間から、残り時間や1日あたり必要な学習時間を計算できます。試験勉強、資格学習、毎日の学習管理に便利です。</p>
-      <h2>週換算について</h2>
-      <p>今日と同じ学習時間を7日間続けた場合の目安です。1日あたり必要な時間に端数が出る場合は、目標に不足しないよう1分単位で切り上げます。</p>
-      <h2>注意事項</h2>
-      <p>このツールは学習時間の目安を計算するものです。学習効果は内容・集中度・学習方法によって異なります。</p>
+    <section class="study-time-card study-time-info" aria-labelledby="support-title">
+      <h2 id="support-title">補足情報</h2>
+      <ul class="study-time-support-list">
+        <li>目標までの残り時間は、目標の学習時間から今日の学習時間を引いて計算します。</li>
+        <li>1日あたりの学習時間は、残り時間を入力した学習日数で割り、目標に不足しないよう1分単位で切り上げます。</li>
+        <li>週換算は、今日と同じ学習時間を7日間続けた場合の目安です。</li>
+        <li>必要な時間は学習内容や理解度によって異なります。実際の進み具合に合わせて計画を見直してください。</li>
+      </ul>
+    </section>
+
+    <section class="study-time-card study-time-one-point" aria-labelledby="one-point-title">
+      <h2 id="one-point-title">🍵 ゴマワンポイント</h2>
+      <p>予定を毎日いっぱいにせず、学習できない日に備えて予備日を設けると続けやすくなります。週に一度、予定と実績を見直して調整するのもおすすめです。</p>
+    </section>
+
+    <section class="goma-related-tools" aria-labelledby="goma-related-tools-title">
+      <h2 id="goma-related-tools-title">🔗 関連ツール</h2>
+      <p>学習時間を決めた後は、目標までの必要点数、現在の成績、出席状況も続けて確認できます。</p>
+      <ul class="goma-related-tools-list">
+        <li><a href="./required-score.html">必要点数計算ツール</a></li>
+        <li><a href="./grade-calculator.html">成績計算ツール</a></li>
+        <li><a href="./attendance-rate.html">出席率計算ツール</a></li>
+      </ul>
     </section>
 
     <!-- 学校・教育シリーズ：内容は assets/goma-ui.js で一元管理 -->
@@ -148,15 +167,15 @@
     function readInputs() {
       const today = readDuration(todayHoursInput, todayMinutesInput, '今日の学習時間', true);
       if (today.error) return today;
-      const target = readDuration(targetHoursInput, targetMinutesInput, '目標学習時間', false);
+      const target = readDuration(targetHoursInput, targetMinutesInput, '目標の学習時間', false);
       if (target.error) return target;
-      if (target.total !== null && target.total <= 0) return { error: '目標学習時間は1分以上にしてください。' };
+      if (target.total !== null && target.total <= 0) return { error: '目標の学習時間は1分以上にしてください。' };
 
       let days = null;
       if (deadlineInput.value !== '') {
         days = Number(deadlineInput.value);
-        if (!Number.isInteger(days) || days <= 0) return { error: '目標期限までの日数は1以上の整数で入力してください。' };
-        if (target.total === null) return { error: '目標期限を設定する場合は、目標学習時間も入力してください。' };
+        if (!Number.isInteger(days) || days <= 0) return { error: '目標期限までの学習日数は1以上の整数で入力してください。' };
+        if (target.total === null) return { error: '学習日数を設定する場合は、目標の学習時間も入力してください。' };
       }
       return { todayMinutes: today.total, targetMinutes: target.total, days };
     }
@@ -182,7 +201,7 @@
       document.getElementById('weeklyResult').textContent = formatMinutes(weeklyMinutes);
       document.getElementById('remainingResult').textContent = remainingMinutes === null ? '未設定' : formatMinutes(remainingMinutes);
       document.getElementById('dailyResult').textContent = dailyMinutes === null ? '未設定' : formatMinutes(dailyMinutes);
-      document.getElementById('resultMessage').textContent = remainingMinutes === 0 ? '目標学習時間を達成しています。' : input.targetMinutes === null ? '同じペースを続けた場合の週換算です。' : '目標に向けて、無理のない計画で続けましょう。';
+      document.getElementById('resultMessage').textContent = remainingMinutes === 0 ? '入力した学習時間では、設定した目標時間に到達しています。' : input.targetMinutes === null ? '目標の学習時間と学習日数を入力すると、1日あたりの目安も確認できます。' : input.days === null ? '目標期限までの学習日数を入力すると、1日あたりの目安も確認できます。' : '予定や理解度に合わせて、無理のない計画へ調整してください。';
       resultCard.hidden = false;
       resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
