@@ -1887,6 +1887,7 @@ a { color: var(--terms-green-dark); }
 .required-result-grid span { display: block; color: var(--terms-muted); font-size: .87rem; font-weight: 800; }
 .required-result-main strong { display: block; margin-top: 8px; color: var(--terms-green-dark); font-size: clamp(2.25rem, 7vw, 3.35rem); }
 .required-result-main.is-difficult strong { color: #a23c32; }
+.required-result-description { max-width: 720px; margin: 16px auto 0; color: var(--terms-muted); line-height: 1.75; text-align: center; }
 .required-result-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 16px; }
 .required-result-grid > div { padding: 18px 12px; border: 1px solid #d8e4d2; border-radius: 14px; background: #fff; text-align: center; }
 .required-result-grid strong { display: block; margin-top: 6px; color: var(--terms-text); font-size: 1.08rem; }
@@ -1894,8 +1895,13 @@ a { color: var(--terms-green-dark); }
 .required-copy { display: block; margin: 20px auto 0; }
 .required-copy-message { min-height: 1.5em; margin: 10px 0 0; color: var(--terms-green-dark); font-weight: 800; text-align: center; }
 .required-info { line-height: 1.85; }
-.required-info h2:not(:first-child) { margin-top: 28px; }
-.required-info p { margin: 0; color: var(--terms-muted); }
+.required-support-list { margin: 0; padding-left: 1.25em; color: var(--terms-muted); line-height: 1.75; }
+.required-support-list li + li { margin-top: 8px; }
+.required-one-point { border-color: #d6e3cf; background: #f7fbf3; }
+.required-one-point p { margin: 0; color: #52604d; line-height: 1.75; }
+.required-tabs button:focus-visible,
+.required-form-buttons button:focus-visible,
+.required-copy:focus-visible { outline: 3px solid rgba(99, 132, 63, .3); outline-offset: 2px; }
 
 @media (max-width: 760px) {
   .required-form-grid,
@@ -1908,6 +1914,7 @@ a { color: var(--terms-green-dark); }
   .required-form-buttons { flex-direction: column; }
   .required-form-buttons button,
   .required-copy { width: 100%; }
+  .required-support-list { padding-left: 1.15em; }
 }
 
 /* ======================

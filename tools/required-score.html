@@ -57,21 +57,21 @@
       <section class="required-hero" aria-labelledby="page-title">
         <p class="required-eyebrow">🎓 学校・教育</p>
         <h1 id="page-title">必要点数計算ツール</h1>
-        <p>現在の点数と目標点から、残りのテストで何点必要かを簡単に計算できます。</p>
+        <p>現在の得点や平均点、目標から、残りのテストや課題で必要な点数を計算できます。</p>
       </section>
 
       <!-- ====================== 計算パターン ====================== -->
       <section class="required-card" aria-labelledby="input-title">
         <h2 id="input-title">計算パターンを選ぶ</h2>
         <div class="required-tabs" role="tablist" aria-label="必要点数の計算パターン">
-          <button type="button" role="tab" aria-selected="true" data-mode="total">合計点ベース</button>
-          <button type="button" role="tab" aria-selected="false" data-mode="average">平均点ベース</button>
+          <button id="totalTab" type="button" role="tab" aria-controls="totalPanel" aria-selected="true" data-mode="total">合計点ベース</button>
+          <button id="averageTab" type="button" role="tab" aria-controls="averagePanel" aria-selected="false" data-mode="average">平均点ベース</button>
         </div>
 
         <form id="requiredForm" novalidate>
           <!-- 合計点ベース -->
-          <div class="required-panel" id="totalPanel">
-            <p class="required-form-title">現在の合計点と目標得点率から、残り満点中で必要な点数を計算します。</p>
+          <div class="required-panel" id="totalPanel" role="tabpanel" aria-labelledby="totalTab">
+            <p class="required-form-title">現在までの得点と満点、目標得点率、残りの満点を入力してください。</p>
             <div class="required-form-grid">
               <div class="required-field"><label for="currentScore">現在の得点</label><input id="currentScore" type="number" min="0" step="0.1" inputmode="decimal" placeholder="例：320"></div>
               <div class="required-field"><label for="currentMax">現在までの満点</label><input id="currentMax" type="number" min="0.1" step="0.1" inputmode="decimal" placeholder="例：400"></div>
@@ -81,8 +81,8 @@
           </div>
 
           <!-- 平均点ベース -->
-          <div class="required-panel" id="averagePanel" hidden>
-            <p class="required-form-title">現在平均と目標平均から、残り1回あたり必要な点数を計算します。</p>
+          <div class="required-panel" id="averagePanel" role="tabpanel" aria-labelledby="averageTab" hidden>
+            <p class="required-form-title">現在の平均点と回数、目標平均点、残りの回数を入力してください。</p>
             <div class="required-form-grid">
               <div class="required-field"><label for="currentAverage">現在の平均点</label><input id="currentAverage" type="number" min="0" step="0.1" inputmode="decimal" placeholder="例：75"></div>
               <div class="required-field"><label for="currentCount">現在までの回数</label><input id="currentCount" type="number" min="1" step="1" inputmode="numeric" placeholder="例：3"></div>
@@ -107,6 +107,7 @@
           <span id="mainLabel">必要点数</span>
           <strong id="requiredScore">—</strong>
         </div>
+        <p class="required-result-description">入力した条件をもとに、残り全体と1回あたりの必要点数を表示しています。</p>
         <div class="required-result-grid">
           <div><span>残り1回あたり</span><strong id="perRemaining">—</strong></div>
           <div><span>目標達成判定</span><strong id="statusLabel">—</strong></div>
@@ -117,12 +118,32 @@
         <p class="required-copy-message" id="copyMessage" role="status" aria-live="polite"></p>
       </section>
 
-      <!-- ====================== 説明・注意事項 ====================== -->
-      <section class="required-card required-info" aria-labelledby="about-title">
-        <h2 id="about-title">このツールについて</h2>
-        <p>このツールでは、現在の点数や平均点から、目標達成に必要な点数を計算できます。「あと何点取れば合格できるか」「次のテストで何点取れば平均点が目標に届くか」を確認したいときに便利です。</p>
-        <h2>注意事項</h2>
-        <p>学校や試験によって、成績の計算方法や評価基準は異なります。このツールは一般的な点数計算の補助として利用してください。</p>
+      <!-- ====================== 補足情報 ====================== -->
+      <section class="required-card required-info" aria-labelledby="support-title">
+        <h2 id="support-title">補足情報</h2>
+        <ul class="required-support-list">
+          <li>合計点ベースでは、目標得点率から求めた最終的な目標点と、現在の得点との差を計算します。</li>
+          <li>平均点ベースでは、現在の平均点と回数から、残り1回あたりに必要な点数を計算します。</li>
+          <li>平均点ベースの達成判定は、1回100点満点を想定した目安です。</li>
+          <li>評価方法や端数処理は学校・授業によって異なります。正式な条件は、シラバスや担当者へご確認ください。</li>
+        </ul>
+      </section>
+
+      <!-- ====================== ゴマワンポイント ====================== -->
+      <section class="required-card required-one-point" aria-labelledby="one-point-title">
+        <h2 id="one-point-title">🍵 ゴマワンポイント</h2>
+        <p>必要点数を早めに確認すると、残りの試験や課題へ向けた学習計画を立てやすくなります。端数処理も考え、計算結果より少し余裕のある点数を目標にすると安心です。</p>
+      </section>
+
+      <!-- ====================== 関連ツール ====================== -->
+      <section class="goma-related-tools" aria-labelledby="goma-related-tools-title">
+        <h2 id="goma-related-tools-title">🔗 関連ツール</h2>
+        <p>現在の成績を整理したり、目標へ向けた学習時間や出席状況を確認したりできます。</p>
+        <ul class="goma-related-tools-list">
+          <li><a href="./grade-calculator.html">成績計算ツール</a></li>
+          <li><a href="./study-time.html">学習時間計算ツール</a></li>
+          <li><a href="./attendance-rate.html">出席率計算ツール</a></li>
+        </ul>
       </section>
 
       <!-- 学校・教育シリーズ：内容は assets/goma-ui.js で一元管理 -->
@@ -217,7 +238,7 @@
         message = `残り${formatNumber(remainingMax.value)}点満点中、${formatNumber(required)}点以上で目標達成できます。`;
       } else {
         status = '達成困難';
-        message = `残り${formatNumber(remainingMax.value)}点満点では、目標達成には${formatNumber(required)}点必要です。`;
+        message = `入力された条件では、残り${formatNumber(remainingMax.value)}点満点に対して${formatNumber(required)}点必要です。配点や目標得点率をご確認ください。`;
       }
       return { mode: '合計点ベース', required, perRemaining, status, possible, already, margin, message, warning, marginLabel: already || possible ? '余裕点' : '不足点' };
     }
@@ -250,15 +271,16 @@
         message = `残り${remainingCount.value}回で、1回あたり${formatNumber(perRemaining)}点以上取ると平均${formatNumber(targetAverage.value)}点に届きます。`;
       } else {
         status = '達成困難';
-        message = `1回あたり${formatNumber(perRemaining)}点が必要です。100点満点想定では目標達成が難しい状態です。`;
+        message = `入力された条件では、1回あたり${formatNumber(perRemaining)}点が必要です。100点満点を想定すると、目標平均への到達が難しい計算結果です。`;
       }
       return { mode: '平均点ベース', required, perRemaining, status, possible, already, margin, message, warning: '', marginLabel: already || possible ? '余裕点' : '不足点' };
     }
 
     function renderResult(result) {
       latestResult = result;
-      document.getElementById('requiredScore').textContent = `${formatNumber(result.required)}点`;
-      document.getElementById('perRemaining').textContent = `${formatNumber(result.perRemaining)}点`;
+      document.getElementById('mainLabel').textContent = result.already ? '現在の条件' : '必要点数';
+      document.getElementById('requiredScore').textContent = result.already ? '目標に到達' : `${formatNumber(result.required)}点`;
+      document.getElementById('perRemaining').textContent = result.already ? '0点' : `${formatNumber(result.perRemaining)}点`;
       document.getElementById('statusLabel').textContent = result.status;
       document.getElementById('marginLabel').textContent = result.marginLabel;
       document.getElementById('marginValue').textContent = `${formatNumber(result.margin)}点`;
@@ -293,7 +315,9 @@
 
     async function copyResult() {
       if (!latestResult) return;
-      const text = `【ゴマツール 必要点数計算結果】\n計算方法：${latestResult.mode}\n必要点数：${formatNumber(latestResult.required)}点\n残り1回あたり：${formatNumber(latestResult.perRemaining)}点\n判定：${latestResult.status}\n${latestResult.marginLabel}：${formatNumber(latestResult.margin)}点\n${latestResult.message}`;
+      const requiredText = latestResult.already ? '目標に到達' : `${formatNumber(latestResult.required)}点`;
+      const perRemainingText = latestResult.already ? '0点' : `${formatNumber(latestResult.perRemaining)}点`;
+      const text = `【ゴマツール 必要点数計算結果】\n計算方法：${latestResult.mode}\n必要点数：${requiredText}\n残り1回あたり：${perRemainingText}\n判定：${latestResult.status}\n${latestResult.marginLabel}：${formatNumber(latestResult.margin)}点\n${latestResult.message}`;
       try {
         await navigator.clipboard.writeText(text);
         document.getElementById('copyMessage').textContent = 'コピーしました。';
