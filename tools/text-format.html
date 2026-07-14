@@ -53,21 +53,22 @@
       <section class="text-format-hero" aria-labelledby="page-title">
         <p class="text-format-eyebrow">📝 仕事・テキスト</p>
         <h1 id="page-title">テキスト整形ツール</h1>
-        <p>文章の改行・空白・全角半角などをまとめて整形できる無料ツールです。</p>
+        <p>文章の改行・空白・全角半角などを整形できます。元の文章を残したまま結果を確認し、そのままコピーできます。</p>
       </section>
 
       <!-- ====================== 入力エリア ====================== -->
       <section class="text-format-card" aria-labelledby="input-title">
-        <div class="text-format-heading-row"><h2 id="input-title">整形したい文章</h2><span class="text-format-count" id="inputCount">0文字・0行</span></div>
-        <label class="text-format-label" for="inputText">入力テキスト</label>
+        <div class="text-format-heading-row"><h2 id="input-title">整形するテキスト</h2><span class="text-format-count" id="inputCount">0文字・0行</span></div>
+        <label class="text-format-label" for="inputText">元のテキスト</label>
         <textarea id="inputText" class="text-format-textarea" placeholder="ここに整形したい文章を貼り付けてください" spellcheck="false"></textarea>
-        <p class="text-format-message" id="message" role="status" aria-live="polite"></p>
+        <p class="text-format-message" id="inputMessage" role="status" aria-live="polite"></p>
         <p class="text-format-warning" id="largeTextWarning" hidden>文字数が多いため、処理に時間がかかる場合があります。</p>
       </section>
 
       <!-- ====================== 整形操作 ====================== -->
       <section class="text-format-card" aria-labelledby="actions-title">
         <h2 id="actions-title">整形方法を選ぶ</h2>
+        <p class="text-format-action-help" id="action-help">実行したい整形方法を1つ選んでください。ボタンを押すと、元のテキストを残したまま結果を表示します。</p>
         <div class="text-format-action-group"><h3>基本整形</h3><div class="text-format-button-grid">
           <button type="button" data-action="remove-newlines">改行を削除</button>
           <button type="button" data-action="remove-empty-lines">空行を削除</button>
@@ -91,24 +92,34 @@
       </section>
 
       <!-- ====================== 出力エリア ====================== -->
-      <section class="text-format-card text-format-result" aria-labelledby="result-title">
+      <section class="text-format-card text-format-result" id="resultSection" aria-labelledby="result-title" hidden>
         <div class="text-format-heading-row"><h2 id="result-title">整形結果</h2><span class="text-format-count" id="outputCount">0文字・0行</span></div>
-        <label class="text-format-label" for="outputText">出力テキスト</label>
+        <label class="text-format-label" for="outputText">整形後のテキスト</label>
         <textarea id="outputText" class="text-format-textarea" placeholder="ここに整形結果が表示されます" spellcheck="false" readonly></textarea>
         <div class="text-format-result-buttons">
           <button class="text-format-primary" id="copyButton" type="button">📋 結果をコピー</button>
-          <button id="reuseButton" type="button">↩ 結果を入力へ戻す</button>
-          <button class="text-format-clear" id="clearButton" type="button">すべてクリア</button>
+          <button id="reuseButton" type="button">↩ 結果を入力欄へ反映</button>
+          <button class="text-format-clear" id="clearButton" type="button">入力と結果をクリア</button>
         </div>
+        <p class="text-format-message text-format-result-message" id="resultMessage" role="status" aria-live="polite"></p>
       </section>
 
-      <!-- ====================== 説明 ====================== -->
-      <section class="text-format-card text-format-info" aria-labelledby="about-title">
-        <h2 id="about-title">このツールでできること</h2>
-        <p>このテキスト整形ツールでは、文章の改行削除、空白削除、重複行削除、行の並び替えなどを簡単に行えます。コピーした文章を整えたいときや、メモ・リスト・原稿・データ整理をしたいときに便利です。</p>
-        <h2>入力内容について</h2>
-        <p>このツールはブラウザ上で動作します。入力した文章はサーバーへ送信されません。</p>
+      <!-- ====================== 補足情報 ====================== -->
+      <section class="text-format-card text-format-info" aria-labelledby="support-title">
+        <h2 id="support-title">補足情報</h2>
+        <ul class="text-format-support-list">
+          <li>整形方法は1回につき1つ実行します。続けて整形する場合は、「結果を入力欄へ反映」してから次の方法を選んでください。</li>
+          <li>改行・空行・半角スペース・全角スペースは、それぞれ別の方法として処理します。利用前に整形結果をご確認ください。</li>
+          <li>入力した文章の整形処理はブラウザ内で行い、ツールの処理としてサーバーへの送信やブラウザへの保存は行いません。</li>
+        </ul>
       </section>
+
+      <!-- ====================== ゴマワンポイント ====================== -->
+      <section class="text-format-card text-format-one-point" aria-labelledby="one-point-title">
+        <h2 id="one-point-title">🍵 ゴマワンポイント</h2>
+        <p>長い文章をまとめて整形する前に、短い一部分で結果を確認しておくと安心です。元の文章も残しておくと、あとから見比べやすくなります。</p>
+      </section>
+
       <!-- 仕事・テキストシリーズ：内容は assets/goma-ui.js で一元管理 -->
       <section data-work-series data-current="text-format"></section>
       <div class="back-to-top"><a class="top-button" href="../">🏠 トップへ戻る</a></div>
@@ -129,7 +140,9 @@
     const outputText=document.getElementById('outputText');
     const inputCount=document.getElementById('inputCount');
     const outputCount=document.getElementById('outputCount');
-    const message=document.getElementById('message');
+    const inputMessage=document.getElementById('inputMessage');
+    const resultMessage=document.getElementById('resultMessage');
+    const resultSection=document.getElementById('resultSection');
     const largeTextWarning=document.getElementById('largeTextWarning');
 
     function normalizeNewlines(text){return text.replace(/\r\n?/g,'\n')}
@@ -139,8 +152,9 @@
       outputCount.textContent=`${outputText.value.length.toLocaleString('ja-JP')}文字・${countLines(outputText.value).toLocaleString('ja-JP')}行`;
       largeTextWarning.hidden=inputText.value.length<100000;
     }
-    function setMessage(text,type=''){message.textContent=text;message.className=`text-format-message${type?` is-${type}`:''}`}
-    function getInputOrShowError(){if(inputText.value.length===0){setMessage('整形したい文章を入力してください。','error');inputText.focus();return null}return normalizeNewlines(inputText.value)}
+    function setMessage(target,text,type=''){target.textContent=text;target.className=`text-format-message${target===resultMessage?' text-format-result-message':''}${type?` is-${type}`:''}`}
+    function clearMessages(){setMessage(inputMessage,'');setMessage(resultMessage,'')}
+    function getInputOrShowError(){if(inputText.value.length===0){setMessage(inputMessage,'整形するテキストを入力してください。','error');inputText.focus();return null}return normalizeNewlines(inputText.value)}
     function toHalfWidth(text){return text.replace(/[！-～]/g,c=>String.fromCharCode(c.charCodeAt(0)-0xFEE0)).replace(/　/g,' ')}
     function toFullWidth(text){return text.replace(/[!-~]/g,c=>String.fromCharCode(c.charCodeAt(0)+0xFEE0)).replace(/ /g,'　')}
     function katakanaToHiragana(text){return text.replace(/[ァ-ヶ]/g,c=>String.fromCharCode(c.charCodeAt(0)-0x60))}
@@ -162,15 +176,15 @@
         'reverse-lines':()=>[...lines].reverse().join('\n')
       };return transforms[action]?transforms[action]():text;
     }
-    function formatText(action){const text=getInputOrShowError();if(text===null)return;outputText.value=transformText(action,text);setMessage('整形しました。','success');updateCounts();outputText.scrollIntoView({behavior:'smooth',block:'nearest'})}
-    async function copyResult(){if(!outputText.value){setMessage('コピーする整形結果がありません。','error');return}try{await navigator.clipboard.writeText(outputText.value);setMessage('コピーしました。','success')}catch(error){setMessage('コピーできませんでした。手動で選択してコピーしてください。','error');outputText.removeAttribute('readonly');outputText.select();outputText.setAttribute('readonly','')}}
-    function reuseResult(){if(!outputText.value){setMessage('入力へ戻す整形結果がありません。','error');return}inputText.value=outputText.value;setMessage('整形結果を入力欄へ戻しました。続けて別の整形ができます。','success');updateCounts();inputText.focus()}
-    function clearAll(){inputText.value='';outputText.value='';setMessage('');updateCounts();inputText.focus()}
+    function formatText(action){const text=getInputOrShowError();if(text===null)return;clearMessages();outputText.value=transformText(action,text);resultSection.hidden=false;setMessage(resultMessage,outputText.value?'整形しました。結果を確認してコピーできます。':'選択した整形方法では結果が空になりました。',outputText.value?'success':'error');updateCounts();resultSection.scrollIntoView({behavior:'smooth',block:'nearest'})}
+    async function copyResult(){if(!outputText.value){setMessage(resultMessage,'コピーする整形結果がありません。','error');return}try{await navigator.clipboard.writeText(outputText.value);setMessage(resultMessage,'整形結果をコピーしました。','success')}catch(error){setMessage(resultMessage,'コピーできませんでした。結果を選択して手動でコピーしてください。','error');outputText.removeAttribute('readonly');outputText.select();outputText.setAttribute('readonly','')}}
+    function reuseResult(){if(!outputText.value){setMessage(resultMessage,'入力欄へ反映する整形結果がありません。','error');return}inputText.value=outputText.value;setMessage(resultMessage,'');setMessage(inputMessage,'整形結果を入力欄へ反映しました。続けて別の整形方法を選べます。','success');updateCounts();inputText.focus()}
+    function clearAll(){inputText.value='';outputText.value='';clearMessages();resultSection.hidden=true;updateCounts();inputText.focus()}
     document.querySelectorAll('[data-action]').forEach(button=>button.addEventListener('click',()=>formatText(button.dataset.action)));
     document.getElementById('copyButton').addEventListener('click',copyResult);
     document.getElementById('reuseButton').addEventListener('click',reuseResult);
     document.getElementById('clearButton').addEventListener('click',clearAll);
-    inputText.addEventListener('input',()=>{setMessage('');updateCounts()});updateCounts();
+    inputText.addEventListener('input',()=>{setMessage(inputMessage,'');updateCounts()});updateCounts();
   </script>
 </body>
 </html>

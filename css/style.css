@@ -980,6 +980,7 @@ a { color: var(--terms-green-dark); }
 .text-format-textarea { width: 100%; min-height: 230px; resize: vertical; padding: 16px; border: 1px solid #cbd6c5; border-radius: 14px; background: #fcfdfb; color: var(--terms-text); font: inherit; font-size: 16px; line-height: 1.7; transition: border-color .2s, box-shadow .2s; }
 .text-format-textarea:focus { outline: none; border-color: var(--terms-green); box-shadow: 0 0 0 4px rgba(99, 132, 63, .15); }
 .text-format-action-group + .text-format-action-group { margin-top: 28px; padding-top: 26px; border-top: 1px solid var(--terms-line); }
+.text-format-action-help { margin: -4px 0 18px; color: var(--terms-muted); line-height: 1.75; }
 .text-format-action-group h3 { margin: 0 0 13px; color: var(--terms-green-dark); font-size: 1.02rem; }
 .text-format-button-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 .text-format-button-grid button,
@@ -997,12 +998,16 @@ a { color: var(--terms-green-dark); }
 .text-format-result-buttons .text-format-primary:hover { background: var(--terms-green-dark); }
 .text-format-result-buttons .text-format-clear { border-color: #d6b8b8; background: #fff7f7; color: #8b4141; }
 .text-format-message { min-height: 1.5em; margin: 10px 0 0; font-weight: 800; }
+.text-format-result-message { text-align: center; }
 .text-format-message.is-error { color: #b42318; }
 .text-format-message.is-success { color: var(--terms-green-dark); }
 .text-format-warning { margin: 10px 0 0; padding: 10px 13px; border-radius: 10px; background: #fff5dc; color: #76550e; font-weight: 700; }
 .text-format-info { line-height: 1.85; }
-.text-format-info h2:not(:first-child) { margin-top: 28px; }
-.text-format-info p { margin: 0; color: var(--terms-muted); }
+.text-format-support-list { margin: 0; padding-left: 1.3em; color: var(--terms-muted); }
+.text-format-support-list li + li { margin-top: 9px; }
+.text-format-one-point { border-color: #d6e3cf; background: #f7fbf3; }
+.text-format-one-point h2 { color: var(--terms-green-dark); }
+.text-format-one-point p { margin: 0; color: #52604d; line-height: 1.75; }
 
 @media (max-width: 760px) {
   .text-format-button-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
