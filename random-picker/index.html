@@ -55,36 +55,32 @@
     .draw-button:disabled { cursor:wait; opacity:.7; }
     .reset-button { color:var(--green-dark); border:1.5px solid var(--green); background:#fff; }
     .reset-button:hover { background:var(--green-light); }
-    .draw-button:focus-visible,.reset-button:focus-visible,.home-link:focus-visible,.related-link:focus-visible { outline:3px solid rgba(88,124,64,.35); outline-offset:3px; }
+    .draw-button:focus-visible,.reset-button:focus-visible,.home-link:focus-visible { outline:3px solid rgba(88,124,64,.35); outline-offset:3px; }
     .error { min-height:1.6em; margin:12px 0 0; color:var(--danger); font-weight:750; text-align:center; }
     .notice { min-height:1.5em; margin:5px 0 0; color:var(--warning); font-size:.88rem; font-weight:750; text-align:center; }
 
     /* ====================== 抽選結果 ====================== */
     .result-panel { margin-top:26px; padding:30px 20px; border-radius:20px; background:var(--green-light); text-align:center; }
+    .result-panel[hidden] { display:none; }
     .result-icon { display:block; font-size:2.2rem; }
     .result-label { display:block; margin-top:5px; color:var(--muted); font-size:1rem; font-weight:850; }
     .winner { display:block; margin-top:8px; color:var(--green-dark); font-size:clamp(2rem,9vw,4rem); line-height:1.25; font-weight:900; overflow-wrap:anywhere; }
     .drawing .winner { opacity:.7; transform:scale(.98); }
     .result-count { margin:14px 0 0; color:var(--muted); font-size:.9rem; }
 
-    /* ====================== 補足・関連ツール ====================== */
-    .info-card { box-shadow:none; background:var(--green-soft); }
-    .info-card p { margin:5px 0; color:var(--muted); }
-    .related-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-    .related-item { padding:19px; border:1px solid var(--line); border-radius:15px; background:var(--green-soft); }
-    .related-name { display:block; font-weight:800; }
-    .related-status { display:block; margin-top:4px; color:var(--muted); font-size:.78rem; }
-    .related-link { display:block; text-decoration:none; transition:border-color .15s ease,transform .15s ease; }
-    .related-link:hover { border-color:var(--green); transform:translateY(-1px); }
+    /* ====================== 補足情報 ====================== */
+    .support-card { box-shadow:none; background:var(--green-soft); }
+    .support-list { margin:0; padding-left:1.25em; color:var(--muted); }
+    .support-list li + li { margin-top:8px; }
+    .picker-one-point h2 { margin:0 0 8px; color:var(--green-dark); font-size:1.05rem; line-height:1.45; }
 
     /* ====================== フッター・レスポンシブ ====================== */
     footer { padding:52px 0; color:var(--muted); border-top:1px solid var(--line); text-align:center; background:var(--green-soft); }
     .footer-logo { margin:0 0 8px; color:var(--green-dark); font-size:1.15rem; font-weight:850; }
     footer p { margin:5px 0; }
     .project-name { margin-top:20px; font-size:.82rem; font-weight:750; letter-spacing:.08em; }
-    .footer-assurance { max-width:620px; margin:28px auto 0; padding-top:26px; border-top:1px solid var(--line); font-size:.78rem; line-height:1.8; }
     .updated { margin-top:18px; font-size:.72rem; }
-    @media (max-width:620px) { .container{width:min(100% - 24px,880px)} .site-header{padding:18px 0} .header-inner{align-items:flex-start} .brand-wrap{flex-direction:column;gap:0} main{padding:58px 0 76px} .section{margin-top:54px} .card{padding:22px 18px;border-radius:18px} .button-row,.related-grid{grid-template-columns:1fr} .field-meta{align-items:flex-start;flex-direction:column;gap:2px} textarea{min-height:190px} }
+    @media (max-width:620px) { .container{width:min(100% - 24px,880px)} .site-header{padding:18px 0} .header-inner{align-items:flex-start} .brand-wrap{flex-direction:column;gap:0} main{padding:58px 0 76px} .section{margin-top:54px} .card{padding:22px 18px;border-radius:18px} .button-row{grid-template-columns:1fr} .field-meta{align-items:flex-start;flex-direction:column;gap:2px} textarea{min-height:190px} }
     @media (prefers-reduced-motion:reduce) { html{scroll-behavior:auto} *,*::before,*::after{transition:none!important} }
   </style>
   <link rel="stylesheet" href="../assets/goma-ui.css">
@@ -126,32 +122,27 @@
 
   <main><div class="container">
     <!-- ====================== ヒーロー ====================== -->
-    <section class="hero" aria-labelledby="page-title"><p class="eyebrow">イベントやゲームの抽選に</p><h1 id="page-title">📋 ランダム抽選ツール</h1><p class="hero-description">名前や項目を入力するとランダムで1件抽選できます。</p></section>
+    <section class="hero" aria-labelledby="page-title"><p class="eyebrow">イベントやゲームの抽選に</p><h1 id="page-title">📋 ランダム抽選ツール</h1><p class="hero-description">名前や項目を入力して、候補から1件を抽選できます。イベントやゲームなどの選択に利用できます。</p></section>
 
     <!-- ====================== ランダム抽選 ====================== -->
     <section class="section" aria-labelledby="picker-title"><h2 class="section-title" id="picker-title">抽選する項目を入力</h2><div class="card">
-      <form id="pickerForm" novalidate><label for="itemInput">抽選する項目</label><textarea id="itemInput" name="itemInput" placeholder="例：&#10;田中,佐藤&#10;鈴木　高橋、伊藤" aria-describedby="inputHint targetCount"></textarea><div class="field-meta"><span id="inputHint">改行・カンマ（,、）・スペース区切りに対応しています。</span><span class="target-count" id="targetCount">抽選対象：0件</span></div><div class="button-row"><button class="draw-button" id="drawButton" type="submit">🎉 抽選する</button><button class="reset-button" id="resetButton" type="button">リセット</button></div><p class="error" id="formError" role="alert"></p><p class="notice" id="formNotice" role="status"></p></form>
+      <form id="pickerForm" novalidate><label for="itemInput">抽選候補</label><textarea id="itemInput" name="itemInput" placeholder="例：&#10;田中&#10;佐藤&#10;鈴木" aria-describedby="inputHint targetCount formError"></textarea><div class="field-meta"><span id="inputHint">改行・カンマ（,、）・スペースで区切って入力できます。</span><span class="target-count" id="targetCount">抽選対象：0件</span></div><div class="button-row"><button class="draw-button" id="drawButton" type="submit">🎉 抽選する</button><button class="reset-button" id="resetButton" type="button">リセット</button></div><p class="error" id="formError" role="alert" aria-live="assertive"></p><p class="notice" id="formNotice" role="status" aria-live="polite"></p></form>
 
       <!-- ====================== 抽選結果 ====================== -->
-      <div class="result-panel" id="resultPanel" aria-live="polite"><span class="result-icon" aria-hidden="true">🎉</span><span class="result-label" id="resultLabel">抽選結果</span><strong class="winner" id="winner">ここに結果が表示されます</strong><p class="result-count" id="resultCount">抽選対象：0件</p></div>
+      <div class="result-panel" id="resultPanel" aria-labelledby="resultLabel" aria-live="polite" aria-atomic="true" hidden><span class="result-icon" aria-hidden="true">🎉</span><span class="result-label" id="resultLabel">抽選結果</span><strong class="winner" id="winner">ここに結果が表示されます</strong><p class="result-count" id="resultCount">抽選対象：0件</p></div>
     </div></section>
 
-    <!-- ====================== 補足 ====================== -->
-    <section class="section card info-card" aria-labelledby="info-title"><h2 class="section-title" id="info-title">🍵 安心してお使いください</h2><p>抽選にはブラウザの安全な乱数機能を使用します。</p><p>入力内容と抽選処理はブラウザ内だけで行われ、サーバーへ送信・保存しません。</p></section>
+    <!-- ====================== 補足情報 ====================== -->
+    <section class="section card support-card" aria-labelledby="support-title"><h2 class="section-title" id="support-title">補足情報</h2><ul class="support-list"><li>同じ候補を複数回入力した場合は、1件として扱います。</li><li>1回の抽選で、入力した候補から1件を表示します。</li><li>入力内容と抽選結果はブラウザへ保存せず、サーバーへ送信する処理もありません。</li></ul></section>
+
+    <aside class="goma-one-point picker-one-point" aria-labelledby="one-point-title"><h2 id="one-point-title">🍵 ゴマワンポイント</h2><p>抽選前に、候補の重複や表記ゆれ、入力漏れがないか確認すると、意図した内容で抽選しやすくなります。重要な判断では、抽選結果だけでなく条件も確認しましょう。</p></aside>
 
     <!-- ====================== 関連ツール ====================== -->
-    <section class="section" aria-labelledby="related-title"><h2 class="section-title" id="related-title">おすすめの便利ツール</h2><div class="card related-grid">
-      <a class="related-item related-link" href="../qrcode/"><span class="related-name">📱 QRコード生成</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../password/"><span class="related-name">🔐 パスワード生成</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../text-counter/"><span class="related-name">✍️ 文字数カウント</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../unit-converter/"><span class="related-name">📏 単位変換ツール</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../discount-calculator/"><span class="related-name">💹 割引率計算ツール</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../calculator/"><span class="related-name">🧮 電卓ツール</span><span class="related-status">公開中</span></a>
-    </div></section>
+    <section class="goma-related-tools" aria-labelledby="goma-related-tools-title"><h2 id="goma-related-tools-title">🔗 関連ツール</h2><p>候補の準備や、文字・情報の作成に役立つツールです。</p><ul class="goma-related-tools-list"><li><a href="../text-counter/">文字数カウント</a></li><li><a href="../qrcode/">QRコード生成ツール</a></li><li><a href="../password/">パスワード生成ツール</a></li></ul></section>
   </div></main>
 
   <!-- ====================== フッター ====================== -->
-  <footer><div class="container"><p class="footer-logo">🍵 ゴマツール</p><p>30秒で使えて、<br>他より少し便利。</p><p class="project-name">Project Goma</p><div class="footer-assurance"><p>入力したデータはブラウザ内だけで処理されます。</p><p>サーバーへ送信・保存は行いません。</p></div><p><a href="../privacy/" style="color:inherit">プライバシーポリシー</a></p><p class="updated">最終更新：2026年7月</p></div></footer>
+  <footer><div class="container"><p class="footer-logo">🍵 ゴマツール</p><p>30秒で使えて、<br>他より少し便利。</p><p class="project-name">Project Goma</p><p><a href="../privacy/" style="color:inherit">プライバシーポリシー</a></p><p class="updated">最終更新：2026年7月</p></div></footer>
 
   <script>
     'use strict';
@@ -177,6 +168,9 @@
       document.getElementById('targetCount').textContent = `抽選対象：${count.toLocaleString('ja-JP')}件`;
       document.getElementById('formError').textContent = '';
       document.getElementById('formNotice').textContent = '';
+      document.getElementById('resultPanel').hidden = true;
+      const button = document.getElementById('drawButton');
+      if (!button.disabled) button.textContent = '🎉 抽選する';
     }
 
     // ====================== ランダム抽選 ======================
@@ -191,10 +185,13 @@
       const button = document.getElementById('drawButton');
       error.textContent = '';
       notice.textContent = '';
+      panel.hidden = true;
 
       if (items.length === 0) { error.textContent = '抽選する項目を入力してください。'; return; }
       if (drawingTimer) clearInterval(drawingTimer);
       button.disabled = true;
+      button.textContent = '抽選中…';
+      panel.hidden = false;
       panel.classList.add('drawing');
       label.textContent = '抽選中…';
       document.getElementById('resultCount').textContent = `抽選対象：${items.length.toLocaleString('ja-JP')}件`;
@@ -221,6 +218,7 @@
       document.getElementById('resultLabel').textContent = '当選！';
       document.getElementById('resultPanel').classList.remove('drawing');
       document.getElementById('drawButton').disabled = false;
+      document.getElementById('drawButton').textContent = '🎉 もう一度抽選する';
       document.getElementById('resultPanel').scrollIntoView({ behavior:'smooth', block:'nearest' });
     }
 
@@ -229,6 +227,7 @@
       if (drawingTimer) { clearInterval(drawingTimer); drawingTimer = null; }
       document.getElementById('pickerForm').reset();
       document.getElementById('drawButton').disabled = false;
+      document.getElementById('drawButton').textContent = '🎉 抽選する';
       document.getElementById('formError').textContent = '';
       document.getElementById('formNotice').textContent = '';
       document.getElementById('targetCount').textContent = '抽選対象：0件';
@@ -236,6 +235,7 @@
       document.getElementById('winner').textContent = 'ここに結果が表示されます';
       document.getElementById('resultCount').textContent = '抽選対象：0件';
       document.getElementById('resultPanel').classList.remove('drawing');
+      document.getElementById('resultPanel').hidden = true;
       document.getElementById('itemInput').focus();
     }
 
