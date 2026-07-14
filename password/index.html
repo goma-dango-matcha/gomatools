@@ -57,7 +57,7 @@
     .primary-button:hover { background:var(--green-dark); transform:translateY(-1px); }
     .copy-button { color:var(--green-dark); border:1.5px solid var(--green); background:#fff; }
     .copy-button:hover { background:var(--green-light); }
-    .primary-button:focus-visible, .copy-button:focus-visible, .home-link:focus-visible, .related-link:focus-visible { outline:3px solid rgba(88,124,64,.35); outline-offset:3px; }
+    .primary-button:focus-visible, .copy-button:focus-visible, .home-link:focus-visible { outline:3px solid rgba(88,124,64,.35); outline-offset:3px; }
     .error { min-height:1.6em; margin:12px 0 0; color:var(--danger); font-weight:750; text-align:center; }
 
     /* ====================== 生成結果 ====================== */
@@ -74,24 +74,19 @@
     .copy-wrap { margin-top:18px; }
     .copy-status { min-height:1.5em; margin:8px 0 0; color:var(--green-dark); font-size:.86rem; font-weight:750; text-align:center; }
 
-    /* ====================== 補足・関連ツール ====================== */
-    .info-card { box-shadow:none; background:var(--green-soft); }
-    .info-card p { margin:5px 0; color:var(--muted); }
-    .related-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-    .related-item { padding:19px; border:1px solid var(--line); border-radius:15px; background:var(--green-soft); }
-    .related-name { display:block; font-weight:800; }
-    .related-status { display:block; margin-top:4px; color:var(--muted); font-size:.78rem; }
-    .related-link { display:block; text-decoration:none; transition:border-color .15s ease,transform .15s ease; }
-    .related-link:hover { border-color:var(--green); transform:translateY(-1px); }
+    /* ====================== 補足情報 ====================== */
+    .support-card { box-shadow:none; background:var(--green-soft); }
+    .support-list { margin:0; padding-left:1.25em; color:var(--muted); }
+    .support-list li + li { margin-top:8px; }
+    .password-one-point h2 { margin:0 0 8px; color:var(--green-dark); font-size:1.05rem; line-height:1.45; }
 
     /* ====================== フッター・レスポンシブ ====================== */
     footer { padding:52px 0; color:var(--muted); border-top:1px solid var(--line); text-align:center; background:var(--green-soft); }
     .footer-logo { margin:0 0 8px; color:var(--green-dark); font-size:1.15rem; font-weight:850; }
     footer p { margin:5px 0; }
     .project-name { margin-top:20px; font-size:.82rem; font-weight:750; letter-spacing:.08em; }
-    .footer-assurance { max-width:620px; margin:28px auto 0; padding-top:26px; border-top:1px solid var(--line); font-size:.78rem; line-height:1.8; }
     .updated { margin-top:18px; font-size:.72rem; }
-    @media (max-width:620px) { .container{width:min(100% - 24px,880px)} .site-header{padding:18px 0} .header-inner{align-items:flex-start} .brand-wrap{flex-direction:column;gap:0} main{padding:58px 0 76px} .section{margin-top:54px} .card{padding:22px 18px;border-radius:18px} .check-grid,.included-list,.related-grid{grid-template-columns:1fr} }
+    @media (max-width:620px) { .container{width:min(100% - 24px,880px)} .site-header{padding:18px 0} .header-inner{align-items:flex-start} .brand-wrap{flex-direction:column;gap:0} main{padding:58px 0 76px} .section{margin-top:54px} .card{padding:22px 18px;border-radius:18px} .check-grid,.included-list{grid-template-columns:1fr} }
     @media (prefers-reduced-motion:reduce) { html{scroll-behavior:auto} *,*::before,*::after{transition:none!important} }
   </style>
   <link rel="stylesheet" href="../assets/goma-ui.css">
@@ -140,9 +135,9 @@
     <div class="container">
       <!-- ====================== ヒーロー ====================== -->
       <section class="hero" aria-labelledby="page-title">
-        <p class="eyebrow">安全な乱数をブラウザ内で生成</p>
+        <p class="eyebrow">条件を選んですぐ生成</p>
         <h1 id="page-title">🔐 パスワード生成</h1>
-        <p class="hero-description">安全なランダムパスワードを無料で生成できます。<br>ブラウザ内だけで処理されるため安心して利用できます。</p>
+        <p class="hero-description">文字数と使用する文字を選んで、パスワードを生成できます。生成した結果はコピーして利用できます。</p>
       </section>
 
       <!-- ====================== パスワード生成 ====================== -->
@@ -158,47 +153,36 @@
                 <label class="check-option"><input type="checkbox" id="useNumbers" checked>数字（0-9）</label>
                 <label class="check-option"><input type="checkbox" id="useSymbols" checked>記号（!@#$%など）</label>
               </div></fieldset>
-              <button class="primary-button" type="submit">🔐 パスワードを生成</button>
+              <button class="primary-button" id="generateButton" type="submit">🔐 パスワードを生成</button>
             </div>
-            <p class="error" id="formError" role="alert"></p>
+            <p class="error" id="formError" role="alert" aria-live="assertive"></p>
           </form>
 
           <!-- ====================== 生成結果 ====================== -->
-          <div class="result-panel" id="resultPanel" aria-live="polite" hidden>
-            <div class="password-box"><span class="result-label">生成したパスワード</span><strong class="password-value" id="passwordValue">—</strong></div>
+          <div class="result-panel" id="resultPanel" aria-labelledby="result-label" aria-live="polite" aria-atomic="true" hidden>
+            <div class="password-box"><span class="result-label" id="result-label">生成したパスワード</span><strong class="password-value" id="passwordValue">—</strong></div>
             <p class="strength" id="strengthResult">—</p>
             <ul class="included-list" id="includedList"></ul>
-            <div class="copy-wrap"><button class="copy-button" type="button" id="copyButton">📋 コピー</button><p class="copy-status" id="copyStatus" role="status"></p></div>
+            <div class="copy-wrap"><button class="copy-button" type="button" id="copyButton">📋 パスワードをコピー</button><p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p></div>
           </div>
         </div>
       </section>
 
-      <!-- ====================== 注意書き ====================== -->
-      <section class="section card info-card" aria-labelledby="notice-title"><h2 class="section-title" id="notice-title">🍵 安心してお使いください</h2><p>生成したパスワードはサーバーへ送信・保存されません。</p><p>生成処理はこのブラウザ内だけで行われます。</p></section>
+      <!-- ====================== 補足情報 ====================== -->
+      <section class="section card support-card" aria-labelledby="support-title"><h2 class="section-title" id="support-title">補足情報</h2><ul class="support-list"><li>選択した文字種を1文字以上含むように生成します。使用する文字は1種類以上選んでください。</li><li>「設定の目安」は、文字数と選択した文字種から表示する参考情報です。利用先のパスワード条件も確認してください。</li><li>設定と生成結果はブラウザへ保存せず、サーバーやAnalyticsへ送信する処理もありません。</li></ul></section>
+
+      <aside class="goma-one-point password-one-point" aria-labelledby="one-point-title"><h2 id="one-point-title">🍵 ゴマワンポイント</h2><p>生成したパスワードは、サービスごとに異なるものを使うと使い回しを避けられます。必要に応じて、パスワード管理ツールの利用も検討しましょう。</p></aside>
+
+      <!-- ====================== 関連するゴマ知識 ====================== -->
+      <section class="goma-related-knowledge" aria-labelledby="goma-related-knowledge-title"><h2 id="goma-related-knowledge-title">💡 関連するゴマ知識</h2><p>パスワードを作るときに確認したい基本的なポイントを解説しています。</p><ul class="goma-related-knowledge-list"><li><a href="../knowledge/password-security-tips/">パスワードを安全に作るコツ</a></li></ul></section>
 
       <!-- ====================== 関連ツール ====================== -->
-      <section class="section" aria-labelledby="related-title"><h2 class="section-title" id="related-title">おすすめの便利ツール</h2><div class="card related-grid">
-        <a class="related-item related-link" href="../age/"><span class="related-name">🎂 年齢・日付計算</span><span class="related-status">公開中</span></a>
-        <a class="related-item related-link" href="../business-days/"><span class="related-name">📅 営業日計算</span><span class="related-status">公開中</span></a>
-        <a class="related-item related-link" href="../tax/"><span class="related-name">💰 消費税計算</span><span class="related-status">公開中</span></a>
-        <a class="related-item related-link" href="../warikan/"><span class="related-name">👥 割り勘計算</span><span class="related-status">公開中</span></a>
-        <a class="related-item related-link" href="../qrcode/"><span class="related-name">📱 QRコード生成</span><span class="related-status">公開中</span></a>
-        <a class="related-item related-link" href="../school-year/"><span class="related-name">🎓 学年・年齢・卒業年度計算</span><span class="related-status">公開中</span></a>
-        <a class="related-item related-link" href="../wareki/"><span class="related-name">📅 和暦・西暦変換</span><span class="related-status">公開中</span></a>
-        <a class="related-item related-link" href="../text-counter/"><span class="related-name">✍️ 文字数カウント</span><span class="related-status">公開中</span></a>
-        <a class="related-item related-link" href="../compound-interest/"><span class="related-name">📈 複利計算</span><span class="related-status">公開中</span></a>
-        <a class="related-item related-link" href="../unit-converter/"><span class="related-name">📏 単位変換ツール</span><span class="related-status">公開中</span></a>
-        <a class="related-item related-link" href="../birthday-countdown/"><span class="related-name">🎉 誕生日カウント</span><span class="related-status">公開中</span></a>
-        <a class="related-item related-link" href="../days-calculator/"><span class="related-name">📆 日数計算ツール</span><span class="related-status">公開中</span></a>
-        <a class="related-item related-link" href="../random-picker/"><span class="related-name">📋 ランダム抽選ツール</span><span class="related-status">公開中</span></a>
-        <a class="related-item related-link" href="../discount-calculator/"><span class="related-name">💹 割引率計算ツール</span><span class="related-status">公開中</span></a>
-        <a class="related-item related-link" href="../calculator/"><span class="related-name">🧮 電卓ツール</span><span class="related-status">公開中</span></a>
-      </div></section>
+      <section class="goma-related-tools" aria-labelledby="goma-related-tools-title"><h2 id="goma-related-tools-title">🔗 関連ツール</h2><p>文字や情報の作成・確認に役立つツールです。</p><ul class="goma-related-tools-list"><li><a href="../qrcode/">QRコード生成ツール</a></li><li><a href="../tools/character-encoding.html">文字コード変換ツール</a></li><li><a href="../tools/text-compare.html">テキスト比較ツール</a></li></ul></section>
     </div>
   </main>
 
   <!-- ====================== フッター ====================== -->
-  <footer><div class="container"><p class="footer-logo">🍵 ゴマツール</p><p>30秒で使えて、<br>他より少し便利。</p><p class="project-name">Project Goma</p><div class="footer-assurance"><p>入力したデータはブラウザ内だけで処理されます。</p><p>サーバーへ送信・保存は行いません。</p></div><p><a href="../privacy/" style="color:inherit">プライバシーポリシー</a></p><p class="updated">最終更新：2026年7月</p></div></footer>
+  <footer><div class="container"><p class="footer-logo">🍵 ゴマツール</p><p>30秒で使えて、<br>他より少し便利。</p><p class="project-name">Project Goma</p><p><a href="../privacy/" style="color:inherit">プライバシーポリシー</a></p><p class="updated">最終更新：2026年7月</p></div></footer>
 
   <script>
     'use strict';
@@ -240,9 +224,9 @@
     // ====================== 強度判定 ======================
     function evaluateStrength(length, typeCount) {
       const score = length + typeCount * 3;
-      if (score >= 24) return { text: '🟢 強度：非常に強い', className: 'strong' };
-      if (score >= 18) return { text: '🟡 強度：普通', className: 'normal' };
-      return { text: '🔴 強度：弱い', className: 'weak' };
+      if (score >= 24) return { text: '🟢 設定の目安：高め', className: 'strong' };
+      if (score >= 18) return { text: '🟡 設定の目安：標準', className: 'normal' };
+      return { text: '🔴 設定の目安：低め', className: 'weak' };
     }
 
     // ====================== パスワード生成 ======================
@@ -252,7 +236,11 @@
       const selectedSets = getSelectedSets();
       const error = document.getElementById('formError');
       const panel = document.getElementById('resultPanel');
+      const generateButton = document.getElementById('generateButton');
       error.textContent = '';
+      generatedPassword = '';
+      document.getElementById('copyStatus').textContent = '';
+      generateButton.textContent = '🔐 パスワードを生成';
 
       if (selectedSets.length === 0) {
         error.textContent = '使用する文字を1種類以上選択してください。';
@@ -286,31 +274,52 @@
 
       document.getElementById('copyStatus').textContent = '';
       panel.hidden = false;
+      generateButton.textContent = '🔐 もう一度生成';
       panel.scrollIntoView({ behavior:'smooth', block:'nearest' });
     }
 
     // ====================== コピー ======================
     async function copyPassword() {
       const status = document.getElementById('copyStatus');
+      if (!generatedPassword) {
+        status.textContent = '先にパスワードを生成してください。';
+        return;
+      }
       try {
         await navigator.clipboard.writeText(generatedPassword);
         status.textContent = 'コピーしました。';
       } catch (error) {
-        const area = document.createElement('textarea');
-        area.value = generatedPassword;
-        area.style.position = 'fixed';
-        area.style.opacity = '0';
-        document.body.appendChild(area);
-        area.select();
-        const copied = document.execCommand('copy');
-        area.remove();
-        status.textContent = copied ? 'コピーしました。' : 'コピーできませんでした。';
+        try {
+          const area = document.createElement('textarea');
+          area.value = generatedPassword;
+          area.style.position = 'fixed';
+          area.style.opacity = '0';
+          document.body.appendChild(area);
+          area.select();
+          const copied = document.execCommand('copy');
+          area.remove();
+          status.textContent = copied ? 'コピーしました。' : 'コピーできませんでした。';
+        } catch (fallbackError) {
+          status.textContent = 'コピーできませんでした。パスワードを選択してコピーしてください。';
+        }
       }
     }
 
     // ====================== 初期表示 ======================
+    function invalidateResult() {
+      generatedPassword = '';
+      document.getElementById('resultPanel').hidden = true;
+      document.getElementById('formError').textContent = '';
+      document.getElementById('copyStatus').textContent = '';
+      document.getElementById('generateButton').textContent = '🔐 パスワードを生成';
+    }
+
     document.getElementById('passwordForm').addEventListener('submit', generatePassword);
     document.getElementById('copyButton').addEventListener('click', copyPassword);
+    document.getElementById('passwordLength').addEventListener('change', invalidateResult);
+    document.querySelectorAll('.check-option input').forEach(function (input) {
+      input.addEventListener('change', invalidateResult);
+    });
   </script>
 </body>
 </html>
