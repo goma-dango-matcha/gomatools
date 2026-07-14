@@ -48,16 +48,18 @@
     .calculator-layout { display:grid; grid-template-columns:minmax(0,480px) minmax(250px,1fr); align-items:start; gap:24px; }
     .calculator { padding:clamp(18px,4vw,28px); }
     .display { min-height:132px; margin-bottom:18px; padding:18px 20px; overflow:hidden; border-radius:18px; background:var(--green-dark); color:#fff; text-align:right; }
+    .display-state { display:block; margin-bottom:4px; color:#dbe8d5; font-size:.78rem; font-weight:750; }
     .expression { min-height:28px; margin:0; overflow-wrap:anywhere; color:#dbe8d5; font-size:.95rem; }
-    .result { margin:8px 0 0; overflow-wrap:anywhere; font-size:clamp(2.25rem,9vw,3.6rem); font-weight:850; line-height:1.25; }
+    .result { max-width:100%; margin:8px 0 0; overflow-x:auto; overflow-y:hidden; font-size:clamp(2.25rem,9vw,3.6rem); font-weight:850; line-height:1.25; white-space:nowrap; scrollbar-width:thin; }
     .error { min-height:26px; margin:0 0 8px; color:var(--danger); font-weight:750; text-align:center; }
     .keypad { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
     .key { min-height:64px; padding:8px; color:var(--text); border:1px solid var(--line); border-radius:15px; background:#fff; font-size:1.18rem; font-weight:800; cursor:pointer; box-shadow:0 3px 8px rgba(45,67,34,.05); transition:transform .12s ease,background .12s ease; }
     .key:hover { background:var(--green-light); }
     .key:active { transform:scale(.96); }
-    .key:focus-visible, .history-clear:focus-visible, .related-link:focus-visible { outline:3px solid rgba(88,124,64,.35); outline-offset:3px; }
+    .key:focus-visible, .history-clear:focus-visible { outline:3px solid rgba(88,124,64,.35); outline-offset:3px; }
     .key.operator { color:#fff; border-color:var(--green); background:var(--green); }
     .key.operator:hover { background:var(--green-dark); }
+    .key.operator.selected { outline:3px solid #f4c75f; outline-offset:2px; box-shadow:0 0 0 2px var(--green-dark); }
     .key.utility { color:var(--green-dark); background:var(--green-light); }
     .key.equals { color:#fff; border-color:var(--green-dark); background:var(--green-dark); }
     .key.percent { grid-column:1 / -1; min-height:52px; }
@@ -72,16 +74,16 @@
     .history-list { margin:18px 0 0; padding:0; list-style:none; }
     .history-list li { padding:12px 0; border-top:1px solid var(--line); overflow-wrap:anywhere; font-variant-numeric:tabular-nums; }
     .history-empty { color:var(--muted); }
+    .history-note { margin:10px 0 0; color:var(--muted); font-size:.82rem; }
     .keyboard-help { margin:18px 0 0; color:var(--muted); font-size:.82rem; }
 
     /* ======================
-       安心表示・関連ツール
+       補足情報
     ====================== */
-    .notice { padding:26px; }
-    .notice p { margin:6px 0; color:var(--muted); }
-    .related-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
-    .related-link { display:block; padding:18px; color:var(--green-dark); border:1px solid var(--line); border-radius:16px; background:#fff; font-weight:800; text-decoration:none; transition:transform .15s ease,border-color .15s ease; }
-    .related-link:hover { transform:translateY(-2px); border-color:#b9cdb0; }
+    .support-card { padding:26px; box-shadow:none; }
+    .support-list { margin:0; padding-left:1.25em; color:var(--muted); }
+    .support-list li + li { margin-top:8px; }
+    .calculator-one-point h2 { margin:0 0 8px; color:var(--green-dark); font-size:1.05rem; line-height:1.45; }
     footer { padding:44px 16px; color:var(--muted); border-top:1px solid var(--line); text-align:center; background:#fff; }
     footer p { margin:4px 0; }
     .footer-logo { color:var(--green-dark); font-weight:850; }
@@ -90,7 +92,7 @@
        レスポンシブ
     ====================== */
     @media (max-width:760px) { .calculator-layout { grid-template-columns:1fr; } .history-card { order:2; } }
-    @media (max-width:500px) { .container { width:min(100% - 22px,960px); } main { padding-top:46px; } .header-inner { align-items:flex-start; flex-direction:column; gap:3px; } .key { min-height:60px; } .related-grid { grid-template-columns:1fr; } }
+    @media (max-width:500px) { .container { width:min(100% - 22px,960px); } main { padding-top:46px; } .header-inner { align-items:flex-start; flex-direction:column; gap:3px; } .calculator { padding:16px 13px; } .keypad { gap:8px; } .key { min-height:58px; padding:6px; } }
     @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } * { transition:none !important; } }
   </style>
   <link rel="stylesheet" href="../assets/goma-ui.css">
@@ -142,9 +144,9 @@
          ヒーロー
     ====================== -->
     <section class="hero" aria-labelledby="page-title">
-      <p class="hero-badge">無料・登録不要</p>
+      <p class="hero-badge">ボタン・キーボードで操作</p>
       <h1 id="page-title">🧮 電卓ツール</h1>
-      <p>日常の計算に使えるシンプルな無料電卓です。四則演算・小数・パーセント計算に対応しています。</p>
+      <p>四則演算・小数・パーセントを、画面のボタンまたはキーボードで計算できます。入力順に計算し、直近5件の履歴を確認できます。</p>
     </section>
 
     <!-- ======================
@@ -152,21 +154,22 @@
     ====================== -->
     <div class="calculator-layout">
       <section class="card calculator" aria-label="電卓">
-        <div class="display" aria-live="polite" aria-atomic="true">
+        <div class="display" role="status" aria-live="polite" aria-atomic="true">
+          <span class="display-state" id="displayState">入力中</span>
           <p class="expression" id="expression">計算式</p>
           <p class="result" id="result">0</p>
         </div>
-        <p class="error" id="error" role="alert"></p>
+        <p class="error" id="error" role="alert" aria-live="assertive"></p>
         <div class="keypad" aria-label="電卓ボタン">
-          <button class="key utility" type="button" data-action="all-clear">AC</button>
-          <button class="key utility" type="button" data-action="clear">C</button>
+          <button class="key utility" type="button" data-action="all-clear" aria-label="すべてクリア">AC</button>
+          <button class="key utility" type="button" data-action="clear" aria-label="表示中の数値をクリア">C</button>
           <button class="key utility" type="button" data-action="backspace" aria-label="1文字削除">⌫</button>
-          <button class="key operator" type="button" data-operator="/" aria-label="割る">÷</button>
-          <button class="key" type="button" data-number="7">7</button><button class="key" type="button" data-number="8">8</button><button class="key" type="button" data-number="9">9</button><button class="key operator" type="button" data-operator="*" aria-label="掛ける">×</button>
-          <button class="key" type="button" data-number="4">4</button><button class="key" type="button" data-number="5">5</button><button class="key" type="button" data-number="6">6</button><button class="key operator" type="button" data-operator="-" aria-label="引く">−</button>
-          <button class="key" type="button" data-number="1">1</button><button class="key" type="button" data-number="2">2</button><button class="key" type="button" data-number="3">3</button><button class="key operator" type="button" data-operator="+" aria-label="足す">＋</button>
-          <button class="key" type="button" data-number="00">00</button><button class="key" type="button" data-number="0">0</button><button class="key" type="button" data-action="decimal">.</button><button class="key equals" type="button" data-action="equals">＝</button>
-          <button class="key utility percent" type="button" data-action="percent">％（パーセント）</button>
+          <button class="key operator" type="button" data-operator="/" aria-label="割る" aria-pressed="false">÷</button>
+          <button class="key" type="button" data-number="7">7</button><button class="key" type="button" data-number="8">8</button><button class="key" type="button" data-number="9">9</button><button class="key operator" type="button" data-operator="*" aria-label="掛ける" aria-pressed="false">×</button>
+          <button class="key" type="button" data-number="4">4</button><button class="key" type="button" data-number="5">5</button><button class="key" type="button" data-number="6">6</button><button class="key operator" type="button" data-operator="-" aria-label="引く" aria-pressed="false">−</button>
+          <button class="key" type="button" data-number="1">1</button><button class="key" type="button" data-number="2">2</button><button class="key" type="button" data-number="3">3</button><button class="key operator" type="button" data-operator="+" aria-label="足す" aria-pressed="false">＋</button>
+          <button class="key" type="button" data-number="00">00</button><button class="key" type="button" data-number="0">0</button><button class="key" type="button" data-action="decimal" aria-label="小数点">.</button><button class="key equals" type="button" data-action="equals" aria-label="計算する">＝</button>
+          <button class="key utility percent" type="button" data-action="percent" aria-label="表示中の数値を100で割る">％（100で割る）</button>
         </div>
       </section>
 
@@ -176,36 +179,37 @@
           <button class="history-clear" id="historyClear" type="button">履歴をクリア</button>
         </div>
         <ul class="history-list" id="historyList" aria-live="polite"><li class="history-empty">履歴はまだありません。</li></ul>
-        <p class="keyboard-help">キーボード：0〜9、＋ − × ÷、%、Enter、Backspace、Escape</p>
+        <p class="history-note">最新の5件を表示します。履歴はページを再読み込みすると消去されます。</p>
+        <p class="keyboard-help">キーボード：0〜9、+、−、*、/、.、%、Enter（=）、Backspace、Escape</p>
       </aside>
     </div>
 
     <!-- ======================
-         安心表示
+         補足情報
     ====================== -->
-    <section class="section card notice" aria-labelledby="notice-title">
-      <h2 class="section-title" id="notice-title">🍵 ゴマツールの約束</h2>
-      <p>✅ 完全無料・登録不要</p><p>✅ スマホ・PC対応</p><p>✅ 計算内容はブラウザ内だけで処理し、サーバーへ送信・保存しません</p>
+    <section class="section card support-card" aria-labelledby="support-title">
+      <h2 class="section-title" id="support-title">補足情報</h2>
+      <ul class="support-list">
+        <li>四則演算は入力順に計算します。かっこや一般的な数式の優先順位には対応していません。</li>
+        <li>「AC」は計算状態をすべて初期化し、「C」は表示中の数値だけを0へ戻します。「⌫」は入力中の末尾1文字を削除します。</li>
+        <li>「％」は表示中の数値を100で割ります。一般的な電卓の割合加算とは計算方法が異なります。</li>
+        <li>入力は最大15桁で、結果は小数点以下最大12桁まで表示します。小数や大きな数値では表示上の誤差が生じる場合があります。</li>
+        <li>計算内容と履歴はブラウザへ保存せず、サーバーやAnalyticsへ送信する処理もありません。</li>
+      </ul>
     </section>
+
+    <aside class="goma-one-point calculator-one-point" aria-labelledby="one-point-title"><h2 id="one-point-title">🍵 ゴマワンポイント</h2><p>桁数の多い計算や小数を含む計算では、入力した数字と演算子を一度確認してから結果を使うと安心です。重要な金額は、元の資料とも照らし合わせましょう。</p></aside>
 
     <!-- ======================
          関連ツール
     ====================== -->
-    <section class="section" aria-labelledby="related-title">
-      <h2 class="section-title" id="related-title">おすすめの便利ツール</h2>
-      <div class="related-grid">
-        <a class="related-link" href="../tax/">💰 消費税計算</a>
-        <a class="related-link" href="../discount-calculator/">💹 割引率計算</a>
-        <a class="related-link" href="../warikan/">👥 割り勘計算</a>
-        <a class="related-link" href="../compound-interest/">📈 複利計算</a>
-      </div>
-    </section>
+    <section class="goma-related-tools" aria-labelledby="goma-related-tools-title"><h2 id="goma-related-tools-title">🔗 関連ツール</h2><p>金額や割合を目的別に計算したいときに役立つツールです。</p><ul class="goma-related-tools-list"><li><a href="../tax/">消費税計算ツール</a></li><li><a href="../discount-calculator/">割引率計算ツール</a></li><li><a href="../warikan/">割り勘計算ツール</a></li><li><a href="../tools/percentage-calculator.html">パーセント計算ツール</a></li></ul></section>
   </main>
 
   <!-- ======================
        フッター
   ====================== -->
-  <footer><p class="footer-logo">🍵 ゴマツール</p><p>30秒で使えて、他より少し便利。</p><p>入力内容はブラウザ内だけで処理されます。</p><p><a href="../privacy/" style="color:inherit">プライバシーポリシー</a></p><p>最終更新：2026年7月</p></footer>
+  <footer><p class="footer-logo">🍵 ゴマツール</p><p>30秒で使えて、他より少し便利。</p><p><a href="../privacy/" style="color:inherit">プライバシーポリシー</a></p><p>最終更新：2026年7月</p></footer>
 
   <script>
     /* ======================
@@ -213,6 +217,7 @@
     ====================== */
     const resultElement = document.getElementById('result');
     const expressionElement = document.getElementById('expression');
+    const displayStateElement = document.getElementById('displayState');
     const errorElement = document.getElementById('error');
     const historyList = document.getElementById('historyList');
     let currentValue = '0';
@@ -234,6 +239,12 @@
       const numericValue = Number(currentValue);
       resultElement.textContent = Number.isFinite(numericValue) ? formatNumber(numericValue) : currentValue;
       expressionElement.textContent = expressionText || '計算式';
+      displayStateElement.textContent = expressionText.endsWith('＝') ? '計算結果' : currentOperator && waitingForOperand ? '次の数値を入力' : '入力中';
+      document.querySelectorAll('.key.operator').forEach(button => {
+        const selected = button.dataset.operator === currentOperator;
+        button.classList.toggle('selected', selected);
+        button.setAttribute('aria-pressed', String(selected));
+      });
     }
 
     function showError(message) { errorElement.textContent = message; }
@@ -325,7 +336,7 @@
       if (currentValue === '-') currentValue = '0';
       updateDisplay();
     }
-    function handleCalculationError(message) { showError(message || '計算式を確認してください。'); currentValue = '0'; firstOperand = null; currentOperator = null; waitingForOperand = false; expressionText = ''; updateDisplay(); }
+    function handleCalculationError(message) { showError(message === '0では割れません。' ? '0で割ることはできません。ACを押して、もう一度入力してください。' : `${message || '計算式を確認してください。'} ACを押して、もう一度入力してください。`); currentValue = '0'; firstOperand = null; currentOperator = null; waitingForOperand = false; expressionText = ''; updateDisplay(); }
 
     /* ======================
        計算履歴（最大5件）
