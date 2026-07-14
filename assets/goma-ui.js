@@ -336,7 +336,6 @@
     'tools/tdee.html': 'TDEEは、活動量を含めた1日の消費カロリーの目安です。体重管理の計画に役立ちます。',
     'qrcode/': 'QRコードにはURLだけでなく、連絡先やWi-Fi情報なども保存できます。内容を確認してから共有しましょう。',
     'password/': '長くて使い回していないパスワードほど、推測されにくくなります。サービスごとに分けるのが安心です。',
-    'tools/character-encoding.html': '文字化けは、保存時と読み込み時の文字コードが合わないと起こることがあります。',
     'compound-interest/': '複利は「利息にも利息が付く」仕組みです。運用期間が長くなるほど効果が大きくなるため、条件を変えて比べてみましょう。',
     'interest-calculator/': '預金や借入の前に利息を確認すると、資金計画を立てやすくなります。利率だけでなく、期間と計算方法も確認しましょう。',
     'tools/loan-calculator.html': '借入前は、毎月の返済額だけでなく返済総額も確認すると計画を立てやすくなります。金利や期間を変えて比べてみましょう。',
@@ -397,9 +396,9 @@
       { title: '文字コード変換ツール', path: 'tools/character-encoding.html' }
     ],
     'tools/character-encoding.html': [
-      { title: 'QRコード生成ツール', path: 'qrcode/' },
       { title: 'テキスト整形ツール', path: 'tools/text-format.html' },
-      { title: 'テキスト比較ツール', path: 'tools/text-compare.html' }
+      { title: 'テキスト比較ツール', path: 'tools/text-compare.html' },
+      { title: '文字数カウント', path: 'text-counter/' }
     ],
     'compound-interest/': [
       { title: '利息計算ツール', path: 'interest-calculator/' },
@@ -444,7 +443,6 @@
   const onePointTargetByPath = {
     'qrcode/': { selector: '#resultArea', beforeSelector: '#saveButton', revealSelector: '#qrCanvas' },
     'password/': { selector: '#resultPanel', beforeSelector: '.copy-wrap' },
-    'tools/character-encoding.html': { selector: '#resultSection' },
     'compound-interest/': { selector: '#resultPanel' },
     'tools/loan-calculator.html': { selector: '#resultCard', beforeSelector: '.loan-copy' },
     'warikan/': { selector: '#resultPanel' },

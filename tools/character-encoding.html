@@ -37,32 +37,34 @@
       <section class="encoding-hero" aria-labelledby="page-title">
         <p class="encoding-eyebrow">💼 仕事・テキスト</p>
         <h1 id="page-title">文字コード変換ツール</h1>
-        <p>URLエンコード・URLデコード・Base64エンコード・Base64デコードを、ブラウザ内で簡単に変換できます。</p>
+        <p>URL形式またはBase64形式で、文字列をエンコード・デコードできます。変換結果を確認し、そのままコピーできます。</p>
       </section>
 
       <section class="encoding-card" aria-labelledby="input-title">
-        <h2 id="input-title">変換内容を入力</h2>
-        <div class="encoding-mode-grid" role="group" aria-label="変換方法">
-          <label><input type="radio" name="mode" value="url-encode" checked> URLエンコード</label>
-          <label><input type="radio" name="mode" value="url-decode"> URLデコード</label>
-          <label><input type="radio" name="mode" value="base64-encode"> Base64エンコード</label>
-          <label><input type="radio" name="mode" value="base64-decode"> Base64デコード</label>
-        </div>
-
+        <h2 id="input-title">変換するテキスト</h2>
         <div class="encoding-field">
-          <label for="sourceText">テキスト入力</label>
-          <textarea id="sourceText" rows="10" placeholder="変換したいテキストを入力してください。"></textarea>
-          <p class="encoding-count" id="sourceCount">0文字</p>
+          <label for="sourceText">変換前のテキスト</label>
+          <textarea id="sourceText" rows="10" placeholder="ここに変換したい文字列を入力してください" aria-describedby="sourceCount inputHint" spellcheck="false"></textarea>
+          <p class="encoding-count" id="sourceCount" aria-live="polite">0文字</p>
         </div>
 
-        <p class="encoding-hint">入力内容はサーバーへ送信されず、ブラウザ内だけで処理されます。</p>
-        <p class="encoding-error" id="errorMessage" aria-live="polite"></p>
+        <fieldset class="encoding-mode-fieldset">
+          <legend>変換方式と方向</legend>
+          <p class="encoding-mode-help" id="modeHelp">エンコードは指定形式へ変換、デコードは変換済みの文字列を元へ戻す処理です。</p>
+          <div class="encoding-mode-grid" aria-describedby="modeHelp">
+            <label><input type="radio" name="mode" value="url-encode" checked><span><strong>URLエンコード</strong><small>URLで扱える形式へ変換</small></span></label>
+            <label><input type="radio" name="mode" value="url-decode"><span><strong>URLデコード</strong><small>URL形式の文字列を元へ戻す</small></span></label>
+            <label><input type="radio" name="mode" value="base64-encode"><span><strong>Base64エンコード</strong><small>文字列をBase64形式へ変換</small></span></label>
+            <label><input type="radio" name="mode" value="base64-decode"><span><strong>Base64デコード</strong><small>Base64形式をUTF-8の文字列へ戻す</small></span></label>
+          </div>
+        </fieldset>
+
+        <p class="encoding-hint" id="inputHint">入力した文字列はブラウザ内で変換し、ツールの処理として外部送信やブラウザへの保存は行いません。</p>
+        <p class="encoding-error" id="errorMessage" role="alert" aria-live="assertive"></p>
         <div class="encoding-buttons">
           <button class="encoding-primary" type="button" id="convertButton">変換する</button>
-          <button type="button" id="copyButton">コピー</button>
-          <button type="button" id="resetButton">リセット</button>
+          <button type="button" id="resetButton">入力と結果をクリア</button>
         </div>
-        <p class="encoding-copy-message" id="copyMessage" aria-live="polite"></p>
       </section>
 
       <section class="encoding-card encoding-result" id="resultSection" aria-labelledby="result-title" hidden>
@@ -71,16 +73,29 @@
           <span id="resultMode">変換結果</span>
           <strong id="resultLength">0文字</strong>
         </div>
-        <textarea id="resultText" rows="10" readonly></textarea>
+        <div class="encoding-field">
+          <label for="resultText">変換後のテキスト</label>
+          <textarea id="resultText" rows="10" readonly spellcheck="false"></textarea>
+        </div>
+        <div class="encoding-buttons encoding-result-buttons">
+          <button class="encoding-primary" type="button" id="copyButton">📋 変換結果をコピー</button>
+        </div>
+        <p class="encoding-copy-message" id="copyMessage" role="status" aria-live="polite"></p>
       </section>
 
-      <section class="encoding-card encoding-info">
-        <h2>このツールについて</h2>
-        <p>文字コード変換ツールでは、URLエンコード・URLデコード・Base64エンコード・Base64デコードをシンプルに利用できます。文章、URL、設定値の確認などに便利です。</p>
-        <h2>対応している変換</h2>
-        <p>Version1.0では、よく使う4種類の変換に絞っています。Unicode変換、Shift_JIS、HTMLエスケープなどは今後の拡張候補です。</p>
-        <h2>注意事項</h2>
-        <p>Base64デコードはUTF-8のテキストとして復元できる内容を対象にしています。画像やバイナリデータのBase64は、正しく文字として表示できない場合があります。</p>
+      <section class="encoding-card encoding-info" aria-labelledby="support-title">
+        <h2 id="support-title">補足情報</h2>
+        <ul class="encoding-support-list">
+          <li>対応方式はURLエンコード・URLデコード・Base64エンコード・Base64デコードの4種類です。</li>
+          <li>URL変換は、URLの一部として扱う文字列を対象にします。Base64変換はUTF-8のテキストを対象とし、画像やバイナリデータには対応していません。</li>
+          <li>Base64は文字列の表現を変える方式で、暗号化ではありません。変換結果は利用先へ貼り付ける前にご確認ください。</li>
+          <li>Shift_JISなどのファイル文字コード変換、文字コードの自動判定、文字化けの修復は行いません。</li>
+        </ul>
+      </section>
+
+      <section class="encoding-card encoding-one-point" aria-labelledby="one-point-title">
+        <h2 id="one-point-title">🍵 ゴマワンポイント</h2>
+        <p>エンコードとデコードは処理の向きが逆です。結果が想定と違うときは、選択した方式と方向を確認してみましょう。</p>
       </section>
 
       <!-- 仕事・テキストシリーズ：内容は assets/goma-ui.js で一元管理 -->
@@ -190,6 +205,7 @@
         resultSection.hidden = false;
         clearError();
         copyMessage.textContent = '';
+        resultSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       } catch (error) {
         latestResult = '';
         resultSection.hidden = true;
