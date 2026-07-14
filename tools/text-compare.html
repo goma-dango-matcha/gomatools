@@ -37,31 +37,29 @@
       <section class="text-compare-hero" aria-labelledby="page-title">
         <p class="text-compare-eyebrow">💼 仕事・テキスト</p>
         <h1 id="page-title">テキスト比較ツール</h1>
-        <p>2つのテキストを比較し、追加・削除・変更箇所を簡単に確認できます。文章の修正確認、プログラムコード、設定ファイルなどの比較に便利です。</p>
+        <p>2つのテキストを行単位で比較し、追加・削除・変更された箇所を確認できます。変更された行では、文字の違いも見比べられます。</p>
       </section>
 
       <section class="text-compare-card" aria-labelledby="input-title">
         <h2 id="input-title">比較するテキストを入力</h2>
         <div class="text-compare-input-grid">
           <div class="text-compare-field">
-            <label for="sourceText">比較元テキスト</label>
-            <textarea id="sourceText" rows="12" placeholder="左側に比較元の文章を入力してください。"></textarea>
+            <label for="sourceText">比較元のテキスト</label>
+            <textarea id="sourceText" rows="12" placeholder="比較元の文章を入力してください。" aria-describedby="sourceCount compare-hint"></textarea>
             <p class="text-compare-count" id="sourceCount">0文字 / 0行</p>
           </div>
           <div class="text-compare-field">
-            <label for="targetText">比較先テキスト</label>
-            <textarea id="targetText" rows="12" placeholder="右側に比較先の文章を入力してください。"></textarea>
+            <label for="targetText">比較先のテキスト</label>
+            <textarea id="targetText" rows="12" placeholder="比較先の文章を入力してください。" aria-describedby="targetCount compare-hint"></textarea>
             <p class="text-compare-count" id="targetCount">0文字 / 0行</p>
           </div>
         </div>
-        <p class="text-compare-hint">行単位で比較し、変更行は文字単位の違いも色分けします。入力内容はブラウザ内だけで処理されます。</p>
-        <p class="text-compare-error" id="errorMessage" aria-live="polite"></p>
+        <p class="text-compare-hint" id="compare-hint">比較元から比較先へ変わった内容として判定します。空白・改行・大文字と小文字も違いに含まれます。</p>
+        <p class="text-compare-error" id="errorMessage" role="alert"></p>
         <div class="text-compare-buttons">
           <button class="text-compare-primary" type="button" id="compareButton">比較する</button>
-          <button type="button" id="copyButton">結果コピー</button>
-          <button type="button" id="resetButton">リセット</button>
+          <button type="button" id="resetButton">入力と結果をクリア</button>
         </div>
-        <p class="text-compare-copy-message" id="copyMessage" aria-live="polite"></p>
       </section>
 
       <section class="text-compare-card text-compare-result" id="resultSection" aria-labelledby="result-title" hidden>
@@ -69,7 +67,7 @@
         <div class="text-compare-result-main" id="resultMain">
           <span>判定</span>
           <strong id="resultStatus">未比較</strong>
-          <p id="resultSummary">テキストを入力して比較してください。</p>
+          <p id="resultSummary" aria-live="polite">テキストを入力して比較してください。</p>
         </div>
         <div class="text-compare-stats">
           <div><span>一致率</span><strong id="matchRate">0%</strong></div>
@@ -78,16 +76,36 @@
           <div><span>削除</span><strong id="removedCount">0行</strong></div>
           <div><span>変更</span><strong id="changedCount">0行</strong></div>
         </div>
-        <div class="text-compare-diff" id="diffOutput" aria-live="polite"></div>
+        <div class="text-compare-legend" id="diffLegend" aria-labelledby="legend-title" hidden>
+          <h3 id="legend-title">差分の見方</h3>
+          <ul>
+            <li><span class="text-compare-legend-sample is-added">追加</span>比較先だけにある行</li>
+            <li><span class="text-compare-legend-sample is-removed">削除</span>比較元だけにある行</li>
+            <li><span class="text-compare-legend-sample is-changed">変更</span>同じ位置で内容が異なる行</li>
+          </ul>
+        </div>
+        <div class="text-compare-diff" id="diffOutput"></div>
+        <div class="text-compare-result-actions">
+          <button class="text-compare-copy-button" type="button" id="copyButton">📋 結果概要をコピー</button>
+        </div>
+        <p class="text-compare-copy-message" id="copyMessage" role="status" aria-live="polite"></p>
       </section>
 
-      <section class="text-compare-card text-compare-info">
-        <h2>このツールについて</h2>
-        <p>テキスト比較ツールでは、2つの文章を行単位で比較し、追加・削除・変更を色分けして表示します。変更された行では、文字単位の差分も確認できます。</p>
-        <h2>使い方</h2>
-        <p>左に比較元、右に比較先のテキストを入力して「比較する」を押してください。結果コピーを押すと、判定・一致率・違いの概要をコピーできます。</p>
-        <h2>注意事項</h2>
-        <p>このツールはブラウザ内で動作する簡易比較ツールです。非常に大きなテキストや複雑な差分では、専用の差分確認ソフトと結果が異なる場合があります。</p>
+      <!-- ====================== 補足情報 ====================== -->
+      <section class="text-compare-card text-compare-info" aria-labelledby="support-title">
+        <h2 id="support-title">補足情報</h2>
+        <ul class="text-compare-support-list">
+          <li>同じ行番号どうしを比較します。比較先だけにある行は「追加」、比較元だけにある行は「削除」と表示します。</li>
+          <li>空白・空行・改行位置・大文字と小文字・全角と半角も区別します。改行コード（CRLF・CR・LF）はLFへそろえて比較します。</li>
+          <li>非常に長い文章や複雑な差分は、段落などで範囲を分けると確認しやすくなります。</li>
+          <li>入力した文章の比較処理はブラウザ内で行い、ツールの処理としてサーバーへの送信やブラウザへの保存は行いません。</li>
+        </ul>
+      </section>
+
+      <!-- ====================== ゴマワンポイント ====================== -->
+      <section class="text-compare-card text-compare-one-point" aria-labelledby="one-point-title">
+        <h2 id="one-point-title">🍵 ゴマワンポイント</h2>
+        <p>差分が多い文章は、段落ごとに分けて比較すると確認しやすくなります。結果を見るときは、色だけでなく「追加・削除・変更」のラベルもあわせて確認しましょう。</p>
       </section>
 
       <!-- 仕事・テキストシリーズ：内容は assets/goma-ui.js で一元管理 -->
@@ -117,6 +135,7 @@
     const addedCount = document.getElementById('addedCount');
     const removedCount = document.getElementById('removedCount');
     const changedCount = document.getElementById('changedCount');
+    const diffLegend = document.getElementById('diffLegend');
     const diffOutput = document.getElementById('diffOutput');
     const maxLength = 100000;
     let lastSummaryText = '';
@@ -254,6 +273,7 @@
       const rate = comparison.total === 0 ? 100 : Math.round((comparison.stats.same / comparison.total) * 100);
 
       resultSection.hidden = false;
+      diffLegend.hidden = different === 0;
       resultMain.classList.toggle('is-match', different === 0);
       resultMain.classList.toggle('is-different', different > 0);
       resultStatus.textContent = different === 0 ? '一致しています' : `${different.toLocaleString()}か所違います`;
@@ -277,6 +297,7 @@
         `変更：${changedCount.textContent}`
       ].join('\n');
       copyMessage.textContent = '';
+      resultSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
     async function copyResult() {
@@ -298,6 +319,7 @@
       targetText.value = '';
       lastSummaryText = '';
       resultSection.hidden = true;
+      diffLegend.hidden = true;
       diffOutput.innerHTML = '';
       clearError();
       copyMessage.textContent = '';

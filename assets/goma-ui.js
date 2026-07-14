@@ -391,6 +391,11 @@
       { title: '文字数カウント', path: 'text-counter/' },
       { title: '文字コード変換ツール', path: 'tools/character-encoding.html' }
     ],
+    'tools/text-compare.html': [
+      { title: 'テキスト整形ツール', path: 'tools/text-format.html' },
+      { title: '文字数カウント', path: 'text-counter/' },
+      { title: '文字コード変換ツール', path: 'tools/character-encoding.html' }
+    ],
     'tools/character-encoding.html': [
       { title: 'QRコード生成ツール', path: 'qrcode/' },
       { title: 'テキスト整形ツール', path: 'tools/text-format.html' },
