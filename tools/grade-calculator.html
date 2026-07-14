@@ -25,23 +25,49 @@
 
   <main class="grade-main"><div class="grade-container">
     <!-- ====================== ヒーロー ====================== -->
-    <section class="grade-hero" aria-labelledby="page-title"><p class="grade-eyebrow">🎓 学校・教育</p><h1 id="page-title">成績計算ツール</h1><p>テスト・課題・レポートなどの点数や配点から、合計点や平均点を簡単に計算できます。</p></section>
+    <section class="grade-hero" aria-labelledby="page-title"><p class="grade-eyebrow">🎓 学校・教育</p><h1 id="page-title">成績計算ツール</h1><p>テストや課題の得点・満点を入力すると、合計点や得点率、平均点をまとめて計算できます。</p></section>
 
     <!-- ====================== 入力フォーム ====================== -->
-    <section class="grade-card" aria-labelledby="input-title"><div class="grade-heading-row"><div><h2 id="input-title">評価項目を入力</h2><p>空の行は計算から除外します。重みを使う場合は、入力する全項目へ設定してください。</p></div><button class="grade-add" id="addButton" type="button">＋ 項目追加</button></div>
-      <form id="gradeForm" novalidate><div class="grade-table-head" aria-hidden="true"><span>項目名（任意）</span><span>得点</span><span>満点</span><span>重み（%・任意）</span><span>削除</span></div><div id="gradeRows"></div><p class="grade-error" id="errorMessage" role="alert"></p><div class="grade-form-buttons"><button class="grade-primary" type="submit">計算する</button><button id="resetButton" type="button">リセット</button></div></form>
+    <section class="grade-card" aria-labelledby="input-title"><div class="grade-heading-row"><div><h2 id="input-title">評価項目を入力</h2><p id="grade-input-help">得点と満点を入力してください。空の行は計算しません。重みを使う場合は、入力する全項目へ設定してください。</p></div><button class="grade-add" id="addButton" type="button">＋ 項目追加</button></div>
+      <form id="gradeForm" aria-describedby="grade-input-help" novalidate><div class="grade-table-head" aria-hidden="true"><span>項目名（任意）</span><span>得点</span><span>満点</span><span>重み（%・任意）</span><span>削除</span></div><div id="gradeRows"></div><p class="grade-error" id="errorMessage" role="alert"></p><div class="grade-form-buttons"><button class="grade-primary" type="submit">計算する</button><button id="resetButton" type="button">リセット</button></div></form>
     </section>
 
     <!-- ====================== 計算結果 ====================== -->
     <section class="grade-card grade-result" id="resultCard" aria-labelledby="result-title" aria-live="polite" hidden><h2 id="result-title">計算結果</h2>
       <div class="grade-result-main"><span id="mainResultLabel">得点率</span><strong id="mainResult">—</strong></div>
+      <p class="grade-result-description">入力した得点・満点・重みをもとにした計算結果です。学習状況を確認する目安としてご利用ください。</p>
       <div class="grade-result-grid"><div><span>合計得点</span><strong id="totalScore">—</strong></div><div><span>合計満点</span><strong id="totalMax">—</strong></div><div><span>平均点</span><strong id="averageScore">—</strong></div><div><span>得点率</span><strong id="scoreRate">—</strong></div><div id="weightedItem" hidden><span>加重平均</span><strong id="weightedAverage">—</strong></div><div id="weightTotalItem" hidden><span>重み合計</span><strong id="weightTotal">—</strong></div></div>
-      <div class="grade-rating"><span>評価</span><strong id="ratingStars">—</strong><p id="ratingText"></p></div>
+      <div class="grade-rating"><span>得点率の目安</span><strong id="ratingStars">—</strong><p id="ratingText"></p></div>
       <button class="grade-copy" id="copyButton" type="button">📋 結果をコピー</button><p class="grade-copy-message" id="copyMessage" role="status" aria-live="polite"></p>
     </section>
 
-    <!-- ====================== 説明・注意事項 ====================== -->
-    <section class="grade-card grade-info" aria-labelledby="about-title"><h2 id="about-title">このツールについて</h2><p>テスト・課題・レポートなど複数の評価項目から、平均点や加重平均を計算できます。学校だけでなく、資格試験や研修などにも利用できます。</p><h2>通常平均と加重平均</h2><p>重みを入力しない場合は通常の合計・平均・得点率を表示します。重みを入力した場合は、各項目の得点率に重みを反映した加重平均も表示します。</p><h2>注意事項</h2><p>学校ごとに評価方法や計算方法が異なる場合があります。このツールは一般的な計算の補助として利用してください。</p></section>
+    <!-- ====================== 補足情報 ====================== -->
+    <section class="grade-card grade-info" aria-labelledby="support-title">
+      <h2 id="support-title">補足情報</h2>
+      <ul class="grade-support-list">
+        <li>得点率は、入力した合計得点を合計満点で割って計算します。</li>
+        <li>平均点は、合計得点を入力した項目数で割った値です。</li>
+        <li>重みを設定すると、各項目の得点率と重みを反映した加重平均も確認できます。</li>
+        <li>評価方法は学校や授業によって異なります。正式な成績は、シラバスや学校からの案内をご確認ください。</li>
+      </ul>
+    </section>
+
+    <!-- ====================== ゴマワンポイント ====================== -->
+    <section class="grade-card grade-one-point" aria-labelledby="one-point-title">
+      <h2 id="one-point-title">🍵 ゴマワンポイント</h2>
+      <p>成績を確認するときは、点数だけでなく課題・小テスト・試験の配点も見ておくと、次に力を入れる項目を決めやすくなります。シラバスの評価基準と合わせて確認すると安心です。</p>
+    </section>
+
+    <!-- ====================== 関連ツール ====================== -->
+    <section class="goma-related-tools" aria-labelledby="goma-related-tools-title">
+      <h2 id="goma-related-tools-title">🔗 関連ツール</h2>
+      <p>現在の成績を確認した後は、目標までの必要点数や出席状況、学習時間も続けて確認できます。</p>
+      <ul class="goma-related-tools-list">
+        <li><a href="./required-score.html">必要点数計算ツール</a></li>
+        <li><a href="./attendance-rate.html">出席率計算ツール</a></li>
+        <li><a href="./study-time.html">学習時間計算ツール</a></li>
+      </ul>
+    </section>
     <!-- 学校・教育シリーズ：内容は assets/goma-ui.js で一元管理 -->
     <section data-school-series data-current="grade-calculator"></section>
     <div class="back-to-top"><a class="top-button" href="../">🏠 トップへ戻る</a></div>

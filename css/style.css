@@ -1745,6 +1745,7 @@ a { color: var(--terms-green-dark); }
 .grade-result-grid span,
 .grade-rating > span { display: block; color: var(--terms-muted); font-size: .87rem; font-weight: 800; }
 .grade-result-main strong { display: block; margin-top: 8px; color: var(--terms-green-dark); font-size: clamp(2.2rem, 7vw, 3.25rem); }
+.grade-result-description { max-width: 720px; margin: 16px auto 0; color: var(--terms-muted); line-height: 1.75; text-align: center; }
 .grade-result-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 16px; }
 .grade-result-grid > div { padding: 18px 12px; border: 1px solid #d8e4d2; border-radius: 14px; background: #fff; text-align: center; }
 .grade-result-grid strong { display: block; margin-top: 6px; color: var(--terms-text); font-size: 1.12rem; }
@@ -1754,8 +1755,14 @@ a { color: var(--terms-green-dark); }
 .grade-copy { display: block; margin: 20px auto 0; }
 .grade-copy-message { min-height: 1.5em; margin: 10px 0 0; color: var(--terms-green-dark); font-weight: 800; text-align: center; }
 .grade-info { line-height: 1.85; }
-.grade-info h2:not(:first-child) { margin-top: 28px; }
-.grade-info p { margin: 0; color: var(--terms-muted); }
+.grade-support-list { margin: 0; padding-left: 1.25em; color: var(--terms-muted); line-height: 1.75; }
+.grade-support-list li + li { margin-top: 8px; }
+.grade-one-point { border-color: #d6e3cf; background: #f7fbf3; }
+.grade-one-point p { margin: 0; color: #52604d; line-height: 1.75; }
+.grade-add:focus-visible,
+.grade-remove:focus-visible,
+.grade-form-buttons button:focus-visible,
+.grade-copy:focus-visible { outline: 3px solid rgba(99, 132, 63, .3); outline-offset: 2px; }
 
 @media (max-width: 820px) {
   .grade-table-head { display: none; }
@@ -1775,6 +1782,7 @@ a { color: var(--terms-green-dark); }
   .grade-copy { width: 100%; }
   .grade-row,
   .grade-result-grid { grid-template-columns: 1fr; }
+  .grade-support-list { padding-left: 1.15em; }
 }
 
 /* ======================
