@@ -47,25 +47,26 @@
     <section class="overtime-hero" aria-labelledby="page-title">
       <p class="overtime-eyebrow">💼 仕事・テキスト</p>
       <h1 id="page-title">残業時間計算ツール</h1>
-      <p>勤務時間・休憩時間・所定労働時間から、残業時間を簡単に計算できます。</p>
+      <p>始業・終業時刻と休憩時間から実働時間を求め、入力した所定労働時間を超えた時間を計算できます。1日分の勤務記録を確認するときの目安として利用できます。</p>
     </section>
 
     <section class="overtime-card" aria-labelledby="input-title">
       <h2 id="input-title">勤務時間を入力</h2>
       <form id="overtimeForm" novalidate>
         <div class="overtime-form-grid">
-          <div class="overtime-field"><label for="startTime">始業時間 <span>必須</span></label><input id="startTime" type="time" required></div>
-          <div class="overtime-field"><label for="endTime">終業時間 <span>必須</span></label><input id="endTime" type="time" required></div>
-          <div class="overtime-field"><label for="breakMinutes">休憩時間（分） <span>必須</span></label><input id="breakMinutes" type="number" min="0" step="1" inputmode="numeric" value="60" placeholder="例：60" required></div>
+          <div class="overtime-field"><label for="startTime">始業時刻 <span>必須</span></label><input id="startTime" type="time" aria-describedby="workTimeHelp" required></div>
+          <div class="overtime-field"><label for="endTime">終業時刻 <span>必須</span></label><input id="endTime" type="time" aria-describedby="workTimeHelp" required></div>
+          <div class="overtime-field"><label for="breakMinutes">休憩時間（分） <span>必須</span></label><input id="breakMinutes" type="number" min="0" step="1" inputmode="numeric" value="60" placeholder="例：60" aria-describedby="breakTimeHelp" required><small id="breakTimeHelp">休憩なしの場合は「0」を入力</small></div>
         </div>
         <fieldset class="overtime-scheduled">
-          <legend>所定労働時間（任意・初期値8時間）</legend>
+          <legend>1日の所定労働時間（比較基準・任意）</legend>
           <div class="overtime-duration-grid">
-            <div class="overtime-field"><label for="scheduledHours">時間</label><input id="scheduledHours" type="number" min="0" max="23" step="1" inputmode="numeric" value="8"></div>
-            <div class="overtime-field"><label for="scheduledMinutes">分</label><input id="scheduledMinutes" type="number" min="0" max="59" step="1" inputmode="numeric" value="0"></div>
+            <div class="overtime-field"><label for="scheduledHours">時間</label><input id="scheduledHours" type="number" min="0" max="23" step="1" inputmode="numeric" value="8" aria-describedby="scheduledTimeHelp"></div>
+            <div class="overtime-field"><label for="scheduledMinutes">分</label><input id="scheduledMinutes" type="number" min="0" max="59" step="1" inputmode="numeric" value="0" aria-describedby="scheduledTimeHelp"></div>
           </div>
+          <small id="scheduledTimeHelp">初期値は8時間です。勤務先の条件に合わせて変更してください。</small>
         </fieldset>
-        <p class="overtime-hint">この初回版は、始業から終業までが同じ日の勤務を計算します。</p>
+        <p class="overtime-hint" id="workTimeHelp">同じ日の始業から終業までを1日分として計算します。日をまたぐ勤務には対応していません。</p>
         <p class="overtime-error" id="errorMessage" role="alert"></p>
         <div class="overtime-form-buttons">
           <button class="overtime-primary" type="submit">計算する</button>
@@ -77,10 +78,11 @@
     <section class="overtime-card overtime-result" id="resultCard" aria-labelledby="result-title" aria-live="polite" hidden>
       <h2 id="result-title">計算結果</h2>
       <div class="overtime-result-main">
-        <span id="resultLabel">本日の残業時間</span>
+        <span id="resultLabel">残業時間の目安</span>
         <strong id="overtimeValue">—</strong>
         <p id="resultMessage"></p>
       </div>
+      <p class="overtime-result-description">入力した所定労働時間を比較基準にした、1日分の参考値です。</p>
       <div class="overtime-result-grid">
         <div><span>実働時間</span><strong id="workingTime">—</strong></div>
         <div><span>所定労働時間</span><strong id="scheduledTime">—</strong></div>
@@ -90,19 +92,19 @@
       <p class="overtime-copy-message" id="copyMessage" role="status" aria-live="polite"></p>
     </section>
 
-    <section class="overtime-card overtime-related" aria-labelledby="related-title">
-      <h2 id="related-title">勤務時間だけを確認したい場合</h2>
-      <p>日またぎ勤務を含む拘束時間や実働時間の確認には、勤務時間計算ツールをご利用ください。</p>
-      <a href="./work-time.html">⏰ 勤務時間計算ツールはこちら</a>
+    <section class="overtime-card overtime-info" aria-labelledby="support-title">
+      <h2 id="support-title">補足情報</h2>
+      <ul class="overtime-support-list">
+        <li>実働時間は「終業時刻 − 始業時刻 − 休憩時間」で計算します。休憩時間は別に入力してください。</li>
+        <li>残業時間の目安は、実働時間から入力した1日の所定労働時間を引いて求めます。実働時間が基準以下の場合は0時間です。</li>
+        <li>同じ日の勤務を対象とし、日をまたぐ勤務には対応していません。日またぎの実働時間は勤務時間計算ツールで確認できます。</li>
+        <li>所定労働時間と法定労働時間は同じとは限りません。正式な残業時間や集計方法は、勤務先の就業規則・雇用契約・勤怠記録をご確認ください。</li>
+      </ul>
     </section>
 
-    <section class="overtime-card overtime-info" aria-labelledby="about-title">
-      <h2 id="about-title">このツールについて</h2>
-      <p>始業時間・終業時間・休憩時間から、実働時間と残業時間を計算できます。日々の勤怠管理や勤務記録の確認に便利です。</p>
-      <h2>計算方法</h2>
-      <p>実働時間は「終業時間 − 始業時間 − 休憩時間」、残業時間は「実働時間 − 所定労働時間」で計算します。残業時間がマイナスになる場合は0時間と表示します。</p>
-      <h2>注意事項</h2>
-      <p>会社によって所定労働時間や残業時間の計算方法が異なる場合があります。このツールは一般的な計算方法を基にした目安です。給与や正式な勤怠の確認には勤務先の規定をご確認ください。</p>
+    <section class="overtime-card overtime-one-point" aria-labelledby="one-point-title">
+      <h2 id="one-point-title">🍵 ゴマワンポイント</h2>
+      <p>日ごとの残業時間を記録しておくと、月末の集計がしやすくなります。勤務先で決められた時間の集計単位や丸め方も、あわせて確認しておくと安心です。</p>
     </section>
 
     <!-- 仕事・テキストシリーズ：内容は assets/goma-ui.js で一元管理 -->
@@ -184,8 +186,8 @@
       document.getElementById('workingTime').textContent = formatMinutes(input.workingMinutes);
       document.getElementById('scheduledTime').textContent = formatMinutes(input.scheduledTotal);
       document.getElementById('breakTime').textContent = formatMinutes(input.breakMinutes);
-      document.getElementById('resultLabel').textContent = overtimeMinutes > 0 ? '本日の残業時間' : '残業なし';
-      document.getElementById('resultMessage').textContent = overtimeMinutes > 0 ? '入力した所定労働時間を超えた分です。' : '実働時間は所定労働時間以内です。';
+      document.getElementById('resultLabel').textContent = '残業時間の目安';
+      document.getElementById('resultMessage').textContent = overtimeMinutes > 0 ? '入力した所定労働時間を超えた分です。' : '入力した条件では、所定労働時間を超える実働時間はありません。';
       resultCard.hidden = false;
       resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
