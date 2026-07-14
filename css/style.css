@@ -1039,7 +1039,7 @@ a { color: var(--terms-green-dark); }
 .text-compare-field textarea { min-height: 260px !important; font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace; line-height: 1.65; }
 .text-compare-count { margin: 8px 0 0; color: var(--terms-muted); font-size: .88rem; font-weight: 800; text-align: right; }
 .text-compare-hint { margin: 14px 0 0; color: var(--terms-muted); font-size: .92rem; line-height: 1.7; }
-.text-compare-error { min-height: 1.5em; margin: 12px 0 0; color: #b42318; font-weight: 800; text-align: center; }
+.text-compare-error { min-height: 1.5em; margin: 12px 0 0; overflow-wrap: anywhere; color: #b42318; font-weight: 800; text-align: center; }
 .text-compare-copy-message { min-height: 1.5em; margin: 10px 0 0; color: var(--terms-green-dark); font-weight: 800; text-align: center; }
 .text-compare-buttons { display: flex; justify-content: center; gap: 12px; margin-top: 18px; }
 .text-compare-buttons button,
@@ -1135,7 +1135,7 @@ a { color: var(--terms-green-dark); }
 .encoding-result textarea { min-height: 230px !important; font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace; line-height: 1.65; }
 .encoding-count { margin: 8px 0 0; color: var(--terms-muted); font-size: .88rem; font-weight: 800; text-align: right; }
 .encoding-hint { margin: 14px 0 0; color: var(--terms-muted); font-size: .92rem; line-height: 1.7; }
-.encoding-error { min-height: 1.5em; margin: 12px 0 0; color: #b42318; font-weight: 800; text-align: center; }
+.encoding-error { min-height: 1.5em; margin: 12px 0 0; overflow-wrap: anywhere; color: #b42318; font-weight: 800; text-align: center; }
 .encoding-copy-message { min-height: 1.5em; margin: 10px 0 0; color: var(--terms-green-dark); font-weight: 800; text-align: center; }
 .encoding-buttons { display: flex; justify-content: center; gap: 12px; margin-top: 18px; }
 .encoding-buttons button { min-width: 180px; min-height: 52px; padding: 12px 22px; border: 1px solid #afc1a5; border-radius: 13px; background: #f7faf5; color: var(--terms-green-dark); font: inherit; font-weight: 850; cursor: pointer; transition: transform .18s, background .18s, box-shadow .18s; }
@@ -1252,7 +1252,7 @@ a { color: var(--terms-green-dark); }
 .overtime-scheduled legend { padding: 0 8px; color: var(--terms-green-dark); font-weight: 850; }
 .overtime-duration-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 180px)); gap: 14px; }
 .overtime-hint { margin: 14px 0 0; color: var(--terms-muted); font-size: .92rem; }
-.overtime-error { min-height: 1.5em; margin: 12px 0 0; color: #b42318; font-weight: 800; text-align: center; }
+.overtime-error { min-height: 1.5em; margin: 12px 0 0; overflow-wrap: anywhere; color: #b42318; font-weight: 800; text-align: center; }
 .overtime-form-buttons { display: flex; justify-content: center; gap: 12px; margin-top: 18px; }
 .overtime-form-buttons button,
 .overtime-copy { min-width: 180px; min-height: 52px; padding: 12px 22px; border: 1px solid #afc1a5; border-radius: 13px; background: #f7faf5; color: var(--terms-green-dark); font: inherit; font-weight: 850; cursor: pointer; transition: transform .18s, background .18s, box-shadow .18s; }
@@ -1332,7 +1332,7 @@ a { color: var(--terms-green-dark); }
 .overtime-pay-custom { width: min(100%, 300px); margin-top: 16px; }
 .overtime-pay-custom label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
 .overtime-pay-hint { margin: 14px 0 0; color: var(--terms-muted); font-size: .92rem; }
-.overtime-pay-error { min-height: 1.5em; margin: 12px 0 0; color: #b42318; font-weight: 800; text-align: center; }
+.overtime-pay-error { min-height: 1.5em; margin: 12px 0 0; overflow-wrap: anywhere; color: #b42318; font-weight: 800; text-align: center; }
 .overtime-pay-form-buttons { display: flex; justify-content: center; gap: 12px; margin-top: 18px; }
 .overtime-pay-form-buttons button,
 .overtime-pay-copy { min-width: 180px; min-height: 52px; padding: 12px 22px; border: 1px solid #afc1a5; border-radius: 13px; background: #f7faf5; color: var(--terms-green-dark); font: inherit; font-weight: 850; cursor: pointer; transition: transform .18s, background .18s, box-shadow .18s; }
@@ -1346,7 +1346,7 @@ a { color: var(--terms-green-dark); }
 .overtime-pay-result-main { padding: 28px 18px; border-radius: 18px; background: var(--terms-green-light); text-align: center; }
 .overtime-pay-result-main span,
 .overtime-pay-result-grid span { display: block; color: var(--terms-muted); font-size: .88rem; font-weight: 800; }
-.overtime-pay-result-main strong { display: block; margin-top: 8px; color: var(--terms-green-dark); font-size: clamp(2.15rem, 7vw, 3.2rem); }
+.overtime-pay-result-main strong { display: block; margin-top: 8px; overflow-wrap: anywhere; color: var(--terms-green-dark); font-size: clamp(2.15rem, 7vw, 3.2rem); }
 .overtime-pay-result-main p { margin: 8px 0 0; color: var(--terms-muted); }
 .overtime-pay-result-description { margin: 14px 0 0; color: var(--terms-muted); line-height: 1.7; text-align: center; }
 .overtime-pay-result-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 16px; }

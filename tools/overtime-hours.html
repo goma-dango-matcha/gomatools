@@ -67,7 +67,7 @@
           <small id="scheduledTimeHelp">初期値は8時間です。勤務先の条件に合わせて変更してください。</small>
         </fieldset>
         <p class="overtime-hint" id="workTimeHelp">同じ日の始業から終業までを1日分として計算します。日をまたぐ勤務には対応していません。</p>
-        <p class="overtime-error" id="errorMessage" role="alert"></p>
+        <p class="overtime-error" id="errorMessage" role="alert" aria-live="assertive"></p>
         <div class="overtime-form-buttons">
           <button class="overtime-primary" type="submit">計算する</button>
           <button id="resetButton" type="button">リセット</button>
@@ -143,8 +143,8 @@
     }
 
     function readInputs() {
-      if (!startInput.value) return { error: '始業時間を入力してください。' };
-      if (!endInput.value) return { error: '終業時間を入力してください。' };
+      if (!startInput.value) return { error: '始業時刻を入力してください。' };
+      if (!endInput.value) return { error: '終業時刻を入力してください。' };
       if (breakInput.value === '') return { error: '休憩時間を入力してください。' };
 
       const start = parseTime(startInput.value);
@@ -153,13 +153,13 @@
       const scheduledHours = Number(scheduledHoursInput.value);
       const scheduledMinutes = Number(scheduledMinutesInput.value);
 
-      if (end <= start) return { error: '終業時間は始業時間より後の時刻を入力してください。' };
+      if (end <= start) return { error: '終業時刻は始業時刻より後の時刻を入力してください。' };
       if (!Number.isInteger(breakMinutes) || breakMinutes < 0) return { error: '休憩時間は0以上の整数で入力してください。' };
       if (!Number.isInteger(scheduledHours) || scheduledHours < 0 || scheduledHours > 23) return { error: '所定労働時間の「時間」は0〜23の整数で入力してください。' };
       if (!Number.isInteger(scheduledMinutes) || scheduledMinutes < 0 || scheduledMinutes > 59) return { error: '所定労働時間の「分」は0〜59の整数で入力してください。' };
 
       const totalMinutes = end - start;
-      if (breakMinutes >= totalMinutes) return { error: '休憩時間は始業から終業までの時間より短くしてください。' };
+      if (breakMinutes >= totalMinutes) return { error: '休憩時間は始業時刻から終業時刻までの時間より短くしてください。' };
 
       const workingMinutes = totalMinutes - breakMinutes;
       const scheduledTotal = scheduledHours * 60 + scheduledMinutes;
@@ -206,7 +206,7 @@
 
     async function copyResult() {
       if (!latestResult) return;
-      const text = `【ゴマツール 残業時間計算結果】\n始業時間：${latestResult.start}\n終業時間：${latestResult.end}\n休憩時間：${formatMinutes(latestResult.breakMinutes)}\n実働時間：${formatMinutes(latestResult.workingMinutes)}\n所定労働時間：${formatMinutes(latestResult.scheduledTotal)}\n残業時間：${formatMinutes(latestResult.overtimeMinutes)}`;
+      const text = `【ゴマツール 残業時間計算結果】\n始業時刻：${latestResult.start}\n終業時刻：${latestResult.end}\n休憩時間：${formatMinutes(latestResult.breakMinutes)}\n実働時間：${formatMinutes(latestResult.workingMinutes)}\n所定労働時間：${formatMinutes(latestResult.scheduledTotal)}\n残業時間：${formatMinutes(latestResult.overtimeMinutes)}`;
       try {
         await navigator.clipboard.writeText(text);
         document.getElementById('copyMessage').textContent = 'コピーしました。';
