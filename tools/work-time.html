@@ -48,7 +48,7 @@
     <section class="work-time-hero" aria-labelledby="page-title">
       <p class="work-time-eyebrow">⏰ 仕事・テキスト</p>
       <h1 id="page-title">勤務時間計算ツール</h1>
-      <p>出勤時刻・退勤時刻・休憩時間から、実働時間を簡単に計算できます。</p>
+      <p>出勤時刻・退勤時刻・休憩時間から、休憩を除いた実働時間を計算できます。毎日の勤務記録を確認するときの目安として利用できます。</p>
     </section>
 
     <!-- ====================== 入力フォーム ====================== -->
@@ -56,15 +56,27 @@
       <h2 id="input-title">勤務時間を入力</h2>
       <form id="workTimeForm" novalidate>
         <div class="work-time-form-grid">
-          <div class="work-time-field"><label for="startTime">出勤時刻</label><input id="startTime" type="time" required></div>
-          <div class="work-time-field"><label for="endTime">退勤時刻</label><input id="endTime" type="time" required></div>
-          <div class="work-time-field"><label for="breakMinutes">休憩時間（分）</label><input id="breakMinutes" type="number" min="0" step="1" inputmode="numeric" value="0" placeholder="例：60"></div>
+          <div class="work-time-field">
+            <label for="startTime">出勤時刻 <span class="work-time-required">必須</span></label>
+            <input id="startTime" type="time" aria-describedby="startTimeHelp" required>
+            <small id="startTimeHelp">勤務を始めた時刻</small>
+          </div>
+          <div class="work-time-field">
+            <label for="endTime">退勤時刻 <span class="work-time-required">必須</span></label>
+            <input id="endTime" type="time" aria-describedby="endTimeHelp" required>
+            <small id="endTimeHelp">勤務を終えた時刻</small>
+          </div>
+          <div class="work-time-field">
+            <label for="breakMinutes">休憩時間（分） <span class="work-time-required">必須</span></label>
+            <input id="breakMinutes" type="number" min="0" step="1" inputmode="numeric" value="0" placeholder="例：60" aria-describedby="breakTimeHelp" required>
+            <small id="breakTimeHelp">合計を分単位で入力。休憩なしは0分</small>
+          </div>
         </div>
         <p class="work-time-hint">退勤時刻が出勤時刻より早い場合は、翌日の退勤として計算します。</p>
-        <p class="work-time-error" id="errorMessage" role="alert"></p>
+        <p class="work-time-error" id="errorMessage" role="alert" aria-live="assertive"></p>
         <div class="work-time-form-buttons">
           <button class="work-time-primary" type="submit">計算する</button>
-          <button id="clearButton" type="button">クリア</button>
+          <button id="clearButton" type="button">入力と結果をクリア</button>
         </div>
       </form>
     </section>
@@ -72,25 +84,33 @@
     <!-- ====================== 計算結果 ====================== -->
     <section class="work-time-card work-time-result" id="resultCard" aria-labelledby="result-title" aria-live="polite" hidden>
       <h2 id="result-title">計算結果</h2>
-      <div class="work-time-result-main"><span>実働時間</span><strong id="workingTime">—</strong></div>
+      <div class="work-time-result-main"><span>実働時間（休憩控除後）</span><strong id="workingTime">—</strong></div>
+      <p class="work-time-result-description">入力した時刻と休憩時間をもとにした計算結果です。</p>
       <div class="work-time-result-grid">
-        <div><span>総拘束時間</span><strong id="totalTime">—</strong></div>
+        <div><span>拘束時間</span><strong id="totalTime">—</strong></div>
         <div><span>休憩時間</span><strong id="breakTime">—</strong></div>
-        <div><span>10進数表示</span><strong id="decimalTime">—</strong></div>
+        <div><span>実働時間（小数）</span><strong id="decimalTime">—</strong></div>
       </div>
       <p class="work-time-overnight" id="overnightNote" hidden>🌙 翌日退勤として計算しました。</p>
       <button class="work-time-copy" id="copyButton" type="button">📋 結果をコピー</button>
       <p class="work-time-copy-message" id="copyMessage" role="status" aria-live="polite"></p>
     </section>
 
-    <!-- ====================== 説明・注意事項 ====================== -->
-    <section class="work-time-card work-time-info" aria-labelledby="about-title">
-      <h2 id="about-title">このツールでできること</h2>
-      <p>出勤時刻・退勤時刻・休憩時間を入力するだけで、実働時間を簡単に計算できます。アルバイト、パート、日々の勤務記録、タイムカードの確認などに便利です。</p>
-      <h2>日またぎ勤務について</h2>
-      <p>退勤時刻が出勤時刻より早い場合は、翌日の退勤として計算します。夜勤や深夜勤務の簡単な計算にも利用できます。</p>
-      <h2>注意事項</h2>
-      <p>このツールは勤務時間を簡易的に計算するためのものです。給与計算、残業代、有給、法定労働時間などの正式な確認は、勤務先のルールや専門機関の情報を確認してください。</p>
+    <!-- ====================== 補足情報 ====================== -->
+    <section class="work-time-card work-time-info" aria-labelledby="support-title">
+      <h2 id="support-title">補足情報</h2>
+      <ul class="work-time-support-list">
+        <li>拘束時間は出勤から退勤までの経過時間、実働時間は拘束時間から休憩時間を差し引いた時間です。</li>
+        <li>退勤時刻が出勤時刻より早い場合は翌日退勤として扱います。日付入力がないため、24時間以上の勤務には対応していません。</li>
+        <li>小数表示は実働時間を時間単位へ換算し、小数第2位まで表示します。</li>
+        <li>結果は入力した条件に基づく目安です。正式な勤怠集計では、勤務先の就業規則や集計方法もご確認ください。</li>
+      </ul>
+    </section>
+
+    <!-- ====================== ゴマワンポイント ====================== -->
+    <section class="work-time-card work-time-one-point" aria-labelledby="one-point-title">
+      <h2 id="one-point-title">🍵 ゴマワンポイント</h2>
+      <p>出勤・退勤時刻と休憩時間は、その日のうちに記録しておくと確認しやすくなります。月末にまとめて見直す場合も、日ごとの記録を残しておくと安心です。</p>
     </section>
     <!-- 仕事・テキストシリーズ：内容は assets/goma-ui.js で一元管理 -->
     <section data-work-series data-current="work-time"></section>
@@ -130,7 +150,7 @@
       const error=validateInputs();if(error){errorMessage.textContent=error;resultCard.hidden=true;return}
       const start=parseTime(startInput.value);const end=parseTime(endInput.value);const overnight=end<start;
       const totalMinutes=(overnight?end+1440:end)-start;const breakMinutes=Number(breakInput.value);
-      if(breakMinutes>totalMinutes){errorMessage.textContent='休憩時間が勤務時間を超えています。';resultCard.hidden=true;return}
+      if(breakMinutes>totalMinutes){errorMessage.textContent='休憩時間は、出勤から退勤までの拘束時間以下で入力してください。';resultCard.hidden=true;return}
       const workingMinutes=totalMinutes-breakMinutes;
       if(workingMinutes<=0){errorMessage.textContent='実働時間が0分以下になっています。入力内容を確認してください。';resultCard.hidden=true;return}
       latestResult={start:startInput.value,end:endInput.value,totalMinutes,breakMinutes,workingMinutes,overnight};
@@ -145,7 +165,7 @@
     async function copyResult(){
       if(!latestResult)return;
       const dayText=latestResult.overnight?'（翌日退勤）':'';
-      const text=`【ゴマツール 勤務時間計算結果】\n出勤時刻：${latestResult.start}\n退勤時刻：${latestResult.end}${dayText}\n総拘束時間：${formatMinutes(latestResult.totalMinutes)}\n休憩時間：${formatMinutes(latestResult.breakMinutes)}\n実働時間：${formatMinutes(latestResult.workingMinutes)}\n10進数：${(latestResult.workingMinutes/60).toFixed(2)}時間`;
+      const text=`【ゴマツール 勤務時間計算結果】\n出勤時刻：${latestResult.start}\n退勤時刻：${latestResult.end}${dayText}\n拘束時間：${formatMinutes(latestResult.totalMinutes)}\n休憩時間：${formatMinutes(latestResult.breakMinutes)}\n実働時間：${formatMinutes(latestResult.workingMinutes)}\n実働時間（小数）：${(latestResult.workingMinutes/60).toFixed(2)}時間`;
       try{await navigator.clipboard.writeText(text);document.getElementById('copyMessage').textContent='コピーしました。'}catch(error){document.getElementById('copyMessage').textContent='コピーできませんでした。手動で選択してコピーしてください。'}
     }
     form.addEventListener('submit',calculateWorkTime);

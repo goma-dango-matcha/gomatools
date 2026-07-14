@@ -1181,8 +1181,11 @@ a { color: var(--terms-green-dark); }
 .work-time-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .work-time-form-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .work-time-field label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
-.work-time-hint { margin: 14px 0 0; color: var(--terms-muted); font-size: .92rem; }
-.work-time-error { min-height: 1.5em; margin: 12px 0 0; color: #b42318; font-weight: 800; text-align: center; }
+.work-time-field input { width: 100%; min-width: 0; }
+.work-time-field small { display: block; margin-top: 7px; color: var(--terms-muted); font-size: .84rem; line-height: 1.5; }
+.work-time-required { display: inline-block; margin-left: 4px; padding: 2px 6px; border-radius: 999px; background: #edf5e8; color: var(--terms-green-dark); font-size: .72rem; vertical-align: middle; }
+.work-time-hint { margin: 14px 0 0; color: var(--terms-muted); font-size: .92rem; line-height: 1.7; }
+.work-time-error { min-height: 1.5em; margin: 12px 0 0; color: #b42318; font-weight: 800; text-align: center; overflow-wrap: anywhere; }
 .work-time-form-buttons { display: flex; justify-content: center; gap: 12px; margin-top: 18px; }
 .work-time-form-buttons button,
 .work-time-copy { min-width: 180px; min-height: 52px; padding: 12px 22px; border: 1px solid #afc1a5; border-radius: 13px; background: #f7faf5; color: var(--terms-green-dark); font: inherit; font-weight: 850; cursor: pointer; transition: transform .18s, background .18s, box-shadow .18s; }
@@ -1192,11 +1195,15 @@ a { color: var(--terms-green-dark); }
 .work-time-copy:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(67, 91, 49, .16); }
 .work-time-form-buttons .work-time-primary:hover,
 .work-time-copy:hover { background: var(--terms-green-dark); }
+.work-time-field input:focus-visible,
+.work-time-form-buttons button:focus-visible,
+.work-time-copy:focus-visible { outline: 3px solid rgba(99, 132, 63, .3); outline-offset: 3px; }
 .work-time-result { border-color: #b7cba9; background: #fbfdf9; }
 .work-time-result-main { padding: 26px 18px; border-radius: 17px; background: var(--terms-green-light); text-align: center; }
 .work-time-result-main span,
 .work-time-result-grid span { display: block; color: var(--terms-muted); font-size: .88rem; font-weight: 800; }
-.work-time-result-main strong { display: block; margin-top: 8px; color: var(--terms-green-dark); font-size: clamp(2.15rem, 7vw, 3.2rem); }
+.work-time-result-main strong { display: block; margin-top: 8px; color: var(--terms-green-dark); font-size: clamp(2.15rem, 7vw, 3.2rem); white-space: nowrap; }
+.work-time-result-description { margin: 14px 0 0; color: var(--terms-muted); line-height: 1.7; text-align: center; }
 .work-time-result-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 16px; }
 .work-time-result-grid > div { padding: 20px 14px; border: 1px solid #d8e4d2; border-radius: 15px; background: #fff; text-align: center; }
 .work-time-result-grid strong { display: block; margin-top: 7px; color: var(--terms-text); font-size: clamp(1.05rem, 3vw, 1.35rem); }
@@ -1204,8 +1211,10 @@ a { color: var(--terms-green-dark); }
 .work-time-copy { display: block; margin: 20px auto 0; }
 .work-time-copy-message { min-height: 1.5em; margin: 10px 0 0; color: var(--terms-green-dark); font-weight: 800; text-align: center; }
 .work-time-info { line-height: 1.85; }
-.work-time-info h2:not(:first-child) { margin-top: 28px; }
-.work-time-info p { margin: 0; color: var(--terms-muted); }
+.work-time-support-list { margin: 0; padding-left: 1.3em; color: var(--terms-muted); }
+.work-time-support-list li + li { margin-top: 9px; }
+.work-time-one-point { border-color: #d6e3cf; background: #f7fbf3; }
+.work-time-one-point p { margin: 0; color: #52604d; line-height: 1.75; }
 
 @media (max-width: 760px) {
   .work-time-form-grid,
