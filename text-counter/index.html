@@ -57,7 +57,6 @@
     .hero { text-align: center; }
     .eyebrow { display: inline-block; margin: 0 0 15px; padding: 6px 13px; color: var(--green-dark); border-radius: 999px; background: var(--green-light); font-size: .82rem; font-weight: 750; }
     h1 { margin: 0; font-size: clamp(2.1rem, 8vw, 3.7rem); line-height: 1.25; letter-spacing: -.035em; }
-    .hero-catch { margin: 18px 0 0; color: var(--green-dark); font-size: clamp(1.05rem, 3vw, 1.25rem); font-weight: 800; }
     .hero-description { max-width: 650px; margin: 15px auto 0; color: var(--muted); }
 
     /* ======================
@@ -73,8 +72,9 @@
     .copy-button:hover { background: var(--green-dark); transform: translateY(-1px); }
     .clear-button { color: var(--green-dark); border: 1.5px solid var(--green); background: #fff; }
     .clear-button:hover { background: var(--green-light); }
-    .action-button:focus-visible, .home-link:focus-visible, .related-link:focus-visible { outline: 3px solid rgba(88, 124, 64, .35); outline-offset: 3px; }
+    .action-button:focus-visible, .home-link:focus-visible { outline: 3px solid rgba(88, 124, 64, .35); outline-offset: 3px; }
     .action-status { min-height: 1.6em; margin: 9px 0 0; color: var(--green-dark); font-size: .86rem; font-weight: 750; text-align: center; }
+    .action-status.is-error { color: var(--danger); }
 
     /* ======================
        カウント結果
@@ -87,16 +87,12 @@
     .result-unit { margin-left: 3px; font-size: .9rem; font-weight: 750; }
 
     /* ======================
-       安心表示・関連ツール
+       補足情報
     ====================== */
-    .privacy-card { box-shadow: none; background: var(--green-soft); }
-    .privacy-card p { margin: 5px 0; color: var(--muted); }
-    .related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .related-item { padding: 19px; border: 1px solid var(--line); border-radius: 15px; background: var(--green-soft); }
-    .related-name { display: block; font-weight: 800; }
-    .related-status { display: block; margin-top: 4px; color: var(--muted); font-size: .78rem; }
-    .related-link { display: block; text-decoration: none; transition: border-color .15s ease, transform .15s ease; }
-    .related-link:hover { border-color: var(--green); transform: translateY(-1px); }
+    .support-card { box-shadow: none; background: var(--green-soft); }
+    .support-list { margin: 0; padding-left: 1.25em; color: var(--muted); }
+    .support-list li + li { margin-top: 8px; }
+    .counter-one-point h2 { margin: 0 0 8px; color: var(--green-dark); font-size: 1.05rem; line-height: 1.45; }
 
     /* ======================
        フッター・レスポンシブ
@@ -105,7 +101,6 @@
     .footer-logo { margin: 0 0 8px; color: var(--green-dark); font-size: 1.15rem; font-weight: 850; }
     footer p { margin: 5px 0; }
     .project-name { margin-top: 20px; font-size: .82rem; font-weight: 750; letter-spacing: .08em; }
-    .footer-assurance { max-width: 620px; margin: 28px auto 0; padding-top: 26px; border-top: 1px solid var(--line); font-size: .78rem; line-height: 1.8; }
     .updated { margin-top: 18px; font-size: .72rem; }
     @media (max-width: 700px) { .result-grid { grid-template-columns: 1fr; } }
     @media (max-width: 620px) {
@@ -117,7 +112,7 @@
       .section { margin-top: 54px; }
       .card { padding: 22px 18px; border-radius: 18px; }
       textarea { min-height: 230px; }
-      .button-row, .related-grid { grid-template-columns: 1fr; }
+      .button-row { grid-template-columns: 1fr; }
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; } }
   </style>
@@ -176,21 +171,20 @@
       <section class="hero" aria-labelledby="page-title">
         <p class="eyebrow">入力するだけでリアルタイム集計</p>
         <h1 id="page-title">✍️ 文字数カウント</h1>
-        <p class="hero-catch">文章の長さを、すぐに確認。</p>
-        <p class="hero-description">文章を入力するだけで文字数をリアルタイムでカウントできます。<br>空白を除いた文字数や改行数も確認できます。</p>
+        <p class="hero-description">文章を入力すると、文字数・空白を除く文字数・改行数をリアルタイムで確認できます。入力した文章はコピーして再利用できます。</p>
       </section>
 
       <!-- ======================
            文字入力・結果
       ====================== -->
       <section class="section" aria-labelledby="counter-title">
-        <h2 class="section-title" id="counter-title">文章を入力</h2>
+        <h2 class="section-title" id="counter-title">文章を入力して文字数を確認</h2>
         <div class="card">
-          <label for="textInput">カウントする文章</label>
-          <textarea id="textInput" name="textInput" placeholder="ここに文章を入力してください。&#10;文字数をリアルタイムでカウントします。" aria-describedby="inputHint"></textarea>
-          <p class="input-hint" id="inputHint">入力内容はブラウザ内だけで処理され、外部へ送信されません。</p>
+          <label for="textInput">文章</label>
+          <textarea id="textInput" name="textInput" placeholder="ここに文章を入力してください。" aria-describedby="inputHint"></textarea>
+          <p class="input-hint" id="inputHint">入力と同時に、下の集計結果が更新されます。</p>
 
-          <div class="result-grid" aria-live="polite" aria-atomic="true">
+          <div class="result-grid" role="status" aria-label="文字数の集計結果" aria-live="polite" aria-atomic="false">
             <div class="result-item primary">
               <span class="result-label">文字数</span>
               <strong class="result-value"><span id="totalCount">0</span><span class="result-unit">文字</span></strong>
@@ -206,44 +200,43 @@
           </div>
 
           <div class="button-row">
-            <button class="action-button copy-button" id="copyButton" type="button">📋 コピー</button>
-            <button class="action-button clear-button" id="clearButton" type="button">すべて消去</button>
+            <button class="action-button copy-button" id="copyButton" type="button">📋 入力した文章をコピー</button>
+            <button class="action-button clear-button" id="clearButton" type="button">入力欄をクリア</button>
           </div>
-          <p class="action-status" id="actionStatus" role="status"></p>
+          <p class="action-status" id="actionStatus" role="status" aria-live="polite" aria-atomic="true"></p>
         </div>
       </section>
 
       <!-- ======================
-           プライバシー
+           補足情報
       ====================== -->
-      <section class="section card privacy-card" aria-labelledby="privacy-title">
-        <h2 class="section-title" id="privacy-title">🍵 安心してお使いください</h2>
-        <p>入力内容と文字数の計算はブラウザ内だけで行われます。</p>
-        <p>サーバーへ送信・保存することはありません。</p>
+      <section class="section card support-card" aria-labelledby="support-title">
+        <h2 class="section-title" id="support-title">補足情報</h2>
+        <ul class="support-list">
+          <li>「文字数」は、入力した文章のスペースと改行を含めて数えます。</li>
+          <li>「空白を除く」は、半角スペースと全角スペースを除き、改行は含めて数えます。</li>
+          <li>「改行数」は、文章内で改行した回数を表示します。</li>
+          <li>入力内容はブラウザへ保存せず、サーバーやAnalyticsへ送信する処理もありません。</li>
+        </ul>
       </section>
+
+      <aside class="goma-one-point counter-one-point" aria-labelledby="one-point-title">
+        <h2 id="one-point-title">🍵 ゴマワンポイント</h2>
+        <p>SNSやレポートなど文字数の条件がある文章は、完成後にもう一度数を確認すると、投稿や提出をスムーズに進めやすくなります。空白や改行を含む条件かも確認しましょう。</p>
+      </aside>
 
       <!-- ======================
            関連ツール
       ====================== -->
-      <section class="section" aria-labelledby="related-title">
-        <h2 class="section-title" id="related-title">おすすめの便利ツール</h2>
-        <div class="card related-grid">
-          <a class="related-item related-link" href="../age/"><span class="related-name">🎂 年齢・日付計算</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../business-days/"><span class="related-name">📅 営業日計算</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../tax/"><span class="related-name">💰 消費税計算</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../warikan/"><span class="related-name">👥 割り勘計算</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../qrcode/"><span class="related-name">📱 QRコード生成</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../school-year/"><span class="related-name">🎓 学年・年齢・卒業年度計算</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../wareki/"><span class="related-name">📅 和暦・西暦変換</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../password/"><span class="related-name">🔐 パスワード生成</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../compound-interest/"><span class="related-name">📈 複利計算</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../unit-converter/"><span class="related-name">📏 単位変換ツール</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../birthday-countdown/"><span class="related-name">🎉 誕生日カウント</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../days-calculator/"><span class="related-name">📆 日数計算ツール</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../random-picker/"><span class="related-name">📋 ランダム抽選ツール</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../discount-calculator/"><span class="related-name">💹 割引率計算ツール</span><span class="related-status">公開中</span></a>
-          <a class="related-item related-link" href="../calculator/"><span class="related-name">🧮 電卓ツール</span><span class="related-status">公開中</span></a>
-        </div>
+      <section class="goma-related-tools" aria-labelledby="goma-related-tools-title">
+        <h2 id="goma-related-tools-title">🔗 関連ツール</h2>
+        <p>文章の整理・比較や、文字情報の確認に役立つツールです。</p>
+        <ul class="goma-related-tools-list">
+          <li><a href="../tools/text-format.html">テキスト整形</a></li>
+          <li><a href="../tools/text-compare.html">テキスト比較</a></li>
+          <li><a href="../tools/character-encoding.html">文字コード変換</a></li>
+          <li><a href="../qrcode/">QRコード生成ツール</a></li>
+        </ul>
       </section>
     </div>
   </main>
@@ -256,10 +249,6 @@
       <p class="footer-logo">🍵 ゴマツール</p>
       <p>30秒で使えて、<br>他より少し便利。</p>
       <p class="project-name">Project Goma</p>
-      <div class="footer-assurance">
-        <p>入力したデータはブラウザ内だけで処理されます。</p>
-        <p>サーバーへ送信・保存は行いません。</p>
-      </div>
       <p class="updated">最終更新：2026年7月</p>
     </div>
     <p><a href="../privacy/" style="color:inherit">プライバシーポリシー</a></p>
@@ -283,7 +272,13 @@
       document.getElementById('totalCount').textContent = countCharacters(text).toLocaleString('ja-JP');
       document.getElementById('noSpaceCount').textContent = countCharacters(withoutSpaces).toLocaleString('ja-JP');
       document.getElementById('lineBreakCount').textContent = lineBreaks.toLocaleString('ja-JP');
-      document.getElementById('actionStatus').textContent = '';
+      setActionStatus('');
+    }
+
+    function setActionStatus(message, isError = false) {
+      const status = document.getElementById('actionStatus');
+      status.textContent = message;
+      status.classList.toggle('is-error', isError);
     }
 
     // ======================
@@ -291,34 +286,46 @@
     // ======================
     async function copyText() {
       const text = document.getElementById('textInput').value;
-      const status = document.getElementById('actionStatus');
 
       if (text === '') {
-        status.textContent = 'コピーする文章がありません。';
+        setActionStatus('コピーする文章がありません。文章を入力してください。', true);
         return;
       }
 
       try {
+        if (!navigator.clipboard || typeof navigator.clipboard.writeText !== 'function') {
+          throw new Error('Clipboard API is unavailable.');
+        }
         await navigator.clipboard.writeText(text);
-        status.textContent = 'コピーしました。';
+        setActionStatus('入力した文章をコピーしました。');
       } catch (error) {
+        let copied = false;
         const textArea = document.createElement('textarea');
-        textArea.value = text;
-        textArea.style.position = 'fixed';
-        textArea.style.opacity = '0';
-        document.body.appendChild(textArea);
-        textArea.select();
-        const copied = document.execCommand('copy');
-        textArea.remove();
-        status.textContent = copied ? 'コピーしました。' : 'コピーできませんでした。';
+        try {
+          textArea.value = text;
+          textArea.style.position = 'fixed';
+          textArea.style.opacity = '0';
+          document.body.appendChild(textArea);
+          textArea.select();
+          copied = typeof document.execCommand === 'function' && document.execCommand('copy');
+        } catch (fallbackError) {
+          copied = false;
+        } finally {
+          textArea.remove();
+        }
+        setActionStatus(
+          copied ? '入力した文章をコピーしました。' : 'コピーできませんでした。文章を選択してコピーしてください。',
+          !copied
+        );
       }
     }
 
     function clearText() {
       const input = document.getElementById('textInput');
+      const hadText = input.value !== '';
       input.value = '';
       updateCounts();
-      document.getElementById('actionStatus').textContent = 'すべて消去しました。';
+      setActionStatus(hadText ? '入力した文章をすべて消去しました。' : '入力欄はすでに空です。');
       input.focus();
     }
 
