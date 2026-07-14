@@ -50,6 +50,7 @@
     label { display:block; margin-bottom:8px; font-weight:750; }
     input,select { width:100%; min-height:52px; padding:12px 14px; color:var(--text); border:1.5px solid #cdd8c7; border-radius:12px; background:#fff; }
     input:focus,select:focus { outline:3px solid rgba(88,124,64,.18); border-color:var(--green); }
+    .field-hint { margin:7px 0 0; color:var(--muted); font-size:.82rem; }
     .action-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:20px; }
     .swap-button,.reset-button { min-height:52px; padding:12px 16px; border-radius:13px; font-weight:800; }
     .swap-button { color:#fff; border:0; background:var(--green); }
@@ -63,30 +64,26 @@
     .result-panel { margin-top:24px; padding:26px 18px; border-radius:18px; background:var(--green-light); text-align:center; }
     .result-label { display:block; color:var(--muted); font-size:.84rem; font-weight:750; }
     .result-value { display:block; margin-top:7px; color:var(--green-dark); font-size:clamp(1.55rem,6vw,2.55rem); line-height:1.4; font-weight:900; overflow-wrap:anywhere; }
+    .result-value[data-state="empty"],.result-value[data-state="error"] { font-size:1rem; font-weight:750; }
     .examples { margin-top:20px; padding:18px; border:1px solid var(--line); border-radius:15px; background:var(--green-soft); }
     .examples-title { margin:0 0 8px; color:var(--green-dark); font-size:1rem; }
     .examples-list { margin:0; padding-left:1.3em; color:var(--muted); }
     .volume-note { margin:10px 0 0; color:var(--muted); font-size:.82rem; }
 
-    /* ====================== 安心表示・関連ツール ====================== */
-    .privacy-card { box-shadow:none; background:var(--green-soft); }
-    .privacy-card p { margin:5px 0; color:var(--muted); }
-    .related-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-    .related-item { padding:19px; border:1px solid var(--line); border-radius:15px; background:var(--green-soft); }
-    .related-name { display:block; font-weight:800; }
-    .related-status { display:block; margin-top:4px; color:var(--muted); font-size:.78rem; }
-    .related-link { display:block; text-decoration:none; transition:border-color .15s ease,transform .15s ease; }
-    .related-link:hover { border-color:var(--green); transform:translateY(-1px); }
+    /* ====================== 補足情報 ====================== */
+    .support-card { box-shadow:none; background:var(--green-soft); }
+    .support-list { margin:0; padding-left:1.25em; color:var(--muted); }
+    .support-list li + li { margin-top:8px; }
+    .unit-one-point h2 { margin:0 0 8px; color:var(--green-dark); font-size:1.05rem; line-height:1.45; }
 
     /* ====================== フッター・レスポンシブ ====================== */
     footer { padding:52px 0; color:var(--muted); border-top:1px solid var(--line); text-align:center; background:var(--green-soft); }
     .footer-logo { margin:0 0 8px; color:var(--green-dark); font-size:1.15rem; font-weight:850; }
     footer p { margin:5px 0; }
     .project-name { margin-top:20px; font-size:.82rem; font-weight:750; letter-spacing:.08em; }
-    .footer-assurance { max-width:620px; margin:28px auto 0; padding-top:26px; border-top:1px solid var(--line); font-size:.78rem; line-height:1.8; }
     .updated { margin-top:18px; font-size:.72rem; }
     @media (max-width:700px) { .category-tabs{grid-template-columns:1fr 1fr} .converter-grid{grid-template-columns:1fr} }
-    @media (max-width:620px) { .container{width:min(100% - 24px,880px)} .site-header{padding:18px 0} .header-inner{align-items:flex-start} .brand-wrap{flex-direction:column;gap:0} main{padding:58px 0 76px} .section{margin-top:54px} .card{padding:22px 18px;border-radius:18px} .action-row,.related-grid{grid-template-columns:1fr} }
+    @media (max-width:620px) { .container{width:min(100% - 24px,880px)} .site-header{padding:18px 0} .header-inner{align-items:flex-start} .brand-wrap{flex-direction:column;gap:0} main{padding:58px 0 76px} .section{margin-top:54px} .card{padding:22px 18px;border-radius:18px} .action-row{grid-template-columns:1fr} }
     @media (prefers-reduced-motion:reduce) { html{scroll-behavior:auto} *,*::before,*::after{transition:none!important} }
   </style>
   <link rel="stylesheet" href="../assets/goma-ui.css">
@@ -128,7 +125,7 @@
 
   <main><div class="container">
     <!-- ====================== ヒーロー ====================== -->
-    <section class="hero" aria-labelledby="page-title"><p class="eyebrow">入力と同時にすぐ変換</p><h1 id="page-title">📏 単位変換ツール</h1><p class="hero-description">長さ・重さ・温度・料理で使う容量の単位を簡単に変換できます。</p></section>
+    <section class="hero" aria-labelledby="page-title"><p class="eyebrow">入力と同時にすぐ変換</p><h1 id="page-title">📏 単位変換ツール</h1><p class="hero-description">値を入力し、変換元と変換先の単位を選ぶと、結果が自動で更新されます。長さ・重さ・温度・料理容量に対応しています。</p></section>
 
     <!-- ====================== 単位変換 ====================== -->
     <section class="section" aria-labelledby="converter-title"><h2 class="section-title" id="converter-title">変換するカテゴリを選ぶ</h2><div class="card">
@@ -140,42 +137,28 @@
       </div>
 
       <div class="converter-grid">
-        <div><label for="inputValue">変換する数値</label><input type="number" id="inputValue" name="inputValue" step="any" inputmode="decimal" placeholder="例：100"></div>
+        <div><label for="inputValue">変換する数値</label><input type="number" id="inputValue" name="inputValue" step="any" inputmode="decimal" placeholder="例：100" aria-describedby="inputHint formError"><p class="field-hint" id="inputHint">整数または小数を入力できます。</p></div>
         <div><label for="fromUnit">変換元単位</label><select id="fromUnit" name="fromUnit"></select></div>
         <div><label for="toUnit">変換先単位</label><select id="toUnit" name="toUnit"></select></div>
       </div>
 
       <div class="action-row"><button class="swap-button" id="swapButton" type="button">⇄ 単位を入れ替える</button><button class="reset-button" id="resetButton" type="button">リセット</button></div>
-      <p class="error" id="formError" role="alert"></p>
-      <div class="result-panel" aria-live="polite"><span class="result-label">変換結果</span><strong class="result-value" id="resultValue">数値を入力してください</strong></div>
+      <p class="error" id="formError" role="alert" aria-live="assertive"></p>
+      <div class="result-panel" aria-live="polite" aria-atomic="true"><span class="result-label">変換結果</span><strong class="result-value" id="resultValue" data-state="empty">数値を入力してください</strong></div>
       <div class="examples"><h3 class="examples-title">よく使う例</h3><ul class="examples-list" id="examplesList"></ul><p class="volume-note" id="volumeNote" hidden>※料理カテゴリは容量のみ対応しています。材料ごとの重量換算には対応していません。</p></div>
     </div></section>
 
-    <!-- ====================== 安心表示 ====================== -->
-    <section class="section card privacy-card" aria-labelledby="privacy-title"><h2 class="section-title" id="privacy-title">🍵 安心してお使いください</h2><p>入力内容と変換処理はブラウザ内だけで行われます。</p><p>サーバーへ送信・保存することはありません。</p></section>
+    <!-- ====================== 補足情報 ====================== -->
+    <section class="section card support-card" aria-labelledby="support-title"><h2 class="section-title" id="support-title">補足情報</h2><ul class="support-list"><li>変換結果には、入力値と変換元単位、換算値と変換先単位をまとめて表示します。</li><li>小数は最大10桁まで表示し、値に応じて丸めています。</li><li>選択したカテゴリだけをブラウザへ保存します。入力した数値は保存せず、サーバーへ送信する処理もありません。</li></ul></section>
+
+    <aside class="goma-one-point unit-one-point" aria-labelledby="one-point-title"><h2 id="one-point-title">🍵 ゴマワンポイント</h2><p>変換結果をあとで使うときは、元の数値と単位も一緒に残しておくと確認しやすくなります。変換前・変換後の単位が合っているかも確認しましょう。</p></aside>
 
     <!-- ====================== 関連ツール ====================== -->
-    <section class="section" aria-labelledby="related-title"><h2 class="section-title" id="related-title">おすすめの便利ツール</h2><div class="card related-grid">
-      <a class="related-item related-link" href="../age/"><span class="related-name">🎂 年齢・日付計算</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../business-days/"><span class="related-name">📅 営業日計算</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../tax/"><span class="related-name">💰 消費税計算</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../warikan/"><span class="related-name">👥 割り勘計算</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../qrcode/"><span class="related-name">📱 QRコード生成</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../school-year/"><span class="related-name">🎓 学年・年齢・卒業年度計算</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../wareki/"><span class="related-name">📅 和暦・西暦変換</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../text-counter/"><span class="related-name">✍️ 文字数カウント</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../password/"><span class="related-name">🔐 パスワード生成</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../compound-interest/"><span class="related-name">📈 複利計算</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../birthday-countdown/"><span class="related-name">🎉 誕生日カウント</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../days-calculator/"><span class="related-name">📆 日数計算ツール</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../random-picker/"><span class="related-name">📋 ランダム抽選ツール</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../discount-calculator/"><span class="related-name">💹 割引率計算ツール</span><span class="related-status">公開中</span></a>
-      <a class="related-item related-link" href="../calculator/"><span class="related-name">🧮 電卓ツール</span><span class="related-status">公開中</span></a>
-    </div></section>
+    <section class="goma-related-tools" aria-labelledby="goma-related-tools-title"><h2 id="goma-related-tools-title">🔗 関連ツール</h2><p>単位や生活に関する計算を続けて確認できます。</p><ul class="goma-related-tools-list"><li><a href="../calculator/">電卓ツール</a></li><li><a href="../gasoline-calculator/">ガソリン代計算ツール</a></li><li><a href="../water-bill-calculator/">水道料金計算ツール</a></li></ul></section>
   </div></main>
 
   <!-- ====================== フッター ====================== -->
-  <footer><div class="container"><p class="footer-logo">🍵 ゴマツール</p><p>30秒で使えて、<br>他より少し便利。</p><p class="project-name">Project Goma</p><div class="footer-assurance"><p>入力したデータはブラウザ内だけで処理されます。</p><p>サーバーへ送信・保存は行いません。</p></div><p><a href="../privacy/" style="color:inherit">プライバシーポリシー</a></p><p class="updated">最終更新：2026年7月</p></div></footer>
+  <footer><div class="container"><p class="footer-logo">🍵 ゴマツール</p><p>30秒で使えて、<br>他より少し便利。</p><p class="project-name">Project Goma</p><p><a href="../privacy/" style="color:inherit">プライバシーポリシー</a></p><p class="updated">最終更新：2026年7月</p></div></footer>
 
   <script>
     'use strict';
@@ -262,14 +245,22 @@
       const result = document.getElementById('resultValue');
       error.textContent = '';
 
+      if (input.validity && input.validity.badInput) {
+        error.textContent = '半角数字で入力してください。';
+        result.textContent = '入力内容を確認してください';
+        result.dataset.state = 'error';
+        return;
+      }
       if (raw === '') {
         result.textContent = '数値を入力してください';
+        result.dataset.state = 'empty';
         return;
       }
       const value = Number(raw);
       if (!Number.isFinite(value)) {
-        error.textContent = '数字を入力してください。';
-        result.textContent = '—';
+        error.textContent = '変換できる範囲の数値を入力してください。';
+        result.textContent = '入力内容を確認してください';
+        result.dataset.state = 'error';
         return;
       }
 
@@ -282,6 +273,7 @@
         : value * from.factor / to.factor;
 
       result.textContent = `${formatNumber(value)} ${from.label} = ${formatNumber(converted)} ${to.label}`;
+      result.dataset.state = 'ready';
     }
 
     // ====================== カテゴリ・ボタン操作 ======================
