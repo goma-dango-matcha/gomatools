@@ -415,6 +415,11 @@
       { title: '残業代計算ツール', path: 'tools/overtime-pay.html' },
       { title: '時給計算ツール', path: 'tools/hourly-wage.html' }
     ],
+    'tools/overtime-pay.html': [
+      { title: '残業時間計算ツール', path: 'tools/overtime-hours.html' },
+      { title: '時給計算ツール', path: 'tools/hourly-wage.html' },
+      { title: '勤務時間計算ツール', path: 'tools/work-time.html' }
+    ],
     'compound-interest/': [
       { title: '利息計算ツール', path: 'interest-calculator/' },
       { title: 'ローン返済シミュレーター', path: 'tools/loan-calculator.html' },
@@ -529,7 +534,7 @@
         ? 'あわせて使うと、お金の計算や比較を進めやすくなります。'
         : ['age/', 'business-days/'].includes(currentPageKey)
           ? 'あわせて使うと、日付や期限の確認を進めやすくなります。'
-          : ['tools/work-time.html', 'tools/hourly-wage.html', 'tools/overtime-hours.html'].includes(currentPageKey)
+          : ['tools/work-time.html', 'tools/hourly-wage.html', 'tools/overtime-hours.html', 'tools/overtime-pay.html'].includes(currentPageKey)
             ? 'あわせて使うと、勤務時間や収入の目安を確認しやすくなります。'
             : 'あわせて使うと、作成や確認の作業を進めやすくなります。';
     section.innerHTML = `

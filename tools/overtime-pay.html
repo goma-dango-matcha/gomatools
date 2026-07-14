@@ -47,7 +47,7 @@
     <section class="overtime-pay-hero" aria-labelledby="page-title">
       <p class="overtime-pay-eyebrow">💼 仕事・テキスト</p>
       <h1 id="page-title">残業代計算ツール</h1>
-      <p>時給・残業時間・割増率から、残業代の目安を簡単に計算できます。</p>
+      <p>時給・残業時間・割増率から、通常時給分を含む残業代の目安を計算できます。勤務記録や給与明細を確認するときの参考に利用できます。</p>
     </section>
 
     <section class="overtime-pay-card" aria-labelledby="input-title">
@@ -56,9 +56,10 @@
         <div class="overtime-pay-form-grid">
           <div class="overtime-pay-field">
             <label for="hourlyWage">時給（円） <span>必須</span></label>
-            <input id="hourlyWage" type="number" min="1" step="1" inputmode="numeric" placeholder="例：1200" required>
+            <input id="hourlyWage" type="number" min="1" step="1" inputmode="numeric" placeholder="例：1200" aria-describedby="hourlyWageHelp" required>
+            <small id="hourlyWageHelp">計算に使う時給を、円単位の数字で入力</small>
           </div>
-          <fieldset class="overtime-pay-duration">
+          <fieldset class="overtime-pay-duration" aria-describedby="durationHelp">
             <legend>残業時間 <span>必須</span></legend>
             <div class="overtime-pay-duration-grid">
               <div class="overtime-pay-field"><label for="overtimeHours">時間</label><input id="overtimeHours" type="number" min="0" step="1" inputmode="numeric" placeholder="例：2" required></div>
@@ -67,7 +68,7 @@
           </fieldset>
         </div>
 
-        <fieldset class="overtime-pay-rate">
+        <fieldset class="overtime-pay-rate" aria-describedby="rateHelp">
           <legend>割増率 <span>必須</span></legend>
           <div class="overtime-pay-presets">
             <label><input type="radio" name="ratePreset" value="25" data-label="通常残業" checked><span>通常残業<small>25%</small></span></label>
@@ -78,11 +79,12 @@
           </div>
           <div class="overtime-pay-custom" id="customRateWrap" hidden>
             <label for="customRate">カスタム割増率（%）</label>
-            <input id="customRate" type="number" min="0" step="0.1" inputmode="decimal" placeholder="例：30">
+            <input id="customRate" type="number" min="0" step="0.1" inputmode="decimal" placeholder="例：30" aria-describedby="rateHelp">
           </div>
+          <small class="overtime-pay-rate-help" id="rateHelp">割増率25%は、入力した時給の1.25倍として計算します。勤務区分や適用率を自動判定するものではありません。</small>
         </fieldset>
 
-        <p class="overtime-pay-hint">残業時間の「時間」と「分」は、該当しない方に0を入力してください。</p>
+        <p class="overtime-pay-hint" id="durationHelp">残業時間は「時間」と「分」に分け、該当しない方に0を入力してください。</p>
         <p class="overtime-pay-error" id="errorMessage" role="alert"></p>
         <div class="overtime-pay-form-buttons">
           <button class="overtime-pay-primary" type="submit">計算する</button>
@@ -93,7 +95,8 @@
 
     <section class="overtime-pay-card overtime-pay-result" id="resultCard" aria-labelledby="result-title" aria-live="polite" hidden>
       <h2 id="result-title">計算結果</h2>
-      <div class="overtime-pay-result-main"><span>残業代の目安</span><strong id="overtimePayValue">—</strong><p>端数は1円単位で四捨五入しています。</p></div>
+      <div class="overtime-pay-result-main"><span>残業代の目安</span><strong id="overtimePayValue">—</strong><p>選択した1つの割増率で計算した、通常時給分を含む参考額です。</p></div>
+      <p class="overtime-pay-result-description">表示金額は1円単位に四捨五入しています。</p>
       <div class="overtime-pay-result-grid">
         <div><span>割増込み時給</span><strong id="premiumHourlyWage">—</strong></div>
         <div><span>残業時間</span><strong id="overtimeDuration">—</strong></div>
@@ -103,23 +106,19 @@
       <p class="overtime-pay-copy-message" id="copyMessage" role="status" aria-live="polite"></p>
     </section>
 
-    <section class="overtime-pay-card overtime-pay-related" aria-labelledby="related-title">
-      <h2 id="related-title">残業時間や時給が分からない場合</h2>
-      <p>勤務記録から残業時間を出す場合や、日給・月収の目安も確認したい場合は関連ツールをご利用ください。</p>
-      <div class="overtime-pay-related-links">
-        <a href="./overtime-hours.html">🕒 残業時間計算ツール</a>
-        <a href="./hourly-wage.html">💴 時給計算ツール</a>
-        <a href="./work-time.html">⏰ 勤務時間計算ツール</a>
-      </div>
+    <section class="overtime-pay-card overtime-pay-info" aria-labelledby="support-title">
+      <h2 id="support-title">補足情報</h2>
+      <ul class="overtime-pay-support-list">
+        <li>残業代は「時給 ×（1＋割増率÷100）× 残業時間」で計算します。割増分だけではなく、通常時給分を含む金額です。</li>
+        <li>残業時間は分単位で換算します。15分は0.25時間、30分は0.5時間、45分は0.75時間として計算されます。</li>
+        <li>通常残業・深夜労働・休日労働などのプリセットは、選択した1区分の割増率を適用します。勤務時間から区分を自動判定したり、複数区分を合算したりはしません。</li>
+        <li>固定残業代・手当・税金・社会保険料などは含みません。実際の適用率や支給額は、勤務先の就業規則・雇用契約・給与明細をご確認ください。</li>
+      </ul>
     </section>
 
-    <section class="overtime-pay-card overtime-pay-info" aria-labelledby="about-title">
-      <h2 id="about-title">このツールについて</h2>
-      <p>時給・残業時間・割増率から、残業代の目安を計算できます。通常残業・深夜労働・休日労働など、割増率を選んで簡単に計算できます。</p>
-      <h2>計算方法</h2>
-      <p>割増込み時給は「時給 ×（1 ＋ 割増率 ÷ 100）」、残業代は「割増込み時給 × 残業時間」で計算します。</p>
-      <h2>注意事項</h2>
-      <p>結果は一般的な目安です。実際の残業代は、雇用形態・会社の就業規則・給与体系・法定労働時間の扱いなどによって異なります。正確な金額は勤務先の規定や専門機関の情報をご確認ください。</p>
+    <section class="overtime-pay-card overtime-pay-one-point" aria-labelledby="one-point-title">
+      <h2 id="one-point-title">🍵 ゴマワンポイント</h2>
+      <p>残業代を確認するときは、残業時間だけでなく、計算に使う時給と適用される割増率も確認しましょう。給与明細の内訳と照らし合わせると、計算条件の違いに気付きやすくなります。</p>
     </section>
 
     <!-- 仕事・テキストシリーズ：内容は assets/goma-ui.js で一元管理 -->
@@ -213,6 +212,9 @@
       customRateInput.required = custom;
       if (!custom) customRateInput.value = '';
       errorMessage.textContent = '';
+      document.getElementById('copyMessage').textContent = '';
+      resultCard.hidden = true;
+      latestResult = null;
     }
 
     function resetAll() {
