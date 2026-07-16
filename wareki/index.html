@@ -95,8 +95,6 @@
     .knowledge-list a { display: block; padding: 16px 18px; color: var(--green-dark); border: 1px solid var(--line); border-radius: 14px; background: var(--green-soft); font-weight: 750; text-decoration: none; }
     .knowledge-list a:hover { border-color: var(--green); }
     .knowledge-list a:focus-visible { outline: 3px solid rgba(88, 124, 64, .35); outline-offset: 3px; }
-    .privacy-card { box-shadow: none; background: var(--green-soft); }
-    .privacy-card p { margin: 5px 0; color: var(--muted); }
     .related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .related-item { padding: 19px; border: 1px solid var(--line); border-radius: 15px; background: var(--green-soft); }
     .related-name { display: block; font-weight: 800; }
@@ -255,6 +253,7 @@
           <li>和暦と西暦を年単位で相互に変換します。</li>
           <li>改元された年は、同じ西暦年に複数の元号を表示する場合があります。</li>
           <li>日付まで指定した厳密な改元日の判定には対応していません。</li>
+          <li>入力内容と変換処理はブラウザ内で行い、サーバーへの送信・ブラウザへの保存は行いません。</li>
         </ul>
       </section>
 
@@ -275,12 +274,6 @@
         <ul class="knowledge-list">
           <li><a href="../knowledge/leap-year/">うるう年とは？</a></li>
         </ul>
-      </section>
-
-      <section class="section card privacy-card" aria-labelledby="privacy-title">
-        <h2 class="section-title" id="privacy-title">🍵 安心してお使いください</h2>
-        <p>入力内容と変換処理はブラウザ内だけで行われます。</p>
-        <p>サーバーへ送信・保存することはありません。</p>
       </section>
 
       <!-- ======================

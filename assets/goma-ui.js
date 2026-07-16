@@ -75,7 +75,7 @@
   }
 
   /* =========================================================
-     健康・美容シリーズ 共通リンク
+     健康シリーズ 共通リンク
      新しい公開ツールは、この配列へ1件追加すると全対象ページへ反映されます。
   ========================================================= */
   const healthSeriesTools = [
@@ -103,14 +103,14 @@
     section.className = 'health-series-card';
     section.setAttribute('aria-labelledby', 'health-series-title');
     section.innerHTML = `
-      <h2 id="health-series-title">❤️ 健康・美容シリーズ</h2>
-      <p>健康・美容シリーズでは、BMIや基礎代謝、消費カロリーなどを無料で簡単に計算できます。</p>
+      <h2 id="health-series-title">❤️ 健康シリーズ</h2>
+      <p>健康シリーズでは、BMIや基礎代謝、消費カロリーなどを無料で簡単に計算できます。</p>
       <p>目的に合わせて他のツールもぜひご利用ください。</p>
       <ul class="health-series-list">${items}</ul>`;
   }
 
   /* =========================================================
-     学校・教育シリーズ 共通リンク
+     学習シリーズ 共通リンク
      公開ツールを追加するときは、この配列だけを更新します。
   ========================================================= */
   const schoolSeriesTools = [
@@ -135,14 +135,14 @@
     section.className = 'school-series-card';
     section.setAttribute('aria-labelledby', 'school-series-title');
     section.innerHTML = `
-      <h2 id="school-series-title">🎓 学校・教育シリーズ</h2>
-      <p>学校・教育シリーズでは、成績や出席率、学習時間など、学校生活や学習計画に役立つ計算ツールを無料で利用できます。</p>
+      <h2 id="school-series-title">🎓 学習シリーズ</h2>
+      <p>学習シリーズでは、成績や出席率、学習時間など、学校生活や学習計画に役立つ計算ツールを無料で利用できます。</p>
       <p>目的に合わせて他のツールもぜひご利用ください。</p>
       <ul class="school-series-list">${items}</ul>`;
   }
 
   /* =========================================================
-     お金・計算シリーズ 共通リンク
+     お金シリーズ 共通リンク
      公開ツールを追加するときは、この配列だけを更新します。
   ========================================================= */
   const moneySeriesTools = [
@@ -171,8 +171,8 @@
     section.className = 'money-series-card';
     section.setAttribute('aria-labelledby', 'money-series-title');
     section.innerHTML = `
-      <h2 id="money-series-title">💰 お金・計算シリーズ</h2>
-      <p>お金・計算シリーズでは、税金や割引、利息、割合、ローン返済などを無料で簡単に計算できます。</p>
+      <h2 id="money-series-title">💰 お金シリーズ</h2>
+      <p>お金シリーズでは、税金や割引、利息、割合、ローン返済などを無料で簡単に計算できます。</p>
       <p>目的に合わせて他のツールもぜひご利用ください。</p>
       <ul class="money-series-list">${items}</ul>`;
   }
