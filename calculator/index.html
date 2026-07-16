@@ -231,8 +231,8 @@
 
     function formatNumber(value) {
       if (!Number.isFinite(value)) return 'エラー';
-      const rounded = Math.round((value + Number.EPSILON) * 1e12) / 1e12;
-      return rounded.toLocaleString('ja-JP', { maximumFractionDigits:12 });
+      const displayValue = Object.is(value, -0) ? 0 : value;
+      return displayValue.toLocaleString('ja-JP', { maximumFractionDigits:12 });
     }
 
     function updateDisplay() {
