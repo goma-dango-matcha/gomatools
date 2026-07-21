@@ -1019,7 +1019,35 @@ a { color: var(--terms-green-dark); }
 
 :is(.text-compare-hero, .encoding-hero, .tdee-hero, .loan-hero) p { max-width: 780px; }
 .text-format-eyebrow { color: var(--terms-green) !important; font-weight: 800; }
-.text-format-card { margin-top: 24px; padding: clamp(22px, 4vw, 34px); border: 1px solid var(--terms-line); border-radius: 22px; background: #fff; box-shadow: 0 12px 32px rgba(67, 91, 49, .08); }
+:is(.text-format-card, .text-compare-card, .encoding-card, .work-time-card,
+  .overtime-card, .overtime-pay-card, .hourly-card, .bmr-card, .tdee-card,
+  .ideal-card, .burn-card, .study-time-card, .grade-card, .attendance-card,
+  .required-card, .bodyfat-card, .pfc-card, .loan-card, .percentage-card) {
+  margin-top: 24px;
+  border: 1px solid var(--terms-line);
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 12px 32px rgba(67, 91, 49, .08);
+}
+
+.text-format-card { padding: clamp(22px, 4vw, 34px); }
+
+:is(.text-compare-card, .encoding-card, .work-time-card, .overtime-card,
+  .overtime-pay-card, .hourly-card, .bmr-card, .tdee-card, .ideal-card,
+  .burn-card, .study-time-card, .grade-card, .attendance-card, .required-card,
+  .bodyfat-card, .pfc-card, .loan-card, .percentage-card) {
+  padding: clamp(22px, 4vw, 36px);
+}
+
+@media (max-width: 560px) {
+  :is(.text-format-card, .text-compare-card, .encoding-card, .work-time-card,
+    .overtime-card, .overtime-pay-card, .hourly-card, .bmr-card, .tdee-card,
+    .ideal-card, .burn-card, .study-time-card, .grade-card, .attendance-card,
+    .required-card, .bodyfat-card, .pfc-card, .loan-card, .percentage-card) {
+    padding: 20px 16px;
+    border-radius: 18px;
+  }
+}
 .text-format-card h2 { margin: 0 0 18px; color: var(--terms-text); font-size: 1.35rem; }
 .text-format-heading-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
 .text-format-heading-row h2 { margin: 0; }
@@ -1062,7 +1090,6 @@ a { color: var(--terms-green-dark); }
 }
 
 @media (max-width: 560px) {
-  .text-format-card { padding: 20px 16px; border-radius: 18px; }
   .text-format-heading-row { align-items: flex-start; flex-direction: column; gap: 8px; }
   .text-format-button-grid { grid-template-columns: 1fr; }
   .text-format-textarea { min-height: 210px; }
@@ -1074,7 +1101,6 @@ a { color: var(--terms-green-dark); }
    テキスト比較ツール
 ====================== */
 .text-compare-eyebrow { color: var(--terms-green) !important; font-weight: 800; }
-.text-compare-card { margin-top: 24px; padding: clamp(22px, 4vw, 36px); border: 1px solid var(--terms-line); border-radius: 22px; background: #fff; box-shadow: 0 12px 32px rgba(67, 91, 49, .08); }
 .text-compare-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .text-compare-input-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
 .text-compare-field label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
@@ -1140,7 +1166,6 @@ a { color: var(--terms-green-dark); }
 }
 
 @media (max-width: 560px) {
-  .text-compare-card { padding: 20px 16px; border-radius: 18px; }
   .text-compare-field textarea { min-height: 220px !important; }
   .text-compare-buttons { flex-direction: column; }
   .text-compare-buttons button,
@@ -1153,7 +1178,6 @@ a { color: var(--terms-green-dark); }
    文字コード変換ツール
 ====================== */
 .encoding-eyebrow { color: var(--terms-green) !important; font-weight: 800; }
-.encoding-card { margin-top: 24px; padding: clamp(22px, 4vw, 36px); border: 1px solid var(--terms-line); border-radius: 22px; background: #fff; box-shadow: 0 12px 32px rgba(67, 91, 49, .08); }
 .encoding-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .encoding-mode-fieldset { min-width: 0; margin: 24px 0 0; padding: 0; border: 0; }
 .encoding-mode-fieldset legend { margin-bottom: 8px; color: var(--terms-text); font-weight: 850; }
@@ -1196,7 +1220,6 @@ a { color: var(--terms-green-dark); }
 }
 
 @media (max-width: 560px) {
-  .encoding-card { padding: 20px 16px; border-radius: 18px; }
   .encoding-field textarea,
   .encoding-result textarea { min-height: 210px !important; }
   .encoding-buttons { flex-direction: column; }
@@ -1207,7 +1230,6 @@ a { color: var(--terms-green-dark); }
    勤務時間計算ツール
 ====================== */
 .work-time-eyebrow { color: var(--terms-green) !important; font-weight: 800; }
-.work-time-card { margin-top: 24px; padding: clamp(22px, 4vw, 36px); border: 1px solid var(--terms-line); border-radius: 22px; background: #fff; box-shadow: 0 12px 32px rgba(67, 91, 49, .08); }
 .work-time-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .work-time-form-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .work-time-field label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
@@ -1252,7 +1274,6 @@ a { color: var(--terms-green-dark); }
 }
 
 @media (max-width: 560px) {
-  .work-time-card { padding: 20px 16px; border-radius: 18px; }
   .work-time-form-buttons { flex-direction: column; }
   .work-time-form-buttons button,
   .work-time-copy { width: 100%; }
@@ -1262,7 +1283,6 @@ a { color: var(--terms-green-dark); }
    残業時間計算ツール
 ====================== */
 .overtime-eyebrow { color: var(--terms-green) !important; font-weight: 800; }
-.overtime-card { margin-top: 24px; padding: clamp(22px, 4vw, 36px); border: 1px solid var(--terms-line); border-radius: 22px; background: #fff; box-shadow: 0 12px 32px rgba(67, 91, 49, .08); }
 .overtime-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .overtime-form-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .overtime-field label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
@@ -1309,7 +1329,6 @@ a { color: var(--terms-green-dark); }
 }
 
 @media (max-width: 560px) {
-  .overtime-card { padding: 20px 16px; border-radius: 18px; }
   .overtime-duration-grid { grid-template-columns: 1fr 1fr; }
   .overtime-form-buttons { flex-direction: column; }
   .overtime-form-buttons button,
@@ -1320,7 +1339,6 @@ a { color: var(--terms-green-dark); }
    残業代計算ツール
 ====================== */
 .overtime-pay-eyebrow { color: var(--terms-green) !important; font-weight: 800; }
-.overtime-pay-card { margin-top: 24px; padding: clamp(22px, 4vw, 36px); border: 1px solid var(--terms-line); border-radius: 22px; background: #fff; box-shadow: 0 12px 32px rgba(67, 91, 49, .08); }
 .overtime-pay-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .overtime-pay-form-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 18px; align-items: stretch; }
 .overtime-pay-field label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
@@ -1387,7 +1405,6 @@ a { color: var(--terms-green-dark); }
 }
 
 @media (max-width: 560px) {
-  .overtime-pay-card { padding: 20px 16px; border-radius: 18px; }
   .overtime-pay-presets { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .overtime-pay-form-buttons { flex-direction: column; }
   .overtime-pay-form-buttons button,
@@ -1398,7 +1415,6 @@ a { color: var(--terms-green-dark); }
    時給計算ツール
 ====================== */
 .hourly-eyebrow { color: var(--terms-green) !important; font-weight: 800; }
-.hourly-card { margin-top: 24px; padding: clamp(22px, 4vw, 36px); border: 1px solid var(--terms-line); border-radius: 22px; background: #fff; box-shadow: 0 12px 32px rgba(67, 91, 49, .08); }
 .hourly-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .hourly-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
 .hourly-field label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
@@ -1449,7 +1465,6 @@ a { color: var(--terms-green-dark); }
 }
 
 @media (max-width: 560px) {
-  .hourly-card { padding: 20px 16px; border-radius: 18px; }
   .hourly-form-grid,
   .hourly-result-grid { grid-template-columns: 1fr; }
   .hourly-form-buttons { flex-direction: column; }
@@ -1461,7 +1476,6 @@ a { color: var(--terms-green-dark); }
    基礎代謝（BMR）計算ツール
 ====================== */
 .bmr-eyebrow { color: #a44659 !important; font-weight: 800; }
-.bmr-card { margin-top: 24px; padding: clamp(22px, 4vw, 36px); border: 1px solid var(--terms-line); border-radius: 22px; background: #fff; box-shadow: 0 12px 32px rgba(67, 91, 49, .08); }
 .bmr-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .bmr-gender { display: flex; gap: 12px; margin: 0 0 20px; padding: 0; border: 0; }
 .bmr-gender legend { margin-bottom: 9px; color: var(--terms-text); font-weight: 800; }
@@ -1500,7 +1514,6 @@ a { color: var(--terms-green-dark); }
 }
 
 @media (max-width: 560px) {
-  .bmr-card { padding: 20px 16px; border-radius: 18px; }
   .bmr-gender { flex-direction: column; }
   .bmr-gender label { width: 100%; }
   .bmr-form-buttons { flex-direction: column; }
@@ -1513,7 +1526,6 @@ a { color: var(--terms-green-dark); }
 ====================== */
 .tdee-hero h1 { margin: 8px 0 12px; color: var(--terms-text); font-size: clamp(1.85rem, 5vw, 2.65rem); }
 .tdee-eyebrow { color: #a44659 !important; font-weight: 800; }
-.tdee-card { margin-top: 24px; padding: clamp(22px, 4vw, 36px); border: 1px solid var(--terms-line); border-radius: 22px; background: #fff; box-shadow: 0 12px 32px rgba(67, 91, 49, .08); }
 .tdee-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .tdee-gender { display: flex; gap: 12px; margin: 0 0 20px; padding: 0; border: 0; }
 .tdee-gender legend { margin-bottom: 9px; color: var(--terms-text); font-weight: 800; }
@@ -1570,7 +1582,6 @@ a { color: var(--terms-green-dark); }
 }
 
 @media (max-width: 560px) {
-  .tdee-card { padding: 20px 16px; border-radius: 18px; }
   .tdee-gender,
   .tdee-form-buttons { flex-direction: column; }
   .tdee-gender label,
@@ -1583,7 +1594,6 @@ a { color: var(--terms-green-dark); }
    適正体重計算ツール
 ====================== */
 .ideal-eyebrow { color: #a44659 !important; font-weight: 800; }
-.ideal-card { margin-top: 24px; padding: clamp(22px, 4vw, 36px); border: 1px solid var(--terms-line); border-radius: 22px; background: #fff; box-shadow: 0 12px 32px rgba(67, 91, 49, .08); }
 .ideal-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .ideal-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
 .ideal-field label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
@@ -1633,7 +1643,6 @@ a { color: var(--terms-green-dark); }
 }
 
 @media (max-width: 560px) {
-  .ideal-card { padding: 20px 16px; border-radius: 18px; }
   .ideal-form-grid,
   .ideal-current-grid { grid-template-columns: 1fr; }
   .ideal-form-buttons { flex-direction: column; }
@@ -1645,7 +1654,6 @@ a { color: var(--terms-green-dark); }
    消費カロリー計算ツール
 ====================== */
 .burn-eyebrow { color: #a44659 !important; font-weight: 800; }
-.burn-card { margin-top: 24px; padding: clamp(22px, 4vw, 36px); border: 1px solid var(--terms-line); border-radius: 22px; background: #fff; box-shadow: 0 12px 32px rgba(67, 91, 49, .08); }
 .burn-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .burn-form-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 18px; }
 .burn-field label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
@@ -1691,7 +1699,6 @@ a { color: var(--terms-green-dark); }
 }
 
 @media (max-width: 560px) {
-  .burn-card { padding: 20px 16px; border-radius: 18px; }
   .burn-form-buttons { flex-direction: column; }
   .burn-form-buttons button,
   .burn-copy { width: 100%; }
@@ -1702,7 +1709,6 @@ a { color: var(--terms-green-dark); }
    学習時間計算ツール
 ====================== */
 .study-time-eyebrow { color: var(--terms-green) !important; font-weight: 800; }
-.study-time-card { margin-top: 24px; padding: clamp(22px, 4vw, 36px); border: 1px solid var(--terms-line); border-radius: 22px; background: #fff; box-shadow: 0 12px 32px rgba(67, 91, 49, .08); }
 .study-time-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .study-time-group { min-width: 0; min-inline-size: 0; margin: 0; padding: 18px; border: 1px solid #d8e4d2; border-radius: 15px; background: #fbfdf9; }
 .study-time-group legend { padding: 0 8px; color: var(--terms-green-dark); font-weight: 850; }
@@ -1754,7 +1760,6 @@ a { color: var(--terms-green-dark); }
 }
 
 @media (max-width: 560px) {
-  .study-time-card { padding: 20px 16px; border-radius: 18px; }
   .study-time-duration-grid { grid-template-columns: 1fr 1fr; }
   .study-time-form-buttons { flex-direction: column; }
   .study-time-form-buttons button,
@@ -1767,7 +1772,6 @@ a { color: var(--terms-green-dark); }
 ====================== */
 .grade-container { width: min(100%, 1160px); margin: 0 auto; }
 .grade-eyebrow { color: #5577a1 !important; font-weight: 800; }
-.grade-card { margin-top: 24px; padding: clamp(22px, 4vw, 36px); border: 1px solid var(--terms-line); border-radius: 22px; background: #fff; box-shadow: 0 12px 32px rgba(67, 91, 49, .08); }
 .grade-card h2 { margin: 0 0 12px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .grade-heading-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; margin-bottom: 20px; }
 .grade-heading-row p { margin: 0; color: var(--terms-muted); line-height: 1.7; }
@@ -1824,7 +1828,6 @@ a { color: var(--terms-green-dark); }
 }
 
 @media (max-width: 560px) {
-  .grade-card { padding: 20px 16px; border-radius: 18px; }
   .grade-heading-row,
   .grade-form-buttons { flex-direction: column; }
   .grade-add,
@@ -1844,7 +1847,6 @@ a { color: var(--terms-green-dark); }
 ====================== */
 .attendance-container { width: min(100%, 1160px); margin: 0 auto; }
 .attendance-eyebrow { color: #5577a1 !important; font-weight: 800; }
-.attendance-card { margin-top: 24px; padding: clamp(22px, 4vw, 36px); border: 1px solid var(--terms-line); border-radius: 22px; background: #fff; box-shadow: 0 12px 32px rgba(67, 91, 49, .08); }
 .attendance-card h2 { margin: 0 0 16px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .attendance-form-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .attendance-field label,
@@ -1898,7 +1900,6 @@ a { color: var(--terms-green-dark); }
   .attendance-result-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
-  .attendance-card { padding: 20px 16px; border-radius: 18px; }
   .attendance-form-buttons { flex-direction: column; }
   .attendance-form-buttons button,
   .attendance-copy { width: 100%; }
@@ -1909,7 +1910,6 @@ a { color: var(--terms-green-dark); }
    必要点数計算ツール
 ====================== */
 .required-eyebrow { color: #5577a1 !important; font-weight: 800; }
-.required-card { margin-top: 24px; padding: clamp(22px, 4vw, 36px); border: 1px solid var(--terms-line); border-radius: 22px; background: #fff; box-shadow: 0 12px 32px rgba(67, 91, 49, .08); }
 .required-card h2 { margin: 0 0 18px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .required-tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 .required-tabs button { min-height: 52px; padding: 11px 14px; border: 1px solid #c8d8bd; border-radius: 12px; background: #f7faf5; color: var(--terms-green-dark); font: inherit; font-weight: 850; cursor: pointer; }
@@ -1958,7 +1958,6 @@ a { color: var(--terms-green-dark); }
   .required-result-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
-  .required-card { padding: 20px 16px; border-radius: 18px; }
   .required-tabs { grid-template-columns: 1fr; }
   .required-form-buttons { flex-direction: column; }
   .required-form-buttons button,
@@ -1970,7 +1969,6 @@ a { color: var(--terms-green-dark); }
    体脂肪率計算ツール
 ====================== */
 .bodyfat-eyebrow { color: #4f7938 !important; font-weight: 800; }
-.bodyfat-card { margin-top: 24px; padding: clamp(22px, 4vw, 36px); border: 1px solid var(--terms-line); border-radius: 22px; background: #fff; box-shadow: 0 12px 32px rgba(67, 91, 49, .08); }
 .bodyfat-card h2 { margin: 0 0 18px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .bodyfat-gender { display: flex; gap: 12px; margin: 0 0 20px; padding: 0; border: 0; }
 .bodyfat-gender legend { margin-bottom: 9px; color: var(--terms-text); font-weight: 800; }
@@ -2018,7 +2016,6 @@ a { color: var(--terms-green-dark); }
   .bodyfat-result-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
-  .bodyfat-card { padding: 20px 16px; border-radius: 18px; }
   .bodyfat-form-buttons { flex-direction: column; }
   .bodyfat-form-buttons button,
   .bodyfat-copy { width: 100%; }
@@ -2028,7 +2025,6 @@ a { color: var(--terms-green-dark); }
    PFCバランス計算ツール
 ========================================================= */
 .pfc-eyebrow { color: #4f7938 !important; font-weight: 800; }
-.pfc-card { margin-top: 24px; padding: clamp(22px, 4vw, 36px); border: 1px solid var(--terms-line); border-radius: 22px; background: #fff; box-shadow: 0 12px 32px rgba(67, 91, 49, .08); }
 .pfc-card h2 { margin: 0 0 18px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .pfc-field label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
 .pfc-field label span { color: var(--terms-muted); font-size: .82rem; }
@@ -2083,7 +2079,6 @@ a { color: var(--terms-green-dark); }
 }
 
 @media (max-width: 560px) {
-  .pfc-card { padding: 20px 16px; border-radius: 18px; }
   .pfc-preset-grid { grid-template-columns: 1fr 1fr; }
   .pfc-form-buttons { flex-direction: column; }
   .pfc-form-buttons button,
@@ -2094,7 +2089,6 @@ a { color: var(--terms-green-dark); }
    ローン返済シミュレーター
 ====================== */
 .loan-eyebrow { color: var(--terms-green) !important; font-weight: 800; }
-.loan-card { margin-top: 24px; padding: clamp(22px, 4vw, 36px); border: 1px solid var(--terms-line); border-radius: 22px; background: #fff; box-shadow: 0 12px 32px rgba(67, 91, 49, .08); }
 .loan-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .loan-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
 .loan-field label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
@@ -2135,7 +2129,6 @@ a { color: var(--terms-green-dark); }
 }
 
 @media (max-width: 560px) {
-  .loan-card { padding: 20px 16px; border-radius: 18px; }
   .loan-period-grid { grid-template-columns: 1fr 1fr; }
   .loan-form-buttons { flex-direction: column; }
   .loan-form-buttons button,
@@ -2147,7 +2140,6 @@ a { color: var(--terms-green-dark); }
    パーセント計算ツール
 ====================== */
 .percentage-eyebrow { color: #4f7938 !important; font-weight: 800; }
-.percentage-card { margin-top: 24px; padding: clamp(22px, 4vw, 36px); border: 1px solid var(--terms-line); border-radius: 22px; background: #fff; box-shadow: 0 12px 32px rgba(67, 91, 49, .08); }
 .percentage-card h2 { margin: 0 0 18px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .percentage-tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
 .percentage-tabs button { min-height: 50px; padding: 10px 12px; border: 1px solid #c8d8bd; border-radius: 12px; background: #f7faf5; color: var(--terms-green-dark); font: inherit; font-weight: 800; cursor: pointer; }
@@ -2192,7 +2184,6 @@ a { color: var(--terms-green-dark); }
   .percentage-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 560px) {
-  .percentage-card { padding: 20px 16px; border-radius: 18px; }
   .percentage-tabs,
   .percentage-form-grid,
   .percentage-related-grid { grid-template-columns: 1fr; }
