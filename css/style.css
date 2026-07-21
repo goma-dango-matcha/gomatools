@@ -1118,7 +1118,24 @@ a { color: var(--terms-green-dark); }
 .text-compare-count { margin: 8px 0 0; color: var(--terms-muted); font-size: .88rem; font-weight: 800; text-align: right; }
 .text-compare-hint { margin: 14px 0 0; color: var(--terms-muted); font-size: .92rem; line-height: 1.7; }
 .text-compare-error { min-height: 1.5em; margin: 12px 0 0; overflow-wrap: anywhere; color: #b42318; font-weight: 800; text-align: center; }
-.text-compare-copy-message { min-height: 1.5em; margin: 10px 0 0; color: var(--terms-green-dark); font-weight: 800; text-align: center; }
+.text-compare-copy-message,
+.encoding-copy-message,
+.work-time-copy-message,
+.overtime-copy-message,
+.overtime-pay-copy-message,
+.hourly-copy-message,
+.bmr-copy-message,
+.tdee-copy-message,
+.ideal-copy-message,
+.burn-copy-message,
+.study-time-copy-message,
+.grade-copy-message,
+.attendance-copy-message,
+.required-copy-message,
+.bodyfat-copy-message,
+.pfc-copy-message,
+.loan-copy-message,
+.percentage-copy-message { min-height: 1.5em; margin: 10px 0 0; color: var(--terms-green-dark); font-weight: 800; text-align: center; }
 .text-compare-buttons { display: flex; justify-content: center; gap: 12px; margin-top: 18px; }
 .text-compare-buttons button,
 .text-compare-copy-button { min-width: 180px; min-height: 52px; padding: 12px 22px; border: 1px solid #afc1a5; border-radius: 13px; background: #f7faf5; color: var(--terms-green-dark); font: inherit; font-weight: 850; cursor: pointer; transition: transform .18s, background .18s, box-shadow .18s; }
@@ -1205,7 +1222,6 @@ a { color: var(--terms-green-dark); }
 .encoding-count { margin: 8px 0 0; color: var(--terms-muted); font-size: .88rem; font-weight: 800; text-align: right; }
 .encoding-hint { margin: 14px 0 0; color: var(--terms-muted); font-size: .92rem; line-height: 1.7; }
 .encoding-error { min-height: 1.5em; margin: 12px 0 0; overflow-wrap: anywhere; color: #b42318; font-weight: 800; text-align: center; }
-.encoding-copy-message { min-height: 1.5em; margin: 10px 0 0; color: var(--terms-green-dark); font-weight: 800; text-align: center; }
 .encoding-buttons { display: flex; justify-content: center; gap: 12px; margin-top: 18px; }
 .encoding-buttons button { min-width: 180px; min-height: 52px; padding: 12px 22px; border: 1px solid #afc1a5; border-radius: 13px; background: #f7faf5; color: var(--terms-green-dark); font: inherit; font-weight: 850; cursor: pointer; transition: transform .18s, background .18s, box-shadow .18s; }
 .encoding-buttons .encoding-primary { border-color: var(--terms-green); background: var(--terms-green); color: #fff; }
@@ -1269,7 +1285,6 @@ a { color: var(--terms-green-dark); }
 .work-time-result-grid strong { display: block; margin-top: 7px; color: var(--terms-text); font-size: clamp(1.05rem, 3vw, 1.35rem); }
 .work-time-overnight { margin: 16px 0 0; padding: 11px 14px; border-radius: 11px; background: #f2effa; color: #594d78; font-weight: 800; text-align: center; }
 .work-time-copy { display: block; margin: 20px auto 0; }
-.work-time-copy-message { min-height: 1.5em; margin: 10px 0 0; color: var(--terms-green-dark); font-weight: 800; text-align: center; }
 .work-time-info { line-height: 1.85; }
 .work-time-support-list { margin: 0; padding-left: 1.3em; color: var(--terms-muted); }
 .work-time-support-list li + li { margin-top: 9px; }
@@ -1324,7 +1339,6 @@ a { color: var(--terms-green-dark); }
 .overtime-result-grid > div { padding: 20px 14px; border: 1px solid #d8e4d2; border-radius: 15px; background: #fff; text-align: center; }
 .overtime-result-grid strong { display: block; margin-top: 7px; color: var(--terms-text); font-size: clamp(1.05rem, 3vw, 1.35rem); }
 .overtime-copy { display: block; margin: 20px auto 0; }
-.overtime-copy-message { min-height: 1.5em; margin: 10px 0 0; color: var(--terms-green-dark); font-weight: 800; text-align: center; }
 .overtime-support-list { margin: 0; padding-left: 1.35rem; color: var(--terms-muted); line-height: 1.8; }
 .overtime-support-list li + li { margin-top: 8px; }
 .overtime-one-point { border-color: #c9d9bd; background: #f8fbf5; }
@@ -1394,7 +1408,6 @@ a { color: var(--terms-green-dark); }
 .overtime-pay-result-grid > div { padding: 20px 14px; border: 1px solid #d8e4d2; border-radius: 15px; background: #fff; text-align: center; }
 .overtime-pay-result-grid strong { display: block; margin-top: 7px; color: var(--terms-text); font-size: clamp(1rem, 3vw, 1.28rem); }
 .overtime-pay-copy { display: block; margin: 20px auto 0; }
-.overtime-pay-copy-message { min-height: 1.5em; margin: 10px 0 0; color: var(--terms-green-dark); font-weight: 800; text-align: center; }
 .overtime-pay-support-list { margin: 0; padding-left: 1.35rem; color: var(--terms-muted); line-height: 1.8; }
 .overtime-pay-support-list li + li { margin-top: 8px; }
 .overtime-pay-one-point { border-color: #c9d9bd; background: #f8fbf5; }
@@ -1457,7 +1470,6 @@ a { color: var(--terms-green-dark); }
 .hourly-result-grid strong { display: block; margin-top: 7px; color: var(--terms-text); font-size: clamp(1rem, 3vw, 1.28rem); }
 .hourly-note { margin: 16px 0 0; padding: 11px 14px; border-radius: 11px; background: #fffaf0; color: #75551a; font-weight: 800; text-align: center; }
 .hourly-copy { display: block; margin: 20px auto 0; }
-.hourly-copy-message { min-height: 1.5em; margin: 10px 0 0; color: var(--terms-green-dark); font-weight: 800; text-align: center; }
 .hourly-info { line-height: 1.85; }
 .hourly-support-list { margin: 0; padding-left: 1.3em; color: var(--terms-muted); }
 .hourly-support-list li + li { margin-top: 9px; }
@@ -1504,7 +1516,6 @@ a { color: var(--terms-green-dark); }
 .bmr-result-main small { font-size: .42em; }
 .bmr-result-description { margin: 18px 0 0; color: var(--terms-muted); line-height: 1.8; text-align: center; }
 .bmr-copy { display: block; margin: 20px auto 0; }
-.bmr-copy-message { min-height: 1.5em; margin: 10px 0 0; color: var(--terms-green-dark); font-weight: 800; text-align: center; }
 .bmr-info { line-height: 1.85; }
 .bmr-info h2:not(:first-child) { margin-top: 28px; }
 .bmr-info p,
@@ -1569,7 +1580,6 @@ a { color: var(--terms-green-dark); }
 .tdee-guide-grid > div:nth-child(3) { background: #fffaf2; }
 .tdee-guide-note { margin: 12px 0 0; color: var(--terms-muted); font-size: .88rem; }
 .tdee-copy { display: block; margin: 20px auto 0; }
-.tdee-copy-message { min-height: 1.5em; margin: 10px 0 0; color: var(--terms-green-dark); font-weight: 800; text-align: center; }
 .tdee-info { line-height: 1.85; }
 .tdee-info h2:not(:first-child) { margin-top: 28px; }
 .tdee-info p { margin: 0; color: var(--terms-muted); }
@@ -1630,7 +1640,6 @@ a { color: var(--terms-green-dark); }
 .ideal-reference-grid .is-standard { border-color: #b7cba9; background: var(--terms-green-light); }
 .ideal-reference-grid small { display: block; margin-top: 5px; color: var(--terms-muted); font-size: .78rem; }
 .ideal-copy { display: block; margin: 20px auto 0; }
-.ideal-copy-message { min-height: 1.5em; margin: 10px 0 0; color: var(--terms-green-dark); font-weight: 800; text-align: center; }
 .ideal-info { line-height: 1.85; }
 .ideal-info h2:not(:first-child) { margin-top: 28px; }
 .ideal-info p { margin: 0; color: var(--terms-muted); }
@@ -1684,7 +1693,6 @@ a { color: var(--terms-green-dark); }
 .burn-food-grid strong { display: block; margin-top: 7px; color: var(--terms-text); font-size: 1.2rem; }
 .burn-food-note { margin: 12px 0 0; color: var(--terms-muted); font-size: .86rem; }
 .burn-copy { display: block; margin: 20px auto 0; }
-.burn-copy-message { min-height: 1.5em; margin: 10px 0 0; color: var(--terms-green-dark); font-weight: 800; text-align: center; }
 .burn-info { line-height: 1.85; }
 .burn-info h2:not(:first-child) { margin-top: 28px; }
 .burn-info p { margin: 0; color: var(--terms-muted); }
@@ -1744,7 +1752,6 @@ a { color: var(--terms-green-dark); }
 .study-time-result-grid > div { padding: 20px 14px; border: 1px solid #d8e4d2; border-radius: 15px; background: #fff; text-align: center; }
 .study-time-result-grid strong { display: block; margin-top: 7px; color: var(--terms-text); font-size: clamp(1rem, 3vw, 1.28rem); }
 .study-time-copy { display: block; margin: 20px auto 0; }
-.study-time-copy-message { min-height: 1.5em; margin: 10px 0 0; color: var(--terms-green-dark); font-weight: 800; text-align: center; }
 .study-time-support-list { margin: 0; padding-left: 1.25em; color: var(--terms-muted); line-height: 1.75; }
 .study-time-support-list li + li { margin-top: 8px; }
 .study-time-one-point { border-color: #d6e3cf; background: #f7fbf3; }
@@ -1806,7 +1813,6 @@ a { color: var(--terms-green-dark); }
 .grade-rating strong { display: block; margin-top: 6px; color: #c48516; font-size: 1.75rem; letter-spacing: .08em; }
 .grade-rating p { margin: 5px 0 0; color: var(--terms-text); font-weight: 800; }
 .grade-copy { display: block; margin: 20px auto 0; }
-.grade-copy-message { min-height: 1.5em; margin: 10px 0 0; color: var(--terms-green-dark); font-weight: 800; text-align: center; }
 .grade-info { line-height: 1.85; }
 .grade-support-list { margin: 0; padding-left: 1.25em; color: var(--terms-muted); line-height: 1.75; }
 .grade-support-list li + li { margin-top: 8px; }
@@ -1885,7 +1891,6 @@ a { color: var(--terms-green-dark); }
 .attendance-allowance.is-low strong { color: #a23c32; }
 .attendance-allowance p { margin: 8px 0 0; color: var(--terms-muted); line-height: 1.7; }
 .attendance-copy { display: block; margin: 20px auto 0; }
-.attendance-copy-message { min-height: 1.5em; margin: 10px 0 0; color: var(--terms-green-dark); font-weight: 800; text-align: center; }
 .attendance-info { line-height: 1.85; }
 .attendance-support-list { margin: 0; padding-left: 1.25em; color: var(--terms-muted); line-height: 1.75; }
 .attendance-support-list li + li { margin-top: 8px; }
@@ -1940,7 +1945,6 @@ a { color: var(--terms-green-dark); }
 .required-result-grid strong { display: block; margin-top: 6px; color: var(--terms-text); font-size: 1.08rem; }
 .required-message { margin-top: 18px; padding: 18px 16px; border-radius: 15px; background: #fffaf0; color: #75551a; font-weight: 850; line-height: 1.75; text-align: center; }
 .required-copy { display: block; margin: 20px auto 0; }
-.required-copy-message { min-height: 1.5em; margin: 10px 0 0; color: var(--terms-green-dark); font-weight: 800; text-align: center; }
 .required-info { line-height: 1.85; }
 .required-support-list { margin: 0; padding-left: 1.25em; color: var(--terms-muted); line-height: 1.75; }
 .required-support-list li + li { margin-top: 8px; }
@@ -2002,7 +2006,6 @@ a { color: var(--terms-green-dark); }
 .bodyfat-result-grid strong { display: block; margin-top: 6px; color: var(--terms-text); font-size: 1.08rem; }
 .bodyfat-message { margin-top: 18px; padding: 18px 16px; border-radius: 15px; background: #fffaf0; color: #75551a; font-weight: 850; line-height: 1.75; text-align: center; }
 .bodyfat-copy { display: block; margin: 20px auto 0; }
-.bodyfat-copy-message { min-height: 1.5em; margin: 10px 0 0; color: var(--terms-green-dark); font-weight: 800; text-align: center; }
 .bodyfat-info { line-height: 1.85; }
 .bodyfat-info h2:not(:first-child) { margin-top: 28px; }
 .bodyfat-info p { margin: 0; color: var(--terms-muted); }
@@ -2058,7 +2061,6 @@ a { color: var(--terms-green-dark); }
 .pfc-carb { border-top: 5px solid #6686ad; }
 .pfc-result-note { margin: 18px 0 0; color: var(--terms-muted); font-size: .9rem; line-height: 1.7; text-align: center; }
 .pfc-copy { display: block; margin: 20px auto 0; }
-.pfc-copy-message { min-height: 1.5em; margin: 10px 0 0; color: var(--terms-green-dark); font-weight: 800; text-align: center; }
 .pfc-info { color: var(--terms-muted); line-height: 1.85; }
 .pfc-info h2:not(:first-child) { margin-top: 28px; }
 .pfc-info p { margin: 0; }
@@ -2113,7 +2115,6 @@ a { color: var(--terms-green-dark); }
 .loan-result-grid strong { display: block; margin-top: 7px; color: var(--terms-text); font-size: clamp(1rem, 3vw, 1.28rem); }
 .loan-interest-item strong { color: #8a5a19; }
 .loan-copy { display: block; margin: 20px auto 0; }
-.loan-copy-message { min-height: 1.5em; margin: 10px 0 0; color: var(--terms-green-dark); font-weight: 800; text-align: center; }
 .loan-support-list { margin: 0; padding-left: 1.4em; color: var(--terms-muted); line-height: 1.85; }
 .loan-support-list li + li { margin-top: 8px; }
 
@@ -2158,7 +2159,6 @@ a { color: var(--terms-green-dark); }
 .percentage-formula { margin-top: 16px; padding: 20px 16px; border: 1px solid #d8e4d2; border-radius: 15px; background: #fff; text-align: center; }
 .percentage-formula strong { display: block; margin-top: 7px; overflow-wrap: anywhere; color: var(--terms-text); font-size: 1.05rem; }
 .percentage-copy { display: block; margin: 20px auto 0; }
-.percentage-copy-message { min-height: 1.5em; margin: 10px 0 0; color: var(--terms-green-dark); font-weight: 800; text-align: center; }
 .percentage-info { line-height: 1.85; }
 .percentage-info p,
 .percentage-one-point p,
