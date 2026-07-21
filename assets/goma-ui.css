@@ -104,28 +104,27 @@
 /* =========================================================
    ツール → ゴマ知識 関連リンク
 ========================================================= */
-.goma-related-knowledge {
+:is(.goma-related-knowledge, .goma-related-tools) {
   margin-top: 24px;
   padding: clamp(22px, 4vw, 32px);
   border: 1px solid #d7e2d0;
   border-radius: 22px;
-  background: #fbfdf9;
   box-shadow: 0 12px 32px rgba(67, 91, 49, .08);
 }
 
-.goma-related-knowledge h2 {
+:is(.goma-related-knowledge, .goma-related-tools) h2 {
   margin: 0 0 12px;
   color: #4b6a36;
   font-size: clamp(1.16rem, 3vw, 1.42rem);
 }
 
-.goma-related-knowledge p {
+:is(.goma-related-knowledge, .goma-related-tools) p {
   margin: 0;
   color: #66705f;
   line-height: 1.75;
 }
 
-.goma-related-knowledge-list {
+:is(.goma-related-knowledge-list, .goma-related-tools-list) {
   display: grid;
   gap: 10px;
   margin: 18px 0 0;
@@ -133,20 +132,22 @@
   list-style: none;
 }
 
-.goma-related-knowledge-list a {
+:is(.goma-related-knowledge-list, .goma-related-tools-list) a {
   display: flex;
   min-height: 50px;
   align-items: center;
   padding: 11px 14px;
   border: 1px solid #c8d8bd;
   border-radius: 13px;
-  background: #fff;
   color: #4b6a36;
   font-weight: 800;
   line-height: 1.45;
   text-decoration: none;
   transition: transform .18s, background .18s, box-shadow .18s;
 }
+
+.goma-related-knowledge { background: #fbfdf9; }
+.goma-related-knowledge-list a { background: #fff; }
 
 .goma-related-knowledge-list a::before {
   content: '・';
@@ -155,13 +156,14 @@
   font-weight: 900;
 }
 
-.goma-related-knowledge-list a:hover {
+:is(.goma-related-knowledge-list, .goma-related-tools-list) a:hover {
   transform: translateY(-2px);
-  background: #f2f7ee;
   box-shadow: 0 8px 18px rgba(67, 91, 49, .12);
 }
 
-.goma-related-knowledge-list a:focus-visible {
+.goma-related-knowledge-list a:hover { background: #f2f7ee; }
+
+:is(.goma-related-knowledge-list, .goma-related-tools-list) a:focus-visible {
   outline: 3px solid rgba(99, 132, 63, .3);
   outline-offset: 2px;
 }
@@ -190,60 +192,18 @@
   line-height: 1.75;
 }
 
-.goma-related-tools {
-  margin-top: 24px;
-  padding: clamp(22px, 4vw, 32px);
-  border: 1px solid #d7e2d0;
-  border-radius: 22px;
-  background: #fff;
-  box-shadow: 0 12px 32px rgba(67, 91, 49, .08);
-}
-
-.goma-related-tools h2 {
-  margin: 0 0 12px;
-  color: #4b6a36;
-  font-size: clamp(1.16rem, 3vw, 1.42rem);
-}
-
-.goma-related-tools p {
-  margin: 0;
-  color: #66705f;
-  line-height: 1.75;
-}
+.goma-related-tools { background: #fff; }
 
 .goma-related-tools-list {
-  display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
-  margin: 18px 0 0;
-  padding: 0;
-  list-style: none;
 }
 
 .goma-related-tools-list a {
-  display: flex;
-  min-height: 50px;
-  align-items: center;
-  padding: 11px 14px;
-  border: 1px solid #c8d8bd;
-  border-radius: 13px;
   background: #f7faf5;
-  color: #4b6a36;
-  font-weight: 800;
-  line-height: 1.45;
-  text-decoration: none;
-  transition: transform .18s, background .18s, box-shadow .18s;
 }
 
 .goma-related-tools-list a:hover {
-  transform: translateY(-2px);
   background: #edf5e8;
-  box-shadow: 0 8px 18px rgba(67, 91, 49, .12);
-}
-
-.goma-related-tools-list a:focus-visible {
-  outline: 3px solid rgba(99, 132, 63, .3);
-  outline-offset: 2px;
 }
 
 /* =========================================================
