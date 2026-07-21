@@ -247,9 +247,9 @@
 }
 
 /* =========================================================
-   お金カテゴリ ブランド改善共通セクション
+   お金・健康カテゴリ ブランド改善共通セクション
 ========================================================= */
-.money-brand-section {
+:is(.money-brand-section, .health-brand-section) {
   margin-top: 24px;
   padding: clamp(22px, 4vw, 32px);
   border: 1px solid #d7e2d0;
@@ -258,83 +258,36 @@
   box-shadow: 0 12px 32px rgba(67, 91, 49, .08);
 }
 
-.money-brand-section h2 {
+:is(.money-brand-section, .health-brand-section) h2 {
   margin: 0 0 12px;
   color: #4b6a36;
   font-size: clamp(1.16rem, 3vw, 1.42rem);
 }
 
-.money-support-list {
+:is(.money-support-list, .health-support-list) {
   margin: 0;
   padding-left: 1.25em;
   color: #66705f;
   line-height: 1.75;
 }
 
-.money-support-list li + li { margin-top: 8px; }
+:is(.money-support-list, .health-support-list) li + li { margin-top: 8px; }
 
-.money-brand-section.goma-one-point {
+:is(.money-brand-section, .health-brand-section).goma-one-point {
   padding: clamp(22px, 4vw, 32px);
   border-radius: 22px;
   background: #f7fbf3;
   box-shadow: 0 12px 32px rgba(67, 91, 49, .08);
 }
 
-.money-brand-section.goma-one-point h2 {
+:is(.money-brand-section, .health-brand-section).goma-one-point h2 {
   margin: 0 0 12px;
   color: #4b6a36;
   font-size: clamp(1.16rem, 3vw, 1.42rem);
   line-height: 1.4;
 }
 
-.money-brand-section.goma-one-point p {
-  margin: 0;
-  color: #52604d;
-  line-height: 1.75;
-}
-
-/* =========================================================
-   健康カテゴリ ブランド改善共通セクション
-========================================================= */
-.health-brand-section {
-  margin-top: 24px;
-  padding: clamp(22px, 4vw, 32px);
-  border: 1px solid #d7e2d0;
-  border-radius: 22px;
-  background: #fff;
-  box-shadow: 0 12px 32px rgba(67, 91, 49, .08);
-}
-
-.health-brand-section h2 {
-  margin: 0 0 12px;
-  color: #4b6a36;
-  font-size: clamp(1.16rem, 3vw, 1.42rem);
-}
-
-.health-support-list {
-  margin: 0;
-  padding-left: 1.25em;
-  color: #66705f;
-  line-height: 1.75;
-}
-
-.health-support-list li + li { margin-top: 8px; }
-
-.health-brand-section.goma-one-point {
-  padding: clamp(22px, 4vw, 32px);
-  border-radius: 22px;
-  background: #f7fbf3;
-  box-shadow: 0 12px 32px rgba(67, 91, 49, .08);
-}
-
-.health-brand-section.goma-one-point h2 {
-  margin: 0 0 12px;
-  color: #4b6a36;
-  font-size: clamp(1.16rem, 3vw, 1.42rem);
-  line-height: 1.4;
-}
-
-.health-brand-section.goma-one-point p {
+:is(.money-brand-section, .health-brand-section).goma-one-point p {
   margin: 0;
   color: #52604d;
   line-height: 1.75;
@@ -345,8 +298,7 @@
 }
 
 @media (max-width: 560px) {
-  .money-support-list { padding-left: 1.15em; }
-  .health-support-list { padding-left: 1.15em; }
+  :is(.money-support-list, .health-support-list) { padding-left: 1.15em; }
 }
 
 .loan-period {
