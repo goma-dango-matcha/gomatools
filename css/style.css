@@ -966,7 +966,14 @@ a { color: var(--terms-green-dark); }
    テキスト整形ツール
 ====================== */
 .text-format-main { padding: 42px 20px 72px; }
-.text-format-container { width: min(100%, 1100px); margin: 0 auto; }
+:is(.text-format-container, .text-compare-container, .encoding-container, .work-time-container,
+  .overtime-container, .overtime-pay-container, .hourly-container, .bmr-container,
+  .tdee-container, .ideal-container, .burn-container, .study-time-container,
+  .required-container, .bodyfat-container, .pfc-container, .loan-container,
+  .percentage-container) {
+  width: min(100%, 1100px);
+  margin: 0 auto;
+}
 .text-format-hero { margin-bottom: 28px; text-align: center; }
 .text-format-hero h1 { margin: 8px 0 12px; color: var(--terms-text); font-size: clamp(1.9rem, 5vw, 2.7rem); }
 .text-format-hero p { max-width: 760px; margin: 0 auto; color: var(--terms-muted); line-height: 1.8; }
@@ -1027,7 +1034,6 @@ a { color: var(--terms-green-dark); }
    テキスト比較ツール
 ====================== */
 .text-compare-main { padding: 42px 20px 72px; }
-.text-compare-container { width: min(100%, 1100px); margin: 0 auto; }
 .text-compare-hero { margin-bottom: 28px; text-align: center; }
 .text-compare-hero h1 { margin: 8px 0 12px; color: var(--terms-text); font-size: clamp(1.9rem, 5vw, 2.7rem); }
 .text-compare-hero p { max-width: 780px; margin: 0 auto; color: var(--terms-muted); line-height: 1.8; }
@@ -1112,7 +1118,6 @@ a { color: var(--terms-green-dark); }
    文字コード変換ツール
 ====================== */
 .encoding-main { padding: 42px 20px 72px; }
-.encoding-container { width: min(100%, 1100px); margin: 0 auto; }
 .encoding-hero { margin-bottom: 28px; text-align: center; }
 .encoding-hero h1 { margin: 8px 0 12px; color: var(--terms-text); font-size: clamp(1.9rem, 5vw, 2.7rem); }
 .encoding-hero p { max-width: 780px; margin: 0 auto; color: var(--terms-muted); line-height: 1.8; }
@@ -1172,7 +1177,6 @@ a { color: var(--terms-green-dark); }
    勤務時間計算ツール
 ====================== */
 .work-time-main { padding: 42px 20px 72px; }
-.work-time-container { width: min(100%, 1100px); margin: 0 auto; }
 .work-time-hero { margin-bottom: 28px; text-align: center; }
 .work-time-hero h1 { margin: 8px 0 12px; color: var(--terms-text); font-size: clamp(1.9rem, 5vw, 2.7rem); }
 .work-time-hero p { max-width: 760px; margin: 0 auto; color: var(--terms-muted); line-height: 1.8; }
@@ -1233,7 +1237,6 @@ a { color: var(--terms-green-dark); }
    残業時間計算ツール
 ====================== */
 .overtime-main { padding: 42px 20px 72px; }
-.overtime-container { width: min(100%, 1100px); margin: 0 auto; }
 .overtime-hero { margin-bottom: 28px; text-align: center; }
 .overtime-hero h1 { margin: 8px 0 12px; color: var(--terms-text); font-size: clamp(1.9rem, 5vw, 2.7rem); }
 .overtime-hero p { max-width: 760px; margin: 0 auto; color: var(--terms-muted); line-height: 1.8; }
@@ -1297,7 +1300,6 @@ a { color: var(--terms-green-dark); }
    残業代計算ツール
 ====================== */
 .overtime-pay-main { padding: 42px 20px 72px; }
-.overtime-pay-container { width: min(100%, 1100px); margin: 0 auto; }
 .overtime-pay-hero { margin-bottom: 28px; text-align: center; }
 .overtime-pay-hero h1 { margin: 8px 0 12px; color: var(--terms-text); font-size: clamp(1.9rem, 5vw, 2.7rem); }
 .overtime-pay-hero p { max-width: 760px; margin: 0 auto; color: var(--terms-muted); line-height: 1.8; }
@@ -1381,7 +1383,6 @@ a { color: var(--terms-green-dark); }
    時給計算ツール
 ====================== */
 .hourly-main { padding: 42px 20px 72px; }
-.hourly-container { width: min(100%, 1100px); margin: 0 auto; }
 .hourly-hero { margin-bottom: 28px; text-align: center; }
 .hourly-hero h1 { margin: 8px 0 12px; color: var(--terms-text); font-size: clamp(1.9rem, 5vw, 2.7rem); }
 .hourly-hero p { max-width: 760px; margin: 0 auto; color: var(--terms-muted); line-height: 1.8; }
@@ -1450,7 +1451,6 @@ a { color: var(--terms-green-dark); }
    基礎代謝（BMR）計算ツール
 ====================== */
 .bmr-main { padding: 42px 20px 72px; }
-.bmr-container { width: min(100%, 1100px); margin: 0 auto; }
 .bmr-hero { margin-bottom: 28px; text-align: center; }
 .bmr-hero h1 { margin: 8px 0 12px; color: var(--terms-text); font-size: clamp(1.9rem, 5vw, 2.7rem); }
 .bmr-hero p { max-width: 760px; margin: 0 auto; color: var(--terms-muted); line-height: 1.8; }
@@ -1507,7 +1507,6 @@ a { color: var(--terms-green-dark); }
    1日の消費カロリー（TDEE）計算ツール
 ====================== */
 .tdee-main { padding: 42px 20px 72px; }
-.tdee-container { width: min(100%, 1100px); margin: 0 auto; }
 .tdee-hero { margin-bottom: 28px; text-align: center; }
 .tdee-hero h1 { margin: 8px 0 12px; color: var(--terms-text); font-size: clamp(1.85rem, 5vw, 2.65rem); }
 .tdee-hero p { max-width: 780px; margin: 0 auto; color: var(--terms-muted); line-height: 1.8; }
@@ -1583,7 +1582,6 @@ a { color: var(--terms-green-dark); }
    適正体重計算ツール
 ====================== */
 .ideal-main { padding: 42px 20px 72px; }
-.ideal-container { width: min(100%, 1100px); margin: 0 auto; }
 .ideal-hero { margin-bottom: 28px; text-align: center; }
 .ideal-hero h1 { margin: 8px 0 12px; color: var(--terms-text); font-size: clamp(1.9rem, 5vw, 2.7rem); }
 .ideal-hero p { max-width: 760px; margin: 0 auto; color: var(--terms-muted); line-height: 1.8; }
@@ -1651,7 +1649,6 @@ a { color: var(--terms-green-dark); }
    消費カロリー計算ツール
 ====================== */
 .burn-main { padding: 42px 20px 72px; }
-.burn-container { width: min(100%, 1100px); margin: 0 auto; }
 .burn-hero { margin-bottom: 28px; text-align: center; }
 .burn-hero h1 { margin: 8px 0 12px; color: var(--terms-text); font-size: clamp(1.9rem, 5vw, 2.7rem); }
 .burn-hero p { max-width: 760px; margin: 0 auto; color: var(--terms-muted); line-height: 1.8; }
@@ -1714,7 +1711,6 @@ a { color: var(--terms-green-dark); }
    学習時間計算ツール
 ====================== */
 .study-time-main { padding: 42px 20px 72px; }
-.study-time-container { width: min(100%, 1100px); margin: 0 auto; }
 .study-time-hero { margin-bottom: 28px; text-align: center; }
 .study-time-hero h1 { margin: 8px 0 12px; color: var(--terms-text); font-size: clamp(1.9rem, 5vw, 2.7rem); }
 .study-time-hero p { max-width: 760px; margin: 0 auto; color: var(--terms-muted); line-height: 1.8; }
@@ -1937,7 +1933,6 @@ a { color: var(--terms-green-dark); }
    必要点数計算ツール
 ====================== */
 .required-main { padding: 42px 20px 72px; }
-.required-container { width: min(100%, 1100px); margin: 0 auto; }
 .required-hero { margin-bottom: 28px; text-align: center; }
 .required-hero h1 { margin: 8px 0 12px; color: var(--terms-text); font-size: clamp(1.9rem, 5vw, 2.7rem); }
 .required-hero p { max-width: 760px; margin: 0 auto; color: var(--terms-muted); line-height: 1.8; }
@@ -2004,7 +1999,6 @@ a { color: var(--terms-green-dark); }
    体脂肪率計算ツール
 ====================== */
 .bodyfat-main { padding: 42px 20px 72px; }
-.bodyfat-container { width: min(100%, 1100px); margin: 0 auto; }
 .bodyfat-hero { margin-bottom: 28px; text-align: center; }
 .bodyfat-hero h1 { margin: 8px 0 12px; color: var(--terms-text); font-size: clamp(1.9rem, 5vw, 2.7rem); }
 .bodyfat-hero p { max-width: 760px; margin: 0 auto; color: var(--terms-muted); line-height: 1.8; }
@@ -2068,7 +2062,6 @@ a { color: var(--terms-green-dark); }
    PFCバランス計算ツール
 ========================================================= */
 .pfc-main { padding: 42px 20px 72px; }
-.pfc-container { width: min(100%, 1100px); margin: 0 auto; }
 .pfc-hero { margin-bottom: 28px; text-align: center; }
 .pfc-hero h1 { margin: 8px 0 12px; color: var(--terms-text); font-size: clamp(1.9rem, 5vw, 2.7rem); }
 .pfc-hero p { max-width: 760px; margin: 0 auto; color: var(--terms-muted); line-height: 1.8; }
@@ -2140,7 +2133,6 @@ a { color: var(--terms-green-dark); }
    ローン返済シミュレーター
 ====================== */
 .loan-main { padding: 42px 20px 72px; }
-.loan-container { width: min(100%, 1100px); margin: 0 auto; }
 .loan-hero { margin-bottom: 28px; text-align: center; }
 .loan-hero h1 { margin: 8px 0 12px; color: var(--terms-text); font-size: clamp(1.9rem, 5vw, 2.7rem); }
 .loan-hero p { max-width: 780px; margin: 0 auto; color: var(--terms-muted); line-height: 1.8; }
@@ -2199,7 +2191,6 @@ a { color: var(--terms-green-dark); }
    パーセント計算ツール
 ====================== */
 .percentage-main { padding: 42px 20px 72px; }
-.percentage-container { width: min(100%, 1100px); margin: 0 auto; }
 .percentage-hero { margin-bottom: 28px; text-align: center; }
 .percentage-hero h1 { margin: 8px 0 12px; color: var(--terms-text); font-size: clamp(1.9rem, 5vw, 2.7rem); }
 .percentage-hero p { max-width: 760px; margin: 0 auto; color: var(--terms-muted); line-height: 1.8; }
