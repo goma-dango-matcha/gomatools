@@ -1152,7 +1152,18 @@ a { color: var(--terms-green-dark); }
    テキスト比較ツール
 ====================== */
 .text-compare-eyebrow { color: var(--terms-green) !important; font-weight: 800; }
-.text-compare-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
+.text-compare-card h2,
+.encoding-card h2,
+.work-time-card h2,
+.overtime-card h2,
+.overtime-pay-card h2,
+.hourly-card h2,
+.bmr-card h2,
+.tdee-card h2,
+.ideal-card h2,
+.burn-card h2,
+.study-time-card h2,
+.loan-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .text-compare-input-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
 .text-compare-field textarea { min-height: 260px !important; font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace; line-height: 1.65; }
 .text-compare-count { margin: 8px 0 0; color: var(--terms-muted); font-size: .88rem; font-weight: 800; text-align: right; }
@@ -1291,7 +1302,6 @@ a { color: var(--terms-green-dark); }
    文字コード変換ツール
 ====================== */
 .encoding-eyebrow { color: var(--terms-green) !important; font-weight: 800; }
-.encoding-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .encoding-mode-fieldset { min-width: 0; margin: 24px 0 0; padding: 0; border: 0; }
 .encoding-mode-fieldset legend { margin-bottom: 8px; color: var(--terms-text); font-weight: 850; }
 .encoding-mode-help { margin: 0 0 14px; color: var(--terms-muted); font-size: .92rem; line-height: 1.7; }
@@ -1334,7 +1344,6 @@ a { color: var(--terms-green-dark); }
    勤務時間計算ツール
 ====================== */
 .work-time-eyebrow { color: var(--terms-green) !important; font-weight: 800; }
-.work-time-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .work-time-form-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .work-time-field input { width: 100%; min-width: 0; }
 .work-time-field small { display: block; margin-top: 7px; color: var(--terms-muted); font-size: .84rem; line-height: 1.5; }
@@ -1393,7 +1402,6 @@ a { color: var(--terms-green-dark); }
    残業時間計算ツール
 ====================== */
 .overtime-eyebrow { color: var(--terms-green) !important; font-weight: 800; }
-.overtime-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .overtime-form-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .overtime-field label span { color: var(--terms-muted); font-size: .78rem; }
 .overtime-field small,
@@ -1442,7 +1450,6 @@ a { color: var(--terms-green-dark); }
    残業代計算ツール
 ====================== */
 .overtime-pay-eyebrow { color: var(--terms-green) !important; font-weight: 800; }
-.overtime-pay-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .overtime-pay-form-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 18px; align-items: stretch; }
 .overtime-pay-field label span,
 .overtime-pay-duration legend span,
@@ -1510,7 +1517,6 @@ a { color: var(--terms-green-dark); }
    時給計算ツール
 ====================== */
 .hourly-eyebrow { color: var(--terms-green) !important; font-weight: 800; }
-.hourly-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .hourly-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
 .hourly-field input { width: 100%; min-width: 0; }
 .hourly-field small { display: block; margin-top: 7px; color: var(--terms-muted); font-size: .84rem; line-height: 1.5; }
@@ -1559,7 +1565,6 @@ a { color: var(--terms-green-dark); }
    基礎代謝（BMR）計算ツール
 ====================== */
 .bmr-eyebrow { color: #a44659 !important; font-weight: 800; }
-.bmr-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .bmr-gender { display: flex; gap: 12px; margin: 0 0 20px; padding: 0; border: 0; }
 .bmr-gender legend { margin-bottom: 9px; color: var(--terms-text); font-weight: 800; }
 .bmr-gender label { min-width: 120px; padding: 12px 16px; border: 1px solid #cbd6c5; border-radius: 12px; background: #fcfdfb; font-weight: 800; cursor: pointer; }
@@ -1611,7 +1616,6 @@ a { color: var(--terms-green-dark); }
 ====================== */
 .tdee-hero h1 { margin: 8px 0 12px; color: var(--terms-text); font-size: clamp(1.85rem, 5vw, 2.65rem); }
 .tdee-eyebrow { color: #a44659 !important; font-weight: 800; }
-.tdee-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .tdee-gender { display: flex; gap: 12px; margin: 0 0 20px; padding: 0; border: 0; }
 .tdee-gender legend { margin-bottom: 9px; color: var(--terms-text); font-weight: 800; }
 .tdee-gender label { min-width: 120px; padding: 12px 16px; border: 1px solid #cbd6c5; border-radius: 12px; background: #fcfdfb; font-weight: 800; cursor: pointer; }
@@ -1670,7 +1674,6 @@ a { color: var(--terms-green-dark); }
    適正体重計算ツール
 ====================== */
 .ideal-eyebrow { color: #a44659 !important; font-weight: 800; }
-.ideal-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .ideal-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
 .ideal-required,
 .ideal-optional { margin-left: 6px; padding: 3px 7px; border-radius: 999px; font-size: .72rem; }
@@ -1722,7 +1725,6 @@ a { color: var(--terms-green-dark); }
    消費カロリー計算ツール
 ====================== */
 .burn-eyebrow { color: #a44659 !important; font-weight: 800; }
-.burn-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .burn-form-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 18px; }
 .burn-hint { margin: 12px 0 0; color: var(--terms-muted); font-size: .9rem; }
 .burn-warning { margin: 16px 0 0; padding: 12px 14px; border-radius: 11px; background: #fff5dc; color: #76550e; font-weight: 800; }
@@ -1769,7 +1771,6 @@ a { color: var(--terms-green-dark); }
    学習時間計算ツール
 ====================== */
 .study-time-eyebrow { color: var(--terms-green) !important; font-weight: 800; }
-.study-time-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .study-time-group { min-width: 0; min-inline-size: 0; margin: 0; padding: 18px; border: 1px solid #d8e4d2; border-radius: 15px; background: #fbfdf9; }
 .study-time-group legend { padding: 0 8px; color: var(--terms-green-dark); font-weight: 850; }
 .study-time-group legend span,
@@ -2094,7 +2095,6 @@ a { color: var(--terms-green-dark); }
    ローン返済シミュレーター
 ====================== */
 .loan-eyebrow { color: var(--terms-green) !important; font-weight: 800; }
-.loan-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .loan-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
 .loan-field label span,
 .loan-period legend span { color: var(--terms-muted); font-size: .78rem; }
