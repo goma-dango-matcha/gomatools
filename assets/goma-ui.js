@@ -98,6 +98,27 @@
      健康シリーズ 共通リンク
      新しい公開ツールは、この配列へ1件追加すると全対象ページへ反映されます。
   ========================================================= */
+  function createToolSeries(paths, config) {
+    const section = document.querySelector(config.selector);
+    if (!section) return;
+
+    const current = section.dataset.current;
+    const items = config.tools.map(tool => {
+      if (tool.id === current) {
+        return `<li><span class="${config.classPrefix}-current" aria-current="page"><span aria-hidden="true">✓</span> ${tool.icon} ${tool.name}<small>現在閲覧中</small></span></li>`;
+      }
+      return `<li><a href="${paths.home}${tool.path}">${tool.icon} ${tool.name}</a></li>`;
+    }).join('');
+
+    section.className = `${config.classPrefix}-card`;
+    section.setAttribute('aria-labelledby', config.titleId);
+    section.innerHTML = `
+      <h2 id="${config.titleId}">${config.title}</h2>
+      <p>${config.description}</p>
+      <p>目的に合わせて他のツールもぜひご利用ください。</p>
+      <ul class="${config.classPrefix}-list">${items}</ul>`;
+  }
+
   const healthSeriesTools = [
     { id: 'bmi', icon: '❤️', name: 'BMI計算ツール', path: 'bmi/' },
     { id: 'bmr', icon: '🔥', name: '基礎代謝（BMR）計算ツール', path: 'tools/bmr.html' },
@@ -107,27 +128,6 @@
     { id: 'body-fat', icon: '📊', name: '体脂肪率計算ツール', path: 'tools/body-fat.html' },
     { id: 'pfc-balance', icon: '🥗', name: 'PFCバランス計算ツール', path: 'tools/pfc-balance.html' }
   ];
-
-  function createHealthSeries(paths) {
-    const section = document.querySelector('[data-health-series]');
-    if (!section) return;
-
-    const current = section.dataset.current;
-    const items = healthSeriesTools.map(tool => {
-      if (tool.id === current) {
-        return `<li><span class="health-series-current" aria-current="page"><span aria-hidden="true">✓</span> ${tool.icon} ${tool.name}<small>現在閲覧中</small></span></li>`;
-      }
-      return `<li><a href="${paths.home}${tool.path}">${tool.icon} ${tool.name}</a></li>`;
-    }).join('');
-
-    section.className = 'health-series-card';
-    section.setAttribute('aria-labelledby', 'health-series-title');
-    section.innerHTML = `
-      <h2 id="health-series-title">❤️ 健康シリーズ</h2>
-      <p>健康シリーズでは、BMIや基礎代謝、消費カロリーなどを無料で簡単に計算できます。</p>
-      <p>目的に合わせて他のツールもぜひご利用ください。</p>
-      <ul class="health-series-list">${items}</ul>`;
-  }
 
   /* =========================================================
      学習シリーズ 共通リンク
@@ -139,27 +139,6 @@
     { id: 'required-score', icon: '🎯', name: '必要点数計算ツール', path: 'tools/required-score.html' },
     { id: 'study-time', icon: '📚', name: '学習時間計算ツール', path: 'tools/study-time.html' }
   ];
-
-  function createSchoolSeries(paths) {
-    const section = document.querySelector('[data-school-series]');
-    if (!section) return;
-
-    const current = section.dataset.current;
-    const items = schoolSeriesTools.map(tool => {
-      if (tool.id === current) {
-        return `<li><span class="school-series-current" aria-current="page"><span aria-hidden="true">✓</span> ${tool.icon} ${tool.name}<small>現在閲覧中</small></span></li>`;
-      }
-      return `<li><a href="${paths.home}${tool.path}">${tool.icon} ${tool.name}</a></li>`;
-    }).join('');
-
-    section.className = 'school-series-card';
-    section.setAttribute('aria-labelledby', 'school-series-title');
-    section.innerHTML = `
-      <h2 id="school-series-title">🎓 学習シリーズ</h2>
-      <p>学習シリーズでは、成績や出席率、学習時間など、学校生活や学習計画に役立つ計算ツールを無料で利用できます。</p>
-      <p>目的に合わせて他のツールもぜひご利用ください。</p>
-      <ul class="school-series-list">${items}</ul>`;
-  }
 
   /* =========================================================
      お金シリーズ 共通リンク
@@ -176,27 +155,6 @@
     { id: 'loan-calculator', icon: '🏦', name: 'ローン返済シミュレーター', path: 'tools/loan-calculator.html' }
   ];
 
-  function createMoneySeries(paths) {
-    const section = document.querySelector('[data-money-series]');
-    if (!section) return;
-
-    const current = section.dataset.current;
-    const items = moneySeriesTools.map(tool => {
-      if (tool.id === current) {
-        return `<li><span class="money-series-current" aria-current="page"><span aria-hidden="true">✓</span> ${tool.icon} ${tool.name}<small>現在閲覧中</small></span></li>`;
-      }
-      return `<li><a href="${paths.home}${tool.path}">${tool.icon} ${tool.name}</a></li>`;
-    }).join('');
-
-    section.className = 'money-series-card';
-    section.setAttribute('aria-labelledby', 'money-series-title');
-    section.innerHTML = `
-      <h2 id="money-series-title">💰 お金シリーズ</h2>
-      <p>お金シリーズでは、税金や割引、利息、割合、ローン返済などを無料で簡単に計算できます。</p>
-      <p>目的に合わせて他のツールもぜひご利用ください。</p>
-      <ul class="money-series-list">${items}</ul>`;
-  }
-
   /* =========================================================
      仕事・テキストシリーズ 共通リンク
      公開ツールを追加するときは、この配列だけを更新します。
@@ -211,26 +169,40 @@
     { id: 'overtime-pay', icon: '💰', name: '残業代計算ツール', path: 'tools/overtime-pay.html' }
   ];
 
-  function createWorkSeries(paths) {
-    const section = document.querySelector('[data-work-series]');
-    if (!section) return;
-
-    const current = section.dataset.current;
-    const items = workSeriesTools.map(tool => {
-      if (tool.id === current) {
-        return `<li><span class="work-series-current" aria-current="page"><span aria-hidden="true">✓</span> ${tool.icon} ${tool.name}<small>現在閲覧中</small></span></li>`;
-      }
-      return `<li><a href="${paths.home}${tool.path}">${tool.icon} ${tool.name}</a></li>`;
-    }).join('');
-
-    section.className = 'work-series-card';
-    section.setAttribute('aria-labelledby', 'work-series-title');
-    section.innerHTML = `
-      <h2 id="work-series-title">💼 仕事・テキストシリーズ</h2>
-      <p>仕事・テキストシリーズでは、文章作業やテキスト比較、文字コード変換、勤務時間、残業時間、時給・残業代の目安などを無料で簡単に確認できます。</p>
-      <p>目的に合わせて他のツールもぜひご利用ください。</p>
-      <ul class="work-series-list">${items}</ul>`;
-  }
+  const toolSeriesConfigs = [
+    {
+      selector: '[data-health-series]',
+      classPrefix: 'health-series',
+      titleId: 'health-series-title',
+      title: '❤️ 健康シリーズ',
+      description: '健康シリーズでは、BMIや基礎代謝、消費カロリーなどを無料で簡単に計算できます。',
+      tools: healthSeriesTools
+    },
+    {
+      selector: '[data-school-series]',
+      classPrefix: 'school-series',
+      titleId: 'school-series-title',
+      title: '🎓 学習シリーズ',
+      description: '学習シリーズでは、成績や出席率、学習時間など、学校生活や学習計画に役立つ計算ツールを無料で利用できます。',
+      tools: schoolSeriesTools
+    },
+    {
+      selector: '[data-money-series]',
+      classPrefix: 'money-series',
+      titleId: 'money-series-title',
+      title: '💰 お金シリーズ',
+      description: 'お金シリーズでは、税金や割引、利息、割合、ローン返済などを無料で簡単に計算できます。',
+      tools: moneySeriesTools
+    },
+    {
+      selector: '[data-work-series]',
+      classPrefix: 'work-series',
+      titleId: 'work-series-title',
+      title: '💼 仕事・テキストシリーズ',
+      description: '仕事・テキストシリーズでは、文章作業やテキスト比較、文字コード変換、勤務時間、残業時間、時給・残業代の目安などを無料で簡単に確認できます。',
+      tools: workSeriesTools
+    }
+  ];
 
 
   /* =========================================================
@@ -581,10 +553,7 @@
     createSkipLink();
     createHeader(paths);
     createFooter(paths);
-    createHealthSeries(paths);
-    createSchoolSeries(paths);
-    createMoneySeries(paths);
-    createWorkSeries(paths);
+    toolSeriesConfigs.forEach(config => createToolSeries(paths, config));
     createRelatedKnowledge(paths);
     createRelatedTools(paths);
     createToolOnePoint();
