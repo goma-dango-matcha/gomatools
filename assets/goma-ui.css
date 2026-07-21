@@ -15,9 +15,9 @@
 }
 
 /* =========================================================
-   健康・美容シリーズ 共通リンク
+   カテゴリシリーズ 共通リンク
 ========================================================= */
-.health-series-card {
+:is(.health-series-card, .school-series-card, .money-series-card, .work-series-card) {
   margin-top: 24px;
   padding: clamp(22px, 4vw, 34px);
   border: 1px solid #d7e2d0;
@@ -26,19 +26,19 @@
   box-shadow: 0 12px 32px rgba(67, 91, 49, .08);
 }
 
-.health-series-card h2 {
+:is(.health-series-card, .school-series-card, .money-series-card, .work-series-card) h2 {
   margin: 0 0 14px;
   color: #4b6a36;
   font-size: clamp(1.2rem, 3vw, 1.45rem);
 }
 
-.health-series-card p {
+:is(.health-series-card, .school-series-card, .money-series-card, .work-series-card) p {
   margin: 4px 0;
   color: #66705f;
   line-height: 1.75;
 }
 
-.health-series-list {
+:is(.health-series-list, .school-series-list, .money-series-list, .work-series-list) {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
@@ -47,45 +47,47 @@
   list-style: none;
 }
 
-.health-series-list a,
-.health-series-current {
+:is(.health-series-list, .school-series-list, .money-series-list, .work-series-list) a,
+:is(.health-series-current, .school-series-current, .money-series-current, .work-series-current) {
   display: flex;
   min-height: 52px;
   align-items: center;
   gap: 7px;
   padding: 11px 14px;
-  border: 1px solid #c8d8bd;
+  border: 1px solid #d7e2d0;
   border-radius: 13px;
   font-weight: 800;
   line-height: 1.45;
 }
 
-.health-series-list a {
+.health-series-list a { border-color: #c8d8bd; }
+
+:is(.health-series-list, .school-series-list, .money-series-list, .work-series-list) a {
   color: #4b6a36;
   background: #f7faf5;
   text-decoration: none;
   transition: transform .18s, background .18s, box-shadow .18s;
 }
 
-.health-series-list a:hover {
+:is(.health-series-list, .school-series-list, .money-series-list, .work-series-list) a:hover {
   transform: translateY(-2px);
   background: #edf5e8;
   box-shadow: 0 8px 18px rgba(67, 91, 49, .12);
 }
 
-.health-series-list a:focus-visible {
+:is(.health-series-list, .school-series-list, .money-series-list, .work-series-list) a:focus-visible {
   outline: 3px solid rgba(99, 132, 63, .3);
   outline-offset: 2px;
 }
 
-.health-series-current {
+:is(.health-series-current, .school-series-current, .money-series-current, .work-series-current) {
   flex-wrap: wrap;
   color: #fff;
   border-color: #63843f;
   background: #63843f;
 }
 
-.health-series-current small {
+:is(.health-series-current, .school-series-current, .money-series-current, .work-series-current) small {
   margin-left: auto;
   padding: 3px 7px;
   border-radius: 999px;
@@ -95,8 +97,8 @@
 }
 
 @media (max-width: 620px) {
-  .health-series-list { grid-template-columns: 1fr; }
-  .health-series-current small { margin-left: 0; }
+  :is(.health-series-list, .school-series-list, .money-series-list, .work-series-list) { grid-template-columns: 1fr; }
+  :is(.health-series-current, .school-series-current, .money-series-current, .work-series-current) small { margin-left: 0; }
 }
 
 /* =========================================================
@@ -522,109 +524,4 @@ label { font-weight: 800; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; }
-}
-
-/* ====================== 学校・教育シリーズ ====================== */
-.school-series-card {
-  margin-top: 24px;
-  padding: clamp(22px, 4vw, 34px);
-  border: 1px solid #d7e2d0;
-  border-radius: 22px;
-  background: #fff;
-  box-shadow: 0 12px 32px rgba(67, 91, 49, .08);
-}
-.school-series-card h2 { margin: 0 0 14px; color: #4b6a36; font-size: clamp(1.2rem, 3vw, 1.45rem); }
-.school-series-card p { margin: 4px 0; color: #66705f; line-height: 1.75; }
-.school-series-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 20px 0 0; padding: 0; list-style: none; }
-.school-series-list a,
-.school-series-current {
-  display: flex;
-  min-height: 52px;
-  align-items: center;
-  gap: 7px;
-  padding: 11px 14px;
-  border: 1px solid #d7e2d0;
-  border-radius: 13px;
-  font-weight: 800;
-  line-height: 1.45;
-}
-.school-series-list a { color: #4b6a36; background: #f7faf5; text-decoration: none; transition: transform .18s, background .18s, box-shadow .18s; }
-.school-series-list a:hover { transform: translateY(-2px); background: #edf5e8; box-shadow: 0 8px 18px rgba(67, 91, 49, .12); }
-.school-series-list a:focus-visible { outline: 3px solid rgba(99, 132, 63, .3); outline-offset: 2px; }
-.school-series-current { flex-wrap: wrap; color: #fff; border-color: #63843f; background: #63843f; }
-.school-series-current small { margin-left: auto; padding: 3px 7px; border-radius: 999px; background: rgba(255, 255, 255, .2); color: #fff; font-size: .72rem; }
-
-@media (max-width: 620px) {
-  .school-series-list { grid-template-columns: 1fr; }
-  .school-series-current small { margin-left: 0; }
-}
-
-/* ====================== お金・計算シリーズ ====================== */
-.money-series-card {
-  margin-top: 24px;
-  padding: clamp(22px, 4vw, 34px);
-  border: 1px solid #d7e2d0;
-  border-radius: 22px;
-  background: #fff;
-  box-shadow: 0 12px 32px rgba(67, 91, 49, .08);
-}
-.money-series-card h2 { margin: 0 0 14px; color: #4b6a36; font-size: clamp(1.2rem, 3vw, 1.45rem); }
-.money-series-card p { margin: 4px 0; color: #66705f; line-height: 1.75; }
-.money-series-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 20px 0 0; padding: 0; list-style: none; }
-.money-series-list a,
-.money-series-current {
-  display: flex;
-  min-height: 52px;
-  align-items: center;
-  gap: 7px;
-  padding: 11px 14px;
-  border: 1px solid #d7e2d0;
-  border-radius: 13px;
-  font-weight: 800;
-  line-height: 1.45;
-}
-.money-series-list a { color: #4b6a36; background: #f7faf5; text-decoration: none; transition: transform .18s, background .18s, box-shadow .18s; }
-.money-series-list a:hover { transform: translateY(-2px); background: #edf5e8; box-shadow: 0 8px 18px rgba(67, 91, 49, .12); }
-.money-series-list a:focus-visible { outline: 3px solid rgba(99, 132, 63, .3); outline-offset: 2px; }
-.money-series-current { flex-wrap: wrap; color: #fff; border-color: #63843f; background: #63843f; }
-.money-series-current small { margin-left: auto; padding: 3px 7px; border-radius: 999px; background: rgba(255, 255, 255, .2); color: #fff; font-size: .72rem; }
-
-@media (max-width: 620px) {
-  .money-series-list { grid-template-columns: 1fr; }
-  .money-series-current small { margin-left: 0; }
-}
-
-/* ====================== 仕事・テキストシリーズ ====================== */
-.work-series-card {
-  margin-top: 24px;
-  padding: clamp(22px, 4vw, 34px);
-  border: 1px solid #d7e2d0;
-  border-radius: 22px;
-  background: #fff;
-  box-shadow: 0 12px 32px rgba(67, 91, 49, .08);
-}
-.work-series-card h2 { margin: 0 0 14px; color: #4b6a36; font-size: clamp(1.2rem, 3vw, 1.45rem); }
-.work-series-card p { margin: 4px 0; color: #66705f; line-height: 1.75; }
-.work-series-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 20px 0 0; padding: 0; list-style: none; }
-.work-series-list a,
-.work-series-current {
-  display: flex;
-  min-height: 52px;
-  align-items: center;
-  gap: 7px;
-  padding: 11px 14px;
-  border: 1px solid #d7e2d0;
-  border-radius: 13px;
-  font-weight: 800;
-  line-height: 1.45;
-}
-.work-series-list a { color: #4b6a36; background: #f7faf5; text-decoration: none; transition: transform .18s, background .18s, box-shadow .18s; }
-.work-series-list a:hover { transform: translateY(-2px); background: #edf5e8; box-shadow: 0 8px 18px rgba(67, 91, 49, .12); }
-.work-series-list a:focus-visible { outline: 3px solid rgba(99, 132, 63, .3); outline-offset: 2px; }
-.work-series-current { flex-wrap: wrap; color: #fff; border-color: #63843f; background: #63843f; }
-.work-series-current small { margin-left: auto; padding: 3px 7px; border-radius: 999px; background: rgba(255, 255, 255, .2); color: #fff; font-size: .72rem; }
-
-@media (max-width: 620px) {
-  .work-series-list { grid-template-columns: 1fr; }
-  .work-series-current small { margin-left: 0; }
 }
