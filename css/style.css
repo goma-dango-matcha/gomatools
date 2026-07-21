@@ -1328,7 +1328,22 @@ a { color: var(--terms-green-dark); }
 .work-time-result-grid > div { padding: 20px 14px; border: 1px solid #d8e4d2; border-radius: 15px; background: #fff; text-align: center; }
 .work-time-result-grid strong { display: block; margin-top: 7px; color: var(--terms-text); font-size: clamp(1.05rem, 3vw, 1.35rem); }
 .work-time-overnight { margin: 16px 0 0; padding: 11px 14px; border-radius: 11px; background: #f2effa; color: #594d78; font-weight: 800; text-align: center; }
-.work-time-copy { display: block; margin: 20px auto 0; }
+.work-time-copy,
+.overtime-copy,
+.overtime-pay-copy,
+.hourly-copy,
+.bmr-copy,
+.tdee-copy,
+.ideal-copy,
+.burn-copy,
+.study-time-copy,
+.grade-copy,
+.attendance-copy,
+.required-copy,
+.bodyfat-copy,
+.pfc-copy,
+.loan-copy,
+.percentage-copy { display: block; margin: 20px auto 0; }
 .work-time-info { line-height: 1.85; }
 .work-time-support-list { margin: 0; padding-left: 1.3em; color: var(--terms-muted); }
 .work-time-support-list li + li { margin-top: 9px; }
@@ -1379,7 +1394,6 @@ a { color: var(--terms-green-dark); }
 .overtime-result-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 16px; }
 .overtime-result-grid > div { padding: 20px 14px; border: 1px solid #d8e4d2; border-radius: 15px; background: #fff; text-align: center; }
 .overtime-result-grid strong { display: block; margin-top: 7px; color: var(--terms-text); font-size: clamp(1.05rem, 3vw, 1.35rem); }
-.overtime-copy { display: block; margin: 20px auto 0; }
 .overtime-support-list { margin: 0; padding-left: 1.35rem; color: var(--terms-muted); line-height: 1.8; }
 .overtime-support-list li + li { margin-top: 8px; }
 .overtime-one-point { border-color: #c9d9bd; background: #f8fbf5; }
@@ -1445,7 +1459,6 @@ a { color: var(--terms-green-dark); }
 .overtime-pay-result-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 16px; }
 .overtime-pay-result-grid > div { padding: 20px 14px; border: 1px solid #d8e4d2; border-radius: 15px; background: #fff; text-align: center; }
 .overtime-pay-result-grid strong { display: block; margin-top: 7px; color: var(--terms-text); font-size: clamp(1rem, 3vw, 1.28rem); }
-.overtime-pay-copy { display: block; margin: 20px auto 0; }
 .overtime-pay-support-list { margin: 0; padding-left: 1.35rem; color: var(--terms-muted); line-height: 1.8; }
 .overtime-pay-support-list li + li { margin-top: 8px; }
 .overtime-pay-one-point { border-color: #c9d9bd; background: #f8fbf5; }
@@ -1505,7 +1518,6 @@ a { color: var(--terms-green-dark); }
 .hourly-result-grid > div { padding: 20px 14px; border: 1px solid #d8e4d2; border-radius: 15px; background: #fff; text-align: center; }
 .hourly-result-grid strong { display: block; margin-top: 7px; color: var(--terms-text); font-size: clamp(1rem, 3vw, 1.28rem); }
 .hourly-note { margin: 16px 0 0; padding: 11px 14px; border-radius: 11px; background: #fffaf0; color: #75551a; font-weight: 800; text-align: center; }
-.hourly-copy { display: block; margin: 20px auto 0; }
 .hourly-info { line-height: 1.85; }
 .hourly-support-list { margin: 0; padding-left: 1.3em; color: var(--terms-muted); }
 .hourly-support-list li + li { margin-top: 9px; }
@@ -1548,7 +1560,6 @@ a { color: var(--terms-green-dark); }
 .bmr-result-main strong { display: block; margin-top: 8px; color: var(--terms-green-dark); font-size: clamp(2.15rem, 7vw, 3.2rem); }
 .bmr-result-main small { font-size: .42em; }
 .bmr-result-description { margin: 18px 0 0; color: var(--terms-muted); line-height: 1.8; text-align: center; }
-.bmr-copy { display: block; margin: 20px auto 0; }
 .bmr-info { line-height: 1.85; }
 .bmr-info h2:not(:first-child) { margin-top: 28px; }
 .bmr-info p,
@@ -1609,7 +1620,6 @@ a { color: var(--terms-green-dark); }
 .tdee-guide-grid > div:nth-child(2) { background: #f8fbf5; }
 .tdee-guide-grid > div:nth-child(3) { background: #fffaf2; }
 .tdee-guide-note { margin: 12px 0 0; color: var(--terms-muted); font-size: .88rem; }
-.tdee-copy { display: block; margin: 20px auto 0; }
 .tdee-info { line-height: 1.85; }
 .tdee-info h2:not(:first-child) { margin-top: 28px; }
 .tdee-info p { margin: 0; color: var(--terms-muted); }
@@ -1666,7 +1676,6 @@ a { color: var(--terms-green-dark); }
 .ideal-reference-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
 .ideal-reference-grid .is-standard { border-color: #b7cba9; background: var(--terms-green-light); }
 .ideal-reference-grid small { display: block; margin-top: 5px; color: var(--terms-muted); font-size: .78rem; }
-.ideal-copy { display: block; margin: 20px auto 0; }
 .ideal-info { line-height: 1.85; }
 .ideal-info h2:not(:first-child) { margin-top: 28px; }
 .ideal-info p { margin: 0; color: var(--terms-muted); }
@@ -1716,7 +1725,6 @@ a { color: var(--terms-green-dark); }
 .burn-food-grid span { display: block; color: var(--terms-muted); font-weight: 800; }
 .burn-food-grid strong { display: block; margin-top: 7px; color: var(--terms-text); font-size: 1.2rem; }
 .burn-food-note { margin: 12px 0 0; color: var(--terms-muted); font-size: .86rem; }
-.burn-copy { display: block; margin: 20px auto 0; }
 .burn-info { line-height: 1.85; }
 .burn-info h2:not(:first-child) { margin-top: 28px; }
 .burn-info p { margin: 0; color: var(--terms-muted); }
@@ -1772,7 +1780,6 @@ a { color: var(--terms-green-dark); }
 .study-time-result-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 16px; }
 .study-time-result-grid > div { padding: 20px 14px; border: 1px solid #d8e4d2; border-radius: 15px; background: #fff; text-align: center; }
 .study-time-result-grid strong { display: block; margin-top: 7px; color: var(--terms-text); font-size: clamp(1rem, 3vw, 1.28rem); }
-.study-time-copy { display: block; margin: 20px auto 0; }
 .study-time-support-list { margin: 0; padding-left: 1.25em; color: var(--terms-muted); line-height: 1.75; }
 .study-time-support-list li + li { margin-top: 8px; }
 .study-time-one-point { border-color: #d6e3cf; background: #f7fbf3; }
@@ -1830,7 +1837,6 @@ a { color: var(--terms-green-dark); }
 .grade-rating { margin-top: 18px; padding: 20px; border-radius: 15px; background: #fffaf0; text-align: center; }
 .grade-rating strong { display: block; margin-top: 6px; color: #c48516; font-size: 1.75rem; letter-spacing: .08em; }
 .grade-rating p { margin: 5px 0 0; color: var(--terms-text); font-weight: 800; }
-.grade-copy { display: block; margin: 20px auto 0; }
 .grade-info { line-height: 1.85; }
 .grade-support-list { margin: 0; padding-left: 1.25em; color: var(--terms-muted); line-height: 1.75; }
 .grade-support-list li + li { margin-top: 8px; }
@@ -1905,7 +1911,6 @@ a { color: var(--terms-green-dark); }
 .attendance-allowance strong { display: block; margin-top: 6px; color: var(--terms-green-dark); font-size: clamp(1.45rem, 5vw, 2rem); }
 .attendance-allowance.is-low strong { color: #a23c32; }
 .attendance-allowance p { margin: 8px 0 0; color: var(--terms-muted); line-height: 1.7; }
-.attendance-copy { display: block; margin: 20px auto 0; }
 .attendance-info { line-height: 1.85; }
 .attendance-support-list { margin: 0; padding-left: 1.25em; color: var(--terms-muted); line-height: 1.75; }
 .attendance-support-list li + li { margin-top: 8px; }
@@ -1956,7 +1961,6 @@ a { color: var(--terms-green-dark); }
 .required-result-grid > div { padding: 18px 12px; border: 1px solid #d8e4d2; border-radius: 14px; background: #fff; text-align: center; }
 .required-result-grid strong { display: block; margin-top: 6px; color: var(--terms-text); font-size: 1.08rem; }
 .required-message { margin-top: 18px; padding: 18px 16px; border-radius: 15px; background: #fffaf0; color: #75551a; font-weight: 850; line-height: 1.75; text-align: center; }
-.required-copy { display: block; margin: 20px auto 0; }
 .required-info { line-height: 1.85; }
 .required-support-list { margin: 0; padding-left: 1.25em; color: var(--terms-muted); line-height: 1.75; }
 .required-support-list li + li { margin-top: 8px; }
@@ -2014,7 +2018,6 @@ a { color: var(--terms-green-dark); }
 .bodyfat-result-grid > div { padding: 18px 12px; border: 1px solid #d8e4d2; border-radius: 14px; background: #fff; text-align: center; }
 .bodyfat-result-grid strong { display: block; margin-top: 6px; color: var(--terms-text); font-size: 1.08rem; }
 .bodyfat-message { margin-top: 18px; padding: 18px 16px; border-radius: 15px; background: #fffaf0; color: #75551a; font-weight: 850; line-height: 1.75; text-align: center; }
-.bodyfat-copy { display: block; margin: 20px auto 0; }
 .bodyfat-info { line-height: 1.85; }
 .bodyfat-info h2:not(:first-child) { margin-top: 28px; }
 .bodyfat-info p { margin: 0; color: var(--terms-muted); }
@@ -2066,7 +2069,6 @@ a { color: var(--terms-green-dark); }
 .pfc-fat { border-top: 5px solid #d19738; }
 .pfc-carb { border-top: 5px solid #6686ad; }
 .pfc-result-note { margin: 18px 0 0; color: var(--terms-muted); font-size: .9rem; line-height: 1.7; text-align: center; }
-.pfc-copy { display: block; margin: 20px auto 0; }
 .pfc-info { color: var(--terms-muted); line-height: 1.85; }
 .pfc-info h2:not(:first-child) { margin-top: 28px; }
 .pfc-info p { margin: 0; }
@@ -2117,7 +2119,6 @@ a { color: var(--terms-green-dark); }
 .loan-result-grid > div { padding: 20px 14px; border: 1px solid #d8e4d2; border-radius: 15px; background: #fff; text-align: center; }
 .loan-result-grid strong { display: block; margin-top: 7px; color: var(--terms-text); font-size: clamp(1rem, 3vw, 1.28rem); }
 .loan-interest-item strong { color: #8a5a19; }
-.loan-copy { display: block; margin: 20px auto 0; }
 .loan-support-list { margin: 0; padding-left: 1.4em; color: var(--terms-muted); line-height: 1.85; }
 .loan-support-list li + li { margin-top: 8px; }
 
@@ -2158,7 +2159,6 @@ a { color: var(--terms-green-dark); }
 .percentage-result-main strong { display: block; margin-top: 8px; overflow-wrap: anywhere; color: var(--terms-green-dark); font-size: clamp(2.25rem, 8vw, 3.4rem); }
 .percentage-formula { margin-top: 16px; padding: 20px 16px; border: 1px solid #d8e4d2; border-radius: 15px; background: #fff; text-align: center; }
 .percentage-formula strong { display: block; margin-top: 7px; overflow-wrap: anywhere; color: var(--terms-text); font-size: 1.05rem; }
-.percentage-copy { display: block; margin: 20px auto 0; }
 .percentage-info { line-height: 1.85; }
 .percentage-info p,
 .percentage-one-point p,
