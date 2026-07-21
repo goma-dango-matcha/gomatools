@@ -1,5 +1,5 @@
 ﻿/* =========================================================
-   ゴマツール 共通ヘッダー・フッター v1.1
+   ゴマツール 共通ヘッダー・フッター v2.8
 ========================================================= */
 (function () {
   'use strict';
@@ -31,6 +31,10 @@
     if (!oldHeader) return;
 
     oldHeader.className = 'goma-header';
+    const homeButton = getCurrentPageKey()
+      ? `<a class="goma-home-button" href="${paths.home}">🏠 ホームへ戻る</a>`
+      : '';
+
     oldHeader.innerHTML = `
       <div class="goma-header-inner">
         <div class="goma-brand-wrap">
@@ -40,8 +44,24 @@
           </a>
           <p class="goma-brand-copy">無料で使える便利ツール集</p>
         </div>
-        <a class="goma-home-button" href="${paths.home}">🏠 ホームへ戻る</a>
+        ${homeButton}
       </div>`;
+  }
+
+  function createSkipLink() {
+    const main = document.querySelector('main');
+    if (!main) return;
+
+    if (!main.id) main.id = 'main-content';
+    if (!main.hasAttribute('tabindex')) main.setAttribute('tabindex', '-1');
+    if (main.querySelector(':scope > .container > .hero')) main.classList.add('goma-legacy-tool-main');
+    if (document.querySelector('.goma-skip-link')) return;
+
+    const link = document.createElement('a');
+    link.className = 'goma-skip-link';
+    link.href = `#${main.id}`;
+    link.textContent = '本文へスキップ';
+    document.body.prepend(link);
   }
 
   function createFooter(paths) {
@@ -299,7 +319,7 @@
   }
 
   function createRelatedKnowledge(paths) {
-    if (document.querySelector('.goma-related-knowledge')) return;
+    if (document.querySelector('.goma-related-knowledge, section[aria-labelledby="knowledge-title"]')) return;
 
     const items = relatedKnowledgeByPath[getCurrentPageKey()];
     if (!items || items.length === 0) return;
@@ -517,7 +537,7 @@
   }
 
   function createRelatedTools(paths) {
-    if (document.querySelector('.goma-related-tools')) return;
+    if (document.querySelector('.goma-related-tools, section[aria-labelledby="related-title"], section[aria-labelledby="tools-title"]')) return;
 
     const items = relatedToolsByPath[getCurrentPageKey()];
     if (!items || items.length === 0) return;
@@ -558,6 +578,7 @@
   function initializeCommonUI() {
     const paths = getPaths();
     document.documentElement.classList.add('goma-ui-v11');
+    createSkipLink();
     createHeader(paths);
     createFooter(paths);
     createHealthSeries(paths);

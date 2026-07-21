@@ -1521,7 +1521,10 @@ a { color: var(--terms-green-dark); }
 .tdee-form-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .tdee-field label,
 .tdee-activity > label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
+.tdee-card,
+.tdee-activity { min-width: 0; }
 .tdee-activity { margin-top: 18px; }
+.tdee-activity select { width: 100%; min-width: 0; max-width: 100%; }
 .tdee-error { min-height: 1.5em; margin: 12px 0 0; color: #b42318; font-weight: 800; text-align: center; }
 .tdee-warning { margin: 16px 0 0; padding: 12px 14px; border-radius: 11px; background: #fff5dc; color: #76550e; font-weight: 800; }
 .tdee-form-buttons { display: flex; justify-content: center; gap: 12px; margin-top: 18px; }
@@ -1718,12 +1721,14 @@ a { color: var(--terms-green-dark); }
 .study-time-eyebrow { color: var(--terms-green) !important; font-weight: 800; }
 .study-time-card { margin-top: 24px; padding: clamp(22px, 4vw, 36px); border: 1px solid var(--terms-line); border-radius: 22px; background: #fff; box-shadow: 0 12px 32px rgba(67, 91, 49, .08); }
 .study-time-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
-.study-time-group { margin: 0; padding: 18px; border: 1px solid #d8e4d2; border-radius: 15px; background: #fbfdf9; }
+.study-time-group { min-width: 0; min-inline-size: 0; margin: 0; padding: 18px; border: 1px solid #d8e4d2; border-radius: 15px; background: #fbfdf9; }
 .study-time-group legend { padding: 0 8px; color: var(--terms-green-dark); font-weight: 850; }
 .study-time-group legend span,
 .study-time-field label span { color: var(--terms-muted); font-size: .78rem; }
 .study-time-today { border-color: #b7cba9; }
-.study-time-duration-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.study-time-duration-grid { display: grid; min-width: 0; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.study-time-field { min-width: 0; }
+.study-time-field input { width: 100%; min-width: 0; max-width: 100%; }
 .study-time-field label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
 .study-time-field p { margin: 9px 0 0; color: var(--terms-muted); font-size: .86rem; line-height: 1.6; }
 .study-time-group-note { margin: 10px 0 0; color: var(--terms-muted); font-size: .86rem; line-height: 1.6; }
@@ -1851,6 +1856,10 @@ a { color: var(--terms-green-dark); }
   .grade-row,
   .grade-result-grid { grid-template-columns: 1fr; }
   .grade-support-list { padding-left: 1.15em; }
+}
+
+@media (max-width: 420px) {
+  .study-time-duration-grid { grid-template-columns: 1fr; }
 }
 
 /* ======================

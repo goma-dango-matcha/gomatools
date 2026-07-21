@@ -1,5 +1,5 @@
 /* =========================================================
-   ゴマツール 共通UI v1.1
+   ゴマツール 共通UI v2.8
    新しいページでもこのファイルを最後に読み込んでください。
 ========================================================= */
 :root {
@@ -363,6 +363,23 @@
 html { scroll-behavior: smooth; }
 body { color: var(--goma-text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", sans-serif; }
 
+/* ====================== 本文スキップ ====================== */
+.goma-skip-link {
+  position: fixed;
+  z-index: 10000;
+  top: 10px;
+  left: 10px;
+  padding: 11px 16px;
+  color: #fff;
+  border-radius: 10px;
+  background: var(--goma-green-dark);
+  font-weight: 850;
+  text-decoration: none;
+  transform: translateY(-150%);
+  transition: transform .15s ease;
+}
+.goma-skip-link:focus { transform: translateY(0); }
+
 /* ====================== 共通ヘッダー ====================== */
 .goma-header {
   padding: 0 !important;
@@ -409,6 +426,17 @@ body { color: var(--goma-text); font-family: -apple-system, BlinkMacSystemFont, 
   transition: transform .15s ease, background .15s ease;
 }
 .goma-home-button:hover { background: var(--goma-green-dark); transform: translateY(-1px); }
+
+/* 旧ページの大きなヒーローだけを、現行ツールに近い密度へ整える */
+.goma-ui-v11 .goma-legacy-tool-main {
+  padding-top: clamp(52px, 7vw, 64px) !important;
+}
+.goma-ui-v11 main > .container > .hero h1 {
+  font-size: clamp(1.9rem, 6vw, 3rem) !important;
+}
+.goma-ui-v11 main > .container > .hero + .section {
+  margin-top: clamp(38px, 6vw, 52px) !important;
+}
 
 /* ====================== 見出し・説明 ====================== */
 h1 { line-height: 1.25 !important; letter-spacing: -.035em !important; }
@@ -471,15 +499,15 @@ label { font-weight: 800; }
 }
 .goma-footer-mark { display: block; width: 28px; height: 28px; }
 .goma-footer-copy { margin: 0; font-size: .88rem; }
-.goma-last-updated { margin: 14px 0 0; color: var(--goma-muted); font-size: .78rem; line-height: 1.5; }
+.goma-last-updated { margin: 14px 0 0; color: var(--goma-muted); font-size: .82rem; line-height: 1.5; }
 .goma-last-updated span,
 .goma-last-updated time { display: block; }
 .goma-last-updated span { font-weight: 850; }
-.goma-footer-nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px 22px; margin-top: 20px; }
+.goma-footer-nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 18px; margin-top: 20px; }
 .goma-footer-nav a,
-.goma-footer-soon { color: var(--goma-green-dark); font-size: .86rem; font-weight: 750; text-decoration: underline; text-underline-offset: 3px; }
+.goma-footer-soon { display: inline-flex; min-height: 44px; align-items: center; padding: 4px 3px; color: var(--goma-green-dark); font-size: .9rem; font-weight: 750; text-decoration: underline; text-underline-offset: 3px; }
 .goma-footer-soon { color: var(--goma-muted); text-decoration: none; }
-.goma-copyright { margin: 22px 0 0; color: var(--goma-muted); font-size: .72rem; }
+.goma-copyright { margin: 22px 0 0; color: var(--goma-muted); font-size: .78rem; }
 
 /* ====================== スマホ ====================== */
 @media (max-width: 560px) {
