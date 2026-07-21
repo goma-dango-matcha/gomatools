@@ -1507,17 +1507,13 @@ a { color: var(--terms-green-dark); }
 .hourly-hint { margin: 14px 0 0; color: var(--terms-muted); font-size: .92rem; line-height: 1.7; }
 .hourly-error { min-height: 1.5em; margin: 12px 0 0; color: #b42318; font-weight: 800; text-align: center; overflow-wrap: anywhere; }
 .hourly-form-buttons button,
-.hourly-copy,
-.hourly-related-button { min-width: 180px; min-height: 52px; padding: 12px 22px; border: 1px solid #afc1a5; border-radius: 13px; background: #f7faf5; color: var(--terms-green-dark); font: inherit; font-weight: 850; cursor: pointer; text-decoration: none; transition: transform .18s, background .18s, box-shadow .18s; }
+.hourly-copy { min-width: 180px; min-height: 52px; padding: 12px 22px; border: 1px solid #afc1a5; border-radius: 13px; background: #f7faf5; color: var(--terms-green-dark); font: inherit; font-weight: 850; cursor: pointer; text-decoration: none; transition: transform .18s, background .18s, box-shadow .18s; }
 .hourly-form-buttons .hourly-primary,
-.hourly-copy,
-.hourly-related-button { border-color: var(--terms-green); background: var(--terms-green); color: #fff; }
+.hourly-copy { border-color: var(--terms-green); background: var(--terms-green); color: #fff; }
 .hourly-form-buttons button:hover,
-.hourly-copy:hover,
-.hourly-related-button:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(67, 91, 49, .16); }
+.hourly-copy:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(67, 91, 49, .16); }
 .hourly-form-buttons .hourly-primary:hover,
-.hourly-copy:hover,
-.hourly-related-button:hover { background: var(--terms-green-dark); }
+.hourly-copy:hover { background: var(--terms-green-dark); }
 .hourly-field input:focus-visible,
 .hourly-form-buttons button:focus-visible,
 .hourly-copy:focus-visible { outline: 3px solid rgba(99, 132, 63, .3); outline-offset: 3px; }
