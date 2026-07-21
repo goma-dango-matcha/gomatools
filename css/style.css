@@ -1106,7 +1106,14 @@ a { color: var(--terms-green-dark); }
 .text-format-message.is-error { color: #b42318; }
 .text-format-message.is-success { color: var(--terms-green-dark); }
 .text-format-warning { margin: 10px 0 0; padding: 10px 13px; border-radius: 10px; background: #fff5dc; color: #76550e; font-weight: 700; }
-.text-format-info { line-height: 1.85; }
+.text-format-info,
+.text-compare-info,
+.encoding-info,
+.work-time-info,
+.hourly-info,
+.grade-info,
+.attendance-info,
+.required-info { line-height: 1.85; }
 .text-format-support-list { margin: 0; padding-left: 1.3em; color: var(--terms-muted); }
 .text-format-support-list li + li { margin-top: 9px; }
 .text-format-one-point,
@@ -1261,7 +1268,6 @@ a { color: var(--terms-green-dark); }
 .text-compare-change b { display: block; margin-bottom: 6px; color: var(--terms-muted); font-family: inherit; }
 .text-compare-diff mark { padding: 0 2px; border-radius: 4px; background: #ffe08a; color: inherit; }
 .text-compare-result-actions { display: flex; justify-content: center; margin-top: 20px; }
-.text-compare-info { line-height: 1.85; }
 .text-compare-support-list { margin: 0; padding-left: 1.3em; color: var(--terms-muted); }
 .text-compare-support-list li + li { margin-top: 9px; }
 .text-compare-one-point h2 { color: var(--terms-green-dark); }
@@ -1309,7 +1315,6 @@ a { color: var(--terms-green-dark); }
 .encoding-result-main span { display: block; color: var(--terms-muted); font-size: .88rem; font-weight: 800; }
 .encoding-result-main strong { display: block; margin-top: 8px; color: var(--terms-green-dark); font-size: clamp(1.8rem, 6vw, 2.6rem); }
 .encoding-result textarea { background: #fff !important; }
-.encoding-info { line-height: 1.85; }
 .encoding-support-list { margin: 0; padding-left: 1.3em; color: var(--terms-muted); }
 .encoding-support-list li + li { margin-top: 9px; }
 .encoding-result-buttons { margin-top: 18px; }
@@ -1370,7 +1375,6 @@ a { color: var(--terms-green-dark); }
 .pfc-copy,
 .loan-copy,
 .percentage-copy { display: block; margin: 20px auto 0; }
-.work-time-info { line-height: 1.85; }
 .work-time-support-list { margin: 0; padding-left: 1.3em; color: var(--terms-muted); }
 .work-time-support-list li + li { margin-top: 9px; }
 
@@ -1536,7 +1540,6 @@ a { color: var(--terms-green-dark); }
 .hourly-result-grid > div { padding: 20px 14px; border: 1px solid #d8e4d2; border-radius: 15px; background: #fff; text-align: center; }
 .hourly-result-grid strong { display: block; margin-top: 7px; color: var(--terms-text); font-size: clamp(1rem, 3vw, 1.28rem); }
 .hourly-note { margin: 16px 0 0; padding: 11px 14px; border-radius: 11px; background: #fffaf0; color: #75551a; font-weight: 800; text-align: center; }
-.hourly-info { line-height: 1.85; }
 .hourly-support-list { margin: 0; padding-left: 1.3em; color: var(--terms-muted); }
 .hourly-support-list li + li { margin-top: 9px; }
 
@@ -1850,7 +1853,6 @@ a { color: var(--terms-green-dark); }
 .grade-rating { margin-top: 18px; padding: 20px; border-radius: 15px; background: #fffaf0; text-align: center; }
 .grade-rating strong { display: block; margin-top: 6px; color: #c48516; font-size: 1.75rem; letter-spacing: .08em; }
 .grade-rating p { margin: 5px 0 0; color: var(--terms-text); font-weight: 800; }
-.grade-info { line-height: 1.85; }
 .grade-support-list { margin: 0; padding-left: 1.25em; color: var(--terms-muted); line-height: 1.75; }
 .grade-support-list li + li { margin-top: 8px; }
 .grade-add:focus-visible,
@@ -1920,7 +1922,6 @@ a { color: var(--terms-green-dark); }
 .attendance-allowance strong { display: block; margin-top: 6px; color: var(--terms-green-dark); font-size: clamp(1.45rem, 5vw, 2rem); }
 .attendance-allowance.is-low strong { color: #a23c32; }
 .attendance-allowance p { margin: 8px 0 0; color: var(--terms-muted); line-height: 1.7; }
-.attendance-info { line-height: 1.85; }
 .attendance-support-list { margin: 0; padding-left: 1.25em; color: var(--terms-muted); line-height: 1.75; }
 .attendance-support-list li + li { margin-top: 8px; }
 .attendance-form-buttons button:focus-visible,
@@ -1966,7 +1967,6 @@ a { color: var(--terms-green-dark); }
 .required-result-grid > div { padding: 18px 12px; border: 1px solid #d8e4d2; border-radius: 14px; background: #fff; text-align: center; }
 .required-result-grid strong { display: block; margin-top: 6px; color: var(--terms-text); font-size: 1.08rem; }
 .required-message { margin-top: 18px; padding: 18px 16px; border-radius: 15px; background: #fffaf0; color: #75551a; font-weight: 850; line-height: 1.75; text-align: center; }
-.required-info { line-height: 1.85; }
 .required-support-list { margin: 0; padding-left: 1.25em; color: var(--terms-muted); line-height: 1.75; }
 .required-support-list li + li { margin-top: 8px; }
 .required-tabs button:focus-visible,
