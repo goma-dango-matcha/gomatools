@@ -1052,7 +1052,18 @@ a { color: var(--terms-green-dark); }
 .text-format-heading-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
 .text-format-heading-row h2 { margin: 0; }
 .text-format-count { flex-shrink: 0; padding: 6px 11px; border-radius: 999px; background: var(--terms-green-light); color: var(--terms-green-dark); font-size: .88rem; font-weight: 800; }
-.text-format-label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
+.text-format-label,
+.text-compare-field label, .encoding-field label, .work-time-field label,
+.overtime-field label, .overtime-pay-field label, .overtime-pay-custom label,
+.hourly-field label, .bmr-field label, .tdee-field label, .tdee-activity > label,
+.ideal-field label, .burn-field label, .study-time-field label,
+.required-field label, .bodyfat-field label, .pfc-field label,
+.loan-field label, .percentage-field label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--terms-text);
+  font-weight: 800;
+}
 .text-format-textarea { width: 100%; min-height: 230px; resize: vertical; padding: 16px; border: 1px solid #cbd6c5; border-radius: 14px; background: #fcfdfb; color: var(--terms-text); font: inherit; font-size: 16px; line-height: 1.7; transition: border-color .2s, box-shadow .2s; }
 .text-format-textarea:focus { outline: none; border-color: var(--terms-green); box-shadow: 0 0 0 4px rgba(99, 132, 63, .15); }
 .text-format-action-group + .text-format-action-group { margin-top: 28px; padding-top: 26px; border-top: 1px solid var(--terms-line); }
@@ -1103,7 +1114,6 @@ a { color: var(--terms-green-dark); }
 .text-compare-eyebrow { color: var(--terms-green) !important; font-weight: 800; }
 .text-compare-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .text-compare-input-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
-.text-compare-field label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
 .text-compare-field textarea { min-height: 260px !important; font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace; line-height: 1.65; }
 .text-compare-count { margin: 8px 0 0; color: var(--terms-muted); font-size: .88rem; font-weight: 800; text-align: right; }
 .text-compare-hint { margin: 14px 0 0; color: var(--terms-muted); font-size: .92rem; line-height: 1.7; }
@@ -1190,7 +1200,6 @@ a { color: var(--terms-green-dark); }
 .encoding-mode-grid span { min-width: 0; }
 .encoding-mode-grid strong { display: block; font-weight: 850; overflow-wrap: anywhere; }
 .encoding-mode-grid small { display: block; margin-top: 4px; color: var(--terms-muted); font-size: .82rem; font-weight: 600; line-height: 1.45; }
-.encoding-field label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
 .encoding-field textarea,
 .encoding-result textarea { min-height: 230px !important; font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace; line-height: 1.65; }
 .encoding-count { margin: 8px 0 0; color: var(--terms-muted); font-size: .88rem; font-weight: 800; text-align: right; }
@@ -1232,7 +1241,6 @@ a { color: var(--terms-green-dark); }
 .work-time-eyebrow { color: var(--terms-green) !important; font-weight: 800; }
 .work-time-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .work-time-form-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
-.work-time-field label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
 .work-time-field input { width: 100%; min-width: 0; }
 .work-time-field small { display: block; margin-top: 7px; color: var(--terms-muted); font-size: .84rem; line-height: 1.5; }
 .work-time-required { display: inline-block; margin-left: 4px; padding: 2px 6px; border-radius: 999px; background: #edf5e8; color: var(--terms-green-dark); font-size: .72rem; vertical-align: middle; }
@@ -1285,7 +1293,6 @@ a { color: var(--terms-green-dark); }
 .overtime-eyebrow { color: var(--terms-green) !important; font-weight: 800; }
 .overtime-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .overtime-form-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
-.overtime-field label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
 .overtime-field label span { color: var(--terms-muted); font-size: .78rem; }
 .overtime-field small,
 .overtime-scheduled > small { display: block; margin-top: 8px; color: var(--terms-muted); font-size: .86rem; line-height: 1.6; }
@@ -1341,7 +1348,6 @@ a { color: var(--terms-green-dark); }
 .overtime-pay-eyebrow { color: var(--terms-green) !important; font-weight: 800; }
 .overtime-pay-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .overtime-pay-form-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 18px; align-items: stretch; }
-.overtime-pay-field label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
 .overtime-pay-field label span,
 .overtime-pay-duration legend span,
 .overtime-pay-rate legend span { color: var(--terms-muted); font-size: .78rem; }
@@ -1366,7 +1372,6 @@ a { color: var(--terms-green-dark); }
 .overtime-pay-presets input:focus-visible + span { outline: 3px solid rgba(99, 132, 63, .3); outline-offset: 2px; }
 .overtime-pay-presets label:hover > span { transform: translateY(-2px); border-color: var(--terms-green); }
 .overtime-pay-custom { width: min(100%, 300px); margin-top: 16px; }
-.overtime-pay-custom label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
 .overtime-pay-hint { margin: 14px 0 0; color: var(--terms-muted); font-size: .92rem; }
 .overtime-pay-error { min-height: 1.5em; margin: 12px 0 0; overflow-wrap: anywhere; color: #b42318; font-weight: 800; text-align: center; }
 .overtime-pay-form-buttons { display: flex; justify-content: center; gap: 12px; margin-top: 18px; }
@@ -1417,7 +1422,6 @@ a { color: var(--terms-green-dark); }
 .hourly-eyebrow { color: var(--terms-green) !important; font-weight: 800; }
 .hourly-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .hourly-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
-.hourly-field label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
 .hourly-field input { width: 100%; min-width: 0; }
 .hourly-field small { display: block; margin-top: 7px; color: var(--terms-muted); font-size: .84rem; line-height: 1.5; }
 .hourly-field label .hourly-required,
@@ -1482,7 +1486,6 @@ a { color: var(--terms-green-dark); }
 .bmr-gender label { min-width: 120px; padding: 12px 16px; border: 1px solid #cbd6c5; border-radius: 12px; background: #fcfdfb; font-weight: 800; cursor: pointer; }
 .bmr-gender input { width: auto; min-height: auto; margin-right: 5px; accent-color: var(--terms-green); }
 .bmr-form-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
-.bmr-field label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
 .bmr-error { min-height: 1.5em; margin: 12px 0 0; color: #b42318; font-weight: 800; text-align: center; }
 .bmr-warning { margin: 16px 0 0; padding: 12px 14px; border-radius: 11px; background: #fff5dc; color: #76550e; font-weight: 800; }
 .bmr-form-buttons { display: flex; justify-content: center; gap: 12px; margin-top: 18px; }
@@ -1532,8 +1535,6 @@ a { color: var(--terms-green-dark); }
 .tdee-gender label { min-width: 120px; padding: 12px 16px; border: 1px solid #cbd6c5; border-radius: 12px; background: #fcfdfb; font-weight: 800; cursor: pointer; }
 .tdee-gender input { width: auto; min-height: auto; margin-right: 5px; accent-color: var(--terms-green); }
 .tdee-form-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
-.tdee-field label,
-.tdee-activity > label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
 .tdee-card,
 .tdee-activity { min-width: 0; }
 .tdee-activity { margin-top: 18px; }
@@ -1596,7 +1597,6 @@ a { color: var(--terms-green-dark); }
 .ideal-eyebrow { color: #a44659 !important; font-weight: 800; }
 .ideal-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .ideal-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
-.ideal-field label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
 .ideal-required,
 .ideal-optional { margin-left: 6px; padding: 3px 7px; border-radius: 999px; font-size: .72rem; }
 .ideal-required { background: #fbe8eb; color: #994052; }
@@ -1656,7 +1656,6 @@ a { color: var(--terms-green-dark); }
 .burn-eyebrow { color: #a44659 !important; font-weight: 800; }
 .burn-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .burn-form-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 18px; }
-.burn-field label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
 .burn-hint { margin: 12px 0 0; color: var(--terms-muted); font-size: .9rem; }
 .burn-error { min-height: 1.5em; margin: 12px 0 0; color: #b42318; font-weight: 800; text-align: center; }
 .burn-warning { margin: 16px 0 0; padding: 12px 14px; border-radius: 11px; background: #fff5dc; color: #76550e; font-weight: 800; }
@@ -1718,7 +1717,6 @@ a { color: var(--terms-green-dark); }
 .study-time-duration-grid { display: grid; min-width: 0; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
 .study-time-field { min-width: 0; }
 .study-time-field input { width: 100%; min-width: 0; max-width: 100%; }
-.study-time-field label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
 .study-time-field p { margin: 9px 0 0; color: var(--terms-muted); font-size: .86rem; line-height: 1.6; }
 .study-time-group-note { margin: 10px 0 0; color: var(--terms-muted); font-size: .86rem; line-height: 1.6; }
 .study-time-optional-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 18px; }
@@ -1916,7 +1914,6 @@ a { color: var(--terms-green-dark); }
 .required-tabs button[aria-selected="true"] { border-color: var(--terms-green); background: var(--terms-green); color: #fff; box-shadow: 0 7px 16px rgba(67, 91, 49, .18); }
 .required-form-title { margin: 22px 0 16px; padding: 13px 15px; border-radius: 12px; background: var(--terms-green-light); color: var(--terms-green-dark); font-weight: 800; line-height: 1.65; }
 .required-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
-.required-field label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
 .required-error { min-height: 1.5em; margin: 12px 0 0; color: #b42318; font-weight: 800; text-align: center; }
 .required-warning { margin: 12px 0 0; padding: 12px 14px; border-radius: 11px; background: #fff5dc; color: #76550e; font-weight: 800; text-align: center; }
 .required-form-buttons { display: flex; justify-content: center; gap: 12px; margin-top: 18px; }
@@ -1975,7 +1972,6 @@ a { color: var(--terms-green-dark); }
 .bodyfat-gender label { min-width: 120px; padding: 12px 16px; border: 1px solid #cbd6c5; border-radius: 12px; background: #fcfdfb; font-weight: 800; cursor: pointer; }
 .bodyfat-gender input { width: auto; min-height: auto; margin-right: 5px; accent-color: var(--terms-green); }
 .bodyfat-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
-.bodyfat-field label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
 .bodyfat-field label span { color: var(--terms-muted); font-size: .78rem; font-weight: 700; }
 .bodyfat-hint { margin: 16px 0 0; color: var(--terms-muted); font-size: .92rem; line-height: 1.7; }
 .bodyfat-error { min-height: 1.5em; margin: 12px 0 0; color: #b42318; font-weight: 800; text-align: center; }
@@ -2026,7 +2022,6 @@ a { color: var(--terms-green-dark); }
 ========================================================= */
 .pfc-eyebrow { color: #4f7938 !important; font-weight: 800; }
 .pfc-card h2 { margin: 0 0 18px; color: var(--terms-green-dark); font-size: 1.35rem; }
-.pfc-field label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
 .pfc-field label span { color: var(--terms-muted); font-size: .82rem; }
 .pfc-calorie-field { max-width: 480px; margin: 0 auto 24px; }
 .pfc-presets { margin: 0 0 24px; padding: 0; border: 0; }
@@ -2091,7 +2086,6 @@ a { color: var(--terms-green-dark); }
 .loan-eyebrow { color: var(--terms-green) !important; font-weight: 800; }
 .loan-card h2 { margin: 0 0 20px; color: var(--terms-green-dark); font-size: 1.35rem; }
 .loan-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
-.loan-field label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
 .loan-field label span,
 .loan-period legend span { color: var(--terms-muted); font-size: .78rem; }
 .loan-period { margin: 22px 0 0; padding: 18px; border: 1px solid #d8e4d2; border-radius: 15px; background: #fbfdf9; }
@@ -2146,7 +2140,6 @@ a { color: var(--terms-green-dark); }
 .percentage-tabs button[aria-selected="true"] { border-color: var(--terms-green); background: var(--terms-green); color: #fff; box-shadow: 0 7px 16px rgba(67, 91, 49, .18); }
 .percentage-form-title { margin: 24px 0 16px; padding: 13px 15px; border-radius: 12px; background: var(--terms-green-light); color: var(--terms-green-dark); font-weight: 800; line-height: 1.65; }
 .percentage-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
-.percentage-field label { display: block; margin-bottom: 8px; color: var(--terms-text); font-weight: 800; }
 .percentage-error { min-height: 1.5em; margin: 12px 0 0; color: #b42318; font-weight: 800; text-align: center; }
 .percentage-form-buttons { display: flex; justify-content: center; gap: 12px; margin-top: 18px; }
 .percentage-form-buttons button,
