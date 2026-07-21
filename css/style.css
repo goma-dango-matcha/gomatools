@@ -1099,7 +1099,6 @@ a { color: var(--terms-green-dark); }
 .percentage-result { border-color: #b7cba9; background: #fbfdf9; }
 .text-format-result-buttons { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
 .text-format-result-buttons button { flex: 1 1 190px; }
-.text-format-result-buttons .text-format-primary { border-color: var(--terms-green); background: var(--terms-green); color: #fff; }
 .text-format-result-buttons .text-format-primary:hover { background: var(--terms-green-dark); }
 .text-format-result-buttons .text-format-clear { border-color: #d6b8b8; background: #fff7f7; color: #8b4141; }
 .text-format-message { min-height: 1.5em; margin: 10px 0 0; font-weight: 800; }
@@ -1190,7 +1189,24 @@ a { color: var(--terms-green-dark); }
 .pfc-copy,
 .loan-copy,
 .percentage-copy { min-width: 180px; min-height: 52px; padding: 12px 22px; border: 1px solid #afc1a5; border-radius: 13px; background: #f7faf5; color: var(--terms-green-dark); font: inherit; font-weight: 850; cursor: pointer; transition: transform .18s, background .18s, box-shadow .18s; }
-.text-compare-buttons .text-compare-primary { border-color: var(--terms-green); background: var(--terms-green); color: #fff; }
+.text-format-result-buttons .text-format-primary,
+.text-compare-buttons .text-compare-primary,
+.encoding-buttons .encoding-primary,
+.work-time-copy,
+.overtime-copy,
+.overtime-pay-copy,
+.bmr-copy,
+.tdee-copy,
+.ideal-copy,
+.burn-copy,
+.study-time-copy,
+.grade-copy,
+.attendance-copy,
+.required-copy,
+.bodyfat-copy,
+.pfc-copy,
+.loan-copy,
+.percentage-copy { border-color: var(--terms-green); background: var(--terms-green); color: #fff; }
 .text-compare-buttons button:hover,
 .text-compare-copy-button:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(67, 91, 49, .16); }
 .text-compare-buttons .text-compare-primary:hover { background: var(--terms-green-dark); }
@@ -1272,7 +1288,6 @@ a { color: var(--terms-green-dark); }
 .encoding-count { margin: 8px 0 0; color: var(--terms-muted); font-size: .88rem; font-weight: 800; text-align: right; }
 .encoding-hint { margin: 14px 0 0; color: var(--terms-muted); font-size: .92rem; line-height: 1.7; }
 .encoding-error { min-height: 1.5em; margin: 12px 0 0; overflow-wrap: anywhere; color: #b42318; font-weight: 800; text-align: center; }
-.encoding-buttons .encoding-primary { border-color: var(--terms-green); background: var(--terms-green); color: #fff; }
 .encoding-buttons button:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(67, 91, 49, .16); }
 .encoding-buttons .encoding-primary:hover { background: var(--terms-green-dark); }
 .encoding-buttons button:focus-visible { outline: 3px solid rgba(99, 132, 63, .32); outline-offset: 3px; }
@@ -1311,7 +1326,6 @@ a { color: var(--terms-green-dark); }
 .work-time-error { min-height: 1.5em; margin: 12px 0 0; color: #b42318; font-weight: 800; text-align: center; overflow-wrap: anywhere; }
 .work-time-form-buttons button,
 .work-time-form-buttons .work-time-primary,
-.work-time-copy { border-color: var(--terms-green); background: var(--terms-green); color: #fff; }
 .work-time-form-buttons button:hover,
 .work-time-copy:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(67, 91, 49, .16); }
 .work-time-form-buttons .work-time-primary:hover,
@@ -1380,7 +1394,6 @@ a { color: var(--terms-green-dark); }
 .overtime-error { min-height: 1.5em; margin: 12px 0 0; overflow-wrap: anywhere; color: #b42318; font-weight: 800; text-align: center; }
 .overtime-form-buttons button,
 .overtime-form-buttons .overtime-primary,
-.overtime-copy { border-color: var(--terms-green); background: var(--terms-green); color: #fff; }
 .overtime-form-buttons button:hover,
 .overtime-copy:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(67, 91, 49, .16); }
 .overtime-form-buttons .overtime-primary:hover,
@@ -1445,7 +1458,6 @@ a { color: var(--terms-green-dark); }
 .overtime-pay-error { min-height: 1.5em; margin: 12px 0 0; overflow-wrap: anywhere; color: #b42318; font-weight: 800; text-align: center; }
 .overtime-pay-form-buttons button,
 .overtime-pay-form-buttons .overtime-pay-primary,
-.overtime-pay-copy { border-color: var(--terms-green); background: var(--terms-green); color: #fff; }
 .overtime-pay-form-buttons button:hover,
 .overtime-pay-copy:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(67, 91, 49, .16); }
 .overtime-pay-form-buttons .overtime-pay-primary:hover,
@@ -1550,7 +1562,6 @@ a { color: var(--terms-green-dark); }
 .bmr-warning { margin: 16px 0 0; padding: 12px 14px; border-radius: 11px; background: #fff5dc; color: #76550e; font-weight: 800; }
 .bmr-form-buttons button,
 .bmr-form-buttons .bmr-primary,
-.bmr-copy { border-color: var(--terms-green); background: var(--terms-green); color: #fff; }
 .bmr-form-buttons button:hover,
 .bmr-copy:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(67, 91, 49, .16); }
 .bmr-form-buttons .bmr-primary:hover,
@@ -1598,7 +1609,6 @@ a { color: var(--terms-green-dark); }
 .tdee-warning { margin: 16px 0 0; padding: 12px 14px; border-radius: 11px; background: #fff5dc; color: #76550e; font-weight: 800; }
 .tdee-form-buttons button,
 .tdee-form-buttons .tdee-primary,
-.tdee-copy { border-color: var(--terms-green); background: var(--terms-green); color: #fff; }
 .tdee-form-buttons button:hover,
 .tdee-copy:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(67, 91, 49, .16); }
 .tdee-form-buttons .tdee-primary:hover,
@@ -1656,7 +1666,6 @@ a { color: var(--terms-green-dark); }
 .ideal-warning { margin: 16px 0 0; padding: 12px 14px; border-radius: 11px; background: #fff5dc; color: #76550e; font-weight: 800; }
 .ideal-form-buttons button,
 .ideal-form-buttons .ideal-primary,
-.ideal-copy { border-color: var(--terms-green); background: var(--terms-green); color: #fff; }
 .ideal-form-buttons button:hover,
 .ideal-copy:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(67, 91, 49, .16); }
 .ideal-form-buttons .ideal-primary:hover,
@@ -1706,7 +1715,6 @@ a { color: var(--terms-green-dark); }
 .burn-warning { margin: 16px 0 0; padding: 12px 14px; border-radius: 11px; background: #fff5dc; color: #76550e; font-weight: 800; }
 .burn-form-buttons button,
 .burn-form-buttons .burn-primary,
-.burn-copy { border-color: var(--terms-green); background: var(--terms-green); color: #fff; }
 .burn-form-buttons button:hover,
 .burn-copy:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(67, 91, 49, .16); }
 .burn-form-buttons .burn-primary:hover,
@@ -1766,7 +1774,6 @@ a { color: var(--terms-green-dark); }
 .study-time-error { min-height: 1.5em; margin: 12px 0 0; color: #b42318; font-weight: 800; text-align: center; }
 .study-time-form-buttons button,
 .study-time-form-buttons .study-time-primary,
-.study-time-copy { border-color: var(--terms-green); background: var(--terms-green); color: #fff; }
 .study-time-form-buttons button:hover,
 .study-time-copy:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(67, 91, 49, .16); }
 .study-time-form-buttons .study-time-primary:hover,
@@ -1820,7 +1827,6 @@ a { color: var(--terms-green-dark); }
 .grade-error { min-height: 1.5em; margin: 14px 0 0; color: #b42318; font-weight: 800; text-align: center; }
 .grade-form-buttons button,
 .grade-form-buttons .grade-primary,
-.grade-copy { border-color: var(--terms-green); background: var(--terms-green); color: #fff; }
 .grade-form-buttons button:hover,
 .grade-copy:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(67, 91, 49, .16); }
 .grade-form-buttons .grade-primary:hover,
@@ -1887,7 +1893,6 @@ a { color: var(--terms-green-dark); }
 .attendance-error { min-height: 1.5em; margin: 12px 0 0; color: #b42318; font-weight: 800; text-align: center; }
 .attendance-form-buttons button,
 .attendance-form-buttons .attendance-primary,
-.attendance-copy { border-color: var(--terms-green); background: var(--terms-green); color: #fff; }
 .attendance-form-buttons button:hover,
 .attendance-copy:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(67, 91, 49, .16); }
 .attendance-form-buttons .attendance-primary:hover,
@@ -1943,7 +1948,6 @@ a { color: var(--terms-green-dark); }
 .required-warning { margin: 12px 0 0; padding: 12px 14px; border-radius: 11px; background: #fff5dc; color: #76550e; font-weight: 800; text-align: center; }
 .required-form-buttons button,
 .required-form-buttons .required-primary,
-.required-copy { border-color: var(--terms-green); background: var(--terms-green); color: #fff; }
 .required-form-buttons button:hover,
 .required-copy:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(67, 91, 49, .16); }
 .required-form-buttons .required-primary:hover,
@@ -1998,7 +2002,6 @@ a { color: var(--terms-green-dark); }
 .bodyfat-warning { margin: 12px 0 0; padding: 12px 14px; border-radius: 11px; background: #fff5dc; color: #76550e; font-weight: 800; text-align: center; }
 .bodyfat-form-buttons button,
 .bodyfat-form-buttons .bodyfat-primary,
-.bodyfat-copy { border-color: var(--terms-green); background: var(--terms-green); color: #fff; }
 .bodyfat-form-buttons button:hover,
 .bodyfat-copy:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(67, 91, 49, .16); }
 .bodyfat-form-buttons .bodyfat-primary:hover,
@@ -2052,7 +2055,6 @@ a { color: var(--terms-green-dark); }
 .pfc-error { min-height: 1.5em; margin: 10px 0 0; color: #b42318; font-weight: 800; text-align: center; }
 .pfc-form-buttons button,
 .pfc-form-buttons .pfc-primary,
-.pfc-copy { border-color: var(--terms-green); background: var(--terms-green); color: #fff; }
 .pfc-form-buttons button:hover,
 .pfc-copy:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(67, 91, 49, .16); }
 .pfc-form-buttons .pfc-primary:hover,
@@ -2105,7 +2107,6 @@ a { color: var(--terms-green-dark); }
 .loan-error { min-height: 1.5em; margin: 12px 0 0; color: #b42318; font-weight: 800; text-align: center; }
 .loan-form-buttons button,
 .loan-form-buttons .loan-primary,
-.loan-copy { border-color: var(--terms-green); background: var(--terms-green); color: #fff; }
 .loan-form-buttons button:hover,
 .loan-copy:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(67, 91, 49, .16); }
 .loan-form-buttons .loan-primary:hover,
@@ -2148,7 +2149,6 @@ a { color: var(--terms-green-dark); }
 .percentage-error { min-height: 1.5em; margin: 12px 0 0; color: #b42318; font-weight: 800; text-align: center; }
 .percentage-form-buttons button,
 .percentage-form-buttons .percentage-primary,
-.percentage-copy { border-color: var(--terms-green); background: var(--terms-green); color: #fff; }
 .percentage-form-buttons button:hover,
 .percentage-copy:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(67, 91, 49, .16); }
 .percentage-form-buttons .percentage-primary:hover,
