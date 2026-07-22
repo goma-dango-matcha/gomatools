@@ -1,10 +1,15 @@
 (function initializeSchoolEntryReference(global) {
   'use strict';
 
+  const SCHOOL_DEFINITIONS = Object.freeze({
+    elementary: Object.freeze({ label: '小学校', entryOffset: 7, duration: 6 }),
+    middle: Object.freeze({ label: '中学校', entryOffset: 13, duration: 3 }),
+    high: Object.freeze({ label: '高校', entryOffset: 16, duration: 3 })
+  });
   const ENTRY_OFFSETS = Object.freeze({
-    elementary: 7,
-    middle: 13,
-    high: 16
+    elementary: SCHOOL_DEFINITIONS.elementary.entryOffset,
+    middle: SCHOOL_DEFINITIONS.middle.entryOffset,
+    high: SCHOOL_DEFINITIONS.high.entryOffset
   });
   const PAST_ENTRY_YEARS = 80;
   const FUTURE_ENTRY_YEARS = 20;
@@ -110,6 +115,7 @@
   }
 
   const api = Object.freeze({
+    SCHOOL_DEFINITIONS,
     ENTRY_OFFSETS,
     PAST_ENTRY_YEARS,
     FUTURE_ENTRY_YEARS,

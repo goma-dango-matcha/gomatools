@@ -1,0 +1,16 @@
+.school-graduation-academic-year,
+.school-graduation-month { display: block; }
+
+.school-graduation-academic-year { font-weight: 850; }
+
+.school-graduation-month {
+  margin-top: 3px;
+  color: var(--terms-muted);
+  font-size: .78rem;
+  line-height: 1.35;
+}
+
+@media (max-width: 340px) {
+  .school-graduation-month { font-size: .68rem; }
+  .school-entry-current-badge { padding-inline: 4px; }
+}

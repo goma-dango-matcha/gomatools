@@ -42,8 +42,9 @@
     background: #fff !important;
     overflow: hidden;
   }
-  .school-entry-table tbody th {
+  .school-entry-table tbody th:first-child {
     grid-column: 1 / -1;
+    width: auto;
     padding: 10px 8px;
     border-bottom: 1px solid var(--terms-line);
     background: #f7faf5;
