@@ -1,0 +1,78 @@
+.japanese-era-current {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 12px !important;
+  padding: 8px 14px;
+  color: var(--terms-green-dark) !important;
+  border: 1px solid #d6e2d0;
+  border-radius: 999px;
+  background: var(--terms-green-light);
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+}
+
+.reference-jump-links { margin: 18px 0 4px; }
+
+.reference-jump-links ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reference-jump-links a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  padding: 8px 14px;
+  border: 1px solid #d6e2d0;
+  border-radius: 999px;
+  background: #fbfdf9;
+  color: var(--terms-green-dark);
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.reference-jump-links a:hover { background: var(--terms-green-light); }
+
+.japanese-era-group {
+  margin-top: 24px;
+  scroll-margin-top: 24px;
+}
+
+.japanese-era-group h3 {
+  margin: 0 0 10px;
+  color: var(--terms-green-dark);
+  font-size: 1.08rem;
+}
+
+.japanese-era-table th:first-child { width: 30%; }
+.japanese-era-table th:nth-child(2) { width: 50%; }
+.japanese-era-table th:last-child { width: 20%; }
+.japanese-era-table .current-year-row { background: var(--terms-green-light); }
+.japanese-era-table .current-year-row th { box-shadow: inset 4px 0 var(--terms-green); }
+
+.current-year-badge {
+  display: inline-block;
+  margin-right: 6px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: var(--terms-green-dark);
+  color: #fff;
+  font-size: .7rem;
+  line-height: 1.4;
+  vertical-align: middle;
+}
+
+@media (max-width: 560px) {
+  .japanese-era-current {
+    gap: 7px;
+    padding-inline: 11px;
+    font-size: .92rem;
+  }
+
+  .reference-jump-links a { padding-inline: 12px; }
+}
