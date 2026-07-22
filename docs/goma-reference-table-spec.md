@@ -1,4 +1,4 @@
-# ゴマ早見表 ブランド仕様書 Version1.2
+# ゴマ早見表 ブランド仕様書 Version1.3
 
 ## 目的
 
@@ -93,7 +93,7 @@
 
 ## 候補管理
 
-作成候補、検討順序、評価結果は [ゴマ早見表ロードマップ](internal/goma-reference-table-roadmap.md) で管理する。
+シリーズ単位の検討順序は[ゴマ早見表ロードマップ](internal/goma-reference-table-roadmap.md)、候補ごとの情報、評価、優先度、状態は[ゴマ早見表 候補台帳](internal/goma-reference-table-registry.md)で管理する。
 
 候補ごとに、次を確認してから個別仕様書と実装へ進む。
 
