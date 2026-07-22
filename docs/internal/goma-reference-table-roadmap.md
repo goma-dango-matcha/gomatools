@@ -1,4 +1,4 @@
-# ゴマ早見表ロードマップ Version1.0
+# ゴマ早見表ロードマップ Version1.1
 
 最終更新：2026-07-22
 
@@ -12,14 +12,15 @@
 
 思いつきで追加せず、ブランド適合性、検索需要、保守性、利用者価値を総合的に評価し、十分な価値を確認できた候補だけを個別仕様化・実装する。
 
-ゴマ早見表の構成・UI・導線は、[`docs/goma-reference-table-spec.md`](../goma-reference-table-spec.md) に従う。
+ゴマ早見表のブランド方針は[`docs/goma-reference-table-spec.md`](../goma-reference-table-spec.md)、構成・UI・導線の実装ルールは[`docs/goma-reference-table-implementation-spec.md`](../goma-reference-table-implementation-spec.md)に従う。
 
 ---
 
 ## この文書の役割
 
 - 本書：候補、検討順序、評価結果、採用・保留状況を管理する
-- ゴマ早見表共通仕様書：すべての早見表へ適用する実装・レビュー基準を管理する
+- ゴマ早見表ブランド仕様書：シリーズの役割とブランド方針を管理する
+- ゴマ早見表共通実装仕様書：すべての早見表へ適用する実装・確認基準を管理する
 - 運営ロードマップ：ゴマツール全体の開発フェーズと優先順位を管理する
 - 個別仕様書：採用した早見表固有のデータ、URL、SEO、更新方法を定義する
 

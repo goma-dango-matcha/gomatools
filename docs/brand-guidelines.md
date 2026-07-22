@@ -1,4 +1,4 @@
-# ゴマツール ブランド仕様書 Version1.2
+# ゴマツール ブランド仕様書 Version1.3
 
 ## 目的
 
@@ -143,7 +143,7 @@ UI名称・セクション名称は、[共通用語辞書](common-terminology.md
 
 入力せず、整理された一覧から短時間で目的の情報を確認できるページを作成する。
 
-ゴマ早見表の共通構成は、[ゴマ早見表 共通仕様書](goma-reference-table-spec.md) に従う。
+ゴマ早見表のブランド方針は[ゴマ早見表 ブランド仕様書](goma-reference-table-spec.md)、実装ルールは[ゴマ早見表 共通実装仕様書](goma-reference-table-implementation-spec.md)に従う。
 
 ### ツール
 
