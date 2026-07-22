@@ -2552,13 +2552,28 @@ a { color: var(--terms-green-dark); }
 .reference-table .zodiac-column { width: 20%; }
 .reference-table .age-column { width: 22%; }
 .reference-table .era-part { display: inline; }
+.school-grade-year-badge {
+  display: inline-flex;
+  margin: 0 0 10px !important;
+  padding: 5px 12px;
+  color: var(--terms-green-dark) !important;
+  border: 1px solid #d6e2d0;
+  border-radius: 999px;
+  background: var(--terms-green-light);
+  font-size: .84rem;
+  font-weight: 850;
+}
 .school-grade-group { margin-top: 24px; }
 .school-grade-group:first-of-type { margin-top: 18px; }
 .school-grade-group h3 {
+  display: flex;
+  align-items: center;
+  gap: 7px;
   margin: 0 0 10px;
   color: var(--terms-green-dark);
   font-size: 1.05rem;
 }
+.school-grade-group h3 span[aria-hidden="true"] { line-height: 1; }
 .school-grade-caution {
   margin: 10px 0 0 !important;
   color: var(--terms-muted);
