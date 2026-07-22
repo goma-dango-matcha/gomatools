@@ -29,7 +29,7 @@
 2. [共通用語辞書](common-terminology.md)
 3. [共通文章設計仕様書](writing-guidelines.md)
 
-実装時は、本書を上位仕様として [ゴマ早見表 共通実装仕様書](goma-reference-table-implementation-spec.md)、[ゴマ早見表 回遊性強化 共通仕様書](goma-reference-table-circulation-spec.md)、[ゴマ早見表 デザインシステム仕様書](goma-reference-table-design-system.md) に従う。既存UIを利用する場合は、[ツール共通仕様書](tool-common-spec-v3.md) のデザイン・アクセシビリティ方針も参照する。
+実装時は、本書を上位仕様として [ゴマ早見表 共通実装仕様書](goma-reference-table-implementation-spec.md)、[ゴマ早見表 回遊性強化 共通仕様書](goma-reference-table-circulation-spec.md)、[ゴマ早見表 デザインシステム仕様書](goma-reference-table-design-system.md) に従う。公開後の点検・更新・障害対応は、[ゴマ早見表 運用・保守仕様書](goma-reference-table-maintenance-spec.md) に従う。既存UIを利用する場合は、[ツール共通仕様書](tool-common-spec-v3.md) のデザイン・アクセシビリティ方針も参照する。
 
 ---
 
