@@ -1,0 +1,74 @@
+.school-entry-table th:first-child { width: 40%; }
+.school-entry-table th:not(:first-child) { width: 20%; }
+.school-entry-date,
+.school-entry-range-separator,
+.school-entry-year { display: block; }
+.school-entry-date { white-space: nowrap; }
+.school-entry-range-separator { color: var(--terms-muted); line-height: 1.15; }
+.school-entry-current-year { background: var(--terms-green-light); }
+.school-entry-current-badge {
+  display: inline-block;
+  margin-bottom: 4px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: var(--terms-green-dark);
+  color: #fff;
+  font-size: .7rem;
+  font-weight: 850;
+  line-height: 1.4;
+}
+
+@media (max-width: 560px) {
+  .school-entry-table { display: block; }
+  .school-entry-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    clip-path: inset(50%);
+  }
+  .school-entry-table tbody {
+    display: grid;
+    gap: 10px;
+    padding: 10px;
+  }
+  .school-entry-table tbody tr {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border: 1px solid var(--terms-line);
+    border-radius: 12px;
+    background: #fff !important;
+    overflow: hidden;
+  }
+  .school-entry-table tbody th {
+    grid-column: 1 / -1;
+    padding: 10px 8px;
+    border-bottom: 1px solid var(--terms-line);
+    background: #f7faf5;
+    text-align: left;
+  }
+  .school-entry-table tbody td {
+    padding: 10px 3px;
+    border-bottom: 0;
+  }
+  .school-entry-table tbody td + td { border-left: 1px solid var(--terms-line); }
+  .school-entry-table tbody td::before {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--terms-muted);
+    content: attr(data-label);
+    font-size: .72rem;
+    font-weight: 800;
+  }
+  .school-entry-table .school-entry-date,
+  .school-entry-table .school-entry-range-separator { display: inline; }
+  .school-entry-table .school-entry-range-separator { margin-inline: 4px; }
+}
+
+@media (max-width: 340px) {
+  .school-entry-table tbody { padding: 8px; }
+  .school-entry-table tbody td { font-size: .74rem; }
+  .school-entry-table tbody td::before { font-size: .68rem; }
+}
