@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8BNDHPNEHY"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-8BNDHPNEHY');</script>
+  <title>学年早見表｜生年月日から現在の学年を一覧で確認【ゴマ早見表】</title>
+  <meta name="description" content="生年月日の範囲から現在年度の学年を一覧で確認できます。小学校・中学校・高校・大学の学年目安と、4月1日・4月2日の学年区分を掲載しています。">
+  <link rel="canonical" href="https://goma-dango-matcha.github.io/gomatools/quick-reference/school-grade/">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="ゴマツール">
+  <meta property="og:title" content="学年早見表｜生年月日から現在の学年を一覧で確認【ゴマ早見表】">
+  <meta property="og:description" content="生年月日の範囲から、小学校・中学校・高校・大学の現在年度の学年目安を一覧で確認できます。">
+  <meta property="og:url" content="https://goma-dango-matcha.github.io/gomatools/quick-reference/school-grade/">
+  <meta property="og:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="学年早見表｜生年月日から現在の学年を一覧で確認【ゴマ早見表】">
+  <meta name="twitter:description" content="生年月日の範囲から、小学校・中学校・高校・大学の現在年度の学年目安を一覧で確認できます。">
+  <meta name="twitter:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <link rel="stylesheet" href="../../css/style.css?v=2.8">
+  <link rel="stylesheet" href="../../assets/goma-ui.css?v=2.8">
+  <script defer src="../../assets/goma-ui.js?v=2.8"></script>
+  <script defer src="./school-grade.js"></script>
+  <link rel="icon" href="../../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <meta name="theme-color" content="#63843F">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "name": "学年早見表",
+        "url": "https://goma-dango-matcha.github.io/gomatools/quick-reference/school-grade/",
+        "description": "生年月日の範囲から、小学校・中学校・高校・大学の現在年度の学年目安を一覧で確認できる早見表です。",
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "ゴマツール",
+          "url": "https://goma-dango-matcha.github.io/gomatools/"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://goma-dango-matcha.github.io/gomatools/"},
+          {"@type": "ListItem", "position": 2, "name": "ゴマ早見表", "item": "https://goma-dango-matcha.github.io/gomatools/quick-reference/"},
+          {"@type": "ListItem", "position": 3, "name": "学年早見表", "item": "https://goma-dango-matcha.github.io/gomatools/quick-reference/school-grade/"}
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "4月1日生まれと4月2日生まれで学年が違うのはなぜですか？",
+            "acceptedAnswer": {"@type": "Answer", "text": "日本の学校では、4月2日生まれから翌年4月1日生まれまでが同じ学年になります。4月1日生まれは、4月2日生まれより1つ上の学年です。"}
+          },
+          {
+            "@type": "Question",
+            "name": "同じ年に生まれても学年が違うことはありますか？",
+            "acceptedAnswer": {"@type": "Answer", "text": "はい。1月1日から4月1日生まれは、同じ年の4月2日以降に生まれた人より1つ上の学年になります。"}
+          },
+          {
+            "@type": "Question",
+            "name": "大学の学年も正確に分かりますか？",
+            "acceptedAnswer": {"@type": "Answer", "text": "大学は標準的な4年制へ現役で進学した場合の目安です。浪人・留年・休学や、修業年限が異なる課程は反映していません。"}
+          },
+          {
+            "@type": "Question",
+            "name": "学年早見表はいつ更新されますか？",
+            "acceptedAnswer": {"@type": "Answer", "text": "現在の日本時間から対象年度を自動判定し、年度に合わせて表示を更新します。"}
+          },
+          {
+            "@type": "Question",
+            "name": "早生まれとはいつからいつまでですか？",
+            "acceptedAnswer": {"@type": "Answer", "text": "一般には1月1日から4月1日までに生まれた人を早生まれと呼びます。"}
+          },
+          {
+            "@type": "Question",
+            "name": "留年や浪人をした場合も確認できますか？",
+            "acceptedAnswer": {"@type": "Answer", "text": "この表は標準的に進級・進学した場合の目安です。個別の状況は学年・年齢・卒業年度計算で条件を確認してください。"}
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header></header>
+
+  <main class="reference-main">
+    <div class="reference-container">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <ol>
+          <li><a href="../../">ホーム</a></li>
+          <li><a href="../">ゴマ早見表</a></li>
+          <li aria-current="page">学年早見表</li>
+        </ol>
+      </nav>
+
+      <section class="reference-hero" aria-labelledby="page-title">
+        <p class="reference-eyebrow">生年月日の範囲からすぐ確認</p>
+        <h1 id="page-title">🎓 学年早見表</h1>
+        <p>生年月日の範囲から、現在年度の学年を一覧で確認できます。小学校から大学までの標準的な学年目安を掲載しています。</p>
+      </section>
+
+      <section class="reference-section" aria-labelledby="school-grade-title">
+        <h2 id="school-grade-title"><span data-academic-year>現在年度</span>の学年早見表</h2>
+        <p class="reference-table-note" id="school-grade-note">対象年度：<span id="academic-year-period">4月1日〜翌年3月31日</span>。4月2日生まれから翌年4月1日生まれまでを同じ学年として表示しています。</p>
+        <noscript>
+          <p class="reference-no-script">学年早見表の表示にはJavaScriptが必要です。個別の学年は<a href="../../school-year/">学年・年齢・卒業年度計算</a>でも確認できます。</p>
+        </noscript>
+
+        <section class="school-grade-group" aria-labelledby="elementary-title">
+          <h3 id="elementary-title">小学校</h3>
+          <div class="reference-table-wrap">
+            <table class="reference-table school-grade-table" aria-describedby="school-grade-note">
+              <caption>現在年度の小学校の学年、生年月日の範囲、入学・卒業年度</caption>
+              <thead><tr><th scope="col">学年</th><th scope="col">生年月日</th><th scope="col">入学・卒業</th></tr></thead>
+              <tbody id="elementary-grade-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="school-grade-group" aria-labelledby="middle-title">
+          <h3 id="middle-title">中学校</h3>
+          <div class="reference-table-wrap">
+            <table class="reference-table school-grade-table" aria-describedby="school-grade-note">
+              <caption>現在年度の中学校の学年、生年月日の範囲、入学・卒業年度</caption>
+              <thead><tr><th scope="col">学年</th><th scope="col">生年月日</th><th scope="col">入学・卒業</th></tr></thead>
+              <tbody id="middle-grade-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="school-grade-group" aria-labelledby="high-title">
+          <h3 id="high-title">高校</h3>
+          <div class="reference-table-wrap">
+            <table class="reference-table school-grade-table" aria-describedby="school-grade-note">
+              <caption>現在年度の高校の学年、生年月日の範囲、入学・卒業年度</caption>
+              <thead><tr><th scope="col">学年</th><th scope="col">生年月日</th><th scope="col">入学・卒業</th></tr></thead>
+              <tbody id="high-grade-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="school-grade-group" aria-labelledby="university-title">
+          <h3 id="university-title">大学（4年制の目安）</h3>
+          <div class="reference-table-wrap">
+            <table class="reference-table school-grade-table" aria-describedby="school-grade-note university-note">
+              <caption>現在年度の4年制大学の学年相当、生年月日の範囲、入学・卒業年度</caption>
+              <thead><tr><th scope="col">学年</th><th scope="col">生年月日</th><th scope="col">入学・卒業</th></tr></thead>
+              <tbody id="university-grade-body"></tbody>
+            </table>
+          </div>
+          <p class="school-grade-caution" id="university-note">大学は、標準的な4年制へ現役で進学した場合の目安です。</p>
+        </section>
+      </section>
+
+      <section class="reference-section" aria-labelledby="support-title">
+        <h2 id="support-title">補足情報</h2>
+        <ul class="reference-support-list">
+          <li>日本の学校年度は、4月1日に始まり翌年3月31日に終わります。</li>
+          <li>4月2日生まれから翌年4月1日生まれまでが同じ学年です。</li>
+          <li>入学・卒業年度は、留年・浪人・休学などをせず標準的に進んだ場合の目安です。</li>
+          <li>個別の条件を含めて確認するときは、<a href="../../school-year/">学年・年齢・卒業年度計算</a>をご利用ください。</li>
+        </ul>
+        <h3>参考</h3>
+        <ul class="reference-support-list">
+          <li><a href="https://www.mext.go.jp/a_menu/shotou/shugaku/detail/1422233.htm" target="_blank" rel="noopener noreferrer">文部科学省「4月1日生まれの児童生徒の学年について」</a></li>
+          <li><a href="https://laws.e-gov.go.jp/law/322M40000080011" target="_blank" rel="noopener noreferrer">e-Gov法令検索「学校教育法施行規則」</a></li>
+        </ul>
+      </section>
+
+      <section class="reference-section goma-one-point" aria-labelledby="one-point-title">
+        <h2 id="one-point-title">🍵 ゴマワンポイント</h2>
+        <p>4月1日生まれは、同じ年の4月2日以降に生まれた人より1つ上の学年になります。入学・卒業年度を確認するときは、生年月日の境界にも注目すると安心です。</p>
+      </section>
+
+      <section class="reference-section" aria-labelledby="faq-title">
+        <h2 id="faq-title">よくある質問</h2>
+        <div class="reference-faq">
+          <details><summary>4月1日生まれと4月2日生まれで学年が違うのはなぜですか？</summary><p>日本の学校では、4月2日生まれから翌年4月1日生まれまでが同じ学年になります。4月1日生まれは、4月2日生まれより1つ上の学年です。</p></details>
+          <details><summary>同じ年に生まれても学年が違うことはありますか？</summary><p>はい。1月1日から4月1日生まれは、同じ年の4月2日以降に生まれた人より1つ上の学年になります。</p></details>
+          <details><summary>大学の学年も正確に分かりますか？</summary><p>大学は標準的な4年制へ現役で進学した場合の目安です。浪人・留年・休学や、修業年限が異なる課程は反映していません。</p></details>
+          <details><summary>学年早見表はいつ更新されますか？</summary><p>現在の日本時間から対象年度を自動判定し、年度に合わせて表示を更新します。</p></details>
+          <details><summary>早生まれとはいつからいつまでですか？</summary><p>一般には1月1日から4月1日までに生まれた人を早生まれと呼びます。</p></details>
+          <details><summary>留年や浪人をした場合も確認できますか？</summary><p>この表は標準的に進級・進学した場合の目安です。個別の状況は<a href="../../school-year/">学年・年齢・卒業年度計算</a>で条件を確認してください。</p></details>
+        </div>
+      </section>
+
+      <section class="reference-section goma-related-knowledge" aria-labelledby="knowledge-title">
+        <h2 id="knowledge-title">💡 関連するゴマ知識</h2>
+        <ul class="goma-related-knowledge-list">
+          <li><a href="../../knowledge/age-counting/">年齢の数え方について</a></li>
+        </ul>
+      </section>
+
+      <section class="reference-section goma-related-tools" aria-labelledby="related-tools-title">
+        <h2 id="related-tools-title">🔗 関連ツール</h2>
+        <ul class="goma-related-tools-list">
+          <li><a href="../../school-year/">学年・年齢・卒業年度計算</a></li>
+          <li><a href="../../age/">年齢日付計算</a></li>
+          <li><a href="../../wareki/">和暦西暦変換</a></li>
+        </ul>
+        <p><a href="../age/">年齢早見表を見る</a></p>
+        <p><a href="../">ゴマ早見表一覧へ戻る</a></p>
+      </section>
+    </div>
+  </main>
+
+  <footer></footer>
+</body>
+</html>

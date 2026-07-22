@@ -2552,6 +2552,28 @@ a { color: var(--terms-green-dark); }
 .reference-table .zodiac-column { width: 20%; }
 .reference-table .age-column { width: 22%; }
 .reference-table .era-part { display: inline; }
+.school-grade-group { margin-top: 24px; }
+.school-grade-group:first-of-type { margin-top: 18px; }
+.school-grade-group h3 {
+  margin: 0 0 10px;
+  color: var(--terms-green-dark);
+  font-size: 1.05rem;
+}
+.school-grade-caution {
+  margin: 10px 0 0 !important;
+  color: var(--terms-muted);
+  font-size: .88rem;
+}
+.school-grade-table th:first-child { width: 22%; }
+.school-grade-table th:nth-child(2) { width: 43%; }
+.school-grade-table th:last-child { width: 35%; }
+.school-grade-table tbody th { word-break: keep-all; }
+.school-grade-date,
+.school-grade-range-separator,
+.school-grade-period { display: block; }
+.school-grade-date { white-space: nowrap; }
+.school-grade-range-separator { color: var(--terms-muted); line-height: 1.15; }
+.school-grade-period + .school-grade-period { margin-top: 3px; }
 .reference-no-script {
   margin: 0;
   padding: 16px;
@@ -2575,6 +2597,9 @@ a { color: var(--terms-green-dark); }
   .reference-table thead th { font-size: .78rem; }
   .reference-table .era-part { display: block; }
   .reference-table .era-separator { display: none; }
+  .school-grade-table th,
+  .school-grade-table td { font-size: .76rem; }
+  .school-grade-table thead th { font-size: .72rem; }
 }
 
 @media (max-width: 340px) {
@@ -2583,4 +2608,9 @@ a { color: var(--terms-green-dark); }
   .reference-table th,
   .reference-table td { padding-inline: 2px; font-size: .76rem; }
   .reference-table thead th { font-size: .72rem; }
+  .school-grade-table th,
+  .school-grade-table td { font-size: .7rem; }
+  .school-grade-table thead th { font-size: .68rem; }
+  .school-grade-period-label,
+  .school-grade-period-year { display: block; }
 }
