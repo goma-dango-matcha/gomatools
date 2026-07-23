@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://goma-dango-matcha.github.io/gomatools/</loc>
-    <lastmod>2026-07-07</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -44,7 +44,7 @@
   </url>
   <url>
     <loc>https://goma-dango-matcha.github.io/gomatools/school-year/</loc>
-    <lastmod>2026-06-28</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -295,7 +295,7 @@
   </url>
   <url>
     <loc>https://goma-dango-matcha.github.io/gomatools/knowledge/age-counting/</loc>
-    <lastmod>2026-07-07</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -355,12 +355,18 @@
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://goma-dango-matcha.github.io/gomatools/knowledge/why-grade-starts-april-2/</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
 
 
 
   <url>
     <loc>https://goma-dango-matcha.github.io/gomatools/knowledge.html</loc>
-    <lastmod>2026-07-07</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -372,13 +378,13 @@
   </url>
   <url>
     <loc>https://goma-dango-matcha.github.io/gomatools/quick-reference/age/</loc>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://goma-dango-matcha.github.io/gomatools/quick-reference/school-grade/</loc>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -390,13 +396,13 @@
   </url>
   <url>
     <loc>https://goma-dango-matcha.github.io/gomatools/quick-reference/school-entry/</loc>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://goma-dango-matcha.github.io/gomatools/quick-reference/school-graduation/</loc>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
