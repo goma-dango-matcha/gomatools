@@ -17,6 +17,7 @@
     return {
       home: base,
       allTools: `${base}all-tools/`,
+      quickReference: `${base}quick-reference/`,
       about: `${base}about/`,
       privacy: `${base}privacy/`,
       terms: `${base}terms.html`,
@@ -83,6 +84,7 @@
         <nav class="goma-footer-nav" aria-label="フッターナビゲーション">
           <a href="${paths.home}">🏠 ホーム</a>
           <a href="${paths.allTools}">🔧 全ツール一覧</a>
+          <a href="${paths.quickReference}">📋 ゴマ早見表</a>
           <a href="${paths.about}">ℹ️ About</a>
           <a href="${paths.knowledge}">🍵 ゴマ知識</a>
           <a href="${paths.faq}">❓ FAQ</a>
