@@ -1,0 +1,158 @@
+.document-title-detail {
+  display: block;
+  margin-top: 8px;
+  font-size: .55em;
+  line-height: 1.4;
+}
+
+.document-paper-grid,
+.document-combination-grid,
+.document-type-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.document-paper-card,
+.document-combination-grid article,
+.document-type-grid article {
+  min-width: 0;
+  padding: 16px 14px;
+  border: 1px solid var(--terms-line);
+  border-radius: 16px;
+  background: #fbfdf9;
+}
+
+.document-paper-card.is-primary {
+  border-color: var(--terms-green);
+  background: var(--terms-green-light);
+  box-shadow: 0 8px 20px rgba(67, 91, 49, .1);
+}
+
+.document-paper-card h3,
+.document-combination-grid h3,
+.document-type-grid h3 {
+  margin: 0;
+  color: var(--terms-green-dark);
+  font-size: 1.02rem;
+}
+
+.document-paper-card p,
+.document-combination-grid p,
+.document-type-grid p {
+  margin: 7px 0 0;
+  color: var(--terms-muted);
+  font-size: .86rem;
+  line-height: 1.6;
+}
+
+.document-paper-card strong { color: var(--terms-text); }
+.document-table-wrap { margin-top: 18px; }
+.document-size-table .document-paper-column { width: 12%; }
+.document-size-table .document-file-column { width: 37%; }
+.document-size-table .document-hole-column { width: 20%; }
+.document-size-table .document-use-column { width: 31%; }
+.document-size-table td { text-align: left; }
+.document-size-table tbody tr.is-primary { background: var(--terms-green-light); }
+.document-size-table tr.is-primary th { box-shadow: inset 4px 0 0 var(--terms-green); }
+.document-hole-table .document-hole-count-column { width: 13%; }
+.document-hole-table .document-hole-use-column { width: 29%; }
+.document-hole-table .document-hole-paper-column { width: 20%; }
+.document-hole-table .document-hole-caution-column { width: 38%; }
+.document-hole-table td { text-align: left; }
+
+@media (max-width: 760px) {
+  .document-paper-grid,
+  .document-combination-grid,
+  .document-type-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 620px) {
+  .document-paper-grid,
+  .document-combination-grid,
+  .document-type-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .document-table-wrap { border: 0; }
+
+  .document-size-table thead,
+  .document-hole-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    clip-path: inset(50%);
+  }
+
+  .document-size-table,
+  .document-size-table tbody,
+  .document-size-table tr,
+  .document-size-table th,
+  .document-size-table td,
+  .document-hole-table,
+  .document-hole-table tbody,
+  .document-hole-table tr,
+  .document-hole-table th,
+  .document-hole-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .document-size-table tbody,
+  .document-hole-table tbody {
+    display: grid;
+    gap: 10px;
+  }
+
+  .document-size-table tbody tr,
+  .document-hole-table tbody tr {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    overflow: hidden;
+    border: 1px solid var(--terms-line);
+    border-radius: 14px;
+    background: #fff;
+  }
+
+  .document-size-table tbody th,
+  .document-size-table tbody td,
+  .document-hole-table tbody th,
+  .document-hole-table tbody td {
+    padding: 10px 12px;
+    border-bottom: 0;
+    text-align: left;
+  }
+
+  .document-size-table tbody th,
+  .document-hole-table tbody th {
+    grid-column: 1 / -1;
+    border-bottom: 1px solid var(--terms-line);
+    background: #f7faf5;
+    font-size: .95rem;
+  }
+
+  .document-size-table tbody td::before,
+  .document-hole-table tbody td::before {
+    display: block;
+    margin-bottom: 2px;
+    color: var(--terms-muted);
+    content: attr(data-label);
+    font-size: .72rem;
+    font-weight: 750;
+  }
+
+  .document-size-table tbody td,
+  .document-hole-table tbody td {
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--terms-line);
+  }
+
+  .document-size-table tr.is-primary th {
+    background: var(--terms-green-light);
+    box-shadow: inset 4px 0 0 var(--terms-green);
+  }
+}
