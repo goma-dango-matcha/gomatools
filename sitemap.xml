@@ -44,7 +44,7 @@
   </url>
   <url>
     <loc>https://goma-dango-matcha.github.io/gomatools/school-year/</loc>
-    <lastmod>2026-07-23</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -363,6 +363,12 @@
   </url>
   <url>
     <loc>https://goma-dango-matcha.github.io/gomatools/knowledge/resume-japanese-era/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://goma-dango-matcha.github.io/gomatools/knowledge/graduation-year-difference/</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
