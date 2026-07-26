@@ -50,15 +50,16 @@ docs配下の現行仕様書を一覧化し、仕様書の優先順位・役割�
 | 23 | [japanese-era-reference-table-spec.md](japanese-era-reference-table-spec.md) | Version1.0 | 「和暦・西暦早見表」固有の元号定義・改元年・現在年・FAQ・SEO・更新仕様 |
 | 24 | [school-entry-reference-table-spec.md](school-entry-reference-table-spec.md) | Version1.0 | 「入学年度早見表」固有の年度判定・生年月日境界・入学年度・FAQ・SEO仕様 |
 | 25 | [school-graduation-reference-table-spec.md](school-graduation-reference-table-spec.md) | Version1.0 | 「卒業年度早見表」固有の年度判定・卒業年度・卒業年月・FAQ・SEO仕様 |
-| 26 | [quick-access-feature.md](quick-access-feature.md) | Version1.1 | 「すぐわかる」特集の表示・運用方針 |
-| 27 | [brand-review-spec.md](brand-review-spec.md) | Version1.0 | ブランド改善完了後のカテゴリ横断レビュー方針 |
-| 28 | [money-brand-review-spec.md](money-brand-review-spec.md) | Version1.0 | お金カテゴリのブランド改善完了後レビュー方針 |
-| 29 | [health-brand-review-spec.md](health-brand-review-spec.md) | Version1.0 | 健康カテゴリのブランド改善完了後レビュー方針 |
-| 30 | [learning-brand-review-spec.md](learning-brand-review-spec.md) | Version1.0 | 学習カテゴリのブランド改善完了後レビュー方針 |
-| 31 | [work-text-brand-review-spec.md](work-text-brand-review-spec.md) | Version1.0 | 仕事・テキストカテゴリのブランド改善完了後レビュー方針 |
-| 32 | [convenience-life-brand-review-spec.md](convenience-life-brand-review-spec.md) | Version1.0 | 便利ツール・生活カテゴリのブランド改善完了後レビュー方針・再レビュー結果 |
-| 33 | [all-tools-brand-final-review.md](all-tools-brand-final-review.md) | Version1.0 | 既存43ツールのブランド改善最終横断レビュー記録 |
-| 34 | [analytics-search-console-preparation.md](analytics-search-console-preparation.md) | Version1.0 | Analytics・Search Consoleの導入状態、確認指標、改善判断ルールの運用記録 |
+| 26 | [paper-size-reference-table-spec.md](paper-size-reference-table-spec.md) | Version1.0 | 「用紙サイズ早見表」固有のA判・国内JIS B判・寸法・用途・情報源・SEO仕様 |
+| 27 | [quick-access-feature.md](quick-access-feature.md) | Version1.1 | 「すぐわかる」特集の表示・運用方針 |
+| 28 | [brand-review-spec.md](brand-review-spec.md) | Version1.0 | ブランド改善完了後のカテゴリ横断レビュー方針 |
+| 29 | [money-brand-review-spec.md](money-brand-review-spec.md) | Version1.0 | お金カテゴリのブランド改善完了後レビュー方針 |
+| 30 | [health-brand-review-spec.md](health-brand-review-spec.md) | Version1.0 | 健康カテゴリのブランド改善完了後レビュー方針 |
+| 31 | [learning-brand-review-spec.md](learning-brand-review-spec.md) | Version1.0 | 学習カテゴリのブランド改善完了後レビュー方針 |
+| 32 | [work-text-brand-review-spec.md](work-text-brand-review-spec.md) | Version1.0 | 仕事・テキストカテゴリのブランド改善完了後レビュー方針 |
+| 33 | [convenience-life-brand-review-spec.md](convenience-life-brand-review-spec.md) | Version1.0 | 便利ツール・生活カテゴリのブランド改善完了後レビュー方針・再レビュー結果 |
+| 34 | [all-tools-brand-final-review.md](all-tools-brand-final-review.md) | Version1.0 | 既存43ツールのブランド改善最終横断レビュー記録 |
+| 35 | [analytics-search-console-preparation.md](analytics-search-console-preparation.md) | Version1.0 | Analytics・Search Consoleの導入状態、確認指標、改善判断ルールの運用記録 |
 
 ---
 

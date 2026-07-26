@@ -1,0 +1,141 @@
+.paper-size-card-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.paper-size-card {
+  min-width: 0;
+  padding: 16px 12px;
+  border: 1px solid var(--terms-line);
+  border-radius: 16px;
+  background: #fbfdf9;
+  text-align: center;
+}
+
+.paper-size-card.is-standard {
+  border-color: var(--terms-green);
+  background: var(--terms-green-light);
+  box-shadow: 0 8px 20px rgba(67, 91, 49, .1);
+}
+
+.paper-size-card h3 {
+  margin: 0;
+  color: var(--terms-green-dark);
+  font-size: 1.12rem;
+}
+
+.paper-size-card p {
+  margin: 7px 0 0;
+  color: var(--terms-muted);
+  font-size: .84rem;
+  line-height: 1.55;
+}
+
+.paper-size-card .paper-size-card-value {
+  color: var(--terms-text);
+  font-size: .9rem;
+  font-weight: 850;
+  font-variant-numeric: tabular-nums;
+}
+
+.paper-size-table .paper-size-name-column { width: 13%; }
+.paper-size-table .paper-size-mm-column { width: 24%; }
+.paper-size-table .paper-size-cm-column { width: 24%; }
+.paper-size-table .paper-size-use-column { width: 39%; }
+.paper-size-table .paper-size-use { text-align: left; }
+
+.paper-size-table tr.is-standard {
+  background: var(--terms-green-light) !important;
+}
+
+.paper-size-table tr.is-standard th {
+  box-shadow: inset 4px 0 0 var(--terms-green);
+}
+
+.paper-size-dimension { white-space: nowrap; }
+
+.paper-size-support-heading {
+  margin: 22px 0 0;
+  color: var(--terms-green-dark);
+  font-size: 1.08rem;
+}
+
+@media (max-width: 760px) {
+  .paper-size-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 560px) {
+  .paper-size-table-wrap { border: 0; }
+
+  .paper-size-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    clip-path: inset(50%);
+  }
+
+  .paper-size-table,
+  .paper-size-table tbody,
+  .paper-size-table tr,
+  .paper-size-table th,
+  .paper-size-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .paper-size-table tbody {
+    display: grid;
+    gap: 10px;
+  }
+
+  .paper-size-table tbody tr {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    overflow: hidden;
+    border: 1px solid var(--terms-line);
+    border-radius: 14px;
+    background: #fff;
+  }
+
+  .paper-size-table tbody th,
+  .paper-size-table tbody td {
+    padding: 10px 12px;
+    border-bottom: 0;
+    text-align: left;
+  }
+
+  .paper-size-table tbody th {
+    grid-column: 1 / -1;
+    border-bottom: 1px solid var(--terms-line);
+    background: #f7faf5;
+    font-size: .95rem;
+  }
+
+  .paper-size-table tbody td::before {
+    display: block;
+    margin-bottom: 2px;
+    color: var(--terms-muted);
+    content: attr(data-label);
+    font-size: .72rem;
+    font-weight: 750;
+  }
+
+  .paper-size-table .paper-size-use {
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--terms-line);
+  }
+
+  .paper-size-table tr.is-standard th {
+    background: var(--terms-green-light);
+    box-shadow: inset 4px 0 0 var(--terms-green);
+  }
+}
+
+@media (max-width: 360px) {
+  .paper-size-card-grid { grid-template-columns: 1fr; }
+}
