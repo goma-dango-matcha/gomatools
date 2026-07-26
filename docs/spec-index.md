@@ -39,29 +39,30 @@ docs配下の現行仕様書を一覧化し、仕様書の優先順位・役割�
 | 12 | [inputless-brand-improvement-spec.md](inputless-brand-improvement-spec.md) | Version1.0 | 入力不要ツールシリーズのブランド改善方針 |
 | 13 | [today-info-brand-improvement-spec.md](today-info-brand-improvement-spec.md) | Version1.0 | 「今日の情報」固有のブランド改善方針 |
 | 14 | [goma-knowledge-implementation-spec.md](goma-knowledge-implementation-spec.md) | Version1.0 | ゴマ知識の新規作成・既存改善・SEO・回遊・検証・保守に関する共通実装ルール |
-| 15 | [goma-reference-table-spec.md](goma-reference-table-spec.md) | Version1.3 | ゴマ早見表シリーズのブランド上の役割・方針・候補管理方針 |
-| 16 | [goma-reference-table-implementation-spec.md](goma-reference-table-implementation-spec.md) | Version1.0 | ゴマ早見表シリーズの共通構成・表・UI・レスポンシブ・実装確認ルール |
-| 17 | [goma-reference-table-circulation-spec.md](goma-reference-table-circulation-spec.md) | Version1.1 | ゴマ早見表シリーズの関連ツール・パンくず・一覧導線・相互リンクの共通ルール |
-| 18 | [goma-reference-table-design-system.md](goma-reference-table-design-system.md) | Version1.0 | ゴマ早見表シリーズのデザイン原則・共通コンポーネント・レスポンシブ・アクセシビリティ基準 |
-| 19 | [goma-reference-table-maintenance-spec.md](goma-reference-table-maintenance-spec.md) | Version1.0 | ゴマ早見表シリーズの定期点検・新規公開・回帰テスト・障害対応・Git運用ルール |
-| 20 | [goma-reference-table-review-spec.md](goma-reference-table-review-spec.md) | Version1.0 | ゴマ早見表シリーズの新規実装・改修・公開前確認に用いる共通レビュー基準 |
-| 21 | [age-reference-table-spec.md](age-reference-table-spec.md) | Version1.1 | 「年齢早見表」固有のデータ・計算・和暦・十二支・FAQ・SEO仕様 |
-| 22 | [quick-reference-index-spec.md](quick-reference-index-spec.md) | Version1.2 | ゴマ早見表一覧ページ固有の掲載項目・導線・SEO・公開条件 |
-| 23 | [school-grade-reference-table-spec.md](school-grade-reference-table-spec.md) | Version1.1 | 「学年早見表」固有の年度判定・生年月日範囲・入卒年度・FAQ・SEO・UI仕様 |
-| 24 | [japanese-era-reference-table-spec.md](japanese-era-reference-table-spec.md) | Version1.0 | 「和暦・西暦早見表」固有の元号定義・改元年・現在年・FAQ・SEO・更新仕様 |
-| 25 | [school-entry-reference-table-spec.md](school-entry-reference-table-spec.md) | Version1.0 | 「入学年度早見表」固有の年度判定・生年月日境界・入学年度・FAQ・SEO仕様 |
-| 26 | [school-graduation-reference-table-spec.md](school-graduation-reference-table-spec.md) | Version1.0 | 「卒業年度早見表」固有の年度判定・卒業年度・卒業年月・FAQ・SEO仕様 |
-| 27 | [paper-size-reference-table-spec.md](paper-size-reference-table-spec.md) | Version1.0 | 「用紙サイズ早見表」固有のA判・国内JIS B判・寸法・用途・情報源・SEO仕様 |
-| 28 | [envelope-size-reference-table-spec.md](envelope-size-reference-table-spec.md) | Version1.0 | 「封筒サイズ早見表」固有の長形・角形・洋形・寸法・用紙対応・情報源・SEO仕様 |
-| 29 | [quick-access-feature.md](quick-access-feature.md) | Version1.1 | 「すぐわかる」特集の表示・運用方針 |
-| 30 | [brand-review-spec.md](brand-review-spec.md) | Version1.0 | ブランド改善完了後のカテゴリ横断レビュー方針 |
-| 31 | [money-brand-review-spec.md](money-brand-review-spec.md) | Version1.0 | お金カテゴリのブランド改善完了後レビュー方針 |
-| 32 | [health-brand-review-spec.md](health-brand-review-spec.md) | Version1.0 | 健康カテゴリのブランド改善完了後レビュー方針 |
-| 33 | [learning-brand-review-spec.md](learning-brand-review-spec.md) | Version1.0 | 学習カテゴリのブランド改善完了後レビュー方針 |
-| 34 | [work-text-brand-review-spec.md](work-text-brand-review-spec.md) | Version1.0 | 仕事・テキストカテゴリのブランド改善完了後レビュー方針 |
-| 35 | [convenience-life-brand-review-spec.md](convenience-life-brand-review-spec.md) | Version1.0 | 便利ツール・生活カテゴリのブランド改善完了後レビュー方針・再レビュー結果 |
-| 36 | [all-tools-brand-final-review.md](all-tools-brand-final-review.md) | Version1.0 | 既存43ツールのブランド改善最終横断レビュー記録 |
-| 37 | [analytics-search-console-preparation.md](analytics-search-console-preparation.md) | Version1.0 | Analytics・Search Consoleの導入状態、確認指標、改善判断ルールの運用記録 |
+| 15 | [goma-knowledge-individual-spec-template.md](goma-knowledge-individual-spec-template.md) | Version1.0 | ゴマ知識記事の個別実装仕様書を作成するための再利用テンプレート |
+| 16 | [goma-reference-table-spec.md](goma-reference-table-spec.md) | Version1.3 | ゴマ早見表シリーズのブランド上の役割・方針・候補管理方針 |
+| 17 | [goma-reference-table-implementation-spec.md](goma-reference-table-implementation-spec.md) | Version1.0 | ゴマ早見表シリーズの共通構成・表・UI・レスポンシブ・実装確認ルール |
+| 18 | [goma-reference-table-circulation-spec.md](goma-reference-table-circulation-spec.md) | Version1.1 | ゴマ早見表シリーズの関連ツール・パンくず・一覧導線・相互リンクの共通ルール |
+| 19 | [goma-reference-table-design-system.md](goma-reference-table-design-system.md) | Version1.0 | ゴマ早見表シリーズのデザイン原則・共通コンポーネント・レスポンシブ・アクセシビリティ基準 |
+| 20 | [goma-reference-table-maintenance-spec.md](goma-reference-table-maintenance-spec.md) | Version1.0 | ゴマ早見表シリーズの定期点検・新規公開・回帰テスト・障害対応・Git運用ルール |
+| 21 | [goma-reference-table-review-spec.md](goma-reference-table-review-spec.md) | Version1.0 | ゴマ早見表シリーズの新規実装・改修・公開前確認に用いる共通レビュー基準 |
+| 22 | [age-reference-table-spec.md](age-reference-table-spec.md) | Version1.1 | 「年齢早見表」固有のデータ・計算・和暦・十二支・FAQ・SEO仕様 |
+| 23 | [quick-reference-index-spec.md](quick-reference-index-spec.md) | Version1.2 | ゴマ早見表一覧ページ固有の掲載項目・導線・SEO・公開条件 |
+| 24 | [school-grade-reference-table-spec.md](school-grade-reference-table-spec.md) | Version1.1 | 「学年早見表」固有の年度判定・生年月日範囲・入卒年度・FAQ・SEO・UI仕様 |
+| 25 | [japanese-era-reference-table-spec.md](japanese-era-reference-table-spec.md) | Version1.0 | 「和暦・西暦早見表」固有の元号定義・改元年・現在年・FAQ・SEO・更新仕様 |
+| 26 | [school-entry-reference-table-spec.md](school-entry-reference-table-spec.md) | Version1.0 | 「入学年度早見表」固有の年度判定・生年月日境界・入学年度・FAQ・SEO仕様 |
+| 27 | [school-graduation-reference-table-spec.md](school-graduation-reference-table-spec.md) | Version1.0 | 「卒業年度早見表」固有の年度判定・卒業年度・卒業年月・FAQ・SEO仕様 |
+| 28 | [paper-size-reference-table-spec.md](paper-size-reference-table-spec.md) | Version1.0 | 「用紙サイズ早見表」固有のA判・国内JIS B判・寸法・用途・情報源・SEO仕様 |
+| 29 | [envelope-size-reference-table-spec.md](envelope-size-reference-table-spec.md) | Version1.0 | 「封筒サイズ早見表」固有の長形・角形・洋形・寸法・用紙対応・情報源・SEO仕様 |
+| 30 | [quick-access-feature.md](quick-access-feature.md) | Version1.1 | 「すぐわかる」特集の表示・運用方針 |
+| 31 | [brand-review-spec.md](brand-review-spec.md) | Version1.0 | ブランド改善完了後のカテゴリ横断レビュー方針 |
+| 32 | [money-brand-review-spec.md](money-brand-review-spec.md) | Version1.0 | お金カテゴリのブランド改善完了後レビュー方針 |
+| 33 | [health-brand-review-spec.md](health-brand-review-spec.md) | Version1.0 | 健康カテゴリのブランド改善完了後レビュー方針 |
+| 34 | [learning-brand-review-spec.md](learning-brand-review-spec.md) | Version1.0 | 学習カテゴリのブランド改善完了後レビュー方針 |
+| 35 | [work-text-brand-review-spec.md](work-text-brand-review-spec.md) | Version1.0 | 仕事・テキストカテゴリのブランド改善完了後レビュー方針 |
+| 36 | [convenience-life-brand-review-spec.md](convenience-life-brand-review-spec.md) | Version1.0 | 便利ツール・生活カテゴリのブランド改善完了後レビュー方針・再レビュー結果 |
+| 37 | [all-tools-brand-final-review.md](all-tools-brand-final-review.md) | Version1.0 | 既存43ツールのブランド改善最終横断レビュー記録 |
+| 38 | [analytics-search-console-preparation.md](analytics-search-console-preparation.md) | Version1.0 | Analytics・Search Consoleの導入状態、確認指標、改善判断ルールの運用記録 |
 
 ---
 
