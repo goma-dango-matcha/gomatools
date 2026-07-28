@@ -1,0 +1,223 @@
+.photo-size-card-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.photo-size-card {
+  min-width: 0;
+  padding: 16px 12px;
+  border: 1px solid var(--terms-line);
+  border-radius: 16px;
+  background: #fbfdf9;
+  text-align: center;
+}
+
+.photo-size-card.is-standard {
+  border-color: var(--terms-green);
+  background: var(--terms-green-light);
+  box-shadow: 0 8px 20px rgba(67, 91, 49, .1);
+}
+
+.photo-size-card h3 {
+  margin: 0;
+  color: var(--terms-green-dark);
+  font-size: 1.12rem;
+}
+
+.photo-size-card p {
+  margin: 7px 0 0;
+  color: var(--terms-muted);
+  font-size: .84rem;
+  line-height: 1.55;
+}
+
+.photo-size-card .photo-size-card-value {
+  color: var(--terms-text);
+  font-size: .9rem;
+  font-weight: 850;
+  font-variant-numeric: tabular-nums;
+}
+
+.photo-size-table th,
+.photo-size-table td,
+.photo-pixel-table th,
+.photo-pixel-table td {
+  vertical-align: middle;
+}
+
+.photo-size-table .photo-size-use {
+  text-align: left;
+}
+
+.photo-size-table tr.is-standard {
+  background: var(--terms-green-light) !important;
+}
+
+.photo-size-table tr.is-standard th {
+  box-shadow: inset 4px 0 0 var(--terms-green);
+}
+
+.photo-size-dimension {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.photo-size-caution {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-left: 4px solid var(--terms-green);
+  border-radius: 0 12px 12px 0;
+  background: #f7faf5;
+}
+
+.photo-print-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 18px 0;
+}
+
+.photo-print-choice-grid article {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--terms-line);
+  border-radius: 14px;
+  background: #fbfdf9;
+}
+
+.photo-print-choice-grid h3,
+.photo-size-support-heading {
+  margin: 0;
+  color: var(--terms-green-dark);
+  font-size: 1.05rem;
+}
+
+.photo-print-choice-grid p {
+  margin: 8px 0 0;
+}
+
+.photo-size-support-heading {
+  margin-top: 22px;
+}
+
+@media (max-width: 760px) {
+  .photo-size-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .photo-size-table-wrap,
+  .photo-pixel-table-wrap {
+    border: 0;
+  }
+
+  .photo-size-table thead,
+  .photo-pixel-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    clip-path: inset(50%);
+  }
+
+  .photo-size-table,
+  .photo-size-table tbody,
+  .photo-size-table tr,
+  .photo-size-table th,
+  .photo-size-table td,
+  .photo-pixel-table,
+  .photo-pixel-table tbody,
+  .photo-pixel-table tr,
+  .photo-pixel-table th,
+  .photo-pixel-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .photo-size-table tbody,
+  .photo-pixel-table tbody {
+    display: grid;
+    gap: 10px;
+  }
+
+  .photo-size-table tbody tr,
+  .photo-pixel-table tbody tr {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    overflow: hidden;
+    border: 1px solid var(--terms-line);
+    border-radius: 14px;
+    background: #fff;
+  }
+
+  .photo-size-table tbody th,
+  .photo-size-table tbody td,
+  .photo-pixel-table tbody th,
+  .photo-pixel-table tbody td {
+    padding: 10px 12px;
+    border-bottom: 0;
+    text-align: left;
+  }
+
+  .photo-size-table tbody th,
+  .photo-pixel-table tbody th {
+    grid-column: 1 / -1;
+    border-bottom: 1px solid var(--terms-line);
+    background: #f7faf5;
+    font-size: .95rem;
+  }
+
+  .photo-size-table tbody td::before,
+  .photo-pixel-table tbody td::before {
+    display: block;
+    margin-bottom: 2px;
+    color: var(--terms-muted);
+    content: attr(data-label);
+    font-size: .72rem;
+    font-weight: 750;
+  }
+
+  .photo-size-table .photo-size-use {
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--terms-line);
+  }
+
+  .photo-size-table tr.is-standard th {
+    background: var(--terms-green-light);
+    box-shadow: inset 4px 0 0 var(--terms-green);
+  }
+
+  .photo-pixel-table tbody td:last-child {
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--terms-line);
+  }
+}
+
+@media (max-width: 480px) {
+  .photo-print-choice-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 360px) {
+  .photo-size-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .photo-size-table tbody tr {
+    grid-template-columns: 1fr;
+  }
+
+  .photo-size-table tbody td {
+    border-top: 1px solid var(--terms-line);
+  }
+
+  .photo-size-table tbody th + td {
+    border-top: 0;
+  }
+}
