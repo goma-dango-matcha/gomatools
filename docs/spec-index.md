@@ -65,6 +65,7 @@ docs配下の現行仕様書を一覧化し、仕様書の優先順位・役割�
 | 38 | [convenience-life-brand-review-spec.md](convenience-life-brand-review-spec.md) | Version1.0 | 便利ツール・生活カテゴリのブランド改善完了後レビュー方針・再レビュー結果 |
 | 39 | [all-tools-brand-final-review.md](all-tools-brand-final-review.md) | Version1.0 | 既存43ツールのブランド改善最終横断レビュー記録 |
 | 40 | [analytics-search-console-preparation.md](analytics-search-console-preparation.md) | Version1.0 | Analytics・Search Consoleの導入状態、確認指標、改善判断ルールの運用記録 |
+| 41 | [clear-file-clear-holder-difference-spec.md](clear-file-clear-holder-difference-spec.md) | Version1.0 | 「クリアファイルとクリアホルダーの違い」固有の用語・比較・A4用・回遊・SEO仕様 |
 
 ---
 
