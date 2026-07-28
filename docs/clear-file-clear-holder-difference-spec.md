@@ -7,11 +7,11 @@
 | Version | Version1.0 |
 | シリーズ | ゴマ知識 |
 | カテゴリ | 仕事 |
-| 状態 | 実装済み・公開前 |
+| 状態 | 公開済み |
 | 準拠仕様 | `goma-knowledge-implementation-spec.md` |
 | 公開形式 | 静的HTML |
 | URL | `/knowledge/clear-file-clear-holder-difference/` |
-| Commit・Push | 未実施 |
+| Commit・Push | 実施済み |
 
 ---
 
