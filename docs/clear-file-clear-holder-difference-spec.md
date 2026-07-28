@@ -197,4 +197,4 @@ Product、Offer、Review、AggregateRatingは追加しない。
 - SEOと構造化データが画面表示と一致する
 - 320pxを含む各確認幅で横スクロールがない
 - Consoleエラーとリンク切れがない
-- Commit・Pushを行っていない
+- 公開状態、Commit・Push状況、管理文書の記載が一致している

@@ -9,7 +9,7 @@
 | 状態 | 公開済み・レビュー指摘修正完了 |
 | URL | `/quick-reference/document-file-size/` |
 | 更新頻度 | 規格・掲載方針変更時 |
-| Commit・Push | 明示的に依頼された場合のみ |
+| Commit・Push | 実施済み |
 
 ## 目的
 
@@ -137,4 +137,4 @@ A4・B5・A5などの用紙に合う書類ファイル、バインダー、一�
 - 用紙・封筒早見表と相互リンクしている
 - 一覧、sitemap、候補台帳、spec-indexが同期している
 - SEO・構造化データ・PC・スマートフォン表示・リンク・Consoleに問題がない
-- Commit・Pushを行っていない
+- 公開状態、Commit・Push状況、管理文書の記載が一致している
