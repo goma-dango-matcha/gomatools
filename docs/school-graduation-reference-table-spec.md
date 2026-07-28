@@ -1,13 +1,15 @@
 # 卒業年度早見表 個別実装仕様書 Version1.0
 
-最終更新：2026-07-22
+最終更新：2026-07-29
 
 ## 対象
 
 - シリーズ：ゴマ早見表
 - ページ：卒業年度早見表
 - URL：`/quick-reference/school-graduation/`
-- 実装状態：実装済み（公開前レビュー中）
+- 実装状態：公開済み
+- レビュー状態：完了
+- Commit・Push：実施済み
 
 共通事項は、[ゴマ早見表 ブランド仕様書](goma-reference-table-spec.md)、[ゴマ早見表 共通実装仕様書](goma-reference-table-implementation-spec.md)、[ゴマ早見表 回遊性強化 共通仕様書](goma-reference-table-circulation-spec.md)に従う。本書では卒業年度早見表固有の要件と実装判断を定義する。
 

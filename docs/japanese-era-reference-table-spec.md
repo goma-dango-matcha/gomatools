@@ -5,7 +5,9 @@
 - シリーズ: ゴマ早見表
 - ページ名: 和暦・西暦早見表
 - 公開URL: `/quick-reference/japanese-era/`
-- 実装状態: 実装済み（公開前レビュー中）
+- 実装状態: 公開済み
+- レビュー状態: 完了
+- Commit・Push: 実施済み
 
 本書は「和暦・西暦早見表」固有のデータ、表示、更新、SEO、関連導線を定義する。共通事項は[ゴマ早見表 ブランド仕様書](goma-reference-table-spec.md)および[ゴマ早見表 共通実装仕様書](goma-reference-table-implementation-spec.md)に従う。
 
