@@ -41,8 +41,8 @@ docs配下の現行仕様書を一覧化し、仕様書の優先順位・役割�
 | 14 | [goma-knowledge-implementation-spec.md](goma-knowledge-implementation-spec.md) | Version1.0 | ゴマ知識の新規作成・既存改善・SEO・回遊・検証・保守に関する共通実装ルール |
 | 15 | [goma-knowledge-individual-spec-template.md](goma-knowledge-individual-spec-template.md) | Version1.0 | ゴマ知識記事の個別実装仕様書を作成するための再利用テンプレート |
 | 16 | [goma-reference-table-spec.md](goma-reference-table-spec.md) | Version1.3 | ゴマ早見表シリーズのブランド上の役割・方針・候補管理方針 |
-| 17 | [goma-reference-table-implementation-spec.md](goma-reference-table-implementation-spec.md) | Version1.0 | ゴマ早見表シリーズの共通構成・表・UI・レスポンシブ・実装確認ルール |
-| 18 | [goma-reference-table-circulation-spec.md](goma-reference-table-circulation-spec.md) | Version1.1 | ゴマ早見表シリーズの関連ツール・パンくず・一覧導線・相互リンクの共通ルール |
+| 17 | [goma-reference-table-implementation-spec.md](goma-reference-table-implementation-spec.md) | Version1.1 | ゴマ早見表シリーズの共通構成・表・UI・レスポンシブ・実装確認ルール |
+| 18 | [goma-reference-table-circulation-spec.md](goma-reference-table-circulation-spec.md) | Version1.2 | ゴマ早見表シリーズの関連ツール・パンくず・一覧導線・相互リンクの共通ルール |
 | 19 | [goma-reference-table-design-system.md](goma-reference-table-design-system.md) | Version1.0 | ゴマ早見表シリーズのデザイン原則・共通コンポーネント・レスポンシブ・アクセシビリティ基準 |
 | 20 | [goma-reference-table-maintenance-spec.md](goma-reference-table-maintenance-spec.md) | Version1.0 | ゴマ早見表シリーズの定期点検・新規公開・回帰テスト・障害対応・Git運用ルール |
 | 21 | [goma-reference-table-review-spec.md](goma-reference-table-review-spec.md) | Version1.0 | ゴマ早見表シリーズの新規実装・改修・公開前確認に用いる共通レビュー基準 |
@@ -54,7 +54,7 @@ docs配下の現行仕様書を一覧化し、仕様書の優先順位・役割�
 | 27 | [school-graduation-reference-table-spec.md](school-graduation-reference-table-spec.md) | Version1.0 | 「卒業年度早見表」固有の年度判定・卒業年度・卒業年月・FAQ・SEO仕様 |
 | 28 | [paper-size-reference-table-spec.md](paper-size-reference-table-spec.md) | Version1.0 | 「用紙サイズ早見表」固有のA判・国内JIS B判・寸法・用途・情報源・SEO仕様 |
 | 29 | [envelope-size-reference-table-spec.md](envelope-size-reference-table-spec.md) | Version1.0 | 「封筒サイズ早見表」固有の長形・角形・洋形・寸法・用紙対応・情報源・SEO仕様 |
-| 30 | [document-file-binder-reference-table-spec.md](document-file-binder-reference-table-spec.md) | Version1.0 | 「書類ファイル・バインダー対応早見表」固有の用紙対応・用品種類・穴数・商品差・SEO仕様 |
+| 30 | [document-file-binder-reference-table-spec.md](document-file-binder-reference-table-spec.md) | Version1.1 | 「書類ファイル・バインダー対応早見表」固有の用紙対応・用品種類・穴数・商品差・SEO仕様 |
 | 31 | [photo-size-reference-table-spec.md](photo-size-reference-table-spec.md) | Version1.0 | 「写真サイズ早見表」固有の写真プリント寸法・縦横比・面積比・画素数・トリミング・SEO仕様 |
 | 32 | [quick-access-feature.md](quick-access-feature.md) | Version1.1 | 「すぐわかる」特集の表示・運用方針 |
 | 33 | [brand-review-spec.md](brand-review-spec.md) | Version1.0 | ブランド改善完了後のカテゴリ横断レビュー方針 |

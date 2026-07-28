@@ -42,8 +42,8 @@
 .document-combination-grid p,
 .document-type-grid p {
   margin: 7px 0 0;
-  color: var(--terms-muted);
-  font-size: .86rem;
+  color: var(--terms-text);
+  font-size: .875rem;
   line-height: 1.6;
 }
 
@@ -139,9 +139,9 @@
   .document-hole-table tbody td::before {
     display: block;
     margin-bottom: 2px;
-    color: var(--terms-muted);
+    color: var(--terms-green-dark);
     content: attr(data-label);
-    font-size: .72rem;
+    font-size: .875rem;
     font-weight: 750;
   }
 
