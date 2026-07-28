@@ -33,6 +33,10 @@
   line-height: 1.55;
 }
 
+.photo-size-card.is-standard p {
+  color: var(--terms-text);
+}
+
 .photo-size-card .photo-size-card-value {
   color: var(--terms-text);
   font-size: .9rem;
@@ -176,10 +180,11 @@
   .photo-pixel-table tbody td::before {
     display: block;
     margin-bottom: 2px;
-    color: var(--terms-muted);
+    color: var(--terms-green-dark);
     content: attr(data-label);
-    font-size: .72rem;
+    font-size: .875rem;
     font-weight: 750;
+    line-height: 1.45;
   }
 
   .photo-size-table .photo-size-use {
