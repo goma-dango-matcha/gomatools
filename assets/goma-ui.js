@@ -76,7 +76,7 @@
           <img class="goma-footer-mark" src="${paths.logo}" width="28" height="28" alt="">
           <span>ゴマツール</span>
         </p>
-        <p class="goma-footer-copy">30秒で使えて、他より少し便利。</p>
+        <p class="goma-footer-copy">毎日に、一歩便利。</p>
         <p class="goma-last-updated">
           <span>最終更新</span>
           <time datetime="2026-07">2026年7月</time>
