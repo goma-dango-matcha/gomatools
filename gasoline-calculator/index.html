@@ -69,6 +69,8 @@
     .support-list { margin:0; padding-left:1.25em; color:var(--muted); }
     .support-list li + li { margin-top:8px; }
     .gasoline-one-point h2 { margin:0 0 8px; color:var(--green-dark); font-size:1.05rem; line-height:1.45; }
+    .goma-related-tools-list .gasoline-related-link { align-items:flex-start; flex-direction:column; justify-content:center; }
+    .gasoline-related-link span { color:var(--muted); font-size:.86rem; font-weight:600; line-height:1.55; }
     footer { padding:44px 16px; color:var(--muted); border-top:1px solid var(--line); text-align:center; background:#fff; }
     footer p { margin:4px 0; }
     .footer-logo { color:var(--green-dark); font-weight:850; }
@@ -159,7 +161,15 @@
     <aside class="goma-one-point gasoline-one-point" aria-labelledby="one-point-title"><h2 id="one-point-title">🍵 ゴマワンポイント</h2><p>普段の走行で確認した実燃費と、利用予定のガソリンスタンドに近い単価を入力すると、費用の目安を立てやすくなります。往復する場合は、入力した距離が片道か合計かも確認しましょう。</p></aside>
 
     <!-- ====================== 関連ツール ====================== -->
-    <section class="goma-related-tools" aria-labelledby="goma-related-tools-title"><h2 id="goma-related-tools-title">🔗 関連ツール</h2><p>移動や生活にかかる費用を続けて確認できます。</p><ul class="goma-related-tools-list"><li><a href="../unit-converter/">単位変換ツール</a></li><li><a href="../calculator/">電卓ツール</a></li><li><a href="../water-bill-calculator/">水道料金計算ツール</a></li><li><a href="../warikan/">割り勘計算ツール</a></li></ul></section>
+    <section class="goma-related-tools" aria-labelledby="goma-related-tools-title">
+      <h2 id="goma-related-tools-title">🔗 関連ツール</h2>
+      <p>移動にかかる費用の整理や、距離の確認を続けたいときに役立つツールです。</p>
+      <ul class="goma-related-tools-list">
+        <li><a class="gasoline-related-link" href="../calculator/"><strong>🧮 電卓ツール</strong><span>高速料金や駐車料金を含めた費用を計算</span></a></li>
+        <li><a class="gasoline-related-link" href="../warikan/"><strong>💰 割り勘計算ツール</strong><span>移動費全体を人数で分ける金額を確認</span></a></li>
+        <li><a class="gasoline-related-link" href="../unit-converter/"><strong>📏 単位変換ツール</strong><span>距離の単位を換算して入力値を確認</span></a></li>
+      </ul>
+    </section>
   </main>
 
   <!-- ====================== フッター ====================== -->
