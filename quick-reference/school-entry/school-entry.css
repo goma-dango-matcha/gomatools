@@ -60,7 +60,7 @@
     margin-bottom: 4px;
     color: var(--terms-muted);
     content: attr(data-label);
-    font-size: .72rem;
+    font-size: .75rem;
     font-weight: 800;
   }
   .school-entry-table .school-entry-date,
@@ -71,5 +71,5 @@
 @media (max-width: 340px) {
   .school-entry-table tbody { padding: 8px; }
   .school-entry-table tbody td { font-size: .74rem; }
-  .school-entry-table tbody td::before { font-size: .68rem; }
+  .school-entry-table tbody td::before { font-size: .75rem; }
 }

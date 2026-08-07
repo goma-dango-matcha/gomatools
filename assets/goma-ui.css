@@ -91,9 +91,9 @@
   margin-left: auto;
   padding: 3px 7px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, .2);
-  color: #fff;
-  font-size: .72rem;
+  background: rgba(255, 255, 255, .92);
+  color: #35552b;
+  font-size: .75rem;
 }
 
 @media (max-width: 620px) {
