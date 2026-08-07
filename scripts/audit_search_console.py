@@ -23,6 +23,17 @@ LOCAL_HTML_EXCLUSIONS = {
     # Google Search Consoleの所有権確認用ファイルで、コンテンツページではない。
     "google48cd6df4241f7a6b.html",
 }
+NEW_TAB_HINT_CLASSES = {"goma-visually-hidden"}
+NEW_TAB_HINT_TEXT = "新しいタブで開きます"
+
+
+@dataclass
+class NewTabLinkData:
+    line: int
+    href: str
+    rel_present: bool
+    rel_tokens: set[str]
+    hint_texts: list[str] = field(default_factory=list)
 
 
 class PageParser(HTMLParser):
@@ -34,13 +45,21 @@ class PageParser(HTMLParser):
         self.h1_count = 0
         self.ids: list[tuple[str, int]] = []
         self.json_ld_blocks: list[tuple[int, str]] = []
+        self.new_tab_links: list[NewTabLinkData] = []
+        self.orphan_new_tab_hints: list[tuple[int, str]] = []
+        self.new_tab_parse_warnings: list[str] = []
         self._json_ld_line: int | None = None
         self._json_ld_parts: list[str] | None = None
+        self._anchor_stack: list[NewTabLinkData | None] = []
+        self._hint_capture: tuple[NewTabLinkData | None, list[str], int, int] | None = None
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         values = {key.lower(): value or "" for key, value in attrs}
         tag = tag.lower()
         line, _ = self.getpos()
+        if self._hint_capture is not None:
+            target, parts, depth, hint_line = self._hint_capture
+            self._hint_capture = (target, parts, depth + 1, hint_line)
         if tag == "h1":
             self.h1_count += 1
         if "id" in values:
@@ -48,8 +67,36 @@ class PageParser(HTMLParser):
         if tag == "script" and values.get("type", "").lower() == "application/ld+json":
             self._json_ld_line = line
             self._json_ld_parts = []
-        if tag == "a" and values.get("href"):
-            self.links.append(values["href"])
+        if tag == "a":
+            if values.get("href"):
+                self.links.append(values["href"])
+            target = values.get("target", "").lower()
+            if target == "_blank":
+                rel_present = "rel" in values
+                rel_tokens = {token.lower() for token in values.get("rel", "").split()}
+                self._anchor_stack.append(
+                    NewTabLinkData(
+                        line=line,
+                        href=values.get("href", ""),
+                        rel_present=rel_present,
+                        rel_tokens=rel_tokens,
+                    )
+                )
+            else:
+                self._anchor_stack.append(None)
+            if len(self._anchor_stack) > 1:
+                self.new_tab_parse_warnings.append(f"line={line}: nested anchor element")
+        elif tag == "span":
+            classes = {token.lower() for token in values.get("class", "").split()}
+            if classes & NEW_TAB_HINT_CLASSES:
+                target_link = next(
+                    (link for link in reversed(self._anchor_stack) if link is not None),
+                    None,
+                )
+                if self._hint_capture is not None:
+                    self.new_tab_parse_warnings.append(f"line={line}: nested new-tab hint element")
+                else:
+                    self._hint_capture = (target_link, [], 1, line)
         elif tag == "link" and "canonical" in values.get("rel", "").lower().split():
             self.canonicals.append(values.get("href", ""))
         elif tag == "meta" and values.get("name", "").lower() in {"robots", "googlebot"}:
@@ -58,13 +105,41 @@ class PageParser(HTMLParser):
     def handle_data(self, data: str) -> None:
         if self._json_ld_parts is not None:
             self._json_ld_parts.append(data)
+        if self._hint_capture is not None:
+            self._hint_capture[1].append(data)
 
     def handle_endtag(self, tag: str) -> None:
-        if tag.lower() != "script" or self._json_ld_parts is None:
-            return
-        self.json_ld_blocks.append((self._json_ld_line or 0, "".join(self._json_ld_parts)))
-        self._json_ld_line = None
-        self._json_ld_parts = None
+        tag = tag.lower()
+        if self._hint_capture is not None:
+            target, parts, depth, hint_line = self._hint_capture
+            depth -= 1
+            if depth == 0:
+                text = "".join(parts)
+                if target is None:
+                    self.orphan_new_tab_hints.append((hint_line, text))
+                else:
+                    target.hint_texts.append(text)
+                self._hint_capture = None
+            else:
+                self._hint_capture = (target, parts, depth, hint_line)
+        if tag == "a":
+            if not self._anchor_stack:
+                self.new_tab_parse_warnings.append("unexpected closing anchor element")
+            else:
+                link = self._anchor_stack.pop()
+                if link is not None:
+                    self.new_tab_links.append(link)
+        if tag == "script" and self._json_ld_parts is not None:
+            self.json_ld_blocks.append((self._json_ld_line or 0, "".join(self._json_ld_parts)))
+            self._json_ld_line = None
+            self._json_ld_parts = None
+
+    def close(self) -> None:
+        super().close()
+        if self._anchor_stack:
+            self.new_tab_parse_warnings.append("unclosed anchor element")
+        if self._hint_capture is not None:
+            self.new_tab_parse_warnings.append("unclosed new-tab hint element")
 
 
 @dataclass
@@ -279,6 +354,7 @@ def fetch(url: str, timeout: int, user_agent: str = USER_AGENT) -> tuple[int, st
 def parse_html(body: bytes) -> PageParser:
     parser = PageParser()
     parser.feed(body.decode("utf-8", errors="replace"))
+    parser.close()
     return parser
 
 
@@ -435,7 +511,100 @@ def is_local_html_excluded(repo: Path, path: Path, page: PageParser) -> bool:
     return any("noindex" in directive.lower() for directive in page.robots)
 
 
-def audit_local_structure(repo: Path, base_url: str, problems: list[str]) -> dict[str, object]:
+def normalize_new_tab_hint(text: str) -> str:
+    normalized = re.sub(r"\s+", "", text)
+    return normalized.strip("()（）")
+
+
+def audit_external_link_accessibility(
+    repo: Path,
+    public_pages: dict[Path, PageParser],
+    problems: list[str],
+    warnings: list[str],
+) -> dict[str, int]:
+    summary = {
+        "external_link_pages": 0,
+        "external_blank_links": 0,
+        "external_hint_links": 0,
+        "external_hint_missing": 0,
+        "external_noopener_links": 0,
+        "external_noreferrer_links": 0,
+        "external_duplicate_hints": 0,
+        "external_link_errors": 0,
+    }
+
+    def error(code: str, relative: str, link: NewTabLinkData, reason: str) -> None:
+        summary["external_link_errors"] += 1
+        problems.append(
+            f"{code}: file={relative} line={link.line} href={link.href or '(empty)'} "
+            f"reason={reason}"
+        )
+
+    for path, page in sorted(public_pages.items(), key=lambda item: item[0].as_posix()):
+        relative = display_local_path(repo, path)
+        if page.new_tab_links:
+            summary["external_link_pages"] += 1
+        for warning in page.new_tab_parse_warnings:
+            warnings.append(f"EXTERNAL_LINK_PARSE: file={relative} {warning}")
+        for line, text in page.orphan_new_tab_hints:
+            if normalize_new_tab_hint(text) != NEW_TAB_HINT_TEXT:
+                continue
+            summary["external_link_errors"] += 1
+            problems.append(
+                f"NEW_TAB_HINT_ORPHAN: file={relative} line={line} "
+                "reason=new-tab screen-reader hint is outside target=\"_blank\" link"
+            )
+
+        for link in page.new_tab_links:
+            summary["external_blank_links"] += 1
+            valid_hints = [
+                text for text in link.hint_texts if normalize_new_tab_hint(text) == NEW_TAB_HINT_TEXT
+            ]
+            if valid_hints:
+                summary["external_hint_links"] += 1
+            else:
+                summary["external_hint_missing"] += 1
+                reason = (
+                    "target=\"_blank\" link has no new-tab screen-reader hint"
+                    if not link.hint_texts
+                    else "new-tab screen-reader hint text is invalid"
+                )
+                error("NEW_TAB_A11Y_MISSING", relative, link, reason)
+            if len(link.hint_texts) > 1:
+                summary["external_duplicate_hints"] += 1
+                error(
+                    "NEW_TAB_HINT_DUPLICATE",
+                    relative,
+                    link,
+                    f"hint_count={len(link.hint_texts)}",
+                )
+
+            if not link.rel_present:
+                error(
+                    "EXTERNAL_LINK_REL_MISSING",
+                    relative,
+                    link,
+                    "target=\"_blank\" link has no rel attribute",
+                )
+                continue
+            if "noopener" in link.rel_tokens:
+                summary["external_noopener_links"] += 1
+            else:
+                error("NOOPENER_MISSING", relative, link, "rel has no noopener token")
+            if "noreferrer" in link.rel_tokens:
+                summary["external_noreferrer_links"] += 1
+            else:
+                error("NOREFERRER_MISSING", relative, link, "rel has no noreferrer token")
+
+    return summary
+
+
+def audit_local_structure(
+    repo: Path,
+    base_url: str,
+    problems: list[str],
+    warnings: list[str],
+) -> dict[str, object]:
     repo = repo.resolve()
     summary = {
         "sitemap_urls": 0,
@@ -447,6 +616,14 @@ def audit_local_structure(repo: Path, base_url: str, problems: list[str]) -> dic
         "h1_errors": 0,
         "duplicate_id_errors": 0,
         "json_ld_errors": 0,
+        "external_link_pages": 0,
+        "external_blank_links": 0,
+        "external_hint_links": 0,
+        "external_hint_missing": 0,
+        "external_noopener_links": 0,
+        "external_noreferrer_links": 0,
+        "external_duplicate_hints": 0,
+        "external_link_errors": 0,
         "sitemap_url_list": [],
     }
     sitemap_path = repo / "sitemap.xml"
@@ -491,6 +668,7 @@ def audit_local_structure(repo: Path, base_url: str, problems: list[str]) -> dic
         public_pages[path.resolve()] = page
 
     summary["html_files"] = len(public_pages)
+    summary.update(audit_external_link_accessibility(repo, public_pages, problems, warnings))
     for path in sorted(public_pages, key=lambda item: item.as_posix()):
         if path in sitemap_paths:
             continue
@@ -935,7 +1113,7 @@ def main() -> int:
     robots_url = urljoin(base_url, "robots.txt")
     problems: list[str] = []
     warnings: list[str] = []
-    local_summary = audit_local_structure(args.repo, base_url, problems)
+    local_summary = audit_local_structure(args.repo, base_url, problems, warnings)
     audit_public_content_counts(args.repo, base_url, local_summary, problems, warnings)
 
     sitemap_status, sitemap_final, sitemap_headers, sitemap_body = fetch(sitemap_url, args.timeout)
@@ -1051,6 +1229,18 @@ def main() -> int:
         "JSON-LD syntax:",
         "PASS" if local_summary["json_ld_errors"] == 0 else "FAIL",
         f"（{local_summary['json_ld_blocks']}ブロック）",
+    )
+    print("External link accessibility")
+    print(f"  target=\"_blank\" pages: {local_summary['external_link_pages']}")
+    print(f"  target=\"_blank\" links: {local_summary['external_blank_links']}")
+    print(f"  with new-tab hint: {local_summary['external_hint_links']}")
+    print(f"  missing new-tab hint: {local_summary['external_hint_missing']}")
+    print(f"  with noopener: {local_summary['external_noopener_links']}")
+    print(f"  with noreferrer: {local_summary['external_noreferrer_links']}")
+    print(f"  duplicate hints: {local_summary['external_duplicate_hints']}")
+    print(
+        "  status:",
+        "PASS" if local_summary["external_link_errors"] == 0 else "FAIL",
     )
 
     for warning in warnings:
