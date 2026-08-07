@@ -120,7 +120,7 @@
     .mini-dot.weekend { background: var(--sat); }
     .mini-calendar-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 5px; }
     .mini-calendar-link { margin: 12px 0 0; text-align: center; }
-    .mini-calendar-link a { color: var(--green-dark); font-size: .86rem; font-weight: 850; text-decoration: none; }
+    .mini-calendar-link a { display: inline-flex; align-items: center; min-height: 24px; padding-block: 3px; color: var(--green-dark); font-size: .86rem; font-weight: 850; text-decoration: none; }
     .mini-calendar-link a:hover { text-decoration: underline; }
     .holiday-origin-card {
       margin-top: 18px;
@@ -153,7 +153,7 @@
     .mini-day.holiday:not(.today) .mini-date,
     .mini-day.sunday:not(.today) .mini-date { color: var(--holiday); }
     .mini-day.saturday:not(.today):not(.holiday) .mini-date { color: var(--sat); }
-    .mini-label { display: block; margin-top: 5px; color: var(--muted); font-size: .64rem; font-weight: 850; line-height: 1.25; overflow-wrap: anywhere; }
+    .mini-label { display: block; margin-top: 5px; color: var(--muted); font-size: .75rem; font-weight: 850; line-height: 1.25; overflow-wrap: anywhere; }
     .mini-day.holiday .mini-label { color: var(--holiday); }
     .answer-note { max-width: 760px; margin: 18px auto 0; color: var(--muted); font-size: .9rem; text-align: center; }
     .answer-note p { margin: 5px 0; }
@@ -192,13 +192,16 @@
       .card { padding: 22px 18px; border-radius: 18px; }
       .mini-calendar-card { padding: 14px; border-radius: 16px; }
       .mini-calendar-grid { gap: 4px; }
-      .mini-weekday { padding: 4px 0; font-size: .7rem; }
+      .mini-weekday { padding: 4px 0; font-size: .75rem; }
       .mini-day { min-height: 50px; padding: 5px 3px; border-radius: 10px; }
       .mini-date { min-width: 22px; height: 22px; font-size: .8rem; }
-      .mini-label { margin-top: 3px; font-size: .65rem; }
+      .mini-label { margin-top: 3px; font-size: .75rem; }
       .answer-note { text-align: left; }
       .answer-note p { margin: 8px 0; }
       .support-list { padding-left: 1.15em; }
+    }
+    @media (max-width: 340px) {
+      .holiday-date { font-size: 1.18rem; line-height: 1.4; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }

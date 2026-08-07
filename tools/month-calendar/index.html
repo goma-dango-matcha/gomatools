@@ -110,7 +110,7 @@
       background: rgba(255, 255, 255, .92);
       overflow: hidden;
     }
-    .day-cell.outside { color: #a8b0a3; background: rgba(248, 251, 246, .72); }
+    .day-cell.outside { color: var(--muted); background: rgba(248, 251, 246, .72); }
     .day-cell.saturday { background: var(--sat-soft); }
     .day-cell.sunday { background: var(--sun-soft); }
     .day-cell.holiday { border-color: rgba(184, 79, 62, .35); background: var(--holiday-soft); }
@@ -120,8 +120,8 @@
     .day-cell.holiday:not(.today) .day-number,
     .day-cell.sunday:not(.today) .day-number { color: var(--holiday); }
     .day-cell.saturday:not(.today):not(.holiday) .day-number { color: var(--sat); }
-    .holiday-name { display: block; margin-top: 7px; color: var(--holiday); font-size: .72rem; font-weight: 850; line-height: 1.35; overflow-wrap: anywhere; }
-    .today-badge { display: block; margin-top: 7px; color: var(--green-dark); font-size: .72rem; font-weight: 900; }
+    .holiday-name { display: block; margin-top: 7px; color: var(--holiday); font-size: .75rem; font-weight: 850; line-height: 1.35; overflow-wrap: anywhere; }
+    .today-badge { display: block; margin-top: 7px; color: var(--green-dark); font-size: .75rem; font-weight: 900; line-height: 1.25; }
 
     .info-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 18px; }
     .info-card { min-width: 0; padding: 22px; border: 1px solid var(--line); border-radius: 18px; background: var(--white); box-shadow: 0 10px 30px rgba(48, 70, 36, .06); }
@@ -169,8 +169,8 @@
       .weekday-cell { padding: 6px 0; font-size: .76rem; }
       .day-cell { min-height: 58px; padding: 5px; border-radius: 10px; }
       .day-number { min-width: 22px; height: 22px; font-size: .82rem; }
-      .holiday-name { margin-top: 4px; font-size: .68rem; line-height: 1.25; }
-      .today-badge { margin-top: 3px; font-size: .68rem; }
+      .holiday-name { margin-top: 4px; font-size: .75rem; line-height: 1.25; }
+      .today-badge { margin-top: 3px; font-size: .75rem; }
       .calendar-sentence { font-size: .86rem; }
       .answer-note { text-align: left; }
       .answer-note p { margin: 8px 0; }
@@ -178,8 +178,8 @@
     }
     @media (max-width: 380px) {
       .container { width: min(100% - 18px, 980px); }
-      .day-cell { min-height: 54px; padding: 4px; }
-      .holiday-name { font-size: .64rem; }
+      .day-cell { min-height: 54px; padding: 3px; }
+      .holiday-name { font-size: .75rem; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
