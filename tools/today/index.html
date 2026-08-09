@@ -113,7 +113,6 @@
       font-weight: 900;
       overflow-wrap: anywhere;
     }
-    .today-sentence { margin: 16px auto 0; color: var(--text); font-weight: 750; }
     .today-meta { margin: 6px 0 0; color: var(--muted); font-size: .9rem; }
 
     .info-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 18px; }
@@ -137,15 +136,6 @@
     }
     .answer-note p { margin: 5px 0; }
     .brand-note { color: var(--green-dark); font-weight: 800; }
-
-    .knowledge-coming-soon {
-      margin: 14px 0 0;
-      padding: 14px 16px;
-      border-left: 4px solid var(--green);
-      border-radius: 0 12px 12px 0;
-      background: var(--green-soft);
-      color: var(--muted);
-    }
 
     .copy-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 22px; }
     .copy-button {
@@ -299,7 +289,6 @@
         <div class="today-main-card" id="todayInfo" aria-live="polite">
           <span class="today-label">📅 今日の日付</span>
           <strong class="today-date" id="westernDate">読み込み中...</strong>
-          <p class="today-sentence" id="todaySentence">端末の日付を確認しています。</p>
           <div class="copy-actions">
             <button class="copy-button" type="button" data-copy-target="westernDate">西暦の日付をコピー</button>
             <button class="copy-button" type="button" data-copy-target="japaneseDate">和暦の日付をコピー</button>
@@ -353,8 +342,10 @@
 
       <section class="section card goma-related-knowledge" aria-labelledby="goma-related-knowledge-title">
         <h2 class="section-title" id="goma-related-knowledge-title">💡 関連するゴマ知識</h2>
-        <p>日付や暦をもっと身近に活用できるゴマ知識を、順次追加します。</p>
-        <p class="knowledge-coming-soon">うるう年の仕組みや曜日の決まり方など、今日の情報に関連する記事を公開後、この場所からすぐに確認できるようにします。</p>
+        <p>今日の日付や暦に関係する仕組みを、分かりやすく紹介しています。</p>
+        <ul class="goma-related-knowledge-list">
+          <li><a href="../../knowledge/leap-year/">うるう年とは？</a></li>
+        </ul>
       </section>
 
       <section class="section card goma-related-tools" aria-labelledby="goma-related-tools-title">
@@ -476,7 +467,6 @@
       const leapText = isLeapYear(parts.year) ? 'うるう年です' : '平年です';
 
       document.getElementById('westernDate').textContent = westernDate;
-      document.getElementById('todaySentence').textContent = `今日は${westernDate}です。`;
       document.getElementById('japaneseDate').textContent = japaneseDate;
       document.getElementById('dayOfYear').textContent = `${dayOfYear.toLocaleString('ja-JP')}日目`;
       document.getElementById('dayOfYearSentence').textContent = `今日は今年の${dayOfYear.toLocaleString('ja-JP')}日目です。`;
