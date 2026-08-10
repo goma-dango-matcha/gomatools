@@ -70,6 +70,7 @@ docs配下の現行仕様書を一覧化し、仕様書の優先順位・役割�
 | 43 | [index-page-growth-review-spec.md](index-page-growth-review-spec.md) | Version1.0 | 検索・ホーム・利用データを入口として、既存ページの主要情報・回遊導線・ブランド・モバイル・アクセシビリティを継続改善するレビュー基準 |
 | 44 | [school-entry-year-calculation-knowledge-spec.md](school-entry-year-calculation-knowledge-spec.md) | Version1.0 | 「入学年度はどう計算する？」の役割・本文・一次情報・回遊・SEO・公開条件を定める個別実装仕様 |
 | 45 | [percentage-calculation-spec.md](percentage-calculation-spec.md) | Version1.0 | 「パーセントはどう計算する？」の役割・計算式・具体例・一次情報・回遊・SEO・公開条件を定める個別実装仕様 |
+| 46 | [tax-inclusive-exclusive-calculation-spec.md](tax-inclusive-exclusive-calculation-spec.md) | Version1.0 | 「税込・税抜はどう計算する？」の役割・現行税率・逆算・端数・一次情報・回遊・SEO・公開条件を定める個別実装仕様 |
 
 ---
 
