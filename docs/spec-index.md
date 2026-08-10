@@ -69,6 +69,7 @@ docs配下の現行仕様書を一覧化し、仕様書の優先順位・役割�
 | 42 | [smartphone-photo-print-cropping-spec.md](smartphone-photo-print-cropping-spec.md) | Version1.0 | 「スマホ写真を印刷すると端が切れる理由」固有の縦横比・トリミング・余白・回遊・SEO仕様 |
 | 43 | [index-page-growth-review-spec.md](index-page-growth-review-spec.md) | Version1.0 | 検索・ホーム・利用データを入口として、既存ページの主要情報・回遊導線・ブランド・モバイル・アクセシビリティを継続改善するレビュー基準 |
 | 44 | [school-entry-year-calculation-knowledge-spec.md](school-entry-year-calculation-knowledge-spec.md) | Version1.0 | 「入学年度はどう計算する？」の役割・本文・一次情報・回遊・SEO・公開条件を定める個別実装仕様 |
+| 45 | [percentage-calculation-spec.md](percentage-calculation-spec.md) | Version1.0 | 「パーセントはどう計算する？」の役割・計算式・具体例・一次情報・回遊・SEO・公開条件を定める個別実装仕様 |
 
 ---
 
