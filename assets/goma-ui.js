@@ -79,7 +79,7 @@
         <p class="goma-footer-copy">毎日に、一歩便利。</p>
         <p class="goma-last-updated">
           <span>最終更新</span>
-          <time datetime="2026-07">2026年7月</time>
+          <time datetime="2026-08">2026年8月</time>
         </p>
         <nav class="goma-footer-nav" aria-label="フッターナビゲーション">
           <a href="${paths.home}">🏠 ホーム</a>

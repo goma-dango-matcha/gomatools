@@ -116,7 +116,7 @@
   </url>
   <url>
     <loc>https://goma-dango-matcha.github.io/gomatools/text-counter/</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-08-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -320,7 +320,7 @@
 
   <url>
     <loc>https://goma-dango-matcha.github.io/gomatools/knowledge/what-is-character-encoding/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-08-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -399,6 +399,12 @@
   </url>
   <url>
     <loc>https://goma-dango-matcha.github.io/gomatools/knowledge/how-to-calculate-tax-inclusive-exclusive/</loc>
+    <lastmod>2026-08-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://goma-dango-matcha.github.io/gomatools/knowledge/character-count-byte-difference/</loc>
     <lastmod>2026-08-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>

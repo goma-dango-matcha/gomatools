@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ja" id="top">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8BNDHPNEHY"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-8BNDHPNEHY');</script>
+  <title>文字数とバイト数は何が違う？日本語・英数字の違いを分かりやすく解説｜ゴマツール</title>
+  <meta name="description" content="文字数とバイト数の違いを初心者向けに解説します。1文字が必ず1バイトとは限らない理由や、UTF-8での英数字・日本語の違い、文字コードとの関係を分かりやすく紹介します。">
+  <link rel="canonical" href="https://goma-dango-matcha.github.io/gomatools/knowledge/character-count-byte-difference/">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="ゴマツール">
+  <meta property="og:title" content="文字数とバイト数は何が違う？日本語・英数字の違いを分かりやすく解説">
+  <meta property="og:description" content="1文字が必ず1バイトとは限らない理由と、UTF-8での英数字・日本語の違いを解説します。">
+  <meta property="og:url" content="https://goma-dango-matcha.github.io/gomatools/knowledge/character-count-byte-difference/">
+  <meta property="og:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="文字数とバイト数は何が違う？日本語・英数字の違いを分かりやすく解説">
+  <meta name="twitter:description" content="1文字が必ず1バイトとは限らない理由と、UTF-8での英数字・日本語の違いを解説します。">
+  <meta name="twitter:image" content="https://goma-dango-matcha.github.io/gomatools/images/ogp.png">
+  <link rel="icon" href="../../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <meta name="theme-color" content="#63843F">
+  <link rel="stylesheet" href="../../css/style.css?v=2.8">
+  <link rel="stylesheet" href="../../assets/goma-ui.css?v=2.9">
+  <script defer src="../../assets/goma-ui.js?v=2.9"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "文字数とバイト数は何が違う？日本語・英数字の違いを分かりやすく解説",
+    "description": "文字数とバイト数の違い、UTF-8での英数字・日本語のバイト数、文字コードとの関係を初心者向けに解説します。",
+    "inLanguage": "ja",
+    "datePublished": "2026-08-10",
+    "dateModified": "2026-08-10",
+    "author": { "@type": "Organization", "name": "ゴマツール" },
+    "publisher": { "@type": "Organization", "name": "ゴマツール", "logo": { "@type": "ImageObject", "url": "https://goma-dango-matcha.github.io/gomatools/images/ogp.png" } },
+    "mainEntityOfPage": "https://goma-dango-matcha.github.io/gomatools/knowledge/character-count-byte-difference/"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "1文字は何バイトですか？", "acceptedAnswer": { "@type": "Answer", "text": "固定ではありません。使用する文字と文字コードによって、1文字に必要なバイト数は変わります。" } },
+      { "@type": "Question", "name": "UTF-8では日本語1文字は何バイトですか？", "acceptedAnswer": { "@type": "Answer", "text": "ひらがなや漢字など、一般的な日本語文字の多くはUTF-8で3バイトですが、すべての日本語文字が必ず3バイトになるわけではありません。" } },
+      { "@type": "Question", "name": "全角と半角でバイト数は決まりますか？", "acceptedAnswer": { "@type": "Answer", "text": "全角・半角だけでは決まりません。バイト数は文字と文字コードによって異なります。" } },
+      { "@type": "Question", "name": "絵文字は1文字として数えられますか？", "acceptedAnswer": { "@type": "Answer", "text": "数え方によって異なります。見た目は1文字でも、複数の文字要素を組み合わせて表示される絵文字があります。" } }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://goma-dango-matcha.github.io/gomatools/" },
+      { "@type": "ListItem", "position": 2, "name": "ゴマ知識", "item": "https://goma-dango-matcha.github.io/gomatools/knowledge.html" },
+      { "@type": "ListItem", "position": 3, "name": "文字数とバイト数は何が違う？日本語・英数字の違いを分かりやすく解説", "item": "https://goma-dango-matcha.github.io/gomatools/knowledge/character-count-byte-difference/" }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header></header>
+  <main class="knowledge-article-main">
+    <article class="knowledge-article-container">
+      <nav aria-label="パンくずリスト">
+        <ol class="breadcrumb">
+          <li><a href="../../">ホーム</a></li>
+          <li><a href="../../knowledge.html">ゴマ知識</a></li>
+          <li aria-current="page">文字数とバイト数は何が違う？日本語・英数字の違いを分かりやすく解説</li>
+        </ol>
+      </nav>
+
+      <header class="knowledge-article-hero">
+        <p class="knowledge-article-eyebrow">🍵 ゴマ知識</p>
+        <h1>文字数とバイト数は何が違う？日本語・英数字の違いを分かりやすく解説</h1>
+        <p class="knowledge-article-lead">文字数とバイト数は、同じものを数えているわけではありません。</p>
+        <p class="knowledge-article-lead">文字数は文章上の文字の数、バイト数はコンピューターで保存・送信するときのデータ量を表します。</p>
+        <p class="knowledge-article-lead">1文字が何バイトになるかは、文字や文字コードによって異なります。</p>
+        <p class="knowledge-article-tool-lead">✍️ 文字数をすぐ確認したい方は <a href="../../text-counter/">文字数カウント</a> をご利用ください。</p>
+      </header>
+
+      <section class="knowledge-article-card knowledge-article-body">
+        <h2>結論：文字数とバイト数は数えているものが違う</h2>
+        <ul class="knowledge-check-list">
+          <li>文字数：文章に含まれる文字を数えた数</li>
+          <li>バイト数：保存や送信に必要なデータ量</li>
+          <li>1文字のバイト数：文字と文字コードによって変わる</li>
+        </ul>
+        <p>同じ3文字でも、英数字と日本語では必要なバイト数が異なる場合があります。そのため、文字数が同じだからといってデータ量も同じとは限りません。</p>
+
+        <h2>文字数とは</h2>
+        <p>文字数は、文章に含まれる文字を数えた数です。たとえば「ABC」と「あいう」は、どちらも3文字です。</p>
+        <p>ただし、利用するシステムや数え方によって結果が異なる場合があります。特に絵文字やアクセント記号などでは、見た目の1文字とコンピューター内部で数える単位が一致しないことがあります。</p>
+
+        <h2>バイト数とは</h2>
+        <p>バイト数は、コンピューターがデータを保存したり送信したりするときに使うデータ量の単位です。</p>
+        <p>文字は一定のルールに従って数値データへ変換されます。このルールの一つが文字コードであり、どの文字コードを使うかによって必要なバイト数が変わることがあります。</p>
+
+        <h2>1文字＝1バイトとは限らない</h2>
+        <p>UTF-8では、ASCII範囲の英数字は1文字を1バイトで表します。一方、ひらがなや一般的な漢字など、日本語文字の多くは1文字に3バイトを使います。</p>
+        <p>ただし、「日本語は必ず3バイト」「全角は必ず○バイト」と固定して考えることはできません。文字や文字コードによって扱いが異なるためです。</p>
+
+        <h2>UTF-8では英数字と日本語でバイト数が違う</h2>
+        <ul class="knowledge-check-list" aria-label="UTF-8での文字数とバイト数の例">
+          <li><code>ABC</code>：3文字・3バイト</li>
+          <li><code>あいう</code>：3文字・9バイト</li>
+          <li><code>Aあ</code>：2文字・4バイト</li>
+        </ul>
+        <p>「ABC」と「あいう」はどちらも3文字ですが、UTF-8でのバイト数は異なります。文字数とデータ量は別の情報です。</p>
+
+        <h2>全角・半角だけではバイト数は決まらない</h2>
+        <p>「全角だから2バイト」「半角だから1バイト」と覚えると、文字コードが変わったときに正しく判断できません。全角・半角は見た目や文字幅の分類であり、実際のバイト数は使用する文字と文字コードで確認する必要があります。</p>
+
+        <h2>絵文字ではさらに数え方が複雑になることもある</h2>
+        <p>絵文字には、見た目では1文字でも複数の文字要素を組み合わせて表示されるものがあります。そのため、見た目の文字数、プログラムが数える単位、UTF-8でのバイト数が単純に一致しない場合があります。</p>
+        <p>ゴマツールの文字数カウントは、JavaScriptでUnicodeコードポイント単位に数えています。一般的な文字や一部の絵文字は自然に数えられますが、複数の要素を組み合わせた絵文字などでは、見た目の1文字より多く数える場合があります。</p>
+
+        <h2>文字数とファイルサイズも同じではない</h2>
+        <p>テキストファイルには、文字のデータ以外に改行、文字コードを示す情報、ファイル形式上の付加データなどが含まれる場合があります。そのため、文字数だけから実際のファイルサイズを完全に決めることはできません。</p>
+
+        <h2>文字数をすぐ確認したいときは文字数カウント</h2>
+        <p><a href="../../text-counter/">文字数カウント</a>では、入力した文章の文字数、空白を除いた文字数、改行数をブラウザ内ですぐ確認できます。</p>
+
+        <h2>文字コードの仕組みを知りたいときは</h2>
+        <p>文字をデータへ変換する仕組みや、UTF-8とShift_JIS、文字化けの理由は、<a href="../what-is-character-encoding/">文字コードって何？</a>で解説しています。</p>
+
+        <h2>文字コードを変換したいときは</h2>
+        <p>実際の文字コードを変換したい場合は、<a href="../../tools/character-encoding.html">文字コード変換ツール</a>をご利用ください。</p>
+      </section>
+
+      <section class="knowledge-article-card knowledge-goma-point" aria-labelledby="goma-point-title">
+        <h2 id="goma-point-title">🍵 ゴマワンポイント</h2>
+        <p>文字数が同じでも、データ量が同じとは限りません。「何文字か」と「何バイトか」は、目的に合わせて分けて確認しましょう。</p>
+      </section>
+
+      <section class="knowledge-article-card knowledge-faq" aria-labelledby="faq-title">
+        <h2 id="faq-title">❓ FAQ</h2>
+        <details open><summary>Q. 1文字は何バイトですか？</summary><p>A. 固定ではありません。使用する文字と文字コードによって、1文字に必要なバイト数は変わります。</p></details>
+        <details><summary>Q. UTF-8では日本語1文字は何バイトですか？</summary><p>A. ひらがなや漢字など、一般的な日本語文字の多くはUTF-8で3バイトですが、すべての日本語文字が必ず3バイトになるわけではありません。</p></details>
+        <details><summary>Q. 全角と半角でバイト数は決まりますか？</summary><p>A. 全角・半角だけでは決まりません。バイト数は文字と文字コードによって異なります。</p></details>
+        <details><summary>Q. 絵文字は1文字として数えられますか？</summary><p>A. 数え方によって異なります。見た目は1文字でも、複数の文字要素を組み合わせて表示される絵文字があります。</p></details>
+      </section>
+
+      <section class="knowledge-article-card knowledge-sources" aria-labelledby="sources-title">
+        <h2 id="sources-title">参考・出典</h2>
+        <ul class="knowledge-check-list">
+          <li><a href="https://www.unicode.org/versions/Unicode17.0.0/UnicodeStandard-17.0.pdf" target="_blank" rel="noopener noreferrer">Unicode Consortium「The Unicode Standard, Version 17.0」（PDF）<span class="goma-visually-hidden">（新しいタブで開きます）</span></a></li>
+          <li><a href="https://encoding.spec.whatwg.org/" target="_blank" rel="noopener noreferrer">WHATWG「Encoding Standard」<span class="goma-visually-hidden">（新しいタブで開きます）</span></a></li>
+          <li><a href="https://tc39.es/ecma262/2026/multipage/text-processing.html" target="_blank" rel="noopener noreferrer">Ecma International「ECMAScript 2026 Language Specification」<span class="goma-visually-hidden">（新しいタブで開きます）</span></a></li>
+        </ul>
+      </section>
+
+      <section class="knowledge-article-card knowledge-related-articles" aria-labelledby="related-articles-title">
+        <h2 id="related-articles-title">💡 関連するゴマ知識</h2>
+        <div class="knowledge-link-grid">
+          <a href="../what-is-character-encoding/">文字コードって何？</a>
+          <a href="../../knowledge.html">ゴマ知識一覧</a>
+        </div>
+      </section>
+
+      <section class="knowledge-article-card knowledge-related-tools" aria-labelledby="related-tools-title">
+        <h2 id="related-tools-title">🔗 関連ツール</h2>
+        <div class="knowledge-link-grid">
+          <a href="../../text-counter/">文字数カウント</a>
+          <a href="../../tools/character-encoding.html">文字コード変換</a>
+          <a href="../../tools/text-format.html">テキスト整形</a>
+          <a href="../../tools/text-compare.html">テキスト比較</a>
+        </div>
+      </section>
+
+      <section class="knowledge-updated" aria-label="最終更新"><span>最終更新</span><time datetime="2026-08">2026年8月</time></section>
+      <div class="back-to-top"><a class="top-button" href="#top">↑ ページ上部へ戻る</a></div>
+    </article>
+  </main>
+  <footer></footer>
+</body>
+</html>
